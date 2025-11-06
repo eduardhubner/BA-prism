@@ -149,11 +149,19 @@ for i, (sample_input_ids, sample_activations, sample_mean_activations) in enumer
 cluster_activations = (
     best_activations if config.CLUSTER_EMBEDDING_MODEL_NAME is None else None
 )
-clustered_sentences = clustering.apply(
+clustered_sentences, cluster_metadata = clustering.apply(
     candidate_inputs_decoded, activations=cluster_activations
 )
 
 logger.info(f"Number of candidates: {len(candidate_inputs_decoded)}")
+
+# Log adaptive k information if applicable
+if config.ADAPTIVE_K:
+    logger.info(f"Adaptive k selected: {cluster_metadata['adaptive_k_selected']}")
+    logger.info(f"K-selection method: {cluster_metadata['adaptive_k_method']}")
+    logger.info(f"K-selection scores: {cluster_metadata['k_selection_scores']}")
+else:
+    logger.info(f"Using fixed k: {config.N_CLUSTERS}")
 
 
 """ Generate a descriptive label for each cluster of texts/sentences """
