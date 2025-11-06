@@ -1,4 +1,4 @@
-DEVICE = "cuda"
+DEVICE = "cpu"
 
 # For model
 TARGET_MODEL_NAME = (
@@ -40,7 +40,7 @@ AGG_METHOD = "mean"
 
 # For all data
 STREAMING = True
-BATCH_SIZE = 2  # Batch size for processing
+BATCH_SIZE = 4  # Batch size for processing
 MAX_TEXT_LENGTH = 512  # Maximum length of text excerpts
 
 # For target data
@@ -59,11 +59,17 @@ N_CLUSTERS = 5
 MAX_CLUSTER_SIZE = 20
 CLUSTER_N_SAMPLES = 1000
 PERCENTILE_STEP = (END_INTERVAL - START_INTERVAL) / CLUSTER_N_SAMPLES
-CLUSTER_EMBEDDING_MODEL_NAME = "Alibaba-NLP/gte-Qwen2-1.5B-instruct"
+CLUSTER_EMBEDDING_MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
 CLUSTER_MAX_SEQ_LEN = 8192
 
+#NEW: Adaptive k parameters
+ADAPTIVE_K = True  
+ADAPTIVE_K_METHOD = "davies_bouldin"  # Options: "davies_bouldin", "bic", "silhouette"
+ADAPTIVE_K_MIN = 2
+ADAPTIVE_K_MAX = 10
+
 # For text generation
-TEXT_GENERATOR_NAME = "gemini-1.5-pro"
+TEXT_GENERATOR_NAME = "gemini-2.5-flash"
 USE_API = True
 PROMPT_INSTRUCTION = (
     "You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a "
