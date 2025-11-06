@@ -1,7 +1,31 @@
+# PRISM Extension: Adaptive K-Selection
+
+**Fork of original PRISM repository with added adaptive k-selection methods.**
+
+This repository extends the PRISM framework with automatic cluster number selection for improved polysemanticity detection. Part of Eduard Hübner's Bachelor's Thesis at TU Berlin.
+
+**Original repository:** [lkopf/prism](https://github.com/lkopf/automated-interpretability)
+
+**Original paper:** [Capturing Polysemanticity with PRISM](https://arxiv.org/abs/2506.15538) by Kopf et al., 2025
+
+## Extension Overview
+
+**Added functionality:**
+- Adaptive k-selection using Davies-Bouldin Index, BIC, and Silhouette Score
+- Configurable k-selection methods via `config.py`
+- Metadata logging for k-selection analysis
+
+**Modified files:**
+- `src/utils/clustering.py` - Added `select_optimal_k()` function
+- `src/utils/config.py` - Added `ADAPTIVE_K` parameters
+- `src/feature_description.py` - Integrated k-selection logging
+
+---
+
 <br/><br/>
 <p align="center">
   <img width="250" src="./prism_logo.svg">
-<h3 align="center"><b>Capturing Polysemanticity with PRISM: A Multi-Concept Feature Description Framework</b></h3>
+<h3 align="center"><b>Original PRISM Framework</b></h3>
 <p align="center">
   PyTorch
 
