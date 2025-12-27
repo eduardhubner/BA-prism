@@ -7,7 +7,7 @@ import torch
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from transformers import set_seed
-from utils import clustering, config, constants, data, helper_modules, models, sampler
+from utils import clustering, config, constants, data, dataloader, helper_modules, models, sampler
 
 set_seed(42)
 
@@ -28,53 +28,115 @@ else:
 
 Path(constants.DESCRIPTIONS_PATH).mkdir(parents=True, exist_ok=True)
 
-# Load target model and tokenizer
-model = models.get_model(config.TARGET_MODEL_NAME)
-model.to(device)
-model.eval()
-
+# Load tokenizer (always needed for decoding)
 tokenizer = models.get_tokenizer(config.TARGET_MODEL_NAME)
 
-# Load dataset (streaming mode)
-dataset = data.get_dataset(
-    data_name=config.TARGET_DATA,
-    data_files=config.DATA_FILES,
-    split=config.SPLIT,
-    streaming=config.STREAMING,
-)
+# Choose between percentile sampling or loading pre-sampled data
+if config.USE_PRESAMPLED_DATA:
+    logger.info("=" * 80)
+    logger.info("LOADING PRE-SAMPLED DATA")
+    logger.info("=" * 80)
+    logger.info(f"Data path: {config.PRESAMPLED_DATA_PATH}")
+    logger.info(f"Target neuron: Layer {config.LAYER_ID}, Unit {config.UNIT_ID}")
 
-# Tokenize, pad and truncate the dataset
-dataset = dataset.map(
-    lambda x: tokenizer(
-        x["text"],
-        truncation=True,
-        padding="max_length",
-        max_length=config.MAX_TEXT_LENGTH,
-    ),
-    batched=True,
-)
+    # Load pre-sampled data directly (bypasses percentile sampling)
+    # Use JSON loader for supervisor's format
+    presampled_texts, presampled_activations = dataloader.load_presampled_json(
+        data_dir=config.PRESAMPLED_DATA_PATH,
+        layer_id=config.LAYER_ID,
+        unit_id=config.UNIT_ID,
+        expected_samples=config.CLUSTER_N_SAMPLES
+    )
 
-dataset = dataset.with_format("torch")
-data_loader = DataLoader(dataset, batch_size=config.BATCH_SIZE, shuffle=False)
+    # Tokenize pre-sampled texts to get input_ids and activations per token
+    # This is needed for highlighting activation patterns
+    best_samples = []
+    best_activations = []
+    best_mean_activations = []
 
+    logger.info(f"Tokenizing {len(presampled_texts)} pre-sampled texts...")
+    for text, mean_activation in tqdm(
+        zip(presampled_texts, presampled_activations, strict=False),
+        desc="Tokenizing pre-sampled data",
+        total=len(presampled_texts)
+    ):
+        # Tokenize the text
+        tokens = tokenizer(
+            text,
+            truncation=True,
+            padding="max_length",
+            max_length=config.MAX_TEXT_LENGTH,
+            return_tensors="pt"
+        )
+        input_ids = tokens["input_ids"].squeeze(0)
 
-""" Percentile sampling """
-percentile_sampler = sampler.Sampler.collect_percentiles(
-    model=model,
-    data_loader=data_loader,
-    agg_method=config.AGG_METHOD,
-)
+        # For pre-sampled data, we have mean activation per text but not per token
+        # Distribute activation uniformly across tokens as approximation
+        # (supervisors may provide token-level activations in actual dataset)
+        token_activations = torch.full_like(input_ids, mean_activation, dtype=torch.float32)
 
-del model, dataset, data_loader
+        best_samples.append(input_ids)
+        best_activations.append(token_activations)
+        best_mean_activations.append(torch.tensor(mean_activation))
 
-helper_modules.clear_gpu_cache()
+    # Convert lists to tensors
+    best_samples = torch.stack(best_samples)
+    best_activations = torch.stack(best_activations)
+    best_mean_activations = torch.stack(best_mean_activations)
 
-# Determine candidates (samples / input IDs, activations) with percentile sampler
-# 0-index: Assuming FEATURES_SIZE=1
-best_samples = percentile_sampler.get_samples()["candidate_inputs"][0]
-best_activations = percentile_sampler.get_samples()["candidate_activation_vectors"][0]
-best_mean_activations = percentile_sampler.get_samples()["candidate_activation"][0]
-# best_samples and best_activations both have shape: (11, 512)
+    logger.info(f"Pre-sampled data loaded: {len(best_samples)} samples")
+
+else:
+    logger.info("=" * 80)
+    logger.info("RUNNING PERCENTILE SAMPLING")
+    logger.info("=" * 80)
+
+    # Load target model
+    model = models.get_model(config.TARGET_MODEL_NAME)
+    model.to(device)
+    model.eval()
+
+    # Load dataset (streaming mode)
+    dataset = data.get_dataset(
+        data_name=config.TARGET_DATA,
+        data_files=config.DATA_FILES,
+        split=config.SPLIT,
+        streaming=config.STREAMING,
+    )
+
+    # Tokenize, pad and truncate the dataset
+    dataset = dataset.map(
+        lambda x: tokenizer(
+            x["text"],
+            truncation=True,
+            padding="max_length",
+            max_length=config.MAX_TEXT_LENGTH,
+        ),
+        batched=True,
+    )
+
+    dataset = dataset.with_format("torch")
+    data_loader = DataLoader(dataset, batch_size=config.BATCH_SIZE, shuffle=False)
+
+    """ Percentile sampling """
+    percentile_sampler = sampler.Sampler.collect_percentiles(
+        model=model,
+        data_loader=data_loader,
+        agg_method=config.AGG_METHOD,
+    )
+
+    del model, dataset, data_loader
+
+    helper_modules.clear_gpu_cache()
+
+    # Determine candidates (samples / input IDs, activations) with percentile sampler
+    # 0-index: Assuming FEATURES_SIZE=1
+    best_samples = percentile_sampler.get_samples()["candidate_inputs"][0]
+    best_activations = percentile_sampler.get_samples()["candidate_activation_vectors"][0]
+    best_mean_activations = percentile_sampler.get_samples()["candidate_activation"][0]
+    # best_samples and best_activations both have shape: (11, 512)
+
+    logger.info(f"Percentile sampling complete: {len(best_samples)} samples")
 
 
 """ Decode text for clustering & Highlight text for LLM input prompt """

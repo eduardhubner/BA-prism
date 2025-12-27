@@ -10,15 +10,26 @@ This repository extends the PRISM framework with automatic cluster number select
 
 ## Extension Overview
 
+This fork extends PRISM with adaptive k-selection methods and cosine similarity-based clustering for improved polysemanticity detection in high-dimensional embedding spaces.
+
 **Added functionality:**
-- Adaptive k-selection using Davies-Bouldin Index, BIC, and Silhouette Score
-- Configurable k-selection methods via `config.py`
-- Metadata logging for k-selection analysis
+- Adaptive k-selection using Silhouette Score, BIC, and Davies-Bouldin Index
+- Cosine similarity support via Spherical K-Means for 768-dimensional embeddings
+- HDBSCAN-based noise filtering to improve cluster quality
+- Agglomerative clustering with cosine linkage
+- Hopkins statistic for clustering tendency analysis
+- Comprehensive metadata logging for k-selection and clustering quality
 
 **Modified files:**
-- `src/utils/clustering.py` - Added `select_optimal_k()` function
-- `src/utils/config.py` - Added `ADAPTIVE_K` parameters
-- `src/feature_description.py` - Integrated k-selection logging
+- `src/utils/clustering.py` - Added `select_optimal_k()`, spherical k-means, HDBSCAN integration, cosine distance support
+- `src/utils/config.py` - Added `ADAPTIVE_K`, `SPHERICAL`, `USE_HDBSCAN_FILTERING` parameters
+- `src/feature_description.py` - Integrated k-selection logging and noise filtering pipeline
+- `src/evaluation.py` - Enhanced evaluation metrics and batch processing
+- `src/utils/helper_modules.py` - Added clustering quality metrics
+- `src/utils/models.py` - Updated embedding model configuration
+
+**Experiments:**
+See [EXPERIMENTS.md](EXPERIMENTS.md) for detailed results from systematic evaluation across 60 GPT2-XL neurons.
 
 ---
 

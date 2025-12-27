@@ -14,7 +14,7 @@ def setup_logging(
     log_dir: str = constants.LOGS_PATH,
     evaluation: bool = False,
     meta_evaluation: bool = False,
-) -> tuple[logging.Logger, str, bool]:
+) -> tuple[logging.Logger, str]:
     """Set up logging to both console and file with configs at the beginning.
 
     Args:
@@ -51,9 +51,18 @@ def setup_logging(
     layer_id = getattr(config, "LAYER_ID", "unknown_layer")
     model_name = getattr(config, "TARGET_MODEL_NAME", "unknown_model")
     method_name = getattr(config, "METHOD_NAME", "unknown_method")
+
+    # Get adaptive k information for filename
+    adaptive_k = getattr(config, "ADAPTIVE_K", False)
+    if adaptive_k:
+        k_method = getattr(config, "ADAPTIVE_K_METHOD", "unknown")
+        method_suffix = f"_{k_method}"
+    else:
+        method_suffix = "_fixed-k5"
+
     if evaluation == False:
         log_filename = (
-            f"{log_dir}/{model_name}_layer-{layer_id}_unit-{unit_id}_{timestamp}.log"
+            f"{log_dir}/{model_name}_layer-{layer_id}_unit-{unit_id}{method_suffix}_{timestamp}.log"
         )
     elif evaluation == True:
         if config.MULTI_EVAL == True:

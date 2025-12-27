@@ -13,7 +13,7 @@ from utils import config, sae
 
 set_seed(42)
 
-token = os.environ["HUGGING_FACE_HUB_TOKEN"]
+token = os.environ.get("HUGGING_FACE_HUB_TOKEN", "")
 
 
 def get_model(model_name: str) -> Any:
