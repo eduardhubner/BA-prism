@@ -30,11 +30,11 @@ This document summarizes the experiments conducted for Eduard Hübner's Bachelor
 **Phase 1 (First 15 neurons):**
 - Tested all 4 methods on neurons across all three layers
 - Generated feature descriptions for each method
-- Calculated AUC scores for evaluation
 
 **Phase 2 (Remaining 45 neurons):**
 - Continued with only Silhouette and Fixed k=5
 - **Reason:** BIC and Davies-Bouldin showed no sensitivity to k-selection (consistently chose similar values)
+- Calculated AUC scores for evaluation
 
 ### Results Location
 
@@ -182,21 +182,6 @@ clustering_analysis_cosine/
 1. **Embedding model quality:** Qwen3-0.6B (0.6B parameters) may be insufficient to capture semantic nuances
 2. **Sample size:** 1000 texts per neuron may not capture full range of activation patterns
 3. **Inherent polysemanticity with fuzzy boundaries:** Neurons may respond to semantically related/overlapping concepts rather than distinct categories, resulting in gradual transitions between activation patterns
-
-### Implications for PRISM
-
-- Adaptive k-selection provides marginal benefit over fixed k for this dataset
-- Manual or semi-automated k-selection may be necessary for complex cases
-- The framework's description generation and scoring steps may be more robust than clustering alone
-
----
-
-## Future Work
-
-1. **Test with larger embedding models** (e.g., original PRISM's embedding model in second venv)
-2. **Investigate alternative clustering approaches** (hierarchical descriptions, continuous feature spaces)
-3. **Evaluate whether weak clustering impacts description quality** (do low silhouette scores correlate with poor AUC?)
-4. **Explore geometric structure** with UMAP-based clustering (preliminary tests inconclusive)
 
 ---
 
