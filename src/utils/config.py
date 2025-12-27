@@ -11,11 +11,11 @@ UNIT_ID = 6314
 LAYER_ID = 0
 
 # For evaluation
-MULTI_EVAL = True  # If there are multiple descriptions per unit, set to True
+MULTI_EVAL = False  # If there are multiple descriptions per unit, set to True
 
 if TARGET_MODEL_NAME == "gpt2-xl":
     HOOK_ID = "mlp.hook_post"
-    EXPLAIN_FILE = f"{TARGET_MODEL_NAME}_layer0_layer20_layer40_60-samples.csv"
+    EXPLAIN_FILE = "eval_neuron_batch_remaining.csv"
     METHOD_NAME = "GPT-explain"
 elif TARGET_MODEL_NAME == "gemma-scope-2b":
     HOOK_ID = "hook_resid_post"
@@ -59,14 +59,19 @@ N_CLUSTERS = 5
 MAX_CLUSTER_SIZE = 20
 CLUSTER_N_SAMPLES = 1000
 PERCENTILE_STEP = (END_INTERVAL - START_INTERVAL) / CLUSTER_N_SAMPLES
-CLUSTER_EMBEDDING_MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
-CLUSTER_MAX_SEQ_LEN = 8192
+CLUSTER_EMBEDDING_MODEL_NAME = "Qwen/Qwen3-Embedding-4B"  # Changed from 0.6B to 4B for better clustering
+CLUSTER_MAX_SEQ_LEN = 512  # Reduced from 8192 - texts already limited to 512 by MAX_TEXT_LENGTH
+SPHERICAL = True  # Use spherical k-means with cosine similarity
 
 #NEW: Adaptive k parameters
-ADAPTIVE_K = True  
+ADAPTIVE_K = True
 ADAPTIVE_K_METHOD = "davies_bouldin"  # Options: "davies_bouldin", "bic", "silhouette"
 ADAPTIVE_K_MIN = 2
 ADAPTIVE_K_MAX = 10
+
+# For pre-sampled data (provided by supervisors)
+USE_PRESAMPLED_DATA = True  # Set to True to load pre-sampled activation data instead of running percentile sampling
+PRESAMPLED_DATA_PATH = "data/candidate_inputs_decoded"  # Path to directory with JSON files (layer{LAYER_ID}_{UNIT_ID}.json)
 
 # For text generation
 TEXT_GENERATOR_NAME = "gemini-2.5-flash"
@@ -98,7 +103,8 @@ PROMPT_INSTRUCTION = (
     "Do NOT start with 'Description:' and instead only state the description itself!"
 )
 SYSTEM_INSTRUCTION = "assistant"
-EVALUATION_TEXT_GENERATOR_NAME = "gemini-1.5-pro"
+EVALUATION_TEXT_GENERATOR_NAME = "gemini-2.5-flash"
+USE_ITERATIVE_GENERATION = False  # Generate samples one at a time 
 
 # For control data
 CONTROL_DATA = "cosmopedia"

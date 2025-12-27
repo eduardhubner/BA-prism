@@ -55,6 +55,18 @@ model_activation_path = f"{constants.ACTIVATIONS_PATH}/{config.TARGET_MODEL_NAME
 # Clear cache at the beginning
 helper_modules.clear_gpu_cache()
 
+
+def sanitize_samples(text: str) -> str:
+    """Ensure generated samples are one per line and limited to N_SAMPLES."""
+    lines = [
+        " ".join(line.split())
+        for line in text.splitlines()
+        if line.strip()
+    ]
+    if len(lines) > config.N_SAMPLES:
+        lines = lines[: config.N_SAMPLES]
+    return "\n".join(lines)
+
 # Load models once
 logger.info("Loading target model...")
 model = models.get_model(config.TARGET_MODEL_NAME)
@@ -153,7 +165,7 @@ else:
 if not Path(csv_filename).exists() or Path(csv_filename).stat().st_size == 0:
     with Path(csv_filename).open(mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
-        writer.writerow(["layer", "unit", "explanation", "AUC", "U1", "p", "MAD"])
+        writer.writerow(["layer", "unit", "method", "explanation", "AUC", "U1", "p", "MAD"])
 
 # Load text generator
 logger.info("Loading text generator model...")
@@ -169,6 +181,7 @@ try:
         gc.collect()
         layer_id = int(row["layer"])
         unit_id = int(row["unit"])
+        method = row.get("method", "unknown")  # Get method if present, otherwise "unknown"
 
         logger.info(
             f"Processing layer {layer_id}, unit {unit_id} ({idx + 1}/{len(layer_unit_df)})"
@@ -202,18 +215,13 @@ try:
                 full_explanation_path, usecols=["description"]
             )["description"].tolist()
         else:
-            # Load single explanation
-            df = pd.read_csv(
-                f"{constants.ASSETS_PATH}/explanations/{config.METHOD_NAME}/{config.EXPLAIN_FILE}"
-            )
+            # Load single explanation from current row
             try:
-                explanation = df.loc[
-                    (df["layer"] == layer_id) & (df["unit"] == unit_id), "description"
-                ].to_numpy()[0]
+                explanation = row["description"]
                 explanation_list = [explanation]
-            except IndexError:
+            except KeyError:
                 logger.warning(
-                    f"No explanation found for layer {layer_id}, unit {unit_id}. Skipping."
+                    f"No description column found for layer {layer_id}, unit {unit_id}. Skipping."
                 )
                 continue
 
@@ -222,26 +230,19 @@ try:
             # Clear cache at each iteration to prevent OOM
             helper_modules.clear_gpu_cache()
 
-            if len(explanation_list) > 1:
-                tensor_path = (
-                    f"{model_activation_path}/explain_target-{config.TARGET_MODEL_NAME}_"
-                    f"layer{layer_id}_{unit_id}_{i}_textgen-"
-                    f"{config.TEXT_GENERATOR_NAME.split('/')[-1].replace('.', '-')}_"
-                    f"{config.AGG_METHOD}_evalgen-"
-                    f"{config.EVALUATION_TEXT_GENERATOR_NAME.split('/')[-1].replace('.', '-')}.pt"
-                )
-            else:
-                tensor_path = (
-                    f"{model_activation_path}/explain_{config.TARGET_MODEL_NAME}_"
-                    f"layer{layer_id}_{unit_id}_textgen-"
-                    f"{config.TEXT_GENERATOR_NAME.split('/')[-1].replace('.', '-')}_"
-                    f"{config.AGG_METHOD}_evalgen-"
-                    f"{config.EVALUATION_TEXT_GENERATOR_NAME.split('/')[-1].replace('.', '-')}.pt"
-                )
-
+            # Create unique name for this explanation
             explain_name = explanation.translate(
                 str.maketrans("", "", string.punctuation)
             ).replace(" ", "_")[:100]
+
+            # Always use unique tensor path based on explanation content
+            tensor_path = (
+                f"{model_activation_path}/explain_target-{config.TARGET_MODEL_NAME}_"
+                f"layer{layer_id}_{unit_id}_{explain_name}_textgen-"
+                f"{config.TEXT_GENERATOR_NAME.split('/')[-1].replace('.', '-')}_"
+                f"{config.AGG_METHOD}_evalgen-"
+                f"{config.EVALUATION_TEXT_GENERATOR_NAME.split('/')[-1].replace('.', '-')}.pt"
+            )
 
             A_0 = get_control_activations(model, layer_id)
 
@@ -265,12 +266,27 @@ try:
                 if needs_generation:
                     # Check if file already exists
                     if not Path(text_filename).exists():
-                        explain_samples = models.get_generated_text(
-                            prompt,
-                            config.EVALUATION_TEXT_GENERATOR_NAME,
-                            model_gen,
-                            tokenizer_gen,
-                        )
+                        # Use iterative generation if enabled (more reliable for Gemini)
+                        use_iterative = getattr(config, 'USE_ITERATIVE_GENERATION', False)
+
+                        if use_iterative and config.EVALUATION_TEXT_GENERATOR_NAME.startswith('gemini'):
+                            from utils.models_iterative import get_generated_text_iterative
+                            logger.info(f"Generating {config.N_SAMPLES} samples iteratively...")
+                            explain_samples = get_generated_text_iterative(
+                                prompt,
+                                config.EVALUATION_TEXT_GENERATOR_NAME,
+                                model_gen,
+                                tokenizer_gen,
+                                config.N_SAMPLES
+                            )
+                        else:
+                            explain_samples = models.get_generated_text(
+                                prompt,
+                                config.EVALUATION_TEXT_GENERATOR_NAME,
+                                model_gen,
+                                tokenizer_gen,
+                            )
+                        explain_samples = sanitize_samples(explain_samples)
                         with Path(text_filename).open("w", encoding="utf-8") as f:
                             f.write(explain_samples)
                         logger.info(f"Samples saved to: {text_filename}")
@@ -367,6 +383,7 @@ try:
                     [
                         layer_id,
                         unit_id,
+                        method,
                         explanation,
                         auc_synthetic,
                         U1.item(),

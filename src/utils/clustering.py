@@ -1,22 +1,46 @@
 from sentence_transformers import SentenceTransformer, util
-from sklearn.cluster import HDBSCAN, KMeans
+from sklearn.cluster import HDBSCAN, KMeans, AgglomerativeClustering
 from sklearn.metrics import silhouette_score, davies_bouldin_score #new
 from utils import config
+from utils.spherical_kmeans import SphericalKMeans #new
 import numpy as np #new
+from scipy.cluster.hierarchy import linkage, fcluster
+from scipy.spatial.distance import pdist
 
-def select_optimal_k(corpus_embeddings, k_min, k_max, method):
+
+def run_agglomerative_clustering(corpus_embeddings, n_clusters, metric = 'cosine', linkage = 'average'):
+    """
+    Run Agglomerative clustering.
+    
+    Args:
+        corpus_embeddings: Normalized embeddings
+        n_clusters: Number of clusters
+        metric: Distance metric ('cosine' or 'euclidean')
+        linkage: Linkage method ('average', 'complete', 'single')
+    
+    Returns:
+        labels: Cluster labels
+    """
+    clustering = AgglomerativeClustering(n_clusters=n_clusters, metric=metric, linkage=linkage)
+
+    labels = clustering.fit_predict(corpus_embeddings)
+
+    return labels
+
+def select_optimal_k_agglomerative(corpus_embeddings, k_min, k_max, method, metric = 'cosine'):
     """
     Select optimal k using specified method.
-    
+
     Args:
         corpus_embeddings: np.ndarray of embeddings
         k_min: Minimum k to test
-        k_max: Maximum k to test  
-        method: "davies_bouldin", "bic", or "silhouette"
-    
+        k_max: Maximum k to test
+        method: "davies_bouldin" or "silhouette"
+
     Returns:
         optimal_k: int
         scores: dict mapping k -> score
+        labels: Cluster labels for optimal k
     """
     n_samples, n_features = corpus_embeddings.shape
 
@@ -24,22 +48,95 @@ def select_optimal_k(corpus_embeddings, k_min, k_max, method):
     k_max_adjusted = min(k_max, n_samples - 1)
 
     if k_max_adjusted < k_min:
-        return k_min, {}
+        return k_min, {}, np.zeros(n_samples, dtype=int)
+
+    corpus_embeddings = corpus_embeddings/ np.linalg.norm(corpus_embeddings, axis=1, keepdims=True)
+    #Build dedrogram
+    #compute pairwise distance
+    distance = pdist(corpus_embeddings, metric =metric)
+    #build linkage matrix (dendrogram)
+    Z = linkage(distance, method ='average')
 
     scores = {}
+    all_labels = {}  # Store labels for each k
+
+    #cutting dedrogram
+    for k in range(k_min, k_max_adjusted+1):
+        labels = fcluster(Z, k, criterion= 'maxclust')
+        labels = labels -1 # convert to 0-indexed
+        all_labels[k] = labels  # Store labels
+
+        #compute metrics
+        if method == "silhouette":
+            #higher is better
+            scores[k]= silhouette_score(corpus_embeddings, labels, metric =metric)
+        elif method == "davies_bouldin":
+            #lower is better
+            scores[k] = davies_bouldin_score(corpus_embeddings, labels)
+        else:
+            raise ValueError(f"Unknown method: {method}")
+
+    if method == "silhouette":
+        optimal_k = max(scores, key= scores.get)
+    else:
+        optimal_k = min(scores, key= scores.get) #davies_bouldin
+
+    return optimal_k, scores, all_labels[optimal_k]
+        
+    
+
+def select_optimal_k(corpus_embeddings, k_min, k_max, method):
+    """
+    Select optimal k using specified method.
+
+    Args:
+        corpus_embeddings: np.ndarray of embeddings
+        k_min: Minimum k to test
+        k_max: Maximum k to test
+        method: "davies_bouldin", "bic", or "silhouette"
+
+    Returns:
+        optimal_k: int
+        scores: dict mapping k -> score
+        labels: Cluster labels for optimal k
+    """
+    n_samples, n_features = corpus_embeddings.shape
+
+    # Don't test k larger than number of samples
+    k_max_adjusted = min(k_max, n_samples - 1)
+
+    if k_max_adjusted < k_min:
+        return k_min, {}, np.zeros(n_samples, dtype=int)
+
+    scores = {}
+    all_labels = {}  # Store labels for each k
+
+    # Normalize embeddings if using spherical k-means
+    if config.SPHERICAL:
+        corpus_embeddings = corpus_embeddings / np.linalg.norm(
+            corpus_embeddings, axis=1, keepdims=True
+        )
 
     for k in range(k_min, k_max_adjusted + 1):
-        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+        # Choose clustering algorithm based on SPHERICAL flag
+        if config.SPHERICAL:
+            kmeans = SphericalKMeans(n_clusters=k, random_state=42, n_init=10)
+        else:
+            kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+
         labels = kmeans.fit_predict(corpus_embeddings)
-        
+        all_labels[k] = labels  # Store labels
+
         if method == "silhouette":
             # Higher is better
-            scores[k] = silhouette_score(corpus_embeddings, labels)
-        
+            # Use cosine metric if SPHERICAL, otherwise euclidean
+            metric = 'cosine' if config.SPHERICAL else 'euclidean'
+            scores[k] = silhouette_score(corpus_embeddings, labels, metric=metric)
+
         elif method == "davies_bouldin":
             # Lower is better
             scores[k] = davies_bouldin_score(corpus_embeddings, labels)
-        
+
         elif method == "bic":
             # Lower is better
             n_parameters = k * n_features
@@ -47,18 +144,19 @@ def select_optimal_k(corpus_embeddings, k_min, k_max, method):
             variance = inertia / (n_samples - k)
             log_likelihood = -n_samples * np.log(variance) - inertia / (2 * variance)
             bic = -2 * log_likelihood + n_parameters * np.log(n_samples)
+
             scores[k] = bic
-        
+
         else:
             raise ValueError(f"Unknown method: {method}")
-    
+
     # Select optimal k based on method
     if method == "silhouette":
         optimal_k = max(scores, key=scores.get)  # Higher is better
     else:  # davies_bouldin or bic
         optimal_k = min(scores, key=scores.get)  # Lower is better
-    
-    return optimal_k, scores
+
+    return optimal_k, scores, all_labels[optimal_k]
 
 def apply(texts: list[str], activations: list[float] | None = None) -> list[list[dict]]:
     """Apply clustering to a list of texts using the specified method.
@@ -87,15 +185,27 @@ def apply(texts: list[str], activations: list[float] | None = None) -> list[list
     """
     method = config.CLUSTER_METHOD
 
-    #encode texts
+    #encode texts (with caching)
     if config.CLUSTER_EMBEDDING_MODEL_NAME == None:
         corpus_embeddings = activations.cpu()
     else:
-        embedder = SentenceTransformer(
-            config.CLUSTER_EMBEDDING_MODEL_NAME, trust_remote_code=True
+        # Use caching to avoid regenerating embeddings for the same neuron
+        from . import cache
+        corpus_embeddings = cache.get_or_generate_embeddings(
+            texts=texts,
+            layer_id=config.LAYER_ID,
+            unit_id=config.UNIT_ID,
+            embedding_model_name=config.CLUSTER_EMBEDDING_MODEL_NAME,
+            batch_size=config.BATCH_SIZE,
+            max_seq_length=config.CLUSTER_MAX_SEQ_LEN,
+            force_regenerate=False
         )
-        embedder.max_seq_length = config.CLUSTER_MAX_SEQ_LEN
-        corpus_embeddings = embedder.encode(texts, batch_size=config.BATCH_SIZE)
+
+    # Normalize embeddings if using spherical k-means
+    if config.SPHERICAL:
+        corpus_embeddings = corpus_embeddings / np.linalg.norm(
+            corpus_embeddings, axis=1, keepdims=True
+        )
 
     # Select k (new)
     metadata = {}
@@ -116,7 +226,12 @@ def apply(texts: list[str], activations: list[float] | None = None) -> list[list
 
     # Apply clustering
     if method == "KMeans":
-        clustering_model = KMeans(n_clusters=n_cluster, random_state=42)
+        # Choose algorithm based on SPHERICAL flag
+        if config.SPHERICAL:
+            clustering_model = SphericalKMeans(n_clusters=n_cluster, random_state=42)
+        else:
+            clustering_model = KMeans(n_clusters=n_cluster, random_state=42)
+
         clustering_model.fit(corpus_embeddings)
         cluster_assignment = clustering_model.labels_
     elif method == "HDBSCAN":
@@ -139,6 +254,29 @@ def apply(texts: list[str], activations: list[float] | None = None) -> list[list
         )
 
     return clustered_sentences, metadata #(new)
+
+
+def run_hdbscan_clustering(corpus_embeddings, metric='cosine', min_cluster_size=5):
+    """
+    Run HDBSCAN clustering.
+
+    Args:
+        corpus_embeddings: Normalized embeddings (for cosine)
+        metric: Distance metric ('cosine' or 'euclidean')
+        min_cluster_size: Minimum cluster size
+
+    Returns:
+        labels: Cluster labels (-1 = noise)
+        n_clusters: Number of clusters found
+        n_noise: Number of noise points
+    """
+    clusterer = HDBSCAN(min_cluster_size=min_cluster_size, metric=metric)
+    labels = clusterer.fit_predict(corpus_embeddings)
+
+    n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+    n_noise = (labels == -1).sum()
+
+    return labels, n_clusters, n_noise
 
 
 def get_cosine_similarity(descriptions, embedder):
