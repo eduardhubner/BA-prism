@@ -1,0 +1,839 @@
+2025-07-26 00:24:31,297 - root - INFO - ================================================================================
+2025-07-26 00:24:31,313 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-26 00:24:31,314 - root - INFO - ================================================================================
+2025-07-26 00:24:31,315 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-26 00:24:31,315 - root - INFO - AGG_METHOD = mean
+2025-07-26 00:24:31,316 - root - INFO - BATCH_SIZE = 2
+2025-07-26 00:24:31,316 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:24:31,317 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-26 00:24:31,317 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-26 00:24:31,318 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-26 00:24:31,318 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-26 00:24:31,319 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-26 00:24:31,319 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-26 00:24:31,320 - root - INFO - CONTROL_SPLIT = train
+2025-07-26 00:24:31,320 - root - INFO - DATA_FILES = None
+2025-07-26 00:24:31,321 - root - INFO - DEVICE = cuda
+2025-07-26 00:24:31,321 - root - INFO - END_INTERVAL = 1.0
+2025-07-26 00:24:31,322 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:24:31,322 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-26 00:24:31,322 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-26 00:24:31,323 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-26 00:24:31,323 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-26 00:24:31,324 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-07-26 00:24:31,324 - root - INFO - LAYER_ID = 20
+2025-07-26 00:24:31,325 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-26 00:24:31,325 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-26 00:24:31,325 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-26 00:24:31,326 - root - INFO - MULTI_EVAL = True
+2025-07-26 00:24:31,326 - root - INFO - N_CLUSTERS = 1
+2025-07-26 00:24:31,327 - root - INFO - N_SAMPLES = 10
+2025-07-26 00:24:31,327 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-26 00:24:31,328 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-26 00:24:31,328 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-26 00:24:31,328 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-26 00:24:31,329 - root - INFO - SPLIT = train
+2025-07-26 00:24:31,329 - root - INFO - START_INTERVAL = 0.99
+2025-07-26 00:24:31,330 - root - INFO - STREAMING = True
+2025-07-26 00:24:31,330 - root - INFO - SUBSET_SIZE = 1000
+2025-07-26 00:24:31,330 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-26 00:24:31,331 - root - INFO - TARGET_DATA = c4
+2025-07-26 00:24:31,331 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-26 00:24:31,332 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:24:31,332 - root - INFO - UNIT_ID = 5278
+2025-07-26 00:24:31,333 - root - INFO - USE_API = True
+2025-07-26 00:24:31,333 - root - INFO - ================================================================================
+2025-07-26 00:24:31,333 - root - INFO - ANALYSIS RESULTS
+2025-07-26 00:24:31,334 - root - INFO - ================================================================================
+2025-07-26 00:24:31,334 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-5278_clusters-1_2025-07-25_22-24-31.log
+2025-07-26 00:33:08,022 - root - INFO - Reached 1000 samples.
+2025-07-26 00:33:09,995 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-26 00:33:09,996 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:33:20,763 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-26 00:33:57,831 - root - INFO - Number of candidates: 1001
+2025-07-26 00:34:01,009 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-26 00:34:01,010 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  beauty (0.6673049926757812)
+Text #1:  for (0.6451444625854492)
+Text #1:  my (0.8548875451087952)
+Text #1:  today (0.6606312990188599)
+Text #1: uri (0.8165810704231262)
+Text #1:  top (0.6311829686164856)
+Text #1:  DIY (0.7531003355979919)
+Text #1:  with (0.7579180002212524)
+Text #1:  Leave (0.7287909388542175)
+Text #1:  overnight (3.1369788646698)
+Text #1:  face (0.69127357006073)
+Text #1:  the (1.5552445650100708)
+Text #1:  gently (1.3960245847702026)
+Text #1:  this (0.8977354168891907)
+Text #1:  for (0.9468012452125549)
+Text #1:  dry (2.1713409423828125)
+Text #1:  rinse (0.8599687218666077)
+Text #1:  off (1.4615416526794434)
+Text #1:  twice (0.6301988363265991)
+Text #1:  week (0.6701236367225647)
+Text #1:  together (0.6049441695213318)
+Text #1:  oats (0.7915683388710022)
+Text #1:  minutes (2.2399308681488037)
+Text #1: se (0.6946350336074829)
+Text #1:  off (0.6900452971458435)
+Text #1:  effectively (0.5131087303161621)
+Text #1:  removal (0.6540314555168152)
+Text #1:  alternatively (0.9312732815742493)
+Text #1:  clean (1.0047048330307007)
+Text #1:  together (0.709021270275116)
+Text #1:  microwave (0.7324810028076172)
+Text #1:  10 (0.6498008370399475)
+Text #1:  mix (0.7283864617347717)
+Text #1:  together (1.3379138708114624)
+Text #1:  once (0.7773995399475098)
+Text #2:  beauty (0.6673049926757812)
+Text #2:  for (0.6451444625854492)
+Text #2:  my (0.8548875451087952)
+Text #2:  today (0.6606312990188599)
+Text #2: uri (0.8165810704231262)
+Text #2:  top (0.6311829686164856)
+Text #2:  DIY (0.7531003355979919)
+Text #2:  with (0.7579180002212524)
+Text #2:  Leave (0.7287909388542175)
+Text #2:  overnight (3.1369788646698)
+Text #2:  face (0.69127357006073)
+Text #2:  the (1.5552445650100708)
+Text #2:  gently (1.3960245847702026)
+Text #2:  this (0.8977354168891907)
+Text #2:  for (0.9468012452125549)
+Text #2:  dry (2.1713409423828125)
+Text #2:  rinse (0.8599687218666077)
+Text #2:  off (1.4615416526794434)
+Text #2:  twice (0.6301988363265991)
+Text #2:  week (0.6701236367225647)
+Text #2:  together (0.6049441695213318)
+Text #2:  oats (0.7915683388710022)
+Text #2:  minutes (2.2399308681488037)
+Text #2: se (0.6946350336074829)
+Text #2:  off (0.6900452971458435)
+Text #2:  effectively (0.5131087303161621)
+Text #2:  removal (0.6540314555168152)
+Text #2:  alternatively (0.9312732815742493)
+Text #2:  clean (1.0047048330307007)
+Text #2:  together (0.709021270275116)
+Text #2:  microwave (0.7324810028076172)
+Text #2:  10 (0.6498008370399475)
+Text #2:  mix (0.7283864617347717)
+Text #2:  together (1.3379138708114624)
+Text #2:  once (0.7773995399475098)
+Text #3:  up (0.6204853653907776)
+Text #3:  before (1.0567877292633057)
+Text #3:  returned (0.4429251551628113)
+Text #3:  at (0.6478064060211182)
+Text #3: , (0.6031989455223083)
+Text #3:  surgeon (1.1646968126296997)
+Text #3:  graduating (1.1855716705322266)
+Text #3:  surgery (1.7230868339538574)
+Text #3:  N (0.5662103891372681)
+Text #3: Y (1.3994882106781006)
+Text #3: , (0.6302338242530823)
+Text #3:  residency (1.2544699907302856)
+Text #3:  Baltimore (1.0118892192840576)
+Text #3: urgical (0.9685909748077393)
+Text #3:  for (0.9296525120735168)
+Text #3:  own (0.6496421694755554)
+Text #3:  she (1.1837002038955688)
+Text #3: Pl (0.7963159084320068)
+Text #3:  healing (0.7458685636520386)
+Text #3:  same (0.7041779160499573)
+Text #3:  relief (0.4353322386741638)
+Text #3:  the (0.44644609093666077)
+Text #3:  disappeared (0.80119389295578)
+Text #3:  again (1.1526823043823242)
+Text #3:  surgery (0.7591767311096191)
+Text #4:  briefly (0.9631001949310303)
+Text #4:  American (0.7991645932197571)
+Text #4: 85 (1.517414927482605)
+Text #4: 95 (1.8673030138015747)
+Text #4: 88 (0.8388031125068665)
+Text #4:  in (0.5763466954231262)
+Text #4:  city (0.6538434028625488)
+Text #4: 98 (1.6092350482940674)
+Text #4:  city (0.9406481981277466)
+Text #4:  Wilson (0.6445780992507935)
+Text #4:  1913 (0.9098446369171143)
+Text #4:  1921 (0.9152445793151855)
+Text #4:  Virginia (0.5202102065086365)
+Text #4:  up (0.703494668006897)
+Text #4: 56 (0.9992163181304932)
+Text #4: 58 (1.4164689779281616)
+Text #4:  1870 (2.4640166759490967)
+Text #4:  Presbyterian (0.7774972319602966)
+Text #4: ative (0.5600767135620117)
+Text #4:  his (0.5823939442634583)
+Text #4:  in (0.5855069756507874)
+Text #4:  during (0.6277274489402771)
+Text #4:  and (0.6898048520088196)
+Text #4:  Reconstruction (0.6336036920547485)
+Text #4:  college (0.5525830388069153)
+Text #4:  hometown (0.5396056175231934)
+Text #4:  Confederate (0.45611637830734253)
+Text #4:  among (1.1894704103469849)
+Text #4:  during (0.5940059423446655)
+Text #4:  Today (0.7767656445503235)
+Text #4:  however (0.4710626006126404)
+Text #4:  1910 (0.9466114044189453)
+Text #4:  1916 (1.4485244750976562)
+Text #4:  to (0.4634702503681183)
+Text #5: Is (0.13636040687561035)
+Text #5:  homemade (0.6128488779067993)
+Text #5:  featured (0.02494465745985508)
+Text #5:  this (0.42225369811058044)
+Text #5:  while (0.3983466327190399)
+Text #5:  Mediterranean (0.0354885496199131)
+Text #5:  on (0.18558712303638458)
+Text #5:  until (0.08936500549316406)
+Text #5:  Slowly (1.7438832521438599)
+Text #5:  until (0.22601288557052612)
+Text #5:  Wh (0.014867058955132961)
+Text #5:  cook (0.5936932563781738)
+Text #5:  bubbles (0.6714605689048767)
+Text #5:  off (0.6867926716804504)
+Text #5:  c (0.011571633629500866)
+Text #5: art (0.012906957417726517)
+Text #5:  top (0.1739509552717209)
+Text #5: iler (0.25193890929222107)
+Text #5:  few (0.4276757836341858)
+Text #5: cr (0.004429382737725973)
+Text #5:  golden (0.330153226852417)
+Text #6:  for (0.7588232755661011)
+Text #6:  months (1.3274158239364624)
+Text #6:  this (0.3227540850639343)
+Text #6:  fro (0.77813321352005)
+Text #6:  can (0.5001309514045715)
+Text #6:  summer (0.6896634697914124)
+Text #6:  ready (0.6727303266525269)
+Text #6:  detailed (0.4803573191165924)
+Text #6:  of (0.5923520922660828)
+Text #6:  dry (0.3541407585144043)
+Text #6:  dry (1.0526368618011475)
+Text #6: stic (0.46882420778274536)
+Text #6:  another (0.9773485660552979)
+Text #6:  effic (0.37422019243240356)
+Text #6:  softer (0.9722420573234558)
+Text #6:  glowing (0.3828364312648773)
+Text #6: anned (0.7942138910293579)
+Text #6:  while (1.0826798677444458)
+Text #6:  fresh (0.8347985148429871)
+Text #6:  youthful (1.2512528896331787)
+Text #6:  first (0.9132171273231506)
+Text #6:  then (0.5297788977622986)
+Text #6:  night (1.0074149370193481)
+Text #6:  during (1.2110610008239746)
+Text #6:  day (0.5036575198173523)
+Text #6: along (0.5152220129966736)
+Text #6:  C (0.7884930968284607)
+Text #6:  dry (0.36327308416366577)
+Text #6:  during (0.4281226098537445)
+Text #6:  peak (0.9748348593711853)
+Text #6:  tried (1.1023424863815308)
+Text #6:  apply (0.39131587743759155)
+Text #6:  applying (0.6077232956886292)
+Text #6:  during (0.682578980922699)
+Text #6:  stretch (0.5057328939437866)
+Text #6:  sl (0.3723656237125397)
+Text #6:  away (0.5969545841217041)
+Text #6:  month (0.9000145792961121)
+Text #6: s (0.41412973403930664)
+Text #6:  I (0.3450230658054352)
+Text #7: Yesterday (0.15652041137218475)
+Text #7: est (0.959340512752533)
+Text #7:  without (2.1218936443328857)
+Text #7:  followed (0.35801011323928833)
+Text #7:  period (0.415022075176239)
+Text #7:  can (0.11778853088617325)
+Text #7: est (0.968477725982666)
+Text #7: ibi (0.26822665333747864)
+Text #7: est (0.5822028517723083)
+Text #7: est (0.5194076895713806)
+Text #7: est (0.7298411130905151)
+Text #7: ibi (0.20962248742580414)
+Text #7: est (0.6922503113746643)
+Text #7: est (0.7396209239959717)
+Text #7: ibi (0.13437488675117493)
+Text #7: uclear (0.2187415510416031)
+Text #7:  to (0.3142918348312378)
+Text #7: ose (0.39644137024879456)
+Text #7:  6 (0.32927626371383667)
+Text #7:  home (0.9942204356193542)
+Text #7:  away (0.15403088927268982)
+Text #7:  48 (0.2687280476093292)
+Text #7: c (1.544931173324585)
+Text #7: est (1.2020421028137207)
+Text #7:  safer (1.0061389207839966)
+Text #7:  blue (0.1300801932811737)
+Text #7:  white (0.1735186129808426)
+Text #7:  home (1.0580112934112549)
+Text #7: ight (0.37383678555488586)
+Text #7:  doorstep (0.17524205148220062)
+Text #7:  today (0.4745224416255951)
+Text #7:  done (1.1148715019226074)
+Text #7:  early (0.875329315662384)
+Text #7: ool (0.13394814729690552)
+Text #7:  tomorrow (0.7664565443992615)
+Text #8:  C (0.2632509469985962)
+Text #8: ic (0.38804924488067627)
+Text #8:  Brilliant (0.4639992117881775)
+Text #8:  New (0.8989033102989197)
+Text #8:  I (0.3592885434627533)
+Text #8:  Great (0.4196857213973999)
+Text #8:  Modern (0.3724757432937622)
+Text #8:  In (0.3234036862850189)
+Text #8:  Contemporary (1.2733659744262695)
+Text #8:  Amazing (0.541131854057312)
+Text #8: ended (0.29151853919029236)
+Text #8: ant (1.0020188093185425)
+Text #8: crafted (0.8891908526420593)
+Text #8:  Outdoor (0.5781223773956299)
+Text #8:  Appalachian (0.9797589778900146)
+Text #8:  Incredible (0.7271871566772461)
+Text #8:  Wood (1.4861769676208496)
+Text #8: wood (0.2612757384777069)
+Text #8:  Brilliant (0.7871814966201782)
+Text #8:  Plans (0.32826101779937744)
+Text #8:  Incredible (1.156049132347107)
+Text #8:  Dec (0.29960334300994873)
+Text #8: ended (0.43931931257247925)
+Text #8:  Throughout (0.5954493880271912)
+Text #8:  Modern (1.1045358180999756)
+Text #8:  Up (0.40464308857917786)
+Text #8:  Brilliant (0.533660352230072)
+Text #8:  Sale (0.49150779843330383)
+Text #8:  Contemporary (0.8909248113632202)
+Text #8:  Throughout (1.1477338075637817)
+Text #8:  Awesome (1.4554195404052734)
+Text #8:  Wood (1.1673160791397095)
+Text #8: wood (0.7835572361946106)
+Text #8: lish (0.30448970198631287)
+Text #8:  Sale (0.3979065716266632)
+Text #8: lish (0.2448432445526123)
+Text #8: ant (0.6987342834472656)
+Text #8:  Tables (0.5142188668251038)
+Text #8:  Throughout (0.4639488756656647)
+Text #9: Lewis (0.137069970369339)
+Text #9:  Wolfgang (0.14125502109527588)
+Text #9:  graduating (0.7357500791549683)
+Text #9:  Wolfgang (0.718555748462677)
+Text #9:  Pennsylvania (0.035788826644420624)
+Text #9:  Compensation (0.01556650921702385)
+Text #9:  as (0.2647707760334015)
+Text #9:  clerk (0.482138454914093)
+Text #9:  for (0.3004625141620636)
+Text #9:  He (0.13902688026428223)
+Text #9:  attorney (0.09105551242828369)
+Text #9:  Pennsylvania (0.08839220553636551)
+Text #9:  his (0.41601529717445374)
+Text #9: A (0.9081594944000244)
+Text #9:  University (0.23265205323696136)
+Text #9: D (0.5374994874000549)
+Text #9:  from (0.636131227016449)
+Text #9:  Law (0.6083820462226868)
+Text #9:  Pennsylvania (0.008403449319303036)
+Text #10:  along (0.7714122533798218)
+Text #10: Found (0.3614583909511566)
+Text #10:  throughout (0.5614553093910217)
+Text #10:  weeks (0.35517266392707825)
+Text #10: , (0.828918993473053)
+Text #10: , (0.4191446900367737)
+Text #10:  intimate (0.3121272623538971)
+Text #10: style (0.4255692660808563)
+Text #10:  hundred (0.8935298323631287)
+Text #10:  online (1.2952946424484253)
+Text #10:  that (0.7123028635978699)
+Text #10:  returned (0.6864979267120361)
+Text #10:  speedy (0.4182186722755432)
+Text #10:  deeper (0.3599548935890198)
+Text #10: eyed (0.6120901703834534)
+Text #10:  load (0.3450414836406708)
+Text #10: one (0.9623911380767822)
+Text #10:  without (0.7612093091011047)
+Text #10:  on (0.3714192509651184)
+Text #10:  on (0.5439454913139343)
+Text #10:  burned (0.8010575175285339)
+Text #10:  until (0.5962440371513367)
+Text #10:  acquiring (0.39093396067619324)
+Text #10:  he (0.3147139251232147)
+Text #10:  game (1.0052639245986938)
+Text #10:  last (0.3426551818847656)
+Text #10:  from (0.49066391587257385)
+Text #10:  many (0.5448732972145081)
+Text #10:  pub (0.786082923412323)
+Text #10: ans (0.5855505466461182)
+Text #10: ée (0.39894211292266846)
+Text #10: vec (0.3413350582122803)
+Text #10:  acquiring (0.679973840713501)
+Text #10:  season (0.8053776621818542)
+Text #10:  game (0.4019163250923157)
+Text #10:  down (0.8697251081466675)
+Text #10:  however (0.3873215317726135)
+Text #11:  interviewed (0.35379329323768616)
+Text #11:  immediately (0.24980321526527405)
+Text #11:  initially (0.3463115990161896)
+Text #11:  after (0.7704920768737793)
+Text #11:  Skype (0.5675302147865295)
+Text #11:  with (0.3833770155906677)
+Text #11:  he (0.36912792921066284)
+Text #11:  until (0.5540320873260498)
+Text #11:  to (0.26957640051841736)
+Text #11:  to (0.21007601916790009)
+Text #11:  the (0.3524806797504425)
+Text #11:  finally (0.6668283939361572)
+Text #11:  winner (0.16771367192268372)
+Text #11:  Pil (0.700653076171875)
+Text #11:  paid (0.19393876194953918)
+Text #11:  50 (0.4410727024078369)
+Text #11:  night (0.48348668217658997)
+Text #11:  joined (0.17739011347293854)
+Text #11:  with (0.43557611107826233)
+Text #11:  able (1.2227251529693604)
+Text #11:  thrilled (0.3916655480861664)
+Text #11: email (0.3209533393383026)
+Text #11: ber (0.28884607553482056)
+Text #12: " (0.12691070139408112)
+Text #12: zens (0.023732753470540047)
+Text #12:  network (0.07874730229377747)
+Text #12:  gain (0.29071560502052307)
+Text #12: 6 (0.24022312462329865)
+Text #12:  kernel (0.2146569937467575)
+Text #12:  currently (0.7132109999656677)
+Text #12:  testing (0.2591601610183716)
+Text #12:  will (0.07599817216396332)
+Text #12:  with (0.3778526484966278)
+Text #12:  sources (1.1873055696487427)
+Text #12: Yesterday (0.06629578024148941)
+Text #12:  Tor (0.06217840313911438)
+Text #12:  launched (0.03923264890909195)
+Text #12:  candidate (0.44053804874420166)
+Text #12: ) (0.09088954329490662)
+Text #12: 6 (0.4502013027667999)
+Text #12:  kernel (0.1260194182395935)
+Text #12:  it (0.36549443006515503)
+Text #12:  good (0.6961671113967896)
+Text #12:  hopefully (0.7854005098342896)
+Text #12:  our (0.7739863991737366)
+Text #12: . (0.0209356676787138)
+Text #12: 25 (1.2164090871810913)
+Text #12:  newest (0.15042077004909515)
+Text #12:  launch (0.7055243849754333)
+Text #13:  vegan (0.5132850408554077)
+Text #13:  heavy (0.25582587718963623)
+Text #13:  country (1.148934006690979)
+Text #13:  subscription (0.37587296962738037)
+Text #13:  website (0.36646702885627747)
+Text #13: k (0.9167864322662354)
+Text #13:  home (0.7212343811988831)
+Text #13:  home (0.6453874111175537)
+Text #13:  ideas (0.280927449464798)
+Text #13:  home (0.553862988948822)
+Text #13:  full (0.4617576599121094)
+Text #13:  us (2.010877847671509)
+Text #13:  ip (0.5708901882171631)
+Text #13:  brown (0.6949441432952881)
+Text #13:  home (0.96427983045578)
+Text #13:  home (0.5871651768684387)
+Text #13:  heavy (0.6456077098846436)
+Text #13:  home (0.9029168486595154)
+Text #13:  home (0.6013531684875488)
+Text #13:  cheap (1.1427335739135742)
+Text #13:  western (1.1133803129196167)
+Text #13:  home (0.39148789644241333)
+Text #13:  home (1.1306116580963135)
+Text #13:  on (0.32049766182899475)
+Text #13:  wholesale (0.9657658338546753)
+Text #13:  home (0.9361071586608887)
+Text #13:  leather (0.3491813540458679)
+Text #13:  safety (0.8978371620178223)
+Text #13:  home (0.4103730320930481)
+Text #13:  tv (0.35821884870529175)
+Text #13:  home (0.45111915469169617)
+Text #13:  boots (0.25902411341667175)
+Text #13:  ideas (0.6181426644325256)
+Text #13:  home (1.2577954530715942)
+Text #13:  home (0.5373263955116272)
+Text #13:  black (0.34156930446624756)
+Text #13:  home (0.7612665295600891)
+Text #13:  host (0.4313581585884094)
+Text #13:  heavy (0.42802712321281433)
+Text #13:  black (0.6812446117401123)
+Text #13:  country (1.6405515670776367)
+Text #14:  out (0.6422075033187866)
+Text #14:  enjoy (0.43816423416137695)
+Text #14:  romantic (0.8735922574996948)
+Text #14:  on (1.0558152198791504)
+Text #14:  evening (0.8191241025924683)
+Text #14:  dinner (1.0553230047225952)
+Text #14:  night (0.8179970383644104)
+Text #14:  delicious (0.7746874690055847)
+Text #14:  out (0.5477396845817566)
+Text #14:  evening (0.5365476608276367)
+Text #14:  drive (0.3784712851047516)
+Text #14:  dinner (1.0113906860351562)
+Text #14:  spend (0.46346864104270935)
+Text #14:  night (0.6956558227539062)
+Text #14:  drive (0.4541572332382202)
+Text #14:  at (0.3952198922634125)
+Text #14: ond (0.4383394122123718)
+Text #14: c (0.5243816375732422)
+Text #14:  overnight (2.471668004989624)
+Text #14:  delicious (0.641273558139801)
+Text #14:  breakfast (0.580474853515625)
+Text #14: th (0.7442339658737183)
+Text #14:  Aw (0.5809659957885742)
+Text #14:  P (0.6973789930343628)
+Text #14:  into (0.41239210963249207)
+Text #14:  booked (0.6308608055114746)
+Text #14:  remaining (0.8018552660942078)
+Text #14:  at (0.7494480013847351)
+Text #14:  enjoy (0.5041618943214417)
+Text #14:  overnight (2.266331195831299)
+Text #14:  breakfast (0.3921802341938019)
+Text #14:  scenic (0.5524517893791199)
+Text #14:  into (0.37488284707069397)
+Text #14:  afternoon (0.3629264235496521)
+Text #14: al (0.3719804883003235)
+Text #14:  night (0.6720319390296936)
+Text #14: ory (0.609178900718689)
+Text #14: out (0.8693852424621582)
+Text #14:  catch (0.4198535084724426)
+Text #14:  your (0.5752474069595337)
+Text #15: US (0.12517890334129333)
+Text #15:  to (0.44239968061447144)
+Text #15:  morning (0.7437359690666199)
+Text #15:  United (0.1047813892364502)
+Text #15:  state (0.031219378113746643)
+Text #15:  CIA (0.4906061291694641)
+Text #15:  Pompe (0.008431900292634964)
+Text #15:  called (1.016357660293579)
+Text #15:  making (0.3524864912033081)
+Text #15:  concrete (1.5175412893295288)
+Text #15:  March (0.20975519716739655)
+Text #15:  unknown (1.2801231145858765)
+Text #15: Before (0.5608978271484375)
+Text #15:  Tillerson (0.14800263941287994)
+Text #15: Mobil (0.32606223225593567)
+Text #15:  With (0.935993492603302)
+Text #15:  filled (0.6425303816795349)
+Text #15:  anyone (0.12048888951539993)
+Text #15:  whether (0.050336942076683044)
+Text #15:  with (0.6723442673683167)
+Text #15:  his (0.09073107689619064)
+Text #16: Daniel (0.13712288439273834)
+Text #16: aught (0.12637962400913239)
+Text #16:  of (0.01409069262444973)
+Text #16:  from (0.11619595438241959)
+Text #16:  US (0.21717806160449982)
+Text #16:  sociology (0.434413343667984)
+Text #16: 2015 (0.5114892721176147)
+Text #16:  Tennessee (0.7202654480934143)
+Text #16:  MA (0.028953829780220985)
+Text #16:  BA (0.20167003571987152)
+Text #17: Originally (0.14652331173419952)
+Text #17:  from (0.261976033449173)
+Text #17:  improvis (0.6514418721199036)
+Text #17:  in (0.17641426622867584)
+Text #17: S (0.5317389965057373)
+Text #17: ola (0.17156314849853516)
+Text #17:  Chicago (1.0603344440460205)
+Text #17:  in (0.028918525204062462)
+Text #17:  from (0.08755666017532349)
+Text #17:  of (0.07593260705471039)
+Text #17:  US (0.07003652304410934)
+Text #17:  Europe (0.2974468171596527)
+Text #17: powerful (0.48231756687164307)
+Text #17:  Kong (0.7678835988044739)
+Text #17:  Literary (0.10811829566955566)
+Text #17:  Chicago (0.2694370150566101)
+Text #17:  Impro (0.01974712871015072)
+Text #17:  Transformation (0.03669559583067894)
+Text #17: <|endoftext|> (0.0005795045872218907)
+Text #18: t (0.12410808354616165)
+Text #18: bone (0.3532572388648987)
+Text #18:  shirt (0.5171009302139282)
+Text #18:  online (1.560137152671814)
+Text #18: bone (0.3581635355949402)
+Text #18:  john (0.43673112988471985)
+Text #18:  lightweight (1.259128212928772)
+Text #18:  live (0.2911650240421295)
+Text #18:  by (0.17285741865634918)
+Text #18:  tee (0.12947027385234833)
+Text #18:  short (0.3617812693119049)
+Text #18:  organic (0.4559552073478699)
+Text #18:  cool (0.5210691690444946)
+Text #18:  player (0.25213655829429626)
+Text #18:  baby (1.1330467462539673)
+Text #18:  funny (0.11463917791843414)
+Text #18:  t (0.10079436004161835)
+Text #18:  custom (0.6350139379501343)
+Text #18:  cheap (1.200846791267395)
+Text #18:  music (0.41454145312309265)
+Text #18:  funny (0.3414340019226074)
+Text #18:  men (0.1956331878900528)
+Text #18:  player (0.506962239742279)
+Text #18:  funny (0.2729933261871338)
+Text #18:  front (0.8062683939933777)
+Text #18:  tee (0.2288115918636322)
+Text #18:  cotton (0.33880162239074707)
+Text #18:  short (0.1373031884431839)
+Text #18:  funny (0.36773681640625)
+Text #18:  mom (0.25853222608566284)
+Text #18:  premium (1.0097060203552246)
+Text #18:  funny (1.0158967971801758)
+Text #18:  awesome (0.45222634077072144)
+Text #18:  pop (0.9272953867912292)
+Text #18:  player (0.5134065747261047)
+Text #18:  short (0.22272874414920807)
+Text #19:  yesterday (0.2982224225997925)
+Text #19:  of (0.4200446307659149)
+Text #19:  with (1.7132904529571533)
+Text #19:  which (0.6141431331634521)
+Text #19:  week (0.39067450165748596)
+Text #19:  comfortable (0.42270806431770325)
+Text #19:  explained (0.26455560326576233)
+Text #19:  consultation (0.7555510997772217)
+Text #19:  now (0.36460161209106445)
+Text #19: eling (0.2653076946735382)
+Text #19:  I (0.7720181345939636)
+Text #19: ve (0.5736340284347534)
+Text #19:  ONE (0.5060108304023743)
+Text #19:  the (1.4339892864227295)
+Text #19:  well (0.34651675820350647)
+Text #19:  yesterday (0.3819456100463867)
+Text #19:  my (0.3417614996433258)
+Text #19: eling (0.985581636428833)
+Text #19:  the (0.572674036026001)
+Text #19:  Firstly (0.3367089629173279)
+Text #19:  Peel (0.7720730304718018)
+Text #19:  arrived (0.3049626052379608)
+Text #19:  on (0.8423755168914795)
+Text #19:  cleansing (0.3166905641555786)
+Text #19:  to (1.3441088199615479)
+Text #19:  manually (0.9327000975608826)
+Text #19:  minutes (1.2018239498138428)
+Text #19:  cleans (1.5906798839569092)
+Text #19:  peel (0.40734416246414185)
+Text #19:  face (0.29993629455566406)
+Text #19:  on (0.45647698640823364)
+Text #19:  a (0.28549134731292725)
+Text #19:  peel (0.3087829351425171)
+Text #19:  removed (1.2045398950576782)
+Text #20: Dr (0.1478578895330429)
+Text #20:  Tampa (0.033229146152734756)
+Text #20:  raised (1.0972155332565308)
+Text #20:  Brandon (0.18428462743759155)
+Text #20:  FL (0.29409152269363403)
+Text #20:  Vanderbilt (0.4644368588924408)
+Text #20:  South (0.45053040981292725)
+Text #20:  Medicine (1.0577187538146973)
+Text #20:  completed (0.7236028909683228)
+Text #20:  Graduate (0.09308193624019623)
+Text #20:  of (0.08270195126533508)
+Text #20:  Rochester (0.33520209789276123)
+Text #20:  MN (0.7974358201026917)
+Text #20:  practice (0.1292680948972702)
+
+=== Text #1 ===
+> Having shared some[ beauty] tips[ for teenage] girls in[ my previous] article,[ today] we’re discussing another common skin related issue constantly pestering all teenagers be it girls or boys which is Blackheads. Contrary to popular belief, blackheads are not caused by dirt but occur when your pores get clogged with excess sebum and dead skin cells. But there is absolutely no need to spend on expensive blackhead removal treatments when there is so much you can do from your very own kitchen. So Z[uri]’s got you[ top] 5[ DIY] remedies to get rid of those unsightly blackheads.
+1. Lemon juice: As we all know by now that blackheads are a result of open, clogged pores reacting with oxygen which turn them black. So it would be great if something could shrink those pores down. Lemon is a natural astringent that helps us do just that. So squeeze the juice of a lemon in a bowl, and apply it to the affected areas[ with] a cotton ball to a washed, clean face.[ Leave] it[ overnight and wash] your[ face with] lukewarm water[ the next morning]. Dilute the lemon juice with water in case you have a sensitive skin.
+2. Baking soda scrub: Baking soda is also effective in treating blackheads. It helps get rid of all the dirt, grime from deep within the pores. So make a thick paste of baking soda and mineral water and massage the affected areas[ gently] with[ this] paste[ for a few minutes]. Let it[ dry] and then[ rinse] it[ off] with lukewarm water. Use this remedy[ twice] a[ week for best] results.
+3. Yogurt and oat face pack: Mix[ together] 2 tbsp[ oats] and 3 tbsp yogurt in a bowl. Now add a few drops of lemon juice and olive oil to it. Dab it onto the affected area and let it sit for about 10[ minutes]. Rin[se] it[ off with] lukewarm water. Yogurt being rich in lactic acid and oats with its calming properties helps tackle blackheads[ effectively].
+4. Milk and honey pore strips: We are all aware of the blackhead[ removal] strips available in stores. But[ alternatively] you can also use milk and honey for this purpose. Honey is packed with anti-bacterial properties and milk is rich in lactic acid that helps keep skin[ clean] and soft. And when mixed together, they also make for an excellent adhesive. Mix[ together] 1 tbsp honey and 1 tsp milk and heat in the[ microwave for] about[ 10 seconds]. Now[ mix] it[ together again] and[ once it] reaches a
+
+=== Text #2 ===
+> Having shared some[ beauty] tips[ for teenage] girls in[ my previous] article,[ today] we’re discussing another common skin related issue constantly pestering all teenagers be it girls or boys which is Blackheads. Contrary to popular belief, blackheads are not caused by dirt but occur when your pores get clogged with excess sebum and dead skin cells. But there is absolutely no need to spend on expensive blackhead removal treatments when there is so much you can do from your very own kitchen. So Z[uri]’s got you[ top] 5[ DIY] remedies to get rid of those unsightly blackheads.
+1. Lemon juice: As we all know by now that blackheads are a result of open, clogged pores reacting with oxygen which turn them black. So it would be great if something could shrink those pores down. Lemon is a natural astringent that helps us do just that. So squeeze the juice of a lemon in a bowl, and apply it to the affected areas[ with] a cotton ball to a washed, clean face.[ Leave] it[ overnight and wash] your[ face with] lukewarm water[ the next morning]. Dilute the lemon juice with water in case you have a sensitive skin.
+2. Baking soda scrub: Baking soda is also effective in treating blackheads. It helps get rid of all the dirt, grime from deep within the pores. So make a thick paste of baking soda and mineral water and massage the affected areas[ gently] with[ this] paste[ for a few minutes]. Let it[ dry] and then[ rinse] it[ off] with lukewarm water. Use this remedy[ twice] a[ week for best] results.
+3. Yogurt and oat face pack: Mix[ together] 2 tbsp[ oats] and 3 tbsp yogurt in a bowl. Now add a few drops of lemon juice and olive oil to it. Dab it onto the affected area and let it sit for about 10[ minutes]. Rin[se] it[ off with] lukewarm water. Yogurt being rich in lactic acid and oats with its calming properties helps tackle blackheads[ effectively].
+4. Milk and honey pore strips: We are all aware of the blackhead[ removal] strips available in stores. But[ alternatively] you can also use milk and honey for this purpose. Honey is packed with anti-bacterial properties and milk is rich in lactic acid that helps keep skin[ clean] and soft. And when mixed together, they also make for an excellent adhesive. Mix[ together] 1 tbsp honey and 1 tsp milk and heat in the[ microwave for] about[ 10 seconds]. Now[ mix] it[ together again] and[ once it] reaches a
+
+=== Text #3 ===
+> Dr. Bethea speaks of a minimally invasive approach to treating patients.
+Dr. Bethea is the founder of Greensboro Rejuvenation, an integrative health and wellness practice that specializes in regenerative medicine, using platelet-rich plasma (PRP), stem cells and other natural methods for wellness. Her practice takes a non-operative, non-opioid approach, with the focus on her patients’ overall long-term health.
+Greensboro Rejuvenation also offers natural hormone replacement therapy, natural weight loss and nutritional IV supplementation.
+A Thomasville native, Dr. Bethea grew[ up] in High Point and Greensboro[ before her family] relocated to West Virginia. She[ returned] to the Tar Heel State in 1992. As a medical student[ at] East Carolina University[, she] wanted to be a[ surgeon], and after[ graduating in 2001, completed] her general[ surgery internship in Syracuse],[ N].[Y.]
+In 2005[, she completed her PM]&R[ residency as chief resident at] Sinai Hospital (University of Maryland) in[ Baltimore]. Dr. Bethea is also fellowship trained in interventional spine and joint pain management and worked for a neuros[urgical] practice[ for three years before opening] her[ own] practice in Reidsville. In 2014[ she moved] that practice to Greensboro.
+[Pl]atelet-rich plasma treatment, a natural procedure using the patient’s own blood, is one of the more rewarding services Dr. Bethea offers her patients. It is recommended for[ healing] damaged or injured tissues. PRP involves drawing blood from a patient, spinning it in a centrifuge, and extracting the plasma and platelets from the whole blood, which are injected back into the painful, injured areas, on the[ same] day.
+One of her patients, Ann Hardee of Greensboro, a 69-year-old yoga instructor and real estate agent, agrees.
+“Dr. Bethea evaluated my injury and injected PRP in February 2017. I felt immediate[ relief], and over[ the next eight weeks], the pain completely[ disappeared]. I would repeat this treatment[ again] and again over[ surgery] if the pain ever returned. I have recommended this treatment to others as an amazing alternative to surgery,” she says.
+For more information, visit GSORejuvenation.com.
+
+=== Text #4 ===
+> The city of Augusta is located in Georgia near the state's border with South Carolina. It plays host to the Masters Tournament, the most lauded tournament in professional golf. Augusta is known for the Masters, but there are several other fascinating sides to this city. Here are five things you never knew about Augusta, home of the Masters.
+Augusta was Georgia’s capital[ briefly during] the[ American Revolution and then again from] 17[85] until 17[95]. In 17[88], the Georgia state convention ratified the U.S. Constitution[ in the] city. Georgia was the fourth state to ratify the Constitution and the first in the Deep South. Augusta wasn’t chartered as a[ city until] 17[98,] so it was actually Georgia’s capital city before officially becoming a[ city itself].
+President Woodrow[ Wilson], who was in office from[ 1913] to[ 1921], was born in[ Virginia] but grew[ up] in Augusta. Born in 18[56], Wilson lived in Augusta from 18[58] to[ 1870]. His father was the pastor of Augusta’s First[ Presbyterian] Church and his family owned a beautiful manse on Seventh Street. Wilson spent the “form[ative] years of[ his life]”[ in the city]. He lived in Augusta[ during] the Civil War[ and] the[ Reconstruction before] going to[ college in North Carolina]. Today, you can visit his boyhood home, which is a National Historic Landmark and the oldest Presidential residence in the state. Guided tours begin on the hour every Thursday through Saturday.
+Augusta has been either the[ hometown] or burial place of 10[ Confederate] generals — Brig. Gen. Edward P. Alexander, Maj. Gen. Ambrose R. Wright and Gen. Marcellus A. Stovall,[ among] others. “When the South needed generals[ during] the Civil War, it often turned to Augustans,” the Augusta Chronicle says.[ Today], you can see monuments all over the city that have been dedicated to these men.
+The Masters wasn’t always called the Masters; the title didn’t come about until 1939. The tournament began in 1934 and was originally known as the Augusta National Invitational. That name didn’t sound quite prestigious enough,[ however] — so in 1939, the name was changed to the Masters.
+The first-in-flight brothers from North Carolina brought their airplanes to Georgia. The Wright Flying School was in business from[ 1910] to[ 1916]. During that time, it taught 119 people[ to fly] Wright airplanes. The main location of the school was in Alabama and then moved to Ohio. Trying to
+
+=== Text #5 ===
+> [Is] it even possible to make[ homemade] Mac-n-Cheese even better? We think so! Our second[ featured] recipe[ this] month is a great way to enjoy our new Marinated Artichoke Hearts[ while] adding a delicious[ Mediterranean] twist to classic comfort food! Makes a perfect side dish to your Easter Sunday or any night of the week! Not to mention, it’s O.M.G. kind of good!
+In a medium sauce pan,[ on] medium high heat, add butter and flour, and stir[ until for 2-3 minutes while mixture bubbles].[ Slowly whisk in] milk[ until fully incorporated].[ Wh]isk and[ cook mixture for about 7 minutes, until it thickens] and[ bubbles].
+Turn heat[ off]; stir in Garlic Spread, 1[ c]. each cheese. Add salt and pepper to taste.
+Pour over cooked macaroni, stir in spinach,[art]ichokes, and remaining shredded cheese.
+Place into a baking dish and sprinkle panko topping on[ top]. Place under bro[iler for] a[ few minutes until] bread[cr]umbs are[ golden brown].
+
+=== Text #6 ===
+> Today I will be reviewing Organic Harvest Anti Pigmentation Cream. I’ve tested this product[ for good] 2[ months]. Since I tested[ this] Anti Pigmentation Cream[ fro] Jan end, I[ can] tell you how it fares in both seasons –[ summer] and winter. Be[ ready] for a[ detailed] review[ of] this product!
+First, a little background on my skin – I’ve[ dry combination] skin. My t-zone is super oily especially my nose and my cheeks & forehead usually run[ dry]. My skin is super sensitive and acne & blemish prone. I am prone to cystic acne as well (will talk about how I conquered cy[stic] acne in[ another] post).
+P.S. Always keep in mind even if you & I have similar skin, what worked for me might not work for you.
+The pure ingredients like organic daisy flowers extract have been integrated[ effic]aciously to provide an even pigmentation and prevent melanin synthesis so effectively that you will have your skin turning visibly[ softer] and[ glowing]. A natural remedy for pigmented skin, age spot, blemishes, sunburn and t[anned] skin, this anti-pigmentation cream possesses the benefit of a full-fledged treatment, which clarifies the skin[ while] averting the appearance of any future discoloration, thus, leaving the skin[ fresh] and[ youthful].
+Aqua, Organic Daisy Flower Extract, White Mulberry Extract and Vitamin – C in Cream base.
+I usually apply a moisturizer[ first on] my cleansed face[ then apply] this cream in[ night]. Topped it with facial oil[ during] winters. I don’t apply it in[ day time] ([along] with night time) as mentioned by brand cos’ the product contains Vitamin[ C] in it. Vitamin C makes skin sensitive to sun, even though I apply sunscreen I wanted to be on a safer side. The sun is anyway too harsh in India.
+My first impression of this cream was that it felt[ dry] & stretchy on my skin. It felt too stretchy in applying the cream as it finish in matte. Keep in mind it was[ during] the Jan end,[ peak] winter, when I[ tried it for the first time]. So I started to[ apply facial] oil after[ applying] this cream. But[ during] application it still felt[ stretch]y so I started to apply a moisturizer before[ sl]athering this cream on. Since it was winter, I could get[ away] with so much layering. No I didn’t face any acne breakout.
+After a[ month]’[s use],[ I] did observe that my fresh acne
+
+=== Text #7 ===
+> [Yesterday Andrew accompanied] me to St Vincent’s nuclear Medicine department for a S[est]amibi Scan, called ” Mibi” for short, of my heart.
+The process involves a baseline scan[ without any] medium[ followed by] a[ period of rest], you[ can] read about everything through these links here.
+A s[est]am[ibi] (MIBI) scan is a test that measures the amount of blood being supplied to your heart.
+Why do I need a s[est]amibi scan?
+What are the risks of having a s[est]amibi scan?
+How do I prepare for a s[est]am[ibi] scan?
+What happens during a s[est]amibi scan?
+What happens after a s[est]am[ibi] scan?
+N[uclear] stress test[ to] Diagn[ose] CHD.
+Also used to gauge the damage to the heart by things such as S.C.A.D.
+All in all the scan only took 4 hours rather than the[ 6 mentioned] and wasn’t as scary as we had thought.
+Due to the radioactivity I was warned to take a taxi[ home] and to stay[ away] from people for[ 48 hours until the] Technetium T[c 99]m s[est]amibi reached[ safer] levels.. Andrew and I took the long[ blue] and[ white] taxi[ home] ra[ight to] our[ doorstep] and went out shopping[ today after] I came home from respite.
+I feel somewhat tired and[ done] it and have gone to bed[ early these past few nights] but will be opening the Shed at K[ool]oora[ tomorrow].
+
+=== Text #8 ===
+> Rustic Picnic Table Amazing 31 Alluring Ideas Tables[ Coho] Intended For 7. Rust[ic] Picnic Table Incredible[ Brilliant Download Architecture] With In Plans 13 18. Rustic Picnic Table[ New] And Benches[ I]Stage Homes In 14. Rustic Picnic Table Attractive Log Tables[ Great] Northern Logworks Throughout 0. Rustic Picnic Table[ Modern] Brilliant Cedar For Sale Log Inside Design 6[ In] 12. Rustic Picnic Table[ Contemporary] Tables[ Amazing] Hand Crafted With Fixed Benches Int[ended] For 8. Rustic Picnic Table Eleg[ant] Lodge Log And Timber Furniture Hand[crafted] From Green With 17. Rustic Picnic Table Popular[ Outdoor] Furniture Handmade By[ Appalachian] Designs Pertaining To 11. Rustic Picnic Table[ Incredible] Tables Warm 2[ Wood] Logs And Fire[wood Online Inside] 5. Rustic Picnic Table[ Brilliant] 1000 Ideas About Tables On Pinterest[ Plans] Inside 15. Rustic Picnic Table[ Incredible Tables] For Rent Measuring Up[ Dec]oration Int[ended] Ideas[ Throughout] 6. Rustic Picnic Table[ Modern Awesome] Tables With Coolers Measuring[ Up Dec]oration Regard To 9. Rustic Picnic Table[ Brilliant] Cedar For[ Sale] Log Pertaining To 3. Rustic Picnic Table[ Contemporary] Tables LisaCintosh[ Throughout] 19. Rustic Picnic Table[ Awesome Tables Warm] 2[ Wood] Logs And Fire[wood Online] For 10. Rustic Picnic Table Sty[lish Best] Douglas Fur For[ Sale] In Alamosa Colorado Regarding 2. Rustic Picnic Table Sty[lish] Awesome Tables With Coolers Measuring Up Decoration Pertaining To 13. Rustic Picnic Table Eleg[ant] Wood[ Tables Higher] Ground Log Furnishings In[ Throughout] 1.
+
+=== Text #9 ===
+> [Lewis] L.[ Wolfgang] is a partner in the firm's Harrisburg office. He focuses his practice on representing employers in workers' compensation litigation.
+After[ graduating from law school, Mr].[ Wolfgang was employed with the Commonwealth] of[ Pennsylvania assigned] to the Department of Labor and Industry Workers’[ Compensation] Appeal Board[ as a] law[ clerk writing] decisions[ for] Commissioner William Atkinson.[ He also] served as an[ attorney with] the Pennsylvania Medical Professional Liability Catastrophe Loss Fund.
+Mr. Wolfgang is admitted to practice in[ Pennsylvania].
+He received[ his] B.[A. from Sus]quehanna[ University in 1995 and his] J.[D].[ from the] Widener University School of[ Law in 1998].
+Mr. Wolfgang resides in the Harrisburg,[ Pennsylvania area].
+
+=== Text #10 ===
+> If nicknames were rooted in a very player’s romance[ along] with his organization, Victor ‘[Found] Money’ Mete would be rolling off tongues[ throughout] Montreal.6[ weeks] ago[, an] enormous swath from the Canadiens enthusiast base had[, at] very best, a vague notion of who Mete was. And in some cases people with[ intimate] knowledge of his skills including a sociates on the entrance busine s, most likely experienced no inclining he was the answer for the i sue, Hey, who the heck is gonna https://www.[style]panthers.com/ fill that Andrei Markov-sized hole within the left side from the 1st pair close to Shea Weber? Mete, drafted a[ hundred]th overall in 2016, has absent from intriguing to indispensable for Montreal during the span of 7[ online] games, a lively vibrant place within an if not dreadful begin for[ that] Habs. That is why, regardle s that he’s one particular of a couple of dozen entry-level slide candidates inside the league, there is practically no po sibility he’s[ returned] by Montreal to your London Henrik Borgstrom Jersey Knights from the OHL.For a[ speedy] refresher and when you want to go[ deeper] and also a bit cro s-[eyed], down[ load] the CBA and dive into portion 9.[one most young] people that have however to engage in ten NHL games is often re-a signed to your reduced league[ without] getting one[ on] the a few several years[ on their own] entry-level deal[ burned]. Just one exception is Clayton Keller of the Arizona Coyotes. Keller didn’t sign his deal[ until finally his age 19 season] and,[ acquiring] now slid 1 season when[ he performed] 3[ game] titles[ last year], Keller is over the clock despite in which he plays that will be[ from] Roberto Luongo Jersey the NHL for your up coming fifteen[ many] years.
+Cette entrée a été[ pub]liée d[ans] Non classé, et marqu[ée] a[vec] a lively vibrant place within an if not dreadful begin for that Habs. That is why, a vague notion of who Mete was. And in some cases people with intimate knowledge of his skills including a sociates on the entrance busine s,[ acquiring now] slid 1[ season] when he performed 3[ game] titles last year, an enormous swath from the Canadiens enthusiast base had, at very best,[ down load] the CBA and dive into portion 9.one most young people that have[ however] to engage in ten NHL games is often re-a signed to
+
+=== Text #11 ===
+> Marcelito Pomoy recently appeared at “The Ellen DeGeneres Show.” He is the latest Filipino to guest in this popular talk show.
+He was[ interviewed first by] Ellen and an interpreter helped Marcelino answer the questions. Marcelito said that at h didn’t[ immediately believe] that he got an invite from the show and[ initially thought] that it was a spam email. Even[ after he had] a[ Skype] call[ with] a representative of the show[ he] still had doubts. It was not[ until his] ticket was emailed[ to him that he finally got convinced] that it was real!
+The Kapamilya singer and Ellen talked about Marcelito’s humble beginnings. According to Marcelito, he started[ to sing at early age of seven and learned that] he had this gift to switch voices at[ the age of eighteen]. Ellen also asked Marcelito about his experience living in the streets and[ finally] ending up as[ winner] at the 2012[ Pil]ipinas Got Talent. Marcelito said that he worked as a Pin boy and was[ paid Ph]p[ 50] for each and slept at the streets at[ night]. He said that he[ joined] the contest[ with the inspiration] that he would be[ able to] see his family.
+Ellen said that he was[ thrilled] with Marcelito Pomoy ‘s videos and was excited that he is in the show.
+Related topics for this article: "reynaldo [[email] protected] comp"
+Is Enrique destined for Liza So[ber]ano?
+
+=== Text #12 ===
+> ["]Do[zens] of[ network]-attached storage (NAS) servers and other consumer appliances are about to[ gain mainline] kernel and Debian GNU/Linux support. The 2.[6].25[ kernel],[ currently] in the final stages of[ testing],[ will support] Marvell's Feroceon micro-architecture and 'Orion' SoCs,[ with] Debian support close behind,[ sources] say.
+"[Yesterday,] Linus[ Tor]valds[ launched] release[ candidate 7 (rc]7[) for the] 2.[6].25[ kernel], commenting, 'Give[ it] a[ good testing, because] we're[ hopefully now well] on[ our way towards that eventual real] 2[.6].[25 release]!' The comment suggests the[ newest] kernel could well[ launch this week]..."
+
+=== Text #13 ===
+> heavy duty work boots steel toe[ vegan] steel toe[ heavy] duty work boots[ country] home ideas magazine[ subscription home] decor ideas for living room diy.
+heavy duty work boots steel toe heavy duty steel toe work boots bark hi res small home ideas pinterest home ideas[ website].
+heavy duty work boots steel toe mining safety shoes heavy duty work industry safety shoes in the mining steel home theater ideas pinterest home ideas magazine u[k].
+heavy duty work boots steel toe steel toe logger work boots bark hi res home ideas magazine ph dream[ home] ideas tv show.
+heavy duty work boots steel toe safety jogger steel toe safety boots black[ home] office[ ideas] for living room[ home] ideas app.
+heavy duty work boots steel toe eagle[ full] leather heavy duty steel toe work boots oil resistant sole 7[ us black home] ideas[ ipad] app home ideas magazine philippines.
+heavy duty work boots steel toe 9[ brown leather black] heavy duty steel toe hiking work boots survivors home gym ideas pinterest home plan ideas magazine.
+heavy duty work boots steel toe grafters heavy duty work boot steel toe cap[ home] bar ideas with tv[ home] ideas for living room.
+heavy duty work boots steel toe[ heavy] duty waterproof insulated aged bark 8 work boots steel toe[ home] ideas minecraft[ home] diy ideas[ cheap].
+heavy duty work boots steel toe overdrive[ western] pull on work boot minecraft house ideas xbox 360[ home] improvement ideas diy.
+heavy duty work boots steel toe china heavy duty safety working boots with steel toe and plate[ home] decor ideas for living room[ on] a budget home plan ideas magazine.
+heavy duty work boots steel toe[ wholesale] safety boots shoes steel toe safety rain men safety boots[ home ideas] tv home improvement ideas diy.
+heavy duty work boots steel toe black[ leather] steel toe cap[ safety] heavy duty boots size great[ home] ideas[ tv] show[ home] ideas minecraft.
+heavy duty work[ boots] steel toe this wellington brown leather boot has welt construction unique heavy duty three rib pole climber shank provides maximum support my home[ ideas website home] ideas magazi.
+heavy duty work boots steel toe[ home] renovation ideas diy[ home] decor ideas for living room pinterest.
+heavy duty work boots steel toe indestructible safety boots mfg inc home bar ideas pinterest home decor ideas app.
+heavy duty work boots steel toe china[ black] rain heavy duty steel toe[ home] ideas sioux falls[ host] home decor ideas magazine.
+heavy duty work boots steel toe[ heavy] duty steel toe cap[ black leather safety] boots size 6[ country] home ideas magazine subscription great home ideas tv show.
+heavy duty work boots steel
+
+=== Text #14 ===
+> Kick start your Kashmir holiday tour with arrival at Srinagar. Here, you will meet a representative and get transferred to a Deluxe Houseboat. In the afternoon, head[ out] to[ enjoy] a[ romantic] 'Shikara ride'[ on] the much famed Dal Lake. You can also go Shikara shopping and buy Kashmiri shawls, handicrafts and curios on the lake. Return to the houseboat in the[ evening], where you will have[ dinner] and spend the[ night].
+Have a[ delicious breakfast] and head[ out] to Sonmarg. Spend the day at leisure and bask in the captivating beauty of the Himalayas. In the[ evening],[ drive] back to Srinagar. Upon arrival, return to the houseboat, have[ dinner] and[ spend] the[ night].
+Post breakfast,[ drive up] to the picturesque hill station Gulmarg, which is home to the world's highest green golf course and some exciting skiing slopes. The day is[ at leisure] - you can take a cable-car G[ond]ola ride from Gulmarg to Khilanmarg and delight in the stunning vistas of snow-[c]apped peaks and green meadows. Head back to Srinagar and return to the hotel, where you will stay[ overnight after] a[ delicious] dinner.
+Have[ breakfast] and start off to Pahalgam and on your way, take a short trip to the saffron fields and the Awantipura Ruins, relics of old temples dedicated to Lord Vishnu and Lord Shiva built in the 9[th Century] AD by King[ Aw]antiwareman. Arrive[ P]ahalgam and check[ into] the hotel[ booked] as per your Kashmir tour package. Spend the[ remaining day at leisure]. Post dinner[ at] the hotel,[ enjoy] your[ overnight stay].
+Have[ breakfast] and proceed to take a[ scenic] drive to Srinagar. After arrival, check[ into] a hotel. In the[ afternoon], start off to the picturesque Nishat Bagh, a terraced Mughal Garden and Shalimar Bagh, another Mugh[al] Garden linked to the Dal Lake from the northeastern shore via a channel. Return back to the hotel and spend the[ night following] a delectable dinner.
+Have a sav[ory breakfast] and check-[out] of the hotel. Then, proceed to the airport to[ catch] a light to[ your onward] journey.
+Srinagar – The capital city of Jammu and Kashmir, Srinagar is noted for serene Dal Lake and remarkable Mughal gardens like Nishat Bagh, Shalimar Bagh, and Chashmashahi. Other places of
+
+=== Text #15 ===
+> [US] President Donald Trump took[ to Twitter] Monday[ morning to] announce that Rex Tillerson, 69th[ United] States secretary of[ state], would be replaced by[ CIA] Director Mike[ Pompe]o.
+Despite disagreements between Trump and Tillerson ranging from 45's Boy Scouts speech to the Iran nuclear deal, many were shocked at the decision to let Tillerson go.
+Once[ called "a star" in] the[ making by Trump,] Tillerson's next[ concrete move following his official] last day[ March 31] is[ unknown].
+[Before joining] the Trump administration,[ Tillerson was CEO of] Exxon[Mobil since 2006].[ With his] position now[ filled] by Darren Woods, it's[ anyone]'s guess[ whether] the multinational oil and gas corporation will welcome the Tillerson back[ with open arms] following[ his] public dismissal from the White House.
+
+=== Text #16 ===
+> [Daniel] says “I am an artist who loves books. I enjoy sculpting and repurposing discarded books. My work has been acquired by many collectors from around the world and has been published in many different newspapers, magazines and books.
+Daniel Lai, a self-t[aught] artist[ of Chinese] descent[ from Kuala] Lumpur, Malaysia, was granted[ US citizenship through] extraordinary ability in the field of fine art and arts management in 2014.
+His educational background reflects a diversity of interests that influences his work. Daniel has a PhD in[ sociology] ([2015) from University] of[ Tennessee], an[ MA in art history (2006) from Montclair State University,] and a[ BA in linguistics (2003) from Montclair State University].
+
+=== Text #17 ===
+> [Originally],[ from Chicago, now living in Hong Kong], Jeanne studied[ improvis]ation[ in Chicago]. She holds a B.[S. in Anthropology from L]oy[ola] University of[ Chicago] and an M.S.[ in Historic] Preservation[ from the] School[ of the Art] Institute.
+She has performed, presented and conducted workshops in the[ US],[ Europe] and Asia. Ms. Lambin’s workshops have been described as “amazing,” “[powerful],” and “great fun.” Her work has been featured in the Hong Kong’s Top Notch Storytelling Festival, Liar’s League Hong[ Kong],[ Literary] Death Match, the Art’s House World Voices Presents, the Moth[ Chicago], Story Lab and This Much is True. Ms. Lambin is a proud to be a founding member of Improv for Humanity and co-creator of The Quest:[ Improv] for[ Transformation].[]
+
+=== Text #18 ===
+> [t]rom[bone] shirts[ shirt without] the life would be flat t designs[ online] shopping from sayings.
+trom[bone] shirts[ john] prestige t shirt[ lightweight vintage] style shorty.
+trombone shirts[ live] love play the dark colors t shirt[ by] mom.
+trombone shirts shorty[ tee shirt].
+trombone shirts 2[ shorty] t.
+trombone shirts[ organic] t shirt[ cool].
+trombone shirts[ player] shirt[ baby] lap shoulder t[ funny].
+trombone shirts[ t shirt funny].
+trombone shirts[ custom] t[ cheap city] keep calm and play[ music lover adult] short[ funny crew] neck shirt for[ men] in from clothing mom.
+trombone shirts[ player funny gift] roll cuff t.
+trombone shirts[ funny] t shirt[ front short]y[ tee].
+trombone shirts funny for trombonist premium t shirt sayings.
+trombone shirts[ cotton] for o neck graphic[ short] sleeve t[ funny].
+trombone shirts i am a player sweatshirt[ mom].
+trombone shirts love[ premium] t shirt[ funny].
+trombone shirts[ awesome] tee[ pop art] tees mom.
+trombone shirts[ player] i am a t shirt[ shorty tee].
+
+=== Text #19 ===
+> So[ yesterday I had] my first session[ of] skin peeling[ with] Dr Mohamed Gharib, a professional Dermatologist at Kaya Skin Clinic (Marina Branch). My consultation[ which] was around a[ week ago, was] so informative. Dr Gharib made me feel so[ comfortable] about the whole procedure which is why I went ahead with his recommendation of skin peeling and mesotherapy. At the consultation he asked me what my concerns were regarding my skin to which I[ explained] how due to having to wear make up so often because of my career, my skin sometimes breaks out with mild acne. I also told him how I’m unhappy with the hollowness and darkness around my eye area. Even after having just one[ consultation], it was so invaluable. Dr Gharib made me understand what’s going on with my skin and why. It all makes so much sense[ now], meaning I can do as much as I can within my control to help my skin improve. I don’t want to bombard you with too much text so please follow my YouTube channel www.youtube.com/ninaubhi where I will be uploading the final journey of my experience of Skin Pe[eling] and Mesotheraphy once[ I]’[ve completed] all four sessions. I’ll also be posting on my blog after each session so I can really give you my full experience.
+SESSION[ ONE] I’ve been sick for[ the last few days] and thankfully I felt[ well] enough to go out[ yesterday afternoon]. So luckily I made it for[ my first session of skin] pe[eling] and mesotherapy at[ the] Kaya Skin Clinic.[ Firstly], the staff at Kaya Skin Clinic are so professional and they made the whole process so much easier and secondly they have a branch in Marina which is so close to me! Skin[ Peel]: So I[ arrived] with zero make up[ on] and settled down in the treatment room. The nurse started by firstly explaining the process and then[ cleansing] my face[ to remove] any residue. Then comes the high frequency Accura machine that is glided across my skin[ manually] by the nurse, continuously for around 10[ minutes]; this calms any inflammation and reduces the size of spots. She then started the skin detox by extracting any open comedones. Once the skin is[ cleansed], Dr Gharib applies the skin[ peel] treatment over my[ face] and it’s left[ on] for[ a few minutes]. There’s a slight tingling sensation but nothing too uncomfortable. The skin[ peel] treatment is[ removed] by spraying cold water onto the
+
+=== Text #20 ===
+> [Dr] Harry D. Vildibill was born in[ Tampa FL] and[ raised] in[ Brandon],[ FL]. He attended[ Vanderbilt University] and University of[ South Carolina], School of[ Medicine]. He[ completed his general surgery residency at] Mayo[ Graduate] School[ of Medicine,] Mayo Clinic,[ Rochester],[ MN]. Dr Vilidbill has been in[ practice since 1998]. Dr Vildibill is married with 2 children.
+Please visit our Surgeries page to see a list of just some of the surgeries we perform.
+
+
+Description: 
+2025-07-26 00:34:01,014 - root - INFO - Beauty, skincare, DIY remedies, overnight treatments, durations, medical procedures, historical figures, dates and locations, cooking instructions, product reviews, software versions and testing
+
+2025-07-26 00:34:01,018 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-5278_clusters-1_2025-07-25_22-24-31.csv
+2025-07-26 00:34:01,019 - root - INFO - ================================================================================
+2025-07-26 00:34:01,020 - root - INFO - ANALYSIS COMPLETED
+2025-07-26 00:34:01,020 - root - INFO - ================================================================================
+2025-07-26 00:34:01,021 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-5278_clusters-1_2025-07-25_22-24-31.log
+2025-07-26 00:34:01,021 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-5278_clusters-1_2025-07-25_22-24-31.csv

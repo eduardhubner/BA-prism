@@ -1,0 +1,639 @@
+2025-07-26 00:54:10,575 - root - INFO - ================================================================================
+2025-07-26 00:54:10,614 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-26 00:54:10,614 - root - INFO - ================================================================================
+2025-07-26 00:54:10,615 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-26 00:54:10,616 - root - INFO - AGG_METHOD = mean
+2025-07-26 00:54:10,616 - root - INFO - BATCH_SIZE = 2
+2025-07-26 00:54:10,617 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:54:10,617 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-26 00:54:10,618 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-26 00:54:10,618 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-26 00:54:10,619 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-26 00:54:10,619 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-26 00:54:10,620 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-26 00:54:10,620 - root - INFO - CONTROL_SPLIT = train
+2025-07-26 00:54:10,621 - root - INFO - DATA_FILES = None
+2025-07-26 00:54:10,621 - root - INFO - DEVICE = cuda
+2025-07-26 00:54:10,622 - root - INFO - END_INTERVAL = 1.0
+2025-07-26 00:54:10,622 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:54:10,623 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-26 00:54:10,623 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-26 00:54:10,624 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-26 00:54:10,624 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-26 00:54:10,625 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-07-26 00:54:10,625 - root - INFO - LAYER_ID = 20
+2025-07-26 00:54:10,625 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-26 00:54:10,626 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-26 00:54:10,626 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-26 00:54:10,627 - root - INFO - MULTI_EVAL = True
+2025-07-26 00:54:10,627 - root - INFO - N_CLUSTERS = 1
+2025-07-26 00:54:10,628 - root - INFO - N_SAMPLES = 10
+2025-07-26 00:54:10,628 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-26 00:54:10,629 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-26 00:54:10,629 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-26 00:54:10,630 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-26 00:54:10,630 - root - INFO - SPLIT = train
+2025-07-26 00:54:10,630 - root - INFO - START_INTERVAL = 0.99
+2025-07-26 00:54:10,631 - root - INFO - STREAMING = True
+2025-07-26 00:54:10,631 - root - INFO - SUBSET_SIZE = 1000
+2025-07-26 00:54:10,632 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-26 00:54:10,632 - root - INFO - TARGET_DATA = c4
+2025-07-26 00:54:10,633 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-26 00:54:10,633 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:54:10,634 - root - INFO - UNIT_ID = 3313
+2025-07-26 00:54:10,634 - root - INFO - USE_API = True
+2025-07-26 00:54:10,635 - root - INFO - ================================================================================
+2025-07-26 00:54:10,635 - root - INFO - ANALYSIS RESULTS
+2025-07-26 00:54:10,636 - root - INFO - ================================================================================
+2025-07-26 00:54:10,636 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-3313_clusters-1_2025-07-25_22-54-10.log
+2025-07-26 01:03:07,144 - root - INFO - Reached 1000 samples.
+2025-07-26 01:03:08,751 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-26 01:03:08,751 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 01:03:26,508 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-26 01:04:03,438 - root - INFO - Number of candidates: 1001
+2025-07-26 01:04:06,563 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-26 01:04:06,564 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  you (1.194607138633728)
+Text #1:  draw (2.070979118347168)
+Text #1:  voucher (1.6920909881591797)
+Text #1:  to (1.7167003154754639)
+Text #1:  to (1.6479406356811523)
+Text #1: , (1.1938066482543945)
+Text #1:  receive (1.3729244470596313)
+Text #1:  voucher (1.4591188430786133)
+Text #1:  enter (1.2122722864151)
+Text #1:  for (1.5414665937423706)
+Text #1:  the (1.2333533763885498)
+Text #1:  prize (2.3513362407684326)
+Text #1:  year (1.2481752634048462)
+Text #1: . (1.2003952264785767)
+Text #1:  you (1.1068004369735718)
+Text #1:  complete (1.2498773336410522)
+Text #1:  each (1.3245668411254883)
+Text #1:  enter (1.3601385354995728)
+Text #2:  the (1.3604375123977661)
+Text #2:  pay (1.2044812440872192)
+Text #2:  to (1.7459931373596191)
+Text #2:  per (1.504955530166626)
+Text #2: line (1.906992793083191)
+Text #2:  award (1.6811641454696655)
+Text #2:  player (1.1983001232147217)
+Text #2:  100 (1.0446604490280151)
+Text #2:  the (1.0186723470687866)
+Text #2:  If (1.5839017629623413)
+Text #2: , (1.1773892641067505)
+Text #2: , (1.928529143333435)
+Text #2:  number (1.0229965448379517)
+Text #2:  The (1.1482038497924805)
+Text #2:  awarded (1.0831924676895142)
+Text #2:  selecting (1.6691256761550903)
+Text #2: . (2.2187204360961914)
+Text #2:  picks (1.2103608846664429)
+Text #2:  the (1.764712929725647)
+Text #2: as (1.0657079219818115)
+Text #2:  contain (1.5552541017532349)
+Text #2: . (1.436661958694458)
+Text #3:  took (0.602674126625061)
+Text #3:  had (0.7567163109779358)
+Text #3:  the (0.5241178274154663)
+Text #3:  complete (0.7804134488105774)
+Text #3:  I (0.5493893027305603)
+Text #3: . (0.6765314936637878)
+Text #3: ing (0.5213244557380676)
+Text #3:  out (0.6331604719161987)
+Text #3:  loot (2.3256375789642334)
+Text #3:  we (1.0389972925186157)
+Text #3: Congratulations (0.7247018218040466)
+Text #3:  who (2.329019546508789)
+Text #3:  lock (0.46479037404060364)
+Text #3:  completed (0.9873390793800354)
+Text #3: ne (1.0407294034957886)
+Text #3: . (0.8019107580184937)
+Text #3:  the (0.5620097517967224)
+Text #3:  offers (0.8198475241661072)
+Text #3:  sell (0.5845862627029419)
+Text #3: . (0.7405254244804382)
+Text #3:  all (0.94350665807724)
+Text #3:  of (0.4948060214519501)
+Text #3:  the (0.5007102489471436)
+Text #3: 10 (0.6009836196899414)
+Text #3: isher (1.1252248287200928)
+Text #3:  kindly (0.8995020389556885)
+Text #4: 's (0.844723641872406)
+Text #4:  puzzle (0.5601003170013428)
+Text #4: : (1.319682240486145)
+Text #4:  get (0.6761331558227539)
+Text #4:  will (0.283895879983902)
+Text #4:  the (1.3278716802597046)
+Text #4:  possible (0.7231849431991577)
+Text #4:  of (0.37883856892585754)
+Text #4: . (1.1490468978881836)
+Text #4:  1 (1.7075316905975342)
+Text #4:  answer (1.5890339612960815)
+Text #4:  database (0.46181541681289673)
+Text #4:  answers (1.0655852556228638)
+Text #4:  cross (0.5410507321357727)
+Text #4:  solutions (0.5583280324935913)
+Text #4: . (0.29329484701156616)
+Text #4:  you (0.5144473910331726)
+Text #4:  of (0.44035789370536804)
+Text #4:  and (0.38466930389404297)
+Text #4:  it (0.6083409786224365)
+Text #4:  clues (0.37377434968948364)
+Text #4:  answers (0.4738653600215912)
+Text #5:  last (0.5567309260368347)
+Text #5:  a (1.1346189975738525)
+Text #5:  enter (2.088348150253296)
+Text #5:  Chloe (0.5328728556632996)
+Text #5:  the (0.5346782803535461)
+Text #5:  darkness (0.5037459135055542)
+Text #5:  learn (0.7576521039009094)
+Text #5:  that (0.5377346873283386)
+Text #5: , (0.8199785947799683)
+Text #5:  of (0.6505149602890015)
+Text #5:  giving (0.6673222184181213)
+Text #5:  copies (1.4699667692184448)
+Text #5:  prize (2.092266082763672)
+Text #5:  5 (0.944377601146698)
+Text #5: . (1.3942385911941528)
+Text #5:  enter (1.3956822156906128)
+Text #5: 
+ (0.516718864440918)
+Text #5: ners (2.310487985610962)
+Text #5:  of (0.7986045479774475)
+Text #5:  pick (0.6171851754188538)
+Text #5:  random (1.2706630229949951)
+Text #5:  will (2.5965332984924316)
+Text #5: . (0.8650196194648743)
+Text #6:  competition (0.37855494022369385)
+Text #6: ! (0.334922194480896)
+Text #6: The (1.13288414478302)
+Text #6:  competition (0.15458154678344727)
+Text #6:  apply (0.8141359090805054)
+Text #6:  the (0.1932075023651123)
+Text #6:  two (0.6395007371902466)
+Text #6:  properties (0.4646250009536743)
+Text #6: which (0.2231852114200592)
+Text #6:  of (0.22463610768318176)
+Text #6:  facilitate (0.08461285382509232)
+Text #6:  5 (1.2481271028518677)
+Text #6: 000 (0.4132124185562134)
+Text #6:  prizes (0.08668842911720276)
+Text #6:  to (1.850185513496399)
+Text #6:  ( (0.8362372517585754)
+Text #6: )! (1.820332646369934)
+Text #6: <|endoftext|> (0.06420882046222687)
+Text #6: <|endoftext|> (0.06422464549541473)
+Text #6: <|endoftext|> (0.0642084851861)
+Text #6: <|endoftext|> (0.06424584984779358)
+Text #7:  the (0.27612605690956116)
+Text #7:  to (0.290941059589386)
+Text #7:  a (0.09038758277893066)
+Text #7:  to (0.2780820429325104)
+Text #7:  entry (1.0638989210128784)
+Text #7:  you (0.3126943111419678)
+Text #7:  randomly (1.951173186302185)
+Text #7: t (0.5307683944702148)
+Text #7:  you (0.4740302562713623)
+Text #7:  your (1.182530164718628)
+Text #7: , (0.22352689504623413)
+Text #7: <|endoftext|> (0.07458846271038055)
+Text #7: <|endoftext|> (0.07459186762571335)
+Text #7: <|endoftext|> (0.07482720166444778)
+Text #7: <|endoftext|> (0.07478072494268417)
+Text #7: <|endoftext|> (0.07461094856262207)
+Text #7: <|endoftext|> (0.07463375478982925)
+Text #7: <|endoftext|> (0.07464319467544556)
+Text #7: <|endoftext|> (0.07460660487413406)
+Text #7: <|endoftext|> (0.07460237294435501)
+Text #7: <|endoftext|> (0.07465113699436188)
+Text #7: <|endoftext|> (0.07462407648563385)
+Text #8:  special (0.3535594046115875)
+Text #8:  young (0.33378252387046814)
+Text #8:  dream (0.08148124068975449)
+Text #8:  them (0.7257658243179321)
+Text #8:  their (0.08315137773752213)
+Text #8: . (0.1995939016342163)
+Text #8:  draft (0.6801260709762573)
+Text #8:  tonight (0.10663165152072906)
+Text #8:  the (0.11087632179260254)
+Text #8:  the (0.28328338265419006)
+Text #8:  available (0.3028987944126129)
+Text #8:  at (0.5072007179260254)
+Text #8:  five (0.2846263349056244)
+Text #8: <|endoftext|> (0.0781501904129982)
+Text #8: <|endoftext|> (0.07823839038610458)
+Text #8: <|endoftext|> (0.07825237512588501)
+Text #8: <|endoftext|> (0.07819819450378418)
+Text #8: <|endoftext|> (0.0781855657696724)
+Text #8: <|endoftext|> (0.07816925644874573)
+Text #8: <|endoftext|> (0.07814101129770279)
+Text #8: <|endoftext|> (0.07813847810029984)
+Text #9:  come (0.09892797470092773)
+Text #9:  200 (0.6533840298652649)
+Text #9:  team (0.5393792390823364)
+Text #9:  4 (0.5687285661697388)
+Text #9:  you (0.44564351439476013)
+Text #9:  three (0.999854326248169)
+Text #9: . (0.19334056973457336)
+Text #9:  a (1.4864907264709473)
+Text #9:  you (0.7459805011749268)
+Text #9: . (0.31631481647491455)
+Text #9:  team (0.6954893469810486)
+Text #9:  creative (0.2174226939678192)
+Text #9:  with (0.3893181085586548)
+Text #9:  4 (0.9179983139038086)
+Text #9: 100 (0.12664847075939178)
+Text #9:  9 (0.22416524589061737)
+Text #9:  to (0.20944030582904816)
+Text #9:  reserve (0.11777981370687485)
+Text #9: <|endoftext|> (0.06515767425298691)
+Text #9: <|endoftext|> (0.06524140387773514)
+Text #9: <|endoftext|> (0.06518595665693283)
+Text #9: <|endoftext|> (0.06529203802347183)
+Text #9: <|endoftext|> (0.06526418030261993)
+Text #9: <|endoftext|> (0.06528665125370026)
+Text #9: <|endoftext|> (0.06516637653112411)
+Text #10:  winning (2.158937454223633)
+Text #10: ended (2.354557514190674)
+Text #10:  entries (2.430492639541626)
+Text #10:  to (0.5406904816627502)
+Text #10:  for (1.3017189502716064)
+Text #10:  from (0.5072583556175232)
+Text #10: list (0.913835883140564)
+Text #10:  Winners (1.6699230670928955)
+Text #10: ended (1.0671941041946411)
+Text #10: ended (0.7497202754020691)
+Text #10:  five (0.9316343665122986)
+Text #10:  will (1.0086992979049683)
+Text #10:  highly (0.5614251494407654)
+Text #10: ended (1.1968141794204712)
+Text #10: . (0.824405312538147)
+Text #10:  receive (0.6559235453605652)
+Text #10:  1 (1.2031069993972778)
+Text #10:  place (0.5642859935760498)
+Text #10:  winners (0.7313441634178162)
+Text #10:  2 (0.5043860077857971)
+Text #10: rd (1.249931812286377)
+Text #10:  winners (0.6418566703796387)
+Text #10: 1 (0.6167730093002319)
+Text #10: rd (0.9043970108032227)
+Text #10:  entrants (1.1859641075134277)
+Text #11:  each (0.32061076164245605)
+Text #11: , (0.1597370207309723)
+Text #11:  a (0.18345777690410614)
+Text #11:  appropriate (0.7160365581512451)
+Text #11:  the (0.48800286650657654)
+Text #11: Completed (0.2529255747795105)
+Text #11:  to (0.11075062304735184)
+Text #11: <|endoftext|> (0.06205986067652702)
+Text #11: <|endoftext|> (0.06215720996260643)
+Text #11: <|endoftext|> (0.062211599200963974)
+Text #11: <|endoftext|> (0.06220727041363716)
+Text #11: <|endoftext|> (0.06226537376642227)
+Text #11: <|endoftext|> (0.06212574616074562)
+Text #12:  to (1.3194482326507568)
+Text #12:  is (0.7950893640518188)
+Text #12: . (0.8144297003746033)
+Text #12:  was (0.2158021181821823)
+Text #12:  a (0.5410884618759155)
+Text #12:  who (0.8255971670150757)
+Text #12:  hardship (0.18217475712299347)
+Text #12:  adversity (0.13521109521389008)
+Text #12:  courage (0.06870145350694656)
+Text #12:  their (0.22122950851917267)
+Text #12:  world (0.15322737395763397)
+Text #12:  is (0.5807045102119446)
+Text #12:  will (0.35421034693717957)
+Text #12:  The (0.28174081444740295)
+Text #12: <|endoftext|> (0.06671303510665894)
+Text #12: <|endoftext|> (0.06673218309879303)
+Text #12: <|endoftext|> (0.06683245301246643)
+Text #12: <|endoftext|> (0.06672492623329163)
+Text #13:  class (0.2695107161998749)
+Text #13:  is (0.3138909339904785)
+Text #13:  the (0.17623715102672577)
+Text #13: uable (0.19819384813308716)
+Text #13:  samples (0.22450491786003113)
+Text #13:  select (0.26574236154556274)
+Text #13:  valuable (0.5086169838905334)
+Text #13:  the (0.1711377650499344)
+Text #13:  Firstly (0.21499410271644592)
+Text #13:  the (0.15101312100887299)
+Text #13:  amount (0.16804306209087372)
+Text #13:  data (0.47968798875808716)
+Text #13:  the (0.19613316655158997)
+Text #13:  selects (0.9046009182929993)
+Text #13: ed (0.7610894441604614)
+Text #13:  to (0.6064028143882751)
+Text #13:  choose (0.24944855272769928)
+Text #13:  valuable (0.24434934556484222)
+Text #13:  instance (0.38428521156311035)
+Text #13: . (0.7665795087814331)
+Text #13:  instance (0.19207604229450226)
+Text #13: , (0.2637127637863159)
+Text #13:  is (0.7897136211395264)
+Text #13:  the (0.28595852851867676)
+Text #13: . (0.5775172114372253)
+Text #13:  method (0.18452301621437073)
+Text #13: . (1.4163761138916016)
+Text #14:  as (0.1667606234550476)
+Text #14:  a (0.12338528782129288)
+Text #14:  away (1.0720285177230835)
+Text #14: The (0.38652437925338745)
+Text #14:  giving (0.1265331357717514)
+Text #14: :// (1.0929663181304932)
+Text #14:  win (0.9504774212837219)
+Text #14: Win (0.0923808217048645)
+Text #14:  month (0.0702584832906723)
+Text #14: 'll (0.1262197643518448)
+Text #14:  this (0.13121601939201355)
+Text #14:  choices (0.057531945407390594)
+Text #14:  1 (0.7488282322883606)
+Text #14:  a (0.07848309725522995)
+Text #14:  to (0.2625662088394165)
+Text #14:  win (0.8464974164962769)
+Text #14: <|endoftext|> (0.051218181848526)
+Text #14: <|endoftext|> (0.05130684748291969)
+Text #14: <|endoftext|> (0.05122935026884079)
+Text #14: <|endoftext|> (0.05137335881590843)
+Text #14: <|endoftext|> (0.05137304589152336)
+Text #14: <|endoftext|> (0.051403552293777466)
+Text #14: <|endoftext|> (0.051307909190654755)
+Text #14: <|endoftext|> (0.051325708627700806)
+Text #15:  you (0.1578645557165146)
+Text #15:  the (0.21862903237342834)
+Text #15: word (0.6671820282936096)
+Text #15: . (1.1103945970535278)
+Text #15:  the (0.6456724405288696)
+Text #15:  fit (0.7452304363250732)
+Text #15:  please (0.8459884524345398)
+Text #15: ! (0.23800265789031982)
+Text #15: <|endoftext|> (0.06994642317295074)
+Text #15: <|endoftext|> (0.06999140232801437)
+Text #15: <|endoftext|> (0.06993959099054337)
+Text #15: <|endoftext|> (0.06996343284845352)
+Text #15: <|endoftext|> (0.06992480903863907)
+Text #15: <|endoftext|> (0.0700639933347702)
+Text #15: <|endoftext|> (0.0700417086482048)
+Text #15: <|endoftext|> (0.06997333467006683)
+Text #16:  Son (0.08343663066625595)
+Text #16:  the (0.07250390946865082)
+Text #16:  accept (0.6503185033798218)
+Text #16:  what (0.4275771677494049)
+Text #16:  right (0.41406160593032837)
+Text #16: That (0.6873635649681091)
+Text #16:  we (0.6253075003623962)
+Text #16: The (0.3653103709220886)
+Text #16:  accept (0.18212881684303284)
+Text #16:  we (0.09255677461624146)
+Text #16: <|endoftext|> (0.06701214611530304)
+Text #16: <|endoftext|> (0.06699104607105255)
+Text #16: <|endoftext|> (0.0670388713479042)
+Text #16: <|endoftext|> (0.06700670719146729)
+Text #16: <|endoftext|> (0.06699275970458984)
+Text #16: <|endoftext|> (0.06699351966381073)
+Text #16: <|endoftext|> (0.06701076030731201)
+Text #16: <|endoftext|> (0.06700365990400314)
+Text #16: <|endoftext|> (0.0670476108789444)
+Text #16: <|endoftext|> (0.06709935516119003)
+Text #16: <|endoftext|> (0.06703305244445801)
+Text #16: <|endoftext|> (0.06708536297082901)
+Text #16: <|endoftext|> (0.06710397452116013)
+Text #16: <|endoftext|> (0.06706421077251434)
+Text #16: <|endoftext|> (0.06709685921669006)
+Text #16: <|endoftext|> (0.06705565005540848)
+Text #16: <|endoftext|> (0.06703729927539825)
+Text #16: <|endoftext|> (0.06702479720115662)
+Text #17:  time (0.7741195559501648)
+Text #17:  drawings (0.30753293633461)
+Text #17:  paint (0.5284109711647034)
+Text #17:  was (0.8404500484466553)
+Text #17:  day (0.36533284187316895)
+Text #17: . (0.22328652441501617)
+Text #17: The (0.08464368432760239)
+Text #17:  was (0.12250784784555435)
+Text #17:  your (1.6358016729354858)
+Text #17:  my (0.23894977569580078)
+Text #17: <|endoftext|> (0.07118241488933563)
+Text #17: <|endoftext|> (0.07123608142137527)
+Text #17: <|endoftext|> (0.07128802686929703)
+Text #17: <|endoftext|> (0.07126320898532867)
+Text #17: <|endoftext|> (0.07139124721288681)
+Text #18:  the (0.5796845555305481)
+Text #18:  that (0.10688626021146774)
+Text #18:  and (0.19405192136764526)
+Text #18: . (0.08901022374629974)
+Text #18:  3 (0.9316731691360474)
+Text #18:  that (0.13232867419719696)
+Text #18:  I (0.19262158870697021)
+Text #18:  shells (0.72322016954422)
+Text #18: <|endoftext|> (0.07938902825117111)
+Text #18: <|endoftext|> (0.07934707403182983)
+Text #18: <|endoftext|> (0.07938326150178909)
+Text #18: <|endoftext|> (0.07937343418598175)
+Text #18: <|endoftext|> (0.07939351350069046)
+Text #18: <|endoftext|> (0.07936196029186249)
+Text #18: <|endoftext|> (0.07935894280672073)
+Text #18: <|endoftext|> (0.07947768270969391)
+Text #18: <|endoftext|> (0.07944037020206451)
+Text #18: <|endoftext|> (0.07938677072525024)
+Text #19:  I (0.31596359610557556)
+Text #19:  thrilled (0.12326638400554657)
+Text #19: !!! (0.53387451171875)
+Text #19: ! (0.13603684306144714)
+Text #19: <|endoftext|> (0.06898350268602371)
+Text #19: <|endoftext|> (0.06891448050737381)
+Text #20:  project (0.1053539365530014)
+Text #20:  kids (0.325692355632782)
+Text #20:  present (0.36675021052360535)
+Text #20:  on (0.11089733988046646)
+Text #20: . (0.2054121494293213)
+Text #20:  an (0.5708824396133423)
+Text #20:  built (0.17921915650367737)
+Text #20:  The (0.09202203154563904)
+Text #20: ] (0.29380372166633606)
+Text #20:  by (0.08878587931394577)
+Text #20: Inside (0.6265424489974976)
+Text #20: ll (0.8168426752090454)
+Text #20:  He (0.1425820142030716)
+Text #20:  five (0.4983136057853699)
+Text #20: . (0.35913485288619995)
+Text #20:  here (0.20008233189582825)
+Text #20:  control (0.5244348645210266)
+Text #20:  His (0.3392959535121918)
+Text #20:  five (0.7445767521858215)
+Text #20:  that (0.30082252621650696)
+Text #20: . (1.3750672340393066)
+Text #20:  let (0.351499080657959)
+Text #20: <|endoftext|> (0.0787636861205101)
+Text #20: <|endoftext|> (0.07881014049053192)
+Text #20: <|endoftext|> (0.07887092977762222)
+Text #20: <|endoftext|> (0.07888863980770111)
+Text #20: <|endoftext|> (0.07892513275146484)
+Text #20: <|endoftext|> (0.07881592959165573)
+Text #20: <|endoftext|> (0.07893698662519455)
+
+=== Text #1 ===
+> Our last competition for the Summertime Reading Competition is the funnest! Just leave a comment on this post, or submit a video or picture telling (or showing) us ‘Your favourite place to read’. Make sure you put your name and your email address or phone number so that we can contact you if[ you win]. We’ll[ draw one lucky kid who will win a $40] PaperPlus[ voucher.] So get commenting and you’ll be in[ to] win. If you’d like to send us a picture or video, you can email it to competition@christchurchcitylibraries.com Competition closes Thursday 23 January 2014.
+Join the Great Summer Reading Adventure!
+Our annual Summertime Reading programme is about to get underway again for kids between 5 and 12 years old. Pick up your Summertime Reading Club map from your local library or Paper Plus store from December and be in[ to win some] great prizes!
+Read six books of your choice between 20th December 2013 and 24th January 2014[,] then take your map back into the library to[ receive your sticker and a $]5 Paper Plus[ voucher. The] librarian will also[ enter you] online[ for the prize draw] and[ the] major[ prize] this[ year is an iPad] mini[.]
+For a further challenge,[ you] can[ complete the] Science Alive Reading Adventure by reading four different books and spotting the science feature in[ each] of those books. Take the map back into the library and the librarian will[ enter you into the draw for some] more great prizes.
+We’ll also have a weekly Summertime Reading Challenge here on the Kids Blog that you can enter to win PaperPlus vouchers.
+
+=== Text #2 ===
+> Come in and join the fiesta of music, and dancing in this Latin theme from IGT’s video slot game call Latino Machino. This game if full of fun and excitement with the generous wins and bonus games. This game has 25 paylines where[ the] each[ payline could be] program[ to take one to fifty] credits[ per] pay[line for] a maximum bet of a 1250 credits. The maximum payout with the maximum bet of a 1250 credits is 500,000 credits when five Latino Machineo logo symbols are shown on a paid payline. Some of symbols that are in this game are the woman dancer, man dancer, guitar man, a piñata, monkey, and a Cucaracha symbols. The monkey symbol is a scattered symbol where three or symbols can be shown anywhere on any paid payline to[ award the] slot[ player five] to[ 100] times[ the] total bet. Also, the Cucaracha symbol is wild and matches many of the other symbols. This video slot game has two bonus games, the La Piñata Loca bonus game and the Cucaracha bonus game.
+The La Piñata Loca Bonus is initiated by three piñata symbols are shown on a played line.[ If the initiating combination appears on] more than one played line[,] upon completion of the bonus[, the] total bonus award is multiplied by the total[ number of] initiating lines.[ The] slot player is[ awarded a] number of picks by[ selecting one of three] icons[. One at a] time[ picks are] made from 15 piñatas. Of[ the 15] piñat[as, one contains the] Coin Game, one contains Mas Piñatas with a value, and 13[ contain] values only[.]
+
+=== Text #3 ===
+> After a night raiding two instances, killing Chimaeron and Cho’gall, we[ took] a nice relaxing break to the waters of Vashj’ir.
+However it turned out Doug[ had] a sinister plan for[ the] spot as he immediately turned his attention to the Whale Shark swimming around. Many insisted that we’re gonna need a bigger boat, but channeling his inner Ahab he went ahead and aided by Ds, Runningfree, Lurppis, Hvid, Morgain, Sunblazer and Marijana the shark was kited to death to[ complete] From Hell’s Heart[ I] Stab at Thee[.]
+Disappoint[ing] to find[ out he] didn’t have any[ loot.] Guess[ we] should have read the achievement more closely..
+[Congratulations to] Sunblazer[ who after] several[ lock]outs in Icecrown Citadel[ completed the quest to get] Shadowmour[ne on Sunday.]
+Later in the evening we went and killed Yogg-Saron. Since there was no keepers to help us Mimiron’s head dropped[.] Doug was[ the lucky roller and] despite several lucrative[ offers did not want] to give or[ sell] head[.]
+A group of nam raiders completed[ all the] quests[ of] Glory of[ the] Icecrown Raider ([10) and received their new] Bloodbathed Frostbrood Vanqu[isher.]
+Faisst most[ kindly agreed to] pose for the camera.
+
+=== Text #4 ===
+> Today['s cross]word[ puzzle clue is a] cryptic one[: Type of] party – ring mobile phone to[ get through.] We[ will] try to find[ the right answer to this particular crossword clue.] Here are the[ possible solutions for "]Type[ of] party – ring mobile phone to get through" clue[.] It was last seen in The Daily Telegraph cryptic crossword. We have[ 1] possible[ answer in] our[ database.]
+Underdeveloped, like an untended flower bed?
+We provide the likeliest[ answers for] every[ cross]word clue. Undoubtedly, there may be other[ solutions for Type of] party – ring mobile phone to get through[.] If[ you] discover one[ of these, please] send it to us,[ and] we'll add[ it to] our database of[ clues] and[ answers], so others can benefit from your research.
+
+=== Text #5 ===
+> Now on YouTube for you to watch over and over again.
+Camp in the Shadow- here at[ last]!
+Camp in the Shadow- book 3 of the Palace Saga is on sale now on Amazon.
+The bear dropped down on all fours, saliva dripping as it swung from side to side, trying to choose[ a] target. Neither Jen nor I spoke, but in unison we drove forward, blades aloft. Our razor sharp swords sliced through the rough fur like it was fine silk. The bear roared again, but it was too late.
+“Got any funny lines up your sleeve?” Jen asked as the cloud dissipated.
+“No,” I shrugged, “but I do have a lab report to write.” With that, we returned to our bodies.
+Chloe has risked her life and love to[ enter the Palace.] Now she’s waiting for something to happen. With the Ghetto Chapel to run and the very cute Yair to keep her company, it seems to be smooth sailing. But evil lurks in unexpected places. Will[ Chloe] have[ the] strength to defeat the[ darkness?]
+Seth will do anything to get Chloe back, even leave the world behind. Although upstate New York isn’t very far behind. Seth immerses himself in Boot Camp, determined to[ learn the] intricacies of the Way. With the help of Aron, his old summer camp bunk-mate, Seth charts a path into the Palace. But, in the Palace, the battle is fought on many levels. Seth discovers[ that to win the] battle[,] he might risk the prize.
+In honor[ of the] Life in the Palace blog tour, I’m[ giving away 10 free] e-book[ copies] of the sequel, To Call Your Name.
+The[ prize will be split, 5 copies] over Facebook and[ 5] over Twitter[.]
+To[ enter either] comment on my Facebook page or retweet.[
+]Win[ners will be selected by the] incredibly scientific method[ of letting] my husband[ pick names] at[ random] and[ will be notified via] private message[.]
+
+=== Text #6 ===
+> The results of the NOMAD crowd-sourced data analytics[ competition] with Kaggle are out[!]
+[The goal] of this[ competition was for participants to develop] or[ apply] data analytics models for[ the] prediction of[ two] target[ properties: the formation] energy ([which is] an indication[ of the] stability of a new material) and the bandgap energy (which is an indication of the potential for transparency over the visible range) to[ facilitate] the discovery of new transparent conductors and allow for advancements in (opto)electronic technologies. A total of[ 5],[000.00 euros] in[ prizes were awarded to the top-three participants with the best performing models.]
+Congratulations[ to] Tony Y.[ (]Japan), Dr. Yury Lysogorskiy (Germany) and Lars Blumenthal (United Kingdom[)!][][][][]
+
+=== Text #7 ===
+> So here are[ the] rules[ to enter!] Make sure you are[ a] fan of my page, then go check out Summit Spice and Tea. Show them some love! Then come back here and leave a comment on this post[ to enter.] Please spread the love and support local by sharing this post on your page! Just come back and leave a second comment that you shared it on your FB page (extra[ entry for sharing] 😀 ). If[ you] don’t have FB just leave a comment here 😀 Easy Peasy! Comments close at 9 PM and I will I will[ randomly draw the winners from the comments. Unfortunately] comments after 9 can’[t be counted.] If[ you] don’t see[ your comment] right away[,] don’t worry, there is a spam filter and all comments must be approved 😀 Good Luck and have fun![][][][][][][][][][][]
+
+=== Text #8 ===
+> Ever since the end of the college basketball season, every NBA fan has been yearning for this[ special moment in June. The day where] so many[ young] and promising basketball stars’[ dream become a reality, where each] of[ them earn the right to become the face] of a franchise and hear[ their name called in front] of millions[.]
+However, before the[ draft] madness begins[ tonight], let’s take a final look at all[ the top] prospects with our site’s comprehensive prospect power rankings – which analyzes[ the] best[ available] prospect[ at] any of the[ five] positions, starting from the point guards all the way down to the centers.[][][][][][][][]
+
+=== Text #9 ===
+> Everybody like to bowl right!!! See the attached flyer and[ come] support our new projects in the Village of Lewiston and at The Arc Eric County Green Acres School were Mason and Matthew go to school.
+For[ 200 for] a[ team] of[ 4 you get shoes], all[ you] can eat and drink and[ three hours] of bowling[.]
+Cannot get[ a team, an] we can pair[ you] up with others. Cost 60 bucks[.] So get you[ team] and the most[ creative team name wins a prize.] Save money too[ with a team] of[ 4.]
+Basket Raffle and Silent auction items as well.
+Corporate lane sponsors available for $[100].
+March[ 9th] from 3 to 6 pm at Brad Angelo Lanes on South Transit Road in Lockport. We are limited[ to 100 bowlers.] Call us to[ reserve your spot]![][][][][][][]
+
+=== Text #10 ===
+> Every quarter we will be publishing the[ winning and] highly comm[ended] Flash Fiction[ entries in] our Short Fiction section.
+Please see below for further details on the awards, general criteria, judges, and the submission link.
+Following a conversation with Kit de Waal (interview with TSS here), we are happy[ to announce that] submission fees for the Flash Fiction 400 competition will be waived[ for] any writers[ from] marginalised and disadvantaged communities, or anyone suffering from economic hardship. For further details please click here.
+Results: long[list announced] mid-April.[ Winners] and Highly Comm[ended in] late April / early May.
+Highly Comm[ended:] Up to[ five] further flash fictions[ will] be[ highly] comm[ended and published] online[. They will] also[ receive £25 each.]
+All[ 1]st[ place winners will be] nominated for the Best Small Fiction Awards.
+All[ winners (1st],[ 2nd], 3[rd) will be published] in a chapboook within 12 months of the spring competition.
+All[ winners] ([1]st, 2nd, 3[rd)] will be interviewed, by TSS Publishing, about their flash fiction and their writing more generally.
+Please read through the Terms and Conditions before submitting.IMPORTANT: Due to the volume of submissions, we do not have the capability to email[ entrants] individually regarding results. Please sign up to our newsletter (right sidebar) to keep up to date with competition news, or check the website directly.
+Sign up to our newsletter to stay up to date with news of competitions, results, and more.
+Elisabeth Ingram Wallace lives in Scotland, and her writing is published in SmokeLong Quarterly, Atticus Review, Flash Frontier, and the Bath Flash Fiction Award anthologies. A finalist for The Best Small Fictions 2018, she has a Scottish Book Trust ‘New Writers Award’, a Dewar Arts Award, and won ‘Writing the Future 2017’. She studied English as a mature student at Oxford University, and has a Creative Writing M.Litt. with Distinction from the University of Glasgow. She also won the TSS Flash 400 summer competition with her Flash ‘Space Hopped’ . You can find her on Twitter @ingram_wallace or on her website here.
+
+=== Text #11 ===
+> For[ each] modeling standard[, you] will complete[ a] Modeling Project Form. Find the[ appropriate standard]/version on the Suggested Exercises site, then complete[ the version assigned to you below.]
+[Completed projects should] be uploaded[ to] Gradescope.[][][][][][]
+
+=== Text #12 ===
+> It is our privilege[ to announce that] Jillian Williams[ is the recipient of the 2017] Sports Imports/AVCA Courage Award[. The Courage] Award[ was] founded to recognize[ a member] of the volleyball community[ who in] the face of[ hardship] and[ adversity] displays great[ courage] and a determination to use[ their experience] to better the[ world] around them.
+Today, Jillian[ is] back on the court and training with her sights set on the United States Sitting Team. She provides hope and encouragement through the blog she began at the beginning of this journey http://jilliansleapthroughcancer.com and through founding the and leading the Live ‘N’ Leap Foundation.
+Jillian[ will receive the Courage Award at] the American Volleyball Coaches Association All-America/Players of the Year Banquet on Friday, December 15, 2017 in Kansas City, Missouri.[ The] banquet will be held in conjunction with the AVCA Convention.[][][][]
+
+=== Text #13 ===
+> When the labeled data are few, exploiting amount of unlabeled data can be helpful for improve learning performance of[ class]ifier. The key issue for active learning to solve[ is] how to select[ the] most "val[uable"] training[ samples to] reduce labeled cost of amount of unlabeled samples. In the paper, we propose an efficient active Bayes classifier by using Affinity Propagation (AP) to[ select the] most[ valuable samples] on[ the] unlabeled data sets.[ Firstly],[ the] method clusters[ amount] of unlabeled sample[ data] by using AP algorithm. Secondly, through exemplars obtained from the results of cluster and similarity matrix,[ the] method[ selects the unl]abel[ed samples for] experts[ to label]. The method[ choose two kinds of] most[ valuable instances to label: one is cluster] center[ instance, which also] called exemplar instance[.] Another is the[ instance which] stays in the farthest position to the cluster center in the same cluster[,] that[ is],[ the sample which] sets in the nearest position to the cluster boundary[.] The experiment results on UCI data sets demonstrate that our[ method] is simple and more efficient compared with traditional active learning method[.]
+
+=== Text #14 ===
+> Subspace Reviews: Original Spider-Man and The Incredible Hulk giveaway!
+Original Spider-Man and The Incredible Hulk giveaway!
+Like superheroes? You're in luck,[ as we have a copy of] Original Spider-Man Complete Collection and[ a] copy of The Incredible Hulk Complete Collection to give[ away! Two lucky winners will win one each.]
+[The] Original Spider-Man Complete Collection contains 52 episodes and 18 hours of essential Spidey viewing, and The Incredible Hulk Complete Collection has 73 episodes and over 16 hours of Hulk doing his thing.
+"RT&follow! @SubspaceReviews are[ giving away] Spider-Man and The Incredible Hulk collections! Visit: http[://]tinyurl.com/2umtn66 to[ win]!"
+and check out our Facebook page at http://www.facebook.com/home.php#!/pages/Subspace-Reviews/165445003504185 for another entry.
+[Winners will be chosen at the] end of the[ month!]
+Nice, I love the classic Spider-Man, so I['ll] most definitely enter[ this] contest. Thanks!
+Great[ choices]! I like both Spider-man & The Incredible Hulk. My real good buddy has the[ 1st] comic with The Hulk. That helped me become[ a] bigger fan.
+Excellent prizes, thanks for the chance[ to win]!
+I would very much like to[ win].
+Love the classic cartoons! :) Thanks for the contest![][][][][][][][]
+
+=== Text #15 ===
+> On this particular page[ you] will find[ the solution to] Egg-shaped cross[word clue crossword] clue[. This clue was last] seen on New York Times Crossword on February 11 2019 In case[ the clue] doesn’t[ fit or] there’s something wrong[ please] contact us[!]
+Done with Egg-shaped crossword clue? Go back and see the other crossword clues for New York Times Crossword February 11 2019.[][][][][][][][]
+
+=== Text #16 ===
+> And He came to earth as God’s only[ Son].
+Now He is seated next to the Father in[ the] heavenly sky.
+That He is God’s Son indeed.
+We must[ accept] Him and do[ what] He says is[ right.]
+[That] His promises are true so[ we will receive.]
+[The] works of the evil one who is full of lies.
+When we[ accept] Him[ we will receive the prize.][][][][][][][][][][][][][][][][][][]
+
+=== Text #17 ===
+> Each[ time] I made about five[ drawings] and took them back to my room to[ paint them] in. Of course, I couldn’t remember what color her clothes were and even if I did it was fun to use bright colors. In the end there[ was] something about the spirit of the[ day] and our friendship that came through[.]
+[The first] thing she ever said to me[ was], “I’m going to be[ your] friend.” That was[ my lucky day.][][][][][]
+
+=== Text #18 ===
+> I received[ the] brass[ that you] sent me,[ and] all looks well[.] Thank you very much for all your trouble and the extra[ 3 pieces. I] feel[ that you] have an outstanding company and are striving the best that you can to achieve customer satisfaction.[ I] will be certain to tell my friends about US Reloading Supply. ~ Michelle Admin Note: By accident we shorted them two[ shells], so we sent them replacements.[][][][][][][][][][]
+
+=== Text #19 ===
+> The sign has arrived and[ I] couldn’t be more[ thrilled! It]’s PERFECT[!!!] Thanks a million[!][][]
+
+=== Text #20 ===
+> [Robert Mibus] took on a[ project] which his[ kids] could[ present to] Mom[ on] Mother’s Day[.] It’s[ an] LED heart[ built] into a ring or necklace box. The series of white LEDs are animated in a chase pattern.[ The project let] [Robert[]] push his comfort boundaries[ by] moving past a stock Arduino board.
+[Inside you]’[ll find an] ATtiny85.[ He picked] up the chip to try running Arduino sketches on smaller hardware. But the total of[ five available] I/O pins presented an issue with driving the LEDs[. Ten LEDs] are used[ here] and even a standard multiplex display would need no less than seven to[ control] them without additional chips or the need for Charlieplexing.[ His solution was to] drive two opposite LEDs at once, which cuts the need down to his[ five available pins.]
+Once he got it all soldered together he realized[ that he] had made a coding error[.] But a few soldered wires[ let him] reflash it in place using ISP.[][][][][][][]
+
+
+Description: 
+2025-07-26 01:04:06,567 - root - INFO - Receiving a prize or award, sometimes involving a draw or selection
+
+2025-07-26 01:04:06,571 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-3313_clusters-1_2025-07-25_22-54-10.csv
+2025-07-26 01:04:06,572 - root - INFO - ================================================================================
+2025-07-26 01:04:06,572 - root - INFO - ANALYSIS COMPLETED
+2025-07-26 01:04:06,573 - root - INFO - ================================================================================
+2025-07-26 01:04:06,573 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-3313_clusters-1_2025-07-25_22-54-10.log
+2025-07-26 01:04:06,574 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-3313_clusters-1_2025-07-25_22-54-10.csv

@@ -1,0 +1,685 @@
+2025-07-25 19:58:00,069 - root - INFO - ================================================================================
+2025-07-25 19:58:00,079 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 19:58:00,079 - root - INFO - ================================================================================
+2025-07-25 19:58:00,080 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 19:58:00,081 - root - INFO - AGG_METHOD = mean
+2025-07-25 19:58:00,081 - root - INFO - BATCH_SIZE = 2
+2025-07-25 19:58:00,082 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 19:58:00,083 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 19:58:00,083 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 19:58:00,083 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 19:58:00,084 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 19:58:00,084 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 19:58:00,085 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 19:58:00,085 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 19:58:00,086 - root - INFO - DATA_FILES = None
+2025-07-25 19:58:00,086 - root - INFO - DEVICE = cuda
+2025-07-25 19:58:00,087 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 19:58:00,087 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 19:58:00,087 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 19:58:00,088 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 19:58:00,088 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 19:58:00,089 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 19:58:00,089 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 19:58:00,090 - root - INFO - LAYER_ID = 0
+2025-07-25 19:58:00,090 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 19:58:00,091 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 19:58:00,091 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 19:58:00,092 - root - INFO - MULTI_EVAL = True
+2025-07-25 19:58:00,092 - root - INFO - N_CLUSTERS = 1
+2025-07-25 19:58:00,092 - root - INFO - N_SAMPLES = 10
+2025-07-25 19:58:00,093 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 19:58:00,093 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 19:58:00,093 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 19:58:00,094 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 19:58:00,094 - root - INFO - SPLIT = train
+2025-07-25 19:58:00,095 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 19:58:00,095 - root - INFO - STREAMING = True
+2025-07-25 19:58:00,096 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 19:58:00,096 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 19:58:00,097 - root - INFO - TARGET_DATA = c4
+2025-07-25 19:58:00,097 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 19:58:00,098 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 19:58:00,098 - root - INFO - UNIT_ID = 5551
+2025-07-25 19:58:00,098 - root - INFO - USE_API = True
+2025-07-25 19:58:00,099 - root - INFO - ================================================================================
+2025-07-25 19:58:00,099 - root - INFO - ANALYSIS RESULTS
+2025-07-25 19:58:00,100 - root - INFO - ================================================================================
+2025-07-25 19:58:00,100 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-5551_clusters-1_2025-07-25_17-58-00.log
+2025-07-25 20:06:34,567 - root - INFO - Reached 1000 samples.
+2025-07-25 20:06:35,726 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 20:06:35,726 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:06:49,617 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 20:07:25,795 - root - INFO - Number of candidates: 1001
+2025-07-25 20:07:28,653 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 20:07:28,654 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Council (1.7909178733825684)
+Text #1:  UN (1.3820077180862427)
+Text #1:  Ambassador (1.7737573385238647)
+Text #1:  UN (1.7821046113967896)
+Text #1:  Council (1.9751629829406738)
+Text #1:  Council (2.069493293762207)
+Text #1:  adopted (1.6546285152435303)
+Text #1:  formal (1.433937668800354)
+Text #1:  Council (2.0466396808624268)
+Text #1:  Council (1.9936431646347046)
+Text #1:  Nations (1.8548191785812378)
+Text #1:  consensus (1.7461817264556885)
+Text #1:  resolution (1.6883227825164795)
+Text #1:  permanent (2.0614094734191895)
+Text #1:  veto (1.7850496768951416)
+Text #1:  similar (1.445252537727356)
+Text #1:  resolutions (1.5515612363815308)
+Text #1:  binding (2.2370376586914062)
+Text #1:  consensus (1.578100562095642)
+Text #1:  Council (1.899882435798645)
+Text #1:  abst (2.5880913734436035)
+Text #1:  the (1.8658961057662964)
+Text #1:  Council (2.201289415359497)
+Text #1:  Council (2.121776580810547)
+Text #1:  adopted (2.008657693862915)
+Text #1:  the (1.4331811666488647)
+Text #1:  Diplom (2.631989002227783)
+Text #1:  humanitarian (2.115830898284912)
+Text #1:  called (1.7314481735229492)
+Text #1: N (1.9571330547332764)
+Text #1:  UN (1.8067941665649414)
+Text #1:  country (1.421105980873108)
+Text #1:  panel (1.4776229858398438)
+Text #1:  mechanism (1.5059179067611694)
+Text #1:  humanitarian (1.719153881072998)
+Text #1:  resettlement (2.6826016902923584)
+Text #1:  development (1.7075536251068115)
+Text #1:  mechanism (2.0529680252075195)
+Text #1:  UN (2.302943229675293)
+Text #1:  access (1.7926058769226074)
+Text #1:  governments (2.431241273880005)
+Text #1:  humanitarian (1.9771829843521118)
+Text #1:  special (2.571425676345825)
+Text #1:  protection (1.764430284500122)
+Text #1:  citizens (1.7261523008346558)
+Text #1:  laid (1.6968164443969727)
+Text #1:  an (1.5216037034988403)
+Text #2:  Member (2.3349554538726807)
+Text #2:  Vienna (1.8395195007324219)
+Text #2:  the (1.5708545446395874)
+Text #2:  the (1.512609601020813)
+Text #2:  Narc (1.600341796875)
+Text #2:  UN (2.0089457035064697)
+Text #2:  Narc (1.8088949918746948)
+Text #2:  Control (1.8173242807388306)
+Text #2:  States (1.7249867916107178)
+Text #2:  Commission (1.561326503753662)
+Text #2:  UN (1.7073570489883423)
+Text #2:  Member (2.0379891395568848)
+Text #2:  nationals (2.9678070545196533)
+Text #2:  governments (2.5425612926483154)
+Text #2:  recall (1.4421913623809814)
+Text #2:  Amb (2.0528948307037354)
+Text #2:  diplomatic (2.798703908920288)
+Text #2:  the (1.7534048557281494)
+Text #2:  the (1.8336182832717896)
+Text #2:  the (1.4639430046081543)
+Text #2:  countries (2.811014413833618)
+Text #2:  Vienna (1.6811822652816772)
+Text #2:  Commission (2.0426993370056152)
+Text #2:  monitors (2.2301011085510254)
+Text #2:  control (1.5528696775436401)
+Text #2:  a (1.6329736709594727)
+Text #2:  the (1.9664257764816284)
+Text #2:  UN (2.0933609008789062)
+Text #2:  the (1.8696095943450928)
+Text #2: General (1.6590145826339722)
+Text #2:  High (1.8345770835876465)
+Text #2:  Human (1.9617060422897339)
+Text #2:  the (1.49315345287323)
+Text #2:  Crime (1.775697946548462)
+Text #2: UN (2.0101118087768555)
+Text #2:  UN (1.8632886409759521)
+Text #2:  governments (1.673218846321106)
+Text #2:  UN (1.8361141681671143)
+Text #3:  Chamber (2.5189907550811768)
+Text #3:  Commerce (1.8244715929031372)
+Text #3:  Korea (0.897680938243866)
+Text #3:  hosted (2.3931832313537598)
+Text #3:  Ambassador (2.2412543296813965)
+Text #3:  Chamber (2.221473455429077)
+Text #3:  Commerce (1.3199325799942017)
+Text #3:  Chamber (1.4570770263671875)
+Text #3: Ky (1.5034234523773193)
+Text #3:  Jou (1.1119227409362793)
+Text #3:  FTA (1.5871927738189697)
+Text #3:  Free (1.1252390146255493)
+Text #3:  bilateral (4.066082000732422)
+Text #3:  countries (2.8242995738983154)
+Text #3:  diplomatic (2.7416417598724365)
+Text #3:  Canada (1.200345754623413)
+Text #3:  Amb (1.7921693325042725)
+Text #3: ilateral (1.6811915636062622)
+Text #3:  cooperation (1.1699070930480957)
+Text #3:  diplomatic (2.315422296524048)
+Text #3:  Canada (1.0839892625808716)
+Text #3:  free (1.411289930343628)
+Text #3:  the (1.4034894704818726)
+Text #3:  dynamic (0.8545894622802734)
+Text #3:  nations (2.285780668258667)
+Text #3:  economic (1.5537614822387695)
+Text #3:  free (1.1750487089157104)
+Text #3:  envoy (1.8567754030227661)
+Text #3:  Chamber (2.585783004760742)
+Text #3:  Commerce (1.519757866859436)
+Text #3:  the (0.8288680911064148)
+Text #3:  countries (2.6921660900115967)
+Text #3:  the (1.4212942123413086)
+Text #3:  enjoy (0.9219876527786255)
+Text #3:  wine (1.104262113571167)
+Text #3:  Amb (1.3764420747756958)
+Text #3:  FTA (2.111473321914673)
+Text #3:  countries (2.5648016929626465)
+Text #3:  pian (0.9503042697906494)
+Text #4:  farms (1.3197468519210815)
+Text #4:  countries (2.233333110809326)
+Text #4:  political (0.7444934844970703)
+Text #4:  charter (0.6138131618499756)
+Text #4:  political (1.0144456624984741)
+Text #4:  member (2.5721957683563232)
+Text #4:  European (0.4669910967350006)
+Text #4:  partners (0.5808924436569214)
+Text #4:  Mediterranean (1.0524605512619019)
+Text #4:  European (0.8666589260101318)
+Text #4:  agricultural (2.697953224182129)
+Text #4:  25 (0.9766818881034851)
+Text #4: 26 (0.8726115226745605)
+Text #4:  Sz (1.0201375484466553)
+Text #4:  Hungary (1.7228009700775146)
+Text #4:  farmers (1.2808963060379028)
+Text #4:  agricultural (2.233983039855957)
+Text #4:  forum (0.4774464964866638)
+Text #4:  Sz (0.9703783988952637)
+Text #4:  Hungary (1.5709480047225952)
+Text #4:  Hungarian (1.19466233253479)
+Text #4:  European (1.0675288438796997)
+Text #4:  Its (1.0622519254684448)
+Text #4:  Farmers (1.4744352102279663)
+Text #4:  Rights (0.5904051065444946)
+Text #4:  sustainable (1.371841311454773)
+Text #4:  development (0.5074847936630249)
+Text #4:  agricultural (2.7533485889434814)
+Text #4:  forum (0.9518242478370667)
+Text #4:  farmers (1.8465478420257568)
+Text #4:  art (1.3004124164581299)
+Text #4:  processors (0.6938871145248413)
+Text #4:  products (0.6608771085739136)
+Text #4:  agricultural (2.0395023822784424)
+Text #4:  organizations (0.7604267597198486)
+Text #4:  banks (1.1090508699417114)
+Text #4:  implementing (0.45738092064857483)
+Text #4:  agricultural (1.6277059316635132)
+Text #4:  participation (0.4822697043418884)
+Text #4:  initiatives (0.7635818719863892)
+Text #5:  Annex (1.444524884223938)
+Text #5:  regarding (0.571586012840271)
+Text #5:  the (1.0718448162078857)
+Text #5:  a (1.002598524093628)
+Text #5:  moving (0.5223222970962524)
+Text #5:  an (0.9931453466415405)
+Text #5:  safe (0.7316691279411316)
+Text #5:  workers (0.7799085974693298)
+Text #5: 's (0.9709789156913757)
+Text #5:  Ports (0.6536327600479126)
+Text #5:  Coast (0.5526400208473206)
+Text #5:  Authority (0.6063036322593689)
+Text #5: val (0.45842915773391724)
+Text #5:  safeguard (1.6077702045440674)
+Text #5:  the (0.5195968151092529)
+Text #5:  technical (0.47129249572753906)
+Text #5:  the (0.7623564600944519)
+Text #5:  baskets (0.8115912675857544)
+Text #5:  a (0.6334540843963623)
+Text #5:  the (1.4037961959838867)
+Text #5: secution (0.5030125975608826)
+Text #5:  worker (0.6968240141868591)
+Text #5:  transfers (0.6095102429389954)
+Text #5:  vessels (1.0796736478805542)
+Text #5:  structural (0.7916325330734253)
+Text #5:  stainless (0.46161919832229614)
+Text #5:  bars (0.6188541054725647)
+Text #5:  attached (0.806555986404419)
+Text #5:  basket (0.7199469208717346)
+Text #5:  legislation (0.4879615306854248)
+Text #5:  transfers (0.4439791142940521)
+Text #5:  a (0.5376041531562805)
+Text #5:  verify (0.5088608264923096)
+Text #5:  shock (0.5293114185333252)
+Text #5:  its (0.48645520210266113)
+Text #5:  panels (0.5605846047401428)
+Text #5: ovic (0.44328221678733826)
+Text #5: 's (0.575404703617096)
+Text #5: ovic (0.47620970010757446)
+Text #5:  the (0.5385675430297852)
+Text #5:  Norway (2.3076300621032715)
+Text #5:  the (1.1176637411117554)
+Text #5:  Canada (1.2208809852600098)
+Text #5:  countries (3.129427909851074)
+Text #5:  the (1.8348639011383057)
+Text #6:  Athens (1.4622375965118408)
+Text #6:  Greece (1.676469326019287)
+Text #6:  right (0.6623718738555908)
+Text #6:  implementing (0.3223283290863037)
+Text #6:  citizens (0.30723297595977783)
+Text #6:  NGOs (0.991338312625885)
+Text #6:  European (0.44560113549232483)
+Text #6:  implemented (0.5715767741203308)
+Text #6:  protocols (0.9426584243774414)
+Text #6:  statistical (0.45937907695770264)
+Text #6:  migrant (0.3508361577987671)
+Text #6:  refugee (1.2342640161514282)
+Text #6:  the (0.39055001735687256)
+Text #6:  project (1.3767318725585938)
+Text #6:  promotion (0.4289305508136749)
+Text #6:  migrant (1.0326075553894043)
+Text #6:  the (0.37279605865478516)
+Text #6: OV (0.7890428900718689)
+Text #6:  project (0.6890595555305481)
+Text #6: European (0.5947213172912598)
+Text #6:  the (0.4099588990211487)
+Text #6: Integ (0.511203408241272)
+Text #6:  Good (1.3175135850906372)
+Text #6:  the (0.46262070536613464)
+Text #6:  Greece (1.776274561882019)
+Text #6:  the (0.5801733732223511)
+Text #6:  research (0.34296175837516785)
+Text #6:  the (0.614169180393219)
+Text #6:  expertise (0.3898668885231018)
+Text #6:  project (0.41989967226982117)
+Text #6:  implementation (0.5599355697631836)
+Text #6:  project (0.40711089968681335)
+Text #6:  vocational (1.4054901599884033)
+Text #6:  the (0.47273027896881104)
+Text #6:  its (0.3799629211425781)
+Text #6:  European (0.518147885799408)
+Text #6:  International (0.4905301034450531)
+Text #6:  institutions (0.5994117259979248)
+Text #6:  organizations (1.1285032033920288)
+Text #6: depth (1.5561805963516235)
+Text #6:  the (0.4381873309612274)
+Text #6:  justice (1.448701024055481)
+Text #6:  progress (0.5299091339111328)
+Text #6:  experts (0.6840383410453796)
+Text #7:  Group (0.5182738304138184)
+Text #7:  Swiss (0.6985659599304199)
+Text #7:  dispute (1.2369160652160645)
+Text #7:  the (0.3314439654350281)
+Text #7:  the (0.3354717195034027)
+Text #7:  payment (0.2731643617153168)
+Text #7:  negative (0.7117300629615784)
+Text #7:  unfounded (0.5086130499839783)
+Text #7:  unfair (0.822389543056488)
+Text #7:  the (0.7407504916191101)
+Text #7:  its (0.7059305310249329)
+Text #7:  its (0.6288712024688721)
+Text #7:  obligations (2.341898202896118)
+Text #7:  the (0.6461648941040039)
+Text #7:  best (0.2722715139389038)
+Text #7:  its (0.9855939745903015)
+Text #7:  various (0.2675001919269562)
+Text #7:  specific (0.3410080373287201)
+Text #7:  the (0.2934201955795288)
+Text #7:  Authority (0.3155306577682495)
+Text #7:  Swiss (0.9013859629631042)
+Text #7:  distress (0.4632173478603363)
+Text #7:  Swiss (0.9436785578727722)
+Text #7:  bank (1.200942039489746)
+Text #7:  outstanding (0.6241235733032227)
+Text #7:  dispute (1.0817621946334839)
+Text #7:  group (0.4073599576950073)
+Text #7:  outstanding (0.8190840482711792)
+Text #7: Nat (0.43336647748947144)
+Text #7:  specialist (0.3431500196456909)
+Text #7:  complaint (0.5076322555541992)
+Text #7:  the (0.3320368230342865)
+Text #7:  relies (0.6011365652084351)
+Text #7:  its (0.5990885496139526)
+Text #7:  unfair (0.46644240617752075)
+Text #7:  points (0.2512802183628082)
+Text #7:  the (0.46211642026901245)
+Text #7:  bank (0.9164236783981323)
+Text #7:  its (0.3833634555339813)
+Text #9:  states (0.16958923637866974)
+Text #9: state (0.2951628267765045)
+Text #9: sum (0.06948637962341309)
+Text #9:  member (1.8219853639602661)
+Text #9:  member (2.0039780139923096)
+Text #9: governmental (1.1271661520004272)
+Text #9:  framework (1.3852715492248535)
+Text #9:  gains (0.36117780208587646)
+Text #9:  individual (0.36216989159584045)
+Text #9:  gaze (0.15216825902462006)
+Text #9:  nation (0.5361173748970032)
+Text #9: state (1.5764788389205933)
+Text #9:  national (0.37336522340774536)
+Text #9:  state (0.2773687243461609)
+Text #9:  cos (0.220188170671463)
+Text #9:  deal (0.22689731419086456)
+Text #9:  nations (1.1297651529312134)
+Text #9:  Economic (2.2413651943206787)
+Text #9:  trans (0.6048427224159241)
+Text #9:  global (0.04314000904560089)
+Text #9:  the (0.06605508178472519)
+Text #9:  host (0.7373180985450745)
+Text #9: states (0.5711192488670349)
+Text #9: state (1.0264759063720703)
+Text #9: state (0.7398731708526611)
+Text #9:  cos (0.09857452660799026)
+Text #9:  regain (0.12063045054674149)
+Text #9:  political (0.4537094831466675)
+Text #9:  states (0.7530465722084045)
+Text #9:  state (0.2507012188434601)
+Text #9: polit (0.27596959471702576)
+Text #9: power (0.17004282772541046)
+Text #9:  rules (0.26969847083091736)
+Text #9:  EU (1.1213207244873047)
+Text #9:  money (1.8212326765060425)
+Text #9:  countries (2.8578038215637207)
+Text #9:  projects (1.0035762786865234)
+Text #9:  culture (0.12422697991132736)
+Text #9:  arts (0.4637940526008606)
+Text #9:  governments (1.2409857511520386)
+Text #9:  money (1.0508744716644287)
+Text #9:  bail (0.6352011561393738)
+Text #9:  banks (1.0070692300796509)
+Text #11: boat (0.6878472566604614)
+Text #11: clip (0.043333668261766434)
+Text #12:  the (0.21193437278270721)
+Text #12: ) (0.5779226422309875)
+Text #12:  reached (0.530558168888092)
+Text #12:  the (0.3412102460861206)
+Text #12:  shall (0.41623154282569885)
+Text #12:  entitled (0.8368295431137085)
+Text #12:  expert (0.24640923738479614)
+Text #12:  third (0.5428025722503662)
+Text #12:  the (0.8552594184875488)
+Text #12: operation (1.3074665069580078)
+Text #12:  the (0.4955989718437195)
+Text #12:  data (0.580187201499939)
+Text #12: operation (0.9959016442298889)
+Text #12:  the (0.9282609224319458)
+Text #12:  the (0.7123873829841614)
+Text #12: ) (0.6134426593780518)
+Text #12:  other (0.2547692656517029)
+Text #12:  reached (0.6876809000968933)
+Text #12:  shall (0.5421600937843323)
+Text #12:  entitled (0.792369544506073)
+Text #12:  payment (0.40230605006217957)
+Text #12:  all (0.3004220724105835)
+Text #12:  the (0.9348412752151489)
+Text #12:  the (0.5734803080558777)
+Text #12:  automatic (0.30531227588653564)
+Text #12:  the (0.39063459634780884)
+Text #12:  the (0.983466386795044)
+Text #12: / (0.3210979104042053)
+Text #12:  the (0.24077488481998444)
+Text #12:  agreed (0.5137637853622437)
+Text #12:  the (0.8100541234016418)
+Text #12:  automatically (0.48019734025001526)
+Text #12:  automatic (0.5771592855453491)
+Text #12:  the (0.39958709478378296)
+Text #12:  registration (0.23360756039619446)
+Text #12:  respect (0.5671476721763611)
+Text #12:  the (0.9247645139694214)
+Text #12:  the (0.5747200846672058)
+Text #12: / (0.25108692049980164)
+Text #12:  the (0.304949015378952)
+Text #12:  the (0.21034911274909973)
+Text #12:  the (0.2666552662849426)
+Text #17: idence (0.07929450273513794)
+Text #17:  countries (0.9253401160240173)
+Text #20:  agreement (0.3078698515892029)
+Text #20:  the (0.41492873430252075)
+Text #20:  the (0.31455710530281067)
+Text #20:  entered (0.45934751629829407)
+Text #20:  agreement (0.3021007776260376)
+Text #20:  agreed (0.41140350699424744)
+Text #20:  goods (0.8555013537406921)
+Text #20:  the (0.36975717544555664)
+Text #20:  liable (0.4161844849586487)
+Text #20:  volume (0.28673437237739563)
+Text #20:  third (0.32559841871261597)
+Text #20:  agreement (0.27462804317474365)
+Text #20:  agreements (0.7250893115997314)
+Text #20:  side (0.596563994884491)
+Text #20:  the (0.5626703500747681)
+Text #20:  chilled (0.3251490294933319)
+Text #20:  dispute (0.9393646121025085)
+Text #20:  goods (0.7555636167526245)
+Text #20:  the (0.3667493462562561)
+Text #20:  claimed (0.5463911890983582)
+Text #20:  payments (0.2839477062225342)
+Text #20:  the (0.5443592071533203)
+Text #20:  the (0.375442236661911)
+Text #20:  the (0.35799869894981384)
+Text #20:  custom (0.5721644759178162)
+Text #20:  submitted (0.2550172805786133)
+Text #20:  regarded (1.2976185083389282)
+Text #20:  concept (0.4992014169692993)
+Text #20:  instant (0.2396121323108673)
+Text #20:  the (0.30510714650154114)
+Text #20:  agreement (0.5183552503585815)
+Text #20:  the (0.6013178825378418)
+Text #20:  was (0.35103970766067505)
+Text #20:  the (0.4552246928215027)
+Text #20:  agreement (0.7129861116409302)
+Text #20:  was (0.24953418970108032)
+Text #20: rue (0.2925197184085846)
+Text #20:  agreement (0.540905237197876)
+Text #20:  the (0.4619563817977905)
+Text #20:  the (0.4712761342525482)
+Text #20:  agreement (0.6195070147514343)
+Text #20:  HI (0.9954572319984436)
+Text #20:  General (0.5329963564872742)
+
+=== Text #1 ===
+> Aman Ullah is with Ro Nay San Lwin and 93 others.
+The UN Security[ Council] has issued a presidential statement on Myanmar complimenting and criticising the country over its stance on the Rohingya crisis and it also gave the government a month to “get its act together”. The 1,300- word statement was read out by the sitting President of[ UN]SC Sebastiano Cardi, the[ Ambassador] of Italy, at a formal[ UN]SC session on Monday ( November 6, 2017) .
+A presidential statement is a statement made by the President of the Security[ Council] on behalf of the[ Council],[ adopted] at a[ formal] meeting of the[ Council] and issued as an official document of the[ Council].
+A Presidential Statement is often created when the United[ Nations Security Council] cannot reach[ consensus] or are prevented from passing a[ resolution] by a[ permanent member]’s[ veto], or threat thereof. Such statements are[ similar] in content, format, and tone to[ resolutions], but are not legally[ binding]. The adoption of a Presidential Statement requires[ consensus], although Security[ Council] members may[ abst]ain. The Statement is signed by[ the] sitting Security[ Council] President.
+It was the first presidential statement in 10 years on Myanmar. The Security[ Council] has[ adopted] such statements against Myanmar only three times, with[ the] last one coming a decade ago.[ Diplom]ats hailed the move as a unified international stand against a[ humanitarian crisis] that has been[ called] “ethnic cleansing” by the U.[N]., U.S., France and the U.K.
+It strongly condemned attacks against the Myanmar security forces carried out by the Arakan Rohingya Salvation Army (ARSA) on August 25, and then expressed “grave concern” over the government’s response, the alleged burning of villages and threats to villagers to flee, among others.
+It called for reform in Myanmar’s security and justice sectors and urged the government to work with Bangladesh and the[ UN] to allow the voluntary return of refugees to their homes, on the basis of an October 24 memorandum of understanding between the two[ country].
+The[ panel] welcomed a “union enterprise[ mechanism]” for[ humanitarian assistance],[ resettlement] and[ development] in Rakhine.
+It recommended the government ensure the[ mechanism] supported such return and allow[ UN] agencies full[ access], urging[ governments] and all[ humanitarian] partners to pay[ special] attention to the needs of women, particular survivors of sexual violence.
+The council said the government’s primary responsibility is the[ protection] of Myanmar’s population,[ citizens] or not. The statement reiterated concerns and demands previously[ laid] out:[ an] end
+
+=== Text #2 ===
+> 3rd March 2015 - A new UN report on the global drug situation has highlighted the widening rift between countries on the issue of the death penalty for drug offences. These tensions are set to surface as[ Member States] convene in[ Vienna] next week at[ the] annual meeting of[ the Commission] on[ Narc]otic Drugs, the[ UN] policy making body on drug control issues.
+The Annual Report of the International[ Narc]otics[ Control] Board (INCB), released today, calls upon[ States] that ‘continue to impose the death penalty for drug-related offences to consider abolishing the death penalty for such offences’.
+The statement comes just a week before the annual meeting of the[ Commission] on Narcotic Drugs, the[ UN] policy making body on drug control issues, and underscores an issue that has become increasingly volatile among members of the Commission on Narcotic Drugs in recent years. Indeed, attempts to craft a joint resolution on drugs at last year’s meeting nearly fell apart amidst heated debates between[ Member States] on including language against the death penalty.
+The death penalty for drugs looks to again be a major point of contention at the 2015 Commission meeting next week. A recent spate of executions in Indonesia has turned the world’s attention to the practice, with the killings of Dutch and Brazilian[ nationals] prompting those[ governments] to[ recall] their[ Amb]assadors from Jakarta. It remains to be seen how these[ diplomatic] tensions will influence[ the States]’ relations during[ the Commission] meeting.
+But it is not just Indonesia’s actions that are bringing these tensions to[ the] fore. A number of other[ countries] have demonstrated a renewed enthusiasm for executing drug offenders over the past year: Iran has escalated drug related hangings, Pakistan has resumed executions and Oman has proposed to introduce capital punishment for drug crimes. A protest to end the use of the death penalty for drugs will take place outside UN headquarters in[ Vienna] during the[ Commission] meeting.
+The statement from the INCB -- a body of independent experts that[ monitors] the implementation of the international drug[ control treaties] -- reinforces[ a similar] call[ the group] made one year ago, which added its voice to those of other[ UN authorities], including[ the] Secretary-[General], the[ High Commissioner] for[ Human] Rights and[ the UN] Office on Drugs and[ Crime] ([UNOD]C), who have called for ending the death penalty for drug offences.
+Ironically, although the[ UNOD]C has publicly spoken out against the death penalty for drug offences, the agency has been linked to funding aggressive anti-trafficking operations in several death penalty States, and a number of donor[ governments] have publicly acknowledged the link between[ UNOD]C counter-
+
+=== Text #3 ===
+> The Canadian[ Chamber] of[ Commerce] in[ Korea (CanCh]am Korea)[ hosted its] annual Maple Gala on the evening of March 21, 2014 at the Banyan Tree Club and Spa in Seoul.
+More than 200 guests from Canada and Korea attended the black tie affair. They included Canadian[ Ambassador] to Seoul David Chatterson, Chairwoman Genny S. Kim of Canadian[ Chamber] of[ Commerce] in Korea, Sen. Yonah Martin from British Columbia, and former Korean Prime Minister Chung Un-Chan .
+“We sincerely thank you for many attendances including general manager of Air Canada Young Lee, President Amy Jackson of American[ Chamber] of Commerce in Korea, president Kim Hang-[Ky]ung of Korea-Canada Society, etc.” said Genny Kim, canCham Chairwoman.
+She said as well: Additionally another special thanks to sponsors such as Air Canada, Bombardier,[ Jou]viance, LG Electronics, Shin&Kim, Natural Factors, etc.
+Upon recently-concluded[ FTA] between Korea and Canada from her standpoint as CanCham chairwoman, she mentioned that the Korea-Canada[ Free Trade Agreement] would bring[ bilateral] dynamic growth for the business communities of the two[ countries].
+Starting his welcoming remarks with comments regarding the 50th anniversary of[ diplomatic ties] between Korea and[ Canada] last year which were filled with many commemorative events,[ Amb]. Chatterson said: “B[ilateral] relations have blossomed over the last 50 years, grounded in our strong political and economic partnership and[ cooperation]."
+"With more than 50 years of[ diplomatic] relations between[ Canada] and South Korea, a[ free trade agreement] is[ the natural] next step in a[ dynamic] relationship between two[ nations] committed to[ economic] growth and development through[ free trade],” the Canadian[ envoy] said.
+"I am very pleased to see more increasing partnerships with Canadian[ Chamber] of[ Commerce] in Korea like tonight's event, hoping continuing friendship between[ the] two[ countries] and for[ the] CanCham members to[ enjoy good food] and[ wine] during the function all the time," he added.
+After[ Amb]. Chatterson’s welcoming remarks, special screening "The Feast of Aurora" by Astro-photographer O-Chul Kwon provided participanting guests with fantastic aurora scenes of Canada.
+By her toast, Sen. Yonah Martin from British Columbia, Canada who was on hand, also congratulated Korea-Canada[ FTA] conclusion as a milestone to pave the way for the prosperity between the two[ countries].
+Canada-born new age[ pian]ist Steve Barakatt enthralled guests with his sweetish special performance including Rainbow Bridge Story
+
+=== Text #4 ===
+> At the first European Forum Let’s Liberate Diversity! in Poitiers, France, the idea has emerged on the creation of a European network committed to the conservation and renewal of crop biodiversity in[ farms] and gardens. First, an informal network has been established with the aim to organize exchanges among different[ countries] / partners and develop joint strategies at the European level. The next meetings helped to crystallize the[ political] foundations of the European network. The development of the[ charter] containing the network?s[ political principles] is underway.
+Exchanging information and experiences between[ member] organizations at the[ European] level as well as[ partners] outside of Europe, particularly in the[ Mediterranean] region.
+The 6th[ European forum] “Let’s Liberate Diversity!” on[ agricultural biodiversity took] place on February[ 25]-[26], 2011 in[ Sz]eged,[ Hungary].
+The Let’s Liberate Diversity! forums are the annual gatherings of[ farmers]’ organisations and associations working on[ agricultural biodiversity] in Europe.
+The 2011 edition of the[ forum] will be held in[ Sz]eged,[ Hungary], during the[ Hungarian presidency] of the[ European Union].[ Its central theme] will be the question of[ Farmers]’[ Rights] related to the conservation,[ sustainable] use and[ development] of[ agricultural biodiversity].
+The[ forum] is addressed to[ farmers], gardeners, seed[ art]isans, bakers and[ processors] of[ products] derived from[ agricultural biodiversity], civil society[ organizations], researchers, breeders and representatives of gene[ banks] as well as local communities[ implementing] initiatives on[ agricultural biodiversity] in Europe.
+We are encouraging in particular the[ participation] of[ initiatives] from Central and Eastern Europe.
+
+=== Text #5 ===
+> The change made by the DPC to NORMAM05/DPC[ Annex] 4-A[ regarding the regulations] for[ the] transfer of personnel offshore is[ a] significant step in[ moving] towards creating[ an] offshore environment that is[ safe] for all[ workers] to get to and from work.
+The Brazilian Navy['s Directorate] of[ Ports] and[ Coast] (DPC) has recently altered the Maritime[ Authority] Standards for the Appro[val] of Material (NORMAN-05/DPC). The most important changes were alteration of item 0408 (Personnel Transfer Basket) and insertion of Addendum 4-A (Rules Governing Personnel Transfer Basket).
+According to the DPC, the purpose of the alterations is to help to[ safeguard human life] in offshore operations and to fine tune[ the] safety[ technical] requirements for[ the] manufacturing of personnel transfer[ baskets] -[ a] concern of[ the] Public Pro[secution] Service for Labor issues, which wants to improve[ worker] safety in[ transfers] between[ vessels] and platforms.
+NORMAN-05/DPC Addendum 4-A specifies that the[ structural] features must be able to protect passengers from lateral, vertical and head impacts and must be made of[ stainless] steel[ bars] of tubes and enable buoyant material to be[ attached] around it, so that an entire fully loaded[ basket] assembly is able to float.
+In order to meet the Brazilian[ legislation], Reflex Marine has launched the FROG-6, an operational tool that is able to provide a safe option for personnel[ transfers]. The FROG-6 has been subjected to[ a] variety of impact tests to[ verify its structural] integrity and[ shock]-absorbing capability and demonstrated[ its] ability to self-align and float in water, something that is not possible with the traditional rope baskets.
+Sandra Antonovic, the company's Chief Operating Officer (COO), says that, "it is a safer method than the traditional rope basket, because it protects the passengers in the event of a lateral or vertical impact, fall or heavy landing. Furthermore, the buoyancy[ panels] enable the device to float and self-align."
+Anton[ovic] points out that the device is able to transfer injured people in safety, protecting them from falls, immersion and lateral and vertical impacts, confirming that, "The FROG-6 is also a safe and versatile transfer device in Medevac (medical evacuation) mode."
+According to the executive, this change reinforces Brazil['s] position and desire to ensure an offshore environment that has minimal operational risks. Anton[ovic] says that, "By prioritising[ the] safety of offshore workers, Brazil is placing itself alongside[ Norway],[ the] UK and[ Canada] -[ countries] in[ the]
+
+=== Text #6 ===
+> The Institute of Preventive Medicine Environmental and Occupational Health - Prolepsis is a civil non for profit organization which was established in 1990 in[ Athens],[ Greece]. With a strong belief in health being a fundamental[ right], Prolepsis has undertaken a leading role in the field of public health, by designing and[ implementing] initiatives on various health issues and in different sectors targeting a wide range of audiences, such as children and adolescents, women, senior[ citizens], migrants and refugees, different types of occupational groups, such as health professionals, as well as policy makers, other[ NGOs] and decision makers.
+Prolepsis Institute has initiated and collaborated on a diverse range of public health projects that operate on national,[ European] and international levels. The majority of the[ implemented initiatives] entail multifaceted objectives and activities, including research[ protocols], critical analysis and literature reviews, epidemiological studies,[ statistical] analysis, development of technical guidance and educative resource materials, training and education of groups/professionals on topics related to preventive medicine as well as collection and dissemination of information. The Institute also designs and implements wide scale health promotion programs tackling important health related problems such as obesity, smoking and alcohol.
+During the years Prolepsis has led or participated in projects and initiatives that deal with[ migrant] and[ refugee] health such as[ the EU]-funded[ project] on the[ promotion] of vaccinations for[ migrant] populations in Europe –[ the] PROM[OVAX project]. Moreover, Prolepsis participated in the “Sunia Geel”[ project], which was a response to the need to protect women and children against all forms of violence, focused on domestic violence, in particular within minority groups and migrants population.
+Prolepsis has also organized the Pan-[European Conference] on[ the] “[Integ]ration of Immigrants:[ Good] practices in[ the sectors] of Health, Welfare & Social Security” in[ Greece] (6/2011).
+CARDET is one of[ the] leading[ research] and training centres in[ the eastern Mediterranean] region with global[ expertise] in[ project] design and[ implementation],[ project] management, training, and e-learning. CARDET has completed numerous projects relating to the development of adult and[ vocational] training initiatives in[ the] areas of financial literacy, innovation, and entrepreneurship. Members of[ its] team and board represent[ European] and[ International] Higher education[ institutions], training centres and international[ organizations], and have in-[depth] knowledge of[ the] adult training sector, social[ justice], e-learning approaches, and social[ progress].
+CARDET brings together an international team of[ experts] with decades of global expertise in adult training, capacity building, curriculum development
+
+=== Text #7 ===
+> A group of IG[ Group] clients who incurred millions in losses after betting against the[ Swiss franc] are escalating their[ dispute] with the company, alleging that the events of 15 January has revealed serious “systemic failings” on[ the] part of IG.
+The members of[ the group lost] substantial cash deposits and are facing claims from IG for the[ payment] of significant[ negative balances], according to a lawyer representing the clients. The group is arguing that IG’s claims are[ unfounded] and[ unfair] and that[ the] spread betting firm is guilty of systemic failures in[ its treatment] of customers.
+In particular, it contends that IG is in breach of[ its] contractual[ obligations] including[ the obligation] to provide[ best] execution and in[ its] regulatory requirements under[ various Principles] for Business and the[ specific rules] of[ the UK Financial] Conduct[ Authority] (FCA) Conducts of Business Sourcebook.
+Hundreds of IG customers racked up losses of £18.4 million after the[ Swiss] National Bank unexpectedly removed its three-year EURCHF floor on 15 January, which caused severe[ distress] in the market and resulted in some retail brokers going under. The[ Swiss franc] surged by as much as 40% versus the euro within minutes of the central[ bank] announcement.
+IG, which also suffered losses, has recouped some of the minimal sums[ outstanding] from customers, but is in[ dispute] with a[ group] who account for a considerable share of the[ outstanding debts].
+[Nat]alia Chumak, a partner at[ specialist] litigation City firm Signature Litigation, who is representing the group in their[ complaint] against IG to the Financial Ombudsman Service (FOS), says that in justifying the claims against[ the group], IG heavily[ relies] on[ its] terms and conditions (T&Cs).
+“However, analysis of IG’s T&Cs, as well as the company’s website and their behaviour on 15 January 2015, shows these claims to be groundless and[ unfair],” she claims.
+Speaking to Profit & Loss, Chumak argues IG must have been aware that the events that followed the SNB’s decision to remove the floor was an “eventual possibility”.
+She[ points] to IG’s decision in 2011, immediately after[ the] floor was introduced by the central[ bank], to remove[ its] offering of guaranteed stop orders in relation to EURCHF trades, indicating that IG knew that the events that occurred on 15 January could be a possibility.
+“However, IG, appears to have done nothing in advance to prevent or mitigate the risks for their clients, and worse still, continued to offer aggressively lever
+
+=== Text #8 ===
+> Amy is on the Delectable Education Podcast today talking all about her vast experience with starting Charlotte Mason communities. Amy and I met largely because of the book club she held in her living room full of women eager to learn more of Mason, her methods, and how to better implement them in our homes. She also began a co-op out of her home which grew and grew until it became, and still is, a school for children K-12. After moving, she has begun a new co-op and still sits on the board at the school she began, though the running of the day to day operations is now in the hands of another amazing mother and teacher of Charlotte’s method. In addition to books clubs, co-ops, and a school, Amy has also begun a Nature Club or two, muti-day summer intensives for mothers, field trips, and so many other ways that have helped moms and their children thrive not only in their homes, but within a community of learning.
+If you are a reader who is clicking over after listening to the podcast, we welcome you to our little corner of the internet. We are homeschooling mothers who have used the CM method for many years and in many different situations – at home, in school, overseas, and in multiple regions within the USA. To hear more of our stories, click here. We like to write about how using the CM method has changed our whole lives, and not just our homeschools, so while we certainly write about nature, and books, and habits, you’ll also see us chatting about homemaking, mother culture, and organizing our days.
+If you are a long time reader, we invite you to head over to hear Amy speaking today on the podcast! We’d love to hear about communities you’ve started or questions you have about starting communities in the comments or via email.
+Welcome to the first room in our series, the Kitchen. Let’s start here, as this is both the heart of the home and where much work of the mother occurs. Before we dive into cleaning, simplifying, and making our kitchen beautiful, it would make sense to think about what we need our kitchens to be. If we think of our rooms as servants to the people who use them, how can your kitchen better serve your family?
+Think through the annoying spots. That counter that is just NEVER clear, that drawer that doesn’t even open all the way and you have
+
+=== Text #9 ===
+> Both the federation of[ states] and the federal super-[state] describe the same zero-[sum] game from different angles. Either there is one single state of Europe (federalism), in which case there are no national[ member states]; or else the national[ member states remain] Europe’s rulers, in which case there is no Europe (inter-[governmental]ism). Within this[ framework] of thought, whatever Europe[ gains], the[ individual nations lose]. And this is true whether one is for a given option or against it. Caught up in the false alternatives of the national[ gaze], we are given the choice between no Europe or no Europe.
+The decline of the[ nation]-[state] is really a decline of the specifically[ national] content of the[ state] and an opportunity to create a[ cos]mopolitan state system that is better able to[ deal] with the problems that all[ nations] face in the world today.[ Economic] globalisation,[ transnational terrorism],[ global warming]:[ the] litany is familiar and daunting. There are a[ host] of problems that are clearly beyond the power of the old order of nation-[states] to cope with. The answer to global problems that are gathering ominously all around and that refuse to yield to nation-[state] solutions is for politics to take a quantum leap from the nation-[state] system to the[ cos]mopolitan state system. Politics needs to[ regain] credibility in order to craft real solutions.
+More than anywhere else in the world, Europe shows that this step is possible. Europe teaches the modern world that the[ political] evolution of[ states] and[ state] systems is by no means at an end. National real[polit]ik is becoming unreal, not only in Europe, but throughout the world. It is turning into a lose-lose game.
+Europeanisation means creating a new politics. It means entering as a player into the meta-[power] game, into the struggle to form the[ rules] of a global order. The catchphrase for the future might be: move over America, Europe is back.
+The[ EU] uses[ money] for things that the various[ countries governments] would not dream of spending it on, such as regional[ projects],[ culture], the[ arts] and so on. The[ governments] would probably just use that[ money] to[ bail] out[ banks]..
+
+=== Text #10 ===
+> Are you planning on a trip by road? But as you know hiring a car from Mathura to AGRA can get very hectic especially if you do not planned in advance. Well we at Home Cabs Provide you this Mathura to AGRA car rental service any time. You can also avail car rental services from Mathura airport to AGRA .
+Choosing Home Cabs for Mathura to AGRA taxi services is the best option one can get in the city. Home Cabs provides you great facilities and timely services. You can now book your cabs in Mathura for AGRA in the easiest way by vising our website www.homecabs.com.
+We at Home Cabs are committed for reliable, timely and quality cab service on Mathura to AGRA route. We have provided great range of car options which you can choose for your taxi service Mathura to AGRA .
+Home Cabs is the best cab service provider in the on GT Road, if you are planning to book Mathura to AGRA cabs you should book with Home Cabs and you will get instant confirmation, huge variety of cars and the last but not least assured quality service. At Home Cabs you get the best deals for your Mathura to AGRA cab package. To avail this exciting package, all you need to do is to make Mathura to AGRA online cab booking at Home Cabs.
+You can book Mathura to AGRA car in affordable rates at Home Cabs. Home Cabs not only provides you the best in class cab service but our Mathura to AGRA cab fare is also the most reasonable. Home Cabs focussed on his customer with highest level of customer service standards, our drivers are professionally trained to offer excellent services to travler. To book Mathura to AGRA cabs at affordable rates, opting for Home Cabs is the best choice, Because we are committed to provide reasonable prices for your cab from Mathura to AGRA . The Mathura to AGRA cab package at Home Cabs is ensured to be affordable in terms of rates for the customers.
+Use Home Cabs for a seamless booking experience and get affordable Mathura to AGRA cab fare. To check taxi fare of Mathura to AGRA ; just go to the booking tab, click on One way (Fixid)and get your preferred car with an assurance of the best cab rates in Mathura .
+
+=== Text #11 ===
+> sail[boat]. : The sweetest home accessories!
+You know when you see something that you don't really need but you do really want to have for reasons you can't quite fully explain? Well, that's exactly how I feel about pretty much everything from Qualy. Until a few weeks ago I had never heard of the brand, I had a Zalando voucher and just happened to stumble into the home section where I spotted the sweetest home accessories ever!
+So, I didn't really need a pink bunny with scissors for ears, a carrot magnet and green paper clips for the carrot top but as soon as I saw it, crazy bunny lady over here was instantly adding it to my basket and hitting checkout! I'm really impressed with the quality, I did think the £15 price tag was a little much but I've changed my mind because the scissors are actually really good, it doesn't feel or look cheap in any way and, well, it's undeniably cute! I love it so much!
+Qualy Log & Squirrel Flower Pot!
+I'm not known for my green thumb, in fact I'm notoriously rubbish at keeping plants alive but I'm going to try and be better now I have this super cute flower pot! I don't have a plant to put in it at the moment but I'm actually really excited to go and get one, any excuse for a trip to the garden centre I'll happily take! When there's water in the bottom the squirrel floats up, which is perfect for a plant killer like me because I'll always know when I need to add some more water. At £25 this certainly isn't cheap, but again I'm really happy with the quality & everything comes apart so I think it'll be really easy to clean. To be honest it was the little squirrel that totally sold me on this, look at those sweet little eyes, too cute!
+Do you have a favourite home accessories brand?
+Do you have anything from Qualy?
+The only thing that I found with the pot was that somehow the roots have gone down the string and completely intertwined with it so I won't be able to use the pot for another plant in the future :') Still absolutely adorable though!
+I really love the Qualy range, I've been fancying the bunnies for agfes, have you seen the paper[clip] ones as well?
+DUh, I meant the tape one.
+The desk bunny is just sooo lovely!
+You got the bunny! Jealous
+
+=== Text #12 ===
+> (1) The scope of[ the individual] services is based on the current service description in force at the time of placing the order.
+(2[)] If no other agreement has been expressly[ reached],[ the] provider[ shall] also be[ entitled] to instruct[ expert] staff or[ third parties] to provide[ the] services incumbent upon him. If active co-[operation] is required on[ the] customer’s part on another server, e.g. during the transfer of a web space package or other[ data] stored on the provider’s servers, the customer shall provide such co-[operation] in accordance with[ the] provider’s instructions and within[ the stipulated] time.
+(3[)] If no[ other agreement] has been[ reached the] provider[ shall] be[ entitled] to demand[ payment in] advance for[ all] services ordered by[ the] customer for[ the] respective period.
+All webhosting packages (“virtual servers”) offered by the provider (Tomattos) assume a minimum service period of twelve months with an[ automatic] extension of[ the agreement] and[ the] corresponding domains[/]servers for twelve months.
+All server packages (dedicated servers, colocated servers, VPS, game servers) offered by the provider (Tomattos) assume a minimum service period selected by the customer when placing the order with an automatic extension of the contract and the corresponding domains/servers for the minium service period chosen by the customer.
+(4) Once the payment which had been made by[ the] customer in advance for the[ agreed] term has expired[ the] contract is[ automatically] terminated.
+The domains associated with the packages/servers however, are charged for the complete contract period (this is dependent upon the domain extension and can be seen here) and must be terminated at least 4 weeks before expiry of the contract period in order to prevent[ automatic] extension of[ the agreement] (an extension is equivalent to renewed[ registration] in[ respect] of[ the] contract period). If[ the] package[/]server is terminated before the end of[ the] contract for[ the relevant] domain(s) or if[ the] contract has not yet ended or has not yet been renewed, you will be charged separately to cover the remaining months of the domain service. The amount charged depends on the extension of the domain (for a complete list, please click here).
+(5) Given that the customer is placing the order as a private customer (as defined by § 13 BGB), the following applies: The customer has to pay the provider an appropriate fee which equals the the ratio of the services already rendered in relation to the total services intially intended for the contract, up to the point when the
+
+=== Text #13 ===
+> I'm sure I'll have more to add to this soon since I am currently helping a girlfriend to find an EDC. My trouble is I'm a bit lumpy and my idea of concealable is different than what is concealable on her very thin frame with close-fitting attire. I've stressed the #1 thing is to get a gun that she will want to carry every day and not leave at home. I expect to defer to a couple of clerks as I am not familiar with every new thing out there. And that's where I expect the fun to start. This girl can shoot 9's and .40's all day long. I keep joking with her that she needs one of those pink guns cause she's a girl. Of course, I Keep getting back-handed too.
+I live out of state, but my experience has been mixed.
+I shoot with a local ladies club and we have ladies' (only) classes and monthly get togethers at a local range. The range owner is very supportive of us using the range, gives us a discount on port time and trains the RSOs to respect ladies and not talk down to us. We have women instructors and the men who are instructors are taught to listen and not talk down/talk over and generally act in a respectful manner. The owner is extremely conscious of his female and racial minority clientele as he wants the range to be welcome to all, regardless of gender or race. Being both a person of color and a woman it can be daunting to (no offense intended) wander into a sport/pastime/interest populated mostly by white men. Or at least you'll see that in the media.
+Unfortunately the experience I've gotten at some other ranges is because I am a woman I get attitude as to whether I know anything about guns. One of my club's ranges the RSO is always telling me I should probably try a lighter caliber as the gun I am shooting is too big (!!!). For the record it was a .45ACP. And I can punch holes in a quarter at 25 yards.
+Other things, let's see. Go into a gun shop and get asked if I want a gift certificate. Being shown everything pink (I don't like pink) as if pink magically transforms any item into a woman's.
+But there are a lot in the community who will treat me like an equal. That is welcome. Honestly though, I do enjoy the ladies only get togethers because we can talk about stuff we don't talk
+
+=== Text #14 ===
+> It all started 3 months back when two of us, me and Saquib were chatting over our late night coffee destination about going somewhere far from Bangalore. And, this time the plan was to push our bikes to a 10 days plan and explore a state, if possible. Probable destinations that came to our mind were Rajasthan, Maharashtra and Gujarat. Argument started over coffee and we felt Rajasthan would be too far for us to ride from Bangalore and Maharashtra looks best during monsoon and hence we were left with Gujarat. This was something which each one of us wanted to do, especially visit the Rann of Kutch and I very well knew that this time we are going there for sure as the planning started in full swing. Although it was initially me and Saquib who kicked off with the planning and research, we decided to pull in some close pals of ours who might be interested for this long road trip. Sunil, Tapabrata, Ashish and Eshwari (who would be joining us from Gandhinagar) showed immense interest in our plan and we were more than happy with the group which formed now. We decided to start for the trip on 31st January, 2014 (Saturday) and come back to Bangalore by 11th February, 2014 (Wednesday).
+The days crossed by and our excitement meter was becoming unstable day by day. We were meeting at times, just to check if everything was on track, ran through the route map again and again so that everyone knows the route very well. Unfortunately, Sunil could only be starting by the second half of Saturday and hence he targeted to join us directly at Gandhinagar.
+Few days before the ride started and we hit a major setback: Saquib had a situation in his office and his could not get the leaves approved. This came as a big blow to get us because he was the person who was the mastermind behind this mega plan and all of us wanted him to be part of our group.
+Day 1 started with me, Tapabrata and Ashish riding from Bangalore and our target was to halt at Pune. We decided to start around 4 am in the morning to avoid all the early morning traffic. Once you are on the road, you hardly get to know what time it is, and it always surprises you. This stretch being arrow straight road, you tend to fall asleep, especially when your tummy is full. With couple of breaks including breakfast, lunch, tea and most importantly, photo breaks, when we
+
+=== Text #15 ===
+> At the start of the year we began using their very in depth hands-on history project: HISTORY Through the Ages Project Passport World History Study: Ancient Greece (you can read my review here: A Study in Ancient Greece). It was great, but definitely very time consuming. With summer upon us, I was excited to do a fun, interactive but less intensive mini history course.
+We received the Make-a-State Activity-Pak as a downloadable resource, but there is a CD version as well. It’s intended for grades three through eight, but with a bit of help from me, my first grader was able to do the activities, too. The Activity-Pak contains instructions and printables for 20 projects that you can put together into one big Lap Book. The activities include key state facts, a state timeline, recipes, state geography and government, and much more.
+A nice thing about this resource is that you can use it for any state, so while we began with a study of our home state of Texas we can use it again later for other states, too. And of course we can pick and choose what all we want to use, so we can do just a few activities if we want to just touch on a state rather than learning ALL about it. And actually, because I’m using this for first and fourth grade rather than third through eighth, I’m not doing every activity in our Texas study, either.
+The materials include a set of State Pages with some brief information to use for your key facts and such, but otherwise lets you choose where to pull information from to complete the activities. It also includes a bonus “Name That State!” File Folder Game that can familiarize kids with the shape and location of states, capital cities, and more.
+So, I thought at the beginning that we would go through and do 100% of every activity exactly as instructed and just have a blast learning about Texas this summer, but it turns out that I am just not very good at doing big projects, and this one was actually a lot more work than I realized it would be. In all honestly, I think I like the idea of hands on schoolwork more than the actual implementation of doing all the tasks. In some cases, the activities really just feel more like busy work than an engaging learning activity. For example, we chose to not bother at all with cutting out a recipe card and coloring and putting together a piece of the Lap Book for that,
+
+=== Text #16 ===
+> Hair updo styles. Pictures of updo hairstyles.
+Are you looking at a more sophisticated hair updo style for your wedding or prom? If so, we have a great collection of examples that will help you find the right look. Our examples focus on women who have somewhat longer hair that can be used in dramatic fashion. Here you will find a number of updo hairstyles from those close to casual to others that push the boundaries and make an unforgettable impression. The first row of examples is highlighted by the third photo which features a complicated pinned up style, yet has enough play to make it attractive. The second photo is a great example of how bangs can be used to really highlight the face while still having the rest of the hair updo pinned back. Naturally, augmenting your hair with natural decorations such as flowers can make for a great way to set your style apart. In the second row we see more classic examples of sophisticated wedding and prom updo styles. While the first example is perfect for those with very curly hair, the third and fourth are pure classic updo’s perfect for more formal occasions. If you have long, thick hair, then you might want to try the example in the second photo to highlight your face. The third row is a great combination of pulled back styles along with loose, more casual feel. The second example does require some work and spray, but the results are perfect for weddings. For younger women, especially those attending the prom the first and fourth photos provide excellent examples of what can be done. For the final row we have another combination of both casual and pinned up hair that you can choose from when attending the wedding or prom. In particular, the third photo shows a dramatic style indeed.
+Portfolio 3 showcases delicate up-dos mainly for long straight hair. Picture number 1 and 2 are beautiful examples of straightforward updo’s incorporating hair accessories that are fit for the most magnificent wedding. Picture number 10 is a gorgeous and sophisticated low chignon with the hair neatly pinned back away from the face.
+
+=== Text #17 ===
+> Have you ever been there? It also clarifies that you understand what they are saying. Even though the language we use to make small talk with new people may appear to be very simple, it is often difficult to use fluently without practice. . Wait until they are not obviously engaged with someone else. The basic premise is that you find common ground with the people with whom you communicate by using the right amount of self-disclosure, , and tact.
+In each conversation, you'll learn more about a person as you toss out subjects and see how they respond. If getting drunker is your thing that's fine, but as you drink more it starts to socially disadvantage you as much as it helps. Keep an open mind, and if the conversation takes a turn to politics, keep it light and do not discuss heavy topics that are controversial. So work on your confidence. People love to be validated and have their ego fed.
+It's so hard to sit and listen to the never ending story that she's just told me last week but to try to get out of it just means more drama. For example, if your friend wanted to be a writer, he might get up early on weekends and work on a book. Have a purpose for the connection, rather than approach hemming and hawing around. It doesn't have to be the greatest story ever told, just tell them about something you really enjoyed doing with your mate, like a boat ride or a cozy night by the fireplace when you sat there for hours discussing your top 10 favorite movies of all time. Listening will give you all the material you need to relate, ask relevant questions, and continue building the connection.
+The answer is to become socially confident through real-world experience. Thanks Aaron Morton The Conf[idence] Lounge I do this all the time! I like your example of a quick interaction question about coffee and then parting ways. They may even feel stupid and regret sharing their story. If the other guests won't think it's too rude, step aside and pretend to have a text conversation on your phone. Small talk is easier the more you do it, and it also isn't meant for long periods of time or to be shared with just one person. Why does this work and why am I telling you to fake it until you make it? Dog lovers bond over their pets.
+After all, you'll never see them again. People from other places, including[ countries] other than your own, can give you new perspectives. They're fun and jokey and the
+
+=== Text #18 ===
+> This is a great online color tester and designer. Unlike other hex code color testers, this application can also test hex colors on a selected background and guides you in color mixing. Type the color(s) in 3 or 6 digit hex code format eg. #173086, #138 or RGB numbers format eg. 23, 48, 134. Backgroud color is optional. Default value FFFFFF (white) is selected when no value supplied for bg color. (Note: no matter whether the symbol # is used in hex code or not.) The online color tester also helps you to select the harmonic color combinations. The complementary, triadic, analogous, split complementary, tetradic and square color schemes in the Color combining guide recommend you the best color groups for the two, three or four color design. You can also pick up the colors from the gradient scale, best brightness (lightness) level from tints or shades scale and the best suitable vibrance level from the saturation scale. Moreover you can pick the color you like from the random color palette generator. Color tester also shows you the negative and monochrome (grayscale) representation of selected color and the closest websafe color. You also find there the RGB and CMYK representations calculation.
+Dummy text written in hex #173086 color on a background color. Text in color #173086 on the desired background color will look just like this. You just see the hex #173086 colored text written on a hex #FFFFFF color backgroud... Or you can't see, if you selected the wrong combination of colors :). The background color should be selected so that the intended #173086 text color is well visible on it. Alternatively, you can choose text color different than #173086 to achieve better text readability. It can be rounded to the 3 character hex code #138. The RGB values of the #173086 hex color are R: 23, G: 48, B: 134. In percentage it is Red: 9%, Green: 18.8%, Blue: 52.5%. The CMYK values of the #173086 hex color are C: 0.828, M: 0.642, Y: 0, K: 0.475. The nearest web safe color is #003399. Test of bold text in selected color. Test of italic text in the color. Finally the test of bold italic.
+
+=== Text #19 ===
+> How to choose an interesting and creative wedding cake topper?
+Nowadays, there is such a vast range of beautiful miniaturized figurines and replicas of romancing couples available in the market that you would be mesmerized. These collectibles also include wedding cake toppers for bride and groom. These cake toppers are so beautiful and cute that you would love to make it a part of your guestbook table, or keep it in your drawing room. You can also gift these to your loved ones.
+These silent figurines, which showcase romancing couples, interlocking hearts, birds, wedding rings, girls in bridal dresses, dancing couples, and couples performing love on the hood of a car, are simply amazing. These cake toppers not only have a great aesthetic appeal, but also provide a perfect finish to the wedding cakes. They come in all sizes, colors and varieties, so as to fit on all types of wedding cakes.
+If you want to buy cake toppers, make sure that these are of top quality. These porcelain wonders should have a lead free paint to begin with. They should be perfectly crafted to give it a real-life look. Furthermore, make sure attention to details is provided, as these are collectibles and people love to keep it. Some of the wedding accessory suppliers do not pay attention to details. Refer to the website of the store, and choose from a wide variety of cake toppers. A high priority return policy is also an indication that the supplier is committed towards customer service and quality.
+For those, who think that most of the wedding toppers are similar, here are a few tips to anniversary cake toppers that are sure to excite you. Don't go for the traditional "arm in arm" or "bride and groom exchanging kisses" positions. Imagine a real-life situation, which would excite you. It might be related to your past events, a memorable journey, your ambition, your favorite outfit, or your favorite activity. You can also get the bride and groom dressed like Indians or Australian aborigines. Adding the element of fun to your cake topper would make it more interesting and original.
+A professional cake designer can create an endless variety of wedding cake toppers. You can use different materials such as glass, crystal or porcelain to make them. Most of the people love to keep them as wedding day souvenirs in their drawing rooms.
+
+=== Text #20 ===
+> On a proper construction of an agreement, which required a supplier of warehouse services to give credit to the user for additional business secured by the supplier in order to utilise spare capacity, the additional business did not include business conducted from an extension to the warehouse.
+The appellants, a company (S) and a third party, appealed against a decision ((2008) EWCA Civ 1286)) that on a proper construction of an[ agreement], which required[ the] respondent supplier of warehouse services (W) to give credit to S for additional business secured by W in order to utilise spare capacity, the additional business did not include business conducted from an extension to the warehouse. At one time all three parties had been subsidiaries in[ the] same group. W had constructed a national distribution centre and had[ entered] into an[ agreement] with S to provide warehousing services at the centre to S. Later, W was demerged from the group and the centre became a multi-user site. Under a revised agreement between S and W, S[ agreed] to put a minimum amount of[ goods] through[ the] centre annually, failing which S would be[ liable] to make a[ volume] shortfall payment to W. That payment was to be reduced to the extent that W secured additional[ third party] business. Parts of S's business were then sold and the revised[ agreement] was replaced by new[ agreements]. A[ side] letter provided that W should use reasonable endeavours to develop and secure additional business with a view to utilising spare capacity and throughput in[ the] warehouse. By that time there was an extension to the warehouse at the centre. Unlike the original warehouse, which was a chilled facility and contained automated handling machinery, the extension was only partly[ chilled] and had no automated handling machinery. A[ dispute] arose when the threshold volume of[ goods] under[ the agreement was] not met and W[ claimed] shortfall[ payments]. The issue was whether the reference to[ the] warehouse in[ the side] letter was to[ the] warehouse as originally constructed and not as extended. S contended that to have to distinguish between third party[ custom] in two different parts of an integrated warehouse was uncommercial and unrealistic. S[ submitted] that W had itself[ regarded] all new business wherever it was sited within the extended warehouse as within the[ concept] of additional business.
+For the purposes of the[ instant] appeal, it was sufficient to consider[ the third] new[ agreement],[ the] essential structure of which[ was the] same as that of[ the] revised[ agreement] and, as[ was common] ground, it was permissible to const[rue the] new[ agreement] and[ the side]-letter against[ the] background of that revised[ agreement],[ HI]H Casualty &[ General] Insurance Ltd v New Hampshire Insurance
+
+
+Description: 
+2025-07-25 20:07:28,657 - root - INFO - International organizations, government bodies, or diplomatic relations
+
+2025-07-25 20:07:28,662 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-5551_clusters-1_2025-07-25_17-58-00.csv
+2025-07-25 20:07:28,663 - root - INFO - ================================================================================
+2025-07-25 20:07:28,663 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 20:07:28,664 - root - INFO - ================================================================================
+2025-07-25 20:07:28,664 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-5551_clusters-1_2025-07-25_17-58-00.log
+2025-07-25 20:07:28,664 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-5551_clusters-1_2025-07-25_17-58-00.csv

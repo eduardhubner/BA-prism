@@ -1,0 +1,1445 @@
+2025-05-10 23:15:47,656 - root - INFO - ================================================================================
+2025-05-10 23:15:47,686 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-10 23:15:47,687 - root - INFO - ================================================================================
+2025-05-10 23:15:47,688 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-10 23:15:47,689 - root - INFO - AGG_METHOD = mean
+2025-05-10 23:15:47,690 - root - INFO - BATCH_SIZE = 2
+2025-05-10 23:15:47,690 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 23:15:47,691 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-10 23:15:47,692 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-10 23:15:47,693 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-10 23:15:47,694 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-10 23:15:47,694 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-10 23:15:47,695 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-10 23:15:47,696 - root - INFO - CONTROL_SPLIT = train
+2025-05-10 23:15:47,697 - root - INFO - DATA_FILES = None
+2025-05-10 23:15:47,697 - root - INFO - DEVICE = cuda
+2025-05-10 23:15:47,698 - root - INFO - END_INTERVAL = 1.0
+2025-05-10 23:15:47,699 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 23:15:47,700 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-10 23:15:47,700 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-10 23:15:47,701 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-10 23:15:47,701 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-10 23:15:47,702 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-10 23:15:47,703 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-05-10 23:15:47,704 - root - INFO - LAYER_ID = 20
+2025-05-10 23:15:47,705 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-10 23:15:47,705 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-10 23:15:47,706 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-10 23:15:47,707 - root - INFO - MULTI_EVAL = True
+2025-05-10 23:15:47,708 - root - INFO - N_CLUSTERS = 5
+2025-05-10 23:15:47,708 - root - INFO - N_SAMPLES = 10
+2025-05-10 23:15:47,709 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-10 23:15:47,710 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-10 23:15:47,711 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-10 23:15:47,712 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-10 23:15:47,713 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-10 23:15:47,713 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-10 23:15:47,714 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-10 23:15:47,715 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-10 23:15:47,716 - root - INFO - SIMEVAL_DATA = c4
+2025-05-10 23:15:47,717 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-10 23:15:47,718 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-10 23:15:47,719 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-10 23:15:47,719 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-10 23:15:47,720 - root - INFO - SPLIT = train
+2025-05-10 23:15:47,721 - root - INFO - START_INTERVAL = 0.99
+2025-05-10 23:15:47,722 - root - INFO - STREAMING = True
+2025-05-10 23:15:47,723 - root - INFO - SUBSET_SIZE = 1000
+2025-05-10 23:15:47,723 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-10 23:15:47,724 - root - INFO - TARGET_DATA = c4
+2025-05-10 23:15:47,725 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-10 23:15:47,726 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 23:15:47,727 - root - INFO - UNIT_ID = 5662
+2025-05-10 23:15:47,727 - root - INFO - USE_API = True
+2025-05-10 23:15:47,728 - root - INFO - ================================================================================
+2025-05-10 23:15:47,729 - root - INFO - ANALYSIS RESULTS
+2025-05-10 23:15:47,730 - root - INFO - ================================================================================
+2025-05-10 23:15:47,731 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.log
+2025-05-10 23:25:57,733 - root - INFO - Reached 1000 samples.
+2025-05-10 23:26:03,849 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-10 23:26:03,849 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 23:27:05,065 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-10 23:28:08,437 - root - INFO - Number of candidates: 1001
+2025-05-10 23:28:13,367 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-10 23:28:13,368 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: Have (0.19124501943588257)
+Text #1:  photos (0.5735639333724976)
+Text #1: ulation (0.4175221920013428)
+Text #1: ev (0.4651544690132141)
+Text #1: <|endoftext|> (0.17445924878120422)
+Text #2: For (0.19377483427524567)
+Text #2:  tips (0.5647668838500977)
+Text #2:  click (0.5659009218215942)
+Text #2: ! (0.36101052165031433)
+Text #2: … (0.5947527289390564)
+Text #2: <|endoftext|> (0.14521124958992004)
+Text #3: Continue (0.19448451697826385)
+Text #3: : (0.30111193656921387)
+Text #3:  read (0.6217776536941528)
+Text #3: . (0.3815339505672455)
+Text #3:  Pearl (0.6883369088172913)
+Text #3: ! (0.3291855752468109)
+Text #3:  excited (0.6580089330673218)
+Text #3:  post (0.9991805553436279)
+Text #3: ! (0.21145835518836975)
+Text #3:  dig (0.360304594039917)
+Text #3:  design (0.3438030183315277)
+Text #3:  I (0.17625728249549866)
+Text #3:  excited (0.5418541431427002)
+Text #3: <|endoftext|> (0.16173261404037476)
+Text #4: The (0.17912736535072327)
+Text #4:  check (1.4242849349975586)
+Text #4:  page (0.18361937999725342)
+Text #4: <|endoftext|> (0.15759535133838654)
+Text #5: The (0.17912736535072327)
+Text #5:  check (1.4242849349975586)
+Text #5:  page (0.18361937999725342)
+Text #5: <|endoftext|> (0.15759535133838654)
+Text #6: R (0.18860381841659546)
+Text #6:  a (0.20272716879844666)
+Text #6:  album (0.35781368613243103)
+Text #6: . (0.22360937297344208)
+Text #6:  image (0.30714356899261475)
+Text #6:  finally (0.5198644399642944)
+Text #6:  you (0.8313765525817871)
+Text #6:  scroll (0.2120169997215271)
+Text #6:  reveal (0.7312467694282532)
+Text #6: <|endoftext|> (0.18536615371704102)
+Text #6: <|endoftext|> (0.17050611972808838)
+Text #7: SC (0.1914622187614441)
+Text #7:  online (0.9776647090911865)
+Text #7:  Find (0.36995628476142883)
+Text #7: 's (0.13860759139060974)
+Text #7:  easy (0.34643450379371643)
+Text #7: <|endoftext|> (0.1399066001176834)
+Text #7: <|endoftext|> (0.1345975548028946)
+Text #7: <|endoftext|> (0.13461649417877197)
+Text #7: <|endoftext|> (0.1345321238040924)
+Text #8: The (0.17912736535072327)
+Text #8: <|endoftext|> (0.143503338098526)
+Text #9: Enjoy (0.19625109434127808)
+Text #9: <|endoftext|> (0.12045581638813019)
+Text #10: This (0.19658832252025604)
+Text #10:  tutorial (1.1773226261138916)
+Text #10:  point (0.34010210633277893)
+Text #10:  you (0.26100027561187744)
+Text #10:  again (0.33083492517471313)
+Text #10: ! (1.066707968711853)
+Text #10: , (0.2167474627494812)
+Text #10: ...) (0.5486536622047424)
+Text #10:  why (0.4102991819381714)
+Text #10: , (0.19013647735118866)
+Text #10: . (1.5238057374954224)
+Text #10:  Leap (0.7104386687278748)
+Text #10:  now (0.6602272987365723)
+Text #10:  about (0.21029576659202576)
+Text #10:  Learn (0.31060290336608887)
+Text #10: 
+ (0.26371562480926514)
+Text #10:  talk (0.8469897508621216)
+Text #10:  design (0.2917212247848511)
+Text #10:  book (1.007022738456726)
+Text #10:  into (0.925855278968811)
+Text #10: . (0.5337615013122559)
+Text #10:  with (0.6620898246765137)
+Text #10:  inheritance (0.6233530044555664)
+Text #10:  more (0.5312930941581726)
+Text #10: ay (0.3177836835384369)
+Text #10: <|endoftext|> (0.15698714554309845)
+Text #11: Gr (0.19636847078800201)
+Text #11: com (0.3141683340072632)
+Text #11: ap (0.6049119830131531)
+Text #11:  a (0.37835192680358887)
+Text #11:  if (0.8982142806053162)
+Text #11:  moment (0.3941868841648102)
+Text #12: Jew (0.17768388986587524)
+Text #12: 16 (0.33572834730148315)
+Text #12: washing (0.21632462739944458)
+Text #12:  water (0.7033911347389221)
+Text #12:  crystal (0.2669656574726105)
+Text #12: estones (0.23244304955005646)
+Text #12:  clean (0.43190857768058777)
+Text #12:  to (0.17089420557022095)
+Text #12:  cloth (1.529033899307251)
+Text #12:  then (0.30468878149986267)
+Text #12:  cloth (1.970218539237976)
+Text #13: Meet (0.19015005230903625)
+Text #13:  post (0.28776589035987854)
+Text #13:  times (0.532489538192749)
+Text #13: Chat (0.7625667452812195)
+Text #13:  chill (0.7396237850189209)
+Text #13:  pool (0.4947127401828766)
+Text #13:  lounge (0.6598938703536987)
+Text #13:  a (0.15082350373268127)
+Text #13:  music (0.1625121384859085)
+Text #13: <|endoftext|> (0.1439714878797531)
+Text #14: Very (0.1875915229320526)
+Text #14: <|endoftext|> (0.13916955888271332)
+Text #15: Here (0.1987857073545456)
+Text #15:  a (0.5192796587944031)
+Text #15:  now (0.33042576909065247)
+Text #15: Posted (0.35051724314689636)
+Text #15:  Wednesday (0.40902432799339294)
+Text #15:  Editor (0.18168288469314575)
+Text #15:  tagged (0.4232798218727112)
+Text #15: mark (0.537701427936554)
+Text #15: . (0.2338394671678543)
+Text #16: Not (0.20012769103050232)
+Text #16:  Use (0.23514075577259064)
+Text #16: <|endoftext|> (0.13593441247940063)
+Text #16: <|endoftext|> (0.13361792266368866)
+Text #16: <|endoftext|> (0.1336769461631775)
+Text #16: <|endoftext|> (0.13352206349372864)
+Text #17: Publisher (0.1820569634437561)
+Text #17: ities (0.34990277886390686)
+Text #17: : (0.9233401417732239)
+Text #17:  legal (0.24698679149150848)
+Text #17: <|endoftext|> (0.16878139972686768)
+Text #18: All (0.19006602466106415)
+Text #18: <|endoftext|> (0.14451125264167786)
+Text #18: <|endoftext|> (0.13611970841884613)
+Text #19: P (0.20106624066829681)
+Text #19:  Click (0.459619402885437)
+Text #19:  comments (0.4519559144973755)
+Text #19:  rope (0.4942030608654022)
+Text #19:  published (0.6150137186050415)
+Text #19: <|endoftext|> (0.16371586918830872)
+Text #20: Let (0.20485633611679077)
+Text #20:  start (0.21964913606643677)
+Text #20: <|endoftext|> (0.14394955337047577)
+
+=== Text #1 ===
+> [Have] you hired Star Drywall Ltd? Write a review and earn our First to Review badge.
+Star Drywall Ltd has not added any[ photos].
+Looking for Ins[ulation] pros in Est[ev]an?[]
+
+=== Text #2 ===
+> [For] our top[ tips for] making the most of a visit to Angkor Wat,[ click here].
+Excellent[! Looks like] great fun[…] better than China?[]
+
+=== Text #3 ===
+> [Continue] reading "The Daily 3[:] What Makes Me Happy"
+I dig the design you picked! I’m excited to[ read] more[.] You know how I feel about Maribel the writer!
+Thanks[ Pearl,] the reader[! I]’m[ excited to share] and hear what people have to say. So PLEASE[ post whenever you] want[!
+]I[ dig] the[ design] you picked![ I]'m[ excited to read] more. You know how I feel about Maribel the writer![]
+
+=== Text #4 ===
+> [The] Alliance de l’industrie touristique du Québec works closely with the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments? Requests? We will be happy to answer you!
+You can also[ check the] Team[ page to contact] a specific person.[]
+
+=== Text #5 ===
+> [The] Alliance de l’industrie touristique du Québec works closely with the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments? Requests? We will be happy to answer you!
+You can also[ check the] Team[ page to contact] a specific person.[]
+
+=== Text #6 ===
+> [R]ent the Centre. Celebrations, Parties or just for fun.
+In order to provide a flavour of the Grenville House experience set out below are[ a collection] of images showing the range of activities and other aspects of a visit to the Centre.
+To open an[ album click on the] chosen category image[. Click] on any[ image] to enlarge it and[ finally to] enable[ you] to[ scroll through] the selected album float the cursor over the end of the image to[ reveal] the direction arrow.[][]
+
+=== Text #7 ===
+> [SC]U Middletown makes it easy for you to get a quote[ online].[ Find] the quote you're interested in, and click the link to get started. It['s] that[ easy]![][][][]
+
+=== Text #8 ===
+> [The] sign has arrived and I couldn’t be more thrilled! It’s PERFECT!!! Thanks a million![]
+
+=== Text #9 ===
+> [Enjoy] your family. Enjoy your friends.
+Make lots of special memories.[]
+
+=== Text #10 ===
+> [This] Flash[ tutorial is] the perfect starting[ point] for anyone who has never used Flash before. Its main focus is getting[ you familiar with] your Flash environment quickly so we can jump into coding. We will revisit these concepts in future courses.
+Say it[ again], Sam[! (]and again[,] and again[...)] Learn[ why] repetition is a good thing[, how to] do it, where to use loops[.] Just think, you can kill Flash with this one![ Leap in and learn.]
+"For" loops? You got em,[ now]. What about loops that step through an object? How[ about nested] loops?[ Learn how to] break out of a loop, too - helpful to avoid killing Flash![
+]A small[ talk about] Buzz and[ design patterns and a recommendation for a] great[ book.
+]Looking[ into] display programing in Flash[.] Starting up[ with] scope,[ inheritance] and[ more.
+]Buttons give us a way to interact with the user. Now we engage our users, y[ay]!
+Copyright © 2010-2012 EverythingNice,inc. All rights reserved.[]
+
+=== Text #11 ===
+> [Gr]acefruit.[com] - Making So[ap], Living Well: Catching Up!
+We've been busy at Gracefruit these past few weeks as our customers prepare for their Christmas rush. Rob the guru has found time to set up a lovely Facebook page for us.
+Please have[ a] look[ if] you get a[ moment!]
+
+=== Text #12 ===
+> [Jew]elry is elegantly gift boxed.
+Included with an inspired saying..."You are a precious jewel" Zech. 9:[16].
+This pristine cut crystal is faceted to attract rays of shimmering light.
+Pale sky-blues and metallic steel greys are combined with cool azure at the 'base' light-filled end of its spectrum. A large variation in tonal displays results from changes in ambient and background light conditions. Upon the lighter blue shades, Light Vitrail builds lilac and purple, blending flashes of mauve and some transient pinks.
+Care for your jewelry can be cleaned with a delicate hand-[washing detergent] and[ water with a soft cloth,] so as not to scratch any beads,[ crystal], and rhin[estones].
+The best way to[ clean] the jewelry is[ to first spot] clean with the soft[ cloth and a bit of the detergent,] and[ then wipe softly with a] slightly damp[ cloth (water).]
+
+=== Text #13 ===
+> [Meet] the fighters[ post] event to see who take homes fight of the night bonuses.
+Special drink discounts starting at just 100baht, free entry, and FMD style good[ times].
+[Chat with] the Ring Girls,[ chill by] the[ pool],[ lounge] on the astroturfed roof top and enjoy[ a] classic mix of[ music] from all genres.[]
+
+=== Text #14 ===
+> [Very] Cold and windy today.
+that windswept English country. Makes you feel so alive.
+Boy I needed to be alive it was very tricky. Hail storms etc!![]
+
+=== Text #15 ===
+> [Here]’s[ a] chance to order your entry programmes for THE EVENT of the YEAR!!
+We have a really good line-up from a wide range of acts by performers ranging from age 6 to 60+.
+Why not book your seat for the event[ now]?!
+[Posted] on[ Wednesday], 30 March 2016 by[ Editor •]	This entry was[ tagged] Events, Village Hall. Book[mark the per]malink[.]
+
+=== Text #16 ===
+> [Not]aries in Bridgeton, MO are listed below.[ Use the filters to search] for specific criteria.
+I am a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified notary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[][][][]
+
+=== Text #17 ===
+> [Publisher]s: Taxes and legal[ities]: What is the license agreement between me and Steady?
+HomePublishers[: Taxes] and[ legalities]What is the license agreement between me and Steady?
+Steady sells membership plans (including your predefined benefits) to your community. The important part of the license agreement is that you give Steady the right to distribute the content and benefits that you defined in your Steady page to your members. The license agreement sets out the compensation you will receive in return.[]
+
+=== Text #18 ===
+> [All] black themes are always well liked by people. It is likely that you like it a lot too but if you find plain black themes so boring, you will probably like this theme with its green streaks similar to leaves being shined on with light. The green colored icons fit well with the theme.[][]
+
+=== Text #19 ===
+> [Pics] sent by Henry White.[ Click image left] to enlarge. Henry[ comments] they are working in collaboration with[ rope] provider English Braids & Makerbot 3D printers.
+Certainly the Whisper has a dedicated & special molding work on its platforms and on their parts too. The boat looks neat and high quality finish from the pics & videos we've[ published].
+I still prefer Z foils even for recreational foilers, but is clear that the Moth x2 system is working as intended on providing easy and out of the box flights.[]
+
+=== Text #20 ===
+> [Let] me[ start by saying] that this was NOT a good week for me. We returned from Denver on Tuesday, and I was exhausted for the rest of the week. I walked once. And for only 3 miles. Yes. Just 3 measly miles. I've got a lot of ground to cover over the next two weeks, and I'm off to a good start with 5.25 miles logged today.[]
+
+
+Description: 
+2025-05-10 23:28:13,370 - root - INFO - Instructions, tips, or announcements often with promotional intent
+
+2025-05-10 23:28:13,374 - root - INFO - Cluster #0 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.csv
+2025-05-10 23:28:14,341 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-10 23:28:14,342 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: One (0.1819564551115036)
+Text #1:  discussed (0.6718041896820068)
+Text #1:  I (0.3704516589641571)
+Text #1:  not (0.8861874341964722)
+Text #1: . (0.47511398792266846)
+Text #1:  responsibility (0.7268787026405334)
+Text #1:  verify (1.3390018939971924)
+Text #1:  with (1.5903984308242798)
+Text #1: . (0.21561071276664734)
+Text #1:  may (0.41417694091796875)
+Text #1:  you (0.19273284077644348)
+Text #1: . (0.8974703550338745)
+Text #2: P (0.20106624066829681)
+Text #2: eri (0.4930497407913208)
+Text #2: col (0.43804433941841125)
+Text #2: e (0.19179873168468475)
+Text #2: et (0.5373119711875916)
+Text #2: ina (0.1773868054151535)
+Text #2: ne (0.7943816184997559)
+Text #2: com (0.19001181423664093)
+Text #2: Hey (0.48751914501190186)
+Text #2:  information (1.1227209568023682)
+Text #2: : (0.5143868327140808)
+Text #2: Contact (0.23339611291885376)
+Text #2:  is (0.3712084889411926)
+Text #2: <|endoftext|> (0.1881670206785202)
+Text #3: P (0.20106624066829681)
+Text #3: eri (0.4930497407913208)
+Text #3: col (0.43804433941841125)
+Text #3: e (0.19179873168468475)
+Text #3: et (0.5373119711875916)
+Text #3: ina (0.1773868054151535)
+Text #3: ne (0.7943816184997559)
+Text #3: com (0.19001181423664093)
+Text #3: Hey (0.48751914501190186)
+Text #3:  information (1.1227209568023682)
+Text #3: : (0.5143868327140808)
+Text #3: Contact (0.23339611291885376)
+Text #3:  is (0.3712084889411926)
+Text #3: <|endoftext|> (0.1881670206785202)
+Text #4: . (1.0148553848266602)
+Text #4: 
+ (0.9512777328491211)
+Text #4: . (1.8545936346054077)
+Text #4: t (1.4003713130950928)
+Text #4:  you (0.8609613180160522)
+Text #4:  shade (0.7173047661781311)
+Text #4: It (1.0270380973815918)
+Text #4:  towel (0.9892857670783997)
+Text #4:  David (1.4113659858703613)
+Text #4:  dont (0.7409858107566833)
+Text #4:  mat (1.1518634557724)
+Text #4:  carpet (0.767646074295044)
+Text #4:  if (1.0996571779251099)
+Text #4: . (1.3521356582641602)
+Text #4:  card (1.1301209926605225)
+Text #4:  not (0.7373160123825073)
+Text #4: . (0.8802961707115173)
+Text #4:  with (0.7799524068832397)
+Text #4:  grill (1.1675446033477783)
+Text #4:  heating (1.0996503829956055)
+Text #4:  making (1.0486421585083008)
+Text #4: . (1.6644686460494995)
+Text #4:  never (1.9358398914337158)
+Text #4:  - (1.613328456878662)
+Text #4: . (1.0268889665603638)
+Text #4: ! (1.0499608516693115)
+Text #4:  be (0.9776106476783752)
+Text #4:  furniture (1.7741594314575195)
+Text #4:  guess (1.163316011428833)
+Text #4: 
+ (0.7157081365585327)
+Text #4:  tell (1.4145212173461914)
+Text #4: ? (0.7284117341041565)
+Text #4: tie (1.4920190572738647)
+Text #5: © (0.18323251605033875)
+Text #5:  Website (0.47765493392944336)
+Text #5:  by (0.3464849889278412)
+Text #5: <|endoftext|> (0.15511064231395721)
+Text #6: P (0.20106624066829681)
+Text #6: <|endoftext|> (0.16225169599056244)
+Text #7: GB (0.18800370395183563)
+Text #7: <|endoftext|> (0.16836093366146088)
+Text #8: , (0.19671128690242767)
+Text #8: posted (0.3184787929058075)
+Text #8:  remember (1.5777796506881714)
+Text #8: . (0.6725853085517883)
+Text #8: Always (1.7109355926513672)
+Text #8: , (0.33252468705177307)
+Text #8: ume (0.3189353346824646)
+Text #8: ume (0.5075193643569946)
+Text #8: ume (0.26814398169517517)
+Text #8:  above (1.1905772686004639)
+Text #8:  to (1.3747235536575317)
+Text #8:  please (0.41128048300743103)
+Text #8:  not (0.7828601002693176)
+Text #8: itate (0.2186681032180786)
+Text #8:  comment (0.2273683249950409)
+Text #8: . (0.4630811810493469)
+Text #9: The (0.17912736535072327)
+Text #9:  check (1.4242849349975586)
+Text #9:  page (0.18361937999725342)
+Text #9: <|endoftext|> (0.15759535133838654)
+Text #10: The (0.17912736535072327)
+Text #10:  check (1.4242849349975586)
+Text #10:  page (0.18361937999725342)
+Text #10: <|endoftext|> (0.15759535133838654)
+Text #11: SC (0.1914622187614441)
+Text #11:  online (0.9776647090911865)
+Text #11:  Find (0.36995628476142883)
+Text #11: 's (0.13860759139060974)
+Text #11:  easy (0.34643450379371643)
+Text #11: <|endoftext|> (0.1399066001176834)
+Text #11: <|endoftext|> (0.1345975548028946)
+Text #11: <|endoftext|> (0.13461649417877197)
+Text #11: <|endoftext|> (0.1345321238040924)
+Text #12: V (0.19032442569732666)
+Text #12: <|endoftext|> (0.15651804208755493)
+Text #13: It (0.19083243608474731)
+Text #13: <|endoftext|> (0.12182491272687912)
+Text #13: <|endoftext|> (0.12198293209075928)
+Text #14: A (0.19047591090202332)
+Text #14: <|endoftext|> (0.14870712161064148)
+Text #15: Gr (0.19636847078800201)
+Text #15: com (0.3141683340072632)
+Text #15: ap (0.6049119830131531)
+Text #15:  a (0.37835192680358887)
+Text #15:  if (0.8982142806053162)
+Text #15:  moment (0.3941868841648102)
+Text #16: Meet (0.19015005230903625)
+Text #16:  post (0.28776589035987854)
+Text #16:  times (0.532489538192749)
+Text #16: Chat (0.7625667452812195)
+Text #16:  chill (0.7396237850189209)
+Text #16:  pool (0.4947127401828766)
+Text #16:  lounge (0.6598938703536987)
+Text #16:  a (0.15082350373268127)
+Text #16:  music (0.1625121384859085)
+Text #16: <|endoftext|> (0.1439714878797531)
+Text #17: The (0.17912736535072327)
+Text #17: <|endoftext|> (0.13340047001838684)
+Text #17: <|endoftext|> (0.13079658150672913)
+Text #17: <|endoftext|> (0.13078010082244873)
+Text #18: Original (0.183436319231987)
+Text #18:  You (0.28988268971443176)
+Text #18:  order (0.2679557204246521)
+Text #18:  cable (0.2099594920873642)
+Text #18:  price (0.5860773921012878)
+Text #18: <|endoftext|> (0.16031517088413239)
+Text #19: Not (0.20012769103050232)
+Text #19:  Use (0.23514075577259064)
+Text #19: <|endoftext|> (0.13593441247940063)
+Text #19: <|endoftext|> (0.13361792266368866)
+Text #19: <|endoftext|> (0.1336769461631775)
+Text #19: <|endoftext|> (0.13352206349372864)
+Text #20: I (0.19760335981845856)
+Text #20:  also (0.27875816822052)
+Text #20:  to (0.2591632008552551)
+Text #20:  posts (1.015623927116394)
+Text #20:  regular (0.6977016925811768)
+Text #20: progress (0.6489881277084351)
+Text #20:  nothing (0.19341707229614258)
+Text #20:  really (0.33119696378707886)
+Text #20: <|endoftext|> (0.17682036757469177)
+
+=== Text #1 ===
+> [One] hour of video chat time with time and date[ discussed in] email.
+Stable internet connection is required and[ I] am[ not responsible] for any connection issues you may have[.] Any data usage fees you incur are your[ responsibility], so please[ verify] your data costs[ with] your provider[.]
+Video Session[ may not be] recorded but[ you may] take handwritten notes[.]
+
+=== Text #2 ===
+> [P]entru propun[eri]/[col]aborari/ proiect[e] imi put[eti] scrie pe adresa: ad[ina].[necul]a@gmail.[com] .
+[Hey Buddy!, I] found this[ information for] you[:] "[Contact]". Here[ is the website link: https://]www.adinanecula.ro/contact. Thank you.[]
+
+=== Text #3 ===
+> [P]entru propun[eri]/[col]aborari/ proiect[e] imi put[eti] scrie pe adresa: ad[ina].[necul]a@gmail.[com] .
+[Hey Buddy!, I] found this[ information for] you[:] "[Contact]". Here[ is the website link: https://]www.adinanecula.ro/contact. Thank you.[]
+
+=== Text #4 ===
+> Oh.... and most important: a gasoline powered blender for margaritas on the trail!
+Oh...thats good data DavidK[.] Got a store that sells that?[
+]What control freaks there are here[.] Don\'[t believe] that post[ you just read!
+Some] type of[ shade outside] of the vehicle-[It] can get too hot in a vehicle even with all the windows open. The large beach umbrellas at Costco are convenient but need a[ towel draped on] them if you want 100% shade. I like Easy Ups.
+No gas powered or hand cranked blenders needed these days,[ David. Bring] the one from home and use the inverter.
+You[ dont] drink your margaritas en las rocas?
+Some type of traction[ mat]-some people bring a roll of old[ carpet], others a 6 foot piece of 2x8. Just something to get you moving[ if] you are stuck a short ways into some sand[.]
+If you are stuck a long ways into sand, shame on you.
+Visa[ card....]"Hey," my wife says, "it's[ not] the old Baja anymore! What's that in the distant haze?"
+Or use a browser that keeps you logged in[.
+\"]Never argue[ with] an idiot. People watching may not be able to tell the difference\"
+\"The trouble with doing nothing is - how do I know when I\'m done?\"
+A calculator, and sm.[ grill] for[ heating] tortillas over campfire and[ making] hotdogs & hamburgers[.]
+Pompano - browser is the program you use to read the forums - Internet explorer or as I use Firefox. There are a few others out there also. Mine has the option "Keep me logged in until I log out" I checked that a couple months ago and am still logged in.
+I would[ never remember] to do it each time.
+Good luck[ -] has several thinks I like - tabs - etc[.] A latest version came out yesterday. They update lake all the others.
+Oh Ya! Need that Blend-O- Matic Folks[!] But.... for your added primitive camping experience,[ be sure to bring] the outdoor[ furniture!] Can you[ guess] which travel chair belongs to DavidK?[
+]Is it the Lay Z Boy?
+Can I[ tell] Baja stories from the campfire[?]
+what about that Port O Let in the background?
+Well of course it's the LazyBoy--even I knew that!
+On a car key outside the vehicle - zip-[tie] it
+
+=== Text #5 ===
+> [©] 2017 Barracuda Boat & RV Storage. All Rights Reserved.[ Website] created[ by] Electric Playground. Powered by Akiba.[]
+
+=== Text #6 ===
+> [P]ensive CD - Deirdre Faith - Wishlist.
+I love the band Pensive...this is their merch buying center. I like their CD's though.[]
+
+=== Text #7 ===
+> [GB]-Telford: Installation services of fitness equipment.
+Title: GB-Telford: Installation services of fitness equipment.
+51121000 - Installation services of fitness equipment.[]
+
+=== Text #8 ===
+> [,] we all picks the best choices together with best image resolution exclusively for you, and this photographs is usually one among photos collections in your best graphics gallery in relation to Mechanic Resume. I’m hoping you may as it.
+[posted] through keepupdated in 2018-07-09 12:37:45. To determine all photographs inside Mechanic Resume pictures gallery[ remember to abide by this kind of website] link[.]
+[Always remembers to follow] the next photo gallery[,] which also includes the Mechanic Res[ume] With Vet Tech Res[ume] Unique Mechanic Res[ume Template Inspir]ational picture showed[ above. If you] have any thoughts, questions or just want to say hello[ to other people],[ please] do[ not] hest[itate to] submit your opinion/ideas via the following[ comment] form[.]
+
+=== Text #9 ===
+> [The] Alliance de l’industrie touristique du Québec works closely with the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments? Requests? We will be happy to answer you!
+You can also[ check the] Team[ page to contact] a specific person.[]
+
+=== Text #10 ===
+> [The] Alliance de l’industrie touristique du Québec works closely with the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments? Requests? We will be happy to answer you!
+You can also[ check the] Team[ page to contact] a specific person.[]
+
+=== Text #11 ===
+> [SC]U Middletown makes it easy for you to get a quote[ online].[ Find] the quote you're interested in, and click the link to get started. It['s] that[ easy]![][][][]
+
+=== Text #12 ===
+> [V]ellamo is led by the performing and songwriting team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning concert will be in our chapel. Their music features ethereal Finnish folk with … read more.[]
+
+=== Text #13 ===
+> [It]'s Quick. It's Easy. It's Free! Are You an Columbia Contractor?[][]
+
+=== Text #14 ===
+> [A] fairly cold last half of January meant that I went through quite a bit of wood. Just to be safe, I had some replenishment delivered. I wonder will this satisfy the valentine desires for warmth and ambiance ?[]
+
+=== Text #15 ===
+> [Gr]acefruit.[com] - Making So[ap], Living Well: Catching Up!
+We've been busy at Gracefruit these past few weeks as our customers prepare for their Christmas rush. Rob the guru has found time to set up a lovely Facebook page for us.
+Please have[ a] look[ if] you get a[ moment!]
+
+=== Text #16 ===
+> [Meet] the fighters[ post] event to see who take homes fight of the night bonuses.
+Special drink discounts starting at just 100baht, free entry, and FMD style good[ times].
+[Chat with] the Ring Girls,[ chill by] the[ pool],[ lounge] on the astroturfed roof top and enjoy[ a] classic mix of[ music] from all genres.[]
+
+=== Text #17 ===
+> [The] fruit coasters are ornament and very colorful. They are great for cocktail parties.
+Dimensions: 4.25" x 3.8" x 3.65"[][][]
+
+=== Text #18 ===
+> [Original] spare cable for the use with PolarFIS devices and old PolarBT BlueTooth PB01.[ You] can[ order it] in the case your original cable be damaged. This[ cable] already comes with your device when you place one order (already included in the[ price]), so only is necessary for replacing original cable.[]
+
+=== Text #19 ===
+> [Not]aries in Bridgeton, MO are listed below.[ Use the filters to search] for specific criteria.
+I am a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified notary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[][][][]
+
+=== Text #20 ===
+> [I] did a bit of work on andinfinity.de in regards to style and function. Also rss now works!
+There’s now an rss feed. I[ also] did a lot of work on the stylesheet. I hope the readability has increased and most of the bugs are gone. There’s a bit more in the pipeline, but first I’d like[ to] work on my habit on writing[ posts] more[ regular]. The work- in-[progress folder] is bursting, but[ nothing]’s[ really] finished.[]
+
+
+Description: 
+2025-05-10 23:28:14,344 - root - INFO - Website or online platform functionality
+
+2025-05-10 23:28:14,347 - root - INFO - Cluster #1 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.csv
+2025-05-10 23:28:15,281 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-10 23:28:15,282 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: Ok (0.19684697687625885)
+Text #1:  now (0.4845348596572876)
+Text #1:  Oh (0.3693682849407196)
+Text #1: 's (0.6707216501235962)
+Text #1:  much (0.5076844692230225)
+Text #1: , (0.21565350890159607)
+Text #1:  a (0.2826431393623352)
+Text #1:  make (0.3954943120479584)
+Text #1:  comments (0.30036672949790955)
+Text #2: . (1.0148553848266602)
+Text #2: 
+ (0.9512777328491211)
+Text #2: . (1.8545936346054077)
+Text #2: t (1.4003713130950928)
+Text #2:  you (0.8609613180160522)
+Text #2:  shade (0.7173047661781311)
+Text #2: It (1.0270380973815918)
+Text #2:  towel (0.9892857670783997)
+Text #2:  David (1.4113659858703613)
+Text #2:  dont (0.7409858107566833)
+Text #2:  mat (1.1518634557724)
+Text #2:  carpet (0.767646074295044)
+Text #2:  if (1.0996571779251099)
+Text #2: . (1.3521356582641602)
+Text #2:  card (1.1301209926605225)
+Text #2:  not (0.7373160123825073)
+Text #2: . (0.8802961707115173)
+Text #2:  with (0.7799524068832397)
+Text #2:  grill (1.1675446033477783)
+Text #2:  heating (1.0996503829956055)
+Text #2:  making (1.0486421585083008)
+Text #2: . (1.6644686460494995)
+Text #2:  never (1.9358398914337158)
+Text #2:  - (1.613328456878662)
+Text #2: . (1.0268889665603638)
+Text #2: ! (1.0499608516693115)
+Text #2:  be (0.9776106476783752)
+Text #2:  furniture (1.7741594314575195)
+Text #2:  guess (1.163316011428833)
+Text #2: 
+ (0.7157081365585327)
+Text #2:  tell (1.4145212173461914)
+Text #2: ? (0.7284117341041565)
+Text #2: tie (1.4920190572738647)
+Text #3: M (0.19409160315990448)
+Text #3: <|endoftext|> (0.16832536458969116)
+Text #4: A (0.19047591090202332)
+Text #4:  will (0.6517047882080078)
+Text #4: , (0.26095718145370483)
+Text #4:  interpreter (0.42788487672805786)
+Text #4:  please (0.1757778376340866)
+Text #4: abor (0.3441380560398102)
+Text #4:  documents (1.633206844329834)
+Text #4:  formats (0.18974092602729797)
+Text #4:  Please (0.35687026381492615)
+Text #4: abor (0.5007861852645874)
+Text #4:  call (0.7641008496284485)
+Text #4: 76 (0.3146086037158966)
+Text #4: 00 (0.3682786524295807)
+Text #4:  type (0.2793142795562744)
+Text #4:  format (0.1652485579252243)
+Text #4:  needed (0.17078807950019836)
+Text #5: J (0.183961421251297)
+Text #5:  Lol (0.4195033311843872)
+Text #5: <|endoftext|> (0.14849743247032166)
+Text #6: GB (0.18800370395183563)
+Text #6: <|endoftext|> (0.16836093366146088)
+Text #7: This (0.19658832252025604)
+Text #7:  page (0.5041252374649048)
+Text #7:  site (0.255626916885376)
+Text #7:  suggest (0.4572613835334778)
+Text #7:  tools (0.6234402656555176)
+Text #7: . (0.28369542956352234)
+Text #7:  are (0.502490222454071)
+Text #7:  page (0.299684077501297)
+Text #7: . (0.3126831650733948)
+Text #7:  are (0.18965132534503937)
+Text #7:  this (0.1604754626750946)
+Text #7:  free (0.5571781992912292)
+Text #7: <|endoftext|> (0.16579383611679077)
+Text #8: The (0.17912736535072327)
+Text #8:  check (1.4242849349975586)
+Text #8:  page (0.18361937999725342)
+Text #8: <|endoftext|> (0.15759535133838654)
+Text #9: A (0.19047591090202332)
+Text #9: . (0.2084193080663681)
+Text #9:  even (0.886431872844696)
+Text #9: ? (0.34540510177612305)
+Text #9:  tutorials (1.3138920068740845)
+Text #9: posts (0.8629488945007324)
+Text #9:  explain (1.5010077953338623)
+Text #9: ? (0.3618837893009186)
+Text #9: Try (0.4520750641822815)
+Text #9:  assuming (1.030192494392395)
+Text #9:  not (0.6094179153442383)
+Text #9: 
+ (0.2645445168018341)
+Text #9:  Be (0.6008340716362)
+Text #9:  name (0.2561417818069458)
+Text #9: 3 (0.7204330563545227)
+Text #9: ) (0.6044909358024597)
+Text #9:  be (0.42105013132095337)
+Text #9:  so (0.28057003021240234)
+Text #9:  clue (1.2432993650436401)
+Text #9: <|endoftext|> (0.16853320598602295)
+Text #10: G (0.19536104798316956)
+Text #10: e (0.15847700834274292)
+Text #10: en (0.2049281895160675)
+Text #10:  any (0.2876465320587158)
+Text #10:  cu (0.2785983383655548)
+Text #10: oc (0.3047421872615814)
+Text #10: <|endoftext|> (0.1666964590549469)
+Text #11: Enjoy (0.19625109434127808)
+Text #11: <|endoftext|> (0.12045581638813019)
+Text #12: Best (0.17822036147117615)
+Text #12:  decor (0.30523961782455444)
+Text #12: interest (0.6597880721092224)
+Text #12: , (0.5162277817726135)
+Text #12:  ideas (0.7558629512786865)
+Text #12:  decor (0.8355531096458435)
+Text #12:  ideas (0.18343335390090942)
+Text #12:  for (1.403537392616272)
+Text #12:  living (0.44798803329467773)
+Text #12:  decor (0.6048526167869568)
+Text #12:  ideas (0.4136696755886078)
+Text #13: ­ (0.19186511635780334)
+Text #13: . (0.21711701154708862)
+Text #13:  the (0.19721031188964844)
+Text #13:  mostly (0.25881174206733704)
+Text #13:  lines (0.6726731061935425)
+Text #13: Your (0.2135019302368164)
+Text #13:  is (0.2581714987754822)
+Text #13:  section (0.36347147822380066)
+Text #13:  on (0.28521737456321716)
+Text #13:  steps (0.558015763759613)
+Text #14: A (0.19047591090202332)
+Text #14: <|endoftext|> (0.14870712161064148)
+Text #15: Create (0.19418105483055115)
+Text #15:  with (0.2352089285850525)
+Text #15: <|endoftext|> (0.14217400550842285)
+Text #16: It (0.19083243608474731)
+Text #16:  tagged (0.36845216155052185)
+Text #16: <|endoftext|> (0.12567611038684845)
+Text #17: Present (0.18585333228111267)
+Text #17:  Prevention (0.5027643442153931)
+Text #17:  informative (0.29856401681900024)
+Text #17:  an (0.32798728346824646)
+Text #17:  discuss (0.30641308426856995)
+Text #17:  session (0.8548014760017395)
+Text #17:  Light (0.4425444006919861)
+Text #17: <|endoftext|> (0.14924567937850952)
+Text #18: View (0.18711243569850922)
+Text #18:  � (0.28262242674827576)
+Text #18:  discover (0.892951488494873)
+Text #18: ? (0.49022728204727173)
+Text #18: s (0.258340448141098)
+Text #18:  easy (1.0025503635406494)
+Text #18: , (0.7739080786705017)
+Text #18:  check (0.3066112995147705)
+Text #18: out (0.7982113361358643)
+Text #18: <|endoftext|> (0.16062778234481812)
+Text #19: The (0.17912736535072327)
+Text #19: Discover (0.5801529884338379)
+Text #19:  guide (0.7635615468025208)
+Text #19: . (0.16084882616996765)
+Text #19: Discover (0.9040706157684326)
+Text #19: Discover (0.8129787445068359)
+Text #19: Discover (0.8683996200561523)
+Text #19: <|endoftext|> (0.13507479429244995)
+Text #20: View (0.18711243569850922)
+Text #20:  now (0.34884756803512573)
+Text #20:  with (0.17690108716487885)
+Text #20:  to (0.2342708259820938)
+Text #20: com (0.28279271721839905)
+Text #20: <|endoftext|> (0.1356721818447113)
+Text #20: <|endoftext|> (0.13174788653850555)
+Text #20: <|endoftext|> (0.13180668652057648)
+Text #20: <|endoftext|> (0.13175006210803986)
+Text #20: <|endoftext|> (0.13178613781929016)
+
+=== Text #1 ===
+> [Ok],[ now].[ Ohhh...] There['s] whole new world to discover... Thank you VERY[ much]!
+Comments later[, I've] got[ a] few ideas but I feel too tired to[ make] halfway good[ comments.]
+
+=== Text #2 ===
+> Oh.... and most important: a gasoline powered blender for margaritas on the trail!
+Oh...thats good data DavidK[.] Got a store that sells that?[
+]What control freaks there are here[.] Don\'[t believe] that post[ you just read!
+Some] type of[ shade outside] of the vehicle-[It] can get too hot in a vehicle even with all the windows open. The large beach umbrellas at Costco are convenient but need a[ towel draped on] them if you want 100% shade. I like Easy Ups.
+No gas powered or hand cranked blenders needed these days,[ David. Bring] the one from home and use the inverter.
+You[ dont] drink your margaritas en las rocas?
+Some type of traction[ mat]-some people bring a roll of old[ carpet], others a 6 foot piece of 2x8. Just something to get you moving[ if] you are stuck a short ways into some sand[.]
+If you are stuck a long ways into sand, shame on you.
+Visa[ card....]"Hey," my wife says, "it's[ not] the old Baja anymore! What's that in the distant haze?"
+Or use a browser that keeps you logged in[.
+\"]Never argue[ with] an idiot. People watching may not be able to tell the difference\"
+\"The trouble with doing nothing is - how do I know when I\'m done?\"
+A calculator, and sm.[ grill] for[ heating] tortillas over campfire and[ making] hotdogs & hamburgers[.]
+Pompano - browser is the program you use to read the forums - Internet explorer or as I use Firefox. There are a few others out there also. Mine has the option "Keep me logged in until I log out" I checked that a couple months ago and am still logged in.
+I would[ never remember] to do it each time.
+Good luck[ -] has several thinks I like - tabs - etc[.] A latest version came out yesterday. They update lake all the others.
+Oh Ya! Need that Blend-O- Matic Folks[!] But.... for your added primitive camping experience,[ be sure to bring] the outdoor[ furniture!] Can you[ guess] which travel chair belongs to DavidK?[
+]Is it the Lay Z Boy?
+Can I[ tell] Baja stories from the campfire[?]
+what about that Port O Let in the background?
+Well of course it's the LazyBoy--even I knew that!
+On a car key outside the vehicle - zip-[tie] it
+
+=== Text #3 ===
+> [M]ondal, K.C.; Kostakis, G.E.; Lan, Y.; Powell, A.K.[]
+
+=== Text #4 ===
+> [A] copy of the agenda[ will be available] 72 hours before a meeting. If you need a reader[, amplifier], qualified sign language[ interpreter], or any other form of auxiliary aid or service to attend or participate in the meeting,[ please contact] Jane T[abor at least] 48 hours prior to the hearing. Public[ documents can be] provided in various accessible[ formats].[ Please email jane].t[abor]@state.nm.us or[ call (505)] 4[76]-34[00 if] a summary or other[ type] of[ format] is[ needed.]
+
+=== Text #5 ===
+> [J] Brand can do no wrong! They always have such beautiful pieces that belong in every women closet. I just wished my wallet agreed with me 😋[ Lol]![]
+
+=== Text #6 ===
+> [GB]-Telford: Installation services of fitness equipment.
+Title: GB-Telford: Installation services of fitness equipment.
+51121000 - Installation services of fitness equipment.[]
+
+=== Text #7 ===
+> [This] is a placeholder[ page] for Donald Sawyer, which means this person is not currently on this[ site]. We do[ suggest using] the[ tools below to find] Donald Sawyer[.]
+You[ are visiting the] placeholder[ page for] Donald Sawyer[.] This page is here because someone used our placeholder utility to look for Donald Sawyer. We created this page automatically in hopes Donald Sawyer would find it. If you[ are not] Donald Sawyer, but are an alumni of Itasca High School, register on[ this site] for[ free now].[]
+
+=== Text #8 ===
+> [The] Alliance de l’industrie touristique du Québec works closely with the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments? Requests? We will be happy to answer you!
+You can also[ check the] Team[ page to contact] a specific person.[]
+
+=== Text #9 ===
+> [A] friend and i are trying to share music between each others computer, and we cannot figure out how to import the .song file into stagelight after he sends me the file[.] is this[ even possible] as of right now[?] and if so, are there any[ tutorials]/[posts] that[ explain how to do] it[?]
+[Try this. I] am[ assuming you are] on Windows and[ not] the Android version.[
+2)] Create a new folder.[ Be sure] the[ name] of the folder matches EXACTLY with the .song file name.
+[3)] Place the .song file in this folder.
+4[) You should] now[ be] able to open this song folder.
+Thank you[ so much,] i had no[ clue] the file had to be exactly the same name as the folder for it to work.[]
+
+=== Text #10 ===
+> [G]ew[e]ldige plek in e[en] geweldige locatie!
+Are there[ any] golf courses near by? And what are they called?
+Cuanto[ cu]est una habitacion doble por dos n[oc]hes?[]
+
+=== Text #11 ===
+> [Enjoy] your family. Enjoy your friends.
+Make lots of special memories.[]
+
+=== Text #12 ===
+> [Best] 10 book shelf[ decorating] ideas ideas on p[interest, unique] bathroom shelves[,] unique wall shelves[ ideas] unique. 43 very inspiring and creative bookshelf[ decorating ideas]. Home[ ideas] built in billy ikea bookcases personable.
+Tips[ for organizing] your bookshelf,[ living] room bookshelf[ decorating ideas] talentneedscom. Rectangle white wooden bookshelf featuring sliding glass. 12 amazing bookcase wall units digital photograph[ ideas.]
+
+=== Text #13 ===
+> [­]Step 4: Use diagonal lines to lightly shade the bottoms of the rocks[.] Shade[ the] stalks of two of the cacti with vertical and[ mostly] diagonal[ lines].
+[Your] landscape drawing[ is] finished! Even if you don't get it right the first time, keep practicing until you're happy with your drawing. ­Sand, sun, and fun await you in the Tropical Beach Scene in our next[ section]. Surf[ on over to learn how to] draw this landscape in just five[ steps.]
+
+=== Text #14 ===
+> [A] fairly cold last half of January meant that I went through quite a bit of wood. Just to be safe, I had some replenishment delivered. I wonder will this satisfy the valentine desires for warmth and ambiance ?[]
+
+=== Text #15 ===
+> [Create] a solid foundation for your outfit[ with] the Building Blocks Oval Gold Earrings! A texture gold metal oval shape. Earrings measure 1.5" long.
+Long Hoop at the back.[]
+
+=== Text #16 ===
+> [It]'s the food. And it's more than the food.
+Home > Posts[ tagged] "Blasey Kavanaugh hearing"
+Every board of directors has one….[]
+
+=== Text #17 ===
+> [Present]ed by Workplace Safety and[ Prevention] Services (WSPS), this relevant and[ informative session] will provide[ an overview of] the new cannabis legislation. Employers will gain a better understanding of the implications and risks involved with the new regulations and will[ discuss] next steps to consider as they navigate the changes. This[ session] is being held in partnership with the Skills@Work program at Georgian College Career & Employment Community Services.[ Light refreshments will be provided].[]
+
+=== Text #18 ===
+> [View] Cart[ �]�iPhone Diagnostic Service“ has been added to your cart.
+Drop your iPhone 5 only to[ discover] the front glass had cracked or shattered? Don’t worry, we promise you’re not alone. Join the many happy customers who have purchased our newest and most popular repair, and had their iPhone back in as little as two days as good as new! Ready to get started[?] It’[s] as[ easy as] adding the service to your cart[, completing] our[ check]-[out process], and shipping your phone to our mail-in repair location.[]
+
+=== Text #19 ===
+> [The] perfect 3 step strategy that turns losing FB campaigns into high quality leads… and convert leads into high paying customers.
+[Discover] the complete[ guide to] dominate FB marketing[.]
+[Discover how to] leverage video and get more eyeballs to your offer.
+[Discover how] FB will do all the work for you saving you time and money.
+[Discover] how to skyrocket your ROI on every Facebook ads campaign.[]
+
+=== Text #20 ===
+> [View] alumni that have participated in Mendota High School Basketball. If you participated in Basketball while at Mendota HS, register[ now] and add your name to the list[ with] a message[ to] your old friends.
+Looking for Mendota alumni who participated in Basketball but are not listed? Classmates.[com]® has hundreds of more Mendota alumni listed.[][][][][]
+
+
+Description: 
+2025-05-10 23:28:15,284 - root - INFO - Expressions of opinions, advice, or instructions
+
+2025-05-10 23:28:15,289 - root - INFO - Cluster #2 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.csv
+2025-05-10 23:28:16,096 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-10 23:28:16,097 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: One (0.1819564551115036)
+Text #1:  discussed (0.6718041896820068)
+Text #1:  I (0.3704516589641571)
+Text #1:  not (0.8861874341964722)
+Text #1: . (0.47511398792266846)
+Text #1:  responsibility (0.7268787026405334)
+Text #1:  verify (1.3390018939971924)
+Text #1:  with (1.5903984308242798)
+Text #1: . (0.21561071276664734)
+Text #1:  may (0.41417694091796875)
+Text #1:  you (0.19273284077644348)
+Text #1: . (0.8974703550338745)
+Text #2: Transform (0.21097829937934875)
+Text #2:  tutorial (1.2568004131317139)
+Text #2:  sewing (0.38091349601745605)
+Text #2:  all (0.317045658826828)
+Text #2:  fabric (0.8034892082214355)
+Text #2:  tape (0.5168435573577881)
+Text #2:  a (0.29471513628959656)
+Text #2: . (0.5422694087028503)
+Text #2: Check (0.7229998111724854)
+Text #2: ing (0.6511792540550232)
+Text #2: <|endoftext|> (0.1547272503376007)
+Text #3: After (0.18622393906116486)
+Text #3:  please (0.24924980103969574)
+Text #3:  to (0.27980291843414307)
+Text #3:  Report (0.31035614013671875)
+Text #3:  not (0.4416939914226532)
+Text #3:  response (0.2800873816013336)
+Text #3:  please (0.21323440968990326)
+Text #3: <|endoftext|> (0.18995270133018494)
+Text #4: A (0.19047591090202332)
+Text #4:  fun (0.16309142112731934)
+Text #4:  pouch (0.2582586407661438)
+Text #4:  video (0.29241296648979187)
+Text #4:  creative (0.2538623809814453)
+Text #4: <|endoftext|> (0.1668214350938797)
+Text #5: Who (0.18445931375026703)
+Text #5: <|endoftext|> (0.14959567785263062)
+Text #6: In (0.18196484446525574)
+Text #6:  you (0.31271567940711975)
+Text #6:  check (0.30798429250717163)
+Text #6:  interview (0.19283299148082733)
+Text #6:  live (0.21576108038425446)
+Text #6: ! (1.0538982152938843)
+Text #6:  to (0.31299111247062683)
+Text #6:  NPR (0.2092580646276474)
+Text #6:  rarely (0.5881537199020386)
+Text #6:  website (0.7223559617996216)
+Text #6: , (0.31984564661979675)
+Text #6:  posted (0.4812425673007965)
+Text #7: It (0.19083243608474731)
+Text #7: 't (0.25951287150382996)
+Text #7: fiction (0.17052805423736572)
+Text #7:  find (0.5392326712608337)
+Text #7: mn (0.34398388862609863)
+Text #7:  about (0.4897858500480652)
+Text #7:  entry (1.3252522945404053)
+Text #7: . (0.23018014430999756)
+Text #7:  page (0.43229132890701294)
+Text #7:  Apr (0.1885553002357483)
+Text #7:  am (0.307406485080719)
+Text #7: <|endoftext|> (0.17557144165039062)
+Text #8: Ex (0.18551121652126312)
+Text #8:  Page (0.49161654710769653)
+Text #8:  coloring (0.45933079719543457)
+Text #8:  coloring (0.3150336742401123)
+Text #8: <|endoftext|> (0.1611405909061432)
+Text #9: J (0.183961421251297)
+Text #9:  Lol (0.4195033311843872)
+Text #9: <|endoftext|> (0.14849743247032166)
+Text #10: Here (0.1987857073545456)
+Text #10:  information (0.5642436742782593)
+Text #10:  include (0.28977763652801514)
+Text #10:  scroll (0.4543955624103546)
+Text #10:  information (0.7231903672218323)
+Text #10:  on (0.16428788006305695)
+Text #10: <|endoftext|> (0.1642390340566635)
+Text #11: For (0.19377483427524567)
+Text #11:  tips (0.5647668838500977)
+Text #11:  click (0.5659009218215942)
+Text #11: ! (0.36101052165031433)
+Text #11: … (0.5947527289390564)
+Text #11: <|endoftext|> (0.14521124958992004)
+Text #12: If (0.20864088833332062)
+Text #12:  us (0.4836643934249878)
+Text #12:  email (0.523413896560669)
+Text #12:  please (0.5867749452590942)
+Text #12:  form (0.17333035171031952)
+Text #12:  to (0.22100816667079926)
+Text #12: <|endoftext|> (0.17599277198314667)
+Text #13: R (0.18860381841659546)
+Text #13:  a (0.20272716879844666)
+Text #13:  album (0.35781368613243103)
+Text #13: . (0.22360937297344208)
+Text #13:  image (0.30714356899261475)
+Text #13:  finally (0.5198644399642944)
+Text #13:  you (0.8313765525817871)
+Text #13:  scroll (0.2120169997215271)
+Text #13:  reveal (0.7312467694282532)
+Text #13: <|endoftext|> (0.18536615371704102)
+Text #13: <|endoftext|> (0.17050611972808838)
+Text #14: G (0.19536104798316956)
+Text #14: e (0.15847700834274292)
+Text #14: en (0.2049281895160675)
+Text #14:  any (0.2876465320587158)
+Text #14:  cu (0.2785983383655548)
+Text #14: oc (0.3047421872615814)
+Text #14: <|endoftext|> (0.1666964590549469)
+Text #15: Head (0.17847947776317596)
+Text #15:  touch (0.41033270955085754)
+Text #15:  discuss (0.27902331948280334)
+Text #15:  discuss (0.24696531891822815)
+Text #15:  we (0.2405371069908142)
+Text #15:  well (0.2997717559337616)
+Text #15:  in (0.22380661964416504)
+Text #15:  website (1.2997899055480957)
+Text #15: <|endoftext|> (0.1932990401983261)
+Text #16: Tech (0.20212678611278534)
+Text #16: <|endoftext|> (0.13684198260307312)
+Text #17: Tech (0.20212678611278534)
+Text #17: <|endoftext|> (0.13684198260307312)
+Text #18: New (0.18105773627758026)
+Text #18:  let (0.25960835814476013)
+Text #18:  information (0.45119237899780273)
+Text #18: 
+ (0.4435039162635803)
+Text #18:  posters (0.9729803204536438)
+Text #18:  cards (1.0175644159317017)
+Text #18: <|endoftext|> (0.15771852433681488)
+Text #18: <|endoftext|> (0.148558109998703)
+Text #18: <|endoftext|> (0.14860276877880096)
+Text #19: It (0.19083243608474731)
+Text #19: <|endoftext|> (0.12182491272687912)
+Text #19: <|endoftext|> (0.12198293209075928)
+Text #20: It (0.19083243608474731)
+Text #20: <|endoftext|> (0.12182491272687912)
+Text #20: <|endoftext|> (0.12198293209075928)
+
+=== Text #1 ===
+> [One] hour of video chat time with time and date[ discussed in] email.
+Stable internet connection is required and[ I] am[ not responsible] for any connection issues you may have[.] Any data usage fees you incur are your[ responsibility], so please[ verify] your data costs[ with] your provider[.]
+Video Session[ may not be] recorded but[ you may] take handwritten notes[.]
+
+=== Text #2 ===
+> [Transform] a plain window blind into a chic work of art with this handy[ tutorial from] All Parenting.
+There’s no[ sewing involved] at[ all. You just] need some pretty[ fabric], some fusible hem[ tape, fabric glue, old] blinds, and[ a] can-do attitude[.]
+[Check out this great tutorial] over at All Parent[ing.][]
+
+=== Text #3 ===
+> [After] I restart MCS and load a saved Session all trigger configuration has been lost. Is this normal?
+No,[ please report within] the bug report forum.
+I reported this a few weeks ago[ to] the Bugs[ Report thread] and have[ not] gotten a[ response]. Could you[ please look into] this?[]
+
+=== Text #4 ===
+> [A] set of 12 fanciful and[ fun] Shawl Pins. Each Shawl Pin comes with an organdy gift[ pouch]. Direct your customers to our[ video,] which features[ creative ways to use] the Shaune Bazner Shawl Pin![]
+
+=== Text #5 ===
+> [Who]a!! The Take care Pharmacy Mobile application is available in App stores now. This app brings the pharmacy to your mobile device.[]
+
+=== Text #6 ===
+> [In] case[ you] don't[ check NPR on a regular basis], they posted an[ interview] +[ live] performance from The Weepies on World Cafe.
+Obviously this is for anyone, but Katrina's love affair is well documented.
+Cool[! I] subscribe[ to] a few[ NPR podcasts], but[ rarely check] their[ website.] Thanks[, I] would have missed this if you hadn't[ posted!]
+
+=== Text #7 ===
+> [It] sounds nice doesn['t] it? I read it in a fan[fiction] and tried to[ find out] where it was from but failed. I didn't want to lose the quote either so here it is! M[mn, there's so much] I want to write[ about] but I don't feel like writing about anything. I guess this[ entry shall just be a] quote[.]
+This[ page] was loaded[ Apr] 20th 2019, 12:20[ am] GMT.[]
+
+=== Text #8 ===
+> [Ex]quisite Unicorn Coloring Pages Best Choice Of For Kids Pages Free Unicorns[ Page] Delivered | Necrocomiccon unicorn coloring pages color by number. dabbing unicorn[ coloring pages]. cute unicorn[ coloring pages book].[]
+
+=== Text #9 ===
+> [J] Brand can do no wrong! They always have such beautiful pieces that belong in every women closet. I just wished my wallet agreed with me 😋[ Lol]![]
+
+=== Text #10 ===
+> [Here] is all the[ information you need about] "My Daddy is in Heaven" on American Netflix. Details[ include] the date it was added to Netflix in the USA, any known expiry dates and new episodes/seasons, the ratings and cast etc. So[ scroll down] for more[ information or share] the link[ on social media to let] your friends know what you're watching.[]
+
+=== Text #11 ===
+> [For] our top[ tips for] making the most of a visit to Angkor Wat,[ click here].
+Excellent[! Looks like] great fun[…] better than China?[]
+
+=== Text #12 ===
+> [If] you would like to reach[ us] via[ email],[ please use] the[ form below.]
+We are all volunteer activists - just like you, but promise[ to] get back to you as soon as possible!
+How Do You Want To Be A Part of D3?
+Thank you for joining our efforts - we look forward to collaborating with you!
+Our capacity to act depends on you! Please consider making a financial contribution to sustain our efforts.[]
+
+=== Text #13 ===
+> [R]ent the Centre. Celebrations, Parties or just for fun.
+In order to provide a flavour of the Grenville House experience set out below are[ a collection] of images showing the range of activities and other aspects of a visit to the Centre.
+To open an[ album click on the] chosen category image[. Click] on any[ image] to enlarge it and[ finally to] enable[ you] to[ scroll through] the selected album float the cursor over the end of the image to[ reveal] the direction arrow.[][]
+
+=== Text #14 ===
+> [G]ew[e]ldige plek in e[en] geweldige locatie!
+Are there[ any] golf courses near by? And what are they called?
+Cuanto[ cu]est una habitacion doble por dos n[oc]hes?[]
+
+=== Text #15 ===
+> [Head]boards come with matching pipping and buttoning as standard. We can also work with a customer’s own fabric so get in[ touch through] our bespoke option if you’d like to[ discuss] this.
+Bespoke: We work closely with local joiners to produce our headboards frames so we are more than happy to[ discuss] bespoke commissions,[ we can] help to design headboard shapes or advice on colour combinations as[ well] as working to your own specific dimensions. Feel free to get[ in touch through] the bespoke section of our[ website].[]
+
+=== Text #16 ===
+> [Tech] enthusiast. Graphic designer. Aspiring polymath. Operator of a sparkling mind.
+12: Straight-Up "Silence of the Lambs"[]
+
+=== Text #17 ===
+> [Tech] enthusiast. Graphic designer. Aspiring polymath. Operator of a sparkling mind.
+12: Straight-Up "Silence of the Lambs"[]
+
+=== Text #18 ===
+> [New] materials pictured below are coming soon! We still have current materials on hand, so[ let] us know what you need.
+Two-sided[ information card.] 2" x 3.5"[
+]Agora can provide you with[ posters, brochures] and[ cards] to give out to your friends, family, neighbors, clients, students...or anyone else you can think of![][][]
+
+=== Text #19 ===
+> [It]'s Quick. It's Easy. It's Free! Are You an Columbia Contractor?[][]
+
+=== Text #20 ===
+> [It]'s Quick. It's Easy. It's Free! Are You an Columbia Contractor?[][]
+
+
+Description: 
+2025-05-10 23:28:16,098 - root - INFO - Website or online platform functionality
+
+2025-05-10 23:28:16,102 - root - INFO - Cluster #3 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.csv
+2025-05-10 23:28:17,117 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-10 23:28:17,118 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: Ok (0.19684697687625885)
+Text #1:  now (0.4845348596572876)
+Text #1:  Oh (0.3693682849407196)
+Text #1: 's (0.6707216501235962)
+Text #1:  much (0.5076844692230225)
+Text #1: , (0.21565350890159607)
+Text #1:  a (0.2826431393623352)
+Text #1:  make (0.3954943120479584)
+Text #1:  comments (0.30036672949790955)
+Text #2: M (0.19409160315990448)
+Text #2: <|endoftext|> (0.16832536458969116)
+Text #3: Say (0.2014334350824356)
+Text #3: LY (0.3569008708000183)
+Text #3:  Charm (0.5541961193084717)
+Text #3: <|endoftext|> (0.16006065905094147)
+Text #4: , (0.19671128690242767)
+Text #4: posted (0.3184787929058075)
+Text #4:  remember (1.5777796506881714)
+Text #4: . (0.6725853085517883)
+Text #4: Always (1.7109355926513672)
+Text #4: , (0.33252468705177307)
+Text #4: ume (0.3189353346824646)
+Text #4: ume (0.5075193643569946)
+Text #4: ume (0.26814398169517517)
+Text #4:  above (1.1905772686004639)
+Text #4:  to (1.3747235536575317)
+Text #4:  please (0.41128048300743103)
+Text #4:  not (0.7828601002693176)
+Text #4: itate (0.2186681032180786)
+Text #4:  comment (0.2273683249950409)
+Text #4: . (0.4630811810493469)
+Text #5: The (0.17912736535072327)
+Text #5:  check (1.4242849349975586)
+Text #5:  page (0.18361937999725342)
+Text #5: <|endoftext|> (0.15759535133838654)
+Text #6: A (0.19047591090202332)
+Text #6: . (0.2084193080663681)
+Text #6:  even (0.886431872844696)
+Text #6: ? (0.34540510177612305)
+Text #6:  tutorials (1.3138920068740845)
+Text #6: posts (0.8629488945007324)
+Text #6:  explain (1.5010077953338623)
+Text #6: ? (0.3618837893009186)
+Text #6: Try (0.4520750641822815)
+Text #6:  assuming (1.030192494392395)
+Text #6:  not (0.6094179153442383)
+Text #6: 
+ (0.2645445168018341)
+Text #6:  Be (0.6008340716362)
+Text #6:  name (0.2561417818069458)
+Text #6: 3 (0.7204330563545227)
+Text #6: ) (0.6044909358024597)
+Text #6:  be (0.42105013132095337)
+Text #6:  so (0.28057003021240234)
+Text #6:  clue (1.2432993650436401)
+Text #6: <|endoftext|> (0.16853320598602295)
+Text #7: SC (0.1914622187614441)
+Text #7:  online (0.9776647090911865)
+Text #7:  Find (0.36995628476142883)
+Text #7: 's (0.13860759139060974)
+Text #7:  easy (0.34643450379371643)
+Text #7: <|endoftext|> (0.1399066001176834)
+Text #7: <|endoftext|> (0.1345975548028946)
+Text #7: <|endoftext|> (0.13461649417877197)
+Text #7: <|endoftext|> (0.1345321238040924)
+Text #8: This (0.19658832252025604)
+Text #8:  tutorial (1.1773226261138916)
+Text #8:  point (0.34010210633277893)
+Text #8:  you (0.26100027561187744)
+Text #8:  again (0.33083492517471313)
+Text #8: ! (1.066707968711853)
+Text #8: , (0.2167474627494812)
+Text #8: ...) (0.5486536622047424)
+Text #8:  why (0.4102991819381714)
+Text #8: , (0.19013647735118866)
+Text #8: . (1.5238057374954224)
+Text #8:  Leap (0.7104386687278748)
+Text #8:  now (0.6602272987365723)
+Text #8:  about (0.21029576659202576)
+Text #8:  Learn (0.31060290336608887)
+Text #8: 
+ (0.26371562480926514)
+Text #8:  talk (0.8469897508621216)
+Text #8:  design (0.2917212247848511)
+Text #8:  book (1.007022738456726)
+Text #8:  into (0.925855278968811)
+Text #8: . (0.5337615013122559)
+Text #8:  with (0.6620898246765137)
+Text #8:  inheritance (0.6233530044555664)
+Text #8:  more (0.5312930941581726)
+Text #8: ay (0.3177836835384369)
+Text #8: <|endoftext|> (0.15698714554309845)
+Text #9: ­ (0.19186511635780334)
+Text #9: . (0.21711701154708862)
+Text #9:  the (0.19721031188964844)
+Text #9:  mostly (0.25881174206733704)
+Text #9:  lines (0.6726731061935425)
+Text #9: Your (0.2135019302368164)
+Text #9:  is (0.2581714987754822)
+Text #9:  section (0.36347147822380066)
+Text #9:  on (0.28521737456321716)
+Text #9:  steps (0.558015763759613)
+Text #10: A (0.19047591090202332)
+Text #10: <|endoftext|> (0.14870712161064148)
+Text #11: A (0.19047591090202332)
+Text #11: <|endoftext|> (0.14870712161064148)
+Text #12: Ren (0.1976999044418335)
+Text #12:  164 (0.308931440114975)
+Text #12: 11 (0.4274350106716156)
+Text #12:  manuals (0.2532181441783905)
+Text #12: <|endoftext|> (0.14543238282203674)
+Text #13: Jew (0.17768388986587524)
+Text #13: 16 (0.33572834730148315)
+Text #13: washing (0.21632462739944458)
+Text #13:  water (0.7033911347389221)
+Text #13:  crystal (0.2669656574726105)
+Text #13: estones (0.23244304955005646)
+Text #13:  clean (0.43190857768058777)
+Text #13:  to (0.17089420557022095)
+Text #13:  cloth (1.529033899307251)
+Text #13:  then (0.30468878149986267)
+Text #13:  cloth (1.970218539237976)
+Text #14: How (0.1912519633769989)
+Text #14:  to (0.39700937271118164)
+Text #14:  Sph (0.29068678617477417)
+Text #14: <|endoftext|> (0.16804684698581696)
+Text #14: <|endoftext|> (0.15818020701408386)
+Text #15: All (0.19006602466106415)
+Text #15: <|endoftext|> (0.14451125264167786)
+Text #15: <|endoftext|> (0.13611970841884613)
+Text #16: Em (0.19360773265361786)
+Text #16: <|endoftext|> (0.13692499697208405)
+Text #17: On (0.1807302087545395)
+Text #17:  simple (0.2929632067680359)
+Text #17:  clock (0.2243179976940155)
+Text #17:  look (0.45082250237464905)
+Text #17:  clock (0.1823226660490036)
+Text #17: <|endoftext|> (0.15642738342285156)
+Text #18: Your (0.18564337491989136)
+Text #18:  sure (0.7241355776786804)
+Text #18: <|endoftext|> (0.1624075025320053)
+Text #19: Access (0.19833198189735413)
+Text #19: pieces (0.16240908205509186)
+Text #19: apy (0.20175138115882874)
+Text #19: <|endoftext|> (0.15214970707893372)
+Text #19: <|endoftext|> (0.14299075305461884)
+Text #20: Bl (0.19263145327568054)
+Text #20: in (0.2937227487564087)
+Text #20: <|endoftext|> (0.14603745937347412)
+
+=== Text #1 ===
+> [Ok],[ now].[ Ohhh...] There['s] whole new world to discover... Thank you VERY[ much]!
+Comments later[, I've] got[ a] few ideas but I feel too tired to[ make] halfway good[ comments.]
+
+=== Text #2 ===
+> [M]ondal, K.C.; Kostakis, G.E.; Lan, Y.; Powell, A.K.[]
+
+=== Text #3 ===
+> [Say] I Love You with this delicate charm depicting a hand signing I[LY].[ Charm] measures approximately 1 High x 3/4 Wide. Chain measures 18 long. Secure clasp. Gold tone.[]
+
+=== Text #4 ===
+> [,] we all picks the best choices together with best image resolution exclusively for you, and this photographs is usually one among photos collections in your best graphics gallery in relation to Mechanic Resume. I’m hoping you may as it.
+[posted] through keepupdated in 2018-07-09 12:37:45. To determine all photographs inside Mechanic Resume pictures gallery[ remember to abide by this kind of website] link[.]
+[Always remembers to follow] the next photo gallery[,] which also includes the Mechanic Res[ume] With Vet Tech Res[ume] Unique Mechanic Res[ume Template Inspir]ational picture showed[ above. If you] have any thoughts, questions or just want to say hello[ to other people],[ please] do[ not] hest[itate to] submit your opinion/ideas via the following[ comment] form[.]
+
+=== Text #5 ===
+> [The] Alliance de l’industrie touristique du Québec works closely with the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments? Requests? We will be happy to answer you!
+You can also[ check the] Team[ page to contact] a specific person.[]
+
+=== Text #6 ===
+> [A] friend and i are trying to share music between each others computer, and we cannot figure out how to import the .song file into stagelight after he sends me the file[.] is this[ even possible] as of right now[?] and if so, are there any[ tutorials]/[posts] that[ explain how to do] it[?]
+[Try this. I] am[ assuming you are] on Windows and[ not] the Android version.[
+2)] Create a new folder.[ Be sure] the[ name] of the folder matches EXACTLY with the .song file name.
+[3)] Place the .song file in this folder.
+4[) You should] now[ be] able to open this song folder.
+Thank you[ so much,] i had no[ clue] the file had to be exactly the same name as the folder for it to work.[]
+
+=== Text #7 ===
+> [SC]U Middletown makes it easy for you to get a quote[ online].[ Find] the quote you're interested in, and click the link to get started. It['s] that[ easy]![][][][]
+
+=== Text #8 ===
+> [This] Flash[ tutorial is] the perfect starting[ point] for anyone who has never used Flash before. Its main focus is getting[ you familiar with] your Flash environment quickly so we can jump into coding. We will revisit these concepts in future courses.
+Say it[ again], Sam[! (]and again[,] and again[...)] Learn[ why] repetition is a good thing[, how to] do it, where to use loops[.] Just think, you can kill Flash with this one![ Leap in and learn.]
+"For" loops? You got em,[ now]. What about loops that step through an object? How[ about nested] loops?[ Learn how to] break out of a loop, too - helpful to avoid killing Flash![
+]A small[ talk about] Buzz and[ design patterns and a recommendation for a] great[ book.
+]Looking[ into] display programing in Flash[.] Starting up[ with] scope,[ inheritance] and[ more.
+]Buttons give us a way to interact with the user. Now we engage our users, y[ay]!
+Copyright © 2010-2012 EverythingNice,inc. All rights reserved.[]
+
+=== Text #9 ===
+> [­]Step 4: Use diagonal lines to lightly shade the bottoms of the rocks[.] Shade[ the] stalks of two of the cacti with vertical and[ mostly] diagonal[ lines].
+[Your] landscape drawing[ is] finished! Even if you don't get it right the first time, keep practicing until you're happy with your drawing. ­Sand, sun, and fun await you in the Tropical Beach Scene in our next[ section]. Surf[ on over to learn how to] draw this landscape in just five[ steps.]
+
+=== Text #10 ===
+> [A] fairly cold last half of January meant that I went through quite a bit of wood. Just to be safe, I had some replenishment delivered. I wonder will this satisfy the valentine desires for warmth and ambiance ?[]
+
+=== Text #11 ===
+> [A] fairly cold last half of January meant that I went through quite a bit of wood. Just to be safe, I had some replenishment delivered. I wonder will this satisfy the valentine desires for warmth and ambiance ?[]
+
+=== Text #12 ===
+> [Ren]ault workshop manual, M.R.[ 164,] additive, R[1178] Sedan, R1332 Station wagon.
+Renault automobile -- Maintenance and repair -- Handbooks,[ manuals], etc.[]
+
+=== Text #13 ===
+> [Jew]elry is elegantly gift boxed.
+Included with an inspired saying..."You are a precious jewel" Zech. 9:[16].
+This pristine cut crystal is faceted to attract rays of shimmering light.
+Pale sky-blues and metallic steel greys are combined with cool azure at the 'base' light-filled end of its spectrum. A large variation in tonal displays results from changes in ambient and background light conditions. Upon the lighter blue shades, Light Vitrail builds lilac and purple, blending flashes of mauve and some transient pinks.
+Care for your jewelry can be cleaned with a delicate hand-[washing detergent] and[ water with a soft cloth,] so as not to scratch any beads,[ crystal], and rhin[estones].
+The best way to[ clean] the jewelry is[ to first spot] clean with the soft[ cloth and a bit of the detergent,] and[ then wipe softly with a] slightly damp[ cloth (water).]
+
+=== Text #14 ===
+> [How] to create your own Template?
+How[ to] change the style of your application with the css-editor?
+How to create a Bundle?
+How to create your own Element?
+How to use the OWSProxy3?
+How to write Mapbender3 Documentation?
+© Copyright 2012, The Mapbender Team. Created using[ Sph]inx 1.0.8.[][]
+
+=== Text #15 ===
+> [All] black themes are always well liked by people. It is likely that you like it a lot too but if you find plain black themes so boring, you will probably like this theme with its green streaks similar to leaves being shined on with light. The green colored icons fit well with the theme.[][]
+
+=== Text #16 ===
+> [Em]brace world class facilities at East Bourne Resort & Spa Shimla. Facilities at East Bourne Resort & Spa Shimla comprise multi cuisine restaurant, tours and travel desk. Avail facilities of East Bourne Resort & Spa Shimla.[]
+
+=== Text #17 ===
+> [On] this page you can set alarm for 2:02 AM at night. This is free and[ simple online] alarm for specific time - alarm for two hours and two minutes AM. Just click on the button "Start alarm" and this online alarm clock will start. If you like to sleep and think on wake me up at 2:02 AM, this online alarm[ clock page] is right for you. Set alarm at 2:02 AM and an alarm wakes you in time. Take[ look on instructions on] "Online alarm[ clock" page for more information].[]
+
+=== Text #18 ===
+> [Your] car uses a fixed rod antenna to receive both AM and FM broadcast signals. This antenna is a removable type. To remove the antenna, turn it counterclockwise. To install the antenna, turn it clockwise.
+Be[ sure to remove] the antenna before washing the car in an automatic car wash or it may be damaged.
+When reinstalling your antenna, it is important that it is fully tightened to ensure proper reception.[]
+
+=== Text #19 ===
+> [Access]ories for Breathalyzers alcohol breath testers.
+You can obtain additional mouth[pieces] for your breathalyzer (alcohol breath tester, alcohol tester, personal breathalyzer). Sold in a package of 10 or 20 units depending on the type of device to ensure you have enough for your guests. The mouthpieces can be washed in warm so[apy water].[][]
+
+=== Text #20 ===
+> [Blush pink] and ivory roses make a romantic wedding boutonniere for your groom. Ivory and blush roses are accented with white berries and lamb's ear, and are wrapped in ivory sat[in]. This is an excellent wedding boutonniere choice for a garden wedding or spring wedding. The satin color on these boutonnieres can be customized to coordinate with your wedding colors.[]
+
+
+Description: 
+2025-05-10 23:28:17,119 - root - INFO - Instructions, tutorials, how-to guides, explanations, and advice
+
+2025-05-10 23:28:17,124 - root - INFO - Cluster #4 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.csv
+2025-05-10 23:28:17,125 - root - INFO - ================================================================================
+2025-05-10 23:28:17,126 - root - INFO - ANALYSIS COMPLETED
+2025-05-10 23:28:17,127 - root - INFO - ================================================================================
+2025-05-10 23:28:17,128 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.log
+2025-05-10 23:28:17,129 - root - INFO - CSV saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/gpt2-xl_layer-20_unit-5662_2025-05-10_21-15-47.csv

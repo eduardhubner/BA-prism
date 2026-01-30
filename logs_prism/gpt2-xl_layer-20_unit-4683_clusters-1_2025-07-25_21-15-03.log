@@ -1,0 +1,1082 @@
+2025-07-25 23:15:03,078 - root - INFO - ================================================================================
+2025-07-25 23:15:03,110 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 23:15:03,111 - root - INFO - ================================================================================
+2025-07-25 23:15:03,112 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 23:15:03,112 - root - INFO - AGG_METHOD = mean
+2025-07-25 23:15:03,113 - root - INFO - BATCH_SIZE = 2
+2025-07-25 23:15:03,114 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 23:15:03,114 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 23:15:03,115 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 23:15:03,116 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 23:15:03,116 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 23:15:03,116 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 23:15:03,117 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 23:15:03,118 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 23:15:03,118 - root - INFO - DATA_FILES = None
+2025-07-25 23:15:03,118 - root - INFO - DEVICE = cuda
+2025-07-25 23:15:03,119 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 23:15:03,119 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 23:15:03,120 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 23:15:03,121 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 23:15:03,121 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 23:15:03,122 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 23:15:03,122 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-07-25 23:15:03,123 - root - INFO - LAYER_ID = 20
+2025-07-25 23:15:03,123 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 23:15:03,124 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 23:15:03,124 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 23:15:03,125 - root - INFO - MULTI_EVAL = True
+2025-07-25 23:15:03,125 - root - INFO - N_CLUSTERS = 1
+2025-07-25 23:15:03,126 - root - INFO - N_SAMPLES = 10
+2025-07-25 23:15:03,126 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 23:15:03,127 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 23:15:03,127 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 23:15:03,128 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 23:15:03,129 - root - INFO - SPLIT = train
+2025-07-25 23:15:03,129 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 23:15:03,130 - root - INFO - STREAMING = True
+2025-07-25 23:15:03,131 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 23:15:03,131 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 23:15:03,132 - root - INFO - TARGET_DATA = c4
+2025-07-25 23:15:03,132 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 23:15:03,133 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 23:15:03,133 - root - INFO - UNIT_ID = 4683
+2025-07-25 23:15:03,134 - root - INFO - USE_API = True
+2025-07-25 23:15:03,134 - root - INFO - ================================================================================
+2025-07-25 23:15:03,135 - root - INFO - ANALYSIS RESULTS
+2025-07-25 23:15:03,136 - root - INFO - ================================================================================
+2025-07-25 23:15:03,136 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-4683_clusters-1_2025-07-25_21-15-03.log
+2025-07-25 23:23:41,703 - root - INFO - Reached 1000 samples.
+2025-07-25 23:23:43,998 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 23:23:43,999 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 23:23:58,068 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 23:24:37,099 - root - INFO - Number of candidates: 1001
+2025-07-25 23:24:41,019 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 23:24:41,020 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  most (1.0236189365386963)
+Text #1:  Quartz (0.8732727766036987)
+Text #1:  variety (0.9033688306808472)
+Text #1:  variety (1.156957983970642)
+Text #1:  Quartz (0.9730306267738342)
+Text #1:  Cit (0.8546922206878662)
+Text #1:  Quartz (1.0190356969833374)
+Text #1: rine (0.8648045659065247)
+Text #1:  details (1.2780604362487793)
+Text #1:  variety (0.9285419583320618)
+Text #1: , (0.816422700881958)
+Text #1:  Sm (0.9165657758712769)
+Text #1:  Quartz (1.3497114181518555)
+Text #1: stone (1.1823469400405884)
+Text #1:  details (1.6015129089355469)
+Text #1:  known (1.5878838300704956)
+Text #1:  Quartz (0.8530599474906921)
+Text #1:  Quartz (0.9252304434776306)
+Text #1:  may (1.1260885000228882)
+Text #1:  See (1.0858718156814575)
+Text #1:  Quartz (0.9808017611503601)
+Text #1: stone (1.0436155796051025)
+Text #1:  details (1.609278917312622)
+Text #1:  known (1.843143105506897)
+Text #1: ". (0.8724421858787537)
+Text #1:  may (1.0069321393966675)
+Text #1:  variety (1.4528250694274902)
+Text #1:  Though (0.8859444260597229)
+Text #1:  known (1.8889548778533936)
+Text #1:  Quartz (1.6814626455307007)
+Text #1:  See (0.8392788767814636)
+Text #1:  Quartz (0.9324670433998108)
+Text #1: stone (1.087195873260498)
+Text #1:  details (1.2196499109268188)
+Text #1: yellow (0.8922516107559204)
+Text #1: et (1.1510882377624512)
+Text #1: stone (1.1801947355270386)
+Text #1:  more (0.7976552248001099)
+Text #2:  November (0.8525859713554382)
+Text #2:  Collector (0.8148255348205566)
+Text #2:  December (0.7697332501411438)
+Text #2:  information (0.9655355215072632)
+Text #2: cent (0.8474002480506897)
+Text #2:  1974 (0.8201475143432617)
+Text #2:  Description (0.798029363155365)
+Text #2:  details (0.9630134105682373)
+Text #2:  information (1.447683572769165)
+Text #2:  of (0.7950065732002258)
+Text #2: cent (1.018555760383606)
+Text #2:  August (1.006960391998291)
+Text #2:  Description (0.7912185192108154)
+Text #2:  details (0.9610544443130493)
+Text #2:  information (1.440941333770752)
+Text #2:  of (0.8152816295623779)
+Text #2: cent (0.9891617298126221)
+Text #2:  January (0.8768982887268066)
+Text #2:  details (0.7719740271568298)
+Text #2:  information (1.3066985607147217)
+Text #2: cent (0.9595557451248169)
+Text #2:  July (1.3082115650177002)
+Text #2: AND (0.8168520331382751)
+Text #2:  details (0.9508321285247803)
+Text #2:  information (1.414945125579834)
+Text #2:  of (0.8647799491882324)
+Text #2: cent (0.9380849599838257)
+Text #2: 41 (0.9643610119819641)
+Text #2:  March (0.9302292466163635)
+Text #2: AND (0.860842227935791)
+Text #2:  details (0.8668410778045654)
+Text #2:  general (0.7879643440246582)
+Text #2: hand (0.8580706715583801)
+Text #2:  of (0.8180652260780334)
+Text #2: cent (0.9861660599708557)
+Text #2:  1976 (1.0272786617279053)
+Text #2:  information (1.2627946138381958)
+Text #3:  the (1.5946484804153442)
+Text #3:  in (0.8446197509765625)
+Text #3:  Nov (0.9932104349136353)
+Text #3:  14 (1.0445318222045898)
+Text #3: , (0.8532804250717163)
+Text #3:  May (0.8895842432975769)
+Text #3: , (0.7825547456741333)
+Text #3:  8 (1.0339787006378174)
+Text #3:  which (0.8876187205314636)
+Text #3:  of (1.1399623155593872)
+Text #3:  Ser (0.7128131985664368)
+Text #3:  No (1.0165923833847046)
+Text #3:  14 (1.4908483028411865)
+Text #3:  filed (0.8735607266426086)
+Text #3:  2013 (0.6828988194465637)
+Text #3:  8 (0.8301502466201782)
+Text #3:  which (0.7871944308280945)
+Text #3:  of (1.0524379014968872)
+Text #3:  Ser (0.8091121315956116)
+Text #3:  13 (1.116104006767273)
+Text #3:  filed (0.7774909734725952)
+Text #3:  8 (0.8248034715652466)
+Text #3:  which (0.7641054391860962)
+Text #3:  of (0.9210443496704102)
+Text #3: . (0.7027555108070374)
+Text #3:  12 (1.670276165008545)
+Text #3:  filed (0.6700930595397949)
+Text #3:  of (0.8867763876914978)
+Text #3: . (0.7619238495826721)
+Text #3:  10 (1.1766904592514038)
+Text #3:  filed (1.0341135263442993)
+Text #3:  2004 (0.707294225692749)
+Text #3:  7 (0.826683521270752)
+Text #3:  10 (0.9601536989212036)
+Text #3:  � (0.720505952835083)
+Text #3:  Jan (0.9031006097793579)
+Text #3:  10 (1.1487843990325928)
+Text #3: 348 (0.6813672780990601)
+Text #3:  entitled (0.9862302541732788)
+Text #4:  journal (0.6663151979446411)
+Text #4:  journal (0.8580502867698669)
+Text #4:  a (0.6475522518157959)
+Text #4:  journal (1.1847797632217407)
+Text #4: . (0.7580527067184448)
+Text #4: The (1.8955078125)
+Text #4:  the (0.7119197249412537)
+Text #4:  from (0.6131139993667603)
+Text #4: 
+ (0.6004172563552856)
+Text #4:  a (0.8817119598388672)
+Text #4:  ago (1.5758877992630005)
+Text #4:  would (1.0649933815002441)
+Text #4: The (2.5549652576446533)
+Text #4:  in (0.6120945811271667)
+Text #4:  often (1.32236909866333)
+Text #4:  can (1.674941062927246)
+Text #4:  even (0.6352885365486145)
+Text #4: . (0.8858157992362976)
+Text #4:  can (0.7992450594902039)
+Text #4:  but (0.7411504983901978)
+Text #4:  can (1.6905102729797363)
+Text #4:  but (1.7227329015731812)
+Text #4:  range (0.7960572242736816)
+Text #4:  feedback (0.7307569980621338)
+Text #4:  Open (0.6664290428161621)
+Text #4:  behind (1.0820701122283936)
+Text #4: , (0.9790781736373901)
+Text #5:  Latvia (0.6542553901672363)
+Text #5:  ponder (0.6459070444107056)
+Text #5:  are (0.8284415602684021)
+Text #5:  strides (0.7181172966957092)
+Text #5:  the (0.9492431879043579)
+Text #5: . (0.8935739398002625)
+Text #5:  in (0.5900344848632812)
+Text #5:  north (1.386177897453308)
+Text #5:  while (1.8045234680175781)
+Text #5:  state (0.9955213069915771)
+Text #5:  Christian (0.9429118037223816)
+Text #5:  be (0.7400771975517273)
+Text #5:  there (0.5883185863494873)
+Text #5:  after (0.6179606914520264)
+Text #5: , (1.0151288509368896)
+Text #5: , (1.1048483848571777)
+Text #5:  are (0.8152808547019958)
+Text #5: . (0.8316680192947388)
+Text #5:  independence (0.941817581653595)
+Text #5:  expected (0.8494777083396912)
+Text #5:  In (0.6312249302864075)
+Text #5:  The (1.1345027685165405)
+Text #5:  province (0.9410495162010193)
+Text #5: The (1.5817772150039673)
+Text #5:  country (0.8525237441062927)
+Text #5:  to (0.7110549211502075)
+Text #5:  lend (0.6118336915969849)
+Text #5:  hand (1.338179349899292)
+Text #5:  we (0.7188981771469116)
+Text #5:  be (0.6896708011627197)
+Text #5:  country (1.172154426574707)
+Text #5:  the (0.7591684460639954)
+Text #5:  outstanding (0.6662604808807373)
+Text #6:  ( (0.8156053423881531)
+Text #6:  AL (0.6130054593086243)
+Text #6:  integrates (0.9301031827926636)
+Text #6: , (0.7651870846748352)
+Text #6:  end (0.6187179684638977)
+Text #6:  AL (1.1698986291885376)
+Text #6:  is (1.1663570404052734)
+Text #6:  on (0.6858615279197693)
+Text #6: AL (1.296467900276184)
+Text #6:  which (0.6808990240097046)
+Text #6:  platform (0.9422635436058044)
+Text #6:  can (1.03827702999115)
+Text #6:  AL (1.154142141342163)
+Text #6:  software (0.6591576337814331)
+Text #6:  choice (0.628946840763092)
+Text #6:  looking (1.0477873086929321)
+Text #6:  which (1.3829060792922974)
+Text #6:  software (0.9687811136245728)
+Text #6:  though (0.6860771179199219)
+Text #6: . (0.646870493888855)
+Text #6:  market (0.7282829284667969)
+Text #6: , (0.8417593240737915)
+Text #6: . (1.0779317617416382)
+Text #6:  to (1.3446139097213745)
+Text #6:  and (1.6625611782073975)
+Text #6: . (0.7041856646537781)
+Text #6:  which (0.9379621148109436)
+Text #6:  software (0.7956344485282898)
+Text #6:  all (0.63470458984375)
+Text #6:  at (0.7716959714889526)
+Text #6: . (0.6370704174041748)
+Text #6: AL (1.1046334505081177)
+Text #6:  one (0.6242303848266602)
+Text #6:  one (0.6473249793052673)
+Text #6:  of (0.8468795418739319)
+Text #6: The (1.1927127838134766)
+Text #6:  customers (0.7369246482849121)
+Text #6: AL (0.6343955397605896)
+Text #6:  an (0.7108937501907349)
+Text #7:  to (0.7181272506713867)
+Text #7:  based (0.6723223924636841)
+Text #7:  vanished (0.6113808751106262)
+Text #7:  April (0.6008842587471008)
+Text #7:  thought (0.908657968044281)
+Text #7: , (0.9301296472549438)
+Text #7:  and (0.7649261951446533)
+Text #7: ists (1.0865949392318726)
+Text #7:  could (1.0834746360778809)
+Text #7:  as (0.6219041347503662)
+Text #7:  some (0.5716433525085449)
+Text #7:  that (0.8378106951713562)
+Text #7:  two (0.609682559967041)
+Text #7:  forces (1.0475441217422485)
+Text #7:  the (0.617211639881134)
+Text #7:  of (1.0966205596923828)
+Text #7: . (0.976229727268219)
+Text #7:  neither (0.9801670908927917)
+Text #7:  capable (0.5751450061798096)
+Text #7:  are (0.860784113407135)
+Text #7:  emerged (0.6456602811813354)
+Text #7:  with (0.6775877475738525)
+Text #7: The (0.6135069131851196)
+Text #7:  in (0.6467410326004028)
+Text #7: , (0.573150634765625)
+Text #7:  its (1.066041111946106)
+Text #7: , (1.202903389930725)
+Text #7:  impression (0.7414507865905762)
+Text #7:  from (1.3373684883117676)
+Text #7: . (0.646743893623352)
+Text #7:  shown (0.8470256924629211)
+Text #8: + (0.6917159557342529)
+Text #8:  to (0.6337803602218628)
+Text #8:  the (0.5997896194458008)
+Text #8:  for (1.1632939577102661)
+Text #8:  for (0.7802651524543762)
+Text #8: , (0.7794399857521057)
+Text #8:  might (0.6592093110084534)
+Text #8:   (0.6929993629455566)
+Text #8:  is (0.59428870677948)
+Text #8:  into (0.5788614749908447)
+Text #8:  least (0.7430667281150818)
+Text #8:  to (0.5844789147377014)
+Text #8:  V (0.7256971597671509)
+Text #8:  specify (0.8494664430618286)
+Text #8:   (0.5636743307113647)
+Text #8:  the (1.097024917602539)
+Text #8: SP (0.6566133499145508)
+Text #8: 're (0.8991951942443848)
+Text #8:  the (0.6695654392242432)
+Text #8:  > (0.6217316389083862)
+Text #8:  intended (0.7130768895149231)
+Text #8:  for (1.02702796459198)
+Text #8:  languages (0.6514253616333008)
+Text #8:  based (0.6739872694015503)
+Text #8: , (0.8918347954750061)
+Text #8:  may (1.7857764959335327)
+Text #8:  than (0.9876432418823242)
+Text #8:  scope (0.8042474985122681)
+Text #8:  a (0.8050340414047241)
+Text #8:  of (1.1887290477752686)
+Text #8:  to (0.7130446434020996)
+Text #8:  language (0.6245718598365784)
+Text #8:  some (0.9849053025245667)
+Text #8:   (0.6321435570716858)
+Text #8:  language (1.373611569404602)
+Text #8:  which (0.7505037188529968)
+Text #8:   (0.6048886775970459)
+Text #8:  the (1.3492828607559204)
+Text #8:  the (1.103440284729004)
+Text #8: ins (0.5750072002410889)
+Text #9:  Major (0.6253740787506104)
+Text #9:  ( (0.544643759727478)
+Text #9:  Minor (0.7458216547966003)
+Text #9:  by (0.6934082508087158)
+Text #9:  Large (0.5281743407249451)
+Text #9:  ( (0.7081073522567749)
+Text #9:  only (1.2515400648117065)
+Text #9:  by (0.8539535999298096)
+Text #9:  Study (0.6753752827644348)
+Text #9:  Published (0.8476847410202026)
+Text #9:  By (0.6861718893051147)
+Text #9:  Published (0.9088286757469177)
+Text #9: ki (0.663308322429657)
+Text #9:  Dmit (0.6058058738708496)
+Text #9:  by (1.0020099878311157)
+Text #9: ki (0.59846431016922)
+Text #9:  By (0.8734480738639832)
+Text #9:  Study (0.9937113523483276)
+Text #9:  Published (0.8162447810173035)
+Text #9: ki (1.0226434469223022)
+Text #9: ). (0.6530662178993225)
+Text #9:  Book (0.6171572804450989)
+Text #9:  6 (0.687417209148407)
+Text #9:  inches (0.5206047296524048)
+Text #9: . (0.7639642357826233)
+Text #9:  By (1.1959192752838135)
+Text #9: ). (0.8154449462890625)
+Text #9:  5 (1.1069282293319702)
+Text #9:  Published (0.8016664385795593)
+Text #9:  By (1.0196003913879395)
+Text #9:  Published (0.7729156613349915)
+Text #9: ki (0.9117520451545715)
+Text #9: By (1.4995547533035278)
+Text #9: ost (0.5249471068382263)
+Text #10:  is (0.6885137557983398)
+Text #10:  the (0.8794202208518982)
+Text #10:  of (0.6822298169136047)
+Text #10:  Th (0.5024335980415344)
+Text #10:  School (0.5137196183204651)
+Text #10:  year (1.0637909173965454)
+Text #10:  have (0.5220299959182739)
+Text #10: AN (0.5604628920555115)
+Text #10:  children (0.5140265822410583)
+Text #10:  at (1.6607000827789307)
+Text #10:  ensures (0.5761598348617554)
+Text #10:  have (0.6149354577064514)
+Text #10:  Th (0.9973976612091064)
+Text #10:  aim (0.9121644496917725)
+Text #10:  children (0.6212661266326904)
+Text #10:  term (0.6681268215179443)
+Text #10:  children (0.5958651900291443)
+Text #10:  Th (0.6964260339736938)
+Text #10:  alongside (0.5549860596656799)
+Text #10:  children (2.0263736248016357)
+Text #10: . (0.5363242030143738)
+Text #10:  week (0.7217410206794739)
+Text #10:  the (0.5872171521186829)
+Text #10:  from (0.5069251656532288)
+Text #10:  are (0.6413187384605408)
+Text #10: 
+ (0.6018143892288208)
+Text #10:  places (0.4881088435649872)
+Text #10:  our (0.5864153504371643)
+Text #10:  school (0.5993623733520508)
+Text #10: . (0.6060553193092346)
+Text #10:  term (0.6784061789512634)
+Text #10:  school (1.145559549331665)
+Text #10:  in (0.6810010671615601)
+Text #10:  after (1.962644338607788)
+Text #11:  one (0.5597767233848572)
+Text #11:  state (0.7511528134346008)
+Text #11:  ( (0.9663320779800415)
+Text #11: ), (0.6320737600326538)
+Text #11:  member (0.9282462000846863)
+Text #11:  in (0.8612050414085388)
+Text #11: - (0.58550626039505)
+Text #11: ism (0.5913900136947632)
+Text #11:  nations (0.6909644603729248)
+Text #11:  state (0.7555283904075623)
+Text #11:  is (0.5917280912399292)
+Text #11:  in (0.7544354796409607)
+Text #11:  system (0.6106135249137878)
+Text #11:  order (0.7220871448516846)
+Text #11:  the (0.6888777613639832)
+Text #11:  Europe (0.7302691340446472)
+Text #11:  as (0.9344092011451721)
+Text #11:  to (0.7548300623893738)
+Text #11:  a (0.793107271194458)
+Text #11:  the (0.6143110990524292)
+Text #11:  might (0.6628115773200989)
+Text #11: , (0.7415810823440552)
+Text #11:  is (0.7739046812057495)
+Text #11: 
+ (0.5655660033226013)
+Text #11:  the (1.2015140056610107)
+Text #11:  would (0.5968145132064819)
+Text #11:  of (1.0126185417175293)
+Text #11: . (0.5839166045188904)
+Text #11:  money (0.6490494608879089)
+Text #12: 09 (0.8350507616996765)
+Text #12: 04 (0.9210218191146851)
+Text #12: 04 (0.5692146420478821)
+Text #12:  done (0.8453488349914551)
+Text #12: 04 (1.120609998703003)
+Text #12:  07 (0.7127059102058411)
+Text #12:  Names (0.7470927834510803)
+Text #12: 04 (0.7790845632553101)
+Text #12:  done (0.6577480435371399)
+Text #12:  Site (0.5491573214530945)
+Text #12: 04 (0.7820761799812317)
+Text #12: 17 (0.8662012815475464)
+Text #12:  done (0.7516705393791199)
+Text #12: 04 (0.5462972521781921)
+Text #12: 16 (0.5742438435554504)
+Text #12:  done (0.5337863564491272)
+Text #12: 04 (0.5877212285995483)
+Text #12:  14 (0.8547776937484741)
+Text #12: - (0.7355364561080933)
+Text #12:  14 (0.7720102667808533)
+Text #12: 02 (0.6535218358039856)
+Text #12:  14 (0.7089504599571228)
+Text #12:  14 (0.5469480156898499)
+Text #12: 16 (0.7426360249519348)
+Text #12:  14 (0.567032516002655)
+Text #12: 04 (0.5346848368644714)
+Text #12:  14 (0.5900054574012756)
+Text #12: 15 (0.6441714763641357)
+Text #12: 04 (0.5773681402206421)
+Text #12:  14 (0.6439756155014038)
+Text #12:  14 (0.7855271100997925)
+Text #12:  done (0.6084348559379578)
+Text #12: - (0.5561202168464661)
+Text #12: 04 (0.5364655256271362)
+Text #12:  14 (0.7899850606918335)
+Text #12:  14 (0.6442945003509521)
+Text #12: 04 (0.5752905607223511)
+Text #12:  14 (0.77787846326828)
+Text #12:  14 (0.6539552211761475)
+Text #13:  owned (0.5881848335266113)
+Text #13:  owned (0.46748921275138855)
+Text #13: . (0.8489030599594116)
+Text #13:  owned (0.4744289815425873)
+Text #13:  owned (0.48921191692352295)
+Text #13:  owned (0.5842136740684509)
+Text #13: . (0.7538942694664001)
+Text #13:  property (0.5423843264579773)
+Text #13:  property (0.4965459704399109)
+Text #13: . (0.484171986579895)
+Text #13:  by (0.48923781514167786)
+Text #13:  owned (0.5067189931869507)
+Text #13: . (0.7692458629608154)
+Text #13:  by (0.5455175638198853)
+Text #13: . (0.6121209263801575)
+Text #13:  + (0.4621833264827728)
+Text #13:  property (0.4758526384830475)
+Text #13:  by (0.47681286931037903)
+Text #13: . (0.662626326084137)
+Text #13:  property (0.49937838315963745)
+Text #13:  by (0.6234191060066223)
+Text #13: EL (0.7778916358947754)
+Text #13:  property (0.5047826170921326)
+Text #13:  by (0.45661461353302)
+Text #13:  by (0.49382686614990234)
+Text #13: . (0.7368399500846863)
+Text #13:  property (0.5728482604026794)
+Text #13:  L (0.569868266582489)
+Text #13:  property (0.6850986480712891)
+Text #13:  + (0.7105904221534729)
+Text #13:  property (0.5290913581848145)
+Text #13: . (0.6549642086029053)
+Text #13:  property (0.5588264465332031)
+Text #13:  + (1.0626741647720337)
+Text #13:  + (0.49707984924316406)
+Text #13:  property (0.6697624921798706)
+Text #13:  L (0.4624444246292114)
+Text #13:  property (0.557174026966095)
+Text #13:  A (0.6347072124481201)
+Text #13:  property (0.5067035555839539)
+Text #13:  property (0.4793604016304016)
+Text #13:  property (0.6580596566200256)
+Text #14:  to (0.8976303339004517)
+Text #14:  release (0.7324588298797607)
+Text #14: 7 (0.49017423391342163)
+Text #14: , (0.4845891296863556)
+Text #14:  before (0.6268888115882874)
+Text #14:  version (0.48927393555641174)
+Text #14:  3 (0.8032283186912537)
+Text #14:  though (0.5031570792198181)
+Text #14:  3 (0.6054554581642151)
+Text #14:  3 (1.212157964706421)
+Text #14:  focused (0.5392053127288818)
+Text #14:  3 (0.5035666227340698)
+Text #14: 
+ (0.7736925482749939)
+Text #14:  3 (0.8484581708908081)
+Text #14:  the (0.7408085465431213)
+Text #14:  driver (0.5556443929672241)
+Text #14:  which (0.5163701176643372)
+Text #14:  of (0.47190192341804504)
+Text #14:  Nou (0.8978381752967834)
+Text #14:  available (0.6073057651519775)
+Text #14:  before (0.7547165155410767)
+Text #14:  which (0.5978345274925232)
+Text #14:  2012 (0.7365849018096924)
+Text #14:  will (0.5548003911972046)
+Text #14:  a (0.5606198310852051)
+Text #14:  since (0.9840141534805298)
+Text #14:  can (0.6854299306869507)
+Text #14:  of (0.6127744913101196)
+Text #14:  particularly (0.5851864814758301)
+Text #14:  acceleration (0.5429834127426147)
+Text #14:  the (0.5557535290718079)
+Text #14:  The (1.6313380002975464)
+Text #14:  mostly (0.5135625004768372)
+Text #14:  The (1.4313547611236572)
+Text #14:  on (0.951771080493927)
+Text #14:  in (0.48443013429641724)
+Text #14:  the (0.7222946286201477)
+Text #14: , (0.5843337774276733)
+Text #14:  from (0.580571174621582)
+Text #14:  weeks (0.8105113506317139)
+Text #15: 'm (0.5496340394020081)
+Text #15:  notion (0.5364497303962708)
+Text #15:  earlier (0.8371983766555786)
+Text #15:  since (0.9999282360076904)
+Text #15:  was (0.6509694457054138)
+Text #15:  who (0.7244967818260193)
+Text #15:  that (0.6685671210289001)
+Text #15:  normally (0.8391616344451904)
+Text #15:  our (0.6596660017967224)
+Text #15:  one (0.6444105505943298)
+Text #15:  time (0.5821802616119385)
+Text #15:  to (1.0108665227890015)
+Text #15:  we (0.7587555646896362)
+Text #15:  we (0.8877009153366089)
+Text #15:  Auckland (0.7484238147735596)
+Text #15:  we (0.7609971761703491)
+Text #15:  far (0.6470078825950623)
+Text #15:  this (0.9355119466781616)
+Text #15:  a (0.4882029891014099)
+Text #15:  it (0.7842614650726318)
+Text #15: 
+ (0.561037540435791)
+Text #15:  the (0.6181798577308655)
+Text #15:  if (0.6605056524276733)
+Text #15: 're (0.7694085240364075)
+Text #15: 't (0.7010603547096252)
+Text #15:  have (1.2610442638397217)
+Text #15: , (0.6656414866447449)
+Text #15:  your (0.9246032238006592)
+Text #15:  If (0.49164244532585144)
+Text #15: , (0.8573619723320007)
+Text #15:  your (0.9882031679153442)
+Text #15: , (0.6342172026634216)
+Text #15:  you (0.6526672840118408)
+Text #15:  be (1.1409505605697632)
+Text #15:  to (0.5766785144805908)
+Text #16:  not (0.6641156077384949)
+Text #16:  Life (0.4063364267349243)
+Text #16:  compound (0.5579190850257874)
+Text #16:  Ideal (0.7414506673812866)
+Text #16:  itself (0.5274542570114136)
+Text #16: . (0.46125471591949463)
+Text #16:  White (0.4854675531387329)
+Text #16: L (0.6279266476631165)
+Text #16:  compound (0.5097997188568115)
+Text #16:  Off (0.5287750959396362)
+Text #16:  Ideal (1.098045825958252)
+Text #16:  itself (1.3478127717971802)
+Text #16:  Color (1.1111772060394287)
+Text #16:  Size (0.5530931949615479)
+Text #16: . (0.4337204396724701)
+Text #16: L (0.9457917213439941)
+Text #16:  Life (0.6706380248069763)
+Text #16:  Off (0.6206967234611511)
+Text #16:  Ideal (1.640185832977295)
+Text #16:  to (0.616133451461792)
+Text #16:  wood (0.6010138392448425)
+Text #16:  and (0.41190385818481445)
+Text #16:  flexible (0.5658959150314331)
+Text #16:  Color (1.500579595565796)
+Text #16:  Size (0.5282163619995117)
+Text #16: L (0.9882049560546875)
+Text #16:  Life (0.648288905620575)
+Text #16: fl (0.6061479449272156)
+Text #16:  Off (0.5719437003135681)
+Text #16:  Ideal (1.4236599206924438)
+Text #16:  to (0.7286257743835449)
+Text #16:  wood (0.6266220808029175)
+Text #16:  and (0.5291072726249695)
+Text #16:  firm (0.5591093301773071)
+Text #16:  Color (1.4701632261276245)
+Text #16:  White (1.1799076795578003)
+Text #16: oat (0.44860923290252686)
+Text #16:  Life (0.5822360515594482)
+Text #16:  compound (0.48254770040512085)
+Text #16: fl (0.6621872782707214)
+Text #16:  Off (0.5519230961799622)
+Text #16:  Ideal (1.3244789838790894)
+Text #17:  vaccine (0.5693238973617554)
+Text #17: Japanese (0.6762421727180481)
+Text #17:  often (0.8042279481887817)
+Text #17:  can (0.5230693221092224)
+Text #17: Japanese (0.8188076019287109)
+Text #17: The (0.5332635641098022)
+Text #17:  vaccine (0.513627827167511)
+Text #17:  this (0.5242580771446228)
+Text #17:  who (0.8736825585365295)
+Text #17: 
+ (0.5836393237113953)
+Text #17:  vaccine (1.0162365436553955)
+Text #17:  vaccine (0.716107189655304)
+Text #17:  at (0.5920898914337158)
+Text #17:  prior (1.6746124029159546)
+Text #17:  where (0.5755547881126404)
+Text #17:  vaccine (0.4800874590873718)
+Text #17:  recommended (0.6650381684303284)
+Text #17:  may (1.0172711610794067)
+Text #17: 
+ (0.4719703197479248)
+Text #17: , (0.8590171337127686)
+Text #17:  Japanese (0.5008237957954407)
+Text #17:  vaccine (0.5898693203926086)
+Text #17: a (0.559944212436676)
+Text #17: 
+ (0.5904364585876465)
+Text #17: ines (0.5327920913696289)
+Text #17:  given (0.7274618744850159)
+Text #17:  that (0.7133792638778687)
+Text #17:  could (0.6743305921554565)
+Text #17:  vaccine (0.5241134166717529)
+Text #17:  especially (0.7614099383354187)
+Text #17:  you (0.5338601469993591)
+Text #17:  given (0.5261311531066895)
+Text #17:  may (0.4758644998073578)
+Text #17:  from (0.7214223742485046)
+Text #17:  you (1.2010424137115479)
+Text #17:  Japanese (0.4954615831375122)
+Text #18: far (0.5852715373039246)
+Text #18:  � (0.687130868434906)
+Text #18:  Mountain (0.8820975422859192)
+Text #18: right (0.8001168966293335)
+Text #18:  � (1.2409296035766602)
+Text #18:  � (1.0898675918579102)
+Text #18: right (0.783952534198761)
+Text #18:  foreground (0.7456424236297607)
+Text #18:  � (0.76105135679245)
+Text #18:  � (1.0198867321014404)
+Text #18: Larry (0.6561421751976013)
+Text #18: right (0.9806020855903625)
+Text #18:  � (0.8654007315635681)
+Text #18: Frank (0.5972673892974854)
+Text #18:  � (1.216709017753601)
+Text #18: Larry (0.879660427570343)
+Text #18:  � (0.9968781471252441)
+Text #18: re (0.6985399723052979)
+Text #18:  left (0.684226930141449)
+Text #18:  twin (0.599888801574707)
+Text #18:  � (1.4382789134979248)
+Text #18: Larry (0.6800692677497864)
+Text #18:  located (0.5919927358627319)
+Text #18:  May (0.7445312738418579)
+Text #18:  � (0.7702715396881104)
+Text #18: ist (0.8906684517860413)
+Text #18:  September (0.6118565797805786)
+Text #18:  � (0.6019079089164734)
+Text #18:  � (1.358327031135559)
+Text #18: Larry (0.8686957955360413)
+Text #18: Frank (0.7344548106193542)
+Text #18:  May (0.7454195022583008)
+Text #18:  later (0.8316748738288879)
+Text #18:  � (1.2611857652664185)
+Text #18: Larry (1.4468282461166382)
+Text #18:  my (0.5694645047187805)
+Text #18:  my (0.8228456974029541)
+Text #18:  � (1.017773985862732)
+Text #18: Larry (0.8990466594696045)
+Text #18:  side (0.6074252724647522)
+Text #19: 're (0.7662675976753235)
+Text #19:  c (0.9105244874954224)
+Text #19:  top (0.5694771409034729)
+Text #19:  c (0.5717859268188477)
+Text #19:  c (0.665056586265564)
+Text #19:  you (1.3065094947814941)
+Text #19: , (0.876534104347229)
+Text #19:  top (0.5042726993560791)
+Text #19:  with (0.7013816833496094)
+Text #19: ist (0.6363680362701416)
+Text #19:  for (0.782697856426239)
+Text #19:  The (0.5837754011154175)
+Text #19:  side (0.8695389032363892)
+Text #19:  while (0.8666822910308838)
+Text #19:  off (0.6067965626716614)
+Text #19: . (0.7095537185668945)
+Text #19: , (0.7587856650352478)
+Text #19:  is (0.9931973814964294)
+Text #19:  when (0.6306501030921936)
+Text #19: ist (0.6169107556343079)
+Text #19: , (0.5463767051696777)
+Text #19:  is (0.9572833180427551)
+Text #19:  waist (0.6351933479309082)
+Text #19:  can (0.8512514233589172)
+Text #19:  this (0.6324030756950378)
+Text #19:  pairs (0.5196599364280701)
+Text #19: 's (0.7745851874351501)
+Text #19:  worn (0.6671757102012634)
+Text #19:  This (0.8023417592048645)
+Text #19: orset (0.4901030957698822)
+Text #19: . (0.7434176206588745)
+Text #19:  this (1.8418527841567993)
+Text #19: orset (0.6875604391098022)
+Text #19: . (0.6480147242546082)
+Text #20:  your (0.42035505175590515)
+Text #20:  packages (0.4466254711151123)
+Text #20:  work (0.7195639610290527)
+Text #20:  your (0.6323589086532593)
+Text #20:  that (0.490460067987442)
+Text #20:  can (0.9715354442596436)
+Text #20:  you (0.7078132629394531)
+Text #20:  the (0.6336033940315247)
+Text #20:  were (0.6581799387931824)
+Text #20:  an (0.5075899362564087)
+Text #20:  use (0.4165482521057129)
+Text #20:  information (0.8797255754470825)
+Text #20: . (0.5222058892250061)
+Text #20:  information (0.45533061027526855)
+Text #20: , (1.090067982673645)
+Text #20:  when (0.8204017281532288)
+Text #20:  from (1.0292094945907593)
+Text #20: , (1.0834615230560303)
+Text #20:  from (0.921367347240448)
+Text #20:  late (1.0154664516448975)
+Text #20: 3 (0.887974202632904)
+Text #20:  W (0.5904471278190613)
+Text #20:  optional (0.6651427149772644)
+Text #20:  that (0.911347508430481)
+Text #20:  codes (0.8463665843009949)
+Text #20:  codes (0.6985344290733337)
+Text #20:  activity (0.6293666958808899)
+Text #20:  But (0.46122977137565613)
+Text #20: 3 (0.4828178286552429)
+Text #20: 0 (0.5318775177001953)
+Text #20:  can (1.432410717010498)
+Text #20:  which (0.41786491870880127)
+Text #20: t (1.0771117210388184)
+Text #20:  W (0.49033501744270325)
+Text #20:  activity (0.5788971781730652)
+
+=== Text #1 ===
+> Quartz is one of the most common and varied minerals on earth, and its abundant colors produce many gemstone types. Amethyst and Citrine are the most popular and valuable gem varieties of Quartz, but other forms also make important gemstones. Chalcedony describes any form of Quartz that is microcrystalline, in compact form without any visible crystals. Chalcedony also has several varieties used as gemstones,[ most] notably Agate, Carnelian, Tiger's Eye, and Chrysoprase.
+Pure Quartz, which is also known as Rock Crystal, is colorless. Various impurities are responsible for the extensive range of colors. The main crystalline[ Quartz] varieties used as gemstones are described below.
+Amethyst, the purple[ variety], is the most popular and valuable Quartz gemstone. Amethyst ranges from light to dark purple. See the Amethyst gemstone page for more details.
+Citrine is the yellow, orange, or reddish-brown[ variety] of Quartz. It is usually colored by heat treatment of Amethyst or Smoky[ Quartz]. Light yellow or lemon yellow[ Citrine is often called] Lemon[ Quartz] in the gem trade. See the Cit[rine] gemstone page for more[ details].
+Smoky Quartz is the brown "smoky"[ variety] of Quartz. It ranges in color from light brown to black. Despite its dark color[,] it is rarely opaque. See the[ Sm]oky[ Quartz] gem[stone page] for more[ details].
+The rosy pink variety of Quartz is[ known] as Rose[ Quartz], and its color is usually soft, ranging from very light pink to medium pink in intensity. Rose[ Quartz is often] milky or hazy, and it[ may] lack good transparency.[ See the] Rose[ Quartz] gem[stone page] for more[ details].
+The colorless, transparent variety of Quartz, free of any impurities, is[ known] as "Rock Crystal[".] Flawless and very large cuts[ may] be cut from Rock Crystal.
+Milky Quartz is the white, translucent to opaque[ variety] of Quartz.[ Though] very common in nature, it is not used as a gemstone.
+Colorless Quartz with golden yellow Rutile inclusions, as hairlike growths within the gemstone, are[ known as] Rutilated[ Quartz].[ See] the Rutilated[ Quartz] gem[stone page] for more[ details].
+Ametrine is an interesting, color-zoned combination of purple Amethyst and brownish-[yellow] Citrine. See the Am[etrine] gem[stone page] for[ more details].
+Prasiolite, or Green Quartz, describes a light green Quartz
+
+=== Text #2 ===
+> Peter Cousins covers what we should know if we are to take on a cave survey for real.
+Caving has entered a new phase as cavers look long and hard at the caves of the Himalayas.
+Some cave rescue teams are considering the difficulties of rescuing an injured caver from some of the latest super-severe pots that are being opened up by exploration.
+Digging on Yorkshire’s Gragareth has revealed a new and serious undertaking: The Mohole.
+New rescue dumps have been placed in Little Neath River Cave.
+Descent (19),[ November 1971] SECOND-HAND[ Collector]'s copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (9),[ December 1969] SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general[ information about second]-hand copies of Des[cent].
+Descent (26), January[ 1974] SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See[ Description] tab for[ details] of condition and the Notes tab for general[ information about] second-hand copies[ of] Des[cent].
+Descent (29),[ August 1974] SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See[ Description] tab for[ details] of condition and the Notes tab for general[ information about] second-hand copies[ of] Des[cent].
+Descent (16),[ January 1971] SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for[ details] of condition and the Notes tab for general[ information about] second-hand copies of Des[cent].
+Descent (42),[ July 1979] SECOND-H[AND] Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for[ details] of condition and the Notes tab for general[ information about] second-hand copies[ of] Des[cent].
+Descent ([41]),[ March 1979] SECOND-H[AND] Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for[ details] of condition and the Notes tab for[ general information about] second-[hand] copies[ of] Des[cent].
+Descent (33), April[ 1976] SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general[ information about]
+
+=== Text #3 ===
+> An example method involves providing, with a network management module of a network management system, current reroute statistics in a data structure based on the rerouting of the data from a logical circuit that has failed to a logical failover circuit in[ the network]. The current reroute statistics include a committed information rate corresponding to the logical circuit[ in the] network. The logical circuit is identified by a first logical circuit identifier. The logical failover circuit is identified by a second logical circuit identifier. The first and second logical circuit identifiers are renamed until the logical circuit has been restored from failure. Updated reroute statistics are provided, with the network management module, based on a change in a status of the logical circuit resulting from the committed information rate having been exceeded.
+This patent arises from a continuation of U.S. patent application Ser. No. 14/537,019, filed on[ Nov]. 10, 2014, now U.S. Pat. No. 9,148,365, which is a continuation of U.S. patent application Ser. No.[ 14]/286,396[, filed] on[ May] 23[, 2014], now U.S. Pat. No.[ 8],953,435,[ which is a] continuation[ of] U.S. patent application[ Ser].[ No].[ 14]/040,054,[ filed] on Sep. 27,[ 2013], now U.S. Pat. No.[ 8],737,196,[ which is] a continuation[ of] U.S. patent application[ Ser. No].[ 13]/690,839,[ filed] on Nov. 30, 2012, now U.S. Pat. No.[ 8],565,074,[ which] is a continuation[ of] U.S. patent application Ser[. No].[ 12]/254,233,[ filed] on Oct. 20, 2008, now U.S. Pat. No. 8,339,938, which is a continuation[ of] U.S. patent application Ser[. No].[ 10]/829,584,[ filed Apr]. 22,[ 2004], now U.S. Pat. No.[ 7],460,468, all of which are hereby incorporated herein by reference in their entireties.
+This patent is related to U.S. patent application Ser. No.[ 10]/348,077, entitled[ �]�Method and System for Obtaining Logical Performance Data for a Circuit in a Data Network,” filed[ Jan]. 21, 2003, and U.S. patent application Ser. No.[ 10]/[348],592,[ entitled �]�Method and System for Provision
+
+=== Text #4 ===
+> That transformation was behind the recent decision by the prestigious 60-year-old Shakespeare Quarterly to embark on an uncharacteristic experiment in the forthcoming fall issue — one that will make it, Ms. Rowe says, the first traditional humanities[ journal] to open its reviewing to the World Wide Web.
+Mixing traditional and new methods, the[ journal] posted online four essays not yet accepted for publication, and a core group of experts — what Ms. Rowe called “our crowd sourcing” — were invited to post their signed comments on the Web site MediaCommons,[ a] scholarly digital network. Others could add their thoughts as well, after registering with their own names. In the end 41 people made more than 350 comments, many of which elicited responses from the authors. The revised essays were then reviewed by the quarterly’s editors, who made the final decision to include them in the printed[ journal, due out Sept]. 17[.]
+[The] Shakespeare Quarterly trial, along with a handful of other trailblazing digital experiments, goes to the very nature of the scholarly enterprise. Traditional peer review has shaped[ the] way new research has been screened for quality and then how it is communicated; it has defined the border between the public and an exclusive group of specialized experts.
+Today a small vanguard of digitally adept scholars is rethinking how knowledge is understood and judged by inviting online readers to comment on books in progress, compiling journals[ from] blog posts and sometimes successfully petitioning their universities to grant promotions and tenure on the basis of non-peer-reviewed projects.[
+The quarterly]’s experiment has so far inspired at least one other journal — Postmedieval — to plan[ a] similar trial for next year.
+Just a few years[ ago these] sorts of developments[ would have been unthinkable,] said Dan Cohen, director of the Center for History and New Media at George Mason University. “Serious scholars are asking whether the institutions of the academy — as they have existed for decades, even centuries — aren’t becoming obsolete,” he said.
+Each type of review has benefits and drawbacks.
+[The] traditional method,[ in which] independent experts evaluate a submission,[ often] under a veil of anonymity,[ can] take months,[ even] years[.
+]Clubby exclusiveness, sloppy editing and fraud have all marred peer review on occasion. Anonymity[ can] help prevent personal bias,[ but it can] also make reviewers less accountable; exclusiveness[ can help ensure] quality control[ but can also narrow] the[ range] of[ feedback] and participants.[ Open review more closely resembles] Wikipedia[ behind] the scenes[, where] anyone
+
+=== Text #5 ===
+> We mention self-determination because it is an issue elsewhere that was witnessed by the disintegration of the United Soviet Socialist Republics. States such as Kazakhstan, Armenia, Georgia,[ Latvia], Ukraine and others sought to stand on their own and[ ponder] their future. And they[ are] making[ strides] in their own humble way.
+In South Sudan[ the] 30 year political marriage was fought along national and religious lines[.] Those[ in] the[ north are] Arab and Islamic[ while those in the south], the new[ state, are African] and[ Christian.] Keeping them together proved to be a recipe for disaster.
+One of the worthy sons of the African soil, former President Thabo Mvuyelwa Mbeki, was the main “midwife” in the delivery room of this new born baby. We owe much to this African despite some having tried to downplay is effort to the extent of boasting about clipping is wings so that he could not deliver on the assignment. There is no doubt that Mbeki is wont to live his African dream and has to[ be] supported as much as he has to be commended for a job well done.
+Independence should of course not be treated like a Christmas party. Just like a funeral or a wedding, on the day of the occasion[ there] are so many people that those involved hardly have anywhere to sleep of move but soon[ after the] guests have left[, the] celebration over[,] the hosts[ are left] to their destitution again[.] In[ independence the] nation has to be fed, infrastructure has to be provided, governance has to be in place and above all peace is[ expected] to reign.[ In South] Sudan that is not the case as there are issues to sort out such as borders, their armies are still facing off against each other.[ The] oil-rich[ province is the] main bone of contention.
+[The] call by Baleka Mbete, the national chairperson of the African National Congress, has to be supported. That[ country needs help] and expertise[ to get] it going. If South Africa is to[ lend] a[ hand],[ we] hope a South Africans of goodwill will be engaged.
+It should not be a matter of only those in the majority party who are deployed there. We support Mbete’s call that all those involved in whatever sector of business,[ be] it manufacturing, mining, agriculture and technology should not be shy to establish themselves in that new[ country].
+Let us pray much[ the] strength of Mbeki for his fortitude and the work that still lies ahead such as finding solutions to the serious[ outstanding] issues. We hope the South African government will
+
+=== Text #6 ===
+> ALB is the market leading Practice and Case Management Solution[ (]PCMS) fundamentally changing the way solicitors work in the digital age.[ AL]B[ integrates] all aspects of a modern law firm into one legal software[,] including; legal accounting, document management, client and matter management and time recording. As well as providing[ end]-to-end management of your law firm,[ AL]B[ is] enhanced with full mobile capabilities for lawyers working[ on] the move, revolutionising the way solicitors work.
+[AL]B provides law firms with cutting edge legal software[ which] drives efficiencies throughout a law firm and provides a[ platform from] which firms[ can] grow and increase revenue in a competitive marketplace.[ ALB is] the legal[ software] of[ choice for] solicitors[ looking to] innovate their practice, work smarter and become a market leader.
+Gain complete control over your practice with a solution[ which] manages all aspects of activity.
+Help your staff effectively manage clients, cases and documents, record time, process accounts and monitor performance.
+The legal[ software is] solid, scalable and usable, built to enable a streamlined approach to practice management[ though] process automation and workflow capability[.]
+Integrates with our[ market leading] legal forms solution[,] Laserform[.
+]Move forward in the digital age with a PCMS designed[ to] support your law firm now[ and in the] future[.
+]Work smarter using legal software[ which] will enhance productivity and streamline efficiencies.
+Using an integrated legal[ software] allows[ all] documents, emails, faxes and scanned items to be added directly to a client’s file[ at the] touch of a button[.]
+[AL]B’s document management allows you to store all of your documents in[ one] place, resulting in[ one] version[ of the] truth.
+[The] full text search facility ensures users can quickly locate documents, and versioning of documents means that the current draft is apparent.
+You have the ability to allow streamlined document comparisons.
+Our team is made up of legal experts to ensure your law firm is supported in an age where compliance requirements are increasing.
+We offer[ customers] support with GDPR, Making Tax Digital and SRA Transparency regulations.
+Our team is made up of experts within the legal and accountancy markets, ensuring we understand the legislative changes you are facing.
+We’re a committed software provider, ready to help and adapt our product as rules and regulations evolve.
+[AL]B provides solicitors with[ an] essential set of activities that they can do on the go, as well as ensuring consistent communication with their colleagues when away from the office.
+Have solicitors available on the move and
+
+=== Text #7 ===
+> HOW do we explain why 5.5m French voters in the first round of the presidential elections voted for far-right parties that are xenophobic, anti-semitic, racist and ultra-nationalist? Sounding off about the wrongness of the vote will not help understand the reasons underlying their choice. Everybody in politics needs to begin an urgent, thorough and much-needed self-criticism.
+The vote may have been a valuable wake-up call for France if it opens the eyes of party leaders and revives the debate on how[ to] build a nation[ based] on justice and solidarity. What[ vanished] in[ April] was the comforting[ thought that although] everything was changing in the world outside[, in French] politics everything could stay the same; that two ageing parties, the Gaullists[ and the] Social[ists],[ could] share power[ as] they had done for 30 years.
+People have sensed for[ some] time[ that] these[ two] political[ forces are] worn out. Their historic mission seems to have ended. Each in its own way gives[ the] impression[ of an] organisation going nowhere, with crumbling infrastructures, no organisation or programme, no ideology, no identity and no compass for the journey ahead[.]
+Previous elections had already shown that[ neither] party was[ capable] of addressing the needs of millions of people who[ are] genuinely frightened by the new realities of the post-industrial world that has[ emerged after the] collapse of the Berlin Wall and the end of the cold war. The disposable workers, the underclasses of the banlieues, the long-term unemployed, the excluded, the many people pushed into early retirement, the young people in precarious jobs, the families on the brink of poverty. For all these, the recent past has brought years of fear and anxiety,[ with many familiar] landmarks apparently gone forever.
+[The Socialist] party[ in] particular[, with almost no] working-class people in[ its] local organisations and several leaders in the supertax bracket[, gives] the[ impression that it] lives on another planet, light years[ from the] experiences of ordinary people[. It] has[ shown itself] remarkably insensitive to what Daniel Mermet describes as “the sufferings of under-France”.
+What about the right? Some conservative politicians see the far right as untouchable, but others have been happy to do electoral deals with it. The former liberal leader, Michel Poniatowski, recently wondered in public whether it was “any more immoral to accept the votes of communists, who murdered millions of people in Europe, than those of the National Front” (1). This perverse logic allowed Christian Democrat leaders of
+
+=== Text #8 ===
+> yaxunl marked 4 inline comments as done.
+[+]/// \brief Defines the synch scope ABI for OpenCL.
+> > > Please correct me if I'm wrong, but I believe you don't get to define the "ABI for OpenCL" any more than I get[ to] define[ the] "ABI[ for C]".  You're defining the ABI[ for your] specific OpenCL implementation[, but] Clang[ might] reasonably support other implementations with their own ABIs.[ ] So this name[ is] inappropriate.
+> > > Now, if I understand how SPIR works, SPIR does require some sort of stable lowering of these atomic operations in order to ensure that the resulting LLVM IR can be ingested[ into] an arbitrary implementation.  (Ot at[ least] that was true prior[ to] SPIR[ V]?)  Therefore, SPIR needs to[ specify a] lowering for these atomic operations, and that probably includes ABI values for specific sync-scopes.[ ] But[ the] appropriate name for that would be the "[SPIR] ABI", not the "OpenCL ABI".  And, of course, you would need to be sure that you['re] implementing[ the] lowering that SPIR actually wants.
+>[ >] The ABI is not[ intended for] a specific OpenCL implementation, but[ for extending] to other[ languages]. For example, we have a downstream C++[ based language called H]CC[,] which[ may support] atomic scope with an ABI different[ than] OpenCL atomic[ scope] ABI.
+> By "ABI" you mean that it might present[ a] different model[ of] synchronization scopes[ to] the source[ language]?  Okay, that's great, and it explains a lot of things that were very murky about[ some] of our previous conversations.
+> [ ] - They don't need to be in the __builtin_opencl namespace.
+>   - They *do* need to be enabled only in[ language] modes with well-defined sync-scope models,[ which] for now just means OpenCL.
+>[ ]  - The language mode's sync-scope model should determine everything about the scope argument, including its type.  Sema-level validation requires first determining the language's sync-scope model.
+>   - There is no meaningful way to "default" the scope argument on the non-scoped builtins[ the] way that we are now.  Instead, the scope argument should only exist for[ the] scoped built[ins.]
+> Alternatively, if you potentially want the opencl-model builtins to
+
+=== Text #9 ===
+> Composed by Dmitri Shostakovich (1906-1975). Op. 102. Piano duet book (requires 2 copies for performance) for piano duet (2 pianos, 4 hands). With solo part and piano reduction. F[ Major]. Published by International Music Co.
+Composed by Dmitri Shostakovich (1906-1975). Set of performance parts[ (]includes separate pull-out violin part) for violin and piano. With solo part and piano reduction. A[ Minor]. 76 pages. Published by Sikorski.
+Unlocking the Masters Series. By Dmitri Shostakovich. AMADEUS. Softcover with CD. Size 6x9 inches. 217 pages. Published[ by] Amadeus Press.
+Two Pianos, Four Hands. By Dmitri Shostakovich. (Piano). Piano[ Large] Works[ (]Arranged for piano). Book[ only]. Size 9.25x12.5 inches. 64 pages. Published[ by] Sikorski.
+Study Score. By Dmitri Shostakovich. (score).[ Study Score.] Size 4.2x7.5 inches. 104 pages.[ Published by] Boosey & Hawkes.
+Set of performance parts.[ By] Dmitri Shostakovich. Arranged by Mstislav Rostropovich. (Cello). String Solo. Size 9.25x12.25 inches. 68 pages.[ Published by] Sikors[ki].
+Composed by[ Dmit]ri Shostakovich (1906-1975). This edition: softcover. Study score. 104 pages. Sikorski #SIK6621. Published[ by] Sikors[ki] (HS.50499484).
+Study Score.[ By] Dmitri Shostakovich. (score).[ Study Score]. Size 6x8.2 inches. 72 pages.[ Published by] Sikors[ki].
+By Dmitri Shostakovich. (Score[). Study Score].[ Book only]. Size[ 6]x8.25[ inches]. 72 pages[. Published by] Hal Leonard.
+Study Score.[ By] Dmitri Shostakovich. (score[). Study Score]. Size[ 5].25x7.5 inches. 112 pages.[ Published by] Boosey & Hawkes.
+Set of performance parts.[ By Dmit]ri Shostakovich. Arranged by David Oistrakh. (Violin). String Solo. Size 8.25x11.75 inches. 64 pages.[ Published by] Sikors[ki].
+[By Dmitri] Sh[ost]akovich. Cello
+
+=== Text #10 ===
+> © 2019 Thurlow Church of England (VC) Primary School.
+As a Local Authority Maintained school Suffolk County Council[ is responsible for] co-ordinating[ the] admission arrangements for the normal year[ of] entry at a school.
+Children enter[ Th]urlow CE VCP[ School] during the academic[ year in which they] have their fifth birthday. We[ have] a Pupil Admission Number (P[AN]) of 15.
+Most children transfer from local pre-schools and close liaison takes place between these establishments and with parents before[ children] start school. This enables pre-school knowledge to be passed on to Early Years staff[ at Thurlow] CE VCP and[ ensures] that we[ have a] very clear picture of a child’s needs before they start.
+At[ Th]urlow CE VCP we[ aim for] all[ children] to feel confident and happy from their first day at school. During the summer[ term before] they enter, Early Years[ children] and parents are invited to taster sessions. Children and parents join in with activities led by Early Years staff and this really aids a smooth transition into school life as well as giving parents ideas of things they can do with their child at home.
+A meeting for all new parents of children about to start in Early Years is held in the summer term.
+Prospective and new parents are encouraged to attend the taster sessions and parent meetings that the school organises. This enables parents to find out through first-hand experience how children learn at[ Th]urlow CE VCP School. If you would like to visit the school please contact the school office (01440 783281) to make an appointment.
+Our Nursery children learn[ alongside our] reception[ children in] a purpose built learning environment[.] Nursery sessions are 5 days a[ week (]mornings) and[ the] sessions run[ from] 8:50 until 11:50. Children between the ages of 2-4[ are welcome if] funded.[
+We] have a maximum of 13[ places] for[ our] Nursery sessions during the[ school] year[.] Either 5 sessions 8.50-11.50 or 3 sessions 8am-1pm. Applications for places are considered each[ term], with priority being given to the oldest children. To apply for a place in our nursery, please request an application form from the School Office. Please complete the form and return it to[ school]. The school will need to see the birth certificate of the child and this information will be recorded on the application form. We have three intakes per year. Eligible two year olds can join the nursery[ in the] term[ after] they turn two;
+
+=== Text #11 ===
+> Both the federation of states and the federal super-state describe the same zero-sum game from different angles. Either there is[ one] single[ state] of Europe[ (]federalism[), in which case there are] no national[ member states]; or else the national member states remain Europe’s rulers,[ in which case there is] no Europe (inter[-]governmental[ism]). Within this framework of thought, whatever Europe gains, the individual[ nations] lose. And this is true whether one is for a given option or against it. Caught up in the false alternatives of the national gaze, we are given the choice between no Europe or no Europe.
+The decline of the nation-state is really a decline of the specifically national content of the state and an opportunity to create a cosmopolitan[ state] system that[ is better able to deal with the] problems that all nations face[ in the] world today. Economic globalisation, transnational terrorism, global warming: the litany is familiar and daunting. There are a host of problems that are clearly beyond the power of the old order of nation-states to cope with. The answer to global problems that are gathering ominously all around and that refuse to yield to nation-state solutions is for politics to take a quantum leap from the nation-state system to the cosmopolitan state[ system]. Politics needs to regain credibility in[ order to] craft real solutions.
+More than anywhere else in the world, Europe shows that this step is possible. Europe teaches[ the] modern world that the political evolution of states and state systems is by no means at an end. National realpolitik is becoming unreal, not only in[ Europe], but throughout the world. It is turning into a lose-lose game.
+Europeanisation means creating a new politics. It means entering[ as a player] into the meta-power game, into the struggle[ to form] the rules of[ a] global order. The catchphrase for[ the] future[ might] be: move over America[,] Europe[ is] back.[
+]The EU uses money for things that[ the] various countries governments[ would not] dream[ of] spending it on, such as regional projects, culture, the arts and so on[. The] governments would probably just use that[ money] to bail out banks..
+
+=== Text #12 ===
+> 2019-04-10 07:51:21 done Log events to all pages and users.
+2019-04-[09 18]:12:13 done All pages, current versions only.
+2019-[04]-[04 00:]01:40[ done] Articles, templates, media/file descriptions, and primary meta-pages.
+2019-[04]-10[ 07]:49:59 done[ Names]paces, namespace aliases, magic words.
+2019-[04]-02 14:18:11[ done] This contains the[ Site]Matrix information from meta.wikimedia.org provided as a table.
+2019-[04]-02 14:[17]:35[ done] User group assignments.
+2019-[04]-02 14:[16]:46[ done] Tracks which pages use which Wikidata items or properties and what aspect (e.g. item label) is used.
+2019-[04]-02[ 14]:18:20 done Base per[-page] data (id, title, old restrictions, etc).
+2019-04-02[ 14]:18:[02 done] Name/value pairs for pages.
+2019-04-02[ 14]:16:04 done Nonexistent pages that have been protected.
+2019-04-02[ 14]:[16]:36 done Wiki template inclusion link records.
+2019-04-02[ 14]:17:25 done Wiki media/files usage records.
+2019-[04]-02[ 14]:[15]:42 done Category information.
+2019-[04]-02[ 14:15]:19 done A few statistics such as the page count.
+2019-04-02[ 14:15]:31 done Wiki interlanguage link records.
+2019-04-02 14:16:56[ done] Newer per[-page] restrictions table.
+2019-[04]-02[ 14:15]:53 done Wiki external URL link records.
+2019-04-02[ 14]:17:15 done Wiki category membership link records.
+2019-[04]-02[ 14:]17:53 done Wiki page-to-page link records.
+2019-04-02[ 14]:16:15 done Metadata on current versions of uploaded media/files.
+
+=== Text #13 ===
+> Township 10S, Range 26E, Section 31.
+Agricultural property owned by ROBINSON JACK M + SHELBY A.
+Residential property[ owned] by STEFFEN JAMES G.
+Residential property[ owned] by WADE RUSSELL C[.]
+Residential property owned by FLORIDA FIRST ASSOCIATES.
+Residential property owned by OXFORD FINANCE COMPANIES INC.
+Residential property[ owned] by MURRAY CHARLES E.
+Residential property[ owned by] ROBINSON JACK M + SHELBY A H/W.
+Residential property[ owned by] BRANN JOSEPH H[.]
+Residential[ property owned by] MOONSAMMY RAMESH + SHANTIE.
+Residential[ property] owned by SIMEK FRANCES L FAMILY TRUST R[.]
+Residential property owned[ by] CROHNS+COLITIS FOUNDATION OF A.
+Residential property[ owned by] WASKO JOSEPH.
+Residential property owned by JONES CLEGG H[.]
+Residential property owned[ by] KUSEK JOHN J[.]
+Residential property owned by KIRKHART JERRY W[ +] MARY G.
+Residential[ property] owned[ by] STRYKE ROSE E[.]
+Residential[ property] owned[ by] FELIX GHISLAINE + JOVANY F[EL]IX.
+Residential[ property] owned[ by] WILEY LIVING TRUST.
+Residential property owned by SUPRUNCHIK NIKOLAY.
+Residential property owned by LONGEST CAROL A.
+Residential property owned[ by] KIWAN YAHYA (M).
+Residential property owned by WRIGHT RANDY G + KAREN G H/W[.]
+Residential[ property owned by] BUTLER CAROL[ L]YNN.
+Residential[ property owned] by SAUMS JOHN H[ +] KENNETH A + LAR.
+Residential[ property] owned by ANDERSON DON K[.]
+Residential[ property] owned by STANTON JOHN M[ +] AUDREY E (JTR.
+Residential property owned by QUINN MARGARET[ +] KATHERINE QUI.
+Residential[ property owned] by HARRELL J[ L] HEIRS OF.
+Residential[ property] owned by WILSON R[ A].
+Residential[ property] owned by GATSCH JUDITH.
+Residential[ property] owned by SPROLES BARBARA LOFTON HEIRS O.
+Residential[ property owned] by M
+
+=== Text #14 ===
+> The Linux kernel now includes everything that is needed[ to] use 3D acceleration with all GeForce graphics chips. Drivers have also been added for a Wireless Gigabit chip and a PCIe WLAN chip from Realtek.
+In his email announcing the release of Linux 3.8-rc6, Linus Torvalds emphasised that he wanted the seventh[ release] candidate to be the last one. When he released RC[7 on Friday,] however[,] he made no mention of whether there would be an eighth RC[ before] the final[ version] of Linux[ 3].8.
+As long as no more major problems arise,[ though, the] Linux kernel[ 3].8 should still be released this month. This article on driver updates will therefore bring the "Coming in[ 3.8]" Kernel Log mini-series to a close. The first two parts of the series[ focused] on the changes that kernel developers made to filesystems and storage and the platform and infrastructure code for Linux[ 3].8.[
+]In Linux[ 3].8, the Nouveau kernel driver will include everything that[ the] OpenGL[ driver] â[ which] is part[ of] current versions of Mesa 3D and is also called[ Nou]veau â needs to use the 3D acceleration of all GeForce graphics chips[ available] so far without further configuration. This is the first time that the Nouveau developers, who use reverse engineering to get the information they need to program their drivers, have managed this feat;[ before] this, they were still lacking standard 3D support for some newer Fermi GPUs and the Kepler graphics chips,[ which] have been on the market since March[ 2012] (1, 2, 3). For many computers, however, NVIDIA's proprietary graphics driver[ will] still be[ a better choice],[ since] Nouveau[ can't] activate the faster operation modes for many[ of the] newer GeForce chips, resulting in 3D performance that leaves something to be desired. There are also other issues,[ particularly] when it comes to video[ acceleration] and fan management support.
+Version 3.8 of Linux is the first to include a simple kernel graphics driver for[ the] graphics cores in NVIDIA's TegraÂ 2 and 3 SoCs (system on a chip) (1, 2, 3 and others).[ The] driver is not from NVIDIA; it was developed[ mostly] by a developer from the German company Avionic Design.[ The] company works[ on] embedded solutions[ in] close cooperation with NVIDIA and programmed[ the] driver independently[, but] with input[ from] NVIDIA. Surprisingly, NVIDIA jumped into the development process, publishing extensions a few[ weeks] ago that let the driver make the
+
+=== Text #15 ===
+> Whether it's because I've experienced a natural disaster or because I spent some of my formative years in the Boy Scouts I['m] not sure, but events half a world away this week have re-enforced the[ notion that it]'s good to "be prepared". When we started using Trello for our product backlog[ earlier this year] , I thought it was probably overkill trying to get an automated backup of our data,[ since] it[ was] being operated by Fog Creek[ who have a] great reputation in the industry, but I ploughed on regardless and yesterday[ that] preparation paid off.
+We[ normally use] Trello during[ our] Sprint Review to recap user stories and acceptance criteria and[ one] such meeting occurred at the same[ time] Fog Creek were valiantly trying[ to keep] the service going as New York was battered by Hurricane Sandy. Normally this wouldn't have mattered as[ we] keep paper copies on our scrum board, but for the first time in 13 sprints[ we were] doing our review in[ Auckland, so] these weren't much use.
+So there[ we were], mid review,[ far] from home, no story cards, and Trello is going up and down like a whores draws. Compared to what the poor people in the NE United States were going through[ this] was obviously not a big deal, but with[ a] little bit of contingency planning[ it was] a trivial task to fire up Google Drive, open our Trello backup spreadsheet and continue with our review.[
+]This outage and the ongoing benefit we get from being able to print story cards from the backup spreadsheet means that it has totally repaid[ the] time I spent writing the script -[ if] you['re using] Trello for user stories, and you haven['t done] so already then go set the script up now - there's nothing to lose and everything to gain.
+It's also a timely reminder to look at all your digital data and think about what would happen if you didn't[ have] access to it, or worse still, lost it permenantly. If your house burned down by a fire[,] would you lose all the photos of[ your] kids?[ If] your favourite web service went under (financially rather literally) and took your data with them[, then] what would the impact be?
+It doesn't take much to get yourself in good shape - get a good automated offsite backup (I use Crashplan) to handle[ your] files, and periodically back up your online data to another service[,] or even to a local PC and[ you] should[ be] good[ to go].
+Oh, and if you happen to live in the pacific ring of
+
+=== Text #16 ===
+> Offers ten times the effective life of "Bronze Wool".
+Guaranteed[ not] to corrode or rust.
+Removes grime and oil when used with Teak Brite cleaner.
+Its uses are limited only by your imagination.
+An effective cleaning tool for boat owners.
+BoatLIFE[ Life] Calk sealant. A non-shrinking, flexible, sandable[ compound A] low-viscosity, free-flowing polysulfide solution. Offers excellent resistance to petroleum derivatives.[ Ideal] for hull hardware, fittings, and underwater seams. Will bond to fiberglass, wood, metal, glass, and[ itself]. Cures to a firm flexible rubber seal[. Color]:[ White]. Size: 80 ml tube. Weight: .42 lb.
+Boat[L]IFE Life Calk sealant. A non-shrinking, flexible, sandable[ compound] Features low-viscosity, free-flowing polysulfide strength.[ Off]ers excellent resistance to petroleum derivatives.[ Ideal] for hull hardware, fittings, and underwater seams. Will bond to fiberglass, wood, metal, glass, and[ itself]. Cures to a firm flexible rubber seal.[ Color]: Black.[ Size]: 80 ml tube. Weight: .42 lb[.]
+Boat[L]IFE[ Life] Calk sealant. Non-shrinking, flexible, sandable compound. A low-viscosity, free-flowing polysulfide solution.[ Off]ers excellent resistance to petroleum derivatives.[ Ideal for] hull hardware, fittings, and underwater seams. Will bond[ to] fiberglass,[ wood], metal, glass,[ and itself]. Cures to a firm[ flexible] rubber seal.[ Color]: Mahogany.[ Size]: 80 ml tube. Weight: .42 lb.
+Boat[L]IFE[ Life] Calk sealant. Non-shrinking, flexible, sandable compound. A low-viscosity, free-[flowing] polysulfide solution.[ Off]ers excellent resistance to petroleum derivatives.[ Ideal] for hull hardware, fittings, and underwater seams. Will bond[ to fiber]glass,[ wood], metal, glass,[ and itself]. Cures to a[ firm flexible] rubber seal.[ Color]:[ White]. Size: 10.5 oz tube. Weight: 1.4 lb.
+B[oatL]IFE[ Life] Calk sealant. Non-shrinking, flexible, sandable[ compound]. A low-viscosity, free-[flowing] polysulfide solution.[ Off]ers excellent resistance to petroleum derivatives.[ Ideal] for hull hardware,
+
+=== Text #17 ===
+> You should not receive this vaccine if you have ever had a life-threatening allergic reaction to any[ vaccine] containing Japanese encephalitis virus.
+What is Japanese encephalitis virus vaccine (SA14-14-2)?
+[Japanese] encephalitis is a serious disease caused by a virus. It is the leading cause of viral encephalitis (inflammation of the brain) in Asia. Encephalitis is an infection of the membrane around the brain and spinal cord. This infection[ often] causes only mild symptoms, but prolonged swelling of the brain[ can] cause permanent brain damage or death.
+[Japanese] encephalitis virus is carried and spread by mosquitoes.
+[The] Japanese encephalitis SA14-14-2[ vaccine is] used to help prevent[ this disease] in adults and adolescents[ who are] at least 17 years old.[
+]This[ vaccine is recommended for people who] live in or travel to areas where Japanese encephalitis is known to exist, or where an epidemic has recently occurred.
+You should receive the[ vaccine] and booster dose[ at least] 1 week[ prior to] your arrival in an area[ where] you may be exposed to the virus.
+Not everyone who travels to Asia needs to receive a Japanese encephalitis vaccine. Follow your doctor instructions or the recommendations of the Centers for Disease Control and Prevention (CDC).
+This[ vaccine] is also[ recommended] for people who work in a research laboratory and[ may be] exposed to Japanese encephalitis virus through needle-stick accidents or inhalation of viral droplets in the air.[
+]Like any vaccine[,] the[ Japanese] encephalitis SA14-14-2[ vaccine may not] provide protection from disease in every person.
+[a] weak immune system caused by disease or by taking certain medicines or receiving cancer treatments.[
+]Vacc[ines may be] harmful to an unborn baby and generally should not be[ given] to a pregnant woman. However, not vaccinating the mother could be more harmful to the baby if the mother becomes infected with a disease[ that] this vaccine[ could] prevent. Your doctor will decide whether you should receive this[ vaccine],[ especially if] you have a high risk of infection with Japanese encephalitis virus.
+Do not receive this vaccine without telling your doctor if[ you] are breast-feeding a baby.
+The Japanese encephalitis SA14-14-2 vaccine is[ given] in a series of 2 shots. The shots are usually 28 days apart. Your individual booster schedule[ may] be different[ from] these guidelines. Follow your doctor's instructions or the schedule recommended by the health department of the state[ you] live in.
+In addition to receiving the[ Japanese] encephalitis vaccine,
+
+=== Text #18 ===
+> “Frankie Peak” ([far] right; 2375m) and[ �]�Larry[ Mountain�]� ([right] of centre; 2375m) from the summit of[ �]�Table Top”. Both peaks were unofficially named by Andrew Nugara in honour of his mother and step-father.
+Another view of[ �]�Frankie Peak” ([right] of centre) this time from Lys Ridge. We ascended using the ridge that begins in the[ foreground] centre. Our original plan was to make a loop that included[ �]�Frankie”,[ �]�[Larry�]� ([right] of[ �]�[Frank]ie”), and North Castle (far right – summit not shown). Instead, icy conditions thwarted our trip from “Frankie” to[ �]�[Larry�]� and we ended up tagging[ �]�Eagle Peak” (cent[re left]) and Whistler Mountain (far[ left]) as an alternate loop.
+“Frankie Peak” and its[ twin],[ �]�[Larry Mountain]” are prominent peaks that are[ located south of] Table Mountain in the Castle Wilderness. I had my first good look at them in[ May] 2014 while hiking what I call,[ �]�The Whistler Loop”, a collection of unnamed peaks on the connecting ridge between Table Mountain and Wh[istler Mountain]. Later, I learned that my friend, Brad Wolcott, had ascended them as part of an enjoyable trip from Whistler Mountain to Mount Gladstone. In[ September 2016,] my curiosity was renewed while hiking Lys Ridge with Andrew Nugara and Jollin Charest. Andrew told me that he had unofficially named them,[ �]�Frankie Peak” and[ �]�[Larry Mountain]” in honour of his mother and step-father. He had first ascended “[Frank]ie” in[ May] 2009 via Whistler Mountain, and then returned one month[ later] using the same approach to summit[ �]�[Larry]” and then North Castle.
+Therefore, with Andrew’s trip reports as[ my] guide, I began to plan[ my] own trip. The major variation that I wanted to make from both Andrew’s trips and Brad’s trip, was to save distance by avoiding Whistler Mountain on my approach. Like Andrew, I wanted to summit “Frankie”,[ �]�[Larry]”, and then North Castle, but I thought that I could make a more compact loop by ascending a ridge that led up from the South Castle Road on the western[ side] of the
+
+=== Text #19 ===
+> Whether you['re looking] for a waist training corset to slim your waist, or a fashion[ c]orset to show off your signature style, Corset Deal has it all. With over 75,000 corsets and 500 designs in stock, we are your[ top] source for finding the authentic corsets. We offer all your favorite styles, including gothic corsets, steampunk[ c]orsets, burlesque[ c]orsets, and couture corsets. Rather than poorly made corsets[ you]'d find at an ordinary retail store[, our] authentic corsets are steel boned and made from the finest materials.
+Check out some of our bestselling corsets!
+The Makena Overbust Fashion Corset features a beautiful deep purple hue and orate black lace details. It contains 10 spiral steel bones and 2 flat steel bones, which allow the corset to maintain its shape and perfectly form to your body. With its stunning design, this corset can be worn over another[ top] for a one-of-a-kind look, or for on its own[ with] jeans or a skirt.
+It's easy to see why the Joelle Brocade Reversible Wa[ist] Training Corset is a bestseller. With its revisable design, you are essentially getting two great corsets[ for] the price of one![ The] one[ side] features a unique cherry design,[ while the other side] shows[ off] a cute polka dot design[.] As a waist training corset[, this] corset[ is] steel boned and,[ when worn] as directed, can help you improve your posture and slim your waist.
+The Salome Satin Wa[ist] Training Corset features a simple yet sleek design that looks great on women of all shapes and sizes. Like the previous corset[, this] corset[ is also] a steel boned[ waist] trainer that[ can] help you reduce the size of your waist and improve your posture. Because of its simplicity,[ this] corset[ pairs] perfectly with other tops and also looks great on its own. It['s] even super comfortable and can be[ worn underneath] of other clothing.
+The Vail Steampunk Corset is one of our bestselling steampunk corsets. It is an authentic steel boned brocade overbust corset containing 12 flat steel bones and 2 spiral steel bones.[ This] c[orset] features everything we love about steampunk corsets – the bold metallic colors, leather and steel bonding[.] With its halter top,[ this] c[orset is especially great for women] with larger busts[. However, it] looks
+
+=== Text #20 ===
+> WBS: why is it important & why it is not important?
+Can somebody post their view or opinion based on practice, why is it that WBS is not important or why is it that WBS is important in managing project?
+I appreciate all ur input.
+creating a wbs forces you to think about how you are going to dissect your project and organize[ your] project into meaningful groups or[ packages] of[ work].
+It is a way to group[ your work] so[ that] people[ can] understand the where's the what's and the how's[ you] will approcah[ the] work.
+for example if you[ were looking] for[ an] activity in the 2rd floor of Building B and the activities were not group by building and floor it would be very hard to find.
+Also by using a wbs you can collapse work and summarise work more easily.
+I love a good WBS!
+See below link to one of our newsletters.
+I started using activity codes even before WBS functionality was available. And I still use them, precisely for purposes as you mentioned - eg filtering the plastering items etc. And since I started using these things from DOS days, I also make[ use] of the characters in activity ID to represent various things. And as you correctly mentioned, it is also possible to get those functionalities from few characters in the activity description.
+In fact, the best way to input your coded[ information] is in the activity id[.] That way, the[ information] is "in built" and cannot be changed easily.
+All these things including searching and filtering (eg for filtering for certain characters in activity id or description) work well when everybody is disciplined in naming and coding. And as long as one person is doing all these things[,] everything works perfectly well for him (as it does for me and you). But[ when you are integrating] programmes[ from] various contractors[, it is not] easy to excecise those rules with planners[ from various] firms.
+WBS concept is as old as project management but its functionality appeared relatively[ late]. Even in P[3] 3.1,[ W]BS is still[ optional] function[ that appears the] same way as acivity[ codes]. And some people still dont use it because 1) it is optional 2) activity[ codes] seem to do the same job and 3) they are more used to[ activity codes].[ But] even in P[3] 3.[0,] WBS code[ can] do things[ which activity codes can][t].
+For example, you can have[ W]BS[ activity and] it does not need any links as in
+
+
+Description: 
+2025-07-25 23:24:41,024 - root - INFO - Mineral varieties of Quartz and their properties
+
+2025-07-25 23:24:41,029 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-4683_clusters-1_2025-07-25_21-15-03.csv
+2025-07-25 23:24:41,030 - root - INFO - ================================================================================
+2025-07-25 23:24:41,030 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 23:24:41,031 - root - INFO - ================================================================================
+2025-07-25 23:24:41,031 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-4683_clusters-1_2025-07-25_21-15-03.log
+2025-07-25 23:24:41,032 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-4683_clusters-1_2025-07-25_21-15-03.csv

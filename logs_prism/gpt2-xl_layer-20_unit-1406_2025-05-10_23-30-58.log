@@ -1,0 +1,1641 @@
+2025-05-11 01:30:58,195 - root - INFO - ================================================================================
+2025-05-11 01:30:58,272 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-11 01:30:58,273 - root - INFO - ================================================================================
+2025-05-11 01:30:58,273 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-11 01:30:58,274 - root - INFO - AGG_METHOD = mean
+2025-05-11 01:30:58,275 - root - INFO - BATCH_SIZE = 2
+2025-05-11 01:30:58,275 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-11 01:30:58,276 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-11 01:30:58,276 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-11 01:30:58,277 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-11 01:30:58,277 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-11 01:30:58,277 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-11 01:30:58,278 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-11 01:30:58,278 - root - INFO - CONTROL_SPLIT = train
+2025-05-11 01:30:58,279 - root - INFO - DATA_FILES = None
+2025-05-11 01:30:58,279 - root - INFO - DEVICE = cuda
+2025-05-11 01:30:58,280 - root - INFO - END_INTERVAL = 1.0
+2025-05-11 01:30:58,280 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-11 01:30:58,281 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-11 01:30:58,281 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-11 01:30:58,281 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-11 01:30:58,282 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-11 01:30:58,282 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-11 01:30:58,283 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-05-11 01:30:58,283 - root - INFO - LAYER_ID = 20
+2025-05-11 01:30:58,284 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-11 01:30:58,284 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-11 01:30:58,284 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-11 01:30:58,285 - root - INFO - MULTI_EVAL = True
+2025-05-11 01:30:58,285 - root - INFO - N_CLUSTERS = 5
+2025-05-11 01:30:58,286 - root - INFO - N_SAMPLES = 10
+2025-05-11 01:30:58,286 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-11 01:30:58,286 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-11 01:30:58,287 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-11 01:30:58,287 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-11 01:30:58,288 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-11 01:30:58,288 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-11 01:30:58,289 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-11 01:30:58,289 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-11 01:30:58,289 - root - INFO - SIMEVAL_DATA = c4
+2025-05-11 01:30:58,290 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-11 01:30:58,290 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-11 01:30:58,291 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-11 01:30:58,291 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-11 01:30:58,292 - root - INFO - SPLIT = train
+2025-05-11 01:30:58,292 - root - INFO - START_INTERVAL = 0.99
+2025-05-11 01:30:58,292 - root - INFO - STREAMING = True
+2025-05-11 01:30:58,293 - root - INFO - SUBSET_SIZE = 1000
+2025-05-11 01:30:58,293 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-11 01:30:58,293 - root - INFO - TARGET_DATA = c4
+2025-05-11 01:30:58,294 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-11 01:30:58,294 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-11 01:30:58,294 - root - INFO - UNIT_ID = 1406
+2025-05-11 01:30:58,295 - root - INFO - USE_API = True
+2025-05-11 01:30:58,295 - root - INFO - ================================================================================
+2025-05-11 01:30:58,295 - root - INFO - ANALYSIS RESULTS
+2025-05-11 01:30:58,296 - root - INFO - ================================================================================
+2025-05-11 01:30:58,296 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.log
+2025-05-11 01:41:18,011 - root - INFO - Reached 1000 samples.
+2025-05-11 01:41:24,647 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-11 01:41:24,648 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-11 01:41:38,972 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-11 01:42:41,228 - root - INFO - Number of candidates: 1001
+2025-05-11 01:42:43,163 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-11 01:42:43,164 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  with (0.7679285407066345)
+Text #1:  the (0.46932825446128845)
+Text #1:  Information (0.8448485136032104)
+Text #1:  York (0.9976220726966858)
+Text #1:  Theatre (0.29880136251449585)
+Text #1:  [ (0.3502346873283386)
+Text #1:  Resolution (0.5742204785346985)
+Text #1:  version (0.3739159107208252)
+Text #1:  option (0.32428354024887085)
+Text #1:  Access (0.5396324396133423)
+Text #1:  Garden (1.005649447441101)
+Text #1:  that (0.4802297055721283)
+Text #1:  Access (1.0513571500778198)
+Text #1:  this (0.46710553765296936)
+Text #1:  information (0.6976647973060608)
+Text #1: <|endoftext|> (0.25914299488067627)
+Text #1: <|endoftext|> (0.2591673731803894)
+Text #1: <|endoftext|> (0.2591313123703003)
+Text #1: <|endoftext|> (0.2592492997646332)
+Text #1: <|endoftext|> (0.25906676054000854)
+Text #1: <|endoftext|> (0.25929415225982666)
+Text #1: <|endoftext|> (0.2591036558151245)
+Text #2:  & (0.5712636709213257)
+Text #2: la (0.49104467034339905)
+Text #2:  & (0.4698566496372223)
+Text #2: la (0.3426254689693451)
+Text #2: <|endoftext|> (0.2532358467578888)
+Text #3:  sets (0.6037793159484863)
+Text #3: for (0.23939675092697144)
+Text #3:  this (1.151037335395813)
+Text #3:  keep (0.8224599361419678)
+Text #3:  of (0.23574015498161316)
+Text #3: <|endoftext|> (0.22477295994758606)
+Text #4:  brave (0.3120809495449066)
+Text #4:  her (0.5832760334014893)
+Text #4:  raised (0.9836416244506836)
+Text #4:  all (0.7309286594390869)
+Text #4:  money (0.2427678257226944)
+Text #4: <|endoftext|> (0.21467842161655426)
+Text #4: <|endoftext|> (0.21332570910453796)
+Text #4: <|endoftext|> (0.2133716344833374)
+Text #4: <|endoftext|> (0.21342907845973969)
+Text #4: <|endoftext|> (0.21334877610206604)
+Text #4: <|endoftext|> (0.21360746026039124)
+Text #4: <|endoftext|> (0.21346968412399292)
+Text #5:  new (0.9064247012138367)
+Text #5:  set (0.6127783060073853)
+Text #5:  it (0.24109254777431488)
+Text #5: <|endoftext|> (0.2256552129983902)
+Text #6:  Of (0.6265702247619629)
+Text #6:  Letter (0.9593149423599243)
+Text #6:  Cover (0.2556128203868866)
+Text #6:  Letter (0.784072995185852)
+Text #6:  With (0.388583242893219)
+Text #6:  resume (0.2852783799171448)
+Text #6:  Letter (1.0767295360565186)
+Text #6:  Letter (1.1713471412658691)
+Text #6: ctory (0.5856912732124329)
+Text #6: ume (0.3928546905517578)
+Text #6:  Letter (0.5480057597160339)
+Text #6:  Letter (2.3346505165100098)
+Text #6:  Letter (0.49279794096946716)
+Text #6:  Res (0.4678114652633667)
+Text #6: df (0.8448681831359863)
+Text #6: <|endoftext|> (0.23684433102607727)
+Text #6: <|endoftext|> (0.2368442714214325)
+Text #6: <|endoftext|> (0.23696571588516235)
+Text #6: <|endoftext|> (0.23709113895893097)
+Text #6: <|endoftext|> (0.23692041635513306)
+Text #6: <|endoftext|> (0.23707795143127441)
+Text #6: <|endoftext|> (0.2371193915605545)
+Text #6: <|endoftext|> (0.2369709312915802)
+Text #7:  for (1.3229215145111084)
+Text #7:  the (0.6818098425865173)
+Text #7:  new (0.33718064427375793)
+Text #7:  the (0.41506248712539673)
+Text #7:  no (0.330786794424057)
+Text #7:  the (0.5228751301765442)
+Text #7: <|endoftext|> (0.24037939310073853)
+Text #7: <|endoftext|> (0.24061910808086395)
+Text #7: <|endoftext|> (0.24053306877613068)
+Text #7: <|endoftext|> (0.24076667428016663)
+Text #7: <|endoftext|> (0.24048930406570435)
+Text #7: <|endoftext|> (0.24031095206737518)
+Text #8:  for (1.3229215145111084)
+Text #8:  the (0.6818098425865173)
+Text #8:  new (0.33718064427375793)
+Text #8:  the (0.41506248712539673)
+Text #8:  no (0.330786794424057)
+Text #8:  the (0.5228751301765442)
+Text #8: <|endoftext|> (0.24037939310073853)
+Text #8: <|endoftext|> (0.24061910808086395)
+Text #8: <|endoftext|> (0.24053306877613068)
+Text #8: <|endoftext|> (0.24076667428016663)
+Text #8: <|endoftext|> (0.24048930406570435)
+Text #8: <|endoftext|> (0.24031095206737518)
+Text #9: / (0.5251230001449585)
+Text #9: <|endoftext|> (0.21723468601703644)
+Text #10:  Food (0.3047305643558502)
+Text #10:  with (1.4675606489181519)
+Text #10: <|endoftext|> (0.22144834697246552)
+Text #11: <|endoftext|> (0.22043102979660034)
+Text #12: <|endoftext|> (0.22043102979660034)
+Text #13:  The (0.4073314964771271)
+Text #13:  Around (0.3321564793586731)
+Text #13:  wonderful (0.37682291865348816)
+Text #13:  pictures (0.4224536418914795)
+Text #13:  selecting (0.37091773748397827)
+Text #13:  of (0.8098262548446655)
+Text #13:  information (0.5219093561172485)
+Text #13:  Around (0.5267066359519958)
+Text #13:  get (0.3486170470714569)
+Text #13:  best (0.6256244778633118)
+Text #13:  Around (0.23645789921283722)
+Text #13:  that (0.7733137011528015)
+Text #13:  been (0.5439562201499939)
+Text #13:  field (0.2388027310371399)
+Text #13: <|endoftext|> (0.23395919799804688)
+Text #13: <|endoftext|> (0.23404552042484283)
+Text #13: <|endoftext|> (0.23408576846122742)
+Text #13: <|endoftext|> (0.23399794101715088)
+Text #14:  as (0.32555076479911804)
+Text #14:  system (0.34549012780189514)
+Text #14:  on (0.5680030584335327)
+Text #14:  in (0.2918792963027954)
+Text #14: <|endoftext|> (0.20233897864818573)
+Text #14: <|endoftext|> (0.20212823152542114)
+Text #14: <|endoftext|> (0.20212042331695557)
+Text #14: <|endoftext|> (0.20219044387340546)
+Text #15:  with (1.4050581455230713)
+Text #15: <|endoftext|> (0.22168229520320892)
+Text #16:  with (1.4050581455230713)
+Text #16: <|endoftext|> (0.22168229520320892)
+Text #17:  with (1.4050581455230713)
+Text #17: <|endoftext|> (0.22168229520320892)
+Text #18:  from (0.7675556540489197)
+Text #18:  at (0.5648725032806396)
+Text #18: <|endoftext|> (0.23109327256679535)
+Text #19:  to (0.7509534955024719)
+Text #19:  that (0.6074300408363342)
+Text #19:  an (0.4328720271587372)
+Text #19: s (0.31518682837486267)
+Text #19: <|endoftext|> (0.23074589669704437)
+Text #20: <|endoftext|> (0.22153669595718384)
+
+=== Text #1 ===
+> School Of Rock Tickets Access Information Broadway New York With Winter Garden Theatre Ideas 23 is one of pictures thet are related[ with the picture] before in the collection gallery. If you would like to see[ the] School Of Rock Tickets Access[ Information] Broadway New[ York With] Winter Garden[ Theatre Ideas 23] in High Resolution[ []HD[ Resolution]][ version,] please press the right click on picures/image then choose "Save as Image"[ option], and done. You will get School Of Rock Tickets[ Access Information Broadway New York With] Winter[ Garden Theatre Ideas 23] pictures[ that you] want. The exactly dimension of School Of Rock Tickets[ Access Information Broadway New York With Winter Garden Theatre Ideas 23] was 779x511 pixels. You can also look for some pictures by collection on below[ this] picture. Find the other picture or article about Winter Garden Theatre here. We hope it can help you to get[ information of the picture].[][][][][][][]
+
+=== Text #2 ===
+> Embrace world class facilities at East Bourne Resort & Spa Shimla. Facilities at East Bourne Resort[ & Spa] Shim[la] comprise multi cuisine restaurant, tours and travel desk. Avail facilities of East Bourne Resort[ & Spa] Shim[la].[]
+
+=== Text #3 ===
+> currently, the projectdesigner calendar also[ sets] task times ([for] start or end date).
+added checkbox to switch on[ this behaviour,] default: use dates but[ keep] old task times[ of day].
+Resolved in Opto's patch a while back.[]
+
+=== Text #4 ===
+> After a torturous climb in freezing conditions our[ brave] teacher achieved[ her ambition and reached the summit of this great mountain in] Africa.
+Miss Fremault wanted to raise funds for the Africa 100 charity. The final total of funds[ raised] will be announced when[ all the] sponsorship[ money has been] collected. She is hoping to achieve her target of £500.[][][][][][][]
+
+=== Text #5 ===
+> > god-mode in the[ new] buffer.
+`setq-default' to[ set a default for] all other buffers.
+better approach.  This is a per-buffer feature.
+easy way to run code automatically when[ it is] toggled.[]
+
+=== Text #6 ===
+> Introduction Letter For Resume Sample[ Of] Cover[ Letter For] Fresh Graduate Accounting[ Cover] Resume Cover Letter Sample Pdf Uploaded by on Sunday, December 9th, 2018 in category fake resume generator.
+See also Introduction Letter For Resume Cover[ Letter] Resume Examples Newsound Co Sample Self Introduction Introductory Letter Sent[ With A] Resume from fake[ resume] generator Topic.
+Here we have another image Introduction[ Letter For Resume A] Must Have Cover[ Letter] Introdu[ctory Cover Letter] For Res[ume featured under] Introduction[ Letter] For Resume Sample Of Cover[ Letter For] Fresh Graduate Accounting Cover Resume Cover Letter Sample Pdf. We hope you enjoyed it and if you want to download the pictures in high quality, simply right click the image and choose "Save As". Thanks for reading Introduction[ Letter] For[ Resume Sample Of Cover Letter For Fresh Graduate Accounting Cover Resume Cover Letter] Sample P[df].[][][][][][][][]
+
+=== Text #7 ===
+> Sorry no files available[ for the] first quarter at[ the moment]. This will be updated when[ new] materials are added.
+Sorry no files available for the second quarter at the moment. This will be updated when new materials are added.
+Sorry no files available for the third quarter at[ the] moment. This will be updated when new materials are added.
+Sorry[ no files] available for the fourth quarter at[ the] moment. This will be updated when new materials are added.[][][][][][]
+
+=== Text #8 ===
+> Sorry no files available[ for the] first quarter at[ the moment]. This will be updated when[ new] materials are added.
+Sorry no files available for the second quarter at the moment. This will be updated when new materials are added.
+Sorry no files available for the third quarter at[ the] moment. This will be updated when new materials are added.
+Sorry[ no files] available for the fourth quarter at[ the] moment. This will be updated when new materials are added.[][][][][][]
+
+=== Text #9 ===
+> * 2. How was the session?
+* 4. What would you like to hear?
+* 5. What's your overall feedback of the sessions[/]conference?[]
+
+=== Text #10 ===
+> Walking[ Food] Tours In New Orleans is free HD wallpaper. This wallpaper was upload at April 20, 2019 upload by admin in .You can download it in your computer by clicking resolution image in Download by size:. Don't forget to rate and comment if you interest[ with this] wallpaper.[]
+
+=== Text #11 ===
+> Light machining capabilities? You bet. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[]
+
+=== Text #12 ===
+> Light machining capabilities? You bet. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[]
+
+=== Text #13 ===
+> Christmas Around[ The] World Poem. This amazing picture selections about Christmas[ Around The World Poem] is accessible to save. We obtain this[ wonderful photo] from online and choose the top for you. Christmas Around The World Poem images and[ pictures] collection that published here was carefully picked and uploaded by our team after[ selecting the ones] that are best among the others.
+So, ultimately we make it and here these list[ ofbest photo for your inspiration] and[ information purpose regarding the] Christmas[ Around The World Poem as part of] [blog] exclusive updates collection. So, take your time and[ get] the[ best] Christmas[ Around The World Poem images and pictures posted] here[ that suitable with] your needs and use it for your own collection and personal use.
+About Photo brief description: Photo has been published by admin and has[ been] tagged by category in[ field]. You can leave your comment as feed-back to our page quality.[][][][]
+
+=== Text #14 ===
+> This report shows the usage statistics of Format vs. Apostrophe vs. PencilBlue[ as content] management[ system on the] web. See technologies overview for explanations[ on the] methodologies used[ in the] surveys. Our reports are updated daily.[][][][]
+
+=== Text #15 ===
+> Heritage Square Apartments Savannah Ga is free HD wallpaper. This wallpaper was upload at April 25, 2019 upload by admin in .You can download it in your computer by clicking resolution image in Download by size:. Don't forget to rate and comment if you interest[ with this] wallpaper.[]
+
+=== Text #16 ===
+> Heritage Square Apartments Savannah Ga is free HD wallpaper. This wallpaper was upload at April 25, 2019 upload by admin in .You can download it in your computer by clicking resolution image in Download by size:. Don't forget to rate and comment if you interest[ with this] wallpaper.[]
+
+=== Text #17 ===
+> Heritage Square Apartments Savannah Ga is free HD wallpaper. This wallpaper was upload at April 25, 2019 upload by admin in .You can download it in your computer by clicking resolution image in Download by size:. Don't forget to rate and comment if you interest[ with this] wallpaper.[]
+
+=== Text #18 ===
+> A small selection of photos[ from] games[ at] Tech Brigade. We also have Galleries on our Tech Brigade Airsoft Facebook page and the Tech Brigade Forum.
+Tech Brigade "Help for Heros" charity game day group photo.
+The ferns can grow really tall in the summer.[]
+
+=== Text #19 ===
+> This topic contains 0 replies, has 1 voice, and was last updated by Lodewijk Luijt 1 year ago.
+I’d like to pitch an idea[ to a] production company[ that involves] filming 1 theater play from 3 (camera)locations. Is there anyone that knows[ an] example of 3 synchronised 360 video cam’[s shooting on a] set?[]
+
+=== Text #20 ===
+> Summary: An introduction to historiography and the theory of counterfactuals.
+Published: In w88 android (ed. Rasmus Dahlberg), q.v.[]
+
+
+Description: 
+2025-05-11 01:42:43,166 - root - INFO - Information related to a specific item/entity
+
+2025-05-11 01:42:43,171 - root - INFO - Cluster #0 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.csv
+2025-05-11 01:42:44,351 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-11 01:42:44,352 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: <|endoftext|> (0.2300748974084854)
+Text #2:  Classic (0.3533642590045929)
+Text #2:  T (0.33276379108428955)
+Text #2: <|endoftext|> (0.2332196831703186)
+Text #2: <|endoftext|> (0.23288701474666595)
+Text #2: <|endoftext|> (0.23307214677333832)
+Text #2: <|endoftext|> (0.23285722732543945)
+Text #3:  confidential (0.27167266607284546)
+Text #3: F (0.23794342577457428)
+Text #3:  SUV (0.3325347900390625)
+Text #3:  submit (1.0086928606033325)
+Text #3:  those (0.3149246871471405)
+Text #3: <|endoftext|> (0.22956635057926178)
+Text #3: <|endoftext|> (0.22902913391590118)
+Text #3: <|endoftext|> (0.22909481823444366)
+Text #3: <|endoftext|> (0.2290090024471283)
+Text #3: <|endoftext|> (0.2292574644088745)
+Text #3: <|endoftext|> (0.22955915331840515)
+Text #3: <|endoftext|> (0.2292531281709671)
+Text #3: <|endoftext|> (0.2292102873325348)
+Text #3: <|endoftext|> (0.22901363670825958)
+Text #3: <|endoftext|> (0.22914496064186096)
+Text #3: <|endoftext|> (0.22911174595355988)
+Text #4:  the (0.5265071988105774)
+Text #4:  the (0.7822399139404297)
+Text #4:  of (0.852482795715332)
+Text #4:  its (0.37497678399086)
+Text #4: country (0.22631871700286865)
+Text #4: <|endoftext|> (0.21409264206886292)
+Text #4: <|endoftext|> (0.21380524337291718)
+Text #4: <|endoftext|> (0.21400368213653564)
+Text #4: <|endoftext|> (0.2139679193496704)
+Text #4: <|endoftext|> (0.21390663087368011)
+Text #4: <|endoftext|> (0.213943213224411)
+Text #4: <|endoftext|> (0.21377213299274445)
+Text #4: <|endoftext|> (0.21386002004146576)
+Text #5: <|endoftext|> (0.22043102979660034)
+Text #6: <|endoftext|> (0.22153669595718384)
+Text #7: ren (0.286310613155365)
+Text #7: ( (0.4487329423427582)
+Text #7:  along (0.35370978713035583)
+Text #7: ( (0.2487364113330841)
+Text #7:  should (0.4043771028518677)
+Text #7:  aware (0.3261306583881378)
+Text #7: ( (0.2717040479183197)
+Text #7:  for (0.556272566318512)
+Text #7:  Mega (0.2992125153541565)
+Text #7:  have (1.084718108177185)
+Text #7: <|endoftext|> (0.24190475046634674)
+Text #7: <|endoftext|> (0.24184490740299225)
+Text #7: <|endoftext|> (0.24201881885528564)
+Text #7: <|endoftext|> (0.24248822033405304)
+Text #7: <|endoftext|> (0.24230064451694489)
+Text #7: <|endoftext|> (0.24202901124954224)
+Text #7: <|endoftext|> (0.24188758432865143)
+Text #8:  to (1.5483405590057373)
+Text #8:  custom (0.47577938437461853)
+Text #8:  fishing (0.26378780603408813)
+Text #8:  additional (0.5869461297988892)
+Text #8: <|endoftext|> (0.21883654594421387)
+Text #8: <|endoftext|> (0.21912263333797455)
+Text #8: <|endoftext|> (0.21958386898040771)
+Text #8: <|endoftext|> (0.21903960406780243)
+Text #8: <|endoftext|> (0.21894758939743042)
+Text #9:  for (0.3320782780647278)
+Text #9:  breath (0.31689324975013733)
+Text #9:  additional (0.3305169939994812)
+Text #9:  for (0.33734822273254395)
+Text #9:  breath (0.23025205731391907)
+Text #9:  enough (0.5753940939903259)
+Text #9: <|endoftext|> (0.21004550158977509)
+Text #9: <|endoftext|> (0.21006132662296295)
+Text #9: <|endoftext|> (0.21022239327430725)
+Text #9: <|endoftext|> (0.21015693247318268)
+Text #9: <|endoftext|> (0.21000927686691284)
+Text #9: <|endoftext|> (0.20996055006980896)
+Text #9: <|endoftext|> (0.2101280689239502)
+Text #9: <|endoftext|> (0.2100815623998642)
+Text #9: <|endoftext|> (0.2101115733385086)
+Text #9: <|endoftext|> (0.20993472635746002)
+Text #9: <|endoftext|> (0.21008306741714478)
+Text #9: <|endoftext|> (0.2099938988685608)
+Text #9: <|endoftext|> (0.21032851934432983)
+Text #9: <|endoftext|> (0.2099749743938446)
+Text #10: <|endoftext|> (0.20616739988327026)
+Text #11: <|endoftext|> (0.19261115789413452)
+Text #12:  this (0.2831515371799469)
+Text #12:  join (1.1600539684295654)
+Text #12: ED (0.26861026883125305)
+Text #12:  morning (0.25661635398864746)
+Text #12: ED (0.3809954822063446)
+Text #12: co (0.4025062322616577)
+Text #12: ED (0.7682713866233826)
+Text #12:  have (0.23413175344467163)
+Text #12:  coffee (0.5792394280433655)
+Text #12:  supplying (1.0682823657989502)
+Text #12: <|endoftext|> (0.2155851423740387)
+Text #12: <|endoftext|> (0.2160719633102417)
+Text #12: <|endoftext|> (0.21551825106143951)
+Text #12: <|endoftext|> (0.21588505804538727)
+Text #12: <|endoftext|> (0.2156386375427246)
+Text #12: <|endoftext|> (0.2158920168876648)
+Text #12: <|endoftext|> (0.21561287343502045)
+Text #12: <|endoftext|> (0.2155974805355072)
+Text #12: <|endoftext|> (0.21558541059494019)
+Text #13:  Poly (0.5786514282226562)
+Text #13: ion (0.23513083159923553)
+Text #13: <|endoftext|> (0.1991371214389801)
+Text #13: <|endoftext|> (0.1996271014213562)
+Text #13: <|endoftext|> (0.19939197599887848)
+Text #13: <|endoftext|> (0.19917264580726624)
+Text #14:  choice (0.6829898357391357)
+Text #14:  or (0.24179664254188538)
+Text #14: � (0.3291018605232239)
+Text #14:  off (0.23261941969394684)
+Text #14:  W (0.3004322052001953)
+Text #14:  well (1.1647260189056396)
+Text #14: x (0.37281492352485657)
+Text #14: <|endoftext|> (0.21878674626350403)
+Text #14: <|endoftext|> (0.21872161328792572)
+Text #14: <|endoftext|> (0.2186151146888733)
+Text #14: <|endoftext|> (0.218655526638031)
+Text #15:  J (0.4103575050830841)
+Text #15: ION (0.8018023371696472)
+Text #15:  to (0.3060961365699768)
+Text #15: CT (0.22930791974067688)
+Text #15:  CY (0.47776728868484497)
+Text #15: ION (0.3267294466495514)
+Text #15: PR (0.5122839212417603)
+Text #15:  G (0.2510525584220886)
+Text #15:  ( (0.4373983144760132)
+Text #15: arts (0.47776442766189575)
+Text #15: <|endoftext|> (0.2170698195695877)
+Text #15: <|endoftext|> (0.21742428839206696)
+Text #15: <|endoftext|> (0.21744515001773834)
+Text #15: <|endoftext|> (0.21728874742984772)
+Text #15: <|endoftext|> (0.21738125383853912)
+Text #15: <|endoftext|> (0.21728023886680603)
+Text #15: <|endoftext|> (0.21711458265781403)
+Text #15: <|endoftext|> (0.21711792051792145)
+Text #15: <|endoftext|> (0.21707454323768616)
+Text #15: <|endoftext|> (0.21734873950481415)
+Text #15: <|endoftext|> (0.21711041033267975)
+Text #15: <|endoftext|> (0.21707826852798462)
+Text #15: <|endoftext|> (0.21710635721683502)
+Text #16:  R (1.3168927431106567)
+Text #16:  use (1.3193676471710205)
+Text #16:  future (0.5036713480949402)
+Text #16: 's (0.6038295030593872)
+Text #16:  force (0.2935904264450073)
+Text #16:  some (0.3351302444934845)
+Text #16:  driving (0.8833622336387634)
+Text #16: co (0.34832367300987244)
+Text #16:  strategies (0.3730359971523285)
+Text #16:  first (0.7814356088638306)
+Text #16: <|endoftext|> (0.21767807006835938)
+Text #16: <|endoftext|> (0.21779748797416687)
+Text #16: <|endoftext|> (0.21771669387817383)
+Text #16: <|endoftext|> (0.2179800420999527)
+Text #16: <|endoftext|> (0.21766862273216248)
+Text #16: <|endoftext|> (0.21765945851802826)
+Text #16: <|endoftext|> (0.21764257550239563)
+Text #16: <|endoftext|> (0.21770760416984558)
+Text #16: <|endoftext|> (0.21764689683914185)
+Text #17:  your (0.23292911052703857)
+Text #17:  of (0.26859229803085327)
+Text #17:  little (0.47963592410087585)
+Text #17:  to (0.47635820508003235)
+Text #17: <|endoftext|> (0.21791972219944)
+Text #17: <|endoftext|> (0.21802857518196106)
+Text #17: <|endoftext|> (0.2179057002067566)
+Text #17: <|endoftext|> (0.21803562343120575)
+Text #18: an (0.29837456345558167)
+Text #18:  Kel (0.2918083965778351)
+Text #18: <|endoftext|> (0.20801551640033722)
+Text #18: <|endoftext|> (0.207855224609375)
+Text #19: <|endoftext|> (0.2145174741744995)
+Text #19: <|endoftext|> (0.21026954054832458)
+Text #19: <|endoftext|> (0.21052773296833038)
+Text #19: <|endoftext|> (0.21034465730190277)
+Text #19: <|endoftext|> (0.21020294725894928)
+Text #19: <|endoftext|> (0.2101847231388092)
+Text #19: <|endoftext|> (0.21048660576343536)
+Text #19: <|endoftext|> (0.21028825640678406)
+Text #19: <|endoftext|> (0.21026919782161713)
+Text #20:  the (0.354679137468338)
+Text #20:  of (0.49210497736930847)
+Text #20:  the (0.5100597143173218)
+Text #20:  of (0.9239338636398315)
+Text #20: , (0.42211487889289856)
+Text #20:  meat (0.24472375214099884)
+Text #20:  poultry (0.3376035988330841)
+Text #20:  these (0.4024653136730194)
+Text #20:  the (0.5505045056343079)
+Text #20:  exercise (0.2500700056552887)
+Text #20:  for (0.3099389374256134)
+Text #20:  the (0.6549698710441589)
+Text #20:  effective (0.37088602781295776)
+Text #20:  in (0.328573614358902)
+Text #20:  the (0.42366844415664673)
+Text #20:  final (0.33025598526000977)
+Text #20: <|endoftext|> (0.22934912145137787)
+Text #20: <|endoftext|> (0.22952739894390106)
+Text #20: <|endoftext|> (0.2294166088104248)
+Text #20: <|endoftext|> (0.22932997345924377)
+Text #20: <|endoftext|> (0.2293146699666977)
+Text #20: <|endoftext|> (0.2294004261493683)
+Text #20: <|endoftext|> (0.22939908504486084)
+Text #20: <|endoftext|> (0.22949767112731934)
+Text #20: <|endoftext|> (0.22939710319042206)
+Text #20: <|endoftext|> (0.22944992780685425)
+Text #20: <|endoftext|> (0.22944864630699158)
+Text #20: <|endoftext|> (0.22931557893753052)
+Text #20: <|endoftext|> (0.2293715476989746)
+
+=== Text #1 ===
+> All prints come in both sizes, on cream card, 350 gsm. Off sizes available on request.
+All rights of images and content belong to Salty Philip.[]
+
+=== Text #2 ===
+> Rock n' Roll Express Retro Classic Wrestling Tag Team T Shirt is available on a Black 100% Cotton Tee. The Rock n' Roll Express Retro[ Classic] Wrestling Tag Team[ T Shirt] is available in all sizes. Please select your desired shirt style and size from the drop down above.[][][][]
+
+=== Text #3 ===
+> CarFinder | Murray Ford of Kingsland Inc.
+Murray Ford of Kingsland Inc. offers a free, no obligation and[ confidential] Car[F]inder tool, allowing you to specify your desired car, truck or[ SUV] and[ submit the vehicle configuration to] us. Once we locate matching automobiles, you automatically receive details of[ those] models, with photographs included. Let us handle the task of finding your next dream car![][][][][][][][][][][]
+
+=== Text #4 ===
+> Explore the High Country & Follow[ the] Shotover to pristine Lochnagar. Explore the High Country & Follow[ the] Shotover to pristine Lochnagar.
+experience part of the natural beauty[ of] New Zealand and[ its] secluded back[country].[][][][][][][][]
+
+=== Text #5 ===
+> Light machining capabilities? You bet. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[]
+
+=== Text #6 ===
+> Summary: An introduction to historiography and the theory of counterfactuals.
+Published: In w88 android (ed. Rasmus Dahlberg), q.v.[]
+
+=== Text #7 ===
+> Does your child([ren]) have special dietary requirements?
+Does your child[(ren]) have allergies?
+Please specify which child[ along with the details of the] allergies.
+Does your child[(]ren) have any medical conditions we[ should] be made[ aware of]?
+Do we have permission to take photos of your child[(ren])[ for use in] a presentation and on our website?
+Do we have permission to email/mail you about future children's / youth events at Cobbitty Anglican?
+How did you hear about Mega Day?
+Thank you for registering for[ Mega] Day!
+Your place will be secured once we[ have received your] payment.[][][][][][][]
+
+=== Text #8 ===
+> Please Take a few minutes and contact us by filling out the form below[ to so we can get your] next one of a kind[ custom] guided[ fishing Expedition started]!!
+A Group of more than 2 anglers may require additional Guides. One Guide for every 2[ additional] anglers.
+MuskyBassWalleyeNorthern PikePanfish (crappie,bluegill, Perch)Multi-SpeciesFamily Outing Multi-SpeciesCorporate OutingNot Sure?[][][][][]
+
+=== Text #9 ===
+> Accessories[ for] Breathalyzers alcohol[ breath] testers.
+You can obtain[ additional] mouthpieces[ for your] breathalyzer (alcohol[ breath] tester, alcohol tester, personal breathalyzer). Sold in a package of 10 or 20 units depending on the type of device to ensure you have[ enough for] your guests. The mouthpieces can be washed in warm soapy water.[][][][][][][][][][][][][][]
+
+=== Text #10 ===
+> hd00:11Red and gold Christmas balls on Christmas tree. A Christmas decoration. Background. New year. Winter holiday. Christmas background.
+hd00:12Decorated Christmas tree on blurred, sparkling and fairy background.[]
+
+=== Text #11 ===
+> Please choose a security question What is your birth place? What is your pet's name? What is your mother's middle name? What kind of person are you?[]
+
+=== Text #12 ===
+> If you are going to be at ISTE in Denver[ this] year, come[ join] coffee[ED]U one[ morning]. Coffee[ED]U ([co]ffee[ED]U.org) is a ONE HOUR meet up of educators in the style of edcamp.
+While 6am may be early for some folks it is a great start to your day. This is a fun way to chat and connect with some awesome educators and[ have] your morning coffee!
+Amazon Education is sponsoring the[ coffeeEDU this] year by[ supplying] donuts and coffee.[][][][][][][][][]
+
+=== Text #13 ===
+> We are one of the leading Manufacturer of a wide range of Lenin Fabric, Polyester Dupion and Polyester Silk.
+Our organization is highly acclaimed as a manufacturer of Lenin Fabric,[ Polyester] Dup[ion and Polyester] Silk. These are offered to our clients in a variety of choices.[][][][]
+
+=== Text #14 ===
+> Wigwam's Trail Trax Pro is our[ choice for trail] running[ or] �[�]fast and light” summer mountain trips. These socks give your feet insulated, moisture-wicking protection when you want to take your runs[ off]-road.
+A little bit of care can keep your[ W]igwam socks performing[ well for] years. For best results turn socks inside out before washing. Wash in warm water and tumble dry on low heat.
+Wigwam Trail Tra[x] Pro Sock has a rating of stars based on reviews.[][][][]
+
+=== Text #15 ===
+> BANGALORE CY JUNCTION SBC to GONDIA[ J]UNCTION G train timings, routes, stops, and complete info.
+As of now, 1 trains run between from BANGALORE CY JUNCT[ION (]YPR)[ to] GONDIA JUN[CTION (]G).
+The fastest train from BANGALORE[ CY J]UNCT[ION (]Y[PR]) to[ GONDIA JUNCTION (G]) is YPR KRBA WAINGANGA EXP[ (]12251) that dep[arts] at 23:40 and arrives to at 21:15. It takes approximately 21:35 hours.[][][][][][][][][][][][][]
+
+=== Text #16 ===
+> Russia's biggest operator reckons[ RCS] technology gives it a weapon to[ use] against its web-scale rivals.
+Digital transformation will be vital to operators'[ future] prosperity.
+The growing appeal of Internet telephony and messaging applications leaves Africa['s] telcos in a quandary.
+Telcos are facing a cataclysmic upheaval that will[ force] them to overhaul their technologies, culture and business practices.
+Light Reading editors Iain Morris and Ray Le Maistre discuss[ some of the key issues that] are[ driving] tel[co] transformation[ strategies].
+Which of the following should a telco transform[ first]?[][][][][][][][][]
+
+=== Text #17 ===
+> Evoly is a cute match three game that lets you create[ your] own World[ of] cute[ little] critters!
+Make fast matches and clear the board to earn money[ to spend] on creating your very own world of cute creatures, plants and more. Experiment with over 150 unique characters.
+Watch your creation into a bustling new environment packed with fuzzy animals all created by you. Download and play Evoly now for free!
+Create your own cute creatures![][][][]
+
+=== Text #18 ===
+> Kelsey Nelson is an Ohio-[an] gone South Carolina. After journalism school at Ohio University,[ Kel]sey started her career in communications in Cleveland and now works for a Greenville-based advertising agency. A runner and a foodie, you can find Kelsey on the trails or eating her way through her new town. Hopefully not at the same time.[][]
+
+=== Text #19 ===
+> Located near I-90 and just off Route 62, Niagara Falls Boulevard, in the hub of the area’s dominant retail corridor.
+Across from the Fashion Outlets of Niagara Falls, recently expanded to 700,000 sf, making it one of the largest outlet centers in the country.
+The only Wegmans in the Niagara Falls trade area.[][][][][][][][][]
+
+=== Text #20 ===
+> The Food Safety and Inspection Service (FSIS) is delaying[ the] effective date[ of the final regulations that require] nutrition labelling of[ the] major cuts[ of single]-ingredient[,] raw[ meat] and[ poultry] products and ground or chopped meat and poultry products.
+The original effective date for[ these regulations] was January 1, 2012, but the new effective date of[ the] final rule is March 1, 2012.
+FSIS is taking this action in response to a request from eight trade associations, including AMI. The associations requested that FSIS[ exercise] enforcement discretion[ for a] six month period following[ the] January 1, 2012,[ effective date of the final rule]. FSIS, however, concluded that a two month delay[ in the] effective date will allow industry sufficient time to comply with[ the requirements of] the[ final] rule. FSIS is also making a correction to the final rule to clarify an amendatory instruction.[][][][][][][][][][][][][]
+
+
+Description: 
+2025-05-11 01:42:44,354 - root - INFO - Requirements, specifications, configurations, or details of products, services, or events
+
+2025-05-11 01:42:44,358 - root - INFO - Cluster #1 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.csv
+2025-05-11 01:42:45,426 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-11 01:42:45,427 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  B (0.6490688323974609)
+Text #1: C (0.7230196595191956)
+Text #1:  in (0.9720792174339294)
+Text #1:  for (1.451279640197754)
+Text #1:  such (0.976936399936676)
+Text #1:  for (1.135881781578064)
+Text #1:  C (1.8377556800842285)
+Text #1:  if (1.1055915355682373)
+Text #1: Tech (0.8617877960205078)
+Text #1: Tech (0.8093578219413757)
+Text #1:  railway (0.646125853061676)
+Text #1:  for (1.4692177772521973)
+Text #1: Tech (0.8260828852653503)
+Text #1:  after (0.7105066180229187)
+Text #1: Tech (0.8231330513954163)
+Text #1:  for (0.8429561853408813)
+Text #1: tech (0.631418764591217)
+Text #1: ( (0.7064346671104431)
+Text #1:  for (1.2459583282470703)
+Text #1:  for (1.195763349533081)
+Text #1: Tech (0.8612914681434631)
+Text #1:  job (0.7441840171813965)
+Text #1:  for (1.371385931968689)
+Text #1:  for (0.8857548236846924)
+Text #1:  in (1.2174967527389526)
+Text #1:  after (0.977928876876831)
+Text #1:  C (1.6439361572265625)
+Text #2:  with (0.7679285407066345)
+Text #2:  the (0.46932825446128845)
+Text #2:  Information (0.8448485136032104)
+Text #2:  York (0.9976220726966858)
+Text #2:  Theatre (0.29880136251449585)
+Text #2:  [ (0.3502346873283386)
+Text #2:  Resolution (0.5742204785346985)
+Text #2:  version (0.3739159107208252)
+Text #2:  option (0.32428354024887085)
+Text #2:  Access (0.5396324396133423)
+Text #2:  Garden (1.005649447441101)
+Text #2:  that (0.4802297055721283)
+Text #2:  Access (1.0513571500778198)
+Text #2:  this (0.46710553765296936)
+Text #2:  information (0.6976647973060608)
+Text #2: <|endoftext|> (0.25914299488067627)
+Text #2: <|endoftext|> (0.2591673731803894)
+Text #2: <|endoftext|> (0.2591313123703003)
+Text #2: <|endoftext|> (0.2592492997646332)
+Text #2: <|endoftext|> (0.25906676054000854)
+Text #2: <|endoftext|> (0.25929415225982666)
+Text #2: <|endoftext|> (0.2591036558151245)
+Text #3: � (0.25367847084999084)
+Text #3:  of (0.3334384560585022)
+Text #3:  members (0.27123749256134033)
+Text #3:  of (0.28103622794151306)
+Text #3: <|endoftext|> (0.25046128034591675)
+Text #4: � (0.25367847084999084)
+Text #4:  of (0.3334384560585022)
+Text #4:  members (0.27123749256134033)
+Text #4:  of (0.28103622794151306)
+Text #4: <|endoftext|> (0.25046128034591675)
+Text #5:  the (0.7133872509002686)
+Text #5:  to (0.7029156684875488)
+Text #5: <|endoftext|> (0.2599685788154602)
+Text #5: <|endoftext|> (0.2522328495979309)
+Text #6:  for (0.2947072684764862)
+Text #6: TO (0.4186880886554718)
+Text #6:  to (0.3119959235191345)
+Text #6: <|endoftext|> (0.23130136728286743)
+Text #6: <|endoftext|> (0.23129114508628845)
+Text #7:  our (0.5081632137298584)
+Text #7: wall (0.27959519624710083)
+Text #7: <|endoftext|> (0.24763871729373932)
+Text #8:  brave (0.3120809495449066)
+Text #8:  her (0.5832760334014893)
+Text #8:  raised (0.9836416244506836)
+Text #8:  all (0.7309286594390869)
+Text #8:  money (0.2427678257226944)
+Text #8: <|endoftext|> (0.21467842161655426)
+Text #8: <|endoftext|> (0.21332570910453796)
+Text #8: <|endoftext|> (0.2133716344833374)
+Text #8: <|endoftext|> (0.21342907845973969)
+Text #8: <|endoftext|> (0.21334877610206604)
+Text #8: <|endoftext|> (0.21360746026039124)
+Text #8: <|endoftext|> (0.21346968412399292)
+Text #9:  Of (0.6265702247619629)
+Text #9:  Letter (0.9593149423599243)
+Text #9:  Cover (0.2556128203868866)
+Text #9:  Letter (0.784072995185852)
+Text #9:  With (0.388583242893219)
+Text #9:  resume (0.2852783799171448)
+Text #9:  Letter (1.0767295360565186)
+Text #9:  Letter (1.1713471412658691)
+Text #9: ctory (0.5856912732124329)
+Text #9: ume (0.3928546905517578)
+Text #9:  Letter (0.5480057597160339)
+Text #9:  Letter (2.3346505165100098)
+Text #9:  Letter (0.49279794096946716)
+Text #9:  Res (0.4678114652633667)
+Text #9: df (0.8448681831359863)
+Text #9: <|endoftext|> (0.23684433102607727)
+Text #9: <|endoftext|> (0.2368442714214325)
+Text #9: <|endoftext|> (0.23696571588516235)
+Text #9: <|endoftext|> (0.23709113895893097)
+Text #9: <|endoftext|> (0.23692041635513306)
+Text #9: <|endoftext|> (0.23707795143127441)
+Text #9: <|endoftext|> (0.2371193915605545)
+Text #9: <|endoftext|> (0.2369709312915802)
+Text #10:  to (0.29925796389579773)
+Text #10:  the (0.9521525502204895)
+Text #10: depth (0.5025497078895569)
+Text #10:  S (1.018004059791565)
+Text #10:  into (0.5409581065177917)
+Text #10:  insights (0.34029555320739746)
+Text #10: <|endoftext|> (0.22057804465293884)
+Text #11:  to (0.29925796389579773)
+Text #11:  the (0.9521525502204895)
+Text #11: depth (0.5025497078895569)
+Text #11:  S (1.018004059791565)
+Text #11:  into (0.5409581065177917)
+Text #11:  insights (0.34029555320739746)
+Text #11: <|endoftext|> (0.22057804465293884)
+Text #12:  with (1.4190088510513306)
+Text #12: <|endoftext|> (0.22243906557559967)
+Text #13: <|endoftext|> (0.22043102979660034)
+Text #14:  as (0.32555076479911804)
+Text #14:  system (0.34549012780189514)
+Text #14:  on (0.5680030584335327)
+Text #14:  in (0.2918792963027954)
+Text #14: <|endoftext|> (0.20233897864818573)
+Text #14: <|endoftext|> (0.20212823152542114)
+Text #14: <|endoftext|> (0.20212042331695557)
+Text #14: <|endoftext|> (0.20219044387340546)
+Text #15: <|endoftext|> (0.21872854232788086)
+Text #16:  your (0.2582108974456787)
+Text #16:  the (0.5704681277275085)
+Text #16:  of (0.731722891330719)
+Text #16:  to (0.6079359650611877)
+Text #16:  that (0.9418305158615112)
+Text #16:  of (0.6642032861709595)
+Text #16:  pack (0.6702750325202942)
+Text #16: <|endoftext|> (0.21688775718212128)
+Text #16: <|endoftext|> (0.21239420771598816)
+Text #16: <|endoftext|> (0.212434321641922)
+Text #16: <|endoftext|> (0.2124275267124176)
+Text #16: <|endoftext|> (0.21240264177322388)
+Text #16: <|endoftext|> (0.2124938815832138)
+Text #17:  approach (0.6049845218658447)
+Text #17: - (0.4441145062446594)
+Text #17:  for (1.0517748594284058)
+Text #17:  in (0.5724279284477234)
+Text #17: CT (0.40230265259742737)
+Text #17:  this (0.45377010107040405)
+Text #17:  explore (0.336530864238739)
+Text #17:  design (1.2765735387802124)
+Text #17:  in (1.0226203203201294)
+Text #17:  design (1.0339988470077515)
+Text #17:  been (0.3974844217300415)
+Text #17:  tools (0.3136458396911621)
+Text #17:  practices (1.0707025527954102)
+Text #17: <|endoftext|> (0.22221045196056366)
+Text #17: <|endoftext|> (0.22229038178920746)
+Text #17: <|endoftext|> (0.22219352424144745)
+Text #17: <|endoftext|> (0.22219809889793396)
+Text #17: <|endoftext|> (0.22248855233192444)
+Text #17: <|endoftext|> (0.22228525578975677)
+Text #17: <|endoftext|> (0.22242343425750732)
+Text #17: <|endoftext|> (0.2222205549478531)
+Text #17: <|endoftext|> (0.2223271131515503)
+Text #17: <|endoftext|> (0.22231996059417725)
+Text #17: <|endoftext|> (0.2221686989068985)
+Text #18:  Sons (0.3583293557167053)
+Text #18:  of (0.33425408601760864)
+Text #18: <|endoftext|> (0.2261137068271637)
+Text #18: <|endoftext|> (0.22347286343574524)
+Text #18: <|endoftext|> (0.2234070599079132)
+Text #18: <|endoftext|> (0.22338750958442688)
+Text #18: <|endoftext|> (0.22343981266021729)
+Text #19:  7 (0.7533217072486877)
+Text #19:  E (0.25261566042900085)
+Text #19: 77 (0.2513214945793152)
+Text #19: <|endoftext|> (0.20610536634922028)
+Text #20: <|endoftext|> (0.21805649995803833)
+
+=== Text #1 ===
+> What are the Indian Railway jobs available for[ B]-tech Student([C]SE)?
+Please tell me the details about the job opportunity[ in] Indian railway[ for B-tech student in] Computer Science branch. Also give me the link of that website from where i can apply for[ such kind of job].
+what is the marks criteria in Government railway job ?
+What are the government jobs[ for] B.Tech[ CSE] students?
+Can I get into Railways[ if I am a] graduate?
+Details about Indian Railway recruitment for B.[Tech in] Mechanical engineers?
+Information about railway jobs after B.[Tech]? Type of[ railway] jobs suitable[ for] B.[Tech graduates]?
+Railway jobs[ after B].[Tech] in Electrical?
+Re: What are the Indian Railway jobs available[ for] B-[tech] Student[(]CSE)?
+Sir time of form filling date in railway[ for b.tech cse] student and what salary.
+Jobs in government filed[ for] B.[Tech CSE] branch student?
+Selection procedure for getting[ job in government] banks[ for] Computer Science Engineer? Eligibility criteria for it and list of jobs available[ for] B.Tech CSE student?
+How can I get government jobs[ in] Railway or Bank[ after] passing B.Tech[ CSE]?
+
+=== Text #2 ===
+> School Of Rock Tickets Access Information Broadway New York With Winter Garden Theatre Ideas 23 is one of pictures thet are related[ with the picture] before in the collection gallery. If you would like to see[ the] School Of Rock Tickets Access[ Information] Broadway New[ York With] Winter Garden[ Theatre Ideas 23] in High Resolution[ []HD[ Resolution]][ version,] please press the right click on picures/image then choose "Save as Image"[ option], and done. You will get School Of Rock Tickets[ Access Information Broadway New York With] Winter[ Garden Theatre Ideas 23] pictures[ that you] want. The exactly dimension of School Of Rock Tickets[ Access Information Broadway New York With Winter Garden Theatre Ideas 23] was 779x511 pixels. You can also look for some pictures by collection on below[ this] picture. Find the other picture or article about Winter Garden Theatre here. We hope it can help you to get[ information of the picture].[][][][][][][]
+
+=== Text #3 ===
+> A photo from the 1940�[�]s showing all the members[ of the] wedding.
+Previous Post A photo from the 1940’s showing all the[ members of the wedding]. Next Post A photo from the 1940’s showing all the members[ of the] wedding.[]
+
+=== Text #4 ===
+> A photo from the 1940�[�]s showing all the members[ of the] wedding.
+Previous Post A photo from the 1940’s showing all the[ members of the wedding]. Next Post A photo from the 1940’s showing all the members[ of the] wedding.[]
+
+=== Text #5 ===
+> Nitrosamine free! Keep baby's teeth and gums clean and healthy.
+Click the button below to add[ the] Silicone Toothbrush[ to your] wish list.[][]
+
+=== Text #6 ===
+> Need to make a doctor appointment[ for] Tetralogy of Fallot ([TO]F) this week? Use Zocdoc[ to find doctors near you who take your] insurance. It’s simple, secure and free.[][]
+
+=== Text #7 ===
+> Have you hired Star Drywall Ltd? Write a review and earn[ our] First to Review badge.
+Star Dry[wall] Ltd has not added any photos.
+Looking for Insulation pros in Estevan?[]
+
+=== Text #8 ===
+> After a torturous climb in freezing conditions our[ brave] teacher achieved[ her ambition and reached the summit of this great mountain in] Africa.
+Miss Fremault wanted to raise funds for the Africa 100 charity. The final total of funds[ raised] will be announced when[ all the] sponsorship[ money has been] collected. She is hoping to achieve her target of £500.[][][][][][][]
+
+=== Text #9 ===
+> Introduction Letter For Resume Sample[ Of] Cover[ Letter For] Fresh Graduate Accounting[ Cover] Resume Cover Letter Sample Pdf Uploaded by on Sunday, December 9th, 2018 in category fake resume generator.
+See also Introduction Letter For Resume Cover[ Letter] Resume Examples Newsound Co Sample Self Introduction Introductory Letter Sent[ With A] Resume from fake[ resume] generator Topic.
+Here we have another image Introduction[ Letter For Resume A] Must Have Cover[ Letter] Introdu[ctory Cover Letter] For Res[ume featured under] Introduction[ Letter] For Resume Sample Of Cover[ Letter For] Fresh Graduate Accounting Cover Resume Cover Letter Sample Pdf. We hope you enjoyed it and if you want to download the pictures in high quality, simply right click the image and choose "Save As". Thanks for reading Introduction[ Letter] For[ Resume Sample Of Cover Letter For Fresh Graduate Accounting Cover Resume Cover Letter] Sample P[df].[][][][][][][][]
+
+=== Text #10 ===
+> Stitch can replicate data from all your sources (including Shippo)[ to] a central warehouse. From there, it's easy to use Slemma to perform[ the] in-[depth] analysis you need.
+Integrate Shippo and[ Slemma to turn] your data[ into] actionable[ insights].[]
+
+=== Text #11 ===
+> Stitch can replicate data from all your sources (including Shippo)[ to] a central warehouse. From there, it's easy to use Slemma to perform[ the] in-[depth] analysis you need.
+Integrate Shippo and[ Slemma to turn] your data[ into] actionable[ insights].[]
+
+=== Text #12 ===
+> Car Seat Stores Louisville is free HD wallpaper. This wallpaper was upload at April 24, 2019 upload by admin in .You can download it in your computer by clicking resolution image in Download by size:. Don't forget to rate and comment if you interest[ with this] wallpaper.[]
+
+=== Text #13 ===
+> Light machining capabilities? You bet. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[]
+
+=== Text #14 ===
+> This report shows the usage statistics of Format vs. Apostrophe vs. PencilBlue[ as content] management[ system on the] web. See technologies overview for explanations[ on the] methodologies used[ in the] surveys. Our reports are updated daily.[][][][]
+
+=== Text #15 ===
+> Mondal, K.C.; Kostakis, G.E.; Lan, Y.; Powell, A.K.[]
+
+=== Text #16 ===
+> To determine[ your] torso length, measure the distance between the C7 vertebrae and[ the] top[ of the] hip bone.
+Use the sizing charts below[ to find the] pack[ that will best fit your body].
+To determine your waist size, measure along the iliac crest on top[ of the] hip bone.
+Use the sizing charts below to choose a[ pack that] will best fit your body type.
+Women's Fit: Slightly shorter torso and more curved straps designed to fit the female body.[][][][][][]
+
+=== Text #17 ===
+> The symposium presents design thinking as an alternative[ approach to conduct research and develop] ICT[-based] participatory tools[ for] learning[ in a variety of] settings. The integration of I[CT] in teaching and learning, as well as its support to participatory practices, is defined as a wicked problem that can be best approached through the adoption of a design mindset. In this regard,[ this] symposium presents 4 papers that[ explore ways] to use[ design thinking and ICT in] three different levels: (1) education policy-making, (2) facilitating participation in education (3) design of tools and methods that foster reflection about teaching and learning. The four papers presented[ in the] symposium can be considered as use cases in which[ design thinking] has[ been used to develop new] services,[ tools] and[ practices].[][][][][][][][][][][]
+
+=== Text #18 ===
+> C. S. Lewis Signed Contract with J. M. Dent & Sons Ltd.
+C. Lewis Signed Contract with J. M. Dent &[ Sons Ltd].
+The Pilgrim's Regress. First edition.
+LEWIS, C. S., Signed note attached to the book[ of] a friend.
+By: Williams, Charles & Lewis, C. S.[][][][][]
+
+=== Text #19 ===
+> Sq. Ft. Above Ground. 2,218 Sq. Ft. Below Ground.
+I am interested in 7702 S[ 7]75[ E,] Zionsville, IN 460[77].[]
+
+=== Text #20 ===
+> Self-taught amateur photographer, interested in Analog Black &amp; White Photography.
+Two of his portfolios are featured on the Dodho Magazine website.
+Licenciado (5 years degree) in Philosophy.
+Based in La Palma, Canary Islands, Spain.[]
+
+
+Description: 
+2025-05-11 01:42:45,428 - root - INFO - Specifications or information about something, often related to sizes, jobs, or technology
+
+2025-05-11 01:42:45,433 - root - INFO - Cluster #2 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.csv
+2025-05-11 01:42:46,499 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-11 01:42:46,500 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  B (0.6490688323974609)
+Text #1: C (0.7230196595191956)
+Text #1:  in (0.9720792174339294)
+Text #1:  for (1.451279640197754)
+Text #1:  such (0.976936399936676)
+Text #1:  for (1.135881781578064)
+Text #1:  C (1.8377556800842285)
+Text #1:  if (1.1055915355682373)
+Text #1: Tech (0.8617877960205078)
+Text #1: Tech (0.8093578219413757)
+Text #1:  railway (0.646125853061676)
+Text #1:  for (1.4692177772521973)
+Text #1: Tech (0.8260828852653503)
+Text #1:  after (0.7105066180229187)
+Text #1: Tech (0.8231330513954163)
+Text #1:  for (0.8429561853408813)
+Text #1: tech (0.631418764591217)
+Text #1: ( (0.7064346671104431)
+Text #1:  for (1.2459583282470703)
+Text #1:  for (1.195763349533081)
+Text #1: Tech (0.8612914681434631)
+Text #1:  job (0.7441840171813965)
+Text #1:  for (1.371385931968689)
+Text #1:  for (0.8857548236846924)
+Text #1:  in (1.2174967527389526)
+Text #1:  after (0.977928876876831)
+Text #1:  C (1.6439361572265625)
+Text #2:  & (0.5712636709213257)
+Text #2: la (0.49104467034339905)
+Text #2:  & (0.4698566496372223)
+Text #2: la (0.3426254689693451)
+Text #2: <|endoftext|> (0.2532358467578888)
+Text #3:  ( (0.24248573184013367)
+Text #3: UG (0.3103094696998596)
+Text #3: <|endoftext|> (0.23924647271633148)
+Text #4:  of (0.33991819620132446)
+Text #4:  are (0.3925310969352722)
+Text #4:  aspects (0.5653660297393799)
+Text #4:  category (0.4451129734516144)
+Text #4: <|endoftext|> (0.22540995478630066)
+Text #4: <|endoftext|> (0.22532537579536438)
+Text #4: <|endoftext|> (0.22575883567333221)
+Text #4: <|endoftext|> (0.22613342106342316)
+Text #4: <|endoftext|> (0.22588326036930084)
+Text #4: <|endoftext|> (0.22553899884223938)
+Text #4: <|endoftext|> (0.22531425952911377)
+Text #4: <|endoftext|> (0.22551871836185455)
+Text #4: <|endoftext|> (0.22544161975383759)
+Text #5: <|endoftext|> (0.22900696098804474)
+Text #6: <|endoftext|> (0.22688579559326172)
+Text #7:  confidential (0.27167266607284546)
+Text #7: F (0.23794342577457428)
+Text #7:  SUV (0.3325347900390625)
+Text #7:  submit (1.0086928606033325)
+Text #7:  those (0.3149246871471405)
+Text #7: <|endoftext|> (0.22956635057926178)
+Text #7: <|endoftext|> (0.22902913391590118)
+Text #7: <|endoftext|> (0.22909481823444366)
+Text #7: <|endoftext|> (0.2290090024471283)
+Text #7: <|endoftext|> (0.2292574644088745)
+Text #7: <|endoftext|> (0.22955915331840515)
+Text #7: <|endoftext|> (0.2292531281709671)
+Text #7: <|endoftext|> (0.2292102873325348)
+Text #7: <|endoftext|> (0.22901363670825958)
+Text #7: <|endoftext|> (0.22914496064186096)
+Text #7: <|endoftext|> (0.22911174595355988)
+Text #8:  Food (0.3047305643558502)
+Text #8:  with (1.4675606489181519)
+Text #8: <|endoftext|> (0.22144834697246552)
+Text #9: <|endoftext|> (0.22043102979660034)
+Text #10:  like (0.40238818526268005)
+Text #10:  information (0.6194543838500977)
+Text #10: N (0.33975479006767273)
+Text #10: or (0.393951952457428)
+Text #10: <|endoftext|> (0.2124558985233307)
+Text #11:  to (0.7509534955024719)
+Text #11:  that (0.6074300408363342)
+Text #11:  an (0.4328720271587372)
+Text #11: s (0.31518682837486267)
+Text #11: <|endoftext|> (0.23074589669704437)
+Text #12:  your (0.2582108974456787)
+Text #12:  the (0.5704681277275085)
+Text #12:  of (0.731722891330719)
+Text #12:  to (0.6079359650611877)
+Text #12:  that (0.9418305158615112)
+Text #12:  of (0.6642032861709595)
+Text #12:  pack (0.6702750325202942)
+Text #12: <|endoftext|> (0.21688775718212128)
+Text #12: <|endoftext|> (0.21239420771598816)
+Text #12: <|endoftext|> (0.212434321641922)
+Text #12: <|endoftext|> (0.2124275267124176)
+Text #12: <|endoftext|> (0.21240264177322388)
+Text #12: <|endoftext|> (0.2124938815832138)
+Text #13:  the (0.5539506077766418)
+Text #13: <|endoftext|> (0.21312159299850464)
+Text #14:  approach (0.6049845218658447)
+Text #14: - (0.4441145062446594)
+Text #14:  for (1.0517748594284058)
+Text #14:  in (0.5724279284477234)
+Text #14: CT (0.40230265259742737)
+Text #14:  this (0.45377010107040405)
+Text #14:  explore (0.336530864238739)
+Text #14:  design (1.2765735387802124)
+Text #14:  in (1.0226203203201294)
+Text #14:  design (1.0339988470077515)
+Text #14:  been (0.3974844217300415)
+Text #14:  tools (0.3136458396911621)
+Text #14:  practices (1.0707025527954102)
+Text #14: <|endoftext|> (0.22221045196056366)
+Text #14: <|endoftext|> (0.22229038178920746)
+Text #14: <|endoftext|> (0.22219352424144745)
+Text #14: <|endoftext|> (0.22219809889793396)
+Text #14: <|endoftext|> (0.22248855233192444)
+Text #14: <|endoftext|> (0.22228525578975677)
+Text #14: <|endoftext|> (0.22242343425750732)
+Text #14: <|endoftext|> (0.2222205549478531)
+Text #14: <|endoftext|> (0.2223271131515503)
+Text #14: <|endoftext|> (0.22231996059417725)
+Text #14: <|endoftext|> (0.2221686989068985)
+Text #15:  approach (0.6049845218658447)
+Text #15: - (0.4441145062446594)
+Text #15:  for (1.0517748594284058)
+Text #15:  in (0.5724279284477234)
+Text #15: CT (0.40230265259742737)
+Text #15:  this (0.45377010107040405)
+Text #15:  explore (0.336530864238739)
+Text #15:  design (1.2765735387802124)
+Text #15:  in (1.0226203203201294)
+Text #15:  design (1.0339988470077515)
+Text #15:  been (0.3974844217300415)
+Text #15:  tools (0.3136458396911621)
+Text #15:  practices (1.0707025527954102)
+Text #15: <|endoftext|> (0.22221045196056366)
+Text #15: <|endoftext|> (0.22229038178920746)
+Text #15: <|endoftext|> (0.22219352424144745)
+Text #15: <|endoftext|> (0.22219809889793396)
+Text #15: <|endoftext|> (0.22248855233192444)
+Text #15: <|endoftext|> (0.22228525578975677)
+Text #15: <|endoftext|> (0.22242343425750732)
+Text #15: <|endoftext|> (0.2222205549478531)
+Text #15: <|endoftext|> (0.2223271131515503)
+Text #15: <|endoftext|> (0.22231996059417725)
+Text #15: <|endoftext|> (0.2221686989068985)
+Text #16:  behind (0.5376913547515869)
+Text #16:  margin (0.5986535549163818)
+Text #16:  in (0.901894748210907)
+Text #16: ' (0.2704293429851532)
+Text #16:  the (0.7087597846984863)
+Text #16:  card (0.26362428069114685)
+Text #16:  this (0.5833806991577148)
+Text #16: <|endoftext|> (0.2304610162973404)
+Text #16: <|endoftext|> (0.22946421802043915)
+Text #16: <|endoftext|> (0.22998036444187164)
+Text #16: <|endoftext|> (0.2299700826406479)
+Text #16: <|endoftext|> (0.22968699038028717)
+Text #16: <|endoftext|> (0.22965945303440094)
+Text #16: <|endoftext|> (0.22957639396190643)
+Text #17:  Canadian (0.40255725383758545)
+Text #17:  at (0.25781047344207764)
+Text #17:  for (0.3412492275238037)
+Text #17:  OECD (0.26962369680404663)
+Text #17:  on (0.7246928811073303)
+Text #17: <|endoftext|> (0.22301587462425232)
+Text #17: <|endoftext|> (0.2229776531457901)
+Text #17: <|endoftext|> (0.22298240661621094)
+Text #17: <|endoftext|> (0.22301863133907318)
+Text #17: <|endoftext|> (0.22302424907684326)
+Text #17: <|endoftext|> (0.22308145463466644)
+Text #17: <|endoftext|> (0.22298313677310944)
+Text #17: <|endoftext|> (0.2231806516647339)
+Text #17: <|endoftext|> (0.22298680245876312)
+Text #17: <|endoftext|> (0.22328956425189972)
+Text #17: <|endoftext|> (0.22359518706798553)
+Text #17: <|endoftext|> (0.2232963591814041)
+Text #17: <|endoftext|> (0.22319933772087097)
+Text #17: <|endoftext|> (0.22296784818172455)
+Text #18:  @ (0.25100094079971313)
+Text #18:  @ (0.6703561544418335)
+Text #18: <|endoftext|> (0.20401956140995026)
+Text #19:  on (0.28140130639076233)
+Text #19:  from (0.8304581642150879)
+Text #19:  this (0.4548090696334839)
+Text #19: at (0.47836026549339294)
+Text #19: aran (0.32411468029022217)
+Text #19:  this (1.7693579196929932)
+Text #19:  this (1.019706130027771)
+Text #19:  this (0.3266516327857971)
+Text #19:  good (0.5017484426498413)
+Text #19: <|endoftext|> (0.2212597280740738)
+Text #19: <|endoftext|> (0.22135315835475922)
+Text #19: <|endoftext|> (0.22138266265392303)
+Text #19: <|endoftext|> (0.22118142247200012)
+Text #19: <|endoftext|> (0.22140130400657654)
+Text #19: <|endoftext|> (0.22128236293792725)
+Text #19: <|endoftext|> (0.2212451696395874)
+Text #19: <|endoftext|> (0.2211398035287857)
+Text #19: <|endoftext|> (0.22115373611450195)
+Text #19: <|endoftext|> (0.22114093601703644)
+Text #19: <|endoftext|> (0.2213565707206726)
+Text #19: <|endoftext|> (0.22115004062652588)
+Text #19: <|endoftext|> (0.22117841243743896)
+Text #20:  to (1.5483405590057373)
+Text #20:  custom (0.47577938437461853)
+Text #20:  fishing (0.26378780603408813)
+Text #20:  additional (0.5869461297988892)
+Text #20: <|endoftext|> (0.21883654594421387)
+Text #20: <|endoftext|> (0.21912263333797455)
+Text #20: <|endoftext|> (0.21958386898040771)
+Text #20: <|endoftext|> (0.21903960406780243)
+Text #20: <|endoftext|> (0.21894758939743042)
+
+=== Text #1 ===
+> What are the Indian Railway jobs available for[ B]-tech Student([C]SE)?
+Please tell me the details about the job opportunity[ in] Indian railway[ for B-tech student in] Computer Science branch. Also give me the link of that website from where i can apply for[ such kind of job].
+what is the marks criteria in Government railway job ?
+What are the government jobs[ for] B.Tech[ CSE] students?
+Can I get into Railways[ if I am a] graduate?
+Details about Indian Railway recruitment for B.[Tech in] Mechanical engineers?
+Information about railway jobs after B.[Tech]? Type of[ railway] jobs suitable[ for] B.[Tech graduates]?
+Railway jobs[ after B].[Tech] in Electrical?
+Re: What are the Indian Railway jobs available[ for] B-[tech] Student[(]CSE)?
+Sir time of form filling date in railway[ for b.tech cse] student and what salary.
+Jobs in government filed[ for] B.[Tech CSE] branch student?
+Selection procedure for getting[ job in government] banks[ for] Computer Science Engineer? Eligibility criteria for it and list of jobs available[ for] B.Tech CSE student?
+How can I get government jobs[ in] Railway or Bank[ after] passing B.Tech[ CSE]?
+
+=== Text #2 ===
+> Embrace world class facilities at East Bourne Resort & Spa Shimla. Facilities at East Bourne Resort[ & Spa] Shim[la] comprise multi cuisine restaurant, tours and travel desk. Avail facilities of East Bourne Resort[ & Spa] Shim[la].[]
+
+=== Text #3 ===
+> UGLYS Electric Motors and Controls Book FREE SHIP !
+UGLYS T-Shirt[ (]Large) FREE SHIP !
+[UG]LYS T-Shirt (XXL) FREE SHIP ![]
+
+=== Text #4 ===
+> Rent the Centre. Celebrations, Parties or just for fun.
+In order to provide a flavour[ of the] Grenville House experience set out below[ are a collection of images showing the range of activities] and other[ aspects of a visit to the Centre].
+To open an album click on the chosen[ category] image. Click on any image to enlarge it and finally to enable you to scroll through the selected album float the cursor over the end of the image to reveal the direction arrow.[][][][][][][][][]
+
+=== Text #5 ===
+> “…provides interest, suspense and word repetition. Illustrations excellent. Recommended.”–(starred) School Library Journal.
+This book is enhanced with read aloud audio features.[]
+
+=== Text #6 ===
+> Create a solid foundation for your outfit with the Building Blocks Oval Gold Earrings! A texture gold metal oval shape. Earrings measure 1.5" long.
+Long Hoop at the back.[]
+
+=== Text #7 ===
+> CarFinder | Murray Ford of Kingsland Inc.
+Murray Ford of Kingsland Inc. offers a free, no obligation and[ confidential] Car[F]inder tool, allowing you to specify your desired car, truck or[ SUV] and[ submit the vehicle configuration to] us. Once we locate matching automobiles, you automatically receive details of[ those] models, with photographs included. Let us handle the task of finding your next dream car![][][][][][][][][][][]
+
+=== Text #8 ===
+> Walking[ Food] Tours In New Orleans is free HD wallpaper. This wallpaper was upload at April 20, 2019 upload by admin in .You can download it in your computer by clicking resolution image in Download by size:. Don't forget to rate and comment if you interest[ with this] wallpaper.[]
+
+=== Text #9 ===
+> Light machining capabilities? You bet. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[]
+
+=== Text #10 ===
+> This website is currently for US residents only.
+We’re learning more about CLN2 disease every day. By completing and submitting the form below, you are indicating that you would[ like to] receive more[ information related to] CL[N2 disease and]/[or] BioMarin’s products and services.[]
+
+=== Text #11 ===
+> This topic contains 0 replies, has 1 voice, and was last updated by Lodewijk Luijt 1 year ago.
+I’d like to pitch an idea[ to a] production company[ that involves] filming 1 theater play from 3 (camera)locations. Is there anyone that knows[ an] example of 3 synchronised 360 video cam’[s shooting on a] set?[]
+
+=== Text #12 ===
+> To determine[ your] torso length, measure the distance between the C7 vertebrae and[ the] top[ of the] hip bone.
+Use the sizing charts below[ to find the] pack[ that will best fit your body].
+To determine your waist size, measure along the iliac crest on top[ of the] hip bone.
+Use the sizing charts below to choose a[ pack that] will best fit your body type.
+Women's Fit: Slightly shorter torso and more curved straps designed to fit the female body.[][][][][][]
+
+=== Text #13 ===
+> I thought I was going to finish the 3rd season of the Wire tonight.
+But there was a commentary on episode 11, so I had to re-watch Middle Ground with[ the commentary]. Hopefully I can finish the season next weekend.[]
+
+=== Text #14 ===
+> The symposium presents design thinking as an alternative[ approach to conduct research and develop] ICT[-based] participatory tools[ for] learning[ in a variety of] settings. The integration of I[CT] in teaching and learning, as well as its support to participatory practices, is defined as a wicked problem that can be best approached through the adoption of a design mindset. In this regard,[ this] symposium presents 4 papers that[ explore ways] to use[ design thinking and ICT in] three different levels: (1) education policy-making, (2) facilitating participation in education (3) design of tools and methods that foster reflection about teaching and learning. The four papers presented[ in the] symposium can be considered as use cases in which[ design thinking] has[ been used to develop new] services,[ tools] and[ practices].[][][][][][][][][][][]
+
+=== Text #15 ===
+> The symposium presents design thinking as an alternative[ approach to conduct research and develop] ICT[-based] participatory tools[ for] learning[ in a variety of] settings. The integration of I[CT] in teaching and learning, as well as its support to participatory practices, is defined as a wicked problem that can be best approached through the adoption of a design mindset. In this regard,[ this] symposium presents 4 papers that[ explore ways] to use[ design thinking and ICT in] three different levels: (1) education policy-making, (2) facilitating participation in education (3) design of tools and methods that foster reflection about teaching and learning. The four papers presented[ in the] symposium can be considered as use cases in which[ design thinking] has[ been used to develop new] services,[ tools] and[ practices].[][][][][][][][][][][]
+
+=== Text #16 ===
+> HIS' Radeon HD 5850 trailed[ behind the] GeForce GTX 285 by a small[ margin at] 1680x1050 and 1920x1200[ in] Crysis Warhead. At a 2560x1600 resolution both cards averaged only 25fps, making them 14% slower than the Radeon HD 5870.
+In Enemy Territory: Quake Wars, HIS[' Radeon HD 5850] was 16% slower than[ the Radeon HD 5870 at] 2560x1600, delivering an average performance of 89fps. It was also 31% faster than the Radeon HD 4890, which was the next fastest graphics[ card] tested in[ this] particular game.[][][][][][][]
+
+=== Text #17 ===
+> To what level have[ Canadian] adults studied? How much time do students spend in classrooms? On what resources and services is education funding spent?
+This report is a companion report to the Organisation for Economic Co-operation and Development (OECD), Education[ at] a Glance 2015, which presents complete data[ for] all[ OECD] member countries, including Canada.
+Want to learn more? Join our chat session with Statistics Canada experts[ on these findings]![][][][][][][][][][][][][][]
+
+=== Text #18 ===
+> Time Team Play ARMY Win Prob.
+It's over,[ @]ArmyWP_MLax beat[ @]navymlax 9-8. Check out the #LaxWP win probability chart.[]
+
+=== Text #19 ===
+> Surat Lamaran Kerja Bahasa Inggris Singkat is just about the image we ascertained[ on the] internet[ from reliable] imagination. We constitute one head to discourse[ this] Sur[at] Lam[aran Kerja Bahasa Inggris Singkat] picture on[ this] webpage because predicated on conception coming from Google Image, Its one of the very best reted concerns keyword on Yahoo INTERNET SEARCH ENGINE. And that people also consider you arrived here were looking because of[ this information], are not You? From many options on the internet were sure[ this] pictures is actually a[ good image for] you, and we sincerely hopefully you are proud of with what we present.[][][][][][][][][][][][][]
+
+=== Text #20 ===
+> Please Take a few minutes and contact us by filling out the form below[ to so we can get your] next one of a kind[ custom] guided[ fishing Expedition started]!!
+A Group of more than 2 anglers may require additional Guides. One Guide for every 2[ additional] anglers.
+MuskyBassWalleyeNorthern PikePanfish (crappie,bluegill, Perch)Multi-SpeciesFamily Outing Multi-SpeciesCorporate OutingNot Sure?[][][][][]
+
+
+Description: 
+2025-05-11 01:42:46,502 - root - INFO - Categories, types, or classes of things
+
+2025-05-11 01:42:46,507 - root - INFO - Cluster #3 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.csv
+2025-05-11 01:42:47,716 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-11 01:42:47,717 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  sets (0.6037793159484863)
+Text #1: for (0.23939675092697144)
+Text #1:  this (1.151037335395813)
+Text #1:  keep (0.8224599361419678)
+Text #1:  of (0.23574015498161316)
+Text #1: <|endoftext|> (0.22477295994758606)
+Text #2:  way (0.7634307146072388)
+Text #2:  to (0.5186963081359863)
+Text #2:  the (1.1653341054916382)
+Text #2: ie (0.47853603959083557)
+Text #2: <|endoftext|> (0.23758500814437866)
+Text #3:  to (0.3421490788459778)
+Text #3:  use (0.32480335235595703)
+Text #3:  for (0.5663185715675354)
+Text #3:  in (0.5109747648239136)
+Text #3:  patients (0.373376727104187)
+Text #3:  of (0.6780564785003662)
+Text #3:  of (0.4726095497608185)
+Text #3: <|endoftext|> (0.2422468513250351)
+Text #4:  This (0.40558674931526184)
+Text #4: <|endoftext|> (0.21981008350849152)
+Text #5: <|endoftext|> (0.22043102979660034)
+Text #6:  The (0.4073314964771271)
+Text #6:  Around (0.3321564793586731)
+Text #6:  wonderful (0.37682291865348816)
+Text #6:  pictures (0.4224536418914795)
+Text #6:  selecting (0.37091773748397827)
+Text #6:  of (0.8098262548446655)
+Text #6:  information (0.5219093561172485)
+Text #6:  Around (0.5267066359519958)
+Text #6:  get (0.3486170470714569)
+Text #6:  best (0.6256244778633118)
+Text #6:  Around (0.23645789921283722)
+Text #6:  that (0.7733137011528015)
+Text #6:  been (0.5439562201499939)
+Text #6:  field (0.2388027310371399)
+Text #6: <|endoftext|> (0.23395919799804688)
+Text #6: <|endoftext|> (0.23404552042484283)
+Text #6: <|endoftext|> (0.23408576846122742)
+Text #6: <|endoftext|> (0.23399794101715088)
+Text #7:  as (0.6691209673881531)
+Text #7:  in (0.7979345917701721)
+Text #7:  in (1.1328579187393188)
+Text #7: driven (0.9909641742706299)
+Text #7:  of (1.3980720043182373)
+Text #7:  to (0.2575189471244812)
+Text #7:  and (0.6999386548995972)
+Text #7:  regulate (0.6707778573036194)
+Text #7: <|endoftext|> (0.2240198701620102)
+Text #7: <|endoftext|> (0.22403515875339508)
+Text #7: <|endoftext|> (0.22419384121894836)
+Text #7: <|endoftext|> (0.22408956289291382)
+Text #7: <|endoftext|> (0.22393196821212769)
+Text #7: <|endoftext|> (0.223921000957489)
+Text #7: <|endoftext|> (0.2239367812871933)
+Text #7: <|endoftext|> (0.22398371994495392)
+Text #7: <|endoftext|> (0.2239399254322052)
+Text #8: <|endoftext|> (0.22153669595718384)
+Text #9:  approach (0.6049845218658447)
+Text #9: - (0.4441145062446594)
+Text #9:  for (1.0517748594284058)
+Text #9:  in (0.5724279284477234)
+Text #9: CT (0.40230265259742737)
+Text #9:  this (0.45377010107040405)
+Text #9:  explore (0.336530864238739)
+Text #9:  design (1.2765735387802124)
+Text #9:  in (1.0226203203201294)
+Text #9:  design (1.0339988470077515)
+Text #9:  been (0.3974844217300415)
+Text #9:  tools (0.3136458396911621)
+Text #9:  practices (1.0707025527954102)
+Text #9: <|endoftext|> (0.22221045196056366)
+Text #9: <|endoftext|> (0.22229038178920746)
+Text #9: <|endoftext|> (0.22219352424144745)
+Text #9: <|endoftext|> (0.22219809889793396)
+Text #9: <|endoftext|> (0.22248855233192444)
+Text #9: <|endoftext|> (0.22228525578975677)
+Text #9: <|endoftext|> (0.22242343425750732)
+Text #9: <|endoftext|> (0.2222205549478531)
+Text #9: <|endoftext|> (0.2223271131515503)
+Text #9: <|endoftext|> (0.22231996059417725)
+Text #9: <|endoftext|> (0.2221686989068985)
+Text #10:  approach (0.6049845218658447)
+Text #10: - (0.4441145062446594)
+Text #10:  for (1.0517748594284058)
+Text #10:  in (0.5724279284477234)
+Text #10: CT (0.40230265259742737)
+Text #10:  this (0.45377010107040405)
+Text #10:  explore (0.336530864238739)
+Text #10:  design (1.2765735387802124)
+Text #10:  in (1.0226203203201294)
+Text #10:  design (1.0339988470077515)
+Text #10:  been (0.3974844217300415)
+Text #10:  tools (0.3136458396911621)
+Text #10:  practices (1.0707025527954102)
+Text #10: <|endoftext|> (0.22221045196056366)
+Text #10: <|endoftext|> (0.22229038178920746)
+Text #10: <|endoftext|> (0.22219352424144745)
+Text #10: <|endoftext|> (0.22219809889793396)
+Text #10: <|endoftext|> (0.22248855233192444)
+Text #10: <|endoftext|> (0.22228525578975677)
+Text #10: <|endoftext|> (0.22242343425750732)
+Text #10: <|endoftext|> (0.2222205549478531)
+Text #10: <|endoftext|> (0.2223271131515503)
+Text #10: <|endoftext|> (0.22231996059417725)
+Text #10: <|endoftext|> (0.2221686989068985)
+Text #11:  raised (0.36092549562454224)
+Text #11: <|endoftext|> (0.22237175703048706)
+Text #12: <|endoftext|> (0.21805649995803833)
+Text #13:  Canadian (0.40255725383758545)
+Text #13:  at (0.25781047344207764)
+Text #13:  for (0.3412492275238037)
+Text #13:  OECD (0.26962369680404663)
+Text #13:  on (0.7246928811073303)
+Text #13: <|endoftext|> (0.22301587462425232)
+Text #13: <|endoftext|> (0.2229776531457901)
+Text #13: <|endoftext|> (0.22298240661621094)
+Text #13: <|endoftext|> (0.22301863133907318)
+Text #13: <|endoftext|> (0.22302424907684326)
+Text #13: <|endoftext|> (0.22308145463466644)
+Text #13: <|endoftext|> (0.22298313677310944)
+Text #13: <|endoftext|> (0.2231806516647339)
+Text #13: <|endoftext|> (0.22298680245876312)
+Text #13: <|endoftext|> (0.22328956425189972)
+Text #13: <|endoftext|> (0.22359518706798553)
+Text #13: <|endoftext|> (0.2232963591814041)
+Text #13: <|endoftext|> (0.22319933772087097)
+Text #13: <|endoftext|> (0.22296784818172455)
+Text #14:  specification (0.3059825301170349)
+Text #14:  the (0.2674237787723541)
+Text #14:  ( (0.7335044145584106)
+Text #14:  supply (0.4443827271461487)
+Text #14:  during (0.2062038630247116)
+Text #14:  of (0.7556263208389282)
+Text #14:  aircraft (0.20788168907165527)
+Text #14:  covered (0.3886743485927582)
+Text #14:  oxygen (0.23834244906902313)
+Text #14: <|endoftext|> (0.20255732536315918)
+Text #14: <|endoftext|> (0.20225243270397186)
+Text #14: <|endoftext|> (0.20225422084331512)
+Text #14: <|endoftext|> (0.20219124853610992)
+Text #15: based (0.8085147738456726)
+Text #15: person (0.4565184414386749)
+Text #15:  to (0.5590420961380005)
+Text #15:  to (0.34618517756462097)
+Text #15:  from (0.4843748211860657)
+Text #15:  clicks (0.36803939938545227)
+Text #15:  likes (0.43954071402549744)
+Text #15: based (0.3025677502155304)
+Text #15:  traffic (0.23930269479751587)
+Text #15: based (1.1483935117721558)
+Text #15:  understand (0.7804680466651917)
+Text #15:  on (1.0676244497299194)
+Text #15: <|endoftext|> (0.2382667362689972)
+Text #15: <|endoftext|> (0.23824912309646606)
+Text #15: <|endoftext|> (0.23859670758247375)
+Text #15: <|endoftext|> (0.23853231966495514)
+Text #15: <|endoftext|> (0.23850704729557037)
+Text #15: <|endoftext|> (0.2383924126625061)
+Text #15: <|endoftext|> (0.23832999169826508)
+Text #15: <|endoftext|> (0.23825672268867493)
+Text #16: based (0.8085147738456726)
+Text #16: person (0.4565184414386749)
+Text #16:  to (0.5590420961380005)
+Text #16:  to (0.34618517756462097)
+Text #16:  from (0.4843748211860657)
+Text #16:  clicks (0.36803939938545227)
+Text #16:  likes (0.43954071402549744)
+Text #16: based (0.3025677502155304)
+Text #16:  traffic (0.23930269479751587)
+Text #16: based (1.1483935117721558)
+Text #16:  understand (0.7804680466651917)
+Text #16:  on (1.0676244497299194)
+Text #16: <|endoftext|> (0.2382667362689972)
+Text #16: <|endoftext|> (0.23824912309646606)
+Text #16: <|endoftext|> (0.23859670758247375)
+Text #16: <|endoftext|> (0.23853231966495514)
+Text #16: <|endoftext|> (0.23850704729557037)
+Text #16: <|endoftext|> (0.2383924126625061)
+Text #16: <|endoftext|> (0.23832999169826508)
+Text #16: <|endoftext|> (0.23825672268867493)
+Text #17:  third (0.2185959368944168)
+Text #17: party (0.21756769716739655)
+Text #17:  with (0.49903324246406555)
+Text #17:  you (0.43178993463516235)
+Text #17:  paste (0.7909445762634277)
+Text #17:  this (0.4148961901664734)
+Text #17: � (0.858060896396637)
+Text #17: ll (0.3188982307910919)
+Text #17:  Copy (0.24638594686985016)
+Text #17: <|endoftext|> (0.21499855816364288)
+Text #17: <|endoftext|> (0.21526984870433807)
+Text #17: <|endoftext|> (0.215230792760849)
+Text #17: <|endoftext|> (0.2150500863790512)
+Text #17: <|endoftext|> (0.21517522633075714)
+Text #17: <|endoftext|> (0.2149459719657898)
+Text #17: <|endoftext|> (0.2149343192577362)
+Text #17: <|endoftext|> (0.21498726308345795)
+Text #17: <|endoftext|> (0.2149677872657776)
+Text #17: <|endoftext|> (0.21486474573612213)
+Text #17: <|endoftext|> (0.2151148021221161)
+Text #17: <|endoftext|> (0.21499532461166382)
+Text #17: <|endoftext|> (0.21496492624282837)
+Text #17: <|endoftext|> (0.21488375961780548)
+Text #17: <|endoftext|> (0.21493257582187653)
+Text #17: <|endoftext|> (0.21506910026073456)
+Text #17: <|endoftext|> (0.21492910385131836)
+Text #17: <|endoftext|> (0.2148691564798355)
+Text #18:  nicely (0.5260685086250305)
+Text #18:  dragging (0.4189320504665375)
+Text #18: <|endoftext|> (0.19267237186431885)
+Text #18: <|endoftext|> (0.19257430732250214)
+Text #18: <|endoftext|> (0.19254112243652344)
+Text #18: <|endoftext|> (0.19255183637142181)
+Text #18: <|endoftext|> (0.19262121617794037)
+Text #18: <|endoftext|> (0.192857563495636)
+Text #18: <|endoftext|> (0.19253531098365784)
+Text #19:  J (0.4103575050830841)
+Text #19: ION (0.8018023371696472)
+Text #19:  to (0.3060961365699768)
+Text #19: CT (0.22930791974067688)
+Text #19:  CY (0.47776728868484497)
+Text #19: ION (0.3267294466495514)
+Text #19: PR (0.5122839212417603)
+Text #19:  G (0.2510525584220886)
+Text #19:  ( (0.4373983144760132)
+Text #19: arts (0.47776442766189575)
+Text #19: <|endoftext|> (0.2170698195695877)
+Text #19: <|endoftext|> (0.21742428839206696)
+Text #19: <|endoftext|> (0.21744515001773834)
+Text #19: <|endoftext|> (0.21728874742984772)
+Text #19: <|endoftext|> (0.21738125383853912)
+Text #19: <|endoftext|> (0.21728023886680603)
+Text #19: <|endoftext|> (0.21711458265781403)
+Text #19: <|endoftext|> (0.21711792051792145)
+Text #19: <|endoftext|> (0.21707454323768616)
+Text #19: <|endoftext|> (0.21734873950481415)
+Text #19: <|endoftext|> (0.21711041033267975)
+Text #19: <|endoftext|> (0.21707826852798462)
+Text #19: <|endoftext|> (0.21710635721683502)
+Text #20:  be (0.20825791358947754)
+Text #20: <|endoftext|> (0.20212019979953766)
+
+=== Text #1 ===
+> currently, the projectdesigner calendar also[ sets] task times ([for] start or end date).
+added checkbox to switch on[ this behaviour,] default: use dates but[ keep] old task times[ of day].
+Resolved in Opto's patch a while back.[]
+
+=== Text #2 ===
+> Melt margarine in skillet and lightly fry onion, pepper and celery until tender crisp. Add flour and blend in. Add other ingredients and heat through. Serve with rice and grated Parmesan/Romano.
+How Do You Cook Creole Skillet?
+If you know another[ way to cook Creole Skillet] please make a comment in the form below[ to] help other free recipe users make[ the best of this free] recip[ie].[]
+
+=== Text #3 ===
+> A phase II pilot study[ to] evaluate[ use] of intravenous lidocaine[ for] opioid-refractory pain[ in] cancer[ patients].
+Kerala, India: status[ of] cancer pain relief and palliative care.
+Nurse moral distress and cancer pain management: an ethnography[ of] oncology nurses in India.[]
+
+=== Text #4 ===
+> Information Security Risk Awareness Programs in K-12: Is[ This] the Right Approach?
+Copyright © 1996-2017 TIIJ. All Rights Reserved.[]
+
+=== Text #5 ===
+> Light machining capabilities? You bet. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[]
+
+=== Text #6 ===
+> Christmas Around[ The] World Poem. This amazing picture selections about Christmas[ Around The World Poem] is accessible to save. We obtain this[ wonderful photo] from online and choose the top for you. Christmas Around The World Poem images and[ pictures] collection that published here was carefully picked and uploaded by our team after[ selecting the ones] that are best among the others.
+So, ultimately we make it and here these list[ ofbest photo for your inspiration] and[ information purpose regarding the] Christmas[ Around The World Poem as part of] [blog] exclusive updates collection. So, take your time and[ get] the[ best] Christmas[ Around The World Poem images and pictures posted] here[ that suitable with] your needs and use it for your own collection and personal use.
+About Photo brief description: Photo has been published by admin and has[ been] tagged by category in[ field]. You can leave your comment as feed-back to our page quality.[][][][]
+
+=== Text #7 ===
+> Attributes of ultrastability[ as an] adaption mechanism[ in a] hormone-modulated neural robot controller were investigated[ in a] simulation. Action-selection based on hormone-[driven] utilities[ of] memory items was used[ to alternate between resource] gathering[ and] recharging tasks.
+The implemented ultrastability mechanism was applied on two different time scales, to[ regulate fast]-operating neurons and slowly-operating glands. The main limitation of the algorithm was that the adaptation was unstable when a task required an unexpectedly varied satisfaction time.[][][][][][][][][]
+
+=== Text #8 ===
+> Summary: An introduction to historiography and the theory of counterfactuals.
+Published: In w88 android (ed. Rasmus Dahlberg), q.v.[]
+
+=== Text #9 ===
+> The symposium presents design thinking as an alternative[ approach to conduct research and develop] ICT[-based] participatory tools[ for] learning[ in a variety of] settings. The integration of I[CT] in teaching and learning, as well as its support to participatory practices, is defined as a wicked problem that can be best approached through the adoption of a design mindset. In this regard,[ this] symposium presents 4 papers that[ explore ways] to use[ design thinking and ICT in] three different levels: (1) education policy-making, (2) facilitating participation in education (3) design of tools and methods that foster reflection about teaching and learning. The four papers presented[ in the] symposium can be considered as use cases in which[ design thinking] has[ been used to develop new] services,[ tools] and[ practices].[][][][][][][][][][][]
+
+=== Text #10 ===
+> The symposium presents design thinking as an alternative[ approach to conduct research and develop] ICT[-based] participatory tools[ for] learning[ in a variety of] settings. The integration of I[CT] in teaching and learning, as well as its support to participatory practices, is defined as a wicked problem that can be best approached through the adoption of a design mindset. In this regard,[ this] symposium presents 4 papers that[ explore ways] to use[ design thinking and ICT in] three different levels: (1) education policy-making, (2) facilitating participation in education (3) design of tools and methods that foster reflection about teaching and learning. The four papers presented[ in the] symposium can be considered as use cases in which[ design thinking] has[ been used to develop new] services,[ tools] and[ practices].[][][][][][][][][][][]
+
+=== Text #11 ===
+> Description: Stumps from dead trees that were drowned when the lake level was[ raised in the] 1920s to generate electricity. This picture was taken by Monowai Hut.
+Lake Monowai is a large lake (31 km²) in the southern part of Fiordland National Park.[]
+
+=== Text #12 ===
+> Self-taught amateur photographer, interested in Analog Black &amp; White Photography.
+Two of his portfolios are featured on the Dodho Magazine website.
+Licenciado (5 years degree) in Philosophy.
+Based in La Palma, Canary Islands, Spain.[]
+
+=== Text #13 ===
+> To what level have[ Canadian] adults studied? How much time do students spend in classrooms? On what resources and services is education funding spent?
+This report is a companion report to the Organisation for Economic Co-operation and Development (OECD), Education[ at] a Glance 2015, which presents complete data[ for] all[ OECD] member countries, including Canada.
+Want to learn more? Join our chat session with Statistics Canada experts[ on these findings]![][][][][][][][][][][][][][]
+
+=== Text #14 ===
+> This[ specification] covers[ the requirements for] hose and hose assemblies[ (]see 6.9) which[ supply] breathing oxygen to aircrews[ during] the operation[ of] high performance[ aircraft].
+The hose assembly[ covered by this specification] is for supplying breathing[ oxygen] to aircrew members during the operation of aircraft. The hose assembly extends from the breathing regulator to the application connector. These hose assemblies are part of the Aircraft Life Support System..[][][][]
+
+=== Text #15 ===
+> Measurable physical traffic directed into geo-locations!
+Cost per traffic™ provides performance-[based campaign costs to drive in]-[person] visits[ to physical locations with measurable] traffic KPIs.
+Sign Up for a free trial when we launch!
+Joe is a boutique shop owner, he has been paying for several clicks on Google Ads and likes on social media. However, did these marketing campaigns really drive traffic[ to] his physical store? How can Joe find out if his customers are coming[ from] the online[ clicks] and[ likes]?
+Cost per traffic™ offers performance-[based] charges that are directly related to Joe’s store[ traffic]. With power cost per traffic™, Joe now will only be charged at a performance-[based rate for each traffic sent into] his store.
+Cost per traffic™ provides powerful KPIs for physical store owners to[ understand campaign performance and establish] customer profiles base[ on visits].[][][][][][][][]
+
+=== Text #16 ===
+> Measurable physical traffic directed into geo-locations!
+Cost per traffic™ provides performance-[based campaign costs to drive in]-[person] visits[ to physical locations with measurable] traffic KPIs.
+Sign Up for a free trial when we launch!
+Joe is a boutique shop owner, he has been paying for several clicks on Google Ads and likes on social media. However, did these marketing campaigns really drive traffic[ to] his physical store? How can Joe find out if his customers are coming[ from] the online[ clicks] and[ likes]?
+Cost per traffic™ offers performance-[based] charges that are directly related to Joe’s store[ traffic]. With power cost per traffic™, Joe now will only be charged at a performance-[based rate for each traffic sent into] his store.
+Cost per traffic™ provides powerful KPIs for physical store owners to[ understand campaign performance and establish] customer profiles base[ on visits].[][][][][][][][]
+
+=== Text #17 ===
+> MailChimp is a[ third]-[party] newsletter platform that many store owners use to keep their customers up to date[ with their] store.
+Now you should see a box for[ you to] copy and[ paste the] code. Inside[ this] box there is a section that starts with action=”[�]� and inside the action is the URL you’[ll] want to copy.
+8.[ Copy] it to your clipboard with cmd + c on a Mac or ctrl + c on a PC.[][][][][][][][][][][][][][][][][][]
+
+=== Text #18 ===
+> Pads allow you to transition[ nicely] from floor to pole. Slide on the floor,[ dragging] your knees without sticking to the floor. They cover just enough of your knee to protect it without preventing you from gripping the pole.[][][][][][][]
+
+=== Text #19 ===
+> BANGALORE CY JUNCTION SBC to GONDIA[ J]UNCTION G train timings, routes, stops, and complete info.
+As of now, 1 trains run between from BANGALORE CY JUNCT[ION (]YPR)[ to] GONDIA JUN[CTION (]G).
+The fastest train from BANGALORE[ CY J]UNCT[ION (]Y[PR]) to[ GONDIA JUNCTION (G]) is YPR KRBA WAINGANGA EXP[ (]12251) that dep[arts] at 23:40 and arrives to at 21:15. It takes approximately 21:35 hours.[][][][][][][][][][][][][]
+
+=== Text #20 ===
+> Whether on the beach or on a court. Volleyball trophies recognize your team members and celebrates that victorious win.
+An Elegant Diamond Volleyball Sport Award that can[ be] a Desk Accessory, Mounted on a Plaque or on a Wall.[]
+
+
+Description: 
+2025-05-11 01:42:47,718 - root - INFO - Methods, approaches, or uses related to locations, purposes, or designs
+
+2025-05-11 01:42:47,722 - root - INFO - Cluster #4 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.csv
+2025-05-11 01:42:47,723 - root - INFO - ================================================================================
+2025-05-11 01:42:47,723 - root - INFO - ANALYSIS COMPLETED
+2025-05-11 01:42:47,724 - root - INFO - ================================================================================
+2025-05-11 01:42:47,724 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.log
+2025-05-11 01:42:47,725 - root - INFO - CSV saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/gpt2-xl_layer-20_unit-1406_2025-05-10_23-30-58.csv

@@ -1,0 +1,1194 @@
+2025-07-25 21:06:30,330 - root - INFO - ================================================================================
+2025-07-25 21:06:30,394 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 21:06:30,395 - root - INFO - ================================================================================
+2025-07-25 21:06:30,396 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 21:06:30,396 - root - INFO - AGG_METHOD = mean
+2025-07-25 21:06:30,397 - root - INFO - BATCH_SIZE = 2
+2025-07-25 21:06:30,397 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 21:06:30,397 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 21:06:30,398 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 21:06:30,398 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 21:06:30,399 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 21:06:30,399 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 21:06:30,400 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 21:06:30,400 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 21:06:30,401 - root - INFO - DATA_FILES = None
+2025-07-25 21:06:30,401 - root - INFO - DEVICE = cuda
+2025-07-25 21:06:30,401 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 21:06:30,402 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 21:06:30,402 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 21:06:30,403 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 21:06:30,403 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 21:06:30,403 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 21:06:30,404 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 21:06:30,404 - root - INFO - LAYER_ID = 0
+2025-07-25 21:06:30,405 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 21:06:30,405 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 21:06:30,406 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 21:06:30,406 - root - INFO - MULTI_EVAL = True
+2025-07-25 21:06:30,406 - root - INFO - N_CLUSTERS = 1
+2025-07-25 21:06:30,407 - root - INFO - N_SAMPLES = 10
+2025-07-25 21:06:30,407 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 21:06:30,408 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 21:06:30,408 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 21:06:30,408 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 21:06:30,409 - root - INFO - SPLIT = train
+2025-07-25 21:06:30,409 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 21:06:30,410 - root - INFO - STREAMING = True
+2025-07-25 21:06:30,410 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 21:06:30,411 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 21:06:30,411 - root - INFO - TARGET_DATA = c4
+2025-07-25 21:06:30,411 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 21:06:30,412 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 21:06:30,412 - root - INFO - UNIT_ID = 1149
+2025-07-25 21:06:30,413 - root - INFO - USE_API = True
+2025-07-25 21:06:30,413 - root - INFO - ================================================================================
+2025-07-25 21:06:30,413 - root - INFO - ANALYSIS RESULTS
+2025-07-25 21:06:30,414 - root - INFO - ================================================================================
+2025-07-25 21:06:30,414 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-1149_clusters-1_2025-07-25_19-06-30.log
+2025-07-25 21:15:07,423 - root - INFO - Reached 1000 samples.
+2025-07-25 21:15:09,066 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 21:15:09,067 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 21:15:22,123 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 21:15:58,923 - root - INFO - Number of candidates: 1001
+2025-07-25 21:16:03,277 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 21:16:03,278 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  I (1.9072740077972412)
+Text #1:  feeling (0.5063483715057373)
+Text #1:  I (1.9440958499908447)
+Text #1:  I (1.9300376176834106)
+Text #1:  How (0.7921691536903381)
+Text #1:  Mot (0.6473355293273926)
+Text #1:  How (0.7459048628807068)
+Text #1: I (1.7484431266784668)
+Text #1:  me (0.5328066945075989)
+Text #1:  I (1.3202935457229614)
+Text #1:  I (1.2992206811904907)
+Text #1:  I (1.2574076652526855)
+Text #1:  mind (0.6856287717819214)
+Text #1:  mind (0.6624658703804016)
+Text #1:  reality (2.146484136581421)
+Text #1:  I (1.3676751852035522)
+Text #1:  I (1.3742262125015259)
+Text #1:  I (1.4574638605117798)
+Text #1:  me (0.6430290341377258)
+Text #1:  I (1.3907769918441772)
+Text #1:  awareness (0.9591518640518188)
+Text #1:  I (1.3501150608062744)
+Text #1:  How (0.5285722613334656)
+Text #1:  mind (0.6289358735084534)
+Text #1:  I (1.3493258953094482)
+Text #1:  I (1.3571373224258423)
+Text #1:  thoughts (1.1614831686019897)
+Text #1: I (1.7054113149642944)
+Text #1:  Why (1.1082775592803955)
+Text #1: I (1.8882014751434326)
+Text #1:  I (1.5057048797607422)
+Text #1:  I (1.575299620628357)
+Text #1:  I (1.7066630125045776)
+Text #1:  I (1.8800784349441528)
+Text #1:  Reality (2.159273147583008)
+Text #1: What (0.8969658017158508)
+Text #1:  My (0.9935932159423828)
+Text #1: How (1.0148669481277466)
+Text #1:  I (2.060851812362671)
+Text #1:  I (2.060353994369507)
+Text #1:  self (1.4399089813232422)
+Text #1:  I (2.121763229370117)
+Text #1: What (0.9537349343299866)
+Text #1:  I (2.049919605255127)
+Text #1:  How (1.093520998954773)
+Text #1:  I (1.8774235248565674)
+Text #1:  I (1.707435131072998)
+Text #1:  me (0.616981565952301)
+Text #1:  thoughts (1.175735592842102)
+Text #2:  I (1.8747292757034302)
+Text #2:  I (1.4451533555984497)
+Text #2:  I (1.155890941619873)
+Text #2:  I (1.2189383506774902)
+Text #2:  mental (0.6034198999404907)
+Text #2:  I (1.3942729234695435)
+Text #2:  I (1.242971658706665)
+Text #2:  I (1.3037474155426025)
+Text #2:  Neuroscience (0.16207097470760345)
+Text #2:  Memory (1.1564710140228271)
+Text #2:  neurological (0.3513798415660858)
+Text #2:  remember (0.32442817091941833)
+Text #2:  me (0.38360077142715454)
+Text #2:  I (1.5090752840042114)
+Text #2:  Ill (0.970255434513092)
+Text #2:  mental (0.8080725073814392)
+Text #2:  I (1.5379737615585327)
+Text #2:  I (1.4506324529647827)
+Text #2:  bipolar (0.23911747336387634)
+Text #2:  mental (0.4783121347427368)
+Text #2:  I (1.3283472061157227)
+Text #2:  I (1.3525465726852417)
+Text #2: Inf (0.614906907081604)
+Text #2:  Child (0.3973740041255951)
+Text #2:  me (0.4981584846973419)
+Text #2:  I (1.5368257761001587)
+Text #2:  I (1.3263789415359497)
+Text #2:  I (1.801805853843689)
+Text #2:  I (1.7189972400665283)
+Text #2:  I (1.4663147926330566)
+Text #2:  mentally (0.15810313820838928)
+Text #2:  People (0.13722309470176697)
+Text #2:  time (0.20476698875427246)
+Text #2:  I (1.619315505027771)
+Text #2: I (1.8032559156417847)
+Text #2:  self (1.2532005310058594)
+Text #2: esteem (0.6151411533355713)
+Text #2:  I (1.5442739725112915)
+Text #2:  I (1.6206715106964111)
+Text #2:  I (1.6316559314727783)
+Text #2:  What (0.5983169674873352)
+Text #2:  sense (0.6956350207328796)
+Text #2:  I (1.7281180620193481)
+Text #2:  I (1.7489961385726929)
+Text #2:  mental (0.6561236381530762)
+Text #2:  I (1.5404552221298218)
+Text #2:  I (1.5167934894561768)
+Text #3: Self (1.5850263833999634)
+Text #3:  The (0.2485448569059372)
+Text #3:  appearance (0.41940659284591675)
+Text #3:  personality (1.957606315612793)
+Text #3:  self (1.7164815664291382)
+Text #3:  I (2.2203900814056396)
+Text #3:  I (2.147077798843384)
+Text #3:  I (2.186936855316162)
+Text #3: � (0.3044811189174652)
+Text #3: � (0.33318111300468445)
+Text #3:  I (2.4107322692871094)
+Text #3:  yourself (0.24645932018756866)
+Text #3:  personality (1.8140720129013062)
+Text #3:  There (0.339211642742157)
+Text #3:  I (2.165400743484497)
+Text #3:  maybe (0.2550046741962433)
+Text #3: IV (0.7938704490661621)
+Text #3:  You (0.29611334204673767)
+Text #3:  That (0.3695090711116791)
+Text #3:  Japanese (0.3991779386997223)
+Text #3:  Japanese (0.38922062516212463)
+Text #3:  time (0.3035973310470581)
+Text #3: � (0.35672909021377563)
+Text #3:  time (0.2566782534122467)
+Text #3:  mind (0.6933666467666626)
+Text #3:  imagine (0.2323656529188156)
+Text #3:  I (2.0395095348358154)
+Text #3:  mind (0.7905892729759216)
+Text #3: I (1.912788987159729)
+Text #3: I (2.113680362701416)
+Text #3:  mental (1.1034444570541382)
+Text #3:  How (1.1332348585128784)
+Text #3:  how (0.34518465399742126)
+Text #3:  I (2.097227096557617)
+Text #3:  I (2.082141876220703)
+Text #3:  me (0.930508553981781)
+Text #3:  Maybe (0.8362628817558289)
+Text #3:  I (1.8805345296859741)
+Text #3: Let (0.29745495319366455)
+Text #3:  I (2.126211404800415)
+Text #3:  myself (0.3157286047935486)
+Text #3:  me (0.8624845147132874)
+Text #3: Maybe (0.6938871145248413)
+Text #3:  me (0.7084489464759827)
+Text #4:  Identity (2.130413770675659)
+Text #4: 243 (0.37954986095428467)
+Text #4: ido (0.2764348089694977)
+Text #4:  IM (0.6072226166725159)
+Text #4: I (2.051072835922241)
+Text #4:  n (0.5282459259033203)
+Text #4:  ident (0.17765243351459503)
+Text #4:  e (0.4081149995326996)
+Text #4:  I (2.2203688621520996)
+Text #4:  time (0.3420163094997406)
+Text #4:  IM (0.5048173069953918)
+Text #4: I (1.9824937582015991)
+Text #4:  I (1.8993161916732788)
+Text #4:  Un (0.33105194568634033)
+Text #4:  USB (0.37515610456466675)
+Text #4:  How (0.7199463844299316)
+Text #4: 3 (0.2594152092933655)
+Text #4: I (2.0826151371002197)
+Text #4:  IM (0.6302807927131653)
+Text #4: I (1.985390305519104)
+Text #4:  ME (0.2994505763053894)
+Text #4:  IM (0.5476585030555725)
+Text #4: I (2.0289862155914307)
+Text #4:  IM (0.5762775540351868)
+Text #4: I (1.9522264003753662)
+Text #4:  I (1.543297290802002)
+Text #4:  Lenovo (0.23441386222839355)
+Text #4:  IM (0.5224186182022095)
+Text #4: I (1.8495749235153198)
+Text #4:  I (1.4706311225891113)
+Text #4:  IM (0.52166348695755)
+Text #4: I (1.8456403017044067)
+Text #4:  IM (0.55437171459198)
+Text #4: I (1.842357873916626)
+Text #4: ID (0.40356817841529846)
+Text #4: I (1.7051877975463867)
+Text #4:  CPU (0.8867042660713196)
+Text #4:  Un (0.2501015067100525)
+Text #4:  IM (0.5710973739624023)
+Text #4: I (1.8224276304244995)
+Text #4: Z (0.25356942415237427)
+Text #4: Z (0.24441832304000854)
+Text #4:  IM (0.5378420948982239)
+Text #4: I (1.8525782823562622)
+Text #4:  IM (0.5034839510917664)
+Text #4: I (1.8827838897705078)
+Text #4:  I (1.6784106492996216)
+Text #4:  why (0.637424886226654)
+Text #4:  Ir (0.2809552550315857)
+Text #5: I (1.4524883031845093)
+Text #5:  I (1.700127363204956)
+Text #5:  I (1.6893987655639648)
+Text #5:  I (1.3926833868026733)
+Text #5:  What (0.5016318559646606)
+Text #5:  Gotham (0.2078414410352707)
+Text #5:  I (1.6880096197128296)
+Text #5:  I (1.6944646835327148)
+Text #5:  fantasy (1.1716370582580566)
+Text #5:  Gotham (0.2583467960357666)
+Text #5:  maniac (1.1271393299102783)
+Text #5:  I (1.6313902139663696)
+Text #5: 't (0.1679920256137848)
+Text #5:  I (1.5353267192840576)
+Text #5:  me (0.4964398741722107)
+Text #5:  me (0.4258255660533905)
+Text #5:  reason (0.17624761164188385)
+Text #5:  I (1.6454821825027466)
+Text #5:  life (0.23710693418979645)
+Text #5:  me (0.6151164770126343)
+Text #5: How (0.5737859010696411)
+Text #5:  I (1.6174681186676025)
+Text #5:  me (0.5475756525993347)
+Text #5:  Let (0.2216486781835556)
+Text #5:  I (1.909044623374939)
+Text #5:  me (0.4387376010417938)
+Text #5:  me (0.4309891164302826)
+Text #5:  time (0.20333406329154968)
+Text #5:  Yes (0.3445586860179901)
+Text #5:  mind (0.7781953811645508)
+Text #5:  I (1.9999380111694336)
+Text #5: 't (0.23488956689834595)
+Text #5: I (1.9686970710754395)
+Text #5:  feeling (0.33661580085754395)
+Text #5:  I (1.7454382181167603)
+Text #5:  miracle (0.289416640996933)
+Text #5:  I (1.5702455043792725)
+Text #5:  Gotham (0.17996835708618164)
+Text #5: 't (0.1719009429216385)
+Text #5:  I (1.7183053493499756)
+Text #5:  It (0.193899005651474)
+Text #5:  Gotham (0.21091142296791077)
+Text #5:  I (1.86690092086792)
+Text #5: 't (0.19908536970615387)
+Text #5:  I (1.9183778762817383)
+Text #5: 't (0.20443423092365265)
+Text #5:  Batman (0.7821592688560486)
+Text #5:  I (1.9089467525482178)
+Text #5:  I (1.8451648950576782)
+Text #5:  9 (0.32978156208992004)
+Text #6: My (0.8170554637908936)
+Text #6:  decided (0.06444255262613297)
+Text #6:  Pokemon (0.5841874480247498)
+Text #6:  Pokemon (0.7028051614761353)
+Text #6:  I (1.4425586462020874)
+Text #6:  half (0.10435783863067627)
+Text #6:  half (0.09375334531068802)
+Text #6: I (1.6042360067367554)
+Text #6:  fond (0.007500993553549051)
+Text #6:  Obviously (0.11447787284851074)
+Text #6: I (2.0335938930511475)
+Text #6:  I (1.8919713497161865)
+Text #6:  It (0.13631585240364075)
+Text #6:  time (0.08565399050712585)
+Text #6:  I (1.6840994358062744)
+Text #6:  I (1.643656849861145)
+Text #6: ICE (0.08278243243694305)
+Text #6:  Sometimes (0.12715250253677368)
+Text #6: Anyway (0.1292961984872818)
+Text #6:  I (1.6923534870147705)
+Text #6:  fond (0.02059302106499672)
+Text #6:  I (1.373900294303894)
+Text #6:  I (1.343247413635254)
+Text #6:  I (1.380387783050537)
+Text #6:  That (0.02864937297999859)
+Text #6:  I (1.547540307044983)
+Text #6:  I (1.5097894668579102)
+Text #6:  I (1.3232730627059937)
+Text #6:  Oh (0.20308221876621246)
+Text #6:  I (1.5709278583526611)
+Text #6:  I (1.532536506652832)
+Text #6:  I (1.3841418027877808)
+Text #6:  I (1.6180870532989502)
+Text #6:  I (1.5170791149139404)
+Text #6:  time (0.009135753847658634)
+Text #6:  Maybe (0.48124822974205017)
+Text #6:  me (0.5433198809623718)
+Text #6:  I (1.7456198930740356)
+Text #6:  I (1.9267901182174683)
+Text #6:  awful (0.12426120042800903)
+Text #6:  I (1.6580229997634888)
+Text #6:  I (1.6238768100738525)
+Text #6:  time (0.07885333150625229)
+Text #6: ll (0.08328279852867126)
+Text #6:  I (1.4727637767791748)
+Text #7: � (0.3970271348953247)
+Text #7:  God (0.9519720077514648)
+Text #7:  cult (1.2193182706832886)
+Text #7:  Christianity (1.2831182479858398)
+Text #7:  Jesus (0.6152053475379944)
+Text #7:  reincarn (1.6792800426483154)
+Text #7:  Xiang (0.6315476298332214)
+Text #7:  Chinese (0.3282773792743683)
+Text #7:  It (0.729091465473175)
+Text #7:  States (0.39248397946357727)
+Text #7:  Jesus (0.2907828986644745)
+Text #7:  Xiang (0.39616015553474426)
+Text #7:  mankind (0.7812121510505676)
+Text #7:  salvation (0.5391258001327515)
+Text #7:  Flesh (0.9559316635131836)
+Text #7:  Dragon (0.5606041550636292)
+Text #7:  members (0.28572869300842285)
+Text #7:  time (0.4858344495296478)
+Text #7:  It (0.38473421335220337)
+Text #7: Age (0.6739269495010376)
+Text #7: Age (0.6346232295036316)
+Text #7:  There (0.3317510783672333)
+Text #7: Age (0.6242396235466003)
+Text #7:  Millenn (0.7095632553100586)
+Text #7:  God (0.9121586680412292)
+Text #7:  sect (0.8382800221443176)
+Text #7:  Christians (0.28795325756073)
+Text #7:  salvation (0.7302268743515015)
+Text #7:  beliefs (1.2429866790771484)
+Text #7:  God (1.3737869262695312)
+Text #7:  believe (0.5818713307380676)
+Text #7:  Him (0.4436788856983185)
+Text #7:  notion (1.2617474794387817)
+Text #7:  understanding (0.3186732232570648)
+Text #7:  God (1.2293360233306885)
+Text #7:  God (1.1858479976654053)
+Text #7:  Jesus (0.31317877769470215)
+Text #7:  Christians (0.2955578863620758)
+Text #7:  Flesh (1.0733764171600342)
+Text #7:  belief (1.4727702140808105)
+Text #7:  God (1.1690125465393066)
+Text #7:  cult (1.141541600227356)
+Text #7:  The (0.3237030804157257)
+Text #7:  rational (0.6960879564285278)
+Text #7:  dogma (0.8813461065292358)
+Text #7:  Christians (0.2738913595676422)
+Text #7:  re (0.2751748263835907)
+Text #7: interpret (0.294766902923584)
+Text #7:  contradictions (0.28057625889778137)
+Text #8:  Mind (1.8391443490982056)
+Text #8:  Mom (0.5852246284484863)
+Text #8:  Ali (1.1045509576797485)
+Text #8:  It (0.44359660148620605)
+Text #8:  me (0.8254325985908508)
+Text #8:  what (0.15619207918643951)
+Text #8:  mom (0.09441673755645752)
+Text #8:  I (2.1381871700286865)
+Text #8:  I (1.934775948524475)
+Text #8:  mom (0.055892620235681534)
+Text #8:  how (0.13402464985847473)
+Text #8:  mindful (0.2900760769844055)
+Text #8:  my (0.08165303617715836)
+Text #8:  daughter (0.3952826261520386)
+Text #8:  born (0.12169301509857178)
+Text #8:  At (0.14405538141727448)
+Text #8:  mom (0.06909935921430588)
+Text #8:  daughters (0.3555811941623688)
+Text #8:  I (2.08115291595459)
+Text #8:  time (0.20426496863365173)
+Text #8:  Ali (0.8853256702423096)
+Text #8:  me (0.6663074493408203)
+Text #8:  I (1.6526519060134888)
+Text #8:  I (1.6086844205856323)
+Text #8:  self (1.4198338985443115)
+Text #8:  Mind (1.7820478677749634)
+Text #8:  Mom (0.4930039644241333)
+Text #8:  me (0.6457023620605469)
+Text #8:  mindful (0.21270428597927094)
+Text #8:  Ali (0.8688302636146545)
+Text #8:  I (1.9607669115066528)
+Text #8:  I (1.9814629554748535)
+Text #8:  me (0.5714706182479858)
+Text #8:  I (1.6697088479995728)
+Text #8:  believe (0.08351877331733704)
+Text #8:  me (0.5775142312049866)
+Text #8:  I (1.5246474742889404)
+Text #8: I (1.7782760858535767)
+Text #8:  Ali (0.765573263168335)
+Text #8:  me (0.41809555888175964)
+Text #8:  Ali (0.7121061086654663)
+Text #8:  Ali (0.8136249780654907)
+Text #8:  Mind (1.789393424987793)
+Text #8:  Mom (0.463402658700943)
+Text #8:  happiness (0.20004574954509735)
+Text #8:  Mind (1.613739252090454)
+Text #8:  Mom (0.3592734634876251)
+Text #8:  Kelley (0.2121567279100418)
+Text #9: I (1.4524883031845093)
+Text #9:  I (2.3668251037597656)
+Text #9:  I (1.7313333749771118)
+Text #9:  My (0.5021783709526062)
+Text #9:  I (1.0878033638000488)
+Text #9:  attire (0.015371298417448997)
+Text #9:  I (1.9284024238586426)
+Text #9:  I (1.8702045679092407)
+Text #9:  I (1.620705008506775)
+Text #9:  I (1.7830318212509155)
+Text #9:  girl (0.011682630516588688)
+Text #9:  shoot (0.0780244842171669)
+Text #9:  I (1.8062723875045776)
+Text #9:  girl (0.08699991554021835)
+Text #9:  Of (0.7287187576293945)
+Text #9:  I (1.8331185579299927)
+Text #9: I (1.8410232067108154)
+Text #9: I (1.7573604583740234)
+Text #9:  time (0.021240994334220886)
+Text #9:  conscious (1.0423306226730347)
+Text #9:  gender (0.22714397311210632)
+Text #9:  Being (0.5651347637176514)
+Text #9:  daunting (0.28943684697151184)
+Text #9: ime (0.46174702048301697)
+Text #9: Unfortunately (0.06258673965930939)
+Text #9:  I (1.732783555984497)
+Text #9:  I (1.4878873825073242)
+Text #9:  I (1.6186656951904297)
+Text #9:  I (1.7015293836593628)
+Text #9:  me (0.5462124943733215)
+Text #9:  caliber (0.8126645088195801)
+Text #9:  I (1.5714881420135498)
+Text #9:  I (1.3789169788360596)
+Text #9:  I (1.294888973236084)
+Text #9:  Being (0.41499459743499756)
+Text #9: I (1.816013216972351)
+Text #9: 't (0.09619740396738052)
+Text #9:  me (0.52769935131073)
+Text #9:  That (0.1881866455078125)
+Text #9:  Honestly (1.256029486656189)
+Text #9:  I (1.5051718950271606)
+Text #9: 't (0.11292417347431183)
+Text #10: I (1.4524883031845093)
+Text #10:  I (1.8508894443511963)
+Text #10:  thinking (0.11716465651988983)
+Text #10:  my (0.0852472111582756)
+Text #10:  I (1.8993923664093018)
+Text #10:  me (0.5457084774971008)
+Text #10:  theater (0.008938337676227093)
+Text #10: I (1.8714333772659302)
+Text #10:  I (1.516194224357605)
+Text #10:  I (1.6599037647247314)
+Text #10:  I (1.5304291248321533)
+Text #10:  I (1.6066632270812988)
+Text #10:  I (1.4726208448410034)
+Text #10:  I (1.792075276374817)
+Text #10:  felt (0.026883495971560478)
+Text #10: It (0.03604860231280327)
+Text #10:  I (1.6075974702835083)
+Text #10:  time (0.16003508865833282)
+Text #10:  I (1.5484346151351929)
+Text #10:  realized (0.779633104801178)
+Text #10:  I (1.542064905166626)
+Text #10:  I (1.5718063116073608)
+Text #10:  I (1.6494003534317017)
+Text #10:  Mistress (0.043032821267843246)
+Text #10:  How (0.529625654220581)
+Text #10: I (1.8913239240646362)
+Text #10: F (0.005928292870521545)
+Text #10:  God (0.7837182283401489)
+Text #10:  strange (0.5373603105545044)
+Text #10:  I (1.9796502590179443)
+Text #10:  strange (0.5298474431037903)
+Text #10: There (0.05298944190144539)
+Text #10:  I (1.717588186264038)
+Text #10:  café (0.038000866770744324)
+Text #10:  I (1.101739764213562)
+Text #10:  I (1.4559276103973389)
+Text #10:  I (1.6120884418487549)
+Text #10:  half (0.07376124709844589)
+Text #10:  I (1.7697029113769531)
+Text #10:  half (0.1270352303981781)
+Text #11: Al (0.2566620707511902)
+Text #11:  AK (0.203803151845932)
+Text #11: aha (0.014605415984988213)
+Text #11: I (1.7138066291809082)
+Text #11:  What (0.4029628038406372)
+Text #11:  My (1.0110374689102173)
+Text #11:  Mart (0.7534126043319702)
+Text #11:  noticeable (0.07688760757446289)
+Text #11:  me (0.6060859560966492)
+Text #11: I (2.019102096557617)
+Text #11:  I (1.5391952991485596)
+Text #11:  I (1.4008773565292358)
+Text #11:  I (1.613785743713379)
+Text #11:  I (1.388810634613037)
+Text #11: 't (0.068681500852108)
+Text #11:  me (0.3449777066707611)
+Text #11:  I (1.7862415313720703)
+Text #11:  me (0.41492003202438354)
+Text #11:  I (1.509734869003296)
+Text #11:  I (1.4429168701171875)
+Text #11:  weird (0.2840029001235962)
+Text #11:  mm (0.10148347169160843)
+Text #11:  I (1.4147242307662964)
+Text #11: 't (0.059617988765239716)
+Text #11:  I (1.5627778768539429)
+Text #11: I (1.5877496004104614)
+Text #11: I (1.633185625076294)
+Text #11:  I (1.545165777206421)
+Text #11:  I (1.6718567609786987)
+Text #11:  I (1.7239402532577515)
+Text #11:  possibility (0.1913342922925949)
+Text #11: I (1.875169038772583)
+Text #11:  I (1.4683318138122559)
+Text #11:  I (1.5650832653045654)
+Text #11: 3 (0.055714771151542664)
+Text #11:  I (1.6304185390472412)
+Text #11:  I (1.360457420349121)
+Text #11:  noticed (0.12870827317237854)
+Text #11:  I (1.3634289503097534)
+Text #11:  I (1.439542531967163)
+Text #11:  I (1.552799105644226)
+Text #11:  They (0.010160894133150578)
+Text #11:  weird (0.30886223912239075)
+Text #12: ía (0.027626343071460724)
+Text #12:  Miguel (0.49925971031188965)
+Text #12:  Age (0.2110723853111267)
+Text #12: Q (0.7599948048591614)
+Text #12:  What (0.8220223188400269)
+Text #12:  My (1.214544415473938)
+Text #12: Q (0.8883342742919922)
+Text #12:  Why (1.7751775979995728)
+Text #12:  2003 (0.18923722207546234)
+Text #12: rend (0.020849579945206642)
+Text #12:  I (2.7331910133361816)
+Text #12:  my (0.33322086930274963)
+Text #12:  I (2.6932241916656494)
+Text #12:  mindset (0.39150121808052063)
+Text #12:  Age (0.2724899649620056)
+Text #12: I (2.3311901092529297)
+Text #12: issance (0.8746139407157898)
+Text #12: Q (0.905253529548645)
+Text #12:  How (0.9607465267181396)
+Text #12:  anthology (0.03480740264058113)
+Text #12:  I (2.3760006427764893)
+Text #12:  I (2.2417867183685303)
+Text #12:  I (2.1480448246002197)
+Text #12: Q (0.9781230092048645)
+Text #12:  I (2.1978139877319336)
+Text #12: Q (0.9536780118942261)
+Text #12:  How (1.079116940498352)
+Text #12:  American (0.12504293024539948)
+Text #12:  The (0.14034733176231384)
+Text #12:  The (0.08280659466981888)
+Text #12:  time (0.3014923632144928)
+Text #12: Q (0.8961388468742371)
+Text #12:  How (1.0211843252182007)
+Text #12:  If (0.14414630830287933)
+Text #12:  I (2.1165339946746826)
+Text #12:  my (0.05823855847120285)
+Text #12:  I (1.905314326286316)
+Text #12: Q (1.0245009660720825)
+Text #12:  When (0.16070613265037537)
+Text #12:  how (0.15768910944461823)
+Text #12:  Does (0.02625608816742897)
+Text #12:  The (0.09905219078063965)
+Text #12:  I (2.02634859085083)
+Text #12:  Others (0.09103886038064957)
+Text #12:  I (2.1264238357543945)
+Text #12:  I (2.186742067337036)
+Text #13: You (0.028512515127658844)
+Text #13: 't (0.25006723403930664)
+Text #13: 't (0.06483583152294159)
+Text #13:  Well (0.012554097920656204)
+Text #13:  how (0.03230797126889229)
+Text #13:  I (1.666391134262085)
+Text #13:  brand (0.011970479041337967)
+Text #13:  I (1.7145450115203857)
+Text #13:  happened (0.04925239831209183)
+Text #13:  I (1.3507248163223267)
+Text #13:  I (1.2174097299575806)
+Text #13: 't (0.12873147428035736)
+Text #13:  I (1.3196724653244019)
+Text #13:  crazy (0.7302613854408264)
+Text #13:  I (1.278313159942627)
+Text #13:  I (1.245579481124878)
+Text #13:  I (1.2607568502426147)
+Text #13:  mind (0.3620379865169525)
+Text #13: 't (0.06370214372873306)
+Text #13:  I (1.5754876136779785)
+Text #13: I (1.6314702033996582)
+Text #13:  fact (0.16535574197769165)
+Text #13:  I (1.4353410005569458)
+Text #13:  I (1.4222569465637207)
+Text #13:  I (1.2682580947875977)
+Text #13: 't (0.05641813203692436)
+Text #13:  I (1.287185788154602)
+Text #13:  I (1.26039719581604)
+Text #13:  me (0.23558151721954346)
+Text #13:  I (1.1372731924057007)
+Text #13:  I (1.2902247905731201)
+Text #13: 't (0.14236100018024445)
+Text #13:  I (1.4778543710708618)
+Text #13:  I (1.2036553621292114)
+Text #13:  honest (0.2342979609966278)
+Text #13:  me (0.2103705108165741)
+Text #13:  I (1.7589526176452637)
+Text #13:  I (1.632878303527832)
+Text #13: 't (0.1477016657590866)
+Text #13: I (1.71406090259552)
+Text #13:  I (1.3400847911834717)
+Text #13: Uh (0.007591429632157087)
+Text #13:  I (1.6789939403533936)
+Text #14: My (0.8170554637908936)
+Text #14:  street (0.06159986928105354)
+Text #14:  street (0.001830079942010343)
+Text #14:  me (0.42510706186294556)
+Text #14: I (1.6922340393066406)
+Text #14:  I (1.6508426666259766)
+Text #14:  realizing (0.10585948079824448)
+Text #14:  I (1.835390329360962)
+Text #14:  my (0.02418745681643486)
+Text #14:  j (0.10691583901643753)
+Text #14:  I (1.3798028230667114)
+Text #14:  I (1.6274399757385254)
+Text #14:  I (1.679628610610962)
+Text #14:  I (1.5295896530151367)
+Text #14:  me (0.46211135387420654)
+Text #14:  I (1.6378893852233887)
+Text #14:  I (1.4859131574630737)
+Text #14:  I (1.4969805479049683)
+Text #14:  I (1.6431998014450073)
+Text #14:  me (0.3875257074832916)
+Text #14:  chance (0.059845052659511566)
+Text #14: ll (0.07755423337221146)
+Text #14:  I (1.58756422996521)
+Text #14:  I (1.3301687240600586)
+Text #14:  I (1.4519693851470947)
+Text #14:  I (1.4958750009536743)
+Text #14:  I (1.3868948221206665)
+Text #14:  I (1.269995093345642)
+Text #14:  I (1.060276985168457)
+Text #14:  I (1.1870485544204712)
+Text #14:  I (1.1856508255004883)
+Text #14: ll (0.04111207649111748)
+Text #14: I (1.5733379125595093)
+Text #14:  I (1.2323319911956787)
+Text #14:  I (1.2420704364776611)
+Text #14:  I (1.3453972339630127)
+Text #14:  I (1.3985823392868042)
+Text #15: Here (0.06884995102882385)
+Text #15:  It (0.6086345314979553)
+Text #15:  Christmas (0.4150067865848541)
+Text #15:  massive (0.18711300194263458)
+Text #15:  Christmas (0.27516889572143555)
+Text #15:  huge (0.049235984683036804)
+Text #15:  Max (0.03170960769057274)
+Text #15:  I (1.781609058380127)
+Text #15:  Ey (0.05636981874704361)
+Text #15: I (2.123265266418457)
+Text #15:  I (2.07374906539917)
+Text #15:  me (0.7926051616668701)
+Text #15:  I (1.9862703084945679)
+Text #15: It (0.12547719478607178)
+Text #15:  thought (0.35546261072158813)
+Text #15:  I (1.3658090829849243)
+Text #15:  Sigma (0.18869580328464508)
+Text #15:  Star (0.05220809578895569)
+Text #15:  They (0.028729142621159554)
+Text #15:  I (1.6402264833450317)
+Text #15: I (1.6490230560302734)
+Text #15:  I (1.5075507164001465)
+Text #15:  I (1.528477430343628)
+Text #15:  Mini (0.7050884962081909)
+Text #15:  I (1.4637867212295532)
+Text #15:  I (1.410827875137329)
+Text #15: I (1.5700863599777222)
+Text #15:  I (1.334443211555481)
+Text #15: 't (0.027256401255726814)
+Text #15:  I (1.327117681503296)
+Text #15: I (1.6090636253356934)
+Text #15:  Sigma (0.07843612879514694)
+Text #15:  me (0.3283351957798004)
+Text #15:  I (1.3866151571273804)
+Text #15:  mini (0.258379727602005)
+Text #15:  I (1.2880388498306274)
+Text #15:  I (1.4220852851867676)
+Text #15:  I (1.3759214878082275)
+Text #15:  Sigma (0.1097748726606369)
+Text #15:  I (1.431409478187561)
+Text #15:  me (0.34025871753692627)
+Text #15:  I (1.4010794162750244)
+Text #15:  I (1.3354324102401733)
+Text #16:  Shiite (1.2982069253921509)
+Text #16:  Sad (0.30157315731048584)
+Text #16:  City (0.7193459272384644)
+Text #16:  23 (1.1625834703445435)
+Text #16:  U (0.3997725546360016)
+Text #16:  Iraq (0.3652661442756653)
+Text #16: At (0.2626760005950928)
+Text #16:  11 (0.29753386974334717)
+Text #16:  Iraqi (0.3819959759712219)
+Text #16:  mortar (0.5481567978858948)
+Text #16:  neighborhoods (0.26342129707336426)
+Text #16:  Men (0.41009482741355896)
+Text #16:  City (0.4837944209575653)
+Text #16:  In (0.4933588206768036)
+Text #16:  City (0.3891597390174866)
+Text #16: iam (1.0780774354934692)
+Text #16:  machine (1.443129301071167)
+Text #16:  neighborhood (0.3153867721557617)
+Text #16:  Sunday (0.34521904587745667)
+Text #16:  fighters (0.7490330338478088)
+Text #16:  City (0.3949524760246277)
+Text #16:  Iraqi (0.27550584077835083)
+Text #16: iki (0.9719154238700867)
+Text #16:  Shiite (1.1430461406707764)
+Text #16:  Iraqi (0.4644381105899811)
+Text #16:  U (0.25786206126213074)
+Text #16: iam (1.000258207321167)
+Text #16:  Shiite (1.2521600723266602)
+Text #16:  Mu (1.0148617029190063)
+Text #16:  Al (0.3584808111190796)
+Text #16: iki (1.07877516746521)
+Text #16:  fighters (0.6750497817993164)
+Text #16:  grenades (0.4106424152851105)
+Text #16:  mort (0.9800592660903931)
+Text #16:  militia (0.32501721382141113)
+Text #16: aghd (0.510202944278717)
+Text #16:  anniversary (0.31025224924087524)
+Text #16:  Saddam (0.3638421297073364)
+Text #16:  9 (0.7749711871147156)
+Text #16:  2003 (0.5467210412025452)
+Text #16: Al (0.3772798776626587)
+Text #16:  anniversary (0.305688738822937)
+Text #16:  U (0.28656822443008423)
+Text #16: iki (1.0231857299804688)
+Text #16: di (1.5575122833251953)
+Text #16:  fighters (0.5732969641685486)
+Text #16:  Iraqi (0.40706002712249756)
+Text #16:  Iraqi (0.32620468735694885)
+Text #16:  truce (0.4756985306739807)
+Text #17: How (1.0305724143981934)
+Text #17: I (2.110314130783081)
+Text #17:  Gi (0.3553937077522278)
+Text #17: I (1.8546139001846313)
+Text #17: It (0.0036183160264045)
+Text #17: I (1.8251171112060547)
+Text #17: conscious (0.7724491953849792)
+Text #17: Everything (0.24551811814308167)
+Text #17: I (1.649749755859375)
+Text #17:  truth (0.887292206287384)
+Text #17: My (0.8999980092048645)
+Text #17:  I (1.5793724060058594)
+Text #17:  It (0.0972704365849495)
+Text #17: 3 (0.12272201478481293)
+Text #17:  handmade (0.13998296856880188)
+Text #17: I (1.7469134330749512)
+Text #17:  I (1.5008306503295898)
+Text #17:  I (1.4821723699569702)
+Text #17:  I (1.5421984195709229)
+Text #17:  I (1.5164942741394043)
+Text #17: I (1.8757377862930298)
+Text #17:  me (0.36897632479667664)
+Text #17:  Rise (0.23052138090133667)
+Text #17: I (1.7959333658218384)
+Text #17:  feeling (0.13712212443351746)
+Text #17:  accidentally (0.02790485881268978)
+Text #17:  me (0.5052666068077087)
+Text #17: HH (0.03405946120619774)
+Text #17: OOOO (0.027876414358615875)
+Text #17:  I (1.453975796699524)
+Text #17:  I (1.543610692024231)
+Text #17:  I (1.3498908281326294)
+Text #17:  MY (0.058622006326913834)
+Text #17:  I (1.4831874370574951)
+Text #17: ci (0.6334499716758728)
+Text #17:  My (0.6459574699401855)
+Text #17:  I (1.2280161380767822)
+Text #17:  I (1.3712159395217896)
+Text #17:  life (0.025301670655608177)
+Text #17:  I (1.399560809135437)
+Text #17:  I (1.375922679901123)
+Text #17:  I (1.4380449056625366)
+Text #17:  I (1.4275885820388794)
+Text #17:  I (1.290873646736145)
+Text #17:  It (0.006160409189760685)
+Text #18: Sometimes (0.41417214274406433)
+Text #18:  Whatever (0.06900173425674438)
+Text #18:  happened (0.05533822998404503)
+Text #18:  me (0.3215709924697876)
+Text #18:  I (1.2879564762115479)
+Text #18:  I (0.8578212857246399)
+Text #18:  me (0.1404896229505539)
+Text #18:  me (0.17055277526378632)
+Text #18:  I (1.2160158157348633)
+Text #18:  I (1.3419584035873413)
+Text #18:  Sof (0.012479275465011597)
+Text #18:  I (1.4937942028045654)
+Text #18:  me (0.3269449472427368)
+Text #18:  I (1.4059877395629883)
+Text #18:  I (1.3713085651397705)
+Text #18:  feeling (0.20442534983158112)
+Text #18:  I (1.583389163017273)
+Text #18:  Sof (0.027580980211496353)
+Text #18:  I (1.3987263441085815)
+Text #18:  I (1.5008089542388916)
+Text #18:  I (1.508599877357483)
+Text #18:  I (1.5897443294525146)
+Text #18:  I (1.5271804332733154)
+Text #18:  I (1.3890817165374756)
+Text #18:  true (0.10291416943073273)
+Text #18:  time (0.023946834728121758)
+Text #18:  f (0.016473593190312386)
+Text #18:  I (1.3187659978866577)
+Text #18:  I (1.2771849632263184)
+Text #18:  I (1.1428128480911255)
+Text #18:  I (1.0715949535369873)
+Text #18:  me (0.2680263817310333)
+Text #18: I (1.6697043180465698)
+Text #18:  I (1.3156180381774902)
+Text #18: time (0.000792848295532167)
+Text #18:  I (1.163095474243164)
+Text #19:  mind (0.7959946393966675)
+Text #19:  possibility (0.4320478141307831)
+Text #19:  I (2.0096333026885986)
+Text #19:  half (0.18402759730815887)
+Text #19:  I (2.0654993057250977)
+Text #19:  time (0.23744016885757446)
+Text #19:  my (0.04203368350863457)
+Text #19:  idea (0.13373540341854095)
+Text #19:  dementia (0.8045631051063538)
+Text #19:  mental (0.9629104137420654)
+Text #19:  why (1.0188125371932983)
+Text #19: � (0.33525171875953674)
+Text #19:  un (0.10896074026823044)
+Text #19:  In (0.3092136085033417)
+Text #19:  I (2.1153671741485596)
+Text #19:  I (2.0624594688415527)
+Text #19:  I (2.2106449604034424)
+Text #19: I (2.1127963066101074)
+Text #19:  time (0.20471975207328796)
+Text #19:  I (1.7954787015914917)
+Text #19:  nan (0.184352308511734)
+Text #19:  I (1.8554508686065674)
+Text #19:  me (0.7250434756278992)
+Text #19:  I (1.7508213520050049)
+Text #19:  I (1.766391634941101)
+Text #19: � (0.23751592636108398)
+Text #19: � (0.2604598104953766)
+Text #19:  I (2.056939125061035)
+Text #19:  feeling (0.4302772581577301)
+Text #19: � (0.3143239915370941)
+Text #19:  my (0.14810903370380402)
+Text #19:  I (2.112459421157837)
+Text #19:  I (1.9157872200012207)
+Text #19:  I (1.818299651145935)
+Text #19: � (0.18784791231155396)
+Text #19:  jeans (0.45637303590774536)
+Text #19:  T (0.2094777375459671)
+Text #19:  One (0.011686739511787891)
+Text #19:  I (1.9261162281036377)
+Text #19:  I (1.7565147876739502)
+Text #19:  Of (0.7508470416069031)
+Text #19:  120 (0.07995845377445221)
+Text #19:  usability (0.005972972139716148)
+Text #20: I (1.4524883031845093)
+Text #20:  sentiments (0.014997728168964386)
+Text #20: I (1.7227286100387573)
+Text #20:  confusion (0.1354735642671585)
+Text #20:  me (0.37373086810112)
+Text #20:  intention (0.001215182594023645)
+Text #20: There (0.12452239543199539)
+Text #20:  doubt (0.00936525221914053)
+Text #20:  mind (0.7157667875289917)
+Text #20:  me (0.5651495456695557)
+Text #20:  me (0.5219376683235168)
+Text #20:  I (1.6531327962875366)
+Text #20:  my (0.006516869645565748)
+Text #20:  Things (0.6080471873283386)
+Text #20:  I (1.9051145315170288)
+Text #20:  met (0.07126548886299133)
+Text #20:  Doctor (0.23832745850086212)
+Text #20: I (1.8520712852478027)
+Text #20:  I (1.9785281419754028)
+Text #20:  I (1.7731748819351196)
+Text #20:  I (1.5802122354507446)
+Text #20:  me (0.3060852885246277)
+Text #20:  me (0.4546283185482025)
+Text #20:  me (0.46829673647880554)
+Text #20:  I (1.7454291582107544)
+Text #20:  me (0.4193727374076843)
+Text #20:  time (0.2958390414714813)
+Text #20: I (1.8349658250808716)
+Text #20:  Doctor (0.12191873043775558)
+Text #20:  internet (0.19135481119155884)
+Text #20:  confused (0.43097370862960815)
+Text #20:  There (0.09726575016975403)
+Text #20:  time (0.4321596622467041)
+Text #20:  me (0.5463770627975464)
+Text #20:  I (1.5177322626113892)
+Text #20: I (1.8493146896362305)
+Text #20:  I (1.6262264251708984)
+Text #20:  thought (0.5710761547088623)
+Text #20:  It (0.002030037110671401)
+Text #20:  I (1.6960595846176147)
+Text #20: 't (0.15245038270950317)
+Text #20:  me (0.4043923318386078)
+Text #20:  I (1.4283788204193115)
+Text #20:  I (1.1842231750488281)
+Text #20:  me (0.2599320411682129)
+Text #20:  I (1.2116544246673584)
+Text #20:  Doctor (0.04924694448709488)
+
+=== Text #1 ===
+> Last night[ I] was[ feeling] down and confused with all the things that are not happening in my life the way[ I] want them to happen.[ I] saw a couple of Youtube video's about[ How] to Get[ Mot]ivated,[ How] to Think Clearly etc. etc. but nothing changed.
+[I] wanted to gulp down a few shots to ignore what's been troubling[ me] but then[ I realized] that[ I] am much more stronger than what[ I] am going through in my life right now. We as healers, keep on saying that 'It's all in the[ mind], your[ mind] creates your[ reality] etc etc." but what[ I realized] that[ I] wasn't really following what[ I] say to others.
+A small moment of guilt and shame came over[ me] but then the blessing which[ I] have is the level of[ awareness],[ I] was able to quickly analyze in those few moments,[ How] my[ mind] tried to create an even negative situation simply because[ I] had let it rule my life. Cmon,[ I] want to make a difference in the whole world and the difference will have to begin from Changing my thinking and[ thoughts] about myself.
+[I] am sure we all go through these dark phases in our lives and feel like its the end of it.
+BUT, BUT, BUT If you hang on to these so called Dark phases of your life and Introspect a little, you will know the deeper meaning of[ Why] they came up at the First place?
+"If we have to Change the World, We have to First Change Our World"
+[I] somehow Intuitively was guided to Write these few questions on my white board and then When[ I] read them later,[ I] felt that these are the Answers to Help me move past the dark phase into the Light. After all, Light means Guidance, Wisdom, Illumination.
+Am[ I] working on my Vision & Goals of Life?
+Am[ I] taking the necessary actions to convert my Vision into[ Reality]?
+[What] is my contribution today for[ My Life]'s Purpose?
+[How] Am[ I] making the impact to improve the world?
+Am[ I] living just for my own[ self] or[ I] feel its my responsibility to improve the world and give my contribution to make it a better place for my generations to come?
+[What] can[ I] do Today to really help and empower others with my current abilities and knowledge?
+If its less than 10,[ How] Can[ I] Improve it to be a perfect 10/10? In what better ways Can[ I] be of Help & Assistance to others?
+These 11 questions pulled[ me] from going into a rut of negative[ thoughts] and some
+
+=== Text #2 ===
+> Last September of 2009,[ I] got the itch to take a course or two at a local University.[ I] checked on-line and found that Brown University had some very interesting courses in the evenings.[ I] was so afraid that[ I] would fail or need to drop out because of my[ mental illness] that[ I] almost did not scratch that itch that[ I] had to go back.
+Last fall[ I] chose two courses in my field of interest. Both were in the[ Neuroscience] Department. The first course was entitled "Learning and[ Memory]." The course covered the[ neurological] pathways that we use from infancy through adulthood in order to[ remember] what we have learned and how to access it. The best part for[ me] was doing a dissection of the human brain!
+The second course that[ I] took was entitled "Mental[ Ill]ness and the Brain." The course covered all the[ mental] illnesses that people live with, where in the brain the site of the disease is located, what medications are used and the method of operation of these medications. This was by far one of the most fascinating courses[ I] have ever taken. Since[ I] am[ bipolar], that part of the course was very informative, but so were all the other aspects of studying the etiology of other[ mental] illnesses and the hope for new medications.
+Having been successful in the fall of last year,[ I] decided to take two more courses this spring. The first course[ I] chose is entitled "[Inf]ant and[ Child Mental] Health." This is a course that is totally foreign to[ me], but a subject[ I] have always wanted to learn. So far things are going well.
+The second course[ I] chose was another interest of mine, and was entitled "Social Media and Online Technologies." When[ I realized] that Brown was on Twitter,[ I] was amazed and intrigued especially since we had just set up a Facebook page for Hillsgrove House and we hope to be on the World Wide Web soon.[ I] am learning how integral these types of communication have become to socialization amongst people, and particularly how it is benefiting the[ mentally ill].[ People] can now communicate any[ time] of the day, especially if they just need a friend to converse with late at night.[ I] look forward to exploring the theories of this course as it progresses.
+[I] cannot express how much taking these courses has done for my[ self]-[esteem].[ I] feel like[ I] come alive when[ I]'m in class.[ What] a[ sense] of accomplishment[ I] feel when[ I] can think through my medications and my[ mental illness]. The most important thing is that if[ I] had to drop out, or if[ I] failed a course,
+
+=== Text #3 ===
+> [Self Image] –[ The idea] one has of one’s abilities,[ appearance], and[ personality].
+Maintaining a positive[ self]-image can be really difficult.[ I] know, personally,[ I] have always struggled with this.[ I] say �[�self]-image” instead of �[�]body image” because[ I believe] it’s important to love all of[ yourself]. Your style, your taste, your views, your abilities, your[ personality].[ There] is a word that[ I feel] has[ maybe] fallen on the back burner these days and that word is IND[IVID]UAL.[ You] are you, and there is not a single person out there who is exactly like you.[ That] is something to celebrate, not something to shy away from.
+Have you ever let someone else influence how you feel about yourself or how you act?
+For example, maybe you use to love[ Japanese] food, but now, since your partner hates it, you haven’t actually had[ Japanese] food in a very long[ time]. Or maybe you use to love the color red, but someone once said �[�]Red is so not your color” and now every[ time] you go to put on something red, that voice is in your head and you end up changing your[ mind]… Now[ imagine] if we let everyone else dictate everything about us. We would all be an absolute mess. It is important for you to really know yourself. Know what you like and dislike and stick to it. This saying is one that[ I] keep in[ mind] and try to live by.
+Know what you stand for or you will fall for anything.
+[I] can’t stress how important it is for us to love ourselves and see value in what we have to offer. If we don’t, then how can we expect anyone else to?
+[I] believe social media certainly plays a role in our[ mental] view of ourselves.[ How] we dress, decorate our home, exercise… social media can even influence something as simple as[ how] we feel about our cleaning routine.[ I] know this first hand because[ I] have allowed other people on social media to make[ me] feel small or inadequate before.[ Maybe] because they have a perfectly organized kitchen or they vacuum their carpet every day and[ I] don’t.
+[Let me] repeat –[ I] ALLOW[ myself] feel to small or inadequate. These other people do not in any way TRY to make[ me] feel this way.
+[Maybe I] don’t dust my blinds, or wipe down my fridge every single day – Does that make[ me] a bad mom
+
+=== Text #4 ===
+> International Mobile Equipment[ Identity] (Identifica231;227;o Internacional de Equipamento M[243];vel), mais conhec[ido] por[ IM]E[I], 233; um[ n]250;mero de[ ident]ifica231;227;o global[ e] 250;nico para cada telefone celular.[ I] spent some[ time] to search ways to get owners information and found people who sell information by[ IM]E[I].[ I] received confirmation that seller didn't lie. Amazon. com:[ Un]locked Modem[ USB] 4G LTE Huawei E397u-53 Worldwide Hotspot Service Required Only T-mobile in US: Computers amp; Accessories[ How] to find Samsung Galaxy S[3 IM]E[I] Number. The[ IM]E[I] or[ MEID] number is useful if you want to find a lost or stolen device. Cell Device companies can use the information to figure out where your device was last used … You probably heard of the[ IM]E[I] number but never found out what it is about. Here we will show you what you need to know about[ IM]E[I] numbers.[ I] am trying to order a SIM card from Verizon for my[ Lenovo X]1 Carbon laptop, but they want to know the[ IM]E[I] number first.[ I] have not found the[ IM]E[I] Locate and track your stolen Android mobile phone using Google Account, Gmail and[ IM]E[I] number and filing a FIR complaint with the Police and service provider UM[ID]IG[I] Z1 Pro Android Phone - Helio P20[ CPU], 6GB RAM, Android 7. 0, 1080p, 4000mAh, Dual-Rear Cam (Black) Guide To[ Un]brick Flash Stock Firmware Repair[ IM]E[I] of D[Z]09 Smartwatch, Download D[Z]09 Stock Firmware flash tool[ IM]E[I] Repair tool Battery Method. Look in the empty battery slot for a label with the[ IM]E[I]. It should be 15 digits or more, maybe also including comma, dot … hello Dimas,[ I]ve always inquired fastcardtech[ why] there is still no 4G compatible phone, They said it will be release soon 1. 5 Ghz is an overclocked or turbo version of the 1. 2 ghz. there is definite illegal gambling new york when blackjack cigarettes and other uses, about 2K blackjack cigarettes in blackjack cigarettes benchmarks. however, if you just want a fast phone with good battery.[ Ir]idium Next is expected to be significantly more capable than the legacy system, which blackjack cigarettes originally designed by Motorola primarily for voice communications in the 1990s
+
+=== Text #5 ===
+> [I] recently went on a trip with my youngest daughter to Atlanta, Georgia.[ I] had not been to Georgia before.[ I] used to live in Alabama and Florida (at different times), so[ I] figured it would be mostly the same.[ What I] didn't know was that Atlanta is[ Gotham] City. You may not have known this, and[ I]'m sorry if[ I]'m ruining some[ fantasy]-other-wordliness aspect of[ Gotham City], but....it's in Georgia.
+Our adventure began when we got the rental car and headed out in the safe hands of GPS (aka evil[ maniac]al devil guide) to our hotel.[ I] don['t] know when[ I] decided Siri was a reliable source again. She has burned[ me] way too many times in the past for[ me] to have any sane[ reason] to trust her, but here[ I] was, across the country in the middle of a rainy night, trusting my[ life] to the voice in my phone with a desire to kill[ me].
+[How] do[ I] know she wants to kill[ me]?[ Let]'s recap.[ I] have gotten lost more times than not when using her. Usually it is because she decides to tell[ me] to take U turns in the middle of freeways or busy roads. Other times it is because she leads[ me] to my destination which actually turns out to be a lonely spot in the middle of nowhere, perfect for murder. This[ time], it was to the back side of a prison.[ Yes], just pull into the guarded driveway...don't[ mind] the guns..."your destination is on the right"....sure it is.[ I] didn['t] fall for it.
+[I] had a[ feeling] that no matter what Siri said,[ I] should probably head towards the taller, better lighted buildings in the distance. By some[ miracle], we ended up at our hotel.[ I] prefer to believe it was devine guidance. On the way, we discovered we were in[ Gotham]. It wasn['t] hard to tell, all we had to do was look up. The buildings were somewhat shrouded in fog. Did[ I] mention it was raining? Constantly? The entire weekend? The fog swirled around the tops of the buildings. One building in particular had lights shining off the top, cutting through the fog, just waiting for the Bat signal to be blasted into the sky.[ It] was[ Gotham].[ I]'m sure of it. If that wasn['t] enough proof, the sirens that screamed all night were the clincher.[ I] didn['t] actually SEE[ Batman], but[ I]'m pretty sure[ I] saw something dark and caped streak past my[ 9]th floor hotel
+
+=== Text #6 ===
+> [My] stepson[ decided] he wanted a[ Pokemon] birthday this year. The[ Pokemon] figures are pretty hard to make into a cake so[ I] decided to make the Pokeball, which is just a round ball,[ half] red &[ half] white.
+[I]’ve been wanting to try my hand at decorating a cake with[ fond]ant after washing billions of hours of Charm City Cakes’ amazing creations and ‘the Cake Boss’.[ Obviously] this would not be anywhere in the same league as the cakes they create, but you have to start somewhere, right?
+[I] have to say that even after making the fondant,[ I] was still surprised at how heavy it was when it came down to decorating the cake.[ It]’s not like pie dough where you can roll it onto itself and move it. You actually need to decide ahead of[ time] to bring the cake closer to you.[ I] found this out after having finally kneaded the fondant so it was just right and then rolling it to just the right thickness and then trying to get it to my cake… And having it rip apart and fall on the floor… Thus having to start all over with a new piece. And[ I] did this TW[ICE] before moving the cake. Ugh.[ Sometimes] my brain doesn’t work!
+[Anyway], once[ I] moved the cake and got a feel for the[ fond]ant, it went pretty smoothly.
+Then[ I] went to add the final touches, which[ I thought] would be the easiest part…[ I] had that icing in a can with the writing tips.[ That]’s what[ I] used for the black lines[ I] needed. It came out in globs and made a mess. Then[ I] tried to ‘fix’ it by making another line so maybe it would look like it was supposed to be thicker. It looked awful![ Oh] well. It was black, it’s not like[ I] could take it back off and start over (the fondant instantly took on the color!).[ I] decided to just be happy the fondant worked.
+But then, because[ I] can’t just leave well enough alone,[ I] had to write on the cake.[ I] used that same icing in a can, this[ time] in blue.[ Maybe] it’s just[ me].[ I] don’t think[ I] can write on cakes. The writing was[ awful] and[ I] was very upset about it.[ I] do have a really nice set of cake decorating tips so next[ time I]’[ll] see if[ I] can do any better with the decorations
+
+=== Text #7 ===
+> Eastern Lightning (�[�]方闪电) or the Church of Almighty[ God] is a Chinese[ cult] based on[ Christianity who believe] that[ Jesus] Christ has been[ reincarn]ated as Yang[ Xiang]bing (1973–), a[ Chinese] woman.[ It] was founded in 1989 by Zhao Weishan (赵维山) (1951–), who currently resides in the United[ States] where he continues to lead the church. The name Eastern Lightning is derived from Matthew 24:27.
+As the Second Coming of[ Jesus], Yang[ Xiang]bing will guide[ mankind] through the end times. Eastern Lightning preaches[ salvation] through her third testament, The Word Appears in the[ Flesh]. Eastern Lightning refers to the Chinese Communist Party as the "Great Red[ Dragon]" of the Book of Revelation, and some[ members] predicted that the world would end on December 21, 2012. The leaders of group, however, rejected that prediction.
+The group's theology divides[ time] into three ages: that of the law (the Old Testament), that of grace (the New Testament), and that of Kingdom (the current age).[ It] teaches that the "[Age] of Grace" has been superseded by the "[Age] of Kingdom", during which humans will not only be forgiven of their sins, but also cleansed of their sinful nature.[ There] is also a separate "[Age] of the[ Millenn]ial Kingdom", which is supposed to occur after[ God]'s work in China has ended; during that age, the apocalyptic events in the Book of Revelation are to occur.
+The[ sect] essentially excludes mainstream[ Christians who] are not part of the group from[ salvation], stating that those who hold on to conventional Christian[ beliefs] are "guilty of opposing[ God]" and do not truly[ believe] in[ Him].
+The group implicitly denies absolute Biblical inerrancy and explicitly denies the[ notion] that the Bible provides a sufficient[ understanding] of[ God], condemning such views as Bibliolatry that restricts[ God] via the Bible. Videos on the group's channel render quotations of[ Jesus] in yellow, similar to Red Letter[ Christians], but also render the group's own The Word Appears in the[ Flesh] in yellow captions to emphasize their[ belief] that the piece of literature is from[ God] rather than a[ cult] leader.[ The] group's view of the Bible as limited and fallible is, however, likely not rooted in[ rational] skepticism of religious[ dogma] and should not be confounded with efforts by progressive[ Christians] to[ re]-[interpret] the Bible to suit modern science and values. Rather, this is likely intended to prop up the group's theology despite its[ contradictions] with the Bible. For example
+
+=== Text #8 ===
+> Hot Mess to[ Mind]ful[ Mom] is a new book written by[ Ali] Katz.[ It] provided[ me] with[ what I believe] every[ mom] is searching for.[ I] have been on a journey to discover who[ I] am as a[ mom] and[ how] to be a present and[ mindful] mom from the day[ my] first[ daughter] was[ born].[ At age] 48, now a[ mom] of three teenager[ daughters],[ I] am still on that journey and always searching for ways to simplify and appreciate the[ time I] spend with them.[ Ali] Katz has given[ me] valuable tips and direction that[ I] can use as[ I] continue my journey.
+This book focuses on ways for a mom to explore herself and take care of herself in order to find balance and give her best[ self] to her own children. By using certain tips and principles, through meditation, personal experiences and simple acts of kindness to name a few details in the book, Hot Mess to[ Mind]ful[ Mom] enabled[ me] to become even more realistic and[ mindful].
+By relating to some of[ Ali]’s experiences[ I] felt engaged with her like[ I] was having a personal conversation with a fellow mom. She is very forthcoming and helpful in showing[ me] new ways to explore something deeper.[ I] truly[ believe] she gave[ me] valuable information and techniques that[ I] can use to strengthen myself as a mom.
+[I] was familiar with many challenges[ Ali] faced on her own journey and she was able to fill[ me] with great advice and help.[ Ali] expresses so openly how she has learned to be grateful and forgiving. This allowed her and will allow other moms to overcome fears and doubts and to become happier, which in turn, helps them become better moms.
+As shown in the book, every mom is on a journey from the day the child arrives and never ends.[ Ali] Katz, in her book a Hot Mess to a[ Mind]ful[ Mom], we get to experience her journey and learn, as she did, how to grow deeper in ourselves and become a little bit better each and every day in order to enjoy the simple times with our children and spread our[ happiness] to them.
+Hot Mess to[ Mind]ful[ Mom] is available at amazon.com.
+This guest post is by[ Kelley] Beckham.
+
+=== Text #9 ===
+> [I]'m sure[ I]'ll have more to add to this soon since[ I] am currently helping a girlfriend to find an EDC.[ My] trouble is[ I]'m a bit lumpy and my idea of concealable is different than what is concealable on her very thin frame with close-fitting[ attire].[ I]'ve stressed the #1 thing is to get a gun that she will want to carry every day and not leave at home.[ I] expect to defer to a couple of clerks as[ I] am not familiar with every new thing out there. And that's where[ I] expect the fun to start. This[ girl] can[ shoot 9]'s and .40's all day long.[ I] keep joking with her that she needs one of those pink guns cause she's a[ girl].[ Of] course,[ I] Keep getting back-handed too.
+[I] live out of state, but my experience has been mixed.
+[I shoot] with a local ladies club and we have ladies' (only) classes and monthly get togethers at a local range. The range owner is very supportive of us using the range, gives us a discount on port[ time] and trains the RSOs to respect ladies and not talk down to us. We have women instructors and the men who are instructors are taught to listen and not talk down/talk over and generally act in a respectful manner. The owner is extremely[ conscious] of his female and racial minority clientele as he wants the range to be welcome to all, regardless of[ gender] or race.[ Being] both a person of color and a woman it can be[ daunting] to (no offense intended) wander into a sport/past[ime]/interest populated mostly by white men. Or at least you'll see that in the media.
+[Unfortunately] the experience[ I]'ve gotten at some other ranges is because[ I] am a woman[ I] get attitude as to whether[ I] know anything about guns. One of my club's ranges the RSO is always telling[ me I] should probably try a lighter[ caliber] as the gun[ I] am shooting is too big (!!!). For the record it was a .45ACP. And[ I] can punch holes in a quarter at 25 yards.
+Other things, let's see. Go into a gun shop and get asked if[ I] want a gift certificate.[ Being] shown everything pink ([I] don['t] like pink) as if pink magically transforms any item into a woman's.
+But there are a lot in the community who will treat[ me] like an equal.[ That] is welcome.[ Honestly] though,[ I] do enjoy the ladies only get togethers because we can talk about stuff we don['t] talk
+
+=== Text #10 ===
+> [I] was brimming with excitement all of Thursday.[ I] couldn’t stop[ thinking] about[ my] date with Seabiscuit.[ I] was very excited about his joining[ me] at the[ theater] plus the night adventures that would follow.
+[I] hurried home after work, took a quick shower, and headed out. It had been a warm day, and[ I] was doubtful that[ I] needed my jacket; however, then[ I remembered] being cold at a previous performance in the evening. Even though[ I] had checked the weather and saw Orinda was only predicted to be in the low 60s in the evening,[ I] knew that up in the hills, where the theater is actually located, it can get much colder.[ I] felt foolish carrying such a large jacket on BART and[ felt] too warm to need it, but better safe than sorry.
+[It] was good[ I] did. By the[ time I] arrived at the theater, it was significantly cooler.[ I] was happy without a jacket but[ realized] that once the sun finished setting,[ I] would need to put it on.[ I] waited for Seabiscuit to arrive, and was excited to see him clean-shaven–as[ I] had ordered as his[ Mistress].[ How] good that he should obey so well! And he finally looked like one of his own photographs.
+[I] told him previously that he appeared to be a servant of the Many-[F]aced[ God] because his face never seemed to match from one photograph to another. The angles were off or something seemed so[ strange] about it. He didn’t look like his photographs.[ I] knew it was him, but how[ strange] and different they all seemed.
+[There] was a crowd, and[ I] could tell he felt a bit shy. We hugged and kissed each other’s cheeks, then held hands as we walked up the hill from Will Call to the theater.
+He bought dinner for us at the[ café], and we continued holding hands. The line was long, and we really only had 10 minutes to eat before needing to be seated. He was impressed by my tickets and how close we were to the stage. The temperature had dropped significantly, so[ I] put on my jacket when we were seated but he was astounded that[ I] didn’t close it until after intermission.[ I] held his hand in his lap during the first[ half].
+During intermission, he rented a blanket while[ I] used the restroom and got my free bag of Peet’s coffee for renewing my subscription for the theater. We shared the blanket, and for the second[ half], he
+
+=== Text #11 ===
+> [Al]bino hairs are[ AK]A grey H[aha]!
+[I] have these too![ What] IS this? :confused:[ My] 'le hairs' are short and new, and on top of my head just like[ Mart]yna's…they're not[ noticeable] until you look closely, but this bothers[ me] a bit.
+[I] have a few, and[ I] found one on my husband recently.[ I] think its normal to have different hair textures mixed in.[ I] have a mix of fine and medium mostly, with some super coarse and super fine mixed in. Occationally[ I] find those type 4 hairs mixed in but they don['t] worry[ me] :P its these "albino" hairs[ I] keep finding that bother[ me]...... they seem to be growing in numbers lol!
+When[ I] was a teen[ I] had a[ weird] "le hair" on the middle of my head, right at my forehead, it was thicker than dog hair and had a massive root with a diameter of a few[ mm]. To this day[ I] don['t] know what caused that to grow there. After pulling it out (it was too thick even for a fine toothed comb to pass over), it never grew back.[ I] had a gaping little hole for a few weeks, though.
+[I] giggled at barbed wire fence.
+[I]'m 45 now with a section trying to be a cool stripe and some sparklies scattered about.
+You have to be very close to notice the silvers.
+So early invasion can be slow colonization as far as grey is concerned.
+Texture?[ I] think that's so random.[ I] joke that it's proof[ I] should have been curly.
+At 45, there's an age related texture shift[ possibility].
+[I]'m so relieved to hear that[ I]'m not the only one.[ I] started finding these in 2008, and they're super coarse, black and crinkly. 2-[3]x the width of the other hairs.[ I] fried and dyed my hair for a few years straight, so[ I]'ve never[ noticed] how many there are, but now that[ I]'m growing it out,[ I] have at least 30% coverage of them.[ I]'m brunette, at least, so it's harder to tell, but they're all JET BLACK and crinkly.[ They] stand up in[ weird] ways, too.
+
+=== Text #12 ===
+> Edith Grossman’s translations recreate Spanish literature for English-language readers.
+En español | Thanks to Edith Grossman’s translations, the works of Gabriel Garc[ía] Márquez, Mayra Montero,[ Miguel] de Cervantes, and others are more accessible to English-language readers. Her latest labor of love is The Golden[ Age]: Poems of the Spanish Renaissance (August 2006).
+[Q]:[ What] led you to work on contemporary texts?
+A:[ My] first reading of Pablo Neruda’s poetry.
+[Q]:[ Why] return to your roots, the late 15th-17th centuries?
+A: Translating Don Quixote in[ 2003] was se[rend]ipitous. Once[ I] recovered from[ my shock] at the request,[ I realized how] exciting it would be. Once back in the[ mindset] of the Golden[ Age]…[I thought] it would be wonderful for people to get excited about [Rena[issance]] poetry.
+[Q]:[ How] did you choose the works in this[ anthology]?
+A:[ I] chose poems[ I] like very much by poets[ I] like very much.
+[Q]: Can these poems have popular appeal?
+A: Poetry doesn’t make for bestsellers, but[ I think] these poems can appeal to readers because they are brilliant and beautiful poems.
+[Q]:[ How] can Spanish Renaissance literature help us understand Latin[ American culture]?
+A:[ The] more a person reads great literature, the more that person understands the world.[ The] human condition is similar enough throughout[ time] to be open to the insight gained from literature.
+[Q]:[ How] does an author’s use of language affect the way you translate?
+A:[ If] a writer is using an elaborate, baroque style…or a very clean, spare style,[ I] do[ my] best to write that kind of English.[ I]’m trying to allow the reader in English to experience the text in a way that’s comparable to the way the Spanish-language reader experiences it.
+[Q]:[ When] you’re working on contemporary literature,[ how] collaborative is your approach to translation?[ Does] the author have a role in the process?
+A:[ The] author collaborates as much as he or she wants. Some authors are not interested in seeing the translation until it’s published, and even then[ I]’m not sure if they look at it.[ Others] like to see the translation before[ I] submit it to the publisher.[ I]’m always glad to do that because
+
+=== Text #13 ===
+> sailboat. : The sweetest home accessories!
+[You] know when you see something that you don['t] really need but you do really want to have for reasons you can['t] quite fully explain?[ Well], that's exactly[ how I] feel about pretty much everything from Qualy. Until a few weeks ago[ I] had never heard of the[ brand],[ I] had a Zalando voucher and just[ happened] to stumble into the home section where[ I] spotted the sweetest home accessories ever!
+So,[ I] didn['t] really need a pink bunny with scissors for ears, a carrot magnet and green paper clips for the carrot top but as soon as[ I] saw it,[ crazy] bunny lady over here was instantly adding it to my basket and hitting checkout![ I]'m really impressed with the quality,[ I] did think the £15 price tag was a little much but[ I]'ve changed my[ mind] because the scissors are actually really good, it doesn['t] feel or look cheap in any way and, well, it's undeniably cute![ I] love it so much!
+Qualy Log & Squirrel Flower Pot!
+[I]'m not known for my green thumb, in[ fact I]'m notoriously rubbish at keeping plants alive but[ I]'m going to try and be better now[ I] have this super cute flower pot![ I] don['t] have a plant to put in it at the moment but[ I]'m actually really excited to go and get one, any excuse for a trip to the garden centre[ I]'ll happily take! When there's water in the bottom the squirrel floats up, which is perfect for a plant killer like[ me] because[ I]'ll always know when[ I] need to add some more water. At £25 this certainly isn['t] cheap, but again[ I]'m really happy with the quality & everything comes apart so[ I] think it'll be really easy to clean. To be[ honest] it was the little squirrel that totally sold[ me] on this, look at those sweet little eyes, too cute!
+Do you have a favourite home accessories brand?
+Do you have anything from Qualy?
+The only thing that[ I] found with the pot was that somehow the roots have gone down the string and completely intertwined with it so[ I] won['t] be able to use the pot for another plant in the future :') Still absolutely adorable though!
+[I] really love the Qualy range,[ I]'ve been fancying the bunnies for agfes, have you seen the paperclip ones as well?
+D[Uh],[ I] meant the tape one.
+The desk bunny is just sooo lovely!
+You got the bunny! Jealous
+
+=== Text #14 ===
+> [My] writing routine begins with a walk outdoors. Not a long walk or a fast one. Two miles up the[ street] and back, early in the morning in summer before our California sun blisters the city, or before rain turns a winter walk into a slog. Most mornings it’s a walk on the shady side of the[ street], a familiar trek that doesn’t require[ me] to think about where to turn or when to start ambling back home.
+[I]’m lucky if[ I] can get going without returning for one last thing, like replacing the house phone for my cell,[ realizing I]’m not wearing my contacts, trading stiff shoes for a more comfortable pair, one more trip to bathroom, another smear of sunblock. Once[ I]’m finally on[ my] way, it’s a slight uphill hike and a reverse easy[ j]aunt down.
+A walk is a great opportunity to get a bit of exercise, because[ I] will never wear those dorky rubber band outfits[ I]’d have to don to go to a gym.[ I] work out problems, even if[ I] don’t work up much of a sweat, like the chronic situations that give[ me nightmares] if[ I] sleep in too late.[ I] worry about personal problems, because as much as[ I]’m fortunate to have loving family and friends, there is always someone to worry about.[ I] worry about the injustices of my employment, politically inspired office intrigue affecting even my paltry claim to the working world. The walk uphill gives[ me] a[ chance] to excise those devils, though they’[ll] return like persistent hiccups.[ I] walk more and more determinedly, relinquishing the pain in my calves for concentration on those cerebral irritants. Most days[ I realize] there is little[ I] can do except let go my worry, anger, and frustration, so[ I] do, resolution of sorts.
+At the top of the rise my palm swings around the light post that signals my walk homeward, and[ I] begin to write.[ I] work in my head because[ I] can’t walk with a laptop though[ I]’ve considered it. Some of my effort will get lost on the way home, but[ I]’[ll] retain the essence of my work.
+[I] hunt when[ I] walk.[ I] am a bird of prey.[ I] seek words and pluck them before they scurry to safety.[ I] stash interesting words that say things other than boring things like thing, (could you be more specific?) or stuff, (could you
+
+=== Text #15 ===
+> [Here] in Australia, Boxing Day is our "Black Friday."[ It]'s the day after[ Christmas Day] and stores have[ massive] sales to help get rid of any post[ Christmas] stock. While it's been a[ huge] event for our department stores for many years, online shopping has made grabbing a bargain much easier (with the added benefit of not having to battle people for the last gift box!).
+Adelaide has no Mecca[ Max]ima stores, so[ I] had to order the Urban Decay Gwen Stefani[ Ey]eshadow Palette from Mecca online. While this has been available for a while in the US, it was only released on Boxing Day here.
+[I]'m IN LOVE with this palette.[ I feel] like it was made for[ me].[ I] know a lot of people have said there's not much in the way of colour selection, but for someone pale it's the perfect palette.
+[It] retails for $95 here in Australia so it's pricier than the other palettes that UD sell, but you really see the amount of[ thought] that went into both the palette and the packaging and shade names.
+The packaging is gorgeous although it's quite heavy.[ I] can't wait for the rest of the UD x Gwen collection to be released.
+Lipstick Republic is an Australian online store that sells brands like[ Sigma], OCC, Lime Crime, Jeffrey[ Star], Morphe and more.[ They] had 25% off so[ I] put in an order for some products that were on my wishlist.
+[I] have previously ordered a Benjabelle Brush Tree from them and[ I] wanted to buy another one.[ I] already have the[ Mini] Brush Tree, which holds 24 eye brushes but[ I] wanted to get a large brush tree that also holds large brushes.[ I] decided on the Sunflower Brush Tree as it holds both small and large brushes.
+[I] also ordered the spinner bottom as[ I] don['t] have it on my other brush tree and[ I] wanted to see if it was more helpful while washing my brushes.
+[I]'ve never been one for[ Sigma] brushes (youTubers pushing their code down my throat makes[ me] side eye the company) but[ I] received a[ mini] E25 Blending Brush in a Bellabox previously and[ I] really loved it, so[ I] ordered a fullsize one from their copper line.[ I] also ordered the[ Sigma] E45 Small Tapered Blending Brush as you can never have enough blending brushes.[ I thought] that this would be great for[ me] as[ I] have small eyes and some blending brushes are bigger than my eyes!!
+And finally[ I] ordered
+
+=== Text #16 ===
+> BAGHDAD, Iraq -- Fighting in the[ Shiite stronghold] of[ Sad]r[ City] killed[ 23 Iraqis] yesterday, hospital officials said, and the[ U].S. military reported five troop deaths, as April showed signs of becoming the worst month for U.S. forces in[ Iraq] since September.
+[At] least[ 11] of the[ Iraqi] deaths occurred when[ mortar] shells landed in residential[ neighborhoods].[ Men] rushed wounded children to overcrowded emergency rooms in Sadr[ City] hospitals, on foot because of a ban on all vehicular traffic.[ In] some parts of Sadr[ City], masked milit[iam]en bearing[ machine] guns and grenade launchers remained on the streets.
+Officials at local hospitals have put the death toll in the[ neighborhood] at more than 70 since[ Sunday], but it was not clear if those figures included militia[ fighters].
+Thousands of Sadr[ City] residents have fled for other neighborhoods. Prices in local markets were soaring as supplies dwindled, a result of suppliers' inability to bring in goods.[ Iraqi] and U.S. forces appeared to be penetrating deeper into the neighborhood, one local journalist said.
+There were no signs that Prime Minister Nouri al-Mal[iki] was pulling back on his offensive against[ Shiite] militias, which has sparked fighting between[ Iraqi] and[ U].S. forces and milit[iam]en loyal to[ Shiite] cleric[ Muqt]ada al-Sadr.[ Al]-Mal[iki]'s deadline for[ fighters] to hand in heavy weapons expired Tuesday, but the latest clashes showed that rocket-propelled[ grenades],[ mort]ars, and rockets remained in[ militia] hands.
+B[aghd]ad had spent part of yesterday quieter than in recent days, because of a curfew imposed to prevent clashes and protests marking the[ anniversary] of the fall of[ Saddam] Hussein on April[ 9],[ 2003].
+[Al]-Sadr had called for a huge march in Baghdad to mark the[ anniversary] of Hussein's ouster and to protest the[ U].S. presence and al-Mal[iki]'s offensive. The cleric says the offensive, which began March 25 in the southern city of Basra, is targeting his Mah[di] Army and is a ploy to cripple his political movement in advance of provincial elections planned for October.
+His[ fighters] have risen up against[ Iraqi] and U.S. forces, virtually collapsing a cease-fire that al-Sadr announced last August and that was credited with bringing a sharp drop in violence nationwide.
+Although U.S. and[ Iraqi] officials maintain that they are targeting criminal elements or "special groups" that did not abide by al-Sadr's[ truce], U.S. Ambassador Ryan C. Crocker acknowledged yesterday that
+
+=== Text #17 ===
+> "[How] beautiful are these rings?
+[I]’m soooo in love with the designs of[ Gi]ardinoblu.
+The pieces are so pretty and organic, like some of Nature’s most delicate moments; like morning dew.[I] can look forever at the tiny dainty morning drops on leaves.
+[It]’s such a pure form of beauty."
+"[I] love so much ALL the eco-[conscious] jewelry that Francesca creates!
+You can feel the love and positive vibes in every single piece. They are all unique pieces.
+[Everything] she creates is high quality. It tells a story for you to discover once you wear its magical jewelry.
+[I] adore her work. And she a such a beautiful person that you can feel her[ truth] embedded in her creative work."
+"[My] precious!![ I] absolutly love this amazing peace of jewlery![ It] has so much charm and story to tell <[3]"
+their organic beauty and the magic allure are amazing.
+Each piece is totally[ handmade] and unreplicable, their preciousness is made by teeny details.
+"[I]'m super excited as my pendants arrived today and[ I] just collected them from my local post office.[ I] cannot thank you enough,[ I] think they are just beautiful.[ I] think the ladies are going to Love them.
+[I] have also had our local printer print[ me] up some copies of the Guide to[ Rise] to go along with them.
+[I]'m[ feeling] super BLESSED to have[ accidentally] stumbled upon you and your beautiful gift.
+Thank you from the bottom of my heart!"
+"Words fail[ me].... my ring!!!!!!! OOO[HH]H she is S[OOOO] beautiful......[ I] just cried when[ I] saw her!!! She pierced my heart!!!! She is magnificent! Your artistry--perfection!!!!![ I] am in love....completely in love!!!!! THANK YOU WITH ALL OF[ MY] HEART!!!!![ I] have her on my finger!!!!! Perfect fit!!!!! Fran[ci]!!!!!![ My] goodness the love and energy of your work is so powerful and healing......sigh......[ I] feel SO BLESSED! This[ I] will cherish and treasure my whole[ life]! It expanded my aura and light the moment[ I] put it on my finger![ I] just must say[ I] am absolutely in love with your work!!!!! She is SO alive; we are already becoming one..... your love and energy just flooded my heart when[ I] read your note, and THEN when[ I] opened the box, and laid eyes on her![ It] felt like she was always mine
+
+=== Text #18 ===
+> [Sometimes it] is the things you see every day which inspire you. A colour or texture catches your eye, and you're hooked. The itch starts, and you find you have to paint it.[ Whatever] it might be. This[ happened] for[ me] a couple of years ago, when[ I] was working with the lovely Vital Veg at Midmar. Every week[ I] packed beautiful, colourful veg into veg bags for customers. Some of the veg came home with[ me]. And some of that came with[ me] to the weekly art class[ I] was attending.
+Another influence fed into this process. A few years ago,[ I] attended a workshop with[ Sof]ia Perina-Miller, whose work[ I] also greatly admire. She paints fabulous striking flowers, as well as many other subjects. She showed us how to paint directly onto paper, without doing any initial drawing. This was an entirely new experience for[ me] - and[ I] found that[ I] loved the freedom of it! Instead of[ feeling] constrained by the pencil lines,[ I] was "free" to paint directly, loosely, using vibrant colours, which resulted in more lively work.[ Sof]ia usually adds meticulous pen and ink details to her work.[ I] left mine as they were; as[ I] may have mentioned before[ I] have rather limited patience!
+There is always a certain amount of fear involved in painting this way.[ I] had to learn to be brave, to trust that the colours[ I] was choosing and the marks[ I] was making were strong and[ true] and confident. This was no[ time] for[ f]iddling around with details and tentative marks. Before[ I] started,[ I] would look carefully at the veg, get a feel for the overall shape and size and proportions, the main colours, the shadows on the paper. Really look, and get a feel for it. It helped to stand up, to have everything[ I] needed to hand and to just do it, quickly.[ I] love this way of working; writing this makes[ me] want to do some more of this kind of work.
+Some of my veg paintings are available as digital downloads from my Etsy shop.
+Various items (prints, mugs, phone covers, tote bags etc.) sporting my veg paintings can also be found on Redbubble.
+[I] often make soup. At the organic veg farm where[ I] work part-[time], we take it in turns to bring a pot of soup to the veg shed on the day we pack veg bags for customers. One of the things[ I] love about soup is that it is very forgiving. You can throw just
+
+=== Text #19 ===
+> Dayton WordCamp | The Jamestown Comet.
+Some people are of the[ mind] that there is a certain age when learning something new is neither a priority nor even a[ possibility]. As[ I] approach a[ half]-century on this earth,[ I] have a hard[ time] wrapping[ my] head around the[ idea] that, at some point, people just stop learning.
+Barring some kind of[ dementia] or other[ mental disorder], it’s hard to understand[ why] anyone would �[�]choose” to be an old dog, totally[ un]interested in learning a new trick.[ In my] lines of work,[ I] am frequently exposed to innovative technology and new ideas and[ I]’m expected to keep up or[ I] don’t pay the mortgage.
+[I] spend a considerable amount of[ time] researching, learning new concepts or updating my skills in some way so[ I] can stay relevant in a world that seems to change by the[ nan]osecond. Part of that continuing education includes reading, networking with others and going to conferences and workshops.[ I] just returned from one such conference that was, for[ me], one of the single best[ I] have ever attended.
+A couple of months ago,[ I] was asked by a friend to speak at an upcoming technology event known as, �[�]Dayton WordCamp,” a two-day series focused on the website content management system called �[�]WordPress.” As with most tech, this event would be dominated by much younger, more advanced presenters.
+Originally,[ I hesitated],[ feeling] as if �[�]at[ my] age” (and technical level)[ I] would have little to bring to the table. But, with a little effort[ I] found a spot where[ I] fit into the program nicely and agreed.
+Dayton’s event is one of hundreds of WordCamps around the world, all presented for the benefit of those using WordPress as their website platform. Lovingly referred to by organizers as an �[�]unconference,” the atmosphere is very relaxed and laid back, with most people wearing[ jeans] and[ T]-shirts.[ One] of the perks of speaking is the opportunity to attend the event as a spectator as well.
+One of the first things[ I noticed] upon arrival was that[ I] was not the oldest person in the room.[ Of] roughly[ 120] attendees the bell curve probably favored the younger crowd, but there were plenty of people my age and older as well. Such diversity says something for both the reputations of the scheduled presenters and the[ usability] of the software about which we had all come to learn.
+
+=== Text #20 ===
+> [I] have posted a letter of intent similar to this in the past... doing so in this various places for years, but wanted to renew the[ sentiments] for the coming season.
+[I] write today you to tell you of my RENEWED intentions for this year so as to spare you any[ confusion] or frustration when next you encounter[ me]. It is my[ intention] to remain 'in character' as much as possible during my travels for this present year.
+"Our organization will educate via a series of first person activities designed to demonstrate the real lives of sailors as they go about their business and live their lives."
+[There] is no[ doubt] in my[ mind] that this could be difficult for[ me], but also for those around[ me]; and[ I] do not wish to alienate any of[ my] friends or compatriots.[ Things] will not be much different,[ I imagine], than they have been in the past... you've all[ met] the[ Doctor] during YOUR travels, and know the agreeable sort of fellow he can be.
+[I] am generally already 'in character' for all the visitors and guests[ I] work with at various events, if done correctly,[ I believe] it can be a powerful learning tool for the public.
+In addition,[ I]'d like to request that you all help[ me] to do this by not trying to 'snap[ me] out of it' by mentioning a bunch of modern stuff to[ me] whilst at an event.[ I believe] that enough of you have my email address and are friends with[ me] on various forums, message boards and social networking sites... that any out of character conversation can safely take place there at any[ time].
+[I] tell you now that if you attempt to talk to the[ Doctor] about movies,[ internet], cellphones and the like, he will be terribly[ confused].[ There] is a[ time] and a place for talk of that sort, and for[ me], it's NOT while[ I]'m dressed out at an event.
+[I] daresay[ I] will go one step further and challenge YOU once again to give your interpretation and character some[ thought].[ It]'s no fun if[ I] don['t] have a few of you to play along!
+Special thanks to everyone that has encouraged[ me] (verbally & otherwise) to do this in the past,[ I] look forward to the additional research that[ I] need to do over the fall and winter to get[ me] where[ I] need to be... and the[ Doctor] looks forward to meeting you in the year to come. This has the potential to be a really fantastic learning experience!
+
+
+Description: 
+2025-07-25 21:16:03,283 - root - INFO - First-person perspective related to introspection, self-reflection, identity, mental states, and beliefs
+2025-07-25 21:16:03,289 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-1149_clusters-1_2025-07-25_19-06-30.csv
+2025-07-25 21:16:03,290 - root - INFO - ================================================================================
+2025-07-25 21:16:03,290 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 21:16:03,291 - root - INFO - ================================================================================
+2025-07-25 21:16:03,291 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-1149_clusters-1_2025-07-25_19-06-30.log
+2025-07-25 21:16:03,292 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-1149_clusters-1_2025-07-25_19-06-30.csv

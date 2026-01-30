@@ -1,0 +1,970 @@
+2025-04-17 10:18:44,782 - root - INFO - ================================================================================
+2025-04-17 10:18:44,820 - root - INFO - CONFIGURATION PARAMETERS
+2025-04-17 10:18:44,821 - root - INFO - ================================================================================
+2025-04-17 10:18:44,822 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-04-17 10:18:44,822 - root - INFO - AGG_METHOD = mean
+2025-04-17 10:18:44,823 - root - INFO - BATCH_SIZE = 2
+2025-04-17 10:18:44,824 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-04-17 10:18:44,824 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-04-17 10:18:44,825 - root - INFO - CLUSTER_METHOD = KMeans
+2025-04-17 10:18:44,826 - root - INFO - CLUSTER_N_SAMPLES = 100
+2025-04-17 10:18:44,826 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-04-17 10:18:44,827 - root - INFO - CONTROL_DATA = c4
+2025-04-17 10:18:44,828 - root - INFO - CONTROL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-04-17 10:18:44,829 - root - INFO - CONTROL_SPLIT = validation
+2025-04-17 10:18:44,829 - root - INFO - DATA_FILES = None
+2025-04-17 10:18:44,830 - root - INFO - DEVICE = cuda
+2025-04-17 10:18:44,831 - root - INFO - END_INTERVAL = 1.0
+2025-04-17 10:18:44,831 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-04-17 10:18:44,832 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_150-samples.csv
+2025-04-17 10:18:44,833 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-04-17 10:18:44,833 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-04-17 10:18:44,834 - root - INFO - HOOK_ID = mlp.hook_post
+2025-04-17 10:18:44,835 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-04-17 10:18:44,836 - root - INFO - LAYER_ID = 0
+2025-04-17 10:18:44,837 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-04-17 10:18:44,838 - root - INFO - METHOD_NAME = GPT-explain
+2025-04-17 10:18:44,838 - root - INFO - MULTI_EVAL = True
+2025-04-17 10:18:44,839 - root - INFO - N_CLUSTERS = 5
+2025-04-17 10:18:44,840 - root - INFO - N_SAMPLES = 10
+2025-04-17 10:18:44,840 - root - INFO - PERCENTILE_STEP = 0.0005
+2025-04-17 10:18:44,842 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-04-17 10:18:44,843 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-04-17 10:18:44,844 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-04-17 10:18:44,845 - root - INFO - SAVE_ACTIVATIONS = True
+2025-04-17 10:18:44,846 - root - INFO - SPLIT = train
+2025-04-17 10:18:44,847 - root - INFO - START_INTERVAL = 0.95
+2025-04-17 10:18:44,847 - root - INFO - STREAMING = True
+2025-04-17 10:18:44,848 - root - INFO - SUBSET_SIZE = 1000
+2025-04-17 10:18:44,848 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-04-17 10:18:44,849 - root - INFO - TARGET_DATA = c4
+2025-04-17 10:18:44,850 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-04-17 10:18:44,850 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-04-17 10:18:44,851 - root - INFO - TRAINED_LAYER = mlp
+2025-04-17 10:18:44,852 - root - INFO - UNIT_ID = 1674
+2025-04-17 10:18:44,852 - root - INFO - USE_API = True
+2025-04-17 10:18:44,853 - root - INFO - VERSION = v5_32k
+2025-04-17 10:18:44,853 - root - INFO - WIDTH = 16
+2025-04-17 10:18:44,854 - root - INFO - ================================================================================
+2025-04-17 10:18:44,855 - root - INFO - ANALYSIS RESULTS
+2025-04-17 10:18:44,856 - root - INFO - ================================================================================
+2025-04-17 10:18:44,856 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-1674_2025-04-17_08-18-44.log
+2025-04-17 10:18:45,105 - root - INFO - GPU memory usage limited to 90.0% (71.33 GB)
+2025-04-17 10:18:45,107 - root - INFO - Loading target model...
+2025-04-17 10:19:06,786 - root - INFO - Model loaded successfully
+2025-04-17 10:19:25,928 - root - INFO - Loaded 150 layer-unit pairs to process
+2025-04-17 10:19:25,929 - root - INFO - Loading text generator model...
+2025-04-17 10:19:27,258 - root - INFO - Text generator loaded successfully
+2025-04-17 10:19:27,260 - root - INFO - Processing layer 40, unit 716 (1/150)
+2025-04-17 10:21:28,677 - root - INFO - Processed explanation 1/5 for layer 40, unit 716
+2025-04-17 10:21:28,804 - root - INFO - Processed explanation 2/5 for layer 40, unit 716
+2025-04-17 10:21:28,878 - root - INFO - Processed explanation 3/5 for layer 40, unit 716
+2025-04-17 10:21:28,920 - root - INFO - Processed explanation 4/5 for layer 40, unit 716
+2025-04-17 10:21:29,059 - root - INFO - Processed explanation 5/5 for layer 40, unit 716
+2025-04-17 10:21:29,060 - root - INFO - Processing layer 40, unit 4505 (2/150)
+2025-04-17 10:21:29,143 - root - INFO - Processed explanation 1/5 for layer 40, unit 4505
+2025-04-17 10:21:29,201 - root - INFO - Processed explanation 2/5 for layer 40, unit 4505
+2025-04-17 10:21:29,280 - root - INFO - Processed explanation 3/5 for layer 40, unit 4505
+2025-04-17 10:21:29,369 - root - INFO - Processed explanation 4/5 for layer 40, unit 4505
+2025-04-17 10:21:29,481 - root - INFO - Processed explanation 5/5 for layer 40, unit 4505
+2025-04-17 10:21:29,482 - root - INFO - Processing layer 0, unit 604 (3/150)
+2025-04-17 10:21:29,578 - root - INFO - Processed explanation 1/5 for layer 0, unit 604
+2025-04-17 10:21:29,704 - root - INFO - Processed explanation 2/5 for layer 0, unit 604
+2025-04-17 10:21:29,739 - root - INFO - Processed explanation 3/5 for layer 0, unit 604
+2025-04-17 10:21:29,793 - root - INFO - Processed explanation 4/5 for layer 0, unit 604
+2025-04-17 10:21:29,862 - root - INFO - Processed explanation 5/5 for layer 0, unit 604
+2025-04-17 10:21:29,863 - root - INFO - Processing layer 40, unit 6145 (4/150)
+2025-04-17 10:21:29,933 - root - INFO - Processed explanation 1/5 for layer 40, unit 6145
+2025-04-17 10:21:29,965 - root - INFO - Processed explanation 2/5 for layer 40, unit 6145
+2025-04-17 10:21:30,027 - root - INFO - Processed explanation 3/5 for layer 40, unit 6145
+2025-04-17 10:21:30,134 - root - INFO - Processed explanation 4/5 for layer 40, unit 6145
+2025-04-17 10:21:30,175 - root - INFO - Processed explanation 5/5 for layer 40, unit 6145
+2025-04-17 10:21:30,176 - root - INFO - Processing layer 0, unit 2751 (5/150)
+2025-04-17 10:21:31,793 - root - INFO - Processed explanation 1/5 for layer 0, unit 2751
+2025-04-17 10:21:31,869 - root - INFO - Processed explanation 2/5 for layer 0, unit 2751
+2025-04-17 10:21:31,919 - root - INFO - Processed explanation 3/5 for layer 0, unit 2751
+2025-04-17 10:21:32,002 - root - INFO - Processed explanation 4/5 for layer 0, unit 2751
+2025-04-17 10:21:32,049 - root - INFO - Processed explanation 5/5 for layer 0, unit 2751
+2025-04-17 10:21:32,050 - root - INFO - Processing layer 0, unit 3818 (6/150)
+2025-04-17 10:21:32,131 - root - INFO - Processed explanation 1/5 for layer 0, unit 3818
+2025-04-17 10:21:32,181 - root - INFO - Processed explanation 2/5 for layer 0, unit 3818
+2025-04-17 10:21:32,230 - root - INFO - Processed explanation 3/5 for layer 0, unit 3818
+2025-04-17 10:21:32,302 - root - INFO - Processed explanation 4/5 for layer 0, unit 3818
+2025-04-17 10:21:32,373 - root - INFO - Processed explanation 5/5 for layer 0, unit 3818
+2025-04-17 10:21:32,375 - root - INFO - Processing layer 0, unit 440 (7/150)
+2025-04-17 10:21:32,454 - root - INFO - Processed explanation 1/5 for layer 0, unit 440
+2025-04-17 10:21:32,517 - root - INFO - Processed explanation 2/5 for layer 0, unit 440
+2025-04-17 10:21:32,581 - root - INFO - Processed explanation 3/5 for layer 0, unit 440
+2025-04-17 10:21:32,623 - root - INFO - Processed explanation 4/5 for layer 0, unit 440
+2025-04-17 10:21:32,664 - root - INFO - Processed explanation 5/5 for layer 0, unit 440
+2025-04-17 10:21:32,665 - root - INFO - Processing layer 40, unit 3254 (8/150)
+2025-04-17 10:21:32,743 - root - INFO - Processed explanation 1/5 for layer 40, unit 3254
+2025-04-17 10:21:32,785 - root - INFO - Processed explanation 2/5 for layer 40, unit 3254
+2025-04-17 10:21:32,829 - root - INFO - Processed explanation 3/5 for layer 40, unit 3254
+2025-04-17 10:21:32,878 - root - INFO - Processed explanation 4/5 for layer 40, unit 3254
+2025-04-17 10:21:32,957 - root - INFO - Processed explanation 5/5 for layer 40, unit 3254
+2025-04-17 10:21:32,958 - root - INFO - Processing layer 40, unit 3515 (9/150)
+2025-04-17 10:21:33,067 - root - INFO - Processed explanation 1/5 for layer 40, unit 3515
+2025-04-17 10:21:33,138 - root - INFO - Processed explanation 2/5 for layer 40, unit 3515
+2025-04-17 10:21:33,193 - root - INFO - Processed explanation 3/5 for layer 40, unit 3515
+2025-04-17 10:21:33,253 - root - INFO - Processed explanation 4/5 for layer 40, unit 3515
+2025-04-17 10:21:33,307 - root - INFO - Processed explanation 5/5 for layer 40, unit 3515
+2025-04-17 10:21:33,308 - root - INFO - Processing layer 0, unit 1149 (10/150)
+2025-04-17 10:21:33,440 - root - INFO - Processed explanation 1/5 for layer 0, unit 1149
+2025-04-17 10:21:33,579 - root - INFO - Processed explanation 2/5 for layer 0, unit 1149
+2025-04-17 10:21:33,617 - root - INFO - Processed explanation 3/5 for layer 0, unit 1149
+2025-04-17 10:21:33,688 - root - INFO - Processed explanation 4/5 for layer 0, unit 1149
+2025-04-17 10:21:33,769 - root - INFO - Processed explanation 5/5 for layer 0, unit 1149
+2025-04-17 10:21:33,770 - root - INFO - Processing layer 40, unit 1807 (11/150)
+2025-04-17 10:21:33,871 - root - INFO - Processed explanation 1/5 for layer 40, unit 1807
+2025-04-17 10:21:33,921 - root - INFO - Processed explanation 2/5 for layer 40, unit 1807
+2025-04-17 10:21:33,961 - root - INFO - Processed explanation 3/5 for layer 40, unit 1807
+2025-04-17 10:21:34,017 - root - INFO - Processed explanation 4/5 for layer 40, unit 1807
+2025-04-17 10:21:34,063 - root - INFO - Processed explanation 5/5 for layer 40, unit 1807
+2025-04-17 10:21:34,064 - root - INFO - Processing layer 20, unit 5266 (12/150)
+2025-04-17 10:21:34,265 - root - INFO - Processed explanation 1/5 for layer 20, unit 5266
+2025-04-17 10:21:34,341 - root - INFO - Processed explanation 2/5 for layer 20, unit 5266
+2025-04-17 10:21:34,393 - root - INFO - Processed explanation 3/5 for layer 20, unit 5266
+2025-04-17 10:21:34,432 - root - INFO - Processed explanation 4/5 for layer 20, unit 5266
+2025-04-17 10:21:34,493 - root - INFO - Processed explanation 5/5 for layer 20, unit 5266
+2025-04-17 10:21:34,494 - root - INFO - Processing layer 20, unit 1935 (13/150)
+2025-04-17 10:21:34,564 - root - INFO - Processed explanation 1/5 for layer 20, unit 1935
+2025-04-17 10:21:34,930 - root - INFO - Processed explanation 2/5 for layer 20, unit 1935
+2025-04-17 10:21:34,968 - root - INFO - Processed explanation 3/5 for layer 20, unit 1935
+2025-04-17 10:21:35,049 - root - INFO - Processed explanation 4/5 for layer 20, unit 1935
+2025-04-17 10:21:35,101 - root - INFO - Processed explanation 5/5 for layer 20, unit 1935
+2025-04-17 10:21:35,102 - root - INFO - Processing layer 40, unit 6067 (14/150)
+2025-04-17 10:21:35,325 - root - INFO - Processed explanation 1/5 for layer 40, unit 6067
+2025-04-17 10:21:35,381 - root - INFO - Processed explanation 2/5 for layer 40, unit 6067
+2025-04-17 10:21:35,434 - root - INFO - Processed explanation 3/5 for layer 40, unit 6067
+2025-04-17 10:21:35,475 - root - INFO - Processed explanation 4/5 for layer 40, unit 6067
+2025-04-17 10:21:35,801 - root - INFO - Processed explanation 5/5 for layer 40, unit 6067
+2025-04-17 10:21:35,802 - root - INFO - Processing layer 20, unit 3274 (15/150)
+2025-04-17 10:21:42,547 - root - INFO - Processed explanation 1/5 for layer 20, unit 3274
+2025-04-17 10:21:42,599 - root - INFO - Processed explanation 2/5 for layer 20, unit 3274
+2025-04-17 10:21:42,678 - root - INFO - Processed explanation 3/5 for layer 20, unit 3274
+2025-04-17 10:21:42,739 - root - INFO - Processed explanation 4/5 for layer 20, unit 3274
+2025-04-17 10:21:42,826 - root - INFO - Processed explanation 5/5 for layer 20, unit 3274
+2025-04-17 10:21:42,827 - root - INFO - Processing layer 40, unit 753 (16/150)
+2025-04-17 10:21:42,900 - root - INFO - Processed explanation 1/5 for layer 40, unit 753
+2025-04-17 10:21:42,941 - root - INFO - Processed explanation 2/5 for layer 40, unit 753
+2025-04-17 10:21:42,981 - root - INFO - Processed explanation 3/5 for layer 40, unit 753
+2025-04-17 10:21:43,048 - root - INFO - Processed explanation 4/5 for layer 40, unit 753
+2025-04-17 10:21:43,110 - root - INFO - Processed explanation 5/5 for layer 40, unit 753
+2025-04-17 10:21:43,111 - root - INFO - Processing layer 0, unit 2696 (17/150)
+2025-04-17 10:21:43,324 - root - INFO - Processed explanation 1/5 for layer 0, unit 2696
+2025-04-17 10:21:43,399 - root - INFO - Processed explanation 2/5 for layer 0, unit 2696
+2025-04-17 10:21:43,476 - root - INFO - Processed explanation 3/5 for layer 0, unit 2696
+2025-04-17 10:21:43,548 - root - INFO - Processed explanation 4/5 for layer 0, unit 2696
+2025-04-17 10:21:43,628 - root - INFO - Processed explanation 5/5 for layer 0, unit 2696
+2025-04-17 10:21:43,629 - root - INFO - Processing layer 40, unit 183 (18/150)
+2025-04-17 10:21:43,713 - root - INFO - Processed explanation 1/5 for layer 40, unit 183
+2025-04-17 10:21:43,761 - root - INFO - Processed explanation 2/5 for layer 40, unit 183
+2025-04-17 10:21:43,801 - root - INFO - Processed explanation 3/5 for layer 40, unit 183
+2025-04-17 10:21:43,865 - root - INFO - Processed explanation 4/5 for layer 40, unit 183
+2025-04-17 10:21:43,917 - root - INFO - Processed explanation 5/5 for layer 40, unit 183
+2025-04-17 10:21:43,918 - root - INFO - Processing layer 20, unit 3313 (19/150)
+2025-04-17 10:21:44,014 - root - INFO - Processed explanation 1/5 for layer 20, unit 3313
+2025-04-17 10:21:44,061 - root - INFO - Processed explanation 2/5 for layer 20, unit 3313
+2025-04-17 10:21:44,112 - root - INFO - Processed explanation 3/5 for layer 20, unit 3313
+2025-04-17 10:21:44,152 - root - INFO - Processed explanation 4/5 for layer 20, unit 3313
+2025-04-17 10:21:44,192 - root - INFO - Processed explanation 5/5 for layer 20, unit 3313
+2025-04-17 10:21:44,193 - root - INFO - Processing layer 20, unit 5278 (20/150)
+2025-04-17 10:21:44,289 - root - INFO - Processed explanation 1/5 for layer 20, unit 5278
+2025-04-17 10:21:44,330 - root - INFO - Processed explanation 2/5 for layer 20, unit 5278
+2025-04-17 10:21:44,372 - root - INFO - Processed explanation 3/5 for layer 20, unit 5278
+2025-04-17 10:21:44,415 - root - INFO - Processed explanation 4/5 for layer 20, unit 5278
+2025-04-17 10:21:44,480 - root - INFO - Processed explanation 5/5 for layer 20, unit 5278
+2025-04-17 10:21:44,481 - root - INFO - Processing layer 40, unit 6365 (21/150)
+2025-04-17 10:21:44,580 - root - INFO - Processed explanation 1/5 for layer 40, unit 6365
+2025-04-17 10:21:44,636 - root - INFO - Processed explanation 2/5 for layer 40, unit 6365
+2025-04-17 10:21:44,671 - root - INFO - Processed explanation 3/5 for layer 40, unit 6365
+2025-04-17 10:21:44,720 - root - INFO - Processed explanation 4/5 for layer 40, unit 6365
+2025-04-17 10:21:44,764 - root - INFO - Processed explanation 5/5 for layer 40, unit 6365
+2025-04-17 10:21:44,765 - root - INFO - Processing layer 20, unit 4112 (22/150)
+2025-04-17 10:21:44,931 - root - INFO - Processed explanation 1/5 for layer 20, unit 4112
+2025-04-17 10:21:44,999 - root - INFO - Processed explanation 2/5 for layer 20, unit 4112
+2025-04-17 10:21:45,133 - root - INFO - Processed explanation 3/5 for layer 20, unit 4112
+2025-04-17 10:21:45,182 - root - INFO - Processed explanation 4/5 for layer 20, unit 4112
+2025-04-17 10:21:45,240 - root - INFO - Processed explanation 5/5 for layer 20, unit 4112
+2025-04-17 10:21:45,242 - root - INFO - Processing layer 40, unit 376 (23/150)
+2025-04-17 10:21:45,309 - root - INFO - Processed explanation 1/5 for layer 40, unit 376
+2025-04-17 10:21:45,374 - root - INFO - Processed explanation 2/5 for layer 40, unit 376
+2025-04-17 10:21:45,415 - root - INFO - Processed explanation 3/5 for layer 40, unit 376
+2025-04-17 10:21:45,480 - root - INFO - Processed explanation 4/5 for layer 40, unit 376
+2025-04-17 10:21:45,532 - root - INFO - Processed explanation 5/5 for layer 40, unit 376
+2025-04-17 10:21:45,533 - root - INFO - Processing layer 20, unit 1004 (24/150)
+2025-04-17 10:21:45,611 - root - INFO - Processed explanation 1/5 for layer 20, unit 1004
+2025-04-17 10:21:45,664 - root - INFO - Processed explanation 2/5 for layer 20, unit 1004
+2025-04-17 10:21:45,741 - root - INFO - Processed explanation 3/5 for layer 20, unit 1004
+2025-04-17 10:21:45,780 - root - INFO - Processed explanation 4/5 for layer 20, unit 1004
+2025-04-17 10:21:45,846 - root - INFO - Processed explanation 5/5 for layer 20, unit 1004
+2025-04-17 10:21:45,847 - root - INFO - Processing layer 40, unit 268 (25/150)
+2025-04-17 10:21:45,933 - root - INFO - Processed explanation 1/5 for layer 40, unit 268
+2025-04-17 10:21:45,991 - root - INFO - Processed explanation 2/5 for layer 40, unit 268
+2025-04-17 10:21:46,034 - root - INFO - Processed explanation 3/5 for layer 40, unit 268
+2025-04-17 10:21:46,082 - root - INFO - Processed explanation 4/5 for layer 40, unit 268
+2025-04-17 10:21:46,144 - root - INFO - Processed explanation 5/5 for layer 40, unit 268
+2025-04-17 10:21:46,145 - root - INFO - Processing layer 40, unit 6364 (26/150)
+2025-04-17 10:21:46,228 - root - INFO - Processed explanation 1/5 for layer 40, unit 6364
+2025-04-17 10:21:46,268 - root - INFO - Processed explanation 2/5 for layer 40, unit 6364
+2025-04-17 10:21:46,309 - root - INFO - Processed explanation 3/5 for layer 40, unit 6364
+2025-04-17 10:21:46,348 - root - INFO - Processed explanation 4/5 for layer 40, unit 6364
+2025-04-17 10:21:46,407 - root - INFO - Processed explanation 5/5 for layer 40, unit 6364
+2025-04-17 10:21:46,408 - root - INFO - Processing layer 40, unit 4965 (27/150)
+2025-04-17 10:21:46,482 - root - INFO - Processed explanation 1/5 for layer 40, unit 4965
+2025-04-17 10:21:46,522 - root - INFO - Processed explanation 2/5 for layer 40, unit 4965
+2025-04-17 10:21:46,586 - root - INFO - Processed explanation 3/5 for layer 40, unit 4965
+2025-04-17 10:21:46,637 - root - INFO - Processed explanation 4/5 for layer 40, unit 4965
+2025-04-17 10:21:46,677 - root - INFO - Processed explanation 5/5 for layer 40, unit 4965
+2025-04-17 10:21:46,678 - root - INFO - Processing layer 0, unit 4405 (28/150)
+2025-04-17 10:21:46,737 - root - INFO - Processed explanation 1/5 for layer 0, unit 4405
+2025-04-17 10:21:46,779 - root - INFO - Processed explanation 2/5 for layer 0, unit 4405
+2025-04-17 10:21:46,821 - root - INFO - Processed explanation 3/5 for layer 0, unit 4405
+2025-04-17 10:21:46,861 - root - INFO - Processed explanation 4/5 for layer 0, unit 4405
+2025-04-17 10:21:46,919 - root - INFO - Processed explanation 5/5 for layer 0, unit 4405
+2025-04-17 10:21:46,921 - root - INFO - Processing layer 40, unit 6227 (29/150)
+2025-04-17 10:21:46,985 - root - INFO - Processed explanation 1/5 for layer 40, unit 6227
+2025-04-17 10:21:47,048 - root - INFO - Processed explanation 2/5 for layer 40, unit 6227
+2025-04-17 10:21:47,105 - root - INFO - Processed explanation 3/5 for layer 40, unit 6227
+2025-04-17 10:21:47,144 - root - INFO - Processed explanation 4/5 for layer 40, unit 6227
+2025-04-17 10:21:47,197 - root - INFO - Processed explanation 5/5 for layer 40, unit 6227
+2025-04-17 10:21:47,198 - root - INFO - Processing layer 20, unit 4030 (30/150)
+2025-04-17 10:21:47,334 - root - INFO - Processed explanation 1/5 for layer 20, unit 4030
+2025-04-17 10:21:47,389 - root - INFO - Processed explanation 2/5 for layer 20, unit 4030
+2025-04-17 10:21:47,439 - root - INFO - Processed explanation 3/5 for layer 20, unit 4030
+2025-04-17 10:21:47,499 - root - INFO - Processed explanation 4/5 for layer 20, unit 4030
+2025-04-17 10:21:47,535 - root - INFO - Processed explanation 5/5 for layer 20, unit 4030
+2025-04-17 10:21:47,536 - root - INFO - Processing layer 0, unit 5552 (31/150)
+2025-04-17 10:21:47,609 - root - INFO - Processed explanation 1/5 for layer 0, unit 5552
+2025-04-17 10:21:47,648 - root - INFO - Processed explanation 2/5 for layer 0, unit 5552
+2025-04-17 10:21:47,711 - root - INFO - Processed explanation 3/5 for layer 0, unit 5552
+2025-04-17 10:21:47,755 - root - INFO - Processed explanation 4/5 for layer 0, unit 5552
+2025-04-17 10:21:47,796 - root - INFO - Processed explanation 5/5 for layer 0, unit 5552
+2025-04-17 10:21:47,797 - root - INFO - Processing layer 40, unit 4244 (32/150)
+2025-04-17 10:21:47,880 - root - INFO - Processed explanation 1/5 for layer 40, unit 4244
+2025-04-17 10:21:47,922 - root - INFO - Processed explanation 2/5 for layer 40, unit 4244
+2025-04-17 10:21:47,976 - root - INFO - Processed explanation 3/5 for layer 40, unit 4244
+2025-04-17 10:21:48,010 - root - INFO - Processed explanation 4/5 for layer 40, unit 4244
+2025-04-17 10:21:48,061 - root - INFO - Processed explanation 5/5 for layer 40, unit 4244
+2025-04-17 10:21:48,062 - root - INFO - Processing layer 20, unit 2700 (33/150)
+2025-04-17 10:21:48,140 - root - INFO - Processed explanation 1/5 for layer 20, unit 2700
+2025-04-17 10:21:48,179 - root - INFO - Processed explanation 2/5 for layer 20, unit 2700
+2025-04-17 10:21:48,248 - root - INFO - Processed explanation 3/5 for layer 20, unit 2700
+2025-04-17 10:21:48,311 - root - INFO - Processed explanation 4/5 for layer 20, unit 2700
+2025-04-17 10:21:48,362 - root - INFO - Processed explanation 5/5 for layer 20, unit 2700
+2025-04-17 10:21:48,363 - root - INFO - Processing layer 40, unit 5276 (34/150)
+2025-04-17 10:21:48,463 - root - INFO - Processed explanation 1/5 for layer 40, unit 5276
+2025-04-17 10:21:48,508 - root - INFO - Processed explanation 2/5 for layer 40, unit 5276
+2025-04-17 10:21:48,551 - root - INFO - Processed explanation 3/5 for layer 40, unit 5276
+2025-04-17 10:21:48,617 - root - INFO - Processed explanation 4/5 for layer 40, unit 5276
+2025-04-17 10:21:48,686 - root - INFO - Processed explanation 5/5 for layer 40, unit 5276
+2025-04-17 10:21:48,687 - root - INFO - Processing layer 40, unit 1823 (35/150)
+2025-04-17 10:21:48,775 - root - INFO - Processed explanation 1/5 for layer 40, unit 1823
+2025-04-17 10:21:48,814 - root - INFO - Processed explanation 2/5 for layer 40, unit 1823
+2025-04-17 10:21:48,852 - root - INFO - Processed explanation 3/5 for layer 40, unit 1823
+2025-04-17 10:21:48,892 - root - INFO - Processed explanation 4/5 for layer 40, unit 1823
+2025-04-17 10:21:48,932 - root - INFO - Processed explanation 5/5 for layer 40, unit 1823
+2025-04-17 10:21:48,933 - root - INFO - Processing layer 40, unit 3152 (36/150)
+2025-04-17 10:21:48,999 - root - INFO - Processed explanation 1/5 for layer 40, unit 3152
+2025-04-17 10:21:49,037 - root - INFO - Processed explanation 2/5 for layer 40, unit 3152
+2025-04-17 10:21:49,077 - root - INFO - Processed explanation 3/5 for layer 40, unit 3152
+2025-04-17 10:21:49,117 - root - INFO - Processed explanation 4/5 for layer 40, unit 3152
+2025-04-17 10:21:49,178 - root - INFO - Processed explanation 5/5 for layer 40, unit 3152
+2025-04-17 10:21:49,180 - root - INFO - Processing layer 40, unit 3612 (37/150)
+2025-04-17 10:21:49,270 - root - INFO - Processed explanation 1/5 for layer 40, unit 3612
+2025-04-17 10:21:49,341 - root - INFO - Processed explanation 2/5 for layer 40, unit 3612
+2025-04-17 10:21:49,396 - root - INFO - Processed explanation 3/5 for layer 40, unit 3612
+2025-04-17 10:21:49,449 - root - INFO - Processed explanation 4/5 for layer 40, unit 3612
+2025-04-17 10:21:49,511 - root - INFO - Processed explanation 5/5 for layer 40, unit 3612
+2025-04-17 10:21:49,511 - root - INFO - Processing layer 40, unit 2686 (38/150)
+2025-04-17 10:21:49,571 - root - INFO - Processed explanation 1/5 for layer 40, unit 2686
+2025-04-17 10:21:49,667 - root - INFO - Processed explanation 2/5 for layer 40, unit 2686
+2025-04-17 10:21:49,711 - root - INFO - Processed explanation 3/5 for layer 40, unit 2686
+2025-04-17 10:21:49,755 - root - INFO - Processed explanation 4/5 for layer 40, unit 2686
+2025-04-17 10:21:49,800 - root - INFO - Processed explanation 5/5 for layer 40, unit 2686
+2025-04-17 10:21:49,802 - root - INFO - Processing layer 40, unit 1536 (39/150)
+2025-04-17 10:21:49,895 - root - INFO - Processed explanation 1/5 for layer 40, unit 1536
+2025-04-17 10:21:49,934 - root - INFO - Processed explanation 2/5 for layer 40, unit 1536
+2025-04-17 10:21:49,973 - root - INFO - Processed explanation 3/5 for layer 40, unit 1536
+2025-04-17 10:21:50,113 - root - INFO - Processed explanation 4/5 for layer 40, unit 1536
+2025-04-17 10:21:50,866 - root - INFO - Processed explanation 5/5 for layer 40, unit 1536
+2025-04-17 10:21:50,867 - root - INFO - Processing layer 0, unit 3279 (40/150)
+2025-04-17 10:21:50,935 - root - INFO - Processed explanation 1/5 for layer 0, unit 3279
+2025-04-17 10:21:50,988 - root - INFO - Processed explanation 2/5 for layer 0, unit 3279
+2025-04-17 10:21:51,042 - root - INFO - Processed explanation 3/5 for layer 0, unit 3279
+2025-04-17 10:21:51,095 - root - INFO - Processed explanation 4/5 for layer 0, unit 3279
+2025-04-17 10:21:51,151 - root - INFO - Processed explanation 5/5 for layer 0, unit 3279
+2025-04-17 10:21:51,152 - root - INFO - Processing layer 40, unit 4076 (41/150)
+2025-04-17 10:21:51,216 - root - INFO - Processed explanation 1/5 for layer 40, unit 4076
+2025-04-17 10:21:51,849 - root - INFO - Processed explanation 2/5 for layer 40, unit 4076
+2025-04-17 10:21:51,921 - root - INFO - Processed explanation 3/5 for layer 40, unit 4076
+2025-04-17 10:21:51,961 - root - INFO - Processed explanation 4/5 for layer 40, unit 4076
+2025-04-17 10:21:52,002 - root - INFO - Processed explanation 5/5 for layer 40, unit 4076
+2025-04-17 10:21:52,003 - root - INFO - Processing layer 0, unit 812 (42/150)
+2025-04-17 10:21:52,091 - root - INFO - Processed explanation 1/5 for layer 0, unit 812
+2025-04-17 10:21:52,615 - root - INFO - Processed explanation 2/5 for layer 0, unit 812
+2025-04-17 10:21:52,657 - root - INFO - Processed explanation 3/5 for layer 0, unit 812
+2025-04-17 10:21:52,713 - root - INFO - Processed explanation 4/5 for layer 0, unit 812
+2025-04-17 10:21:52,755 - root - INFO - Processed explanation 5/5 for layer 0, unit 812
+2025-04-17 10:21:52,756 - root - INFO - Processing layer 0, unit 2844 (43/150)
+2025-04-17 10:21:52,837 - root - INFO - Processed explanation 1/5 for layer 0, unit 2844
+2025-04-17 10:21:52,909 - root - INFO - Processed explanation 2/5 for layer 0, unit 2844
+2025-04-17 10:21:52,965 - root - INFO - Processed explanation 3/5 for layer 0, unit 2844
+2025-04-17 10:21:53,015 - root - INFO - Processed explanation 4/5 for layer 0, unit 2844
+2025-04-17 10:21:53,055 - root - INFO - Processed explanation 5/5 for layer 0, unit 2844
+2025-04-17 10:21:53,056 - root - INFO - Processing layer 20, unit 4167 (44/150)
+2025-04-17 10:21:53,365 - root - INFO - Processed explanation 1/5 for layer 20, unit 4167
+2025-04-17 10:21:53,428 - root - INFO - Processed explanation 2/5 for layer 20, unit 4167
+2025-04-17 10:21:54,529 - root - INFO - Processed explanation 3/5 for layer 20, unit 4167
+2025-04-17 10:21:54,594 - root - INFO - Processed explanation 4/5 for layer 20, unit 4167
+2025-04-17 10:21:54,634 - root - INFO - Processed explanation 5/5 for layer 20, unit 4167
+2025-04-17 10:21:54,635 - root - INFO - Processing layer 40, unit 3764 (45/150)
+2025-04-17 10:21:54,714 - root - INFO - Processed explanation 1/5 for layer 40, unit 3764
+2025-04-17 10:21:54,769 - root - INFO - Processed explanation 2/5 for layer 40, unit 3764
+2025-04-17 10:21:54,808 - root - INFO - Processed explanation 3/5 for layer 40, unit 3764
+2025-04-17 10:21:54,879 - root - INFO - Processed explanation 4/5 for layer 40, unit 3764
+2025-04-17 10:21:54,925 - root - INFO - Processed explanation 5/5 for layer 40, unit 3764
+2025-04-17 10:21:54,926 - root - INFO - Processing layer 40, unit 3595 (46/150)
+2025-04-17 10:21:55,007 - root - INFO - Processed explanation 1/5 for layer 40, unit 3595
+2025-04-17 10:21:55,073 - root - INFO - Processed explanation 2/5 for layer 40, unit 3595
+2025-04-17 10:21:55,130 - root - INFO - Processed explanation 3/5 for layer 40, unit 3595
+2025-04-17 10:21:55,269 - root - INFO - Processed explanation 4/5 for layer 40, unit 3595
+2025-04-17 10:21:55,309 - root - INFO - Processed explanation 5/5 for layer 40, unit 3595
+2025-04-17 10:21:55,310 - root - INFO - Processing layer 40, unit 364 (47/150)
+2025-04-17 10:21:55,373 - root - INFO - Processed explanation 1/5 for layer 40, unit 364
+2025-04-17 10:21:55,441 - root - INFO - Processed explanation 2/5 for layer 40, unit 364
+2025-04-17 10:21:55,492 - root - INFO - Processed explanation 3/5 for layer 40, unit 364
+2025-04-17 10:21:55,533 - root - INFO - Processed explanation 4/5 for layer 40, unit 364
+2025-04-17 10:21:55,574 - root - INFO - Processed explanation 5/5 for layer 40, unit 364
+2025-04-17 10:21:55,575 - root - INFO - Processing layer 40, unit 1516 (48/150)
+2025-04-17 10:21:55,680 - root - INFO - Processed explanation 1/5 for layer 40, unit 1516
+2025-04-17 10:21:55,720 - root - INFO - Processed explanation 2/5 for layer 40, unit 1516
+2025-04-17 10:21:55,773 - root - INFO - Processed explanation 3/5 for layer 40, unit 1516
+2025-04-17 10:21:55,814 - root - INFO - Processed explanation 4/5 for layer 40, unit 1516
+2025-04-17 10:21:55,872 - root - INFO - Processed explanation 5/5 for layer 40, unit 1516
+2025-04-17 10:21:55,873 - root - INFO - Processing layer 0, unit 187 (49/150)
+2025-04-17 10:21:55,936 - root - INFO - Processed explanation 1/5 for layer 0, unit 187
+2025-04-17 10:21:55,976 - root - INFO - Processed explanation 2/5 for layer 0, unit 187
+2025-04-17 10:21:56,018 - root - INFO - Processed explanation 3/5 for layer 0, unit 187
+2025-04-17 10:21:56,070 - root - INFO - Processed explanation 4/5 for layer 0, unit 187
+2025-04-17 10:21:56,110 - root - INFO - Processed explanation 5/5 for layer 0, unit 187
+2025-04-17 10:21:56,111 - root - INFO - Processing layer 0, unit 3124 (50/150)
+2025-04-17 10:21:56,199 - root - INFO - Processed explanation 1/5 for layer 0, unit 3124
+2025-04-17 10:21:56,256 - root - INFO - Processed explanation 2/5 for layer 0, unit 3124
+2025-04-17 10:21:56,312 - root - INFO - Processed explanation 3/5 for layer 0, unit 3124
+2025-04-17 10:21:56,407 - root - INFO - Processed explanation 4/5 for layer 0, unit 3124
+2025-04-17 10:21:56,530 - root - INFO - Processed explanation 5/5 for layer 0, unit 3124
+2025-04-17 10:21:56,531 - root - INFO - Processing layer 0, unit 6314 (51/150)
+2025-04-17 10:21:56,615 - root - INFO - Processed explanation 1/5 for layer 0, unit 6314
+2025-04-17 10:21:56,660 - root - INFO - Processed explanation 2/5 for layer 0, unit 6314
+2025-04-17 10:21:56,701 - root - INFO - Processed explanation 3/5 for layer 0, unit 6314
+2025-04-17 10:21:56,740 - root - INFO - Processed explanation 4/5 for layer 0, unit 6314
+2025-04-17 10:21:56,793 - root - INFO - Processed explanation 5/5 for layer 0, unit 6314
+2025-04-17 10:21:56,794 - root - INFO - Processing layer 20, unit 2398 (52/150)
+2025-04-17 10:21:56,858 - root - INFO - Processed explanation 1/5 for layer 20, unit 2398
+2025-04-17 10:21:56,915 - root - INFO - Processed explanation 2/5 for layer 20, unit 2398
+2025-04-17 10:21:56,954 - root - INFO - Processed explanation 3/5 for layer 20, unit 2398
+2025-04-17 10:21:56,995 - root - INFO - Processed explanation 4/5 for layer 20, unit 2398
+2025-04-17 10:21:57,052 - root - INFO - Processed explanation 5/5 for layer 20, unit 2398
+2025-04-17 10:21:57,053 - root - INFO - Processing layer 40, unit 614 (53/150)
+2025-04-17 10:21:57,108 - root - INFO - Processed explanation 1/5 for layer 40, unit 614
+2025-04-17 10:21:57,148 - root - INFO - Processed explanation 2/5 for layer 40, unit 614
+2025-04-17 10:21:57,190 - root - INFO - Processed explanation 3/5 for layer 40, unit 614
+2025-04-17 10:21:57,230 - root - INFO - Processed explanation 4/5 for layer 40, unit 614
+2025-04-17 10:21:57,270 - root - INFO - Processed explanation 5/5 for layer 40, unit 614
+2025-04-17 10:21:57,271 - root - INFO - Processing layer 20, unit 4427 (54/150)
+2025-04-17 10:21:57,345 - root - INFO - Processed explanation 1/5 for layer 20, unit 4427
+2025-04-17 10:21:57,386 - root - INFO - Processed explanation 2/5 for layer 20, unit 4427
+2025-04-17 10:21:57,427 - root - INFO - Processed explanation 3/5 for layer 20, unit 4427
+2025-04-17 10:21:57,467 - root - INFO - Processed explanation 4/5 for layer 20, unit 4427
+2025-04-17 10:21:57,508 - root - INFO - Processed explanation 5/5 for layer 20, unit 4427
+2025-04-17 10:21:57,509 - root - INFO - Processing layer 20, unit 1424 (55/150)
+2025-04-17 10:21:57,582 - root - INFO - Processed explanation 1/5 for layer 20, unit 1424
+2025-04-17 10:21:57,631 - root - INFO - Processed explanation 2/5 for layer 20, unit 1424
+2025-04-17 10:21:57,670 - root - INFO - Processed explanation 3/5 for layer 20, unit 1424
+2025-04-17 10:21:57,711 - root - INFO - Processed explanation 4/5 for layer 20, unit 1424
+2025-04-17 10:21:57,750 - root - INFO - Processed explanation 5/5 for layer 20, unit 1424
+2025-04-17 10:21:57,751 - root - INFO - Processing layer 40, unit 2628 (56/150)
+2025-04-17 10:21:57,817 - root - INFO - Processed explanation 1/5 for layer 40, unit 2628
+2025-04-17 10:21:57,864 - root - INFO - Processed explanation 2/5 for layer 40, unit 2628
+2025-04-17 10:21:57,904 - root - INFO - Processed explanation 3/5 for layer 40, unit 2628
+2025-04-17 10:21:57,968 - root - INFO - Processed explanation 4/5 for layer 40, unit 2628
+2025-04-17 10:21:58,007 - root - INFO - Processed explanation 5/5 for layer 40, unit 2628
+2025-04-17 10:21:58,008 - root - INFO - Processing layer 40, unit 834 (57/150)
+2025-04-17 10:21:58,090 - root - INFO - Processed explanation 1/5 for layer 40, unit 834
+2025-04-17 10:21:58,129 - root - INFO - Processed explanation 2/5 for layer 40, unit 834
+2025-04-17 10:21:58,177 - root - INFO - Processed explanation 3/5 for layer 40, unit 834
+2025-04-17 10:21:58,216 - root - INFO - Processed explanation 4/5 for layer 40, unit 834
+2025-04-17 10:21:58,256 - root - INFO - Processed explanation 5/5 for layer 40, unit 834
+2025-04-17 10:21:58,257 - root - INFO - Processing layer 0, unit 336 (58/150)
+2025-04-17 10:21:58,344 - root - INFO - Processed explanation 1/5 for layer 0, unit 336
+2025-04-17 10:21:58,383 - root - INFO - Processed explanation 2/5 for layer 0, unit 336
+2025-04-17 10:21:58,422 - root - INFO - Processed explanation 3/5 for layer 0, unit 336
+2025-04-17 10:21:58,512 - root - INFO - Processed explanation 4/5 for layer 0, unit 336
+2025-04-17 10:21:58,562 - root - INFO - Processed explanation 5/5 for layer 0, unit 336
+2025-04-17 10:21:58,564 - root - INFO - Processing layer 20, unit 328 (59/150)
+2025-04-17 10:21:58,675 - root - INFO - Processed explanation 1/5 for layer 20, unit 328
+2025-04-17 10:21:58,717 - root - INFO - Processed explanation 2/5 for layer 20, unit 328
+2025-04-17 10:21:58,835 - root - INFO - Processed explanation 3/5 for layer 20, unit 328
+2025-04-17 10:21:58,888 - root - INFO - Processed explanation 4/5 for layer 20, unit 328
+2025-04-17 10:21:58,941 - root - INFO - Processed explanation 5/5 for layer 20, unit 328
+2025-04-17 10:21:58,942 - root - INFO - Processing layer 0, unit 4679 (60/150)
+2025-04-17 10:21:59,013 - root - INFO - Processed explanation 1/5 for layer 0, unit 4679
+2025-04-17 10:21:59,052 - root - INFO - Processed explanation 2/5 for layer 0, unit 4679
+2025-04-17 10:21:59,105 - root - INFO - Processed explanation 3/5 for layer 0, unit 4679
+2025-04-17 10:21:59,145 - root - INFO - Processed explanation 4/5 for layer 0, unit 4679
+2025-04-17 10:21:59,184 - root - INFO - Processed explanation 5/5 for layer 0, unit 4679
+2025-04-17 10:21:59,185 - root - INFO - Processing layer 0, unit 4709 (61/150)
+2025-04-17 10:21:59,260 - root - INFO - Processed explanation 1/5 for layer 0, unit 4709
+2025-04-17 10:21:59,299 - root - INFO - Processed explanation 2/5 for layer 0, unit 4709
+2025-04-17 10:21:59,388 - root - INFO - Processed explanation 3/5 for layer 0, unit 4709
+2025-04-17 10:21:59,437 - root - INFO - Processed explanation 4/5 for layer 0, unit 4709
+2025-04-17 10:21:59,477 - root - INFO - Processed explanation 5/5 for layer 0, unit 4709
+2025-04-17 10:21:59,478 - root - INFO - Processing layer 0, unit 5551 (62/150)
+2025-04-17 10:21:59,543 - root - INFO - Processed explanation 1/5 for layer 0, unit 5551
+2025-04-17 10:21:59,602 - root - INFO - Processed explanation 2/5 for layer 0, unit 5551
+2025-04-17 10:21:59,679 - root - INFO - Processed explanation 3/5 for layer 0, unit 5551
+2025-04-17 10:21:59,753 - root - INFO - Processed explanation 4/5 for layer 0, unit 5551
+2025-04-17 10:21:59,843 - root - INFO - Processed explanation 5/5 for layer 0, unit 5551
+2025-04-17 10:21:59,844 - root - INFO - Processing layer 0, unit 3582 (63/150)
+2025-04-17 10:21:59,909 - root - INFO - Processed explanation 1/5 for layer 0, unit 3582
+2025-04-17 10:21:59,949 - root - INFO - Processed explanation 2/5 for layer 0, unit 3582
+2025-04-17 10:22:00,021 - root - INFO - Processed explanation 3/5 for layer 0, unit 3582
+2025-04-17 10:22:00,078 - root - INFO - Processed explanation 4/5 for layer 0, unit 3582
+2025-04-17 10:22:00,126 - root - INFO - Processed explanation 5/5 for layer 0, unit 3582
+2025-04-17 10:22:00,127 - root - INFO - Processing layer 20, unit 2328 (64/150)
+2025-04-17 10:22:00,190 - root - INFO - Processed explanation 1/5 for layer 20, unit 2328
+2025-04-17 10:22:00,239 - root - INFO - Processed explanation 2/5 for layer 20, unit 2328
+2025-04-17 10:22:00,282 - root - INFO - Processed explanation 3/5 for layer 20, unit 2328
+2025-04-17 10:22:00,336 - root - INFO - Processed explanation 4/5 for layer 20, unit 2328
+2025-04-17 10:22:00,381 - root - INFO - Processed explanation 5/5 for layer 20, unit 2328
+2025-04-17 10:22:00,382 - root - INFO - Processing layer 20, unit 1790 (65/150)
+2025-04-17 10:22:00,460 - root - INFO - Processed explanation 1/5 for layer 20, unit 1790
+2025-04-17 10:22:00,526 - root - INFO - Processed explanation 2/5 for layer 20, unit 1790
+2025-04-17 10:22:00,575 - root - INFO - Processed explanation 3/5 for layer 20, unit 1790
+2025-04-17 10:22:00,625 - root - INFO - Processed explanation 4/5 for layer 20, unit 1790
+2025-04-17 10:22:00,673 - root - INFO - Processed explanation 5/5 for layer 20, unit 1790
+2025-04-17 10:22:00,674 - root - INFO - Processing layer 40, unit 4055 (66/150)
+2025-04-17 10:22:00,750 - root - INFO - Processed explanation 1/5 for layer 40, unit 4055
+2025-04-17 10:22:00,805 - root - INFO - Processed explanation 2/5 for layer 40, unit 4055
+2025-04-17 10:22:00,860 - root - INFO - Processed explanation 3/5 for layer 40, unit 4055
+2025-04-17 10:22:00,923 - root - INFO - Processed explanation 4/5 for layer 40, unit 4055
+2025-04-17 10:22:00,961 - root - INFO - Processed explanation 5/5 for layer 40, unit 4055
+2025-04-17 10:22:00,962 - root - INFO - Processing layer 0, unit 3533 (67/150)
+2025-04-17 10:22:01,016 - root - INFO - Processed explanation 1/5 for layer 0, unit 3533
+2025-04-17 10:22:01,071 - root - INFO - Processed explanation 2/5 for layer 0, unit 3533
+2025-04-17 10:22:01,134 - root - INFO - Processed explanation 3/5 for layer 0, unit 3533
+2025-04-17 10:22:01,175 - root - INFO - Processed explanation 4/5 for layer 0, unit 3533
+2025-04-17 10:22:01,214 - root - INFO - Processed explanation 5/5 for layer 0, unit 3533
+2025-04-17 10:22:01,215 - root - INFO - Processing layer 40, unit 237 (68/150)
+2025-04-17 10:22:01,347 - root - INFO - Processed explanation 1/5 for layer 40, unit 237
+2025-04-17 10:22:01,386 - root - INFO - Processed explanation 2/5 for layer 40, unit 237
+2025-04-17 10:22:01,425 - root - INFO - Processed explanation 3/5 for layer 40, unit 237
+2025-04-17 10:22:01,481 - root - INFO - Processed explanation 4/5 for layer 40, unit 237
+2025-04-17 10:22:01,521 - root - INFO - Processed explanation 5/5 for layer 40, unit 237
+2025-04-17 10:22:01,522 - root - INFO - Processing layer 0, unit 1573 (69/150)
+2025-04-17 10:22:01,629 - root - INFO - Processed explanation 1/5 for layer 0, unit 1573
+2025-04-17 10:22:01,688 - root - INFO - Processed explanation 2/5 for layer 0, unit 1573
+2025-04-17 10:22:01,727 - root - INFO - Processed explanation 3/5 for layer 0, unit 1573
+2025-04-17 10:22:01,768 - root - INFO - Processed explanation 4/5 for layer 0, unit 1573
+2025-04-17 10:22:01,830 - root - INFO - Processed explanation 5/5 for layer 0, unit 1573
+2025-04-17 10:22:01,831 - root - INFO - Processing layer 20, unit 76 (70/150)
+2025-04-17 10:22:01,905 - root - INFO - Processed explanation 1/5 for layer 20, unit 76
+2025-04-17 10:22:01,944 - root - INFO - Processed explanation 2/5 for layer 20, unit 76
+2025-04-17 10:22:01,987 - root - INFO - Processed explanation 3/5 for layer 20, unit 76
+2025-04-17 10:22:02,039 - root - INFO - Processed explanation 4/5 for layer 20, unit 76
+2025-04-17 10:22:02,105 - root - INFO - Processed explanation 5/5 for layer 20, unit 76
+2025-04-17 10:22:02,107 - root - INFO - Processing layer 0, unit 3454 (71/150)
+2025-04-17 10:22:02,216 - root - INFO - Processed explanation 1/5 for layer 0, unit 3454
+2025-04-17 10:22:02,255 - root - INFO - Processed explanation 2/5 for layer 0, unit 3454
+2025-04-17 10:22:02,293 - root - INFO - Processed explanation 3/5 for layer 0, unit 3454
+2025-04-17 10:22:02,330 - root - INFO - Processed explanation 4/5 for layer 0, unit 3454
+2025-04-17 10:22:02,365 - root - INFO - Processed explanation 5/5 for layer 0, unit 3454
+2025-04-17 10:22:02,366 - root - INFO - Processing layer 0, unit 5703 (72/150)
+2025-04-17 10:22:02,431 - root - INFO - Processed explanation 1/5 for layer 0, unit 5703
+2025-04-17 10:22:02,545 - root - INFO - Processed explanation 2/5 for layer 0, unit 5703
+2025-04-17 10:22:02,677 - root - INFO - Processed explanation 3/5 for layer 0, unit 5703
+2025-04-17 10:22:02,730 - root - INFO - Processed explanation 4/5 for layer 0, unit 5703
+2025-04-17 10:22:02,767 - root - INFO - Processed explanation 5/5 for layer 0, unit 5703
+2025-04-17 10:22:02,769 - root - INFO - Processing layer 0, unit 2336 (73/150)
+2025-04-17 10:22:03,379 - root - INFO - Processed explanation 1/5 for layer 0, unit 2336
+2025-04-17 10:22:03,429 - root - INFO - Processed explanation 2/5 for layer 0, unit 2336
+2025-04-17 10:22:03,494 - root - INFO - Processed explanation 3/5 for layer 0, unit 2336
+2025-04-17 10:22:03,544 - root - INFO - Processed explanation 4/5 for layer 0, unit 2336
+2025-04-17 10:22:03,606 - root - INFO - Processed explanation 5/5 for layer 0, unit 2336
+2025-04-17 10:22:03,607 - root - INFO - Processing layer 0, unit 4986 (74/150)
+2025-04-17 10:22:03,675 - root - INFO - Processed explanation 1/5 for layer 0, unit 4986
+2025-04-17 10:22:03,712 - root - INFO - Processed explanation 2/5 for layer 0, unit 4986
+2025-04-17 10:22:03,752 - root - INFO - Processed explanation 3/5 for layer 0, unit 4986
+2025-04-17 10:22:03,791 - root - INFO - Processed explanation 4/5 for layer 0, unit 4986
+2025-04-17 10:22:03,843 - root - INFO - Processed explanation 5/5 for layer 0, unit 4986
+2025-04-17 10:22:03,844 - root - INFO - Processing layer 0, unit 5960 (75/150)
+2025-04-17 10:22:03,920 - root - INFO - Processed explanation 1/5 for layer 0, unit 5960
+2025-04-17 10:22:03,958 - root - INFO - Processed explanation 2/5 for layer 0, unit 5960
+2025-04-17 10:22:04,018 - root - INFO - Processed explanation 3/5 for layer 0, unit 5960
+2025-04-17 10:22:04,057 - root - INFO - Processed explanation 4/5 for layer 0, unit 5960
+2025-04-17 10:22:04,098 - root - INFO - Processed explanation 5/5 for layer 0, unit 5960
+2025-04-17 10:22:04,099 - root - INFO - Processing layer 20, unit 4683 (76/150)
+2025-04-17 10:22:04,161 - root - INFO - Processed explanation 1/5 for layer 20, unit 4683
+2025-04-17 10:22:04,201 - root - INFO - Processed explanation 2/5 for layer 20, unit 4683
+2025-04-17 10:22:04,253 - root - INFO - Processed explanation 3/5 for layer 20, unit 4683
+2025-04-17 10:22:04,293 - root - INFO - Processed explanation 4/5 for layer 20, unit 4683
+2025-04-17 10:22:04,332 - root - INFO - Processed explanation 5/5 for layer 20, unit 4683
+2025-04-17 10:22:04,333 - root - INFO - Processing layer 0, unit 3943 (77/150)
+2025-04-17 10:22:04,408 - root - INFO - Processed explanation 1/5 for layer 0, unit 3943
+2025-04-17 10:22:04,446 - root - INFO - Processed explanation 2/5 for layer 0, unit 3943
+2025-04-17 10:22:04,515 - root - INFO - Processed explanation 3/5 for layer 0, unit 3943
+2025-04-17 10:22:04,577 - root - INFO - Processed explanation 4/5 for layer 0, unit 3943
+2025-04-17 10:22:04,617 - root - INFO - Processed explanation 5/5 for layer 0, unit 3943
+2025-04-17 10:22:04,618 - root - INFO - Processing layer 40, unit 4808 (78/150)
+2025-04-17 10:22:04,675 - root - INFO - Processed explanation 1/5 for layer 40, unit 4808
+2025-04-17 10:22:04,713 - root - INFO - Processed explanation 2/5 for layer 40, unit 4808
+2025-04-17 10:22:04,767 - root - INFO - Processed explanation 3/5 for layer 40, unit 4808
+2025-04-17 10:22:04,807 - root - INFO - Processed explanation 4/5 for layer 40, unit 4808
+2025-04-17 10:22:04,847 - root - INFO - Processed explanation 5/5 for layer 40, unit 4808
+2025-04-17 10:22:04,848 - root - INFO - Processing layer 20, unit 3974 (79/150)
+2025-04-17 10:22:04,928 - root - INFO - Processed explanation 1/5 for layer 20, unit 3974
+2025-04-17 10:22:04,982 - root - INFO - Processed explanation 2/5 for layer 20, unit 3974
+2025-04-17 10:22:05,021 - root - INFO - Processed explanation 3/5 for layer 20, unit 3974
+2025-04-17 10:22:05,062 - root - INFO - Processed explanation 4/5 for layer 20, unit 3974
+2025-04-17 10:22:05,108 - root - INFO - Processed explanation 5/5 for layer 20, unit 3974
+2025-04-17 10:22:05,109 - root - INFO - Processing layer 20, unit 2869 (80/150)
+2025-04-17 10:22:05,195 - root - INFO - Processed explanation 1/5 for layer 20, unit 2869
+2025-04-17 10:22:05,236 - root - INFO - Processed explanation 2/5 for layer 20, unit 2869
+2025-04-17 10:22:05,291 - root - INFO - Processed explanation 3/5 for layer 20, unit 2869
+2025-04-17 10:22:05,331 - root - INFO - Processed explanation 4/5 for layer 20, unit 2869
+2025-04-17 10:22:05,386 - root - INFO - Processed explanation 5/5 for layer 20, unit 2869
+2025-04-17 10:22:05,387 - root - INFO - Processing layer 40, unit 4332 (81/150)
+2025-04-17 10:22:05,447 - root - INFO - Processed explanation 1/5 for layer 40, unit 4332
+2025-04-17 10:22:05,486 - root - INFO - Processed explanation 2/5 for layer 40, unit 4332
+2025-04-17 10:22:05,541 - root - INFO - Processed explanation 3/5 for layer 40, unit 4332
+2025-04-17 10:22:05,590 - root - INFO - Processed explanation 4/5 for layer 40, unit 4332
+2025-04-17 10:22:05,630 - root - INFO - Processed explanation 5/5 for layer 40, unit 4332
+2025-04-17 10:22:05,631 - root - INFO - Processing layer 40, unit 5209 (82/150)
+2025-04-17 10:22:05,694 - root - INFO - Processed explanation 1/5 for layer 40, unit 5209
+2025-04-17 10:22:05,762 - root - INFO - Processed explanation 2/5 for layer 40, unit 5209
+2025-04-17 10:22:05,800 - root - INFO - Processed explanation 3/5 for layer 40, unit 5209
+2025-04-17 10:22:05,847 - root - INFO - Processed explanation 4/5 for layer 40, unit 5209
+2025-04-17 10:22:05,879 - root - INFO - Processed explanation 5/5 for layer 40, unit 5209
+2025-04-17 10:22:05,880 - root - INFO - Processing layer 0, unit 3548 (83/150)
+2025-04-17 10:22:05,966 - root - INFO - Processed explanation 1/5 for layer 0, unit 3548
+2025-04-17 10:22:06,023 - root - INFO - Processed explanation 2/5 for layer 0, unit 3548
+2025-04-17 10:22:06,069 - root - INFO - Processed explanation 3/5 for layer 0, unit 3548
+2025-04-17 10:22:06,103 - root - INFO - Processed explanation 4/5 for layer 0, unit 3548
+2025-04-17 10:22:06,135 - root - INFO - Processed explanation 5/5 for layer 0, unit 3548
+2025-04-17 10:22:06,136 - root - INFO - Processing layer 20, unit 1232 (84/150)
+2025-04-17 10:22:06,324 - root - INFO - Processed explanation 1/5 for layer 20, unit 1232
+2025-04-17 10:22:06,360 - root - INFO - Processed explanation 2/5 for layer 20, unit 1232
+2025-04-17 10:22:06,408 - root - INFO - Processed explanation 3/5 for layer 20, unit 1232
+2025-04-17 10:22:06,487 - root - INFO - Processed explanation 4/5 for layer 20, unit 1232
+2025-04-17 10:22:07,413 - root - INFO - Processed explanation 5/5 for layer 20, unit 1232
+2025-04-17 10:22:07,414 - root - INFO - Processing layer 40, unit 587 (85/150)
+2025-04-17 10:22:07,479 - root - INFO - Processed explanation 1/5 for layer 40, unit 587
+2025-04-17 10:22:07,533 - root - INFO - Processed explanation 2/5 for layer 40, unit 587
+2025-04-17 10:22:07,616 - root - INFO - Processed explanation 3/5 for layer 40, unit 587
+2025-04-17 10:22:07,687 - root - INFO - Processed explanation 4/5 for layer 40, unit 587
+2025-04-17 10:22:07,728 - root - INFO - Processed explanation 5/5 for layer 40, unit 587
+2025-04-17 10:22:07,729 - root - INFO - Processing layer 0, unit 4054 (86/150)
+2025-04-17 10:22:07,818 - root - INFO - Processed explanation 1/5 for layer 0, unit 4054
+2025-04-17 10:22:07,862 - root - INFO - Processed explanation 2/5 for layer 0, unit 4054
+2025-04-17 10:22:07,928 - root - INFO - Processed explanation 3/5 for layer 0, unit 4054
+2025-04-17 10:22:07,994 - root - INFO - Processed explanation 4/5 for layer 0, unit 4054
+2025-04-17 10:22:08,040 - root - INFO - Processed explanation 5/5 for layer 0, unit 4054
+2025-04-17 10:22:08,041 - root - INFO - Processing layer 40, unit 5992 (87/150)
+2025-04-17 10:22:08,379 - root - INFO - Processed explanation 1/5 for layer 40, unit 5992
+2025-04-17 10:22:08,448 - root - INFO - Processed explanation 2/5 for layer 40, unit 5992
+2025-04-17 10:22:08,510 - root - INFO - Processed explanation 3/5 for layer 40, unit 5992
+2025-04-17 10:22:08,570 - root - INFO - Processed explanation 4/5 for layer 40, unit 5992
+2025-04-17 10:22:08,664 - root - INFO - Processed explanation 5/5 for layer 40, unit 5992
+2025-04-17 10:22:08,665 - root - INFO - Processing layer 20, unit 335 (88/150)
+2025-04-17 10:22:08,735 - root - INFO - Processed explanation 1/5 for layer 20, unit 335
+2025-04-17 10:22:08,783 - root - INFO - Processed explanation 2/5 for layer 20, unit 335
+2025-04-17 10:22:08,831 - root - INFO - Processed explanation 3/5 for layer 20, unit 335
+2025-04-17 10:22:08,866 - root - INFO - Processed explanation 4/5 for layer 20, unit 335
+2025-04-17 10:22:08,900 - root - INFO - Processed explanation 5/5 for layer 20, unit 335
+2025-04-17 10:22:08,901 - root - INFO - Processing layer 20, unit 307 (89/150)
+2025-04-17 10:22:08,989 - root - INFO - Processed explanation 1/5 for layer 20, unit 307
+2025-04-17 10:22:09,065 - root - INFO - Processed explanation 2/5 for layer 20, unit 307
+2025-04-17 10:22:09,113 - root - INFO - Processed explanation 3/5 for layer 20, unit 307
+2025-04-17 10:22:09,203 - root - INFO - Processed explanation 4/5 for layer 20, unit 307
+2025-04-17 10:22:09,240 - root - INFO - Processed explanation 5/5 for layer 20, unit 307
+2025-04-17 10:22:09,241 - root - INFO - Processing layer 0, unit 4891 (90/150)
+2025-04-17 10:22:09,330 - root - INFO - Processed explanation 1/5 for layer 0, unit 4891
+2025-04-17 10:22:09,366 - root - INFO - Processed explanation 2/5 for layer 0, unit 4891
+2025-04-17 10:22:09,718 - root - INFO - Processed explanation 3/5 for layer 0, unit 4891
+2025-04-17 10:22:11,127 - root - INFO - Processed explanation 4/5 for layer 0, unit 4891
+2025-04-17 10:22:11,175 - root - INFO - Processed explanation 5/5 for layer 0, unit 4891
+2025-04-17 10:22:11,176 - root - INFO - Processing layer 40, unit 556 (91/150)
+2025-04-17 10:22:11,241 - root - INFO - Processed explanation 1/5 for layer 40, unit 556
+2025-04-17 10:22:11,291 - root - INFO - Processed explanation 2/5 for layer 40, unit 556
+2025-04-17 10:22:11,329 - root - INFO - Processed explanation 3/5 for layer 40, unit 556
+2025-04-17 10:22:11,388 - root - INFO - Processed explanation 4/5 for layer 40, unit 556
+2025-04-17 10:22:11,423 - root - INFO - Processed explanation 5/5 for layer 40, unit 556
+2025-04-17 10:22:11,424 - root - INFO - Processing layer 0, unit 4297 (92/150)
+2025-04-17 10:22:11,498 - root - INFO - Processed explanation 1/5 for layer 0, unit 4297
+2025-04-17 10:22:11,560 - root - INFO - Processed explanation 2/5 for layer 0, unit 4297
+2025-04-17 10:22:11,604 - root - INFO - Processed explanation 3/5 for layer 0, unit 4297
+2025-04-17 10:22:11,656 - root - INFO - Processed explanation 4/5 for layer 0, unit 4297
+2025-04-17 10:22:11,700 - root - INFO - Processed explanation 5/5 for layer 0, unit 4297
+2025-04-17 10:22:11,701 - root - INFO - Processing layer 20, unit 2304 (93/150)
+2025-04-17 10:22:11,774 - root - INFO - Processed explanation 1/5 for layer 20, unit 2304
+2025-04-17 10:22:11,815 - root - INFO - Processed explanation 2/5 for layer 20, unit 2304
+2025-04-17 10:22:11,851 - root - INFO - Processed explanation 3/5 for layer 20, unit 2304
+2025-04-17 10:22:11,902 - root - INFO - Processed explanation 4/5 for layer 20, unit 2304
+2025-04-17 10:22:11,947 - root - INFO - Processed explanation 5/5 for layer 20, unit 2304
+2025-04-17 10:22:11,949 - root - INFO - Processing layer 20, unit 3754 (94/150)
+2025-04-17 10:22:12,015 - root - INFO - Processed explanation 1/5 for layer 20, unit 3754
+2025-04-17 10:22:12,064 - root - INFO - Processed explanation 2/5 for layer 20, unit 3754
+2025-04-17 10:22:12,148 - root - INFO - Processed explanation 3/5 for layer 20, unit 3754
+2025-04-17 10:22:12,186 - root - INFO - Processed explanation 4/5 for layer 20, unit 3754
+2025-04-17 10:22:12,221 - root - INFO - Processed explanation 5/5 for layer 20, unit 3754
+2025-04-17 10:22:12,222 - root - INFO - Processing layer 40, unit 320 (95/150)
+2025-04-17 10:22:12,431 - root - INFO - Processed explanation 1/5 for layer 40, unit 320
+2025-04-17 10:22:12,491 - root - INFO - Processed explanation 2/5 for layer 40, unit 320
+2025-04-17 10:22:12,525 - root - INFO - Processed explanation 3/5 for layer 40, unit 320
+2025-04-17 10:22:12,597 - root - INFO - Processed explanation 4/5 for layer 40, unit 320
+2025-04-17 10:22:12,663 - root - INFO - Processed explanation 5/5 for layer 40, unit 320
+2025-04-17 10:22:12,664 - root - INFO - Processing layer 0, unit 6296 (96/150)
+2025-04-17 10:22:12,760 - root - INFO - Processed explanation 1/5 for layer 0, unit 6296
+2025-04-17 10:22:12,807 - root - INFO - Processed explanation 2/5 for layer 0, unit 6296
+2025-04-17 10:22:12,853 - root - INFO - Processed explanation 3/5 for layer 0, unit 6296
+2025-04-17 10:22:12,903 - root - INFO - Processed explanation 4/5 for layer 0, unit 6296
+2025-04-17 10:22:12,942 - root - INFO - Processed explanation 5/5 for layer 0, unit 6296
+2025-04-17 10:22:12,943 - root - INFO - Processing layer 40, unit 3948 (97/150)
+2025-04-17 10:22:13,076 - root - INFO - Processed explanation 1/5 for layer 40, unit 3948
+2025-04-17 10:22:13,131 - root - INFO - Processed explanation 2/5 for layer 40, unit 3948
+2025-04-17 10:22:13,180 - root - INFO - Processed explanation 3/5 for layer 40, unit 3948
+2025-04-17 10:22:13,239 - root - INFO - Processed explanation 4/5 for layer 40, unit 3948
+2025-04-17 10:22:13,417 - root - INFO - Processed explanation 5/5 for layer 40, unit 3948
+2025-04-17 10:22:13,419 - root - INFO - Processing layer 20, unit 5662 (98/150)
+2025-04-17 10:22:13,505 - root - INFO - Processed explanation 1/5 for layer 20, unit 5662
+2025-04-17 10:22:13,553 - root - INFO - Processed explanation 2/5 for layer 20, unit 5662
+2025-04-17 10:22:13,626 - root - INFO - Processed explanation 3/5 for layer 20, unit 5662
+2025-04-17 10:22:13,676 - root - INFO - Processed explanation 4/5 for layer 20, unit 5662
+2025-04-17 10:22:13,728 - root - INFO - Processed explanation 5/5 for layer 20, unit 5662
+2025-04-17 10:22:13,729 - root - INFO - Processing layer 40, unit 4823 (99/150)
+2025-04-17 10:22:13,788 - root - INFO - Processed explanation 1/5 for layer 40, unit 4823
+2025-04-17 10:22:13,829 - root - INFO - Processed explanation 2/5 for layer 40, unit 4823
+2025-04-17 10:22:13,875 - root - INFO - Processed explanation 3/5 for layer 40, unit 4823
+2025-04-17 10:22:13,914 - root - INFO - Processed explanation 4/5 for layer 40, unit 4823
+2025-04-17 10:22:13,956 - root - INFO - Processed explanation 5/5 for layer 40, unit 4823
+2025-04-17 10:22:13,958 - root - INFO - Processing layer 20, unit 5741 (100/150)
+2025-04-17 10:22:14,015 - root - INFO - Processed explanation 1/5 for layer 20, unit 5741
+2025-04-17 10:22:14,064 - root - INFO - Processed explanation 2/5 for layer 20, unit 5741
+2025-04-17 10:22:14,115 - root - INFO - Processed explanation 3/5 for layer 20, unit 5741
+2025-04-17 10:22:14,176 - root - INFO - Processed explanation 4/5 for layer 20, unit 5741
+2025-04-17 10:22:14,215 - root - INFO - Processed explanation 5/5 for layer 20, unit 5741
+2025-04-17 10:22:14,216 - root - INFO - Processing layer 0, unit 3696 (101/150)
+2025-04-17 10:22:14,291 - root - INFO - Processed explanation 1/5 for layer 0, unit 3696
+2025-04-17 10:22:14,343 - root - INFO - Processed explanation 2/5 for layer 0, unit 3696
+2025-04-17 10:22:14,385 - root - INFO - Processed explanation 3/5 for layer 0, unit 3696
+2025-04-17 10:22:14,425 - root - INFO - Processed explanation 4/5 for layer 0, unit 3696
+2025-04-17 10:22:14,942 - root - INFO - Processed explanation 5/5 for layer 0, unit 3696
+2025-04-17 10:22:14,943 - root - INFO - Processing layer 20, unit 5118 (102/150)
+2025-04-17 10:22:15,029 - root - INFO - Processed explanation 1/5 for layer 20, unit 5118
+2025-04-17 10:22:15,081 - root - INFO - Processed explanation 2/5 for layer 20, unit 5118
+2025-04-17 10:22:15,120 - root - INFO - Processed explanation 3/5 for layer 20, unit 5118
+2025-04-17 10:22:15,194 - root - INFO - Processed explanation 4/5 for layer 20, unit 5118
+2025-04-17 10:22:15,252 - root - INFO - Processed explanation 5/5 for layer 20, unit 5118
+2025-04-17 10:22:15,253 - root - INFO - Processing layer 40, unit 3636 (103/150)
+2025-04-17 10:22:15,314 - root - INFO - Processed explanation 1/5 for layer 40, unit 3636
+2025-04-17 10:22:15,370 - root - INFO - Processed explanation 2/5 for layer 40, unit 3636
+2025-04-17 10:22:15,426 - root - INFO - Processed explanation 3/5 for layer 40, unit 3636
+2025-04-17 10:22:15,488 - root - INFO - Processed explanation 4/5 for layer 40, unit 3636
+2025-04-17 10:22:15,525 - root - INFO - Processed explanation 5/5 for layer 40, unit 3636
+2025-04-17 10:22:15,526 - root - INFO - Processing layer 0, unit 3864 (104/150)
+2025-04-17 10:22:15,600 - root - INFO - Processed explanation 1/5 for layer 0, unit 3864
+2025-04-17 10:22:15,643 - root - INFO - Processed explanation 2/5 for layer 0, unit 3864
+2025-04-17 10:22:15,692 - root - INFO - Processed explanation 3/5 for layer 0, unit 3864
+2025-04-17 10:22:15,733 - root - INFO - Processed explanation 4/5 for layer 0, unit 3864
+2025-04-17 10:22:15,771 - root - INFO - Processed explanation 5/5 for layer 0, unit 3864
+2025-04-17 10:22:15,772 - root - INFO - Processing layer 20, unit 1633 (105/150)
+2025-04-17 10:22:15,836 - root - INFO - Processed explanation 1/5 for layer 20, unit 1633
+2025-04-17 10:22:15,894 - root - INFO - Processed explanation 2/5 for layer 20, unit 1633
+2025-04-17 10:22:15,931 - root - INFO - Processed explanation 3/5 for layer 20, unit 1633
+2025-04-17 10:22:15,972 - root - INFO - Processed explanation 4/5 for layer 20, unit 1633
+2025-04-17 10:22:16,009 - root - INFO - Processed explanation 5/5 for layer 20, unit 1633
+2025-04-17 10:22:16,010 - root - INFO - Processing layer 0, unit 2354 (106/150)
+2025-04-17 10:22:16,062 - root - INFO - Processed explanation 1/5 for layer 0, unit 2354
+2025-04-17 10:22:16,128 - root - INFO - Processed explanation 2/5 for layer 0, unit 2354
+2025-04-17 10:22:16,196 - root - INFO - Processed explanation 3/5 for layer 0, unit 2354
+2025-04-17 10:22:16,236 - root - INFO - Processed explanation 4/5 for layer 0, unit 2354
+2025-04-17 10:22:16,288 - root - INFO - Processed explanation 5/5 for layer 0, unit 2354
+2025-04-17 10:22:16,289 - root - INFO - Processing layer 40, unit 4257 (107/150)
+2025-04-17 10:22:16,356 - root - INFO - Processed explanation 1/5 for layer 40, unit 4257
+2025-04-17 10:22:16,395 - root - INFO - Processed explanation 2/5 for layer 40, unit 4257
+2025-04-17 10:22:16,458 - root - INFO - Processed explanation 3/5 for layer 40, unit 4257
+2025-04-17 10:22:16,497 - root - INFO - Processed explanation 4/5 for layer 40, unit 4257
+2025-04-17 10:22:16,536 - root - INFO - Processed explanation 5/5 for layer 40, unit 4257
+2025-04-17 10:22:16,537 - root - INFO - Processing layer 20, unit 1138 (108/150)
+2025-04-17 10:22:16,605 - root - INFO - Processed explanation 1/5 for layer 20, unit 1138
+2025-04-17 10:22:16,652 - root - INFO - Processed explanation 2/5 for layer 20, unit 1138
+2025-04-17 10:22:16,688 - root - INFO - Processed explanation 3/5 for layer 20, unit 1138
+2025-04-17 10:22:16,726 - root - INFO - Processed explanation 4/5 for layer 20, unit 1138
+2025-04-17 10:22:16,777 - root - INFO - Processed explanation 5/5 for layer 20, unit 1138
+2025-04-17 10:22:16,778 - root - INFO - Processing layer 40, unit 411 (109/150)
+2025-04-17 10:22:18,552 - root - INFO - Processed explanation 1/5 for layer 40, unit 411
+2025-04-17 10:22:18,598 - root - INFO - Processed explanation 2/5 for layer 40, unit 411
+2025-04-17 10:22:19,076 - root - INFO - Processed explanation 3/5 for layer 40, unit 411
+2025-04-17 10:22:19,126 - root - INFO - Processed explanation 4/5 for layer 40, unit 411
+2025-04-17 10:22:19,424 - root - INFO - Processed explanation 5/5 for layer 40, unit 411
+2025-04-17 10:22:19,425 - root - INFO - Processing layer 20, unit 4268 (110/150)
+2025-04-17 10:22:19,661 - root - INFO - Processed explanation 1/5 for layer 20, unit 4268
+2025-04-17 10:22:19,714 - root - INFO - Processed explanation 2/5 for layer 20, unit 4268
+2025-04-17 10:22:19,772 - root - INFO - Processed explanation 3/5 for layer 20, unit 4268
+2025-04-17 10:22:19,857 - root - INFO - Processed explanation 4/5 for layer 20, unit 4268
+2025-04-17 10:22:19,899 - root - INFO - Processed explanation 5/5 for layer 20, unit 4268
+2025-04-17 10:22:19,900 - root - INFO - Processing layer 0, unit 4228 (111/150)
+2025-04-17 10:22:19,969 - root - INFO - Processed explanation 1/5 for layer 0, unit 4228
+2025-04-17 10:22:20,013 - root - INFO - Processed explanation 2/5 for layer 0, unit 4228
+2025-04-17 10:22:20,049 - root - INFO - Processed explanation 3/5 for layer 0, unit 4228
+2025-04-17 10:22:20,119 - root - INFO - Processed explanation 4/5 for layer 0, unit 4228
+2025-04-17 10:22:20,161 - root - INFO - Processed explanation 5/5 for layer 0, unit 4228
+2025-04-17 10:22:20,162 - root - INFO - Processing layer 40, unit 412 (112/150)
+2025-04-17 10:22:20,760 - root - INFO - Processed explanation 1/5 for layer 40, unit 412
+2025-04-17 10:22:20,799 - root - INFO - Processed explanation 2/5 for layer 40, unit 412
+2025-04-17 10:22:20,864 - root - INFO - Processed explanation 3/5 for layer 40, unit 412
+2025-04-17 10:22:20,903 - root - INFO - Processed explanation 4/5 for layer 40, unit 412
+2025-04-17 10:22:20,961 - root - INFO - Processed explanation 5/5 for layer 40, unit 412
+2025-04-17 10:22:20,962 - root - INFO - Processing layer 40, unit 824 (113/150)
+2025-04-17 10:22:21,026 - root - INFO - Processed explanation 1/5 for layer 40, unit 824
+2025-04-17 10:22:21,065 - root - INFO - Processed explanation 2/5 for layer 40, unit 824
+2025-04-17 10:22:21,104 - root - INFO - Processed explanation 3/5 for layer 40, unit 824
+2025-04-17 10:22:21,155 - root - INFO - Processed explanation 4/5 for layer 40, unit 824
+2025-04-17 10:22:21,223 - root - INFO - Processed explanation 5/5 for layer 40, unit 824
+2025-04-17 10:22:21,224 - root - INFO - Processing layer 20, unit 5715 (114/150)
+2025-04-17 10:22:21,287 - root - INFO - Processed explanation 1/5 for layer 20, unit 5715
+2025-04-17 10:22:21,328 - root - INFO - Processed explanation 2/5 for layer 20, unit 5715
+2025-04-17 10:22:21,368 - root - INFO - Processed explanation 3/5 for layer 20, unit 5715
+2025-04-17 10:22:21,592 - root - INFO - Processed explanation 4/5 for layer 20, unit 5715
+2025-04-17 10:22:21,670 - root - INFO - Processed explanation 5/5 for layer 20, unit 5715
+2025-04-17 10:22:21,671 - root - INFO - Processing layer 0, unit 374 (115/150)
+2025-04-17 10:22:21,893 - root - INFO - Processed explanation 1/5 for layer 0, unit 374
+2025-04-17 10:22:21,934 - root - INFO - Processed explanation 2/5 for layer 0, unit 374
+2025-04-17 10:22:21,976 - root - INFO - Processed explanation 3/5 for layer 0, unit 374
+2025-04-17 10:22:22,017 - root - INFO - Processed explanation 4/5 for layer 0, unit 374
+2025-04-17 10:22:22,057 - root - INFO - Processed explanation 5/5 for layer 0, unit 374
+2025-04-17 10:22:22,058 - root - INFO - Processing layer 0, unit 6114 (116/150)
+2025-04-17 10:22:22,113 - root - INFO - Processed explanation 1/5 for layer 0, unit 6114
+2025-04-17 10:22:22,346 - root - INFO - Processed explanation 2/5 for layer 0, unit 6114
+2025-04-17 10:22:22,416 - root - INFO - Processed explanation 3/5 for layer 0, unit 6114
+2025-04-17 10:22:22,465 - root - INFO - Processed explanation 4/5 for layer 0, unit 6114
+2025-04-17 10:22:22,532 - root - INFO - Processed explanation 5/5 for layer 0, unit 6114
+2025-04-17 10:22:22,533 - root - INFO - Processing layer 20, unit 2679 (117/150)
+2025-04-17 10:22:22,588 - root - INFO - Processed explanation 1/5 for layer 20, unit 2679
+2025-04-17 10:22:22,629 - root - INFO - Processed explanation 2/5 for layer 20, unit 2679
+2025-04-17 10:22:22,669 - root - INFO - Processed explanation 3/5 for layer 20, unit 2679
+2025-04-17 10:22:23,105 - root - INFO - Processed explanation 4/5 for layer 20, unit 2679
+2025-04-17 10:22:23,156 - root - INFO - Processed explanation 5/5 for layer 20, unit 2679
+2025-04-17 10:22:23,157 - root - INFO - Processing layer 40, unit 1555 (118/150)
+2025-04-17 10:22:23,232 - root - INFO - Processed explanation 1/5 for layer 40, unit 1555
+2025-04-17 10:22:23,302 - root - INFO - Processed explanation 2/5 for layer 40, unit 1555
+2025-04-17 10:22:23,688 - root - INFO - Processed explanation 3/5 for layer 40, unit 1555
+2025-04-17 10:22:23,746 - root - INFO - Processed explanation 4/5 for layer 40, unit 1555
+2025-04-17 10:22:23,812 - root - INFO - Processed explanation 5/5 for layer 40, unit 1555
+2025-04-17 10:22:23,813 - root - INFO - Processing layer 0, unit 984 (119/150)
+2025-04-17 10:22:23,978 - root - INFO - Processed explanation 1/5 for layer 0, unit 984
+2025-04-17 10:22:24,030 - root - INFO - Processed explanation 2/5 for layer 0, unit 984
+2025-04-17 10:22:24,071 - root - INFO - Processed explanation 3/5 for layer 0, unit 984
+2025-04-17 10:22:24,151 - root - INFO - Processed explanation 4/5 for layer 0, unit 984
+2025-04-17 10:22:24,208 - root - INFO - Processed explanation 5/5 for layer 0, unit 984
+2025-04-17 10:22:24,209 - root - INFO - Processing layer 20, unit 137 (120/150)
+2025-04-17 10:22:24,492 - root - INFO - Processed explanation 1/5 for layer 20, unit 137
+2025-04-17 10:22:24,532 - root - INFO - Processed explanation 2/5 for layer 20, unit 137
+2025-04-17 10:22:24,579 - root - INFO - Processed explanation 3/5 for layer 20, unit 137
+2025-04-17 10:22:24,635 - root - INFO - Processed explanation 4/5 for layer 20, unit 137
+2025-04-17 10:22:24,935 - root - INFO - Processed explanation 5/5 for layer 20, unit 137
+2025-04-17 10:22:24,936 - root - INFO - Processing layer 20, unit 2405 (121/150)
+2025-04-17 10:22:25,001 - root - INFO - Processed explanation 1/5 for layer 20, unit 2405
+2025-04-17 10:22:25,038 - root - INFO - Processed explanation 2/5 for layer 20, unit 2405
+2025-04-17 10:22:25,075 - root - INFO - Processed explanation 3/5 for layer 20, unit 2405
+2025-04-17 10:22:25,114 - root - INFO - Processed explanation 4/5 for layer 20, unit 2405
+2025-04-17 10:22:25,154 - root - INFO - Processed explanation 5/5 for layer 20, unit 2405
+2025-04-17 10:22:25,155 - root - INFO - Processing layer 0, unit 2725 (122/150)
+2025-04-17 10:22:25,236 - root - INFO - Processed explanation 1/5 for layer 0, unit 2725
+2025-04-17 10:22:25,452 - root - INFO - Processed explanation 2/5 for layer 0, unit 2725
+2025-04-17 10:22:25,565 - root - INFO - Processed explanation 3/5 for layer 0, unit 2725
+2025-04-17 10:22:25,607 - root - INFO - Processed explanation 4/5 for layer 0, unit 2725
+2025-04-17 10:22:25,649 - root - INFO - Processed explanation 5/5 for layer 0, unit 2725
+2025-04-17 10:22:25,650 - root - INFO - Processing layer 40, unit 6106 (123/150)
+2025-04-17 10:22:25,712 - root - INFO - Processed explanation 1/5 for layer 40, unit 6106
+2025-04-17 10:22:25,754 - root - INFO - Processed explanation 2/5 for layer 40, unit 6106
+2025-04-17 10:22:25,795 - root - INFO - Processed explanation 3/5 for layer 40, unit 6106
+2025-04-17 10:22:25,847 - root - INFO - Processed explanation 4/5 for layer 40, unit 6106
+2025-04-17 10:22:25,894 - root - INFO - Processed explanation 5/5 for layer 40, unit 6106
+2025-04-17 10:22:25,895 - root - INFO - Processing layer 0, unit 70 (124/150)
+2025-04-17 10:22:26,048 - root - INFO - Processed explanation 1/5 for layer 0, unit 70
+2025-04-17 10:22:26,101 - root - INFO - Processed explanation 2/5 for layer 0, unit 70
+2025-04-17 10:22:26,412 - root - INFO - Processed explanation 3/5 for layer 0, unit 70
+2025-04-17 10:22:26,465 - root - INFO - Processed explanation 4/5 for layer 0, unit 70
+2025-04-17 10:22:26,505 - root - INFO - Processed explanation 5/5 for layer 0, unit 70
+2025-04-17 10:22:26,506 - root - INFO - Processing layer 20, unit 2194 (125/150)
+2025-04-17 10:22:26,621 - root - INFO - Processed explanation 1/5 for layer 20, unit 2194
+2025-04-17 10:22:26,659 - root - INFO - Processed explanation 2/5 for layer 20, unit 2194
+2025-04-17 10:22:26,701 - root - INFO - Processed explanation 3/5 for layer 20, unit 2194
+2025-04-17 10:22:26,741 - root - INFO - Processed explanation 4/5 for layer 20, unit 2194
+2025-04-17 10:22:26,783 - root - INFO - Processed explanation 5/5 for layer 20, unit 2194
+2025-04-17 10:22:26,784 - root - INFO - Processing layer 20, unit 1068 (126/150)
+2025-04-17 10:22:26,852 - root - INFO - Processed explanation 1/5 for layer 20, unit 1068
+2025-04-17 10:22:26,904 - root - INFO - Processed explanation 2/5 for layer 20, unit 1068
+2025-04-17 10:22:26,945 - root - INFO - Processed explanation 3/5 for layer 20, unit 1068
+2025-04-17 10:22:26,986 - root - INFO - Processed explanation 4/5 for layer 20, unit 1068
+2025-04-17 10:22:27,025 - root - INFO - Processed explanation 5/5 for layer 20, unit 1068
+2025-04-17 10:22:27,026 - root - INFO - Processing layer 20, unit 2325 (127/150)
+2025-04-17 10:22:27,099 - root - INFO - Processed explanation 1/5 for layer 20, unit 2325
+2025-04-17 10:22:27,140 - root - INFO - Processed explanation 2/5 for layer 20, unit 2325
+2025-04-17 10:22:27,181 - root - INFO - Processed explanation 3/5 for layer 20, unit 2325
+2025-04-17 10:22:27,240 - root - INFO - Processed explanation 4/5 for layer 20, unit 2325
+2025-04-17 10:22:27,278 - root - INFO - Processed explanation 5/5 for layer 20, unit 2325
+2025-04-17 10:22:27,279 - root - INFO - Processing layer 20, unit 2627 (128/150)
+2025-04-17 10:22:27,369 - root - INFO - Processed explanation 1/5 for layer 20, unit 2627
+2025-04-17 10:22:27,415 - root - INFO - Processed explanation 2/5 for layer 20, unit 2627
+2025-04-17 10:22:27,455 - root - INFO - Processed explanation 3/5 for layer 20, unit 2627
+2025-04-17 10:22:27,495 - root - INFO - Processed explanation 4/5 for layer 20, unit 2627
+2025-04-17 10:22:27,547 - root - INFO - Processed explanation 5/5 for layer 20, unit 2627
+2025-04-17 10:22:27,548 - root - INFO - Processing layer 0, unit 5781 (129/150)
+2025-04-17 10:22:27,608 - root - INFO - Processed explanation 1/5 for layer 0, unit 5781
+2025-04-17 10:22:27,648 - root - INFO - Processed explanation 2/5 for layer 0, unit 5781
+2025-04-17 10:22:27,737 - root - INFO - Processed explanation 3/5 for layer 0, unit 5781
+2025-04-17 10:22:27,777 - root - INFO - Processed explanation 4/5 for layer 0, unit 5781
+2025-04-17 10:22:27,832 - root - INFO - Processed explanation 5/5 for layer 0, unit 5781
+2025-04-17 10:22:27,833 - root - INFO - Processing layer 40, unit 5557 (130/150)
+2025-04-17 10:22:27,930 - root - INFO - Processed explanation 1/5 for layer 40, unit 5557
+2025-04-17 10:22:27,990 - root - INFO - Processed explanation 2/5 for layer 40, unit 5557
+2025-04-17 10:22:28,105 - root - INFO - Processed explanation 3/5 for layer 40, unit 5557
+2025-04-17 10:22:28,214 - root - INFO - Processed explanation 4/5 for layer 40, unit 5557
+2025-04-17 10:22:28,308 - root - INFO - Processed explanation 5/5 for layer 40, unit 5557
+2025-04-17 10:22:28,309 - root - INFO - Processing layer 0, unit 170 (131/150)
+2025-04-17 10:22:28,382 - root - INFO - Processed explanation 1/5 for layer 0, unit 170
+2025-04-17 10:22:28,445 - root - INFO - Processed explanation 2/5 for layer 0, unit 170
+2025-04-17 10:22:28,509 - root - INFO - Processed explanation 3/5 for layer 0, unit 170
+2025-04-17 10:22:28,577 - root - INFO - Processed explanation 4/5 for layer 0, unit 170
+2025-04-17 10:22:28,632 - root - INFO - Processed explanation 5/5 for layer 0, unit 170
+2025-04-17 10:22:28,633 - root - INFO - Processing layer 20, unit 5789 (132/150)
+2025-04-17 10:22:28,697 - root - INFO - Processed explanation 1/5 for layer 20, unit 5789
+2025-04-17 10:22:28,738 - root - INFO - Processed explanation 2/5 for layer 20, unit 5789
+2025-04-17 10:22:28,807 - root - INFO - Processed explanation 3/5 for layer 20, unit 5789
+2025-04-17 10:22:28,855 - root - INFO - Processed explanation 4/5 for layer 20, unit 5789
+2025-04-17 10:22:28,894 - root - INFO - Processed explanation 5/5 for layer 20, unit 5789
+2025-04-17 10:22:28,896 - root - INFO - Processing layer 0, unit 1674 (133/150)
+2025-04-17 10:22:29,002 - root - INFO - Processed explanation 1/5 for layer 0, unit 1674
+2025-04-17 10:22:29,052 - root - INFO - Processed explanation 2/5 for layer 0, unit 1674
+2025-04-17 10:22:29,115 - root - INFO - Processed explanation 3/5 for layer 0, unit 1674
+2025-04-17 10:22:29,155 - root - INFO - Processed explanation 4/5 for layer 0, unit 1674
+2025-04-17 10:22:29,329 - root - INFO - Processed explanation 5/5 for layer 0, unit 1674
+2025-04-17 10:22:29,330 - root - INFO - Processing layer 20, unit 995 (134/150)
+2025-04-17 10:22:29,583 - root - INFO - Processed explanation 1/5 for layer 20, unit 995
+2025-04-17 10:22:29,638 - root - INFO - Processed explanation 2/5 for layer 20, unit 995
+2025-04-17 10:22:29,679 - root - INFO - Processed explanation 3/5 for layer 20, unit 995
+2025-04-17 10:22:29,904 - root - INFO - Processed explanation 4/5 for layer 20, unit 995
+2025-04-17 10:22:29,944 - root - INFO - Processed explanation 5/5 for layer 20, unit 995
+2025-04-17 10:22:29,945 - root - INFO - Processing layer 20, unit 4447 (135/150)
+2025-04-17 10:22:30,018 - root - INFO - Processed explanation 1/5 for layer 20, unit 4447
+2025-04-17 10:22:30,064 - root - INFO - Processed explanation 2/5 for layer 20, unit 4447
+2025-04-17 10:22:30,103 - root - INFO - Processed explanation 3/5 for layer 20, unit 4447
+2025-04-17 10:22:30,144 - root - INFO - Processed explanation 4/5 for layer 20, unit 4447
+2025-04-17 10:22:30,193 - root - INFO - Processed explanation 5/5 for layer 20, unit 4447
+2025-04-17 10:22:30,194 - root - INFO - Processing layer 0, unit 615 (136/150)
+2025-04-17 10:22:30,329 - root - INFO - Processed explanation 1/5 for layer 0, unit 615
+2025-04-17 10:22:30,374 - root - INFO - Processed explanation 2/5 for layer 0, unit 615
+2025-04-17 10:22:30,435 - root - INFO - Processed explanation 3/5 for layer 0, unit 615
+2025-04-17 10:22:30,479 - root - INFO - Processed explanation 4/5 for layer 0, unit 615
+2025-04-17 10:22:30,985 - root - INFO - Processed explanation 5/5 for layer 0, unit 615
+2025-04-17 10:22:30,986 - root - INFO - Processing layer 0, unit 4842 (137/150)
+2025-04-17 10:22:31,049 - root - INFO - Processed explanation 1/5 for layer 0, unit 4842
+2025-04-17 10:22:31,088 - root - INFO - Processed explanation 2/5 for layer 0, unit 4842
+2025-04-17 10:22:31,132 - root - INFO - Processed explanation 3/5 for layer 0, unit 4842
+2025-04-17 10:22:31,186 - root - INFO - Processed explanation 4/5 for layer 0, unit 4842
+2025-04-17 10:22:31,250 - root - INFO - Processed explanation 5/5 for layer 0, unit 4842
+2025-04-17 10:22:31,251 - root - INFO - Processing layer 20, unit 2911 (138/150)
+2025-04-17 10:22:31,428 - root - INFO - Processed explanation 1/5 for layer 20, unit 2911
+2025-04-17 10:22:31,478 - root - INFO - Processed explanation 2/5 for layer 20, unit 2911
+2025-04-17 10:22:31,517 - root - INFO - Processed explanation 3/5 for layer 20, unit 2911
+2025-04-17 10:22:31,569 - root - INFO - Processed explanation 4/5 for layer 20, unit 2911
+2025-04-17 10:22:31,609 - root - INFO - Processed explanation 5/5 for layer 20, unit 2911
+2025-04-17 10:22:31,610 - root - INFO - Processing layer 40, unit 463 (139/150)
+2025-04-17 10:22:31,671 - root - INFO - Processed explanation 1/5 for layer 40, unit 463
+2025-04-17 10:22:31,720 - root - INFO - Processed explanation 2/5 for layer 40, unit 463
+2025-04-17 10:22:31,770 - root - INFO - Processed explanation 3/5 for layer 40, unit 463
+2025-04-17 10:22:31,811 - root - INFO - Processed explanation 4/5 for layer 40, unit 463
+2025-04-17 10:22:31,852 - root - INFO - Processed explanation 5/5 for layer 40, unit 463
+2025-04-17 10:22:31,853 - root - INFO - Processing layer 20, unit 3736 (140/150)
+2025-04-17 10:22:31,927 - root - INFO - Processed explanation 1/5 for layer 20, unit 3736
+2025-04-17 10:22:31,967 - root - INFO - Processed explanation 2/5 for layer 20, unit 3736
+2025-04-17 10:22:32,104 - root - INFO - Processed explanation 3/5 for layer 20, unit 3736
+2025-04-17 10:22:32,144 - root - INFO - Processed explanation 4/5 for layer 20, unit 3736
+2025-04-17 10:22:32,179 - root - INFO - Processed explanation 5/5 for layer 20, unit 3736
+2025-04-17 10:22:32,180 - root - INFO - Processing layer 0, unit 3057 (141/150)
+2025-04-17 10:22:32,241 - root - INFO - Processed explanation 1/5 for layer 0, unit 3057
+2025-04-17 10:22:32,307 - root - INFO - Processed explanation 2/5 for layer 0, unit 3057
+2025-04-17 10:22:32,369 - root - INFO - Processed explanation 3/5 for layer 0, unit 3057
+2025-04-17 10:22:32,411 - root - INFO - Processed explanation 4/5 for layer 0, unit 3057
+2025-04-17 10:22:32,444 - root - INFO - Processed explanation 5/5 for layer 0, unit 3057
+2025-04-17 10:22:32,445 - root - INFO - Processing layer 0, unit 5085 (142/150)
+2025-04-17 10:22:32,612 - root - INFO - Processed explanation 1/5 for layer 0, unit 5085
+2025-04-17 10:22:32,645 - root - INFO - Processed explanation 2/5 for layer 0, unit 5085
+2025-04-17 10:22:32,680 - root - INFO - Processed explanation 3/5 for layer 0, unit 5085
+2025-04-17 10:22:32,719 - root - INFO - Processed explanation 4/5 for layer 0, unit 5085
+2025-04-17 10:22:32,753 - root - INFO - Processed explanation 5/5 for layer 0, unit 5085
+2025-04-17 10:22:32,755 - root - INFO - Processing layer 20, unit 3375 (143/150)
+2025-04-17 10:22:32,830 - root - INFO - Processed explanation 1/5 for layer 20, unit 3375
+2025-04-17 10:22:32,875 - root - INFO - Processed explanation 2/5 for layer 20, unit 3375
+2025-04-17 10:22:32,916 - root - INFO - Processed explanation 3/5 for layer 20, unit 3375
+2025-04-17 10:22:32,969 - root - INFO - Processed explanation 4/5 for layer 20, unit 3375
+2025-04-17 10:22:33,033 - root - INFO - Processed explanation 5/5 for layer 20, unit 3375
+2025-04-17 10:22:33,035 - root - INFO - Processing layer 20, unit 2988 (144/150)
+2025-04-17 10:22:33,311 - root - INFO - Processed explanation 1/5 for layer 20, unit 2988
+2025-04-17 10:22:33,403 - root - INFO - Processed explanation 2/5 for layer 20, unit 2988
+2025-04-17 10:22:33,455 - root - INFO - Processed explanation 3/5 for layer 20, unit 2988
+2025-04-17 10:22:33,504 - root - INFO - Processed explanation 4/5 for layer 20, unit 2988
+2025-04-17 10:22:33,816 - root - INFO - Processed explanation 5/5 for layer 20, unit 2988
+2025-04-17 10:22:33,817 - root - INFO - Processing layer 20, unit 1406 (145/150)
+2025-04-17 10:22:35,010 - root - INFO - Processed explanation 1/5 for layer 20, unit 1406
+2025-04-17 10:22:35,047 - root - INFO - Processed explanation 2/5 for layer 20, unit 1406
+2025-04-17 10:22:35,111 - root - INFO - Processed explanation 3/5 for layer 20, unit 1406
+2025-04-17 10:22:35,164 - root - INFO - Processed explanation 4/5 for layer 20, unit 1406
+2025-04-17 10:22:35,205 - root - INFO - Processed explanation 5/5 for layer 20, unit 1406
+2025-04-17 10:22:35,206 - root - INFO - Processing layer 0, unit 1749 (146/150)
+2025-04-17 10:22:36,106 - root - INFO - Processed explanation 1/5 for layer 0, unit 1749
+2025-04-17 10:22:36,171 - root - INFO - Processed explanation 2/5 for layer 0, unit 1749
+2025-04-17 10:22:36,210 - root - INFO - Processed explanation 3/5 for layer 0, unit 1749
+2025-04-17 10:22:36,249 - root - INFO - Processed explanation 4/5 for layer 0, unit 1749
+2025-04-17 10:22:36,324 - root - INFO - Processed explanation 5/5 for layer 0, unit 1749
+2025-04-17 10:22:36,325 - root - INFO - Processing layer 20, unit 3885 (147/150)
+2025-04-17 10:22:36,853 - root - INFO - Processed explanation 1/5 for layer 20, unit 3885
+2025-04-17 10:22:36,930 - root - INFO - Processed explanation 2/5 for layer 20, unit 3885
+2025-04-17 10:22:36,979 - root - INFO - Processed explanation 3/5 for layer 20, unit 3885
+2025-04-17 10:22:37,018 - root - INFO - Processed explanation 4/5 for layer 20, unit 3885
+2025-04-17 10:22:37,088 - root - INFO - Processed explanation 5/5 for layer 20, unit 3885
+2025-04-17 10:22:37,089 - root - INFO - Processing layer 20, unit 6045 (148/150)
+2025-04-17 10:22:37,638 - root - INFO - Processed explanation 1/5 for layer 20, unit 6045
+2025-04-17 10:22:37,677 - root - INFO - Processed explanation 2/5 for layer 20, unit 6045
+2025-04-17 10:22:37,751 - root - INFO - Processed explanation 3/5 for layer 20, unit 6045
+2025-04-17 10:22:37,804 - root - INFO - Processed explanation 4/5 for layer 20, unit 6045
+2025-04-17 10:22:37,870 - root - INFO - Processed explanation 5/5 for layer 20, unit 6045
+2025-04-17 10:22:37,873 - root - INFO - Processing layer 20, unit 4847 (149/150)
+2025-04-17 10:22:37,986 - root - INFO - Processed explanation 1/5 for layer 20, unit 4847
+2025-04-17 10:22:38,023 - root - INFO - Processed explanation 2/5 for layer 20, unit 4847
+2025-04-17 10:22:38,058 - root - INFO - Processed explanation 3/5 for layer 20, unit 4847
+2025-04-17 10:22:38,098 - root - INFO - Processed explanation 4/5 for layer 20, unit 4847
+2025-04-17 10:22:38,153 - root - INFO - Processed explanation 5/5 for layer 20, unit 4847
+2025-04-17 10:22:38,154 - root - INFO - Processing layer 0, unit 6373 (150/150)
+2025-04-17 10:22:38,246 - root - INFO - Processed explanation 1/5 for layer 0, unit 6373
+2025-04-17 10:22:38,319 - root - INFO - Processed explanation 2/5 for layer 0, unit 6373
+2025-04-17 10:22:38,386 - root - INFO - Processed explanation 3/5 for layer 0, unit 6373
+2025-04-17 10:22:38,448 - root - INFO - Processed explanation 4/5 for layer 0, unit 6373
+2025-04-17 10:22:38,501 - root - INFO - Processed explanation 5/5 for layer 0, unit 6373
+2025-04-17 10:22:38,502 - root - INFO - All layer-unit pairs processed. Results saved to:
+ results/cosy-evaluation_target-gpt2-xl_textgen-gemini-1-5-pro_mean_c4.csv

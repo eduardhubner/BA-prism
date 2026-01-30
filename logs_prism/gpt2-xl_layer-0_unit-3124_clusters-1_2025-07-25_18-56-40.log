@@ -1,0 +1,560 @@
+2025-07-25 20:56:40,764 - root - INFO - ================================================================================
+2025-07-25 20:56:40,765 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 20:56:40,766 - root - INFO - ================================================================================
+2025-07-25 20:56:40,767 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 20:56:40,767 - root - INFO - AGG_METHOD = mean
+2025-07-25 20:56:40,768 - root - INFO - BATCH_SIZE = 2
+2025-07-25 20:56:40,769 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:56:40,770 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 20:56:40,770 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 20:56:40,771 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 20:56:40,772 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 20:56:40,772 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 20:56:40,773 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 20:56:40,774 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 20:56:40,775 - root - INFO - DATA_FILES = None
+2025-07-25 20:56:40,775 - root - INFO - DEVICE = cuda
+2025-07-25 20:56:40,776 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 20:56:40,777 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:56:40,777 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 20:56:40,778 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 20:56:40,779 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 20:56:40,780 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 20:56:40,780 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 20:56:40,781 - root - INFO - LAYER_ID = 0
+2025-07-25 20:56:40,781 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 20:56:40,782 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 20:56:40,783 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 20:56:40,783 - root - INFO - MULTI_EVAL = True
+2025-07-25 20:56:40,784 - root - INFO - N_CLUSTERS = 1
+2025-07-25 20:56:40,784 - root - INFO - N_SAMPLES = 10
+2025-07-25 20:56:40,785 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 20:56:40,785 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 20:56:40,786 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 20:56:40,787 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 20:56:40,788 - root - INFO - SPLIT = train
+2025-07-25 20:56:40,788 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 20:56:40,789 - root - INFO - STREAMING = True
+2025-07-25 20:56:40,789 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 20:56:40,790 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 20:56:40,791 - root - INFO - TARGET_DATA = c4
+2025-07-25 20:56:40,791 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 20:56:40,792 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:56:40,793 - root - INFO - UNIT_ID = 3124
+2025-07-25 20:56:40,794 - root - INFO - USE_API = True
+2025-07-25 20:56:40,794 - root - INFO - ================================================================================
+2025-07-25 20:56:40,795 - root - INFO - ANALYSIS RESULTS
+2025-07-25 20:56:40,795 - root - INFO - ================================================================================
+2025-07-25 20:56:40,796 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-3124_clusters-1_2025-07-25_18-56-40.log
+2025-07-25 21:05:18,573 - root - INFO - Reached 1000 samples.
+2025-07-25 21:05:19,636 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 21:05:19,637 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 21:05:38,039 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 21:06:13,487 - root - INFO - Number of candidates: 1001
+2025-07-25 21:06:16,192 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 21:06:16,193 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  spanning (1.752516746520996)
+Text #1:  line (1.683729887008667)
+Text #1:  Expression (2.377729654312134)
+Text #1:  expression (2.314903736114502)
+Text #1:  Human (1.8518266677856445)
+Text #1:  Expression (2.475572109222412)
+Text #1:  Adult (1.7783677577972412)
+Text #1:  Expression (2.598607301712036)
+Text #1:  expression (2.5019309520721436)
+Text #1:  Adult (1.798218846321106)
+Text #1:  Expression (2.5678749084472656)
+Text #1:  Human (2.011969804763794)
+Text #1:  Expression (2.5704729557037354)
+Text #1:  expression (2.4034738540649414)
+Text #1:  Human (1.878065824508667)
+Text #1:  Expression (2.461735725402832)
+Text #1:  Human (1.8569706678390503)
+Text #1:  Expression (2.456051826477051)
+Text #1:  expression (2.2991349697113037)
+Text #1:  Human (1.937249779701233)
+Text #1:  Expression (2.5014986991882324)
+Text #1:  Human (2.1119914054870605)
+Text #1:  Expression (2.579651355743408)
+Text #1:  expression (2.3887581825256348)
+Text #1: ren (1.738594889640808)
+Text #1:  Human (2.1935760974884033)
+Text #1:  Expression (2.6115212440490723)
+Text #1:  Human (2.158827543258667)
+Text #1:  Expression (2.5943572521209717)
+Text #1:  and (1.6930923461914062)
+Text #1:  expression (2.4531466960906982)
+Text #1:  Human (2.1451752185821533)
+Text #1:  Expression (2.593517541885376)
+Text #1:  Line (1.9062209129333496)
+Text #1:  Line (1.7124860286712646)
+Text #1:  Line (1.6886459589004517)
+Text #1:  Expression (2.3566651344299316)
+Text #1:  expression (2.292048215866089)
+Text #1:  Line (1.745238184928894)
+Text #1:  Expression (2.4486870765686035)
+Text #1:  transcription (2.472287654876709)
+Text #1:  transcription (2.5458924770355225)
+Text #1:  the (1.9544769525527954)
+Text #1:  gene (1.7126151323318481)
+Text #1:  the (1.9070773124694824)
+Text #1:  transcription (2.5499000549316406)
+Text #1:  the (1.8252911567687988)
+Text #2:  av (0.9545919895172119)
+Text #2:  human (1.3304071426391602)
+Text #2:  antigen (1.2914941310882568)
+Text #2:  shown (0.9213149547576904)
+Text #2:  H (0.8159658908843994)
+Text #2: 1 (0.8277382850646973)
+Text #2: 2005 (1.6422375440597534)
+Text #2:  share (1.1532831192016602)
+Text #2:  changes (0.7934781908988953)
+Text #2:  Furthermore (1.0692325830459595)
+Text #2:  molecular (1.7522796392440796)
+Text #2:  2005 (1.3475502729415894)
+Text #2:  the (1.1323961019515991)
+Text #2:  site (1.2959743738174438)
+Text #2: , (0.8094940781593323)
+Text #2:  affect (1.108893632888794)
+Text #2:  transm (1.7408560514450073)
+Text #2: Despite (1.1118801832199097)
+Text #2:  H (0.8828616738319397)
+Text #2: 1 (0.8434603810310364)
+Text #2:  2005 (1.1571756601333618)
+Text #2:  the (1.0476957559585571)
+Text #2: enza (1.0120618343353271)
+Text #2:  recent (0.9027252793312073)
+Text #2:  pro (1.0410367250442505)
+Text #2:  therapeutic (1.0532599687576294)
+Text #2:  human (1.3984904289245605)
+Text #2:  2005 (1.0782030820846558)
+Text #2:  epidem (1.1248505115509033)
+Text #2: ortment (0.94648677110672)
+Text #2:  appearance (0.8219119906425476)
+Text #2:  during (1.262007713317871)
+Text #3: iasis (1.3401762247085571)
+Text #3:  chronic (2.653909683227539)
+Text #3: iasis (1.4263137578964233)
+Text #3: ps (1.6188193559646606)
+Text #3: iasis (1.4483957290649414)
+Text #3:  characterized (1.2660287618637085)
+Text #3:  elevated (1.8304160833358765)
+Text #3:  pap (0.8983398675918579)
+Text #3:  elev (1.007857084274292)
+Text #3:  sil (0.9880431890487671)
+Text #3: iasis (0.930907666683197)
+Text #3:  gut (0.9570510387420654)
+Text #3: iasis (0.9564922451972961)
+Text #3: mediated (1.086737036705017)
+Text #3:  autoimmune (0.8735890984535217)
+Text #3:  that (1.0362029075622559)
+Text #3:  known (1.2167989015579224)
+Text #3:  T (1.3535195589065552)
+Text #3: , (1.125813603401184)
+Text #3:  T (1.3545743227005005)
+Text #3: , (0.9127153158187866)
+Text #3:  skin (1.093091368675232)
+Text #3:  in (1.1132020950317383)
+Text #3: skin (1.4909156560897827)
+Text #3: iasis (1.198336124420166)
+Text #3: iasis (0.9307989478111267)
+Text #3: iasis (1.0634233951568604)
+Text #3: iasis (1.0312671661376953)
+Text #3: iasis (0.9027041792869568)
+Text #3: iasis (0.9906100630760193)
+Text #3:  underlying (0.9977720379829407)
+Text #3: iasis (1.0422378778457642)
+Text #3:  environmental (1.6791250705718994)
+Text #3: iasis (1.1477878093719482)
+Text #3:  associated (1.0409184694290161)
+Text #4:  α (1.4216161966323853)
+Text #4: BP (1.0754585266113281)
+Text #4:  a (1.281363606452942)
+Text #4:  involved (2.101041078567505)
+Text #4: op (1.392480731010437)
+Text #4:  Som (1.8729710578918457)
+Text #4:  mutations (1.5311673879623413)
+Text #4:  in (1.8292828798294067)
+Text #4:  5 (1.4481993913650513)
+Text #4:  of (1.1523065567016602)
+Text #4:  normal (1.453537940979004)
+Text #4:  mutations (1.2959154844284058)
+Text #4:  in (1.6420581340789795)
+Text #4:  with (1.2327008247375488)
+Text #4:  and (1.2548348903656006)
+Text #4:  However (1.2348532676696777)
+Text #4:  be (1.1928355693817139)
+Text #4:  the (2.0307581424713135)
+Text #4:  carrying (1.2447564601898193)
+Text #4:  The (2.2294771671295166)
+Text #4:  this (1.6097338199615479)
+Text #5:  pediatric (0.7396747469902039)
+Text #5: sci (1.2773555517196655)
+Text #5:  molecular (0.6968613266944885)
+Text #5:  Crawford (1.0389957427978516)
+Text #5: ties (0.7839489579200745)
+Text #5:  Crawford (1.1054795980453491)
+Text #5: mun (1.0123393535614014)
+Text #5:  of (0.6847038269042969)
+Text #5:  progression (1.1805994510650635)
+Text #5:  treatment (1.1215691566467285)
+Text #5:  KR (1.2381147146224976)
+Text #5:  miss (1.240136981010437)
+Text #5:  juvenile (1.3858402967453003)
+Text #5:  ast (0.6879631280899048)
+Text #5: cy (0.8531041741371155)
+Text #5:  of (0.7684081792831421)
+Text #5: bra (0.6462849974632263)
+Text #5:  pediatric (0.9532138109207153)
+Text #5:  KR (0.8364372849464417)
+Text #5:  heter (0.658873975276947)
+Text #5:  nonsense (1.117172360420227)
+Text #5: c (0.6305205225944519)
+Text #5: gt (0.7366677522659302)
+Text #5:  associated (1.2923365831375122)
+Text #5:  cerebral (1.2663427591323853)
+Text #5: ations (0.6750589609146118)
+Text #5:  a (0.8316076397895813)
+Text #5: iatric (1.3223803043365479)
+Text #5:  facial (0.6651824116706848)
+Text #5:  early (1.1708556413650513)
+Text #5:  relapse (1.5250815153121948)
+Text #5: iatric (1.2581907510757446)
+Text #5:  acute (0.743063747882843)
+Text #5:  an (0.6550732254981995)
+Text #5:  recurrent (1.8096450567245483)
+Text #5:  juvenile (1.1433758735656738)
+Text #5: cy (0.6394005417823792)
+Text #5:  infancy (1.0452147722244263)
+Text #5:  brain (0.8735169172286987)
+Text #5:  presenting (1.2638541460037231)
+Text #5:  of (0.7131862044334412)
+Text #7: boat (0.017576590180397034)
+Text #7: ando (0.4949919879436493)
+Text #10:  recently (0.7372026443481445)
+Text #10:  recap (0.3789505064487457)
+Text #12:  clinical (0.4031189978122711)
+Text #12:  provide (0.1749332696199417)
+Text #12:  clinical (0.2788158655166626)
+Text #12:  disease (0.30547070503234863)
+Text #12:  impaired (0.709001898765564)
+Text #12:  failure (0.44276389479637146)
+Text #12:  often (0.35139626264572144)
+Text #12:  congest (0.33172163367271423)
+Text #12:  uniformly (0.39513251185417175)
+Text #12: , (0.28005796670913696)
+Text #12:  decreased (0.49346262216567993)
+Text #12: chem (0.2670009136199951)
+Text #12:  longstanding (1.2157098054885864)
+Text #12:  intr (0.42438963055610657)
+Text #12:  infiltration (0.38298118114471436)
+Text #12:  � (0.18703803420066833)
+Text #12:  vent (0.7506808042526245)
+Text #12:  share (0.408642441034317)
+Text #12:  bed (0.9388667941093445)
+Text #12: ional (0.1776992827653885)
+Text #12:  dist (0.5054494142532349)
+Text #12:  system (0.884125292301178)
+Text #12:  provide (0.28889575600624084)
+Text #12:  chronic (2.1285946369171143)
+Text #12:  failure (0.27044209837913513)
+Text #12:  congestion (0.3187559247016907)
+Text #12: ide (0.25175389647483826)
+Text #12: termin (0.5053926706314087)
+Text #12:  pro (0.4600397050380707)
+Text #12:  elevated (0.8321347832679749)
+Text #12:  failure (0.33178088068962097)
+Text #12:  conf (0.6819186806678772)
+Text #12:  The (0.997635006904602)
+Text #12:  of (0.5243749618530273)
+Text #12:  failure (0.2869444191455841)
+Text #12:  an (0.21691465377807617)
+Text #13: 138 (0.6937931776046753)
+Text #13:  System (2.037670850753784)
+Text #13:  ( (1.1362051963806152)
+Text #13:  includes (0.5580425262451172)
+Text #13: - (0.4677187502384186)
+Text #13: 138 (0.7627066373825073)
+Text #13:  and (0.9714226722717285)
+Text #13: - (0.4396733343601227)
+Text #13:  These (1.4022955894470215)
+Text #13:  feature (0.38386350870132446)
+Text #13:  of (0.4710719585418701)
+Text #13:  and (0.6814457178115845)
+Text #13:  tightly (0.9495565295219421)
+Text #13:  the (0.891472578048706)
+Text #13:  This (0.8626096844673157)
+Text #13:  provides (0.5450431108474731)
+Text #13:  the (0.4060087203979492)
+Text #13:  a (0.44329145550727844)
+Text #13:  system (0.5999942421913147)
+Text #13: Given (0.7427228093147278)
+Text #13:  the (0.5192179679870605)
+Text #13: pin (0.3354019820690155)
+Text #13:  family (0.5758872628211975)
+Text #13:  family (0.5619639754295349)
+Text #13:  the (0.7490050196647644)
+Text #13: 138 (0.3267950415611267)
+Text #13:  AM (0.7907803654670715)
+Text #13:  share (0.3286098539829254)
+Text #13:  your (0.2821787893772125)
+Text #13:  m (0.2717207968235016)
+Text #13:  In (0.316671222448349)
+Text #13:  these (1.2230007648468018)
+Text #13: , (0.7218207716941833)
+Text #13:  the (0.45590275526046753)
+Text #16:  vom (0.08083419501781464)
+Text #19:  fetal (1.0927138328552246)
+Text #19:  a (0.3165234327316284)
+Text #19:  several (0.8776445388793945)
+Text #19: , (0.32164862751960754)
+Text #19:  rodent (1.7199863195419312)
+Text #19:  The (1.1794320344924927)
+Text #19:  could (0.33490291237831116)
+Text #19: The (0.5479483008384705)
+Text #19:  of (0.32602372765541077)
+Text #19:  has (0.53258216381073)
+Text #19:  topic (0.3890277147293091)
+Text #19:  this (0.5985766053199768)
+Text #19:  relies (0.3935079276561737)
+Text #19:  in (0.3531302213668823)
+Text #19:  the (0.77928626537323)
+Text #19:  highlights (1.6416361331939697)
+Text #19:  identify (0.907342791557312)
+Text #19:  environmental (0.699715256690979)
+Text #19:  that (0.4035167694091797)
+Text #19:  risk (0.623531699180603)
+Text #19:  start (0.33885619044303894)
+Text #19:  reduce (0.4442867636680603)
+
+=== Text #1 ===
+> SAMD12 has 3,154 functional associations with biological entities[ spanning] 8 categories (molecular profile, organism, functional term, phrase or reference, chemical, disease, phenotype or trait, structural feature, cell[ line], cell type or tissue, gene, protein or microRNA) extracted from 59 datasets.
+Click the + buttons to view associations for SAMD12 from the datasets below.
+Allen Brain Atlas Adult Human Brain Tissue Gene[ Expression] Profiles tissues with high or low[ expression] of SAMD12 gene relative to other tissues from the Allen Brain Atlas Adult[ Human] Brain Tissue Gene[ Expression] Profiles dataset.
+Allen Brain Atlas[ Adult Mouse] Brain Tissue Gene[ Expression] Profiles tissues with high or low[ expression] of SAMD12 gene relative to other tissues from the Allen Brain Atlas[ Adult Mouse] Brain Tissue Gene[ Expression] Profiles dataset.
+Allen Brain Atlas Developing[ Human] Brain Tissue Gene[ Expression] Profiles by Microarray tissue samples with high or low[ expression] of SAMD12 gene relative to other tissue samples from the Allen Brain Atlas Developing[ Human] Brain Tissue Gene[ Expression] Profiles by Microarray dataset.
+Allen Brain Atlas Developing[ Human] Brain Tissue Gene[ Expression] Profiles by RNA-seq tissue samples with high or low[ expression] of SAMD12 gene relative to other tissue samples from the Allen Brain Atlas Developing[ Human] Brain Tissue Gene[ Expression] Profiles by RNA-seq dataset.
+Allen Brain Atlas Prenatal[ Human] Brain Tissue Gene[ Expression] Profiles tissues with high or low[ expression] of SAMD12 gene relative to other tissues from the Allen Brain Atlas P[ren]atal[ Human] Brain Tissue Gene[ Expression] Profiles dataset.
+BioGPS[ Human] Cell Type and Tissue Gene[ Expression] Profiles cell types[ and] tissues with high or low[ expression] of SAMD12 gene relative to other cell types and tissues from the BioGPS[ Human] Cell Type and Tissue Gene[ Expression] Profiles dataset.
+CCLE Cell[ Line] Gene CNV Profiles cell lines with high or low copy number of SAMD12 gene relative to other cell lines from the CCLE Cell[ Line] Gene CNV Profiles dataset.
+CCLE Cell[ Line] Gene[ Expression] Profiles cell lines with high or low[ expression] of SAMD12 gene relative to other cell lines from the CCLE Cell[ Line] Gene[ Expression] Profiles dataset.
+CHEA Transcription Factor Binding Site Profiles[ transcription] factor binding site profiles with[ transcription] factor binding evidence at[ the promoter] of SAMD12[ gene] from[ the] CHEA Transcription Factor Binding Site Profiles dataset.
+CHEA Transcription Factor Targets[ transcription] factors binding[ the promoter of] SAMD
+
+=== Text #2 ===
+> How long does it take the flu to evade a vaccine?
+With all the recent Presidential attention to the threat from the H5N1 Avian Flu, and the many billions now earmarked for stockpiling vaccines and drugs, it seems like a good idea to ask on what time scale the virus might be able to evade these countermeasures. Vaccination is of particular interest, as it is regarded as by far the best tool to combat viral infection at the population level.
+Genomic analyses of H5N1 isolates from birds and humans showed 2 distinct clades with a nonoverlapping geographic distribution. All the viral genes were of[ av]ian influenza origin, which indicates absence of reassortment with[ human] influenza viruses.
+Genetic and[ antigen]ic analyses have[ shown] that, compared to previous[ H]5N[1] isolates, 2004-[2005] isolates[ share several] amino acid[ changes that modulate antigenicity and perhaps] other biological function.[ Furthermore,] our[ molecular analysis of the] HA from isolates collected in[ 2005 suggests that several] amino acids located near[ the receptor]-binding[ site] are undergoing change[,] some of which may[ affect antigenicity] or[ transm]isibility.
+[Despite the recent] "Isolation of drug-resistant[ H]5N[1] virus," (Nature, 20 October[ 2005]),[ the] WHO Global Influ[enza] team determined that[ recent] isolates are "sensitive to 2 neuraminidase inhibitors that are recommended for[ pro]phylactic or[ therapeutic] intervention against[ human] infections." So obviously the specific details of which viral isolate one is working with determine its sensitivity to drugs. In the case of the drug-resistant strain, it was isolated in February[ 2005] from a Vietnamese girl who may have contracted the virus while she cared for her brother. Human-to-human transmission is supported by the girl's lack of contact with poultry and the fact that the neuraminidase gene from virus isolated from the girl was virtually identical to that isolated from her brother. Thus there are evidently drug resistant strains running around in the wild.
+As far as I can tell, it just isn't yet clear how fast drug-resistance traits can spread. There is now at least a little data about how long it takes a particular viral strain to find work-arounds for vaccines. A recent initial effort to sequence many flu strains in parallel indicates that mutations that provide ways around vaccines can rapidly dominate a population of flu viruses.
+Perhaps the most dramatic finding in our data is the discovery of an[ epidem]iologically significant reass[ortment] that explains the[ appearance],[ during] the 2003-2004 season, of the 'F
+
+=== Text #3 ===
+> Psor[iasis,] a[ chronic, recurrent inflammatory skin disorder. The most common type,] called plaque psor[iasis] ([ps]or[iasis vulgar]is), is[ characterized by] slightly[ elevated] reddish patches or[ pap]ules (solid[ elev]ations) covered with[ sil]very white scales. In most cases, the lesions tend to be symmetrically distributed on the elbows and knees, scalp, chest, and buttocks. The lesions may remain small and solitary or coalesce into large plaques that often form geometrical patterns with a central area of normal skin. In many cases the nails become thickened, irregularly laminated, and brittle. In addition to plaque psoriasis, there are four other types of psor[iasis], including[ gut]tate, pustular, inverse (or flexular), and erythrodermic.
+Psor[iasis] is an immune-[mediated] (or[ autoimmune]) disorder[ that] occurs when immune cells[ known] as[ T] lymphocytes[,] or[ T] cells[,] attack healthy[ skin] cells[ in both the non]vascular horny outer layer of the skin and its deeper vascular layer. This attack causes the life span of the skin cells to shorten to about 3 to 5 days ([skin] cells normally live about 20 to 28 days) and forces the cells to reproduce more rapidly than normal. Psor[iasis] occurs in both sexes with equal frequency, being most prevalent between the ages of 10 and 30. It is most often seen in northern climates. An estimated 2 to 3 percent of the U.S. population is affected by psor[iasis]. In contrast, between 0.05 and 0.3 percent of Asians experience the condition. In European countries the incidence of psor[iasis] is highly variable, affecting anywhere from less than 1 percent to more than 6 percent of populations.
+The onset of psor[iasis] is usually gradual but occasionally explosive. Precipitating factors may include injury to the skin, acute infection, and psychological upsets. Ordinarily, the lesions become less severe and sometimes disappear during the summer, possibly owing to the effect of sunlight. The severe complications of psor[iasis] are extensive sloughing of the outer layer of the skin, with resulting inflammation, and psoriatic arthritis. Generally, however, individuals with psor[iasis] are in relatively good health. The variability in the progression and severity of the disorder has led researchers to suspect that the[ underlying] causes of psor[iasis] are the result of complex interactions between genetic and[ environmental] factors.
+There is no permanent cure for psor[iasis], but there are a variety of treatments aimed at relieving the[ associated]
+
+=== Text #4 ===
+> CCAAT/enhancer binding protein[ α (]CE[BP]a) is[ a transcription] factor[ involved in the regulation of my]el[op]oiesis.[ Som]atic[ mutations of CEBPa are] found[ in] about[ 5]-14%[ of] cytogenetically[ normal AM]L. CEBPA[ mutations appear to be associated with a favorable prog]nosis[ in AM]L patients[ with a normal] karyotype[ and an absence of] FLT3 mutation.[ However, favorable outcome may] only[ be] related to[ the] patients[ carrying] double CEBPa mutations.[ The] test sensitivity of[ this] assay is approximately 20%.
+Blood and bone marrow samples should be refrigerated or kept cold. Samples should never be frozen. Specimens being sent from outside facilities should be packaged according to standard medical safety practices with a cold pack. The specimen should be shipped by overnight priority [scheduled to arrive by Friday AM at the latest].
+
+=== Text #5 ===
+> Dr. John Crawford is the director of pediatric neuro-oncology and the director of the[ pediatric] neurology fellowship program at Rady Children's Hospital-San Diego as well as an associate clinical professor of clinical neuro[sci]ences and pediatrics at UC San Diego School of Medicine.
+He graduated from the University of Massachusetts with a Master's of Science in biochemistry and[ molecular] biology before earning his medical degree from the same institution. He went on to complete a residency in pediatrics at the University of Southern California/Los Angeles County Hospital. He continued his medical education with a pediatric neurology fellowship at Children's National Medical Center at George Washington University. During this time, he was awarded the NIH K12 Neurological Sciences Academic Development Award and completed three years of clinical and basic science training in neuro-oncology.
+Dr.[ Crawford] is certified by the American Board of Psychiatry and Neurology in neurology with special qualification in child neurology and by the United Council for Neurologic Subspecial[ties] in neuro-oncology.
+He is member of the American Academy of Neurology, Child Neurology Society, American Association of Cancer Research and an associate member of Children's Oncology Group, Society for Neuro-Oncology and Professors of Child Neurology.
+Dr.[ Crawford]'s research interest is neuroim[mun]ological and neurovirological mechanisms[ of tumor development],[ progression and] potential[ treatment].
+Unusual[ KR]AS[ miss]ense mutation (p.E63K) in patient with[ juvenile] pilocytic[ ast]ro[cy]toma[ of the] tectum.
+Levator palpe[bra]e superioris nuclear palsy in a child with artery of Percheron infarction.
+Use of hyperbaric oxygen therapy in[ pediatric] neuro-oncology: a single institutional experience.
+Novel[ KR]IT1/CCM1[ heter]ozygous[ nonsense] mutation ([c].715 C&[gt];T)[ associated] with[ cerebral and cerebell]ar cavernous malform[ations] in[ a] paed[iatric] patient.
+Unilateral[ facial] nerve palsy as an[ early presenting] symptom of[ relapse in a] paed[iatric] patient with[ acute] lymphoblastic leukaemia.
+Spontaneous[ an]eurysmal subarachnoid haemorrhage in a child with multiply[ recurrent] posterior fossa[ juvenile] pilocytic astro[cy]toma.
+Disseminated pilomyxoid astrocytoma in[ infancy] with novel MUTYH mutation.
+Acute[ brainstem] haemorrhage as a[ presenting] feature[ of] high-
+
+=== Text #6 ===
+> A few days before Christmas 2018 I travelled up to Buckinghamshire and the lovely little town of Amersham for Sarah & Neil's wedding at the quaint Kings Chapel, set in the grounds of the larger Kings Arms on the High St. Despite the drizzle and cloud, the couple and their guests were in fine spirits! The main room was decked out with fairy lights and a nice big Christmas tree in the corner, and after the ceremony and confetti throw the staff quickly changed it all around for the speeches and cake cut. Sarah & Neil's first dance was one of the most creative I've seen this year - they had a whole routine worked out and put on quite the show for their guests! Before I left I took the couple back outside for some creative photos in front of the chapel and amongst the fairy lights in the trees. What a fab way to end 2018!
+One of the great things about being a wedding photographer is it can take you all over the country, and even further afield sometimes! I've been to Buckinghamshire a few times for weddings in the past, and oddly it's always in the colder months of the year. Knowing that the roads would likely be packed with people travelling just before Christmas, I allowed extra time for the 2 hour journey. Sadly as usual the M25 was horrendous and despite the extra time I finally arrived at Kings Chapel in Amersham half an hour after I planned.
+I still had plenty of time before the 4pm ceremony, but I wanted to make the most of the fading natural light and get as much done as possible - even with a bit of drizzle coming down. The ceremony itself was lovely and the room had a nice clean feel - made all the most Christmassy by the big tree in the corner! The confetti tunnel afterwards was great fun and we went straight into the formal photos up on the mezzanine style balcony, along with some of the newlyweds amongst the warm glow of the fairylights.
+The staff at Kings Chapel quickly turned the ceremony room around, and it really did look beautiful. The speeches were, as always, a bit of an event. Lots of great little stories and anecdotes, and a few tears too. But it was the first dane that really blew my mind! Sarah & Neil kept this a secret but I managed to get it out of Neil with just enough time to set up lights. It was going to be dramatic and I wanted to capture it all in the best way!
+They launched into a great
+
+=== Text #7 ===
+> sail[boat]. : The sweetest home accessories!
+You know when you see something that you don't really need but you do really want to have for reasons you can't quite fully explain? Well, that's exactly how I feel about pretty much everything from Qualy. Until a few weeks ago I had never heard of the brand, I had a Zal[ando] voucher and just happened to stumble into the home section where I spotted the sweetest home accessories ever!
+So, I didn't really need a pink bunny with scissors for ears, a carrot magnet and green paper clips for the carrot top but as soon as I saw it, crazy bunny lady over here was instantly adding it to my basket and hitting checkout! I'm really impressed with the quality, I did think the £15 price tag was a little much but I've changed my mind because the scissors are actually really good, it doesn't feel or look cheap in any way and, well, it's undeniably cute! I love it so much!
+Qualy Log & Squirrel Flower Pot!
+I'm not known for my green thumb, in fact I'm notoriously rubbish at keeping plants alive but I'm going to try and be better now I have this super cute flower pot! I don't have a plant to put in it at the moment but I'm actually really excited to go and get one, any excuse for a trip to the garden centre I'll happily take! When there's water in the bottom the squirrel floats up, which is perfect for a plant killer like me because I'll always know when I need to add some more water. At £25 this certainly isn't cheap, but again I'm really happy with the quality & everything comes apart so I think it'll be really easy to clean. To be honest it was the little squirrel that totally sold me on this, look at those sweet little eyes, too cute!
+Do you have a favourite home accessories brand?
+Do you have anything from Qualy?
+The only thing that I found with the pot was that somehow the roots have gone down the string and completely intertwined with it so I won't be able to use the pot for another plant in the future :') Still absolutely adorable though!
+I really love the Qualy range, I've been fancying the bunnies for agfes, have you seen the paperclip ones as well?
+DUh, I meant the tape one.
+The desk bunny is just sooo lovely!
+You got the bunny! Jealous
+
+=== Text #8 ===
+> As her favourite colour is purple I knew I had to use that colour. A month or so ago I found some purple sugar and white sugar pearls. I wanted to do a kid cake that was elegant given her age. That was as far as I got until the morning of the day everyone was coming. Talk about a decorating block! I just couldn’t think of anything. Fortunately on the walk with the dogs I got an idea. And it had to be done quickly as I had an hour to do this. Yikes!
+Not only does she like purple, she likes butterflies so I decided to go with that. I whipped up some buttercream icing like I did for these cupcakes. Before I added the purple I scooped some white into a decorating bag.
+Carefully place the top layer on and brush any loose crumbs off.
+Ice the whole cake smoothing as best you can. Isn’t this a great purple?
+Next I used the white frosting to outline the flowers and butterfly. Finally I got the consistency right and it flowed like it should. In the past I was squeezing with all my might. Too much work. I used the white pearls for the centers and the purple sugar for the petals and wings. I really need to problem solve getting the sugar where I want it to go. There was a bit of colouring outside the lines with this bit.
+To finish it off I added some icing dots on the sides.
+This entry was posted in Desserts and tagged apples, baking, buttercream icing, chocolate cake. Bookmark the permalink.
+Wow! that’s one heck of a cake:) It’s beautiful!! I love the butterfly:) She’s going to LOVE IT! Happy Birthday to your daughter….
+I can’t wait for those pics…I just love everything about your daughters cake! It came out beautifully!!!!!!
+Thank you. 🙂 His birthday is in June so I have time to plan!
+can’t wait! Have a Great weekend:) and as always thanks for sharing….
+Thanks, I’ll let her know.
+Happy Birthday to your daughter. That’s certainly a cake and a half. She must have be thrilled.
+She liked it. 🙂 They appreciate the effort for stuff like this which is really nice.
+So fun!! A few years ago, my twin sister put together a cookbook of all the recipes from
+
+=== Text #9 ===
+> I was brimming with excitement all of Thursday. I couldn’t stop thinking about my date with Seabiscuit. I was very excited about his joining me at the theater plus the night adventures that would follow.
+I hurried home after work, took a quick shower, and headed out. It had been a warm day, and I was doubtful that I needed my jacket; however, then I remembered being cold at a previous performance in the evening. Even though I had checked the weather and saw Orinda was only predicted to be in the low 60s in the evening, I knew that up in the hills, where the theater is actually located, it can get much colder. I felt foolish carrying such a large jacket on BART and felt too warm to need it, but better safe than sorry.
+It was good I did. By the time I arrived at the theater, it was significantly cooler. I was happy without a jacket but realized that once the sun finished setting, I would need to put it on. I waited for Seabiscuit to arrive, and was excited to see him clean-shaven–as I had ordered as his Mistress. How good that he should obey so well! And he finally looked like one of his own photographs.
+I told him previously that he appeared to be a servant of the Many-Faced God because his face never seemed to match from one photograph to another. The angles were off or something seemed so strange about it. He didn’t look like his photographs. I knew it was him, but how strange and different they all seemed.
+There was a crowd, and I could tell he felt a bit shy. We hugged and kissed each other’s cheeks, then held hands as we walked up the hill from Will Call to the theater.
+He bought dinner for us at the café, and we continued holding hands. The line was long, and we really only had 10 minutes to eat before needing to be seated. He was impressed by my tickets and how close we were to the stage. The temperature had dropped significantly, so I put on my jacket when we were seated but he was astounded that I didn’t close it until after intermission. I held his hand in his lap during the first half.
+During intermission, he rented a blanket while I used the restroom and got my free bag of Peet’s coffee for renewing my subscription for the theater. We shared the blanket, and for the second half, he
+
+=== Text #10 ===
+> I[ recently] went on a trip with my youngest daughter to Atlanta, Georgia. I had not been to Georgia before. I used to live in Alabama and Florida (at different times), so I figured it would be mostly the same. What I didn't know was that Atlanta is Gotham City. You may not have known this, and I'm sorry if I'm ruining some fantasy-other-wordliness aspect of Gotham City, but....it's in Georgia.
+Our adventure began when we got the rental car and headed out in the safe hands of GPS (aka evil maniacal devil guide) to our hotel. I don't know when I decided Siri was a reliable source again. She has burned me way too many times in the past for me to have any sane reason to trust her, but here I was, across the country in the middle of a rainy night, trusting my life to the voice in my phone with a desire to kill me.
+How do I know she wants to kill me? Let's[ recap]. I have gotten lost more times than not when using her. Usually it is because she decides to tell me to take U turns in the middle of freeways or busy roads. Other times it is because she leads me to my destination which actually turns out to be a lonely spot in the middle of nowhere, perfect for murder. This time, it was to the back side of a prison. Yes, just pull into the guarded driveway...don't mind the guns..."your destination is on the right"....sure it is. I didn't fall for it.
+I had a feeling that no matter what Siri said, I should probably head towards the taller, better lighted buildings in the distance. By some miracle, we ended up at our hotel. I prefer to believe it was devine guidance. On the way, we discovered we were in Gotham. It wasn't hard to tell, all we had to do was look up. The buildings were somewhat shrouded in fog. Did I mention it was raining? Constantly? The entire weekend? The fog swirled around the tops of the buildings. One building in particular had lights shining off the top, cutting through the fog, just waiting for the Bat signal to be blasted into the sky. It was Gotham. I'm sure of it. If that wasn't enough proof, the sirens that screamed all night were the clincher. I didn't actually SEE Batman, but I'm pretty sure I saw something dark and caped streak past my 9th floor hotel
+
+=== Text #11 ===
+> Teaching Creation Thursday ~ Make a Fossilized Footprint!
+This is taken from a lesson in the Investigating the Possibilities series by Master Books that will be on the market soon. It is in the Water and Weather book by Tom DeRosa and Carolyn Reeves.
+A fun activity to teach students more about how footprints, casts, and molds formed during the Great Flood.
+Smooth out about ½ to ¾ cup of playdough in a large paper plate. Use a roller or PVC pipe to roll over the clay until it covers the bottom of the plate. Now turn the clay over so the smooth side is up.
+Recruit a volunteer with a fairly small foot. Rub the student’s foot with petroleum jelly. The student should carefully press his foot into the clay as if walking, and then clean the petroleum jelly and clay off his foot.
+Take some more clay (about ½ to ¾ cup) and roll it into a tube or “snake” that is about an inch in diameter and long enough to go around the clay in the paper plate. Place the tube around the edge of the clay and press it into the bottom piece of clay to make a seal. Squeeze and flatten the tube to make a wall around the footprint impression to make a bowl that can hold the liquid plaster.
+Now measure out 2 cups of Plaster of Paris into a disposable container. Measure 1 cup of water, and pour it slowly into the plaster, stirring and mixing continually. If the mixture is still dry, add more water a little at a time until it is like pudding. When mixed well, pour about half the plaster over the impression in the clay. Lift your plate with two hands a few cm high and let it plop down on the table. Do this a few more times. This will spread the plaster and bring air bubbles up to the surface.
+Allow the plaster to harden. It should harden in an hour or more. After it has hardened, carefully remove the plaster from the clay and observe the impression of the footprint. Look at the clay as well as the plaster.
+1. Describe the impression in the clay.
+2. Describe how the bottom of the Plaster of Paris looks.
+While your plaster is still wet, put some of it in a small meat tray. Rub the leaf with petroleum jelly. Quickly, but gently, place a leaf on top of the plaster and cover with plastic wrap. Use a block to
+
+=== Text #12 ===
+> I. Causes of Heart Failure: What every physician needs to know.
+Heart failure (HF) is a[ clinical] syndrome in which the heart is unable to[ provide] sufficient blood flow to meet the metabolic needs of the body, or is only able to do so with significantly increased intracardiac filling pressure. However, this is a somewhat older definition, and many people now define heart failure as a[ clinical] syndrome where there is structural heart[ disease] and[ impaired function].
+Heart[ failure] is[ often referred] to as[ congest]ive heart failure (CHF). Many experts believe that the term “congestion” does not[ uniformly] apply to all patients, and the syndrome is often referred to as “heart failure” in more contemporary times.
+Heart failure is most often characterized as systolic[,] if ejection fraction (EF) is[ decreased], and diastolic, if ejection fraction is preserved. “Diastolic” heart failure is also often called heart failure with preserved ejection fraction (HFPEF) or heart failure with preserved systolic function (HFPSF).
+Systolic heart failure is often due to damage to the heart, such as is[chem]ia or alcohol exposure. Diastolic heart failure is often due to[ longstanding hypertension] or[ intr]acardiac[ infiltration such] as with amyloid protein, which[ �]�stiffens” both[ vent]ricles. It is not usually possible to distinguish systolic from diastolic heart failure based on signs and symptoms alone, as both[ share substantial clinical features].
+II. Diagnostic Confirmation: Are you sure your patient has Heart Failure?
+Heart failure is diagnosed at the[ bed]side using history and physical findings. There is no absolute laboratory test for the diagnosis of heart failure.
+A characteristic history includes exert[ional dysp]nea, fatigue, and edema. Physical exam would be notable for volume overload (jugular venous[ dist]ention, dependent edema), S3 gallop, and often pulmonary rales.
+However, it is important to note that the absence of rales does not exclude heart failure, as the lymphatic[ system] can[ provide substantial] compensation, particularly in patients with[ chronic] heart[ failure]. Pulmonary[ congestion] is typically evident on chest radiography.
+Plasma brain natriuretic pept[ide] (BNP) or N-[termin]al[ pro]-BNP (NT-proBNP) levels are typically[ elevated,] although renal[ failure and obesity are commonly] recognized[ conf]ounders.[ The hallmark] laboratory exam[ of] heart[ failure] is[ an] ech
+
+=== Text #13 ===
+> The OMAP-L[138 family of MityD]SP[ System on Mod]ules[ (S]OM)[ includes the MityD]SP[-]L[138](F)[ and Mity]SOM[-]1808(F).[ These] modules[ feature] Texas Instruments’ OMAP & Sitara families[ of] single[ and] multi-core processors[ tightly] integrated with[ the] Spartan-6 FPGA from Xilinx.[ This] architecture[ provides system] designers with[ the] flexibility to address[ a] wide range of[ system] requirements.
+[Given that] all modules in[ the family] are pin-for-[pin] compatible, and that each is available with and without the on-board FPGA, this[ family] readily handles evolving product requirements, or those of a[ family] of products requiring various levels of processing capability.
+Note: Interfaces in[ the] OMAP-L[138] &[ AM]1808[ share] I/O pins, contact Critical Link for information on whether[ your] specific set of interfaces are effected by on-chip pin[ m]uxing.[ In] addition to[ these] integrated interfaces[, the] on-board FPGA allows for additional standard and custom interfaces to be added to[ the] module’s capabilities. Using Critical Link’s library of available FPGA I/O cores, designers can easily add a variety of additional interface support to their designs, or design their own custom interface or logic to offload the CPU subsystem.
+
+=== Text #14 ===
+> I have it for more than half a year..simply can't live without it. Can't even imagine flying without it now. Drivers are getting better, does more fluent job. Now it remembers staying in absolute mode and I can safely shutdown Windows (XP SP1) without getting the trackir drivers stuck. Simply amazing!!!
+I've used it for 3 years now in sims. Still works as new.
+Software has been constantly improved and it gets better and better all the time.
+The longer you have it the more you like it, I hated it at first but now I wont fly without it.
+You just have to learn to use it,for example always sit the same distance from the Tir unit or the responce will vary greatly.And use lots of deadzone at first then slowly reduce it as your skills improve.
+Brought the 3D into flightsimming, that's for sure. Now I can look at my instruments, out the window, through my body by turning my head.
+It's not like in real life, but it gets closer..
+I still use it from time to time.
+I find it of less value/use on non-full real.
+When I have the 'pit off or external views I find it disorienting, but that may be down to practice!
+And as I am having a major problem adjusting to the new FM's I don't have the time or patience to put into TIR in these circumstances!
+And the orientation is automatic because you always have feedback where you look, because you move your head in that direction. But if you're not used to it, it may take a bit of practice. It's not hard though.
+So when i fly pit off, i only fly with just the gunsight as visual reference and never lose orientation. TrackIR is handy with all settings, medium easy or hard. It's just like using a joystick to fly when for years you've been using the arrow keys to fly. TrackIR is also the HOTAS (= hands OFF throttle and stick) to look around.
+Sometimes i watch trk's in external view and recreate external padlock with the trackIR. Focusing on 1 plane while tracking the other(s) with it. You can do that all without pressing buttons. It's great. So people who think trackIR is only usefull in full real games haven't yet discovered the full capability of trackIR yet./i/smilies/16x16_smiley
+
+=== Text #15 ===
+> Anyone who has done a quick search on what to see in Norway certainly came across Preikestolen. It is one of the most popular hikes in the whole country. Not everyone experiences it the same way, however. Outdoor Life Norway is a guided service that offers guests a chance to see Pulpit Rock like most will never experience. The sunrise hike is an amazing way to up your chances of getting those stunning views without the crowds. If you truly want an original experience, though, go with their "Off the beaten track" tour. This hike begins with canoeing across a glacial lake to a long forgotten trail. Traverse the trail through multiple altitudinal zones and scramble up to the top of the fjord. There you can hike along until you reach your destination, a beautiful view of Preikestolen! There you can enjoy your view that majority of the hikers are missing. From there you will travel down to Pulpit Rock itself for some more photos. The trip down follows the more popular marked trail. If you are lucky enough, you may run into some of the Sherpas that have built the trails! If you're looking for more tours to fill up time in Norway, Outdoor Life Norway offers many guided services year round.
+The land of fire and ice is an outdoor enthusiasts playground. Scuba diving in Silfra had been on my bucket list for years. It was a massive influence for me to get my PADI Open Water certification. Once I got my certification I remember my instructor asking me where I would go now that I could explore underwater paradises. I excitedly announced I'd be going to Iceland. He did not seem amused. "Don't you want to start somewhere... warmer?" I brushed off his remark as quickly as I whisked off my hood and booties. I had my mind made up. Silfra was my white whale and I finally had it in my headlights. When everything was booked, I was struck with panic. For years I had dreamed of Silfra, a place where you could swim between the North American and Eurasian continental plates. Would it be as spectacular as I had made it out to be?? Oh yes it was. The crystal clear glacial water is nearly ice cold and is filtered through lava creating over 300ft of visability. This quality of water means you can sip it while you're diving. It doesn't get fresher than that. Being able to say i've touched both continental plates at the same time in the only place in the
+
+=== Text #16 ===
+> In 1972, snow storm covered the Andes Mountains, the small plane of 40-seat was flying through it. The destination was in Chile, but the weather was not so bad even when the plane touched the sky from Uruguay. After that, the jet jumped heavily in the air, when it was calm to hit the hill and hit it in the other side, many of the 40 people had died in the death country and the rest of them were busy playing the last game with sure death. One of them was Petro Alguta. The crowd of dead bodies lay down all around. There are many human bodies in the same way that they are covered in rice. They did not even die, have survived. But nobody knows how long it can be possible to survive in the cold. Petro's the same condition. The next passenger was dead soon. Petro has gone out of the broken door by removing the dead bodies, along with a few others.
+In the question what would happen, a passenger suddenly lit torch of light, He said, "Do not worry, the news of the crash of the plane has reached Chile, from where the rescue team came. After several days have passed, no one is seen. Meanwhile, a few more people have died in the blaze. Then a few young people survived but then he fought with death, but again, how did this situation go away? Meanwhile, the coolness of the cold is rising, the cutting of the wind is blowing like a carrot but no one has left the cold, no one will survive, but death is sure. Meanwhile, the man's food and the last tension of the water quickly burnt down in the face. No one can survive the end of the meal. Without food, it is impossible to survive in this cold if there is no magic. Meanwhile, Petro looked at a glimpse of the clock and 13 days had passed but no one else was seen.
+They are forgetting the rest of the world, so no one is coming to save them. Then everyone decides to live if they have to eat and if there is no food then dead friends are the only hope. The first was[ vom]ited, most of the people then started eating meat of man like a madman, and then they started eating meat. Petro's fate was a friend's cut hand and thighs. Petro was biting his bite. On the day that the people became angry they became a monster. About 25 years after that terrible experience, Petro wrote a book named in to the Mountain. He gave a detailed
+
+=== Text #17 ===
+> Replies: 2 (Who?), Viewed: 4642 times.
+#1 10th Sep 2018 at 5:44 PM Last edited by PolarBearSims : 20th Feb 2019 at 10:49 PM.
+I started this challenge on my youtube and you can find that HERE if you would like to watch it.
+I had an idea to do a challenge where my sim had to build everything for the town. So I started googling to see if there was any challenges already out there that did what I was looking for. A few that I found wasn't really what I was looking for. I wanted to also create all the rabbit hole lots along with the residential lots with out having to move into each house and leave other sims behind. I didn't want to have to repopulate the whole town with just my sim either so I decided to create my own. So here is what I have come up with so far.
+I was requested to write down the rules for this challenge so here are the challenge rules!
+Your sim has come from an over crowded town with lots of noise and pollution. They have traveled far away from any civilization and has settled here to start over from scratch. This area has no buildings, no houses and no residents. This is a great place for your sim to start over in life and build everything from scratch from the ground up.
+Pick any world you like and go into Edit Town and delete every house and building. This includes any rabbit holes.
+Pick your sim either by creating new or a preexisting one.
+Your lifespan can be what ever you want, I suggest a long one. I'm using a fairy so I have a very long life span.
+Your sim will not have a job to start out with so you will need to make money in other ways like fishing, searching for flowers or gems to sell.
+Once your sim has some money you can do other things to make money as well like painting, photography, writing for example.
+Once some job buildings are placed you can have your sim have a job along with previous mentions of money making activities.
+Your sim can buy properties or become business owners to make money as well.
+~When you build the house to rent, you don't need to build with your own money otherwise your sim will end up spending double the cost. Build the house then go in and have your sim rent it out.
+~Once a residential lot has been created for a certain category, you can add to
+
+=== Text #18 ===
+> Hi my name is Dan Shipper I’m a sophomore at the University of Pennsylvania and over the past 7 months I’ve been covered in TechCrunch (here), Mashable (here), TheNextWeb (here) and others for projects I’ve built both as a solo developer and with a team of my friends.
+The absolute best way to get coverage from any media outlet is to know someone who works there, or know someone who knows someone who works there. Journalists, especially tech journalists, get pitched every single day by hundreds of people. Their inboxes are overflowing with emails talking about “amazing,” “world-changing,” “life-altering” startups. That means that your absolute best chance to get coverage for your project is to email everyone you know and ask them if they know anyone who writes for a big blog. Don’t be afraid to ask – the worst anyone can say is no.
+If you don’t know anyone who knows anyone that writes for a tech site, don’t worry. Compile a list of every tech site you can think of, write a pitch and email all of them. The chances of success are low, but you may get lucky. This is how we got covered in Mashable. If you have a product with traction, excited users, funding, or a really good story you’ve just beaten out 90% of the other cold emails that these blogs get. The most important part is showing in your email that you have a great story to tell that would appeal to the blog’s audience. And keep it short – generally your emails won’t be read past the first few sentences.
+We got on TechCrunch by creating a Twitter account called YC Y U NO and making fun of a bunch of YC startups. Seriously. Now, we had no idea when we did it at first that it would lead to getting on TechCrunch. We did it on a whim just for fun. But for some reason people really seemed to like the tweets we were coming up with, a bunch of YC founders started following us as well as a few TechCrunch writers. From there we DMed one of them and they agreed to write a story about us and our new project.
+Get the names of some writers that you admire, or think would be interested in covering you and see if you have any LinkedIn or Facebook connections. I know a lot of people who use this
+
+=== Text #19 ===
+> New research from the University of Illinois in Chicago suggests that[ fetal exposure] to[ a] commonly used chemical which is found in products such as water bottles, soup can liners and paper receipts, can increase the risk of prostate cancer later in life.
+Exposure of the fetus to the chemical BPA in utero has been linked to[ several] kinds of cancer, including prostate cancer[,] in[ rodent models in the past].[ The new findings show that human prostate] tissue[ could also be susceptible].
+"[The] safety[ of B]PA[ has long been a] contentious[ topic] of debate and this is not the first time that it has been linked to some types of cancer. However, research in[ this area] is fraught with difficulties because it[ relies] solely on testing the impact of the chemical in cell or animal models. It is therefore difficult to draw conclusions as to what might happen in real-life and as such we cannot make a definitive link between BPA exposure and prostate cancer[ in later] life based on[ the results of this] study.
+This study[ highlights that] much more needs to be done to[ identify the lifestyle] and[ environmental] factors[ that put] men more at[ risk of prostate] cancer so that we can[ start] to[ reduce the] number of deaths from the disease."
+
+=== Text #20 ===
+> Last night a few of us from The Bier Abbey had the opportunity to stop down the Capital Region’s newest brewery, Rare Form Brewing Company, meet owners Kevin Mullen and Jenny Kemp, check out the new space, and of course try some beers they had on tap. It was a breath of fresh air, for both the continuation of the improvement of Troy, but also for the craft beer scene in the Upstate New York.
+The taproom itself looks bigger than it really is, given that the brewery is directly behind the bar. The bar area holds about 40 people, with a small room off to the side available for private groups or holding tastings. Stools and standing room are available at the bar, while there are some tables and benches off to each side.
+The brew house is a Beast 5 BBL system from Psycho Brew that allows for brewing either a double batch or two beers at the same time, which will be nice to do some smaller experimental batches.
+The taps are split between the two sides of the bar, each side with its own glass rinser, which is good to see (nothing worse than putting good beer in a dirty glass). There will be a couple of nitro offerings, as well.
+While looking around I was a little confused exactly where their cooler was, not realizing there was a downstairs not readily visible from the bar. Kevin took me for a quick tour of the cooler they made themselves. It looks like they have plenty of Rare Form branded cooperage hiding out down there.
+Back at the bar, glass sizes vary depending on the beer and ABV, and as Todd pointed out last night it would be nice to see glass sizes listed on the chalkboard as well. There are still some folks who don’t “get” that not all beers are meant to be served in a 16 ounce glass, and it can be a shock when someone is served a beer in a glass half the size than what they were expecting.
+As for the beers themselves, I’ll be honest, whenever I walk into a new brewery opening up in the Capital Region, I have my reservations and things were no different yesterday at Rare Form. I’ve been burned more often than I would like to admit by local brewers who started as homebrewers, were encouraged by friends and family to start brewery, and never really upped their game. Kevin has been brewing in various stages for “more than half [his] life” at this point, and
+
+
+Description: 
+2025-07-25 21:06:16,196 - root - INFO - Gene expression in human and mouse brain tissue, cell lines, and transcription factor binding sites, along with other biological entity associations
+
+2025-07-25 21:06:16,201 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3124_clusters-1_2025-07-25_18-56-40.csv
+2025-07-25 21:06:16,201 - root - INFO - ================================================================================
+2025-07-25 21:06:16,202 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 21:06:16,203 - root - INFO - ================================================================================
+2025-07-25 21:06:16,204 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-3124_clusters-1_2025-07-25_18-56-40.log
+2025-07-25 21:06:16,205 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3124_clusters-1_2025-07-25_18-56-40.csv

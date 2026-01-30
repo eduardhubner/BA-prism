@@ -1,0 +1,970 @@
+2025-05-10 09:15:47,417 - root - INFO - ================================================================================
+2025-05-10 09:15:47,449 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-10 09:15:47,450 - root - INFO - ================================================================================
+2025-05-10 09:15:47,451 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-10 09:15:47,451 - root - INFO - AGG_METHOD = mean
+2025-05-10 09:15:47,452 - root - INFO - BATCH_SIZE = 2
+2025-05-10 09:15:47,452 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 09:15:47,453 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-10 09:15:47,453 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-10 09:15:47,454 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-10 09:15:47,454 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-10 09:15:47,454 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-10 09:15:47,455 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-10 09:15:47,455 - root - INFO - CONTROL_SPLIT = train
+2025-05-10 09:15:47,455 - root - INFO - DATA_FILES = None
+2025-05-10 09:15:47,456 - root - INFO - DEVICE = cuda
+2025-05-10 09:15:47,456 - root - INFO - END_INTERVAL = 1.0
+2025-05-10 09:15:47,457 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 09:15:47,457 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-10 09:15:47,458 - root - INFO - EXPLAIN_FILE = missing.csv
+2025-05-10 09:15:47,458 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-10 09:15:47,458 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-10 09:15:47,459 - root - INFO - HOOK_ID = hook_resid_post
+2025-05-10 09:15:47,459 - root - INFO - HOOK_NAME = blocks.10.hook_resid_post
+2025-05-10 09:15:47,459 - root - INFO - LAYER_ID = 10
+2025-05-10 09:15:47,460 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-10 09:15:47,460 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-10 09:15:47,460 - root - INFO - METHOD_NAME = output-centric
+2025-05-10 09:15:47,461 - root - INFO - MULTI_EVAL = True
+2025-05-10 09:15:47,461 - root - INFO - N_CLUSTERS = 5
+2025-05-10 09:15:47,461 - root - INFO - N_SAMPLES = 10
+2025-05-10 09:15:47,462 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-10 09:15:47,462 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-10 09:15:47,462 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-10 09:15:47,463 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-10 09:15:47,464 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-10 09:15:47,464 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-10 09:15:47,464 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-10 09:15:47,465 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-10 09:15:47,465 - root - INFO - SIMEVAL_DATA = c4
+2025-05-10 09:15:47,466 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-10 09:15:47,466 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-10 09:15:47,466 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-10 09:15:47,467 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-10 09:15:47,467 - root - INFO - SPLIT = train
+2025-05-10 09:15:47,468 - root - INFO - START_INTERVAL = 0.99
+2025-05-10 09:15:47,468 - root - INFO - STREAMING = True
+2025-05-10 09:15:47,468 - root - INFO - SUBSET_SIZE = 1000
+2025-05-10 09:15:47,469 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-10 09:15:47,469 - root - INFO - TARGET_DATA = c4
+2025-05-10 09:15:47,470 - root - INFO - TARGET_MODEL_NAME = gpt2-small-sae
+2025-05-10 09:15:47,470 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 09:15:47,470 - root - INFO - UNIT_ID = 20265
+2025-05-10 09:15:47,471 - root - INFO - USE_API = True
+2025-05-10 09:15:47,471 - root - INFO - VERSION = v5_32k
+2025-05-10 09:15:47,472 - root - INFO - ================================================================================
+2025-05-10 09:15:47,472 - root - INFO - ANALYSIS RESULTS
+2025-05-10 09:15:47,472 - root - INFO - ================================================================================
+2025-05-10 09:15:47,473 - root - INFO - Analysis results will be saved to: logs/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.log
+2025-05-10 09:23:05,612 - root - INFO - Reached 1000 samples.
+2025-05-10 09:23:10,970 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-10 09:23:10,971 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 09:23:18,997 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-10 09:24:17,391 - root - INFO - Number of candidates: 1001
+2025-05-10 09:24:19,135 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-10 09:24:19,136 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  pedal (1.2087584733963013)
+Text #2: stic (0.9018422365188599)
+Text #3:  jewel (0.8259731531143188)
+
+=== Text #1 ===
+> The Chapel was completed in 1874 under Mother Xavier Maguire's directions and forms part of the old convent. As Archbishop Goold was absent in Rome, the ceremony of Opening and Blessing the chapel was performed by the Rev Dean Fitzpatrick on May 24th 1874.
+The Chapel is a beautiful example of a 19th century Gothic revival architecture. Built between 1872-1874, it involved a number of architects in it's design. The original drawings were undertaken by John Bourke of Dublin. Major alterations of these drawings were made by William Wardell and sent back to the Mother House in Dublin, by Mother Xavier. Other changes to the plans were made by Mr T. A. Kelly, of Melbourne who was contracted to build the chapel. No evidence is available as to why the redesigning took place. The stonemasons who originally built the chapel were brought out from Ireland. The side chapel was added in 1877, the architect being Alexander Davidson.
+In 1905 under the guidance of Mother Evangelist Doogan, the sanctuary is beautified and a gothic altar is commissioned by Reid, Smart and Tappin and made by Jaan Kannuluik an Estonian craftsman. After Vatican II, the altar was brought forward so that the priest performing mass could now face the congregation. Sometime after that in 1966 a decision was made to remove the central supporting pillar that divided the main chapel from the boarders' side chapel as the Sisters felt that the pillar obscured the girls' view.
+Forty five years later, in 2010 the Chapel was suffering from extensive cracking in the sanctuary walls, which was always thought to have been caused by drought. When a gang of cockatoos moved into the slate roof and started to destroy it, structural engineers were called in and it was found that the structure had been put at risk by the pillar's removal. For two years the chapel was closed while the pillar was reinstated, the slate roof replaced and the interior, including the highly decorative paint work was completely restored.
+The 128 year old George Fincham organ, has recently had a facelift, with the pipe facade being painted and gilded in a beautiful gothic design by Mulholland Restoration and decorating.
+The organ was presented to Mother Regis Manly, the director of music in the chapel, by Mother Mary Gabriel Sherlock in 1886. Fincham’s two-manual and[ pedal] organ has a french console disposition with the player’s back to the pipe facade, which
+
+=== Text #2 ===
+> Venture and Innovation Awards (VIAs) support transformational and innovative research projects by providing financial support and bringing funding into the field of cy[stic] fibrosis (CF) from external sources.
+Venture and Innovation Awards allow short-term projects to take advantage of innovative opportunities and are designed to leverage additional funding. For every pound spent by the Cystic Fibrosis Trust to fund a VIA, an additional four pound has been leveraged from an external agency.
+The VIA programme is structured as a competitive leverage funding programme, whereby funds will only be awarded following success of an application to an external funding body. External funding bodies include government funding bodies, academic institutions and other medical research charities where applications undergo peer review.
+We agree VIA funding in principle prior to submission of external funding body applications. Please contact us well in advance of your submission in order for us to consider your application so we can add a letter of support.
+The VIA programme relies on the science being peer reviewed by the external funding body, thus we can only consider applications where this peer review will take place. For industry awards we request evidence of internal review prior to awarding funding, please contact us for the process.
+If you wish to apply for a VIA, please contact us researchgrants@cysticfibrosis.org.uk.
+Since we started funding these awards in 2013 we have awarded over 50 grants across a range of different research areas. Descriptions of the types of research we’re funding are listed below, where you can find out more about ongoing projects in the research areas that interest you.
+You can also see who we have partnered with in each VIA, using our colour-coded labels for: NIHR partner, Charity Partner, Pharmaceutical Partner, Academic Partner, Government Agency Partner and Registry Study​.
+The timing of lung exacerbations or a worsening of CF symptoms can be very hard to predict. We’re currently funding studies in children and adults to understand more about them. If we can predict when they might happen, then we can treat them quicker and ultimately aim to make them happen less often.
+Find out more about research into lung exacerbations here.
+While the symptoms of CF are well known, better ways to manage them are continually being developed, helping to keep people healthier and reducing their effects on quality of life. Our research projects range from ensuring that the way lung function is measured is as accurate as possible, to developing drugs that can help break down the mucus in the lungs of people
+
+=== Text #3 ===
+> Jewelry is elegantly gift boxed.
+Included with an inspired saying..."You are a precious[ jewel]" Zech. 9:16.
+This pristine cut crystal is faceted to attract rays of shimmering light.
+Pale sky-blues and metallic steel greys are combined with cool azure at the 'base' light-filled end of its spectrum. A large variation in tonal displays results from changes in ambient and background light conditions. Upon the lighter blue shades, Light Vitrail builds lilac and purple, blending flashes of mauve and some transient pinks.
+Care for your jewelry can be cleaned with a delicate hand-washing detergent and water with a soft cloth, so as not to scratch any beads, crystal, and rhinestones.
+The best way to clean the jewelry is to first spot clean with the soft cloth and a bit of the detergent, and then wipe softly with a slightly damp cloth (water).
+
+=== Text #4 ===
+> Self Image – The idea one has of one’s abilities, appearance, and personality.
+Maintaining a positive self-image can be really difficult. I know, personally, I have always struggled with this. I say “self-image” instead of “body image” because I believe it’s important to love all of yourself. Your style, your taste, your views, your abilities, your personality. There is a word that I feel has maybe fallen on the back burner these days and that word is INDIVIDUAL. You are you, and there is not a single person out there who is exactly like you. That is something to celebrate, not something to shy away from.
+Have you ever let someone else influence how you feel about yourself or how you act?
+For example, maybe you use to love Japanese food, but now, since your partner hates it, you haven’t actually had Japanese food in a very long time. Or maybe you use to love the color red, but someone once said “Red is so not your color” and now every time you go to put on something red, that voice is in your head and you end up changing your mind… Now imagine if we let everyone else dictate everything about us. We would all be an absolute mess. It is important for you to really know yourself. Know what you like and dislike and stick to it. This saying is one that I keep in mind and try to live by.
+Know what you stand for or you will fall for anything.
+I can’t stress how important it is for us to love ourselves and see value in what we have to offer. If we don’t, then how can we expect anyone else to?
+I believe social media certainly plays a role in our mental view of ourselves. How we dress, decorate our home, exercise… social media can even influence something as simple as how we feel about our cleaning routine. I know this first hand because I have allowed other people on social media to make me feel small or inadequate before. Maybe because they have a perfectly organized kitchen or they vacuum their carpet every day and I don’t.
+Let me repeat – I ALLOW myself feel to small or inadequate. These other people do not in any way TRY to make me feel this way.
+Maybe I don’t dust my blinds, or wipe down my fridge every single day – Does that make me a bad mom
+
+=== Text #5 ===
+> God didn’t set us up for an angry rejection but for salvation by our Master, Jesus Christ. He died for us, a death that triggered life…So speak encouraging words to one another. Build up hope so you’ll be together in this, no one left out, no one left behind. I know you’re already doing this; just keep on doing it. I Thessalonians 5:9, 11 The Message Bible The Amplified Bible says in verse 9, He did not select us to condemn us but that we might obtain salvation through our Lord Jesus Christ. God calls and invites us to know Him, to be made right with Him, and to walk in relationship with Him. That calling – that invitation? The cross. Jesus Christ, died for us – a death that triggered life – eternal life. And He invites us – each of us – to share in that life. Accepting that invitation – we get to share in that life. We belong to Him!
+
+=== Text #6 ===
+> No, Trump can’t pardon himself. The Constitution tells us so.
+Correction: An earlier version of this op-ed misspelled the name of former defense secretary Caspar Weinberger. This version has been updated.
+Laurence H. Tribe is the Carl M. Loeb University Professor and Professor of Constitutional Law at Harvard Law School. Richard Painter, a law professor at the University of Minnesota, was chief White House ethics lawyer for President George W. Bush from 2005 to 2007 and is vice-chair of Citizens for Responsibility and Ethics in Washington (CREW). Norman Eisen, a senior fellow at the Brookings Institution, was chief White House ethics lawyer for President Barack Obama from 2009 to 2011 and is chair of CREW.
+Elizabeth Holtzman: In the Russia probe, could Trump pardon himself?
+Dana Milbank: Trump can do whatever he wants. God help us.
+
+=== Text #7 ===
+> What’s the news? A couple of weeks ago, Instagram promised you’d be able to download your data from its servers. It’s now rolled out that feature, as first reported by TechCrunch. It includes photos, videos, comments, profile information and more. It does not, however, appear to include all the analytics data the company has on you outside of what you’ve shared.
+For context: While we’d like to think Instagram will let you download your data simply out of the goodness of its heart, there are two major factors contributing to the decision.
+First there’s the Cambridge Analytica scandal (I’m sure you’ve heard of it by now, but if you need a recap, our explainer post is here).
+Even if Cambridge Analytica had never happened though, allowing users to download data is an important step for complying with Europe’s new General Data Protection Regulation (GDPR). GDPR goes into effect on May 25, so don’t be surprised to see plenty of other apps implementing a similar feature. In fact, you can already do so with Facebook.
+Download it: The feature is available to everyone via the Web now, and is in the process of rolling out to the Android and iOS apps. Still, whether you’re on a desktop of smartphone, you can go ahead download your data by inputting your account information here. Keep in mind it takes some time for Instagram to amass all your data; the company says the process may take ‘up to 48 hours.’ After that’s complete, you’ll receive a link at the provided email address.
+
+=== Text #8 ===
+> The ATO is reviewing its guidance material on ATO ID 2015/10 to make clear its position on buy-sell agreements after some industry backlash earlier this year.
+An ATO spokesperson told SMSF Adviser the interpretative decision by the ATO, ATO ID 2015/10, which found that an arrangement involving a buy-sell agreement breached the sole purpose test, was “based on the facts of that specific case” only.
+“The ATO is reviewing its web guidance material to make it clear that the presence of a buy-sell agreement, on its own, does not result in a breach of the sole purpose test,” the spokesperson said.
+McPherson Super Consulting director Stuart Forsyth said shortly after the release of this ATO ID in March last year, some in the superannuation industry interpreted it as meaning one could never have insurance that was in any way connected to a buy-sell arrangement.
+“Whereas, in fact, the situation they dealt with in the ATO ID was a situation where the insurance was only taken out and facilitated by a buy-sell arrangement,” he told SMSF Adviser.
+Mr Forsyth explained this interpretative decision does not apply to all situations and that with each individual situation “you must work through the facts”.
+“What a lot of people forget is that an ATO ID is a record of an ATO decision on a particular case; it’s not a statement on the commissioner’s general policy and conclusion for all cases, but often people outside the ATO read more into ATO IDs than they should,” Mr Forsyth said.
+Tim Miller of Miller Super Solutions said that in ATO 2015/10, the tax office made the decision that a particular buy-sell arrangement was not appropriate from an SMSF perspective, because it effectively benefitted someone who was not a member of the fund.
+Mr Miller said it looks as though the ATO is correctly identifying that the law does not necessarily prohibit the use of buy-sell arrangements inside super funds.
+“The use of insurance in a member’s account must satisfy the insurance requirement, but it doesn’t necessarily state that you can’t hold the insurance for other purposes, as long as it can satisfy the sole purpose test,” he said.
+
+=== Text #9 ===
+> A weight management supplement. A unique blend of vitamins, minerals and extracts, Burner Capsules are designed to support and aid your goals. Containing caffeine and Vitamin B6 to boost energy levels and curb cravings.
+Cute's Burner Capsules contains natural metabolism boosting ingredients that will have your fat burning cylinders firing all day. You can now finally take control with our proven pink pills and lose that unwanted weight.
+Crushes Cravings - Feel fuller for longer. Takes the edge off hungry pangs and sugar craving. Without the urge to snack in between meals, you can stop making bad food choices and resist the temptation to make unnecessary trips to the fridge.
+Recommended Dosage - Take one/two capsules daily with water.
+Guarana, Magnesium Oxide, Capsule Shell (hydroxypropylmethylcellulose), L-Tyrosine, L-Carnitine L-Tartrate, Ginger Root Powder, Zinc Citrate, Green Tea Extract, Pyridoxine HCI (vitamin B6), Anti-Caking Agent (magnesium stearate), Siberian Ginseng, Chromium Picolinate.
+
+=== Text #10 ===
+> This homemade Scotch Beef Pot Noodle is a meal-in-a-jar!
+If you want to make authentic Scotch- this info would be of use. To make it more authentic use the Muntons and Fisons yeast in a stout recipe first, then recollect and re-pitch into the whiskey mash. For those who have access to it, Hugh Baird malting company sells peated malt that, cut 50-50 with plain two-row malt will give the 17ppm phenols that the heavier whiskeys use (the lighter brands how to make a homemade goalie slide board I love Scotch eggs. I've been wanting to make them at home for so long. I must do it soon. I've been wanting to make them at home for so long. I must do it soon.
+My boyfriend chose this recipe for me to make just by looking at the picture and not the recipe itself. He loved this soup even though he says he does not like turnips and thought they were potatoes.
+
+=== Text #11 ===
+> We are an authorized dealer for the UltiClip!
+We stock the original UltiClip and the UltiClip3!
+The Ulticlip3 features three mounting points that allow it to fit a multitude of holsters including our Mini Concealment Holster and Full Cover IWB Holster.
+Unless otherwise noted, these are IN STOCK and shipping within one to two business days from receipt of order.
+Holster retention is a primary concern when carrying a firearm. If a holster fails to stay fastened to where it is placed adverse results will take place. The following videos demonstrate the tremendous level of retention that Ulticlip provides and what can happen if you use other holster clips. Ulticlip’s unprecedented level of retention makes it more versatile. Read more about its versatility below.
+When it comes to concealed carry , not seeing is believing. A holster is only as concealable as its holster clip. Whether you prefer to carry concealed because it’s discreet or for its tactical advantage Ulticlip is the right choice.
+
+=== Text #12 ===
+> In 1972, snow storm covered the Andes Mountains, the small plane of 40-seat was flying through it. The destination was in Chile, but the weather was not so bad even when the plane touched the sky from Uruguay. After that, the jet jumped heavily in the air, when it was calm to hit the hill and hit it in the other side, many of the 40 people had died in the death country and the rest of them were busy playing the last game with sure death. One of them was Petro Alguta. The crowd of dead bodies lay down all around. There are many human bodies in the same way that they are covered in rice. They did not even die, have survived. But nobody knows how long it can be possible to survive in the cold. Petro's the same condition. The next passenger was dead soon. Petro has gone out of the broken door by removing the dead bodies, along with a few others.
+In the question what would happen, a passenger suddenly lit torch of light, He said, "Do not worry, the news of the crash of the plane has reached Chile, from where the rescue team came. After several days have passed, no one is seen. Meanwhile, a few more people have died in the blaze. Then a few young people survived but then he fought with death, but again, how did this situation go away? Meanwhile, the coolness of the cold is rising, the cutting of the wind is blowing like a carrot but no one has left the cold, no one will survive, but death is sure. Meanwhile, the man's food and the last tension of the water quickly burnt down in the face. No one can survive the end of the meal. Without food, it is impossible to survive in this cold if there is no magic. Meanwhile, Petro looked at a glimpse of the clock and 13 days had passed but no one else was seen.
+They are forgetting the rest of the world, so no one is coming to save them. Then everyone decides to live if they have to eat and if there is no food then dead friends are the only hope. The first was vomited, most of the people then started eating meat of man like a madman, and then they started eating meat. Petro's fate was a friend's cut hand and thighs. Petro was biting his bite. On the day that the people became angry they became a monster. About 25 years after that terrible experience, Petro wrote a book named in to the Mountain. He gave a detailed
+
+=== Text #13 ===
+> The weather outside doesn't always call for a jacket, sometimes a vest will do the job. Also some boys are like little toasters, hot when others are shivering which makes this puffy vest for boys by Appaman a perfect choice. We, at The Boy's Store, love taht every little detail in this boy's vest is well though out; from the choice of fabric, the tab behind the zipper, down to the logo monkey pull.
+"Puffy" vests are the perfect in-between warmth providing boy's outerwear.
+
+=== Text #14 ===
+> Sign up to Lineout to stay up to date with all of the latest RUPA news / Thanks for subscribing!
+With Rugby World Cup (“RWC”) underway the eyes of the world are on our sport. One of the most topical debates across all contact sports is the issue of concussion management.
+All stakeholders will be looking forward to a RWC in which players, medical personnel and team support staff play their part in managing this important aspect of player welfare. Rugby is making significant progress in the detection and management of concussion and it will be important that other professional rugby competitions move to adopt the standards set for RWC 2015. Rugby should not see the management of concussion as a risk at RWC, but an opportunity to demonstrate how far the game has come in recent times.
+The International Rugby Players Association (“IRPA”) is constantly thinking about what more can be done to further improve the games ability to manage the issues associated with concussion.
+Effective from 1st August 2015 after a successful global trial period at elite level, World Rugby has now formally introduced a temporary substitution rule. This applies to any player who is removed from the field of play to undertake a Head Injury Assessment (HIA) when it is unclear if that player has a suspected concussion.
+Having the ability to remove a player from the action and from the cauldron of a packed stadium, to undertake a thorough clinical assessment and video review of an incident, in a private controlled environment, makes good practical sense. Previously players in this situation would often go untreated, or be checked over briefly on field using questionable methods.
+World Rugby and other key stakeholders are leading a real culture shift amongst professional players, coaches and medical personnel in relation to peer pressure to play. Recent statistics back this up. Research has underpinned the HIA process throughout. Prior to the temporary substitution trial, 56 per cent of players with a confirmed concussion remained on the field following their injury. Now that figure is less than 12 per cent (British Journal of Sports Medicine, 2014) and the hope is that following continued refinement of the HIA process we will see further improvement in 2015 and beyond.
+A key point lost on many but one that IRPA believes is fundamental to a conservative management approach is that a player is now removed once the attending medics confirm a diagnosis of suspected concussion. This takes the pressure off trying to make a definitive diagnosis of concussion during a high-pressured game. That does mean players will be removed who have not suffered a concussion, but better
+
+=== Text #15 ===
+> CEOs and CFOs of private or closely held businesses engage us for audit, tax, employee benefit, and advisory services, to help owners manage their business. We work with companies at all life cycle stages, tailoring our focus and related services to their changing needs – whether their objectives be securing financing, making informed management decisions, responding effectively to competitive challenges, or preparing for the future. We believe that our commitment to the highest standards of quality and the importance of our own reputation ensure that our work product provides immediate credibility to interested parties such as bankers, potential investors and all stakeholders.
+U.S. public companies, their executives and advisors operate in a regulated environment in which they face complex and ever changing requirements that call for expert support. EisnerAmper is a PCAOB-registered firm that provides support to our publicly traded companies across a vast array of services including audit, tax advisory, internal audit, SEC accounting and reporting, forensic investigation, 11K pension audits, and litigation support. Clients who engage us for internal audit access our Sarbanes Oxley (section 404) and internal controls expertise. Our external audit clients benefit from working with experienced professionals that understand the importance of anticipating and planning as opposed to simply reacting, thus identifying areas of potential concern as early in the process as possible. For both internal and external audit services, EisnerAmper’s approach is designed to distill insight that will support the oversight responsibilities of managements, board audit committees and individual board directors. We also work with private companies and entities considering IPOs, and are one of the nation’s largest providers of professional accounting and audit services to SEC registrants.
+The protection of valuable Intellectual Property assets, including copyrights, trademarks, patents and brands, is a year-round activity with material stakes. Whether discrepancies stem from poor systems, processes and controls, mistakes, personnel turnover, contractual misinterpretations or aggressive deductions, EisnerAmper’s Royalty Audit and Contract Compliance Group can help. Our clients are licensors across a variety of industries around the world, as well as universities and research institutes. We work with entities of all sizes seeking compliance with agreements and fair and accurate dispensation.
+EisnerAmper’ s Technical Accounting Advisory Services professionals provide our clients with the technical expertise and insight they require on an as-needed basis, so they can navigate a complex accounting environment without adding additional staff resources. Our transaction support services help guide non-attest clients with complex transactions such as merger and acquisition
+
+=== Text #16 ===
+> Time Team Play ARMY Win Prob.
+It's over, @ArmyWP_MLax beat @navymlax 9-8. Check out the #LaxWP win probability chart.
+
+=== Text #17 ===
+> Taras Filatov graduated from Kharkiv National University of Radioelectronics (KNURE), Ukraine and passed his Master of Philosophy at the Wessex Institute of Technology (WIT). Taras continued his research at WIT and has now successfully passed his PhD viva with the thesis ‘Adaptive Evolutionary Navigation in Knowledge Representation Systems’. His external examiner was Dr Gary Wills from the University of Southampton and the internal was Dr Andrés Peratta.
+The main objective of this work was to develop architecture and carry out the implementation of a fully automated knowledge representation system, capable of rendering textual documents from various unstructured sources, online or offline, into a single web knowledge base where navigation was automatically provided by the system. This navigation was carried out using the principles of natural browsing.
+The system architecture was developed in two main parts: data preparation and interactive knowledge representation. Novel approaches were introduced in both the data compression and representation parts to overcome difficulties that had prevented the construction of comprehensive full cycle systems in the past.
+The data preparation employed modern information retrieval techniques, such as search engine elements, and represented the documents corpus as vector space. However, a distinguishing part was the application of the dimensionality reduction technique to reduce the vector space while keeping the relevance calculation features by reducing the dimensionality on initial vector space to intrinsic dimensionality value.
+The interactive knowledge representation implemented the innovative concept of a ‘live’ navigational panel powered with evolutionary algorithms. This was achieved through the system of rules divided into two algorithms serving both dormant and active cycles of user-system interaction.
+As a result of his research, both examiners recommended the award of Doctor of Philosophy.
+
+=== Text #18 ===
+> A free-standing, exterior, sculptural work for the Greenwood Neighborhood Fire Station. In moments of crisis and times of peace, fire stations are beacons of safety embedded in our urban infrastructure. This sculpture is inspired by the multi-layered processes of fire fighting and aid response, with attention to how crisis changes our relationship to space and time. Color change triggered by station alarm system. Lead Artist. Photo Credit: Spike Mafford.
+
+=== Text #19 ===
+> This is a blog, and its got an RSS feed. It feels like RSS feeds are becoming more and more common every day. Part of this is due to the growing popularity of blogs, and partly because web users are becoming a little more savvy.
+Once upon a time there was a web user. We’ll call her Betty. Betty found a blog she liked to read, and she checked back daily for new posts. Then Betty found out about some more blogs she liked, so she started checking those daily too. It wasn’t look before Betty was checking 30 blogs every day – and wow, it was starting to take a while!
+This is where RSS feeds come in. RSS (Really Simple Syndication) is a way for a blog to make its content available in an easily transportable format. So Betty signed up to Google Reader (or any of a million other aggregators (RSS Readers), where she could read all 30 of her blogs in one place, without wasting time visiting all of these other sites. And she lived happily ever after.
+Its very common now to visit a blog and see a button linking to the RSS feed for that blog. But in most cases, when you click the icon, you saw raw code.
+Its got an info-box at the top showing ways to subscribe, and it lays out the raw data in an acceptable manner. This is done with the help of XLST. Because XLST doesn’t just dictate style rules but it also allows you to add other content in – content only visible to the web browser, not shown by the reader. Which is great for that “here’s an RSS feed, and here’s what you can do with it” message that should be at the top of an RSS feed.
+You see, me – I find an RSS feed, I copy/paste the url into Google Reader. But someone who hasn’t experienced RSS before really needs an introductory note.
+So, if you publish an RSS feed, visit it in your web-browser to see what your visitors will see. Does yours look as pretty as mine?
+I’m going to be modifying some scripts I wrote for other projects to publish RSS feeds, and I’m going to be integrating XLST in there. Now, I’ve never done this before, so I have a bit of research/learning to do first. I’ll post again with a tutorial on the basics of XL
+
+=== Text #20 ===
+> 19/06/2014 · Today the average American’s health insurance payments fluctuate once a year. Imagine if that rate changed each day, determined in part by a sensor-rich.
+Incredibly, some insurers are even raising rates for autonomous vehicles. ROOT is a registered service mark of Root Insurance Company, Columbus, OH. This story.
+to tailor and design policy premiums. But not only auto insurers use big data and.
+If you are 60-69 your term life insurance premiums start at $76 and $100 for women and men respectively. See rates for other ages as well.
+a car. Nothing mind-blowing, but the kind of cheap, solid, basic transportation that’s increasingly hard to find in America as we kill off our small cars and move to.
+Car thefts increased last year. insurers when assessing the price of your motor insurance policy. “In recent years the average cost of motor insurance has been.
+Low-income people with diabetes are better able to afford their medications.
+Car thefts have increased by over. insurers when assessing the price of your motor insurance policy, in recent years the average cost of motor insurance has been.
+Campus Health Health Education Alcohol, Tobacco, and Other Drugs Smoking Tobacco. People begin smoking for many reasons—some start smoking to try to fit in with.
+
+
+Description: 
+2025-05-10 09:24:19,137 - root - INFO - Musical instrument components, genetic disorders, and valuable objects
+
+2025-05-10 09:24:19,139 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.csv
+2025-05-10 09:24:20,398 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-10 09:24:20,399 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+
+
+=== Text #1 ===
+> Everyone has their own secret destinations to enjoy their emotional feelings whether it may be adults or children or even old peoples. Taking rest with a peaceful mind is a blessing.
+Some will get that and some will not,because of the mystery of life. each and everyone wants a bed space in their life. All creatures in the universe rest. Family is one of the happiest and most wonderful place for work and rest.
+Family will have a shelter and most happiest moments in life. Bedrooms are the most secure and safe place according to the family atmosphere. let it be children or adults.
+Every one will have an idea of how should be their happy sleepy comfort zone with Doc mcstuffins bedroom set! Adults and grown ups create a romantic mood while old ones create a holy dwelling place but apart from these two children create or they want a happy sleepy zone.
+It provides calm and peaceful atmosphere and healthy surroundings to children and their by to their parents.In order to raise children happily and thereby their happy parents Doc McStuffins Bedroom sets and other bed room sets will help the children to be happy, creative and energetic.
+Kids can also literally immerse themselves and they will grow intelligently.
+The adorable collections of Doc mcstuffins bedroom sets generates fun and learning among children and create an jolly atmosphere in the family. Let the kids enjoy with the charm and lovely affection of McStuffins bed. Happy Twinkle Sleep!
+Bedroom tv stand dresser – enjoy the added advantage!
+Icarly bedroom – 12 ways to make your children happy!
+
+=== Text #2 ===
+> The worlds of ancient finance and cryptocurrency have continually been divided, for restrictive and technical reasons. Till recently, it had been troublesome for cryptocurrency traders to realize exposure to stocks and commodities. Currency.com is trying to remedy that through launching the “Bitmex of stocks,” a crypto-friendly platform that guarantees high leverage and low barriers for entry.
+in mid-January, news.Bitcoin.com reported onCurrency.com, a Belarus-based mercantilism platform for tokenized securities. Not like alternative platforms of this nature, Currency.com guarantees entry to retail investors and a marketplace of pronto tradable assets from day one. What’s a lot of, these comprise globally recognizable assets like Microsoft stock, gas, oil, and therefore the National Association of Securities Dealers Automated Quotations a hundred. The platform is currently board invite-only mode, with around many traders golf shot it through its paces. Another 113,000 and investigating area unit on the roll.
+This week, news.Bitcoin.com spoke to Currency.com corporate executive Ivan Gowan to find out a lot of regarding the interest the exchange has received, and therefore the restrictive supplying of launching such AN operation from European country. Gowan explained what proportion of that interest has come back from the English and Russian speaking worlds, with seventy % of these on the roll hailing from japanese Europe. Western Europe, Japan, and peninsula account for the remaining regions that have shown sturdy interest within the exchange. U.S. citizens, however, area unit unable to register at this point.
+CEO Ivan Gowan divides his time between London and European country, wherever Currency.com includes a massive technical team operative out of the country’s engineering Park. He speaks warmly of the “innovative legislation” that’s been created to incubate cryptocurrencies and blockchain in European country during a bid to drive economic process, and of the standard talent pool that features extremely skilled programmers with a robust work ethic.
+Although obtaining regulated within the U.S. is on Currency.com’s semipermanent roadmap, there is important hurdles that has got to be overcome to realize SEC approval. Within the meanwhile, there’s work to be done onboarding the tens of thousands of users on the roll. Once through the exchange’s virtual doors, they’re going to be unengaged to deposit funds with BTC or ETH, yet as edict currency, and there is
+
+=== Text #3 ===
+> We have plenty of experience in moving services. We have ourown fleet of vehicles (lorries) & advanced facilities. Our services aims are to provide prompt and on-schedule services and reasonable prices especially for small-medium size of business sector. Our services include moving for office, households, piano, cargo storage, export, packing services through out H.k. lsland, Kowloon & New Territories. Our staff is well-trained and attentive and gives you satisfied moving service and arrangement. Safe, prudent & caringservices anr provided to ensure that goods are delivered on time and in good condition. We treasure every customer and will go provide excellent,services go customers. Free quotation is welcome. Should you have any queries, please contact us for more details.
+
+=== Text #4 ===
+> A full time vegan, poet, artist and woman.
+Frontal and thorough when inspired.
+Our memories: childhood memories, the language we dearly speak and nature's colorful and tasteful palette are a constant and renewable source of wonder and inspiration.
+I am just getting through finishing two special orders of my Xocolate Bears new edition, which are going to Costa Rica. Both orders are reconnecting me with childhood friends and grade school teachers.
+I sell my projects on Etsy. In local shops and in our hometown San Jose, Costa Rica in La Tienda Eñé a shop supporting local indie and urban designers, artisans and artists.
+Handmade over mass production, and over all those other products largely available. Handmade by choice to keep our creative and critical side active, to balance and renovate while innovating ourselves every day. Handmade is more a legacy and tradition worth the while to take back and pass down, its techniques connected to our earlier days and years. The things we made, the stuff we broke. Handmade is the milestones we will all like to share. Going back and supporting handmade will keep creativity at edge and sharp.
+
+=== Text #5 ===
+> Awesome product.... makes me feel more comfortable when I have to leave the room for a moment and Grandma is in the other room! Gives added security for Grandma and me. Thanks Lumex!
+Graham-Field Lumex - Fast Alert Basic Patient Alarm is a chair pad alarm system that sends an alert to warn the staff or caregiver when the user slips out or gets out of their chair.
+This alarm pad works well in a variety of chair styles including wheelchairs. The alarm secures to the seat with a metal clip. Pad Size: 10" x 15". Available as a system, alarm only and sensor pad only.
+The Fast Alert Basic Alarm is a home health product that serves as a personal protection device for both the patient and the caregiver. Often seen in hospitals and nursing homes. It is an ideal safety alarm for the elderly and anyone who needs the security of a alert system while sitting.
+The Fast Alert Basic Patient Alarm is sold as a complete system. The Alarm and chair replacement sensor are also sold as replacement parts and can be purchased separately - see options above.
+Note: Protect Fast-Alert sensor pad with waterproof disposable pad if there is risk of incontinence or liquid spills.
+
+=== Text #6 ===
+> In 1997 Ronald Phillips published their first annual catalogue attracting buyers from outside London as well as overseas. Since the first publication the annual catalogue which includes some of the best and rarest pieces on the market, has proven to be a great success not only as a selling tool but also as a reference book finding a welcome home in many furniture collectors library. Hard bound, extensively researched and beautifully illustrated; representing a colourful cross-section of what is available at Ronald Phillips.
+
+=== Text #7 ===
+> Robinson Metal, Inc., will be recognized for its collaborative efforts with area educators October 25, 2017, when it receives the Educational Partnership Award at the fifth annual Excellence in Manufacturing/K-12 Partnerships Awards event in Green Bay, Wisconsin. The event, sponsored by the Northeast Wisconsin Manufacturing Alliance, highlights best practices of manufacturing and education collaborations throughout the region.
+A regional leader in custom metal fabrication and production of metal parts and full turnkey solutions, Robinson Metal is being honored for its commitment to support the education and training required to fill manufacturing and fabrication jobs in Green Bay.
+The NEW Manufacturing Alliance is a group of manufacturers who work with educators, workforce development, chambers of commerce and state organizations to promote manufacturing in the northeast Wisconsin region.
+Robinson Metal has established a reputation for partnering with programs at multiple levels of the education spectrum. The company participates in the Trades Center Academy offered by the De Pere and West De Pere school districts. The apprenticeship program focuses on students who are interested in a skill trade after graduation, and gives them hands-on experience in welding, fabricating and design. Robinson also offers tuition reimbursement for student employees who continue their education.
+In addition to its relationship with the high schools, Robinson Metal has a five-year commitment to Northeast Wisconsin Technical College through the Robinson Metal Inc. Scholarship Program. Students enrolled in a variety of machine tool, welding and mechanical design technology programs are eligible to apply.
+Robinson Metal recently completed its second significant technology investment of the year with the purchase of a WARDJet R-2014 Waterjet large format. The equipment allows multiple large sheets of material to be loaded and cut at the same time, improving quality and efficiency of Robinson’s cutting operations.
+Earlier this summer, the company purchased a SNK RB-5M Bridge Mill. The five-speed, multi-center machine combining automated capabilities with high-precision, high-output machining for increased capacity in producing precision parts for a wide range of industrial customers.
+Robinson Metal operates out of a custom-designed, 185,000-square-foot modern facility. The company is a single-source metal fabrication supplier, employing more than 300 people at its facilities in De Pere, Wisconsin. Its four divisions include: Fab & Machine; Pipe & Vessel; Robinson Custom Enclosures; and Robinson Heating & Cooling.
+For more information about Robinson Metal’s manufacturing and fabrication jobs, please call (920) 494-7411, or visit http://robinsonmetal.
+
+=== Text #8 ===
+> I have existing web site brittlloyd.org. I opened a new domain sayrebuildersrockport.com however I don't have a way to start building this new web site online like I do the other one. Please list the steps to take.
+I see you deleted the domain. Did you no longer want to use it? You can see how to create a new site here, https://community.homestead.com/homestead/topics/how-do-i-create-a-new-site.
+
+=== Text #9 ===
+> Where you’re from: I live in a place called Regensburg, one of the most beautiful towns in Bavaria (if I do say so myself)! The city is both old and new: its history goes all the way back to the 9th century and it was named a UNESCO World Heritage Site in 2006 for its uniquely well-preserved medieval Old Town. At the same time, the universities make it feel very young! It’s a great place to have grown up.
+Where and what you’re studying: I am in the final stages of gaining my Bachelor’s degree in political science and British Studies, having studied in Regensburg and Hong Kong.
+What is one project or activity you enjoyed at the Embassy?
+Being an intern in the economics department at the embassy, the tariffs on steel and aluminium introduced by the United States during my time in DC had a great impact on my work: it was fascinating watching the political process at such proximity! I also really appreciated the department itself because it covers such a wide range of topics. For example, I was able to gain insights into farming and agricultural exports, the implications of the General Data Protection Regulation (GDPR) in the US, but also the challenges of migration and developmental work by visiting various events around the city and aiding colleagues in their research.
+What do you think is one of Germany’s main foreign policy challenges and what should Germany do about it?
+I can only echo what my fellow interns have mentioned in this section: finding and preserving unity – both domestically and within the EU –, strengthening the transatlantic relationship and tackling the rise of populism around the world are issues that must be taken seriously. Likewise, making sure the art of diplomacy and skilled conversation is not lost in a world where a Tweet travels faster than actions.
+What are some cultural impressions you gained of the United States?
+I love how open and communicative people are in the US compared to Germany. Every conversation here starts with a “How are you?” – be it a random person on the street or your Uber driver. If you ask cashiers in Germany about their well-being I can guarantee all you will get are strange looks.
+What has been your biggest surprise with regard to living in Washington?
+I have never been to a place that is more political than DC! This city lives and breathes politics, be it all the government agencies and organizations that are based here, the think tanks and the events they host,
+
+=== Text #10 ===
+> On of the key elements for most cloud solutions and hosting environments is networking. In Azure, using the ARM deployment model, this lab will cover various topics regarding Azure Virtual Networks and how to use them. We will cover proper CIDR selection, region selection, and deploy new virtual networks.
+
+=== Text #11 ===
+> Menara Taming Sari (Melaka Tower) is located at Bandar Hilir, beside Dataran Pahlawan Megamall. It is the first and only gyro tower in Malaysia so far. The tower revolves 360° to provide a panoramic view of Malacca town. From a height of 80 meters, the ride offers you a spectacular and panaromic view of Historical Melaka City and a far with a host of interesting sights such as St Paul’s Hill, Independence Memorial Building, Samudera Museum and the ship, Flor De La Mar, Melaka River, Dataran Pahlawan, Pulau Selat Mosque, Pulau Besar and the Straits of Malacca.
+That apart, you will also see the fast and rapid development taking place in the state.
+The air-conditioned circular observation deck can take 66 people at any one time. You'll stay up there for about seven minutes. Once it reaches the top, a breathtaking, sprawling view of Malacca as far as the eye can see, up to the Straits of Malacca, is clearly visible, especially in good weather, with the Melaka River running through the grand panorama below.
+In addition to the revolving tower for visitors to enjoy bird view of Melaka city, the ticketing building will also be fitted with 5 commercial outlets, which includes a cafe, restaurant, and souvenir shops.
+The admission charges for Menara Taming Sari are RM20 for an adult and RM10 for children below 12 years old. There is a huge car park next to the tower. For further information, please contact Melaka Taming Sari Berhad at +60-6-2881100 or +60-6-2813366.
+Menara Taming Sari opens at 10:00 am and continues till 10:00 pm, daily.
+
+=== Text #12 ===
+> Create a solid foundation for your outfit with the Building Blocks Oval Gold Earrings! A texture gold metal oval shape. Earrings measure 1.5" long.
+Long Hoop at the back.
+
+=== Text #13 ===
+> Currently there are 3 websites listed for this state.
+We are committed to providing for the needs of homeless and owned dogs and cats in our community. Serving over 5,000 companion animals annually through direct intervention and many more through advocacy, we continue to promote the humane values of protection, care, and compassion for all living things.
+The Delaware SPCA is dedicated to the prevention of cruelty and the encouragement of humane treatment of all animals. Established in 1873, Delaware SPCA is the oldest animal welfare organization in the state and has provided continuous service to pets and their companions for more than 135 years.
+Faithful Friends Animal Society is a private animal welfare organization with a No Kill shelter. We are funded through private donations, grants, fees for services and special fundraisers held throughout the year. All cats and dogs in our care stay with us until homes are found.
+
+=== Text #14 ===
+> Tripp Lite's NetController 8-port USB/PS2 KVM Switch is an affordable, highly flexible enterprise class KVM Switch. This unit gives the user a choice of PS2 or USB inputs for the keyboard and mouse, as well as USB or PS2 attachment to the computer. A dedicated daisy-chain port offers expandability up to 128 computers. On- Screen Display (OSD) menu functionality allows for easy switch management and port selection. Other features include: password protection, auto-scanning, auto-logout, firmware upgradeable and video support up to 2048 x 1536 (QXGA) . Mounts easily in a standard 19" rack cabinet, and includes all necessary mounting hardware. Use only Tripp Lite P780 series USB/PS2 KVM cable kits with this unit. Tripp Lite 1-year limited warranty.
+It has great value for 319.42.You should definitely buy one, i definitely recommend buying this Tripp Lite Tripp Lite B042-008 8-port USB/PS2 KVM Switch.
+
+=== Text #15 ===
+> How much does an ISES individual membership cost?
+Annual rate * = annual rate for people residing in lower-income countries.
+How can I become an ISES Member?
+If you are subscribed to our mailing list, you already have an account in our membership system. If you are not subscribed, enter your e-mail address and name in the subscription form in the footer of this website.
+Once logged in, click on "Buy Membership".
+Please update your contact details and preferences by clicking on Edit in the menu. This is important to determine the correct membership category.
+Once your account is set up, you will have access to the Members Area of the ISES website.
+Already an ISES Member? We may have two differing e-mail addresses in our system for you. Please contact us at members [at] ises [dot] org to resolve this issue.
+Please note that there are additional Gold Member, who have chosen to remain annonymous. If you are a Gold Member and would like to be listed here, please contact members [at] ises [dot] org.
+
+=== Text #16 ===
+> The court system in Sheridan, Arkansas is a government institution of Arkansas to settle disagreements involving residents of, or events that occurred in, Sheridan.
+If you are involved in a lawsuit, or any legal dispute, in Sheridan, Arkansas, it's very likely that you will have some contact with the court system.
+Jury Duty: If you a U.S. citizen, and an adult resident of Sheridan, chances are you've interacted with the courts in Sheridan by being called to jury duty, at least once in your life. If you receive a letter informing you that you have jury duty, you have to show up at the court on the appointed date, where you will sit in a "juror pool," waiting to be called into court for an upcoming trial. During the jury selection procedure, you may be eliminated as a possible juror, at which point, your service is complete. If you end up on the jury, you must show up every day for the trial, or risk being held in contempt of court.
+Filing a Lawsuit: When you decide that you need to sue someone in Sheridan, Arkansas civil court, it goes without saying that you're going to spend a lot of time dealing with the judicial system. Even if your case doesn't go to trial (and, statistically, it probably won't), the proceedings can drag on for months. Settlement conferences, disagreements over discovery, and many other issues not directly related to the merits of your lawsuit are going to be overseen by the Sheridan, Arkansas court.
+Being Sued: Likewise, if you're the defendant in a lawsuit, you're going to have a lot of work to do in Sheridan, Arkansas's courts. You and your attorney will have to draft and file an answer to the lawsuit, and plenty of other documents, as well. Furthermore, there are many hearings that usually occur before a trial, to resolve procedural and evidentiary issues.
+Divorce: Most divorces in Sheridan, Arkansas are fairly quick, and don't require a lot of involvement from the courts. Some, however, can get combative, and the local court system may be obligated to resolve disputes between the parties.
+Most people don't have to go to court in Sheridan, Arkansas unless they're dealing with some perplexing legal issues.
+Thus, it's prudent to consult with an experienced civil attorney in Sheridan, Arkansas if you feel that you will be encountering the court system in the near future.
+
+=== Text #17 ===
+> “Do you really think you’re perfect?” The preacher asked.
+Some people act like they’re perfect. Or our faulty memory thinks our loved ones are or were perfect.
+I recently read a facebook post by a friend who was told by a fellow Christian that he rarely sinned. He opined that he was not a sinner, but a saint. Actually, as my friend observed we can be both sinners and saints at the same time. Saints can and do sin.
+As Christians we are not perfect, but we are pardoned. We’re not sinless, but we’re sanctified. We’re not faultless, but we’re forgiven. We learn that our failures don’t have to be final or fatal.
+I might be well to remember that some of God’s greatest heroes failed. Some miserably.
+Yet, they didn’t quit. They didn’t allow failure to define them, discourage them or defeat them. Their failures were forgiven. And they pressed on toward the prize. That’s what we must do.
+We must be willing to admit our failures. Confess our shortcomings. And repent of our sins. We are a work in progress. Ever striving to be conformed to Christ instead of our culture (Rom. 8:29; 12:1-2).
+The late and legendary basketball coach John Wooden reminds us, “Failure isn’t fatal, but failure to change might be.” Or as the great British statesman, Winston Churchill observed, “Success is not final, failure is not fatal: it is the courage to continue that counts.” The Christian life is about change. Growth. And persistence.
+Like the apostle Peter, we can begin again. We can put together the broken pieces. Refocus our eyes on Jesus. And even with our past flaws be restored to faithful service. Let us pray as David did: “Restore to me the joy of your salvation, and uphold me with a willing spirit” (Ps 51:12).
+There is hope. There is help. There is healing.
+There is a forgiving and gracious God.
+Ken, thanks for this. I’m sure I needed it more than anyone else this morning….
+
+=== Text #18 ===
+> PDF Kingdom Hearts HD 1.5 ReMIX Guide . Share Favorite . Introduction Characters. Sora. Sora is the main character, a 14 year old boy. As a teenager, he has his share of concerns, but he manages to keep an upbeat attitude. He may be simple-minded at times, but he has a strong sense of justice. Riku. Age 15. He may seem cool and collected for his age, but he is far from the quiet type. Always... I was so excited for this guide, being a special hardcover edition with coverage for both games included in KH 1.5. It is a decent guide for first-time players, but not long-time fans of the series who are hoping to achieve 100% completion.
+Journal trophy progression. - Within the game if you press and scroll down to 'Journal' you can access Jiminy's Journal and check on a variety of different collectibles. free bible study guides pdf Download PDF Coliseum Tournaments [ edit ] After clearing the Olympus Coliseum area, Sora and company can periodically go back to test their skills in the games and earn fabulous prizes.
+In this Kingdom Hearts HD 1.5 Remix Keyblades Weapons Guide, we have detailed everything you need to know about finding the weapons in the game.
+Journal trophy progression. - Within the game if you press and scroll down to 'Journal' you can access Jiminy's Journal and check on a variety of different collectibles.
+
+=== Text #19 ===
+> Next message: Cohen and "jazz"
+This joke just came to mind and I'd better record it for Posterity.  I believe I saw it in some 19th century magazine.  Maybe it's not that funny after all.
+After the Confederate surrender at Appomattox Court House, Southern soldiers were given parole on the sole condition that they endorse a paper pledging their permanent allegiance to the duly elected Government of the United States.
+During one of these signings, after many and many a erbel soldier had accepted his pardon from the government of Uncle Sam, an old grizzled veteran of Joe Johnston's army appeared before the Yankee officer to be paroled.  After reading the document, the old veteran looked the hated Yankee in the eye, and said with bitterness, "Well, we guv you *H--l* at Chickamaugy!"
+"Just sign the paper," exclaimed the Union man. "And no more of your sauce!"
+"I *said*, 'We guv you *H--l* at Chickamaugy!'"
+"Come, come!" expostulated the officer, whose patience with the old fellow was now wearing thin. "Come sign immediately or I'll have you arrested and imprisoned as the traitor that you have been and are !"
+The old man shifted his tobacco, and realizing his dire circumstances, quickly affixed his signature to the official document sanctioning his freedom.
+"There, my good man," said his interlocutor. "Now you are once again a citizen of this Great Republic, as good as any man you see here."
+"The clever old man replied, 'You mean I'm a Yankee now?'"
+"Yes, of course!" came the reply.
+"Yes, yes, I have siad it is so."
+"Wall, in that case I just have one thing left to say."
+"And that thing is --- ?
+"They guv us *H--l* at Chickamaugy!"
+
+=== Text #20 ===
+> Seasick Steve, Example & DJ Wire, Maverick Sabre, Sigma, Le Galaxie, Klingande, Lee “Scratch” Perry, Gavin James, Jape, Krystal Klear, Kormac’s Big Band, The Minutes, Alex Adair, R.S.A.G, DJ Food, Wyvern Lingo, The Academic, Amazing Apples, The Eskies, New Valley Wolves, Columbia Mills, 5 Dollar Shakes, Rollin’ Empire, Anthony Collins, DJ Ferg and more to be announced.
+Tickets from €89.50 for three day tickets with €25 extra for four nights camping. Day tickets from €45.50 and “VIP upgrades” are an extra €50. On sale from Ticketmaster. available from all Ticketmaster outlets nationwide, and priced from €89.50 including booking fee for 3 days non-stop partying. Add €25 for 4 nights camping. There’s also limited day tickets available from €45.50 and VIP upgrades from €50 extra.
+
+
+Description: 
+2025-05-10 09:24:20,400 - root - INFO - Festival lineups or product listings, especially related to furniture, electronics, or children's items
+
+2025-05-10 09:24:20,403 - root - INFO - Cluster #1 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.csv
+2025-05-10 09:24:21,300 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-10 09:24:21,300 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  fossil (7.695326328277588)
+Text #2:  fossil (7.695326328277588)
+Text #3: stic (0.9018422365188599)
+Text #4:  fin (0.604946494102478)
+
+=== Text #1 ===
+> The original business began not long after the end of World War 2 with the importation of High Performance anchors and ancillary products from predominantly the UK. Stock carrying branches were established in all the main centers of South Africa with competent sales personnel at each branch servicing the construction, mining, utility, petrochemical and general hardware industries in South Africa.
+In the early 1980’s the business moved from Isando to its current location in Anderbolt, Boksburg North, where it still has headquarters today.
+In 1986 the current shareholders acquired control of the company. Non-core product lines were rapidly shed and, with increased focus and energy, sales grew rapidly and the range of product was steadily expanded to meet the new local and export market demands. The sales staff was expanded with increased emphasis being placed on thorough repeated technical training of all sales personnel to more professionally serve our enlarged customer base. This came at an opportune time with the rapid technical development and advancement in chemical anchoring technology.
+From our initial introduction of the IKA brand of anchors, sales have grown well. However sales of the IKA brand of chemical anchors have grown exponentially and have continued to prove their versatility, reliability and high performance throughout the local and export markets.
+Fully trained technical sales staff are based at all our branch offices and we offer technical support and advice and stand ready to assist distributors, specifiers and contractors on their anchor selection and installation. Full technical information is available from any of our technical sales team, our branch offices or head office. In situ anchor testing capability is available at short notice to all our customers.
+We count as our customers, divisions of all the major construction contractors, including Murray and Roberts, Grinaker LTA, WBHO, Concor, Steffanuti Stocks as well as many Joint Ventures, specialist structural steel contractors and countless sub-contractors in all disciplines from Civils to Ceiling and partitioning, plumbing, electrical, façade and insulation contractors. The company has supplied anchors to most of the major construction projects throughout the Sub continent from Cabora Bassa, Koeberg, all the[ fossil] fuel power stations, Mines, Sasol, De Hoop Dam, many landmark buildings, the World Cup stadiums, Gautrain, Railway construction projects, the recent Johannesburg Road upgrades and countless other less prominent projects. We continue to supply anchors to Medupi and Kusile contractors among other ongoing and new projects.
+Our export market has over the years included the Indian Ocean
+
+=== Text #2 ===
+> The original business began not long after the end of World War 2 with the importation of High Performance anchors and ancillary products from predominantly the UK. Stock carrying branches were established in all the main centers of South Africa with competent sales personnel at each branch servicing the construction, mining, utility, petrochemical and general hardware industries in South Africa.
+In the early 1980’s the business moved from Isando to its current location in Anderbolt, Boksburg North, where it still has headquarters today.
+In 1986 the current shareholders acquired control of the company. Non-core product lines were rapidly shed and, with increased focus and energy, sales grew rapidly and the range of product was steadily expanded to meet the new local and export market demands. The sales staff was expanded with increased emphasis being placed on thorough repeated technical training of all sales personnel to more professionally serve our enlarged customer base. This came at an opportune time with the rapid technical development and advancement in chemical anchoring technology.
+From our initial introduction of the IKA brand of anchors, sales have grown well. However sales of the IKA brand of chemical anchors have grown exponentially and have continued to prove their versatility, reliability and high performance throughout the local and export markets.
+Fully trained technical sales staff are based at all our branch offices and we offer technical support and advice and stand ready to assist distributors, specifiers and contractors on their anchor selection and installation. Full technical information is available from any of our technical sales team, our branch offices or head office. In situ anchor testing capability is available at short notice to all our customers.
+We count as our customers, divisions of all the major construction contractors, including Murray and Roberts, Grinaker LTA, WBHO, Concor, Steffanuti Stocks as well as many Joint Ventures, specialist structural steel contractors and countless sub-contractors in all disciplines from Civils to Ceiling and partitioning, plumbing, electrical, façade and insulation contractors. The company has supplied anchors to most of the major construction projects throughout the Sub continent from Cabora Bassa, Koeberg, all the[ fossil] fuel power stations, Mines, Sasol, De Hoop Dam, many landmark buildings, the World Cup stadiums, Gautrain, Railway construction projects, the recent Johannesburg Road upgrades and countless other less prominent projects. We continue to supply anchors to Medupi and Kusile contractors among other ongoing and new projects.
+Our export market has over the years included the Indian Ocean
+
+=== Text #3 ===
+> Venture and Innovation Awards (VIAs) support transformational and innovative research projects by providing financial support and bringing funding into the field of cy[stic] fibrosis (CF) from external sources.
+Venture and Innovation Awards allow short-term projects to take advantage of innovative opportunities and are designed to leverage additional funding. For every pound spent by the Cystic Fibrosis Trust to fund a VIA, an additional four pound has been leveraged from an external agency.
+The VIA programme is structured as a competitive leverage funding programme, whereby funds will only be awarded following success of an application to an external funding body. External funding bodies include government funding bodies, academic institutions and other medical research charities where applications undergo peer review.
+We agree VIA funding in principle prior to submission of external funding body applications. Please contact us well in advance of your submission in order for us to consider your application so we can add a letter of support.
+The VIA programme relies on the science being peer reviewed by the external funding body, thus we can only consider applications where this peer review will take place. For industry awards we request evidence of internal review prior to awarding funding, please contact us for the process.
+If you wish to apply for a VIA, please contact us researchgrants@cysticfibrosis.org.uk.
+Since we started funding these awards in 2013 we have awarded over 50 grants across a range of different research areas. Descriptions of the types of research we’re funding are listed below, where you can find out more about ongoing projects in the research areas that interest you.
+You can also see who we have partnered with in each VIA, using our colour-coded labels for: NIHR partner, Charity Partner, Pharmaceutical Partner, Academic Partner, Government Agency Partner and Registry Study​.
+The timing of lung exacerbations or a worsening of CF symptoms can be very hard to predict. We’re currently funding studies in children and adults to understand more about them. If we can predict when they might happen, then we can treat them quicker and ultimately aim to make them happen less often.
+Find out more about research into lung exacerbations here.
+While the symptoms of CF are well known, better ways to manage them are continually being developed, helping to keep people healthier and reducing their effects on quality of life. Our research projects range from ensuring that the way lung function is measured is as accurate as possible, to developing drugs that can help break down the mucus in the lungs of people
+
+=== Text #4 ===
+> One day minding my own business i thought of my ex boyfriend the true love of my life and there on the ground was a feather. Very interesting to read about feathers. I just got out of jail last week and have had a recent huge breakup in a relationship but know its nest for my mental health.
+She is the older sister of[ fin]n and.
+White feathers appearing out of nowhere. In addition here is a quick look at some of the additional meaning certain colored feathers may have. Ravenna is the cruel and tyrannical ruler of the kingdom of tabor as well as a dangerously powerful sorceress. Ravenna also known asthe evil queen or simplythe queen is the primary antagonist of snow white and the huntsman and the huntsman. I asked back in december 09 nothing.
+Pink feathers are a reminder of the unconditional love of your angels and a reminder of the infinite inspiration available when youre tuned into love. I cannot believe all the feathers that have appeared to me in the last 2 months.
+
+=== Text #5 ===
+> This very well presented Pool View apartment is located in the heart of the very popular Cabo Roig strip, in the Playamarina 1 complex building, with lobby, reception, with communal pool, pool bar, and underground garage.
+The Health Center is just 100 m away, and pharmacy nearby.
+Fully tiled bathroom with bath and shower attachment. Wash basin with vanity unit under, and WC.
+Undergroung garage, with lift with access to all floors.
+
+=== Text #6 ===
+> Consider using a buying agent. Estate agents always act in the interest of the seller, because the more money they get for a property, the higher their commission payment. A buying agent can act on your behalf and make sure that you acquire your dream property for the cheapest possible price.
+If you are a first time home buyer, it is a good idea to not see more then six or seven homes at a time. It might be tempting to try to see more at once, however, if you do see to many then it will make it tough for you to take it all in. It will also make it to hard to remember everything.
+
+=== Text #7 ===
+> The Cotton Bags, offered by us, are made from 100% cotton fabric. Our Cotton Bags are highly environmental products which can be availed from us in various customized options. The Cotton Bags, we offer, can be used as shopping bags, promotional bags, shoulder bags and etc. as per the needs of the customers.
+We are engaged in offering Cotton Sling Bag to our esteemed client.
+We deal in Jute cotton bag.
+Matching up with the requirements of our clients, we are involved in offering Cotton Laundry Bag.
+
+=== Text #8 ===
+> Chicken wings are all-American and teriyaki is an all-Japanese method of cooking. Trust me when I tell you, if you walk into a restaurant in Japan, you aren't likely to find teriyaki chicken wings on their menu. That said, Japanese teriyaki sure does turn out a really good version of American chicken wings, however, unlike our traditionally-prepared wings, which are typically plunged into the hot oil of a deep fryer, teriyaki wings, in order to render their signature fall-off-the-bone tender interior with a slightly-crispy, sticky exterior, they require a kinder, gentler treatment.
+Broil until bubbly & charring, turning once, 3 minutes per side. Allow wings to rest, on pan, for 4-6 minutes -- just do it.
+Japanese Teriyaki Meets American Chicken Wings: Recipe yields 1 1/2 cups teriyaki sauce and 16-20 chicken wings.
+Cook's Note: While related by sauce, when it comes cooking anything teriyaki-style, depending on what it is, each food gets treated and cooked a bit differently. Two examples are my recipes for ~ Open Sesame: Japanese Teriyaki Steak Skewers ~, and, ~ Japanese-Style Oven-Broiled Teriyaki-Style Cod Fish ~.
+
+=== Text #9 ===
+> Read more "KLM/Schipol v Kalitta Air gets nastier as JetBlue gets involved!"
+Read more "Turkish Airlines orders even more freighters"
+Read more "Russia agrees to allow US overflights at last minute"
+Cargo Crunch…Anyone got a spare freighter?
+Read more "Cargo Crunch…Anyone got a spare freighter?"
+Read more "ANA orders 2 777F’s"
+Read more "Air Cargo Capacity stagnant as demand rises forcing up prices"
+Read more "Air Cargo had its best ever year in 2017"
+
+=== Text #10 ===
+> Investing in windows is never a waste of money. A good set of windows can really improve the aesthetics of your house, which can boost the value and increase the chances of a resale if you want to move on after so many years. However, there are many other benefits to opting for a Manchester buy now pay later double glazing package if you are thinking of changing the windows in your home this year.
+The quality of glass that we have on offer here at Malbern Windows and Doors is such that any unwanted noise pollution is kept exactly where it should be – right outside your house. If you live in a densely populated residential area and want some peace and quiet when you step through the front door after a busy day at work, you need to have double glazing installed. You’ll be seriously impressed with how much outside noise is actually reduced.
+Another key benefit of buying double glazed windows is that your home will be that much more secure. Anyone breaking in will think twice about it if they have to smash their way through two panes of glass instead of one. In addition, our windows come with multipoint locking mechanisms so you’ll feel that much safer at home after you’ve had them installed.
+But there’s one other key benefit to opting for double glazing for your windows at home and that’s how warm such an installation can keep your house. Double glazing works by trapping air in between two panes of glass, which means it can retain heat far better during the winter and release it more effectively in the summer, so your home stays warm when it should and cools down when you want it to.
+All our products here at Malbern Windows have been designed for maximum energy efficiency, so you’ll be able to reduce your carbon footprint, enjoy a warmer house in the winter and see your energy bills drop into the bargain. If you haven’t yet opted for double glazing, you need to get in touch with us here at Malbern Windows to find out more about the many and varied benefits of such an installation.
+We have a team of experienced and friendly professionals on hand waiting for your call. Get in touch with us today.
+
+=== Text #11 ===
+> Hand of Hope’s short-term medical and dental outreaches began with one trip to Cambodia in 2007. What started out small has now led to several yearly trips to countries around the world. Recently, our team was able to complete the 100th short-term medical and dental outreach in Zambia. Here are some of the lives you were able to impact in the span of just one day!
+Oscar came to our medical tent reporting that he was randomly falling down every month. Just the night before, he had fallen down and sustained a traumatic injury to his right arm. The doctor said that it was the type of fracture that could have very easily severed his main artery in his arm. After Oscar’s examination, it was determined that he had a seizure disorder. Unfortunately, he had no way of getting to the hospital for treatment, so we paid for his transport. By diagnosing his disorder, our team hoped he could avoid future injuries to his body.
+Sweet Grace came to our outreach hunched over and suffering for aches that most 89-year-olds would experience. However, she did not have the simple medicines available to help. Our team was able to give her aspirin, blood pressure medicine and pills for her muscles; such simple solutions to the pain she was feeling. Our team was also happy to pray with Grace before she left; “Now after prayer, I feel that my body has become normal. It doesn’t feel as badly as before.” She left standing much straighter!
+67-year-old Alex had been having trouble with his eyes for at least two years. He was not able to see clearly, and which caused him difficulty when reading. After meeting with one of our volunteers, he received a pair of glasses and was so ecstatic to be able to read again. What was the first book he picked up? One of Joyce’s from the prayer tent!
+We’ve been able to treat 297,923 patients and see 106,056 salvations over the course of 100 trips, but there are so many more lives to reach! You can find out more about our upcoming trips at joycemeyer.org/MedicalMissions. So, whether you’ve been a volunteer in the past, or you’ve been financially supporting Joyce Meyer Ministries, you’re a part of this…thank you!
+
+=== Text #12 ===
+> No, Trump can’t pardon himself. The Constitution tells us so.
+Correction: An earlier version of this op-ed misspelled the name of former defense secretary Caspar Weinberger. This version has been updated.
+Laurence H. Tribe is the Carl M. Loeb University Professor and Professor of Constitutional Law at Harvard Law School. Richard Painter, a law professor at the University of Minnesota, was chief White House ethics lawyer for President George W. Bush from 2005 to 2007 and is vice-chair of Citizens for Responsibility and Ethics in Washington (CREW). Norman Eisen, a senior fellow at the Brookings Institution, was chief White House ethics lawyer for President Barack Obama from 2009 to 2011 and is chair of CREW.
+Elizabeth Holtzman: In the Russia probe, could Trump pardon himself?
+Dana Milbank: Trump can do whatever he wants. God help us.
+
+=== Text #13 ===
+> Short Sales in Newtown, CT - as of 10/22/10. Back in September 2008, we posted a blog titled "Short Sale - What is It?". We think this is useful information as we frequently explain what a short sale is to both buyers and sellers. Our intention is to update you every 2 months about the short sale activity in Newtown, CT.
+The price range of the actively listed short sales in Newtown range from $159,000 to $875,000. As you can see, short sales in Newtown, CT have been selling, despite being difficult transactions.
+If you would like a list of the short sales in Newtown, CT, just email us and we'll forward it to you ASAP.
+If you would like to sell your home and feel it might be a short sale, please contact us. WE CAN HELP YOU. We are experienced with short sales and we are also SFR Certified. Anything you tell us will be held in the strictest confidence and will not be shared with anyone else.
+
+=== Text #14 ===
+> For the man of Truth, seeking experience of the supreme state, the heroic action needed, is to draw in, the outward darting mind, and fix it firmly in the Heart.
+Don't meditate at intervals. Abide without a break of steady Self-awareness. Instead of plucking hair after itching hair of thought, better shave the whole scalp clean.
+If the mind turned outward and distracted, starts observing its own being, alienation ends, and the vestige ego, merges in the light of true Awareness, shining in the heart.
+O mind, you wander far in search of bliss, not knowing your natural state of freedom. You will regain your home of infinite bliss, only if you go back the way you came.
+Those who have sunk within their own inner selves to dwell as pure knowledge, so that their infatuation with worthless desires is abolished, will, through holy silence, establish the fulfillment of the real within their own selves. This practice of meditation upon consciousness itself is the true way.
+None can confront and overcome the mind. Ignore it, then, as something false, unreal. Know the Self as the real ground and stand firm-rooted in it.
+Losing false ego is awareness.
+The ego image moves reflected in the mind's waves. How to stop this movement, how to regain the state of stillness? Don't observe these movements, seek the Self, instead. It is wisdom to gain and abide in silence.
+Not like a boat's sail, outspread wide and worn away by wind and weather, but like the humble anchor, sunk in the vast ocean's depth, the mind should plunge and settle in the heart of wisdom.
+Only a one-pointed mind, turned inward, succeeds in Self-inquiry. Weak, faltering minds, like green banana trees, are not fit fuel to feed this fire.
+He who has vanquished thought, only he sits like an emperor on the neck of the majestic elephant, knowledge. Know for certain that the mind's movements alone give rise to birth and every cruel pain and sorrow.
+When the ego, shaking off all tricky concepts, finally merges in the silence of the Heart, the fullness of blissful, bright Self-Awareness, this is what the sages call transcendent speech.
+
+=== Text #15 ===
+> Rent the Centre. Celebrations, Parties or just for fun.
+In order to provide a flavour of the Grenville House experience set out below are a collection of images showing the range of activities and other aspects of a visit to the Centre.
+To open an album click on the chosen category image. Click on any image to enlarge it and finally to enable you to scroll through the selected album float the cursor over the end of the image to reveal the direction arrow.
+
+=== Text #16 ===
+> A deposit will hold the animal of your choice. If that animal is not born, your deposit can be transferred to another breeding. Due to differences in animal husbandry practices, we can not guarantee the health once they leave our care. We do guarantee they are free from congenital defects and will replace any animal that has one.
+DOB 4/2018 Super dairy little doe from some excellent milking lines. Retained her full sister.
+DOB 1/09/2018 Priss is a super friendly doe who exhibits some very nice dairy character and has genetics behind her to be a great milker. She has been shown and placed in the middle of some extremely large classes.
+DOB 10/08/2018 Long level doe kid with great spring of rib. Comes from some excellent genetics.
+DOB 3/18/2017 This is a very dairy buck. Long, great angulation, and lots of width between the hocks. He already has 2 Reserve Champion wins.
+
+=== Text #17 ===
+> Discussion in 'Mac OS X Lion (10.7)' started by axboi87, Jan 20, 2012.
+I've got a 500gb internal drive and a 240gb SSD.
+When trying to restore using disk utility i'm given the error "Not enough space on disk ____ to restore"
+But I shouldn't have to do that!!!
+Any ideas or workarounds before resorting to the above?
+Use Carbon Copy Cloner to copy one drive to the other. I've done this several times going from larger HDD to smaller SSD and I wound up with a bootable SSD drive. One step you have to remember not to skip is to use Disk Utility to partition the SSD as GUID partition scheme HFS+ before doing the clone. If it came Apple Partition Scheme, even if you let CCC do the clone, the resulting drive won't be bootable. CCC usually works in "file mode" and it can easily copy a larger drive (that's mostly empty) onto a smaller drive. If you tell CCC to clone a drive you did NOT boot from, it can work in block copy mode where the destination drive must be the same size or larger than the drive you are cloning from (if I recall).
+I've actually done this somehow on Disk Utility several times (booting from a different drive (or even the dvd) so not running disk utility from the drive your cloning) and had it work just fine from larger to smaller bootable clone. Definitely format the drive cloning to first, as bootable Apple etc..
+Thanks for pointing this out. My only experience using DU to go larger to smaller was when I was trying to make a Lion install stick and I was unable to restore InstallESD.dmg to a 4 GB USB stick but of course the reason that wouldn't fit is there was slightly more than 4 GB of data.
+
+=== Text #18 ===
+> current rating is 4 based on 6 www mathematical soccer predictions reviews. M Info, review, some of it can be quite useful. Site has wide range of data and information, fraud. Predictions are based on mathematical algorithms, scam, ratings, no clear logic behind it.the odds proposed in the betting market www mathematical soccer predictions ncaa football score predictions week 4 often reflect the market rather than the true probability of the matches. Similarly to an investiment in a financial market, higher probabilities do not coincide with a great opportunities to win!
+In the Home page of our website you can find our probabilities associated to the results 1,X,2,Under 2.5 and Over 2.5. In the column PICK s you find our suggestions. These advices are based on the idea that for each match, if the probability of.
+Maximum likelihood estimates are shown to be computationally obtainable, and the model is shown to have a positive return when used as the basis of a betting strategy. Hoping that this explanation is exhaustive for you, we wish you a good browsing! The pickforwin staff.
+USA: Www mathematical soccer predictions!
+modelling Association Football Scores and Inefficiencies in the Football Betting Market. Improvements can be achieved by the use of a bivariate Poisson model with www mathematical soccer predictions a correlation between scores of 0.2. Applied Statistic, s.G. M.J. (1997)). 265-280. And Coles, 46, summary. Dixon,this field of the www mathematical soccer predictions literature define a model for the number of goals scored and conceded by the two teams based on the Poisson distribution and then aggregate these results to obtain probabilities for different outcomes such as home team win, draw,Using just a bivariate Poisson distribution can improve model fit and prediction of the number of draws in football e model is extended by considering an inflation factor for diagonal terms in the bivariate joint is inflation improves in precision the estimation of draws and.
+came into www mathematical soccer predictions mind, a first thought, combined Effects of Mahadasha and Sub Dasha planets Lord While analysing to a birth chart,vbet - www mathematical soccer predictions active account, one minimal deposit. Conditions for receiving prizes: Bet-at-home - active account, 3 USD deposit.
+Dabblebet customers in the UK can watch and bet on this fixture live. Your account must be funded or active (have a bet placed in the previous 24 hours) to enjoy
+
+=== Text #19 ===
+> DAYTON OH (Dec. 31, 2013) -- A season of bold new productions and cherished classics will be unveiled when Dayton Performing Arts Alliance announces its 2014-2015 New Horizons Ballet, Opera and Philharmonic season on New Year’s Eve at the Schuster Center. It’s all part of the New Year’s Eve Around the World celebration, one of three DPAA Signature Events this season that combined the talents of Dayton Ballet, Dayton Opera and Dayton Philharmonic.
+Subscriptions for all nine New Horizons series go on sale Thursday, January 2, 2014, at 10 a.m. at Ticket Center Stage (888) 228-3630, www.daytonperformingarts.org and by visiting the ticket location inside the Schuster Center. Renewing subscribers will be given priority seating over new subscribers thru April 30. Single tickets go on sale to the public June 1.
+The New Horizons season will be announced by DPAA’s three artistic directors Thomas Bankston, Dayton Opera; Karen Russo Burke, Dayton Ballet; and Neil Gittleman, Dayton Philharmonic. DPAA President and CEO Paul Helfrich will also be on stage for the celebratory performance that includes complimentary champagne at intermission and a balloon drop during the finale. The performance will end by 10:30 p.m. and tickets are still available.
+On September 21 and 22, 2014, the New Horizons season opens with the spectacular Russian Panorama, the first Signature Event. Gittleman and the Dayton Philharmonic, along with opera singers and ballet dancers, perform excerpts from Tchaikovsky’s Eugene Onegin, Mussorgsky’s magnificent coronation scene from Boris Godunov as well as Rachmaninoff’s Vocalise and Borodin’s Polovtsian Dances.
+The second Signature Event, Classical Destinations, marks the half-way point of the season at New Year’s Eve. Bizet’s opera The Pearl Fishers completes the season’s three Signature Events and again combines all three DPAA art forms.
+Dayton Ballet Artistic Director Karen Russo Burke will team with DPAA Composer-in-Residence Stella Sung to create the World Premiere of an exciting new ballet in February 2015’s repertory production Creative Convergence. In March, Peter Pan will be performed for the first time with the full Philharmonic. The aptly named Ghost
+
+=== Text #20 ===
+> or click on the Photographer's link to obtain a full size version.
+Birds highlighted with RED are endangered.
+Birds highlighted with PINK are threatened.
+European Pied Flycatcher Ficedula hypoleuca Wim van der Schot. Europe and northern Africa. Winters in tropical Africa.. . ..
+
+
+Description: 
+2025-05-10 09:24:21,301 - root - INFO - Types of fuel or energy sources
+
+2025-05-10 09:24:21,303 - root - INFO - Cluster #2 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.csv
+2025-05-10 09:24:22,129 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-10 09:24:22,129 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  peer (0.6411439776420593)
+Text #2:  fin (0.604946494102478)
+
+=== Text #1 ===
+> U.S. Pharmacist is a monthly journal dedicated to providing the nation's pharmacists with up-to-date, authoritative,[ peer]-reviewed clinical articles relevant to contemporary pharmacy practice in a variety of settings, including community pharmacy, hospitals, managed care systems, ambulatory care clinics, home care organizations, long-term care facilities, industry and academia. The publication is also useful to pharmacy technicians, students, other health professionals and individuals interested in health management. Pharmacists licensed in the U.S. can earn Continuing Education credits through Postgraduate Healthcare Education, LLC, accredited by the Accreditation Council for Pharmacy Education (ACPE) as a provider of continuing pharmacy education.
+Copyright © 2000 - 2016 Jobson Medical Information LLC unless otherwise noted.
+
+=== Text #2 ===
+> One day minding my own business i thought of my ex boyfriend the true love of my life and there on the ground was a feather. Very interesting to read about feathers. I just got out of jail last week and have had a recent huge breakup in a relationship but know its nest for my mental health.
+She is the older sister of[ fin]n and.
+White feathers appearing out of nowhere. In addition here is a quick look at some of the additional meaning certain colored feathers may have. Ravenna is the cruel and tyrannical ruler of the kingdom of tabor as well as a dangerously powerful sorceress. Ravenna also known asthe evil queen or simplythe queen is the primary antagonist of snow white and the huntsman and the huntsman. I asked back in december 09 nothing.
+Pink feathers are a reminder of the unconditional love of your angels and a reminder of the infinite inspiration available when youre tuned into love. I cannot believe all the feathers that have appeared to me in the last 2 months.
+
+=== Text #3 ===
+> If nicknames were rooted in a very player’s romance along with his organization, Victor ‘Found Money’ Mete would be rolling off tongues throughout Montreal.6 weeks ago, an enormous swath from the Canadiens enthusiast base had, at very best, a vague notion of who Mete was. And in some cases people with intimate knowledge of his skills including a sociates on the entrance busine s, most likely experienced no inclining he was the answer for the i sue, Hey, who the heck is gonna https://www.stylepanthers.com/ fill that Andrei Markov-sized hole within the left side from the 1st pair close to Shea Weber? Mete, drafted a hundredth overall in 2016, has absent from intriguing to indispensable for Montreal during the span of 7 online games, a lively vibrant place within an if not dreadful begin for that Habs. That is why, regardle s that he’s one particular of a couple of dozen entry-level slide candidates inside the league, there is practically no po sibility he’s returned by Montreal to your London Henrik Borgstrom Jersey Knights from the OHL.For a speedy refresher and when you want to go deeper and also a bit cro s-eyed, down load the CBA and dive into portion 9.one most young people that have however to engage in ten NHL games is often re-a signed to your reduced league without getting one on the a few several years on their own entry-level deal burned. Just one exception is Clayton Keller of the Arizona Coyotes. Keller didn’t sign his deal until finally his age 19 season and, acquiring now slid 1 season when he performed 3 game titles last year, Keller is over the clock despite in which he plays that will be from Roberto Luongo Jersey the NHL for your up coming fifteen many years.
+Cette entrée a été publiée dans Non classé, et marquée avec a lively vibrant place within an if not dreadful begin for that Habs. That is why, a vague notion of who Mete was. And in some cases people with intimate knowledge of his skills including a sociates on the entrance busine s, acquiring now slid 1 season when he performed 3 game titles last year, an enormous swath from the Canadiens enthusiast base had, at very best, down load the CBA and dive into portion 9.one most young people that have however to engage in ten NHL games is often re-a signed to
+
+=== Text #4 ===
+> Troy King Back in the Game With Big Money From Small Donors – Taking Alabama Back!
+A campaign finance report filed today shows former Republican Attorney General Troy King is back in the game, raising over $130,000.00 in small donations in just over two weeks.
+King, once thought to be another asterisk in former Gov. Bob Riley’s scheme to hold onto the reins of power after leaving office in 2010, formally filed his campaign with the secretary of state’s office in mid-November.
+
+=== Text #5 ===
+> Question Booklet consisting of 4 (four) questions.
+Each question is divided into a set of 20 questions, each of the value of 1 (one) point, with a total of 80 (eighty) points. The score required to pass the exam is 40/80 or 50%.
+The duration of the exam is 180 minutes for the candidates who do the exam in their native language. The candidates who do the exam in a language that is not their native language, have 225 minuts to do the exam.
+Material authorized during the exam: MoP manual, Question Booklet, Scenario Booklet and Answer Booklet.
+To pass the MoP Practitioner exam, candidates must have MoP Foundation certification.
+
+=== Text #6 ===
+> Bosch Security Systems was chosen as the central supplier for the security systems at Marmara Park Shopping Center in Istanbul, one of the largest of its kind in Turkey. The shopping center is completely designed in a galaxy-theme. Space-related lighting, planet models and a theme park for visitors form the individual identity of the shopping center. The networked and integrated security solution from Bosch comprises fire and voice evacuation systems, video surveillance, access control, and intrusion detection. All of these systems are centrally managed and operated via Bosch's Building Integration System.
+With a total floor space of 100,000 square meters, 250 individual shops and restaurants, a hypermarket, a cinema complex and parking for 4,000 cars, Marmara Park serves approximately 40,000 customers per day. More than 2,400 jobs were created within the shopping center developed by ECE Türkiye. In 2013 it was awarded the MIPIM award in the shopping center category, one of the world's most prestigious awards in real estate development.
+To enable the highest security level for customers, employees and suppliers of Marmara Park, local Bosch partner Entegre designed a highly modular and scalable security system that meets all the standards as set in norm EN54. The Bosch fire alarm system consists of four networked Modular Fire Panel 5000 Series with 59 loops supporting more than 5,000 fire detectors. It is tightly integrated with the Bosch PRAESIDEO voice evacuation system which can also be used for announcements and background music in normal operations. This system with 64 amplifiers supports 140 independent zones, allowing targeted messaging in case of an evacuation.
+Video surveillance of the entire premises has been realized using almost 300 cameras and 18 digital video recorders. In addition, Entegre installed a comprehensive access control system for non-public areas within the centre as well as the addressable intrusion detection system Modular Alarm Platform MAP 5000 from Bosch with more than 1,000 detectors. This allows the operator to exactly locate every alarm in real time, enabling fast response to any incident. The same holds true for the panic buttons which have been installed in all of the shops.
+Being a tightly integrated solution, the entire security system can be configured and operated very efficiently from one central location or distributed consoles. The open architecture makes it highly scalable and adaptable to future additions or changing requirements.
+
+=== Text #7 ===
+> This title is a comprehensive account of the key aspects of medical leadership. A highly accessible, text book-style resource, it explores how the medical profession has evolved in tandem with administrative and structural aspects of the NHS. Assuming leadership roles at all stages of their training and career is a progressively vital component of the definition of a good doctor. This book will provide invaluable support and guidance to anyone engaged in leadership within the NHS, but particularly to junior doctors in the primary and secondary care arenas taking on leadership roles for the first time.
+An introduction to medical leadership and engagement: a perspective on this text. A historical perspective on medical leadership. Doctors and managers: differing perspectives. Roles and models of leadership. Medical leadership competency approaches. Why does it matter? Medical engagement and organisational performance. Medical leadership and primary care. Appraisal and revalidation. Practical examples of initiatives to enhance leadership capacity. Medical leadership and engagement: towards cultural acceptance and the future.
+Peter Spurgeon was Director of the Health Services Management Centre at the University of Birmingham prior to joining Warwick Medical School (WMS). At WMS he was originally based in the Institute of Clinical Leadership, which ran programmes in medical leadership for undergraduate and postgraduate doctors. The Institute also offered development programmes for newly qualified doctors and developed a Certificate and Masters programme in Medical Leadership.Peter was Project Director for five years on the Enhancing Engagement in Medical Leadership project, run jointly by the NHS Institute for Innovation and Improvement and the Academy of Medical Royal Colleges. This project produced the Medical Leadership Competency Framework (MLCF), now endorsed by the General Medical Council as part of undergraduate and postgraduate training. It also formed the basis of a modified Clinical Leadership Competency Framework for all clinical professionals and ultimately the Leadership Framework for all NHS staff groups.The project also produced the Medical Engagement Scale (MES), which provides a metric of the level of engagement of the medical workforce in the wider goals of the organisation. Peter has overseen the subsequent use of this measure to its current position of an international comparative database of some 7000 doctors. The sustained link between levels of medical engagement and organisational performance has seen increasing attention given to both assessment and development of enhanced engagement.Peter is now a Recognised Researcher in the Social Science and Systems in Health Unit of the Division of Health Sciences at WMS.
+John Clark is is an Honorary Associate Professor within the University of Warwick Medical School and was involved in the design and delivery of a new Masters in Medical Leadership. He is also an Ad
+
+=== Text #8 ===
+> The Cabot is back. A North Shore treasure, the 1920 historic theater was closed and its future unknown until a group of local visionaries found a way to purchase the building and revive performances in 2014.
+The initiative to save the theater, and initial performances and events, enjoyed widespread and enthusiastic community support. Under the leadership of a new executive director and dedicated Board, much-needed improvements to the physical structure and expanding organizational capacity began.
+In order to fully realize the potential of this extraordinary moment in time, The Cabot needed new visual and verbal tools that reflected its promise in image and action and could be used to create alignment around a shared vision for the future, address the immediate development need and, critically, create momentum and energy to meet its fundraising goals.
+Minelli, Inc. worked with key stakeholders and leaders to articulate a strong brand and bring that brand to life, highlighting the Cabot Theater’s timeless beauty and transcendent experiences that evoke the power of memory, creating food for the soul and nourishment for the future.
+
+=== Text #9 ===
+> Peter Cousins covers what we should know if we are to take on a cave survey for real.
+Caving has entered a new phase as cavers look long and hard at the caves of the Himalayas.
+Some cave rescue teams are considering the difficulties of rescuing an injured caver from some of the latest super-severe pots that are being opened up by exploration.
+Digging on Yorkshire’s Gragareth has revealed a new and serious undertaking: The Mohole.
+New rescue dumps have been placed in Little Neath River Cave.
+Descent (19), November 1971 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (9), December 1969 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (26), January 1974 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (29), August 1974 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (16), January 1971 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (42), July 1979 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (41), March 1979 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (33), April 1976 SECOND-HAND Collector's copy: price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about
+
+=== Text #10 ===
+> currently, the projectdesigner calendar also sets task times (for start or end date).
+added checkbox to switch on this behaviour, default: use dates but keep old task times of day.
+Resolved in Opto's patch a while back.
+
+=== Text #11 ===
+> A deposit will hold the animal of your choice. If that animal is not born, your deposit can be transferred to another breeding. Due to differences in animal husbandry practices, we can not guarantee the health once they leave our care. We do guarantee they are free from congenital defects and will replace any animal that has one.
+DOB 4/2018 Super dairy little doe from some excellent milking lines. Retained her full sister.
+DOB 1/09/2018 Priss is a super friendly doe who exhibits some very nice dairy character and has genetics behind her to be a great milker. She has been shown and placed in the middle of some extremely large classes.
+DOB 10/08/2018 Long level doe kid with great spring of rib. Comes from some excellent genetics.
+DOB 3/18/2017 This is a very dairy buck. Long, great angulation, and lots of width between the hocks. He already has 2 Reserve Champion wins.
+
+=== Text #12 ===
+> Mondal, K.C.; Kostakis, G.E.; Lan, Y.; Powell, A.K.
+
+=== Text #13 ===
+> The question arises, of course, “Who are or what are they calling?” Some say that the cry is for the four horsemen to come forth. Others say that they are calling for John to come and see. But it seems to me that the cry to “Come” is most consistently used in the book of Revelation to cry out to the Lamb to come and establish His kingdom. But when this happens, as we see in chapter six, the Lamb and His people encounter intense resistance and opposition.
+Four times, the living creatures call out “Come!” Four times, a horseman rides out. The first is armed with a bow (a weapon frequently associated with the enemies of God in Scripture). He goes out conquering and to conquer, we read in verse 2. Ironically, when God’s enemies believe that they are conquering Him and His people (13:7), they are actually being conquered (17:14). The second horseman (v.3) is permitted the right to kill God’s people with the sword. Jesus’ words in Matthew 10:34 are likely being alluded to here when He says, “Do not think that I have come to bring peace to the earth. I have not come to bring peace, but a sword.” The third horseman (v.5) brings economic hardship upon those who follow the Lamb. They are forced to pay inflated prices or given restricted access to the basic necessities of life. This type of economic oppression is a common tactic of persecutors the world over and it grinds God’s people down. It is one thing to suffer hunger yourself but to watch your children suffer hunger and deprivation because of your faith can be demoralizing and make the temptation to deny Christ all the more attractive. Finally the fourth horseman rides out (v.7), bringing disease and death to the people of God. Deprived, oppressed, and mistreated, it would almost appear that the prayer to “Come” is disastrous to the people of God. But then the fifth seal is broken.
+And so we read in verse 11, “Then they were each given a white robe and told to rest a little longer, until the number of their fellow servants and their brothers should be complete, who were to be killed as they themselves had been.” This is how God will accomplish His purposes; through those who sacrificially do His will even unto death.
+Jesus will come back. The prayers
+
+=== Text #14 ===
+> Classics never go out of style, and neither will DE custom flash drives. With it's simple, clean design and plethora of color options, the DE flash drive will be sure to make your logo or design stand out and be the star. No matter what color, style, or appeal you want, the DE is sure to deliver.
+We offer rush production and standard delivery for the DE drive. If you need them tomorrow we just might be able to help, give us a call and we will see what we can do.
+The perfect solution for a simple and inexpensive promotional campaign - they say exactly what you want, exactly how you want it, the first time - and every time. What more can you ask for? It's no surprise DE is one of our most popular customizable USBs. Compact, but with ample print space. Print on the front of the drive, the back of the drive, the cap - you get where we're going with this. It even comes with a convenient loop for clipping to keychains, lanyards, or desk accessories so you can be sure your business logo is definitely going to be seen anywhere these end up.
+The DE flash drive can come in absolutely any color and we can even pantone color match it to your custom colors, so it can easily match your existing branding. When in doubt, you can never go wrong with white. Seriously. Choose between a glossy finish that will really make your drives pop or a matte rubber coated finish for a more professional look and feel. Whatever you decide, this timeless classic drive will always deliver.
+Very responsive to my company's needs!
+Great company to work with. Was always quick to respond, design was on point and data worked perfectly. They were a hit at our trade show. We will order again for sure.
+
+=== Text #15 ===
+> A federal law that passed in 2008 was supposed to ensure that when patients had insurance benefits for mental health and addiction treatment, the coverage was on par with what they received for medical and surgical care. But until now, the government had only spelled out how the law applied to commercial plans. This week, federal officials released a long-awaited rule proposing how the parity law should also protect low-income Americans insured through the government’s Medicaid managed care and the Children’s Health Insurance Program (CHIP) plans. The proposed regulation is similar to one released in November 2013 for private insurers. “Whether private insurance, Medicaid, or CHIP, all Americans deserve access to quality mental health services and substance use disorder services,” said Vikki Wachino, acting director at the Center for Medicaid and CHIP Services. Even if the state has carved out some benefits under a separate behavioral health plan, patients would be protected under the rule. Medicare patients are generally not affected by the regulation, nor are those in Medicaid fee-for-service plans. But the rule does affect the majority of the 70 million people on Medicaid who are in managed care plans, and the 8 million children covered by CHIP plans.
+David Wingate is an elder law attorney and practices in Frederick and Montgomery Counties, Maryland. The elder law firm prepares wills, trusts, powers of attorneys, asset protection, and Medicaid.
+
+=== Text #16 ===
+> The Chi. Lena Waithe’s critically acclaimed Showtime series returns for Season 2. The struggles that Black men have to face in Chicago are at the forefront this time around: Picking up several months after the events of Season 1, the plight of Black men in the Windy City are front and center: Aspiring chef Brandon (Jason Mitchell) now runs a food truck and is trying to break into the world of culinary competitions. Kevin (Alex Hibbert) is still juggling middle school and therapy to help deal with his PTSD after his involvement in two shootings. Emmett (Jacob Latimore) is forced to reconnect with his long lost father after his mother kicks him out of the house. Ronnie (Ntare Guam Mabaho Mwine) battles alcoholism while adjusting to life in prison after confessing to murdering Brandon’s brother. Though the emphasis on the men of the show, the ladies are not left out: Ronnie’s grandmother Miss Ethel (LaDonna Tittle), finds herself at the center of a battle of gentrify her neighborhood; Emmett’s mother Jada (Yolanda Ross) who is Ethel’s home care nurse, is trying to build a new life outside of work and motherhood. Brandon’s girlfriend Jerrika (Tiffany Boone), is part of a real estate deal that can dramatically alter the make up of the South Side. Though violence and its aftermath casts a large shadow over all of the characters, this series remains a celebration of the city and those who live in it. Rich in detail and multi-dimensional characters, look for another solid season for one of TV’s best shows. The Chi airs Sunday nights at 10pm Eastern on Showtime. You can also go to www.sho.com for more information.
+Satan & Adam: The Music Will Take You Higher. V. Scott Balcerek directed this new documentary about an unlikely musical partnership between Sterling ‘Satan’ Magee, a southern-born guitarist and Adam Gussow, a white, younger, Ivy League educated New York suburbanite harmonica player. It traces how Magee, after stints with such greats as Ray Charles, James Brown, King Curtis, got tired of seeing how black artists got exploited and took to the streets of Harlem to play strictly for the people. A chance encounter with Gussow, a grad school drop out and part-time street performer turned into a 12 year collaboration that took from
+
+=== Text #17 ===
+> That Which You Don’t Be Aware Of Write down Essay for my situation You should not must be troubled once you’ve had an essay heading up, needless to say, whenever you don’t feel you can find it finished after our gurus are right here as a way to provide you with a sustaining hands. Our essay aid isn’t travelling to supply you with a duplicated essay. There can be different types of guidelines essays. You shouldn’t really have to be troubled when you’ve had an essay coming up, and of course if you don’t assume you can obtain it conducted then our professionals are below in order to supply you with a allowing fingers.
+You shouldn’t ought to be anxious in case you have an essay coming, and will you do not presume you may get it done then our industry experts are on this site so that you can provide you with a assisting hand video poker basic strategy. Essays are inescapable an instructional pupil can produce suitable manner in her or his advisors Research Papers Online Writing Service. These days, based upon the total amount of sheets your essay should be quickly pay attention to a section additionally additionally inventory some information.
+One can find different varieties of essays, but practically all them be sure to ask that you will add lots of time towards a old fashioned paper. If you would like to get hold of a very little charge essay at our guidance, then it can be set in destination with the most effective affordable essay copy creator (professor of rehearse or simply just a scientist). The Foolproof Generate Essay for Me Process Publish essay i believe can be an on-line essay composing provider that components entry to producing, correction, croping and editing and higher first-class written content offerings because of internet.
+In case you will need to present an essay as well as time restriction is coming, there isn’t any ought to obtain freak out since there are countless specialist writers who will encourage you to submit an original and remarkable essay. Essays are inescapable an educational learner could get absent outside of his or her advisors research paper writing service. The purchaser reports essays are prepared in reasonably priced interest rates. Information On Produce Essay in my opinion You will have essays to your account. Essays have to expose people judgments utilising any person concern.
+One can much too acquire essay for college from us should you be just much too hectic to evaluate the investment. Essay is definitely important for
+
+=== Text #18 ===
+> Introduction Letter For Resume Sample Of Cover Letter For Fresh Graduate Accounting Cover Resume Cover Letter Sample Pdf Uploaded by on Sunday, December 9th, 2018 in category fake resume generator.
+See also Introduction Letter For Resume Cover Letter Resume Examples Newsound Co Sample Self Introduction Introductory Letter Sent With A Resume from fake resume generator Topic.
+Here we have another image Introduction Letter For Resume A Must Have Cover Letter Introductory Cover Letter For Resume featured under Introduction Letter For Resume Sample Of Cover Letter For Fresh Graduate Accounting Cover Resume Cover Letter Sample Pdf. We hope you enjoyed it and if you want to download the pictures in high quality, simply right click the image and choose "Save As". Thanks for reading Introduction Letter For Resume Sample Of Cover Letter For Fresh Graduate Accounting Cover Resume Cover Letter Sample Pdf.
+
+=== Text #19 ===
+> Meet the fighters post event to see who take homes fight of the night bonuses.
+Special drink discounts starting at just 100baht, free entry, and FMD style good times.
+Chat with the Ring Girls, chill by the pool, lounge on the astroturfed roof top and enjoy a classic mix of music from all genres.
+
+=== Text #20 ===
+> Every quarter we will be publishing the winning and highly commended Flash Fiction entries in our Short Fiction section.
+Please see below for further details on the awards, general criteria, judges, and the submission link.
+Following a conversation with Kit de Waal (interview with TSS here), we are happy to announce that submission fees for the Flash Fiction 400 competition will be waived for any writers from marginalised and disadvantaged communities, or anyone suffering from economic hardship. For further details please click here.
+Results: longlist announced mid-April. Winners and Highly Commended in late April / early May.
+Highly Commended: Up to five further flash fictions will be highly commended and published online. They will also receive £25 each.
+All 1st place winners will be nominated for the Best Small Fiction Awards.
+All winners (1st, 2nd, 3rd) will be published in a chapboook within 12 months of the spring competition.
+All winners (1st, 2nd, 3rd) will be interviewed, by TSS Publishing, about their flash fiction and their writing more generally.
+Please read through the Terms and Conditions before submitting.IMPORTANT: Due to the volume of submissions, we do not have the capability to email entrants individually regarding results. Please sign up to our newsletter (right sidebar) to keep up to date with competition news, or check the website directly.
+Sign up to our newsletter to stay up to date with news of competitions, results, and more.
+Elisabeth Ingram Wallace lives in Scotland, and her writing is published in SmokeLong Quarterly, Atticus Review, Flash Frontier, and the Bath Flash Fiction Award anthologies. A finalist for The Best Small Fictions 2018, she has a Scottish Book Trust ‘New Writers Award’, a Dewar Arts Award, and won ‘Writing the Future 2017’. She studied English as a mature student at Oxford University, and has a Creative Writing M.Litt. with Distinction from the University of Glasgow. She also won the TSS Flash 400 summer competition with her Flash ‘Space Hopped’ . You can find her on Twitter @ingram_wallace or on her website here.
+
+
+Description: 
+2025-05-10 09:24:22,130 - root - INFO - Professional fields
+
+2025-05-10 09:24:22,133 - root - INFO - Cluster #3 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.csv
+2025-05-10 09:24:23,611 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-10 09:24:23,611 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Foss (4.431774616241455)
+Text #2:  Foss (4.431774616241455)
+Text #3:  pedal (1.2087584733963013)
+Text #4:  peer (0.6411439776420593)
+Text #5:  Mineral (0.6349361538887024)
+
+=== Text #1 ===
+> Teaching Creation Thursday ~ Make a[ Fossilized] Footprint!
+This is taken from a lesson in the Investigating the Possibilities series by Master Books that will be on the market soon. It is in the Water and Weather book by Tom DeRosa and Carolyn Reeves.
+A fun activity to teach students more about how footprints, casts, and molds formed during the Great Flood.
+Smooth out about ½ to ¾ cup of playdough in a large paper plate. Use a roller or PVC pipe to roll over the clay until it covers the bottom of the plate. Now turn the clay over so the smooth side is up.
+Recruit a volunteer with a fairly small foot. Rub the student’s foot with petroleum jelly. The student should carefully press his foot into the clay as if walking, and then clean the petroleum jelly and clay off his foot.
+Take some more clay (about ½ to ¾ cup) and roll it into a tube or “snake” that is about an inch in diameter and long enough to go around the clay in the paper plate. Place the tube around the edge of the clay and press it into the bottom piece of clay to make a seal. Squeeze and flatten the tube to make a wall around the footprint impression to make a bowl that can hold the liquid plaster.
+Now measure out 2 cups of Plaster of Paris into a disposable container. Measure 1 cup of water, and pour it slowly into the plaster, stirring and mixing continually. If the mixture is still dry, add more water a little at a time until it is like pudding. When mixed well, pour about half the plaster over the impression in the clay. Lift your plate with two hands a few cm high and let it plop down on the table. Do this a few more times. This will spread the plaster and bring air bubbles up to the surface.
+Allow the plaster to harden. It should harden in an hour or more. After it has hardened, carefully remove the plaster from the clay and observe the impression of the footprint. Look at the clay as well as the plaster.
+1. Describe the impression in the clay.
+2. Describe how the bottom of the Plaster of Paris looks.
+While your plaster is still wet, put some of it in a small meat tray. Rub the leaf with petroleum jelly. Quickly, but gently, place a leaf on top of the plaster and cover with plastic wrap. Use a block to
+
+=== Text #2 ===
+> Teaching Creation Thursday ~ Make a[ Fossilized] Footprint!
+This is taken from a lesson in the Investigating the Possibilities series by Master Books that will be on the market soon. It is in the Water and Weather book by Tom DeRosa and Carolyn Reeves.
+A fun activity to teach students more about how footprints, casts, and molds formed during the Great Flood.
+Smooth out about ½ to ¾ cup of playdough in a large paper plate. Use a roller or PVC pipe to roll over the clay until it covers the bottom of the plate. Now turn the clay over so the smooth side is up.
+Recruit a volunteer with a fairly small foot. Rub the student’s foot with petroleum jelly. The student should carefully press his foot into the clay as if walking, and then clean the petroleum jelly and clay off his foot.
+Take some more clay (about ½ to ¾ cup) and roll it into a tube or “snake” that is about an inch in diameter and long enough to go around the clay in the paper plate. Place the tube around the edge of the clay and press it into the bottom piece of clay to make a seal. Squeeze and flatten the tube to make a wall around the footprint impression to make a bowl that can hold the liquid plaster.
+Now measure out 2 cups of Plaster of Paris into a disposable container. Measure 1 cup of water, and pour it slowly into the plaster, stirring and mixing continually. If the mixture is still dry, add more water a little at a time until it is like pudding. When mixed well, pour about half the plaster over the impression in the clay. Lift your plate with two hands a few cm high and let it plop down on the table. Do this a few more times. This will spread the plaster and bring air bubbles up to the surface.
+Allow the plaster to harden. It should harden in an hour or more. After it has hardened, carefully remove the plaster from the clay and observe the impression of the footprint. Look at the clay as well as the plaster.
+1. Describe the impression in the clay.
+2. Describe how the bottom of the Plaster of Paris looks.
+While your plaster is still wet, put some of it in a small meat tray. Rub the leaf with petroleum jelly. Quickly, but gently, place a leaf on top of the plaster and cover with plastic wrap. Use a block to
+
+=== Text #3 ===
+> The Chapel was completed in 1874 under Mother Xavier Maguire's directions and forms part of the old convent. As Archbishop Goold was absent in Rome, the ceremony of Opening and Blessing the chapel was performed by the Rev Dean Fitzpatrick on May 24th 1874.
+The Chapel is a beautiful example of a 19th century Gothic revival architecture. Built between 1872-1874, it involved a number of architects in it's design. The original drawings were undertaken by John Bourke of Dublin. Major alterations of these drawings were made by William Wardell and sent back to the Mother House in Dublin, by Mother Xavier. Other changes to the plans were made by Mr T. A. Kelly, of Melbourne who was contracted to build the chapel. No evidence is available as to why the redesigning took place. The stonemasons who originally built the chapel were brought out from Ireland. The side chapel was added in 1877, the architect being Alexander Davidson.
+In 1905 under the guidance of Mother Evangelist Doogan, the sanctuary is beautified and a gothic altar is commissioned by Reid, Smart and Tappin and made by Jaan Kannuluik an Estonian craftsman. After Vatican II, the altar was brought forward so that the priest performing mass could now face the congregation. Sometime after that in 1966 a decision was made to remove the central supporting pillar that divided the main chapel from the boarders' side chapel as the Sisters felt that the pillar obscured the girls' view.
+Forty five years later, in 2010 the Chapel was suffering from extensive cracking in the sanctuary walls, which was always thought to have been caused by drought. When a gang of cockatoos moved into the slate roof and started to destroy it, structural engineers were called in and it was found that the structure had been put at risk by the pillar's removal. For two years the chapel was closed while the pillar was reinstated, the slate roof replaced and the interior, including the highly decorative paint work was completely restored.
+The 128 year old George Fincham organ, has recently had a facelift, with the pipe facade being painted and gilded in a beautiful gothic design by Mulholland Restoration and decorating.
+The organ was presented to Mother Regis Manly, the director of music in the chapel, by Mother Mary Gabriel Sherlock in 1886. Fincham’s two-manual and[ pedal] organ has a french console disposition with the player’s back to the pipe facade, which
+
+=== Text #4 ===
+> U.S. Pharmacist is a monthly journal dedicated to providing the nation's pharmacists with up-to-date, authoritative,[ peer]-reviewed clinical articles relevant to contemporary pharmacy practice in a variety of settings, including community pharmacy, hospitals, managed care systems, ambulatory care clinics, home care organizations, long-term care facilities, industry and academia. The publication is also useful to pharmacy technicians, students, other health professionals and individuals interested in health management. Pharmacists licensed in the U.S. can earn Continuing Education credits through Postgraduate Healthcare Education, LLC, accredited by the Accreditation Council for Pharmacy Education (ACPE) as a provider of continuing pharmacy education.
+Copyright © 2000 - 2016 Jobson Medical Information LLC unless otherwise noted.
+
+=== Text #5 ===
+> Saturday 4 May, Bucklands Beach Bowling club.
+Tuesday 14 May, Arataki Visitors Centre.
+A Kauri Die Back talk and walk (Talk in Mandarin) opposite the Visitors Centre after the workshop provided by Chinese Conservation Education Trust.
+地点：346 Pakuranga Road, Pakuranga Community Hall.
+Farewell the migrant birds and see them at their best shape.
+Why did we call San Francisco “Old Gold Mine” and NZ “New Gold Mine” ? We’ll look at the Gold Rush history.
+The bar tail Godwit, champion of Long haul flight. They can fly seven and a half day non stop to Yalu Jiang. Then to Alaska to breed. At the end of August will fly eight and a half day non stop back to NZ. It is time to farewell the birds. They are leaving for Yalu Jiang in March. They are in their best shape and the male birds are in their pretty breeding feather. Let’s go to Miranda to farewell the migrant birds and hear their amazing stories.
+Thames is a peaceful quiet town now. During the Gold Rush era, it was a very busy place with Banks, stock market, hotels and a lot of people. A certificate from the[ Mineral] School guaranteed a job in other countries. Let’s review the history of Thames.
+8:00am Pick up Poenamo Hotel, 31, Northcote Road, Northcote.
+What to bring : lunch, drink, wind breaker, sun glasses, hat, rainy gear.
+1. Someone from CCET will call to confirm vacancy available.
+2. Do not pay if you have not got our call to confirm there is vacancy.
+3. If there’s vacancy, then please pay as shown below.
+5. Wait for our call to confirm receipt of your money & your seats.
+6. On the day, please be at the departure point 15 minutes earlier.
+8. All other queries, please call 3030633 & leave a message. Please allow 3 to 4 days for us to respond to your enquiry.
+9. If you have called to register or paid in the money, you still cannot get our call after 5 days, please call 3030633 & leave a message again.
+10. Cancelation must be made 7 days before departure and you must try your best to find a person to take your place, otherwise there is no guarantee
+
+=== Text #6 ===
+> In fact, there are currently over a million international students studying in the United States. India and China are by far the two largest contributors, with 47% of all students for the 2015-2016 school year.
+The visa application process can be confusing though, especially when English isn’t your strong suit. We at TransparentCareer have laid out each type of visa used by international students, and the application process for each visa.
+F1 Visa– These are the most common type of visas, and are used for bachelor and graduate school degrees, as well as training programs in the English language. The first step is to check whether the university you’re interested in is verified by the United States government – you can’t get an F1 visa for non accredited universities. Take a look here to see if your school is verified. The first step is to apply to universities where you want to study. Upon acceptance, the university will provide you with a form I-20. Keep in mind – you can’t transfer once you select a school. Make sure it’s the right fit for you! You’ll then have to go to the site of the US embassy closest to you, and pay a non refundable application fee. Find the embassy closest to you here.
+You’ll then have to prepare for an interview – the sooner you can set this up the better. The interviewer will require proof of intent to return to your country after you complete your education (such as family, home job offer) as well as a passport and the form I-20 provided by your school. The interview will also require proof of financial sufficiency to fund your education. If you need advice on how to finance your education, take a look at this guide. Depending on your school you may also have to provide test scores such as the SAT, GMAT, or GRE.
+J1A Visa– J1A visas are for those looking to temporarily stay in the US for a work or culture exchange program, such as to be an au pair, international camp counselor, or for specific medical training. To be accepted, you have to be sponsored by a nonprofit or government organization. You can find a list of all approved organizations here. After applying and being approved by an organization, they’ll provide you with a DS-2019 form to fill out. Then you have to apply for a J1A visa at your nearest US embassy. A Sevis I-901 fee must then be
+
+=== Text #7 ===
+> Hurrah! A cooperative worldwide effort to rescue Thailand children trapped in a flooded cave rescued them all in less than 3 weeks from the time they entered the cave to the time of their rescue.
+It should be much easier, shouldn’t even take a heroic effort, to rescue children trapped in separation from their families at the Mexican border. These things are possible, but this week, the administration did not even meet the first deadline to get all the children below 5 years old reunited with their families.
+It should even be logistically possible with a cooperative world wide effort to develop economic systems that could rescue all the hungry children everywhere living in poverty.
+In the U.S. alone, 1 in 5 children live in poverty, according to a recently released United Nations report.
+Such inequality and poverty is a direct result of economic policies that are chosen by elected leaders. The solution is to elect different leaders than the ones in power now. Please consider carefully when you vote this November.
+
+=== Text #8 ===
+> Grace. What is it? What does it mean? How do you get it and how do you KNOW you got it?
+Honestly, I don’t know the answers to these questions. I have no way of describing something I don’t understand BUT believe deeply in my soul that it exists. How do you get these graces? Sanctifying grace is IN your soul. It’s the free and underserved gift from God. Actual grace would come from our knowledge and belief of all things right and wrong – following the Ten Commandments, making sure we follow a path that is pure and justified. Justified means to be sinless, and to be sinless means you are in favor with God. When you are baptized you are sinless and therefore have favor with God. When you go to reconciliation, you are once again sinless and in favor with God. You are in a state of grace. Once sanctifying grace is in your soul, you can increase it by every good action you do – receiving Communion, saying prayers, performing corporal works of Mercy. The most important thing to think about is NOT what you are going to do or how you are going to do it but to recognize God’s love. The reason you can do any good work is because God LOVES YOU FIRST in Grace. You must continually seek God’s grace, continually respond to the actual graces God is working within you, inclining you to turn to Him and do good.
+Have I answered the question as to what Grace is? I’ve read through all the study guides provided to me and compiled all the information, but I don’t believe that I’ve properly explained what Grace is.
+To me Grace is a feeling. Sometimes it’s butterflies in the stomach, and it takes my breath away. I feel this way every time I think of my husband. We met and married 38 years ago. I see God’s grace in our meeting, getting married, and living our life together as husband and wife. Sometimes it’s a jolt, like an electric shock and then an overwhelming wave of love, like the enormous amount of love I felt when I held my first baby in my arms for the first time. This happened again with my 2nd and 3rd child, and then God blessed us with twins to make 4 and 5. Then sometimes it feels like a raging fight going on inside me, making hard decisions that breaks
+
+=== Text #9 ===
+> Wind River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sandro Baebler. This article appears in MovieMaker‘s Summer 2017 issue.
+
+=== Text #10 ===
+> Which got me thinking about other things that have been forced down our throats by the zeitgeist, people, places, and trends that the pop culture puppeteers insist on making relevant. Here are ten items I could truly do without. If you know me, I'm not usually about spreading the hateration, but sometimes we all need a good vent.
+1. Julianne Hough - Thankfully I never saw that Footloose remake. However, I did catch this summer's Rock of Ages, and while I was entertained, this 24-year-old bobblehead came close to spoiling the whole musical enchilada for me. And she's still dating Seacrest? And getting more movie roles? Why, Hollywood, why?
+2. Fifty Shades of Grey - I picked up a copy at the L.A. Times Festival of Books back in April, read one page, and then felt the urge to bring it with me into a bathroom stall after eating a dozen shrimp tacos. The latest literary sensation will eventually become the next movie franchise sensation. Wake me up when it's over.
+3. Ke$ha - The second full-length album from this glitter tramp is scheduled to arrive before the year is over. In related news, I think I just contracted herpes from writing that last sentence.
+4. Adam Sandler - I did not need to see Jack & Jill or That's My Boy to realize that the King of Fart Jokes (and his entire production company) is running on fumes. It would be great if he went into hiding and then returned 20 years later to do a respectable cameo in a Tarantino flick.
+5. Big-budget comic book adaptations - The Avengers should have been the grand finale that hammered the final nail in the genre's coffin. It was one giant, wham-bam-thank-you-ma'am way to lasso up all of our favorite superheroes and send them off in a spectacular farewell. But no, we're getting Thor: The Dark World, Captain America: The Winter Soldier, Ant-Man, Iron Man 3, and another Wolverine.
+6. Charlie Sheen - This gimmick is deader than the silent graveyard otherwise known as my love life.
+7. Anything labeled with the Kardashian name - Speaks for itself.
+8. American Idol - Usually, when people are jumping overboard, that means the ship is sinking. This voyage plummeted to the bottom of the ocean a while ago and is now a piece
+
+=== Text #11 ===
+> Ladyada speaking at Women 2.0 – @women2 #w2pitch MAKER: “LIFE AFTER PROTOTYPE” « Adafruit Industries – Makers, hackers, artists, designers and engineers!
+Women 2.0 – Ladyada speaking at Women 2.0 – MAKER: “LIFE AFTER PROTOTYPE”.
+Alice Brooks (Co-Founder, Roominate), Debbie Sterling (Founder & CEO, GoldieBlox), Limor Fried (Founder & CEO, Adafruit Industries), Liz Ormesher Salcedo (Founder & CEO, Everpurse) – moderated by Lora Kolodny (Writer, Wall Street Journal).
+A new generation of consumer electronics entrepreneurs reveal how they started tech companies that deliver more than bits and bytes. They’ll share advice about crowdfunding, getting a prototype into production, and more.
+
+=== Text #12 ===
+> The lives of people have definitely changed with the help of technological advancements, which you can see right away as you wake up. This includes Envoy America, which this website proudly mentions, especially that it contributes to the welfare of the society. Now that Envoy America is functioning as a one ride-sharing service, they focus on bringing Dementia patients to their destination safe and sound. This is something that proves that their company is a customer-centered one, which definitely deserves a recognition. This is why the Dementia Society of America has given them the Dementia SMART Award. Learn more about the award that has been given to them by clicking this link.
+More people are now enjoying the benefits that Envoy America as given to them. All of their drivers have finished a certain certification and training in order for them to be allowed to go on duty. Here in Envoy America, the family members of Dementia patients do not need to worry about them because they can reach their destination in the safest way. To know more about the certification process of Envoy America drivers, read more here.
+Dementia patients are often seen as people who can no longer function a hundred percent in their community. Envoy America is aiming to break that statement. Read more here to learn about the benefits of Envoy America to Dementia patients. Check it out as soon as possible to make your loved one with Dementia happy and healthy.
+One of the main purposes of Envoy America is to increase the independence of Dementia patients. Through socializing, they can improve their health. Envoy America is the pioneer in making this amazing change. This pioneering company in breaking boundaries for Dementia people has more to offer in the future. It is such a joy that more people are already thinking of the needs of others through their services. The Dementia Society of America has outstandingly helped Dementia patients, too, through their non-medical services. There is more info that you should know about the mission of Dementia Society of America, which you can find as you click here!
+Truly, people have already moved to start an incredible change in the society by thinking and implementing their bright ideas. Both Envoy America and Dementia Society of America have strived hard to break barriers. Be part of the change by contacting them.
+People with dementia deserve to get the best services, which are made only for them. These companies have truly pushed their limits and smashed walls for
+
+=== Text #13 ===
+> Self Image – The idea one has of one’s abilities, appearance, and personality.
+Maintaining a positive self-image can be really difficult. I know, personally, I have always struggled with this. I say “self-image” instead of “body image” because I believe it’s important to love all of yourself. Your style, your taste, your views, your abilities, your personality. There is a word that I feel has maybe fallen on the back burner these days and that word is INDIVIDUAL. You are you, and there is not a single person out there who is exactly like you. That is something to celebrate, not something to shy away from.
+Have you ever let someone else influence how you feel about yourself or how you act?
+For example, maybe you use to love Japanese food, but now, since your partner hates it, you haven’t actually had Japanese food in a very long time. Or maybe you use to love the color red, but someone once said “Red is so not your color” and now every time you go to put on something red, that voice is in your head and you end up changing your mind… Now imagine if we let everyone else dictate everything about us. We would all be an absolute mess. It is important for you to really know yourself. Know what you like and dislike and stick to it. This saying is one that I keep in mind and try to live by.
+Know what you stand for or you will fall for anything.
+I can’t stress how important it is for us to love ourselves and see value in what we have to offer. If we don’t, then how can we expect anyone else to?
+I believe social media certainly plays a role in our mental view of ourselves. How we dress, decorate our home, exercise… social media can even influence something as simple as how we feel about our cleaning routine. I know this first hand because I have allowed other people on social media to make me feel small or inadequate before. Maybe because they have a perfectly organized kitchen or they vacuum their carpet every day and I don’t.
+Let me repeat – I ALLOW myself feel to small or inadequate. These other people do not in any way TRY to make me feel this way.
+Maybe I don’t dust my blinds, or wipe down my fridge every single day – Does that make me a bad mom
+
+=== Text #14 ===
+> Well it's been a funny few days. On Saturday I made the best beefburgers yet - the recipe's from a fellow Sausagemaking.org member, Oddley.
+I've always been a "don't use anything other than chuck steak, ground with salt and pepper" man, but he's converted me. The spices aren't discernable in the taste, but it wouldn't be as good without them.
+Things were going so well, that is until the element went in the fan oven on Sunday. £50 later and it's up and running again.
+However, things are looking up again. Maurice rang me yesterday lunch-time to say that the fishmonger had replaced the roe that wasn't very good, free of charge. So yesterday evening we dry salted them for 8 hours, and they're in the cold smoker as I speak.
+They certainly look more promising than the last lot.
+Very interested in how the online course went Phil, I’ve been putting this off for too long and it’s high time I got one of those certificates.
+
+=== Text #15 ===
+> It seems that there’s only one thing on people’s minds at Milan Fashion Week and it’s the Fendi Autumn Winter Collection.
+We saw a big pile up of clothing with heavy duty parkas, long high-waisted skirts and handbags being featured in the collection.
+Everything was quite well structured and fitted but also bulky at the same time which keeps in fitting with the Autumn/Winter theme.
+The little Karl Lagerfeld doll that Cara Delevigne was holding has done the rounds on twitter, instagram and you can see all the accessories, handbags and shoes from the Fendi Autumn Winter collection by scrolling to the next picture.
+
+=== Text #16 ===
+> Here’s what I found over the past week that I thought was interesting. Enjoy!
+The Most Dangerous Traffic Circle in the World – I’ve spent the past three weeks in Saigon, and I’m staying just blocks away from this intersection. It’s insane to cross here! It’s right next to Bến Thành Market, and seven streets converge here to create s steady stream of traffic throughout the day.
+Andrew Huang Raps in 5 Languages – A rapper originally from China who grew up in Canada raps in English, French, Spanish, Swedish and Mandarin. You can read the lyrics in any of the above languages. It’s worth a listen.
+Jon Stewart with Bassem Yousef in Egypt – This is hilarious, but also has a good message about getting over stereotypes in the Middle East. And Stewart speaks in a bit of Arabic at the beginning.
+Pilot showcases stunning photos inside cockpit – A Dubai-based pilot gives us the perspective of what the view from the front of the airplane looks like. I particularly like the sunrise pictures.
+World Travel Resources – If you want to know how much you should budget for a trip, this could give you a good idea. The page breaks down budgets RTW and regional trips. You can also read how much I spent in Arizona, California and Nevada here and Central America here.
+Flight 447: We Can Not Penetrate This Weather – A first-hand account of what happened when a plane tried to land during a storm in India. I would never want to be in this situation.
+11 Miles and Credit Card Updates You May Not Know About – Getting free flights is the best way to save money while traveling. Here are some of the best offers now.
+United Airlines Forgets Toilet Paper – This happens sometimes in Central America and Asia, but I didn’t expect to read about this on a plane. Read what the passengers had to use for toilet paper.
+Have you seen anything interesting in the past week? Share below.
+
+=== Text #17 ===
+> Find Costume Contest Meme Halloween shopping results from Amazon & compare prices with other Halloween online stores: Ebay, Walmart, Target, Sears, Asos, Spitit Halloween, Costume Express, Costume Craze, Party City, Oriental Trading, Yandy, Halloween Express, Smiffys, Costume Discounters, BuyCostumes, Costume Kingdom, and other stores.
+Don't satisfied with Costume Contest Meme results or need more Halloween costume ideas? Try to exlore these related searches: Costumes Holiday House, Ant Insect Fancy Dress Costume, Batman Arkham City Costume Cheat.
+
+=== Text #18 ===
+> Is Google Chrome the recommended web browser for using uiuLearn? Or can other browsers be used?
+If your internet browser or settings are not compatible with uiuLearn, you will receive a pop-up notification on the login page to inform you.
+
+=== Text #19 ===
+> Royal Dutch Shell Plc and Equinor ASA said they’re committed to a project that will allow the export of natural gas from Tanzania.
+Proposals to build a $30 billion liquefied-natural-gas plant (LNG), in gestation since 2014, have been clouded by policy uncertainty in Tanzania’s extractives industry. Investor sentiment toward the East African nation has been soured by the government’s overhaul of mining legislation that’s enabled it to renegotiate contracts.
+Still, companies involved in the country’s gas industry maintain they’re prepared to move forward.
+“For now, the focus is on agreeing to the Host Government Agreement that is to set the legislative, regulatory and fiscal terms for the project,” Sally Donaldson, a spokeswoman for Shell, said in an emailed response to questions. Before a final investment decision is reached, an engineering study must be conducted that will last about two years and cost hundreds of millions of dollars, she said. Construction of the plant is expected to take as long as five years.
+Negotiations on the HGA have been continuing “for some time, and the actual commencement of construction seems to be a long way off,” said Jacques Nel, an analyst at NKC Africa Economics in Paarl, South Africa.
+“The government’s hard-line approach to dealing with large foreign investors in the natural resources sector also puts a dampener on foreign investor sentiment, particularly when considering the magnitude and timelines of LNG investments,” he said.
+The government is working on ways to enable the project to proceed, according to Kapuulya Musomba, acting managing director of the Tanzania Petroleum Development Corp. In April, it invited bids for a transaction adviser to negotiate terms of the project, which was originally scheduled for completion in 2020.
+Equinor is the operator and holds the majority of the working interest in Block 2. Exxon Mobil Corp., which has a 35 percent stake, said it’s cooperating with the government to realize the LNG project.
+Shell and Ophir Energy Plc hold interests in Tanzania’s Blocks 1 and 4.
+
+=== Text #20 ===
+> Mississippi State won the Southeastern Conference regular-season title one year after finishing in the league basement.
+Now the Bulldogs want to carry the momentum of that dramatic rise into the postseason.
+Mississippi State (40-14-1, 21-9 SEC) enters this week's Southeastern Conference Tournament as the No. 1 seed after winning its first regular-season league title since 1989. The Bulldogs had gone 24-30 overall and 8-22 in conference play in 2015 to finish last in the Western Division and post the SEC's worst overall league record.
+Bulldogs coach John Cohen, who played for Mississippi State's last SEC regular-season champions, said there isn't much of a gap separating the top of the conference from the bottom.
+"If you're an inch off in the Southeastern Conference, you're going to get punched in the mouth a lot," Cohen said.
+SEC Tournament play begins Tuesday in Hoover, Alabama. No. 6 seed Vanderbilt (41-15, 18-12) faces No. 11 seed Missouri (26-29, 9-21), No. 7 seed Mississippi (40-16, 18-12) meets No. 10 seed Georgia (27-29, 11-19), No. 8 seed Kentucky (32-24, 15-15) battles No. 9 seed Alabama (31-24, 15-15) and No. 5 seed LSU (39-17, 19-11) tackles No. 12 seed Tennessee (29-27, 9-21) in single-elimination games.
+Tuesday's winners advance to double-elimination play beginning Wednesday along with Mississippi State, No. 2 seed South Carolina (42-13, 20-9), No. 3 seed Texas A&M (41-13, 20-10) and No. 4 seed Florida (44-11, 19-10). The tournament returns to a single-elimination format Saturday and has a championship game Sunday.
+Mississippi State made its dramatic rise up the standings by getting improvement from its new players and receiving a huge impact from its newcomers. Mississippi State's three top batting averages are owned by freshman Jake Mangum (.427) and junior-college transfers Nathaniel Lowe (.359) and Jack Kruger (.358). Kruger has a team-high .570 slugging percentage, Mangum leads the Bulldogs in on-base percentage (.479) and Lowe has a team-leading 47 RBIs.
+"Those are all three new guys who
+
+
+Description: 
+2025-05-10 09:24:23,613 - root - INFO - Activities related to creating molds of footprints, along with organ music, academic publications, and mining/geology
+
+2025-05-10 09:24:23,616 - root - INFO - Cluster #4 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.csv
+2025-05-10 09:24:23,617 - root - INFO - ================================================================================
+2025-05-10 09:24:23,617 - root - INFO - ANALYSIS COMPLETED
+2025-05-10 09:24:23,617 - root - INFO - ================================================================================
+2025-05-10 09:24:23,618 - root - INFO - Logs saved to: logs/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.log
+2025-05-10 09:24:23,618 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-20265_2025-05-10_07-15-47.csv

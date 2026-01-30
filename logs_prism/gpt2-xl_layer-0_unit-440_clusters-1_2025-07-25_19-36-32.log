@@ -1,0 +1,905 @@
+2025-07-25 21:36:32,871 - root - INFO - ================================================================================
+2025-07-25 21:36:32,933 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 21:36:32,934 - root - INFO - ================================================================================
+2025-07-25 21:36:32,935 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 21:36:32,935 - root - INFO - AGG_METHOD = mean
+2025-07-25 21:36:32,936 - root - INFO - BATCH_SIZE = 2
+2025-07-25 21:36:32,936 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 21:36:32,936 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 21:36:32,937 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 21:36:32,937 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 21:36:32,938 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 21:36:32,938 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 21:36:32,939 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 21:36:32,939 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 21:36:32,940 - root - INFO - DATA_FILES = None
+2025-07-25 21:36:32,940 - root - INFO - DEVICE = cuda
+2025-07-25 21:36:32,941 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 21:36:32,941 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 21:36:32,941 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 21:36:32,942 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 21:36:32,942 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 21:36:32,943 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 21:36:32,943 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 21:36:32,943 - root - INFO - LAYER_ID = 0
+2025-07-25 21:36:32,944 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 21:36:32,944 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 21:36:32,944 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 21:36:32,945 - root - INFO - MULTI_EVAL = True
+2025-07-25 21:36:32,945 - root - INFO - N_CLUSTERS = 1
+2025-07-25 21:36:32,946 - root - INFO - N_SAMPLES = 10
+2025-07-25 21:36:32,946 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 21:36:32,946 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 21:36:32,947 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 21:36:32,947 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 21:36:32,948 - root - INFO - SPLIT = train
+2025-07-25 21:36:32,948 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 21:36:32,948 - root - INFO - STREAMING = True
+2025-07-25 21:36:32,949 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 21:36:32,949 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 21:36:32,950 - root - INFO - TARGET_DATA = c4
+2025-07-25 21:36:32,950 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 21:36:32,950 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 21:36:32,951 - root - INFO - UNIT_ID = 440
+2025-07-25 21:36:32,951 - root - INFO - USE_API = True
+2025-07-25 21:36:32,952 - root - INFO - ================================================================================
+2025-07-25 21:36:32,952 - root - INFO - ANALYSIS RESULTS
+2025-07-25 21:36:32,953 - root - INFO - ================================================================================
+2025-07-25 21:36:32,953 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-440_clusters-1_2025-07-25_19-36-32.log
+2025-07-25 21:45:12,195 - root - INFO - Reached 1000 samples.
+2025-07-25 21:45:13,761 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 21:45:13,762 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 21:45:27,879 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 21:46:05,135 - root - INFO - Number of candidates: 1001
+2025-07-25 21:46:09,120 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 21:46:09,121 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  toe (0.5655703544616699)
+Text #1:  toe (0.5294484496116638)
+Text #1: heavy (0.2821945548057556)
+Text #1:  toe (0.5861865282058716)
+Text #1:  toe (0.5277497172355652)
+Text #1: heavy (0.26097726821899414)
+Text #1:  toe (0.5442094206809998)
+Text #1: heavy (0.34446007013320923)
+Text #1:  toe (0.6108227968215942)
+Text #1:  toe (0.5757453441619873)
+Text #1: heavy (0.29252558946609497)
+Text #1:  toe (0.5619806051254272)
+Text #1:  toe (0.6201440691947937)
+Text #1: heavy (0.3524567186832428)
+Text #1:  toe (0.5846748948097229)
+Text #1:  full (1.2222144603729248)
+Text #1:  toe (0.5816138386726379)
+Text #1:  sole (0.5082001686096191)
+Text #1: heavy (0.27309414744377136)
+Text #1:  toe (0.552371621131897)
+Text #1:  toe (0.5035452246665955)
+Text #1: heavy (0.3865346908569336)
+Text #1:  toe (0.6008860468864441)
+Text #1:  toe (0.603755533695221)
+Text #1: heavy (0.35154610872268677)
+Text #1:  toe (0.5658693909645081)
+Text #1:  toe (0.530257523059845)
+Text #1: heavy (0.29043182730674744)
+Text #1:  toe (0.5326120853424072)
+Text #1: heavy (0.28204146027565)
+Text #1:  toe (0.4625020921230316)
+Text #1:  toe (0.506473958492279)
+Text #1: heavy (0.36730340123176575)
+Text #1:  toe (0.5432466864585876)
+Text #1:  toe (0.51261967420578)
+Text #1: heavy (0.3374578058719635)
+Text #1:  toe (0.5671185255050659)
+Text #1:  toe (0.5608246922492981)
+Text #1: heavy (0.2744334042072296)
+Text #1:  toe (0.5399904847145081)
+Text #1: heavy (0.3019833564758301)
+Text #1:  toe (0.5541514158248901)
+Text #1: heavy (0.31018462777137756)
+Text #1:  toe (0.5477125644683838)
+Text #1: ible (1.0811420679092407)
+Text #1:  toe (0.5001124143600464)
+Text #1:  toe (0.49534791707992554)
+Text #1: heavy (0.26764795184135437)
+Text #1:  toe (0.491110235452652)
+Text #1:  toe (0.4804493486881256)
+Text #1: heavy (0.25148269534111023)
+Text #2:  payments (0.541736364364624)
+Text #2: based (0.1617245376110077)
+Text #2:  payment (0.304340660572052)
+Text #2:  payments (0.5452560782432556)
+Text #2:  credit (0.9172144532203674)
+Text #2:  payment (0.5705471634864807)
+Text #2:  credit (0.9130533337593079)
+Text #2:  payments (0.8537298440933228)
+Text #2:  credit (0.9313392043113708)
+Text #2:  easily (0.11546137183904648)
+Text #2:  credit (0.91904217004776)
+Text #2:  payments (1.0420230627059937)
+Text #2: ing (0.19952520728111267)
+Text #2:  credit (0.8646250367164612)
+Text #2:  payments (0.8355354070663452)
+Text #2:  payments (0.8332574367523193)
+Text #2:  sensitive (0.09191375970840454)
+Text #2:  seamlessly (0.43869686126708984)
+Text #2:  certified (1.0417081117630005)
+Text #2:  credit (0.9681077003479004)
+Text #2:  credit (1.009459137916565)
+Text #2: Customer (0.05675286054611206)
+Text #2:  listed (0.758277952671051)
+Text #2:  payment (0.6550207734107971)
+Text #2:  payment (0.5905492901802063)
+Text #2:  digitally (0.032645661383867264)
+Text #2:  securely (0.001969768200069666)
+Text #2:  token (0.0766989216208458)
+Text #2:  sensitive (0.006519211921840906)
+Text #2:  payment (0.4503420889377594)
+Text #2:  token (0.05720829218626022)
+Text #2:  trunc (0.3128453493118286)
+Text #2:  confirmed (0.03750067204236984)
+Text #2: Real (0.07109880447387695)
+Text #2:  payment (0.37994226813316345)
+Text #2:  debit (0.14864349365234375)
+Text #2:  attentive (0.5579817891120911)
+Text #2:  Associates (0.0044705006293952465)
+Text #2:  registered (0.4912645220756531)
+Text #2:  2004 (0.11504337191581726)
+Text #2:  Associates (0.021297940984368324)
+Text #2:  Reserved (1.1735577583312988)
+Text #3: ated (2.3456382751464844)
+Text #3: ating (1.292242169380188)
+Text #3: mm (0.05398041754961014)
+Text #3: 1500 (0.10146207362413406)
+Text #3: ized (0.43139541149139404)
+Text #3: ized (0.34398582577705383)
+Text #3: ed (1.1915704011917114)
+Text #3: ibaba (0.003510070266202092)
+Text #3: 953 (0.30580851435661316)
+Text #3:  prime (0.04698093980550766)
+Text #3: ized (0.43398168683052063)
+Text #3: ating (1.057610034942627)
+Text #3: ized (0.3759285807609558)
+Text #3: ated (2.150777578353882)
+Text #3: ized (0.4311180114746094)
+Text #3: ated (2.344897747039795)
+Text #3: ized (0.42762473225593567)
+Text #3: ized (0.43338459730148315)
+Text #3: ated (2.1859683990478516)
+Text #3: ized (0.38357070088386536)
+Text #3: ized (0.40990808606147766)
+Text #3: ated (2.2051498889923096)
+Text #3:  Q (0.004384311847388744)
+Text #3: ized (0.34635084867477417)
+Text #3: ated (2.3784542083740234)
+Text #3: ized (0.42895907163619995)
+Text #3: ized (0.4148674011230469)
+Text #3:  Zero (0.250893235206604)
+Text #3: ized (0.4453989863395691)
+Text #3: ized (0.4398565888404846)
+Text #3: ized (0.44153374433517456)
+Text #3: ized (0.6608597040176392)
+Text #3: ized (0.6518149971961975)
+Text #3: ized (0.49603137373924255)
+Text #3: ated (2.3186042308807373)
+Text #4: Sorry (0.6815781593322754)
+Text #4: addin (0.9704645276069641)
+Text #4: addin (0.8035972118377686)
+Text #4: � (0.022547977045178413)
+Text #4:  Ahead (0.02505870722234249)
+Text #4: addin (0.9972282648086548)
+Text #4: Based (0.1258244812488556)
+Text #4: addin (1.094124436378479)
+Text #4: � (0.14622551202774048)
+Text #4:  forever (0.2618406116962433)
+Text #4: � (0.15376023948192596)
+Text #4: � (0.1538214236497879)
+Text #4: addin (1.1283245086669922)
+Text #4: ued (1.4604830741882324)
+Text #4: addin (0.8830283880233765)
+Text #4: � (0.007752439472824335)
+Text #4: addin (0.9122980237007141)
+Text #4: addin (0.9614721536636353)
+Text #4: � (0.030734345316886902)
+Text #4: � (0.039808161556720734)
+Text #4: addin (0.9577135443687439)
+Text #4: � (0.0307803712785244)
+Text #4:  fab (0.025836315006017685)
+Text #4: Prince (0.06729171425104141)
+Text #4: � (0.07717840373516083)
+Text #4: � (0.05327024310827255)
+Text #4: � (0.06391476094722748)
+Text #4: addin (0.9587211608886719)
+Text #4: � (0.08911627531051636)
+Text #4: addin (1.1781461238861084)
+Text #4:  written (0.10734693706035614)
+Text #4:  Howard (0.07026635110378265)
+Text #4: uel (0.357248455286026)
+Text #4: uel (0.361888587474823)
+Text #4:  premiered (0.018596315756440163)
+Text #4: – (0.13707579672336578)
+Text #4:  nominated (0.3063513934612274)
+Text #4:  indefinitely (1.2820979356765747)
+Text #4: addin (1.069603443145752)
+Text #4: pay (0.5083847641944885)
+Text #4: addin (0.9814367890357971)
+Text #4: ED (1.4478363990783691)
+Text #4: addin (0.9883919954299927)
+Text #5: Eastern (0.10532712936401367)
+Text #5: � (0.09462208300828934)
+Text #5: � (0.3886418044567108)
+Text #5: � (0.14342579245567322)
+Text #5:  cult (0.01381299551576376)
+Text #5:  reincarn (0.5438320636749268)
+Text #5:  Yang (0.13763412833213806)
+Text #5: bing (0.03400763124227524)
+Text #5: 1973 (0.40719228982925415)
+Text #5: ish (0.10104107111692429)
+Text #5: – (0.0717836320400238)
+Text #5:  Yang (0.04439724236726761)
+Text #5:  testament (1.2984179258346558)
+Text #5:  Appears (0.1741832047700882)
+Text #5:  refers (0.051068104803562164)
+Text #5:  December (0.11590221524238586)
+Text #5: eded (0.4262704849243164)
+Text #5:  forgiven (1.3466435670852661)
+Text #5: ed (0.8327904939651489)
+Text #5:  supposed (0.6983670592308044)
+Text #5:  mainstream (0.10063015669584274)
+Text #5:  stating (0.1316031962633133)
+Text #5: gu (0.6894944906234741)
+Text #5:  truly (1.367993950843811)
+Text #5:  implicitly (0.25595763325691223)
+Text #5:  explicitly (0.5645622611045837)
+Text #5:  quotations (0.1209053248167038)
+Text #5:  Appears (0.06799826771020889)
+Text #5: ible (1.2061833143234253)
+Text #5: interpret (0.1387811154127121)
+Text #5:  intended (0.1337405890226364)
+Text #5:  contradictions (0.043411873281002045)
+Text #6: crime (0.023471327498555183)
+Text #6: � (0.06082254275679588)
+Text #6:  banking (0.04450550675392151)
+Text #6: � (0.0675622820854187)
+Text #6: based (0.16069470345973969)
+Text #6: ated (1.7843573093414307)
+Text #6:  banking (0.06829020380973816)
+Text #6:  mere (0.19252637028694153)
+Text #6:  coincidence (0.10673955082893372)
+Text #6: tr (0.8489683866500854)
+Text #6:  banking (0.019934993237257004)
+Text #6:  quietly (0.7629094123840332)
+Text #6:  sensitive (0.025758549571037292)
+Text #6:  login (0.041118890047073364)
+Text #6:  prominent (0.08848593384027481)
+Text #6:  known (0.049048930406570435)
+Text #6: ributed (0.24399323761463165)
+Text #6: gu (0.6014189720153809)
+Text #6: able (1.3150923252105713)
+Text #6:  compromised (0.25736531615257263)
+Text #6: uting (0.14653179049491882)
+Text #6:  rotation (0.012105670757591724)
+Text #6:  outs (0.4323869049549103)
+Text #6:  iterations (1.018263339996338)
+Text #6: ed (1.0721253156661987)
+Text #6:  compromised (0.12011347711086273)
+Text #6:  due (1.663690447807312)
+Text #6: vo (0.32220959663391113)
+Text #6:  contextual (0.6127563714981079)
+Text #6:  holiday (0.08372240513563156)
+Text #6:  iterations (1.231265664100647)
+Text #6: enabled (0.02014654502272606)
+Text #6: loaded (0.3458544909954071)
+Text #6:  largely (0.13066554069519043)
+Text #6:  signature (0.12896138429641724)
+Text #6: based (0.0250454843044281)
+Text #6:  meaningful (1.618781566619873)
+Text #6: ading (0.10134483128786087)
+Text #6: rate (0.156378373503685)
+Text #7: Just (0.02181524969637394)
+Text #7: � (0.08467384427785873)
+Text #7: � (0.03261752426624298)
+Text #7:  harvested (0.09882847964763641)
+Text #7: ck (0.03626241907477379)
+Text #7:  aware (0.2917831540107727)
+Text #7: mist (0.44119197130203247)
+Text #7: ed (1.276930809020996)
+Text #7: mist (0.36229169368743896)
+Text #7:  reputable (1.222212553024292)
+Text #7: mist (0.43339186906814575)
+Text #7: mist (0.4517841935157776)
+Text #7:  harvesting (0.2910586893558502)
+Text #7: ed (1.412490725517273)
+Text #7:  ceilings (0.4467443525791168)
+Text #7:  ceilings (0.38032227754592896)
+Text #7: ed (1.4931584596633911)
+Text #7:  full (0.9213600158691406)
+Text #7:  upright (0.007387739140540361)
+Text #7:  semi (0.40886253118515015)
+Text #7:  full (0.8952355980873108)
+Text #7:  semi (0.3902496099472046)
+Text #7:  full (0.6335641741752625)
+Text #7:  semi (0.36713922023773193)
+Text #7:  full (0.7756281495094299)
+Text #7: mist (0.48224401473999023)
+Text #7:  eyed (0.2544616758823395)
+Text #7:  true (1.7624444961547852)
+Text #7: anned (0.0014375491300597787)
+Text #7: mist (0.3968488276004791)
+Text #7: � (0.13044670224189758)
+Text #7: mist (0.4500393569469452)
+Text #7:  worth (0.012466470710933208)
+Text #8: und (0.20415277779102325)
+Text #8: ed (1.4652434587478638)
+Text #8: ed (1.3690050840377808)
+Text #8:  Su (0.6109849214553833)
+Text #8: ees (0.13439089059829712)
+Text #8:  strictly (0.5198447108268738)
+Text #8:  chosen (0.4850546717643738)
+Text #8: � (0.13300089538097382)
+Text #8:  invested (0.02371644601225853)
+Text #8:  commitment (0.2219052016735077)
+Text #8: ments (0.6497519612312317)
+Text #8:  noted (0.8191901445388794)
+Text #8: ed (1.394521951675415)
+Text #8:  registered (0.5088187456130981)
+Text #8: ees (0.13332179188728333)
+Text #8: � (0.04376935213804245)
+Text #8: � (0.04791353642940521)
+Text #8: ud (0.6938430666923523)
+Text #8: ees (0.007399602327495813)
+Text #8:  adequately (0.5675057768821716)
+Text #8: ud (0.590354323387146)
+Text #8:  stated (1.0460420846939087)
+Text #8:  mandated (0.8264821171760559)
+Text #8: Despite (0.678966760635376)
+Text #9:  dialogue (0.5414859652519226)
+Text #9:  hotly (0.1462276130914688)
+Text #9:  muttered (0.025936197489500046)
+Text #9:  skept (0.12007936835289001)
+Text #9:  frowned (0.035607751458883286)
+Text #9: chie (0.47215548157691956)
+Text #9: ously (1.8824152946472168)
+Text #9:  dialogue (0.0706697627902031)
+Text #9:  quotation (0.1460294872522354)
+Text #9: informed (0.6739031672477722)
+Text #9: informed (0.6012865900993347)
+Text #9:  dialogue (0.12503108382225037)
+Text #9: Dialogue (0.08443617820739746)
+Text #9:  conversation (0.010159741155803204)
+Text #9:  dialogue (0.08902452886104584)
+Text #9:  reminders (0.8540778160095215)
+Text #9: ed (1.0583785772323608)
+Text #9: pered (1.173224925994873)
+Text #9: chie (0.38864320516586304)
+Text #9: ously (1.8884191513061523)
+Text #9:  skept (0.09636079519987106)
+Text #10: � (0.04040051996707916)
+Text #10:  Aware (0.2113010138273239)
+Text #10: urus (0.36218807101249695)
+Text #10: � (0.0005706669762730598)
+Text #10: icated (0.6492955088615417)
+Text #10: � (0.028281860053539276)
+Text #10: � (0.00268214731477201)
+Text #10: escap (0.5291696190834045)
+Text #10:  offerings (0.22443071007728577)
+Text #10: escap (0.4630752205848694)
+Text #10:  reasonably (0.44256964325904846)
+Text #10: ce (0.2350025475025177)
+Text #10:  util (0.26780828833580017)
+Text #10: ctic (0.04156182333827019)
+Text #11: Tr (0.452867716550827)
+Text #11:  quantum (0.14501024782657623)
+Text #11:  viewed (0.012327898293733597)
+Text #11:  symbolic (0.35620737075805664)
+Text #11:  calculus (0.3019793629646301)
+Text #11:  true (1.723771333694458)
+Text #11:  quantum (0.027172977104783058)
+Text #11:  calculations (0.3589963912963867)
+Text #11:  Similarly (0.06764287501573563)
+Text #11: Interestingly (0.7105610370635986)
+Text #11:  shift (0.022121157497167587)
+Text #11:  quantum (0.08625759929418564)
+Text #11:  quantum (0.10879810154438019)
+Text #11: ized (0.47524377703666687)
+Text #11:  quantum (0.05419563129544258)
+Text #11: ational (0.05088331177830696)
+Text #11:  computed (0.07603228092193604)
+Text #11:  competent (0.35654619336128235)
+Text #11:  calculus (0.34497496485710144)
+Text #11:  symbolic (0.37590405344963074)
+Text #11:  calculus (0.2870028614997864)
+Text #11:  acknowledges (1.1668109893798828)
+Text #11:  symbolic (0.3460950553417206)
+Text #11:  symbolic (0.2501828968524933)
+Text #11:  symbolic (0.1821693480014801)
+Text #11:  Schr (0.7602272033691406)
+Text #11: ogy (0.1937607377767563)
+Text #11:  discussed (0.1422475427389145)
+Text #11: ?) (0.35699227452278137)
+Text #11:  quantum (0.04982391744852066)
+Text #11:  Schr (0.793709933757782)
+Text #12:  entitled (0.24508872628211975)
+Text #12:  upbringing (0.07857326418161392)
+Text #12:  correl (0.21066710352897644)
+Text #12:  narratives (0.16561269760131836)
+Text #12: ously (2.0578315258026123)
+Text #12: ed (1.1868849992752075)
+Text #12: � (0.031481631100177765)
+Text #12: ed (1.1764004230499268)
+Text #12:  cogn (0.5875452160835266)
+Text #12: ized (0.23099924623966217)
+Text #12:  misunderstood (1.0622698068618774)
+Text #12: ning (0.06932652741670609)
+Text #12:  significance (0.059577953070402145)
+Text #12:  narratives (0.060926325619220734)
+Text #12: 377 (0.1009388267993927)
+Text #12:  committed (0.09082712233066559)
+Text #12:  committed (0.07047414779663086)
+Text #12: � (0.3325125277042389)
+Text #12: � (0.24271588027477264)
+Text #12:  mentions (0.8274767994880676)
+Text #13: On (0.042579349130392075)
+Text #13:  proper (0.05548495426774025)
+Text #13:  credit (0.8989469408988953)
+Text #13:  util (0.39822351932525635)
+Text #13:  appell (0.012321584858000278)
+Text #13: 2008 (0.3666767477989197)
+Text #13:  credit (0.705726683139801)
+Text #13:  util (0.4216347634792328)
+Text #13: ged (0.33048275113105774)
+Text #13: user (0.08200415968894958)
+Text #13:  revised (0.02495957724750042)
+Text #13:  shortfall (0.16760961711406708)
+Text #13:  payment (0.546697199344635)
+Text #13:  revised (0.0583009235560894)
+Text #13:  agreements (0.0595351979136467)
+Text #13:  util (0.34329330921173096)
+Text #13:  original (0.21737752854824066)
+Text #13:  handling (0.19328618049621582)
+Text #13:  partly (0.061840955168008804)
+Text #13:  handling (0.15717247128486633)
+Text #13:  shortfall (0.1029626801609993)
+Text #13:  regarded (0.7696369886398315)
+Text #13: ited (0.7536393404006958)
+Text #13:  Casual (0.11715541034936905)
+Text #14:  tenure (0.4085579514503479)
+Text #14:  full (0.8369381427764893)
+Text #14:  tenure (0.4329865574836731)
+Text #14: track (0.5898040533065796)
+Text #14:  requirements (0.12380293011665344)
+Text #14:  skilled (0.1255580633878708)
+Text #14:  passionate (0.030983950942754745)
+Text #14: � (0.09487143158912659)
+Text #14: Ten (0.09900765866041183)
+Text #14:  technically (0.14603565633296967)
+Text #14:  due (2.100299119949341)
+Text #14:  legally (0.18480809032917023)
+Text #14:  competent (0.5819534659385681)
+Text #14:  tenure (0.2602655589580536)
+Text #14: track (0.47055190801620483)
+Text #14:  tenure (0.3346365988254547)
+Text #14:  competent (0.5264855623245239)
+Text #14: ured (0.0951901450753212)
+Text #14:  deserving (1.2236248254776)
+Text #14:  tenure (0.10280171781778336)
+Text #14:  tenure (0.12259645015001297)
+Text #14: ured (0.05753929540514946)
+Text #14: ured (0.20993775129318237)
+Text #14:  tenure (0.19691327214241028)
+Text #14: track (0.4404708743095398)
+Text #14: year (0.0998612642288208)
+Text #14:  granted (0.35218021273612976)
+Text #14:  based (0.08811582624912262)
+Text #14: year (0.11538665741682053)
+Text #14: year (0.11612819135189056)
+Text #14:  considered (0.5095381736755371)
+Text #14: � (0.23400554060935974)
+Text #14: � (0.14070534706115723)
+Text #14:  tenure (0.3177579939365387)
+Text #14: track (0.5444971919059753)
+Text #15: Unique (0.26966989040374756)
+Text #15: pa (0.03159293904900551)
+Text #15: eds (0.2617725133895874)
+Text #15: based (0.21426253020763397)
+Text #15:  largely (0.27792707085609436)
+Text #15: getic (1.0689202547073364)
+Text #15: atorial (0.049995750188827515)
+Text #15: asi (0.20770718157291412)
+Text #15: ceptions (0.3073163330554962)
+Text #15:  mentioned (1.4484667778015137)
+Text #15:  ones (0.3941825330257416)
+Text #15: getic (0.943630039691925)
+Text #15:  guaranteed (0.21856564283370972)
+Text #15:  grade (0.003603952471166849)
+Text #15: needs (0.25520050525665283)
+Text #15: 364 (1.244104027748108)
+Text #15: ating (0.8761312961578369)
+Text #15:  responsible (0.5501976609230042)
+Text #15:  tenure (0.16759762167930603)
+Text #15: med (0.07423517107963562)
+Text #15:  plaus (0.05695204436779022)
+Text #15: ized (0.3444550037384033)
+Text #15:  reference (0.017800940200686455)
+Text #15: relations (0.10506236553192139)
+Text #15: Even (0.03322957456111908)
+Text #15: ful (0.38989588618278503)
+Text #16:  deserved (0.5453007221221924)
+Text #16:  flashy (0.0743815004825592)
+Text #16:  reality (0.7254669070243835)
+Text #16:  busy (0.10249964147806168)
+Text #16:  substantive (0.5332323312759399)
+Text #16:  Valerie (0.34212973713874817)
+Text #16: Val (0.04750635474920273)
+Text #16:  listings (0.460726261138916)
+Text #16:  mention (1.5462888479232788)
+Text #16: iably (1.7590069770812988)
+Text #16:  Valerie (0.29687103629112244)
+Text #16:  singular (0.936694324016571)
+Text #16:  retail (0.4897220730781555)
+Text #16: term (0.012242481112480164)
+Text #16:  legacy (0.15233303606510162)
+Text #16: mort (0.11490324884653091)
+Text #16:  retailer (0.0730079859495163)
+Text #16: ally (0.41345006227493286)
+Text #16: ining (0.21879185736179352)
+Text #16:  word (0.21925471723079681)
+Text #16:  facto (1.3027275800704956)
+Text #16:  rightly (0.2809460759162903)
+Text #16:  retail (0.4663681387901306)
+Text #16:  aforementioned (2.054347276687622)
+Text #16:  coherent (0.5570812821388245)
+Text #16:  entirely (1.6115680932998657)
+Text #16:  coordinated (0.06265904754400253)
+Text #16:  granted (0.32019802927970886)
+Text #16:  legacy (0.11957752704620361)
+Text #16: ointed (0.021211111918091774)
+Text #16:  compromise (0.31566452980041504)
+Text #16: Prior (0.4068266749382019)
+Text #16: .), (0.300263911485672)
+Text #16:  prevalent (0.009684724733233452)
+Text #16:  such (0.038117665797472)
+Text #16: lance (0.10241761058568954)
+Text #16:  retail (0.23863957822322845)
+Text #16: led (0.008873233571648598)
+Text #17:  expressly (0.5725888609886169)
+Text #17:  entitled (0.06118088588118553)
+Text #17: ulated (0.2182808518409729)
+Text #17:  entitled (0.04981943592429161)
+Text #17:  payment (0.11189974844455719)
+Text #17:  respective (0.08318255096673965)
+Text #17: ded (1.0969964265823364)
+Text #17:  chosen (0.2510603368282318)
+Text #17:  payment (0.22817890346050262)
+Text #17:  equivalent (0.12541668117046356)
+Text #17:  relevant (0.3639233708381653)
+Text #17:  Given (0.9189478158950806)
+Text #17:  equals (0.5115861892700195)
+Text #17: ially (0.2542944848537445)
+Text #18:  sufficiently (1.3010528087615967)
+Text #18: looking (0.26260918378829956)
+Text #18:  capable (0.06279575824737549)
+Text #18: ed (1.317375659942627)
+Text #18:  substantive (0.49671393632888794)
+Text #18:  Civil (0.10117637366056442)
+Text #18:  swiftly (0.00210777809843421)
+Text #18:  appropriately (0.7838495969772339)
+Text #18: isite (0.44119927287101746)
+Text #18: � (0.013768666423857212)
+Text #18:  carefully (0.3014461398124695)
+Text #18:  proud (0.06832113862037659)
+Text #18: actively (0.2289033979177475)
+Text #18:  submissions (0.16665838658809662)
+Text #18:  regarding (0.08729758858680725)
+Text #18:  pertaining (0.21506962180137634)
+Text #18:  Regarding (0.39001551270484924)
+Text #18:  careful (0.4121389389038086)
+Text #18:  credit (0.9017298221588135)
+Text #18:  regarding (0.12890906631946564)
+Text #18:  authentication (0.1222037747502327)
+Text #18:  correspond (0.022435255348682404)
+Text #18:  constantly (0.003408322809264064)
+Text #18: related (0.38775408267974854)
+Text #18:  revisions (0.6506780385971069)
+Text #18:  meant (0.10295866429805756)
+Text #18: ologies (0.003664214164018631)
+Text #18:  conscious (0.9943061470985413)
+Text #19:  Naturally (0.009089584462344646)
+Text #19: fully (1.4388591051101685)
+Text #19: ird (0.3168275058269501)
+Text #19:  intended (0.15327507257461548)
+Text #19: � (0.08850964158773422)
+Text #19: ird (0.3390405774116516)
+Text #19:  Despite (0.6307738423347473)
+Text #19: � (0.06737016141414642)
+Text #19: � (0.06813614815473557)
+Text #19: ird (0.3636857867240906)
+Text #19:  recognition (0.327366441488266)
+Text #19: oked (0.12084309756755829)
+Text #19: ates (0.11777090281248093)
+Text #19:  regarding (0.17012685537338257)
+Text #19: � (0.091562919318676)
+Text #19:  noticeable (0.5967236161231995)
+Text #19: � (0.03436099365353584)
+Text #19:  hard (0.036948010325431824)
+Text #19: � (0.03980572894215584)
+Text #19:  due (1.9202288389205933)
+Text #19:  Despite (0.5847926735877991)
+Text #19:  concerning (0.2758122384548187)
+Text #19:  seasoned (0.05030504986643791)
+Text #19: ird (0.22895453870296478)
+Text #19: � (0.01799720898270607)
+Text #19: ird (0.30274859070777893)
+Text #19: � (0.029189949855208397)
+Text #19: � (0.04656979814171791)
+Text #19: ird (0.2956250011920929)
+Text #19: � (0.061379995197057724)
+Text #20: effective (0.09574946761131287)
+Text #20:  formal (0.2591601312160492)
+Text #20: eline (0.32389888167381287)
+Text #20:  catering (0.4592783451080322)
+Text #20: � (0.17648261785507202)
+Text #20: eline (0.2504710555076599)
+Text #20: effective (0.05401907116174698)
+Text #20:  formal (0.3217451572418213)
+Text #20: winning (0.041556525975465775)
+Text #20:  guests (0.25562089681625366)
+Text #20: asing (0.17225198447704315)
+Text #20: most (0.14059758186340332)
+Text #20:  satisfies (0.05901695415377617)
+Text #20: eline (0.18200170993804932)
+Text #20:  catering (0.2719869315624237)
+Text #20:  featuring (0.045200757682323456)
+Text #20:  del (0.05736883729696274)
+Text #20: illed (0.2185094803571701)
+Text #20:  showcasing (0.006261325441300869)
+Text #20: ised (0.4030863642692566)
+Text #20:  formal (0.04742708057165146)
+Text #20: ated (1.8590160608291626)
+Text #20: ated (1.8028078079223633)
+Text #20: ared (0.1222800686955452)
+Text #20: ated (1.846093773841858)
+Text #20:  Chef (0.028789767995476723)
+Text #20: ood (0.19073349237442017)
+Text #20: illed (0.2586228847503662)
+Text #20: ign (0.011193265207111835)
+Text #20: tyard (0.12772105634212494)
+Text #20: ates (0.24783582985401154)
+Text #20:  guests (0.07757183164358139)
+
+=== Text #1 ===
+> heavy duty work boots steel[ toe] vegan steel[ toe] heavy duty work boots country home ideas magazine subscription home decor ideas for living room diy.
+[heavy] duty work boots steel[ toe] heavy duty steel[ toe] work boots bark hi res small home ideas pinterest home ideas website.
+[heavy] duty work boots steel[ toe] mining safety shoes heavy duty work industry safety shoes in the mining steel home theater ideas pinterest home ideas magazine uk.
+[heavy] duty work boots steel[ toe] steel[ toe] logger work boots bark hi res home ideas magazine ph dream home ideas tv show.
+[heavy] duty work boots steel[ toe] safety jogger steel[ toe] safety boots black home office ideas for living room home ideas app.
+[heavy] duty work boots steel[ toe] eagle[ full] leather heavy duty steel[ toe] work boots oil resistant[ sole] 7 us black home ideas ipad app home ideas magazine philippines.
+[heavy] duty work boots steel[ toe] 9 brown leather black heavy duty steel[ toe] hiking work boots survivors home gym ideas pinterest home plan ideas magazine.
+[heavy] duty work boots steel[ toe] grafters heavy duty work boot steel[ toe] cap home bar ideas with tv home ideas for living room.
+[heavy] duty work boots steel[ toe] heavy duty waterproof insulated aged bark 8 work boots steel[ toe] home ideas minecraft home diy ideas cheap.
+[heavy] duty work boots steel[ toe] overdrive western pull on work boot minecraft house ideas xbox 360 home improvement ideas diy.
+[heavy] duty work boots steel[ toe] china heavy duty safety working boots with steel[ toe] and plate home decor ideas for living room on a budget home plan ideas magazine.
+[heavy] duty work boots steel[ toe wholesale] safety boots shoes steel[ toe] safety rain men safety boots home ideas tv home improvement ideas diy.
+[heavy] duty work boots steel[ toe] black leather steel[ toe] cap safety heavy duty boots size great home ideas tv show home ideas minecraft.
+[heavy] duty work boots steel[ toe] this wellington brown leather boot has welt construction unique heavy duty three rib pole climber shank provides maximum support my home ideas website home ideas magazi.
+[heavy] duty work boots steel[ toe] home renovation ideas diy home decor ideas for living room pinterest.
+[heavy] duty work boots steel[ toe] indestruct[ible] safety boots mfg inc home bar ideas pinterest home decor ideas app.
+heavy duty work boots steel[ toe] china black rain heavy duty steel[ toe] home ideas sioux falls host home decor ideas magazine.
+[heavy] duty work boots steel[ toe] heavy duty steel[ toe] cap black leather safety boots size 6 country home ideas magazine subscription great home ideas tv show.
+[heavy] duty work boots steel
+
+=== Text #2 ===
+> Interactive Voice Response (IVR) transaction processing reduces your PCI scope over-the-phone[ payments]. Fully customizable and available in different languages, Bankcard Associates IVR acts as a phone-[based payment] acceptance application that ensures the safety of sensitive customer[ payment] information.
+Processing[ payments] just got easier with Bankcard Associates IVR systems, which allow merchants to accept[ credit] cards and manage the[ payment] process through a touch tone phone. Merchants on the go can receive real-time[ credit] card[ payments] in a mobile environment, processing[ credit] cards quickly and[ easily] without the need for an Internet connection or[ credit] card terminal.
+With Bankcard Associates IVR capabilities, customers can make[ payments], check balances and manage accounts from their touchstone phone. Pay[ing] bills becomes quick and easy, eliminating lengthy on-hold times for improved customer service. When customers can make[ credit] card[ payments] without the need for an Internet connection, they can pay wherever they go and minimize late[ payments]. Multiple language capabilities simplify the process and ensure clear communication.
+At Bankcard Associates, we go to great lengths to protect your business, your customers and[ sensitive] data. Our IVR systems work[ seamlessly] with our PCI[ certified payment] gateway, processing[ credit] cards safely while reducing the risk of[ credit] card fraud.
+[Customer] calls in to a number[ listed] on merchants website/bill to make a[ payment] or Customer Service Agent transfers call to IVR to make[ payment].
+That Phone number is hosted on our gateway server.
+IVR[ digitally] connects to the Gateway to[ securely] process the transaction and[ token]ize the[ sensitive payment] data.
+The[ payment] processes securely. Gateway digitally connects to the merchants accounting system or website to return the[ token] and[ truncated payment] data. The transaction can be[ confirmed] in one of three ways.
+[Real]-Time Response: Instant notification to merchants system, confirming[ payment] has been made.
+You can reach us at 1-800-921-9584 or you may use the contact form below.
+Since BA introduced us to[ debit] technology and low rates, our processing expenses have decreased by 40% and revenues have increased by 20%.
+Our experience with BA has been extraordinary. We found the staff to be professional and[ attentive] to our needs. BA has been a valuable member of the Landscape Warehouse team. Thank you BA!
+Bankcard[ Associates], LLC is a[ registered] ISO of Wells Fargo Bank, N.A., Walnut Creek, CA.
+Copyright ©[ 2004] - 2014 Bankcard[ Associates] LLC, All Rights[ Reserved].
+
+=== Text #3 ===
+> PPGI Coil Color Co[ated] Steel Coil, Color Co[ating] Steel Coil, PPGI manufacturer / supplier in China, offering Aiyia High Strength 600[mm]-[1500mm] Width Prepainted Galvan[ized] Steel Coil PPGI, Print PPGI PPGL Steel Coils Manufacturer Supplier, Prepainted Galvan[ized] Steel Coil Cold Roll[ed] Steel and so on.
+Al[ibaba] offers 17,[953 prime] cold rolled steel coils products. About 75% of these are steel sheets, 10% are stainless steel sheets, and 1% are metal building materials. A wide variety of[ prime] cold rolled steel coils options are available to you, such as aisi, astm.
+Gi Sheet Full Hard, Gi Steel Sheet, Gi Galvan[ized] Steel Sheet manufacturer / supplier in China, offering High Zinc Co[ating] Galvan[ized] Steel Plate Width From 600mm-1250mm, 0.2-1.5 Thickness Prepainted Zinc Co[ated] Matel Roofing Sheet, Ral 9016 Z80 Prepainted Galvan[ized] Steel Sheet and so on.
+Color Co[ated] Galvan[ized] Steel Coil, Prepainted Galvan[ized] Steel Coil, PPGI manufacturer / supplier in China, offering 0.15mm Zinc 100 Prime PPGI Color Co[ated] Galvan[ized] Steel Coil, Professional Manufacture High Quality PPGI Prepainted Galvan[ized] Steel Coil, SGLCC Az60 Hot Dipped Galvalume/Aluzinc Corrug[ated] Steel Roofing Sheet with Low Price (gl) and so on.
+Strip Steel,[ Q]195 Steel Strip, Gl manufacturer / supplier in China, offering Cold Steel Coill / Iron Sheet Rolls / Prime Hot-Dipped Galvan[ized] Steel, ASTM A792 Az150 Passivation Galvalume Steel Coil for Build Construction, Color Co[ated]/Prepainted Galvan[ized] Steel Coil with SGS Standard Test and so on.
+China Zinc 20-275g Prime Hot-DIP Galvan[ized] Steel Coil for Home Appliance, Find details about China[ Zero] Spangle Galvan[ized] Coils, Regular Spangle Galvan[ized] Roll from Zinc 20-275g Prime Hot-DIP Galvan[ized] Steel Coil for Home Appliance - Zhengzhou City Unites Steel Industrial Co., Ltd.
+Galvan[ized] Steel Coil, Galvan[ized] Coil, Steel Sheet manufacturer / supplier in China, offering Dx51d Prime Hot Dipped Galvan[ized] Steel Coil for Construction, 2018 Best Selling Corrug[ated] Steel Sheet for Roof
+
+=== Text #4 ===
+> [Sorry]… No latest news for Al[addin].
+Seen Al[addin] on Broadway yet? You[�]�re “One Jump[ Ahead�]� of the crowd, since Al[addin] tickets are some of the most popular in New York this year.
+[Based] on the 1992 Disney animated film of the same name, Al[addin] is the story of a young “street rat[�]� in the city of Agrabah whose life is[ forever] changed when he meets Jasmine, the princess who refuses to marry any of her suitors, wandering the city in disguise ([�]�A Million Miles Away[�]�).
+Al[addin] is immediately smitten, but when Jasmine is “resc[ued�]� by the guards, Al[addin] is only saved from execution by the interference of the Sultan[�]�s Vizier Jafar. Jafar recruits Al[addin] to steal a golden lamp from an enchanted cave, but before he can return the lamp Al[addin] releases Genie, and receives three wishes from him ([�]�Friend Like Me[�]�).
+Al[addin] uses Genie[�]�s power to become the[ fab]ulously wealthy “[Prince] Ali[�]� and court Jasmine ([�]�A Whole New World[�]�). However, he must now contend with the fury of Jafar, who wants to use the power of the genie to become Sultan himself.
+So what would wish for if you got three wishes from Genie? How about tickets to Al[addin], Broadway[�]�s hottest new Disney musical?
+Al[addin] was[ written] based on the 1992 Disney animated movie, with music by Alan Menken, lyrics by[ Howard] Ashman, Tim Rice and Chad Beg[uel]in and book also by Chad Beg[uel]in. It[ premiered] at the 5th Avenue Theatre in Seattle in July 2011. Other productions of the musical played in Ivins from June[–October] 2012, St. Louis in July 2012 and Toronto from November 2013 to January 2014.
+Previews for the Broadway production began on February 26, 2014, with an official opening on March 20 at the New Amsterdam Theatre. It was[ nominated] for Best Musical in 2014 and continues to play on Broadway[ indefinitely], so come get your tickets for Al[addin] now!
+Never over[pay] for Al[addin] tickets again!
+Check CHARG[ED] to stay up to date on Al[addin] tickets!
+
+=== Text #5 ===
+> [Eastern] Lightning ([�]�方[�]�[�]�) or the Church of Almighty God is a Chinese[ cult] based on Christianity who believe that Jesus Christ has been[ reincarnated] as[ Yang] Xiang[bing] ([1973–]), a Chinese woman. It was founded in 1989 by Zhao We[ish]an (赵维山) (1951[–]), who currently resides in the United States where he continues to lead the church. The name Eastern Lightning is derived from Matthew 24:27.
+As the Second Coming of Jesus,[ Yang] Xiangbing will guide mankind through the end times. Eastern Lightning preaches salvation through her third[ testament], The Word[ Appears] in the Flesh. Eastern Lightning[ refers] to the Chinese Communist Party as the "Great Red Dragon" of the Book of Revelation, and some members predicted that the world would end on[ December] 21, 2012. The leaders of group, however, rejected that prediction.
+The group's theology divides time into three ages: that of the law (the Old Testament), that of grace (the New Testament), and that of Kingdom (the current age). It teaches that the "Age of Grace" has been supers[eded] by the "Age of Kingdom", during which humans will not only be[ forgiven] of their sins, but also cleans[ed] of their sinful nature. There is also a separate "Age of the Millennial Kingdom", which is[ supposed] to occur after God's work in China has ended; during that age, the apocalyptic events in the Book of Revelation are to occur.
+The sect essentially excludes[ mainstream] Christians who are not part of the group from salvation,[ stating] that those who hold on to conventional Christian beliefs are "[gu]ilty of opposing God" and do not[ truly] believe in Him.
+The group[ implicitly] denies absolute Biblical inerrancy and[ explicitly] denies the notion that the Bible provides a sufficient understanding of God, condemning such views as Bibliolatry that restricts God via the Bible. Videos on the group's channel render[ quotations] of Jesus in yellow, similar to Red Letter Christians, but also render the group's own The Word[ Appears] in the Flesh in yellow captions to emphasize their belief that the piece of literature is from God rather than a cult leader. The group's view of the Bible as limited and fall[ible] is, however, likely not rooted in rational skepticism of religious dogma and should not be confounded with efforts by progressive Christians to re-[interpret] the Bible to suit modern science and values. Rather, this is likely[ intended] to prop up the group's theology despite its[ contradictions] with the Bible. For example
+
+=== Text #6 ===
+> Chances are if you’ve been affected by cyber[crime] in the past year, you[�]�ve been the victim of a[ banking] trojan. Proofpoint[�]�s latest quarterly threat report notes that over half of all successful email-[based] attacks were propag[ated] by[ banking] trojans (meanwhile ransomware, once one of the greatest threats to enterprises, came in at a[ mere] .1% of total attacks).
+This is no[ coincidence]. Unlike the ob[tr]usiveness of most ransomware attacks, where the attacker makes money by getting the victim to pay for the return of their files, a[ banking] trojan is much more pernicious: infected hosts contribute to identity theft by[ quietly] siphoning off[ sensitive] information and[ login credentials], all the while using the host’s computing power to mine cryptocurrencies and send out spam emails in the background.
+A look at Emotet, one of the most[ prominent banking] trojan from the past 18 months, gives insight into the advanced and destructive nature that these attacks can wreak upon an organization.
+Emotet, also[ known] as Geodo, has been around for almost five years and started off primarily self-dist[ributed] through attempts at brute-forcing user accounts. Attackers would attempt easily-[gu]ess[able] passwords and those found from[ compromised] sites that were sold or published on the darkweb. Instit[uting] password requirements, password[ rotation], and password lock[ outs] were enough to thwart most initial Emotet[ iterations]. Recently, however, it has gained and maintained relevance by switching to phishing campaigns that use enticing emails and malicious payloads that resist detection and analysis.
+An attack usually starts by a victim receiving an email from either a spoof[ed] sender address or a[ compromised legitimate] account. The email and link/attachment are usually themed as something the user would want to click on[ due] to its urgent (in[vo]ices, shipping notifications) or[ contextual] (tax season,[ holiday] season) nature. Recent[ iterations] of these malspam emails have a malicious link or macro-[enabled] Word document which launch when clicked upon, in turn running a PowerShell script that either downloads or runs an already-down[loaded] malicious payload.
+Emotet is[ largely] resistant to[ signature]-[based] detection because it is polymorphic, meaning it will change its code in slight but[ meaningful] ways every time it is downloaded. Attackers will routinely change the IP addresses and domains that the links and attachments will reach out to, further ev[ading] detection solutions. It can also frust[rate] analysts looking to study the malware because if it senses that
+
+=== Text #7 ===
+> [Just] took a “Trophy of a Lifetime[�]� What[�]�s Next?
+You have just[ harvested] a trophy of a lifetime maybe it will even make the Boone and Cro[ck]et or Pope and Young record books, now what? This experience may not be encountered again for many years for most hunters, so you need to be made[ aware] of the questions a taxider[mist] will ask you and what you need to Mount[ed] Whitetail Deerask them before contacting a taxider[mist]. You also know that you will have the animal mounted by a[ reputable] taxider[mist]. Selecting a taxider[mist] can be almost as challenging as[ harvesting] your new trophy.
+What Room will Display the Mount[ed] Animal?
+Where are you going to hang your new trophy mount? The room in which the mount will hang is a contributing factor on the pose you will select for the mount. There are so many poses available! If your[ ceilings] are around 8′ high or a basement den, the[ ceilings] are not likely to be vault[ed]. How tall are the antlers? A[ full upright] taxidermy pose might require the mount to hang low on the wall. There are three basic form poses –[ upright],[ semi]-sneak, and[ full] sneak. With an upright form, the neck is in a vertical position almost parallel to the wall. The[ semi] sneak form has the neck and head down at approximate 40 degree angle off the wall. The[ full] sneak pose has the neck at almost 85 degrees from the wall. For a low ceiling, a[ semi] sneak or[ full] sneak may be the better choice for your new trophy mount.
+Time to Interview The Taxider[mist]!
+Where can I see some of your work? You need to look at their work very close. Look at the eyes, is it a natural look or does it look like the animal is bug[ eyed]? Feel the back of the head between the antlers and slide your hand down the back of the neck. Do you feel the Stitches they used to sew the hide together? Has the hide shrunk? You will not notice this with[ true] t[anned] hides.
+Found your Taxider[mist] ”Enjoy[�]� your Trophy!
+The return time of your trophy mount is not as important as the above questions if you feel you have found the right taxider[mist] to do the mount for you. It should still be around 1 year, but 1 1/2 years is not uncommon! The Last this is the cost of the mount. How much is it[ worth] to you? If
+
+=== Text #8 ===
+> The Minister of Power, Works and Housing, Babat[und]e Fashola, has charged newly induct[ed] land surveyors by the Surveyors Council of Nigeria to exhibit a high sense of professionalism in the discharge of their duties.
+Fashola, who gave the charge at the 2018 induction ceremony for 267 new surveyors by SURCON, which held recently in Abuja, welcomed and congratulated them for making it as members of the Nigerian Institution of Surveyors.
+Represent[ed] by the Minister of State II for Power, Works and Housing,[ Su]leiman Hassan, Fashola urged the induct[ees] to[ strictly] abide by the standards of the profession they had[ chosen] to pursue.
+He said, “I urge you, as you collect your certificates today, to go and practice professionally, knowing that this government, more than ever before, believes so much in the contribution of professionals so that it can bring about the desired infrastructural development.
+[�]�The Federal Government has[ invested] seriously in infrastructure. In the real sector alone, we have made the[ commitment] of about N2.7tn. Commit[ments] have been made in sectors like agriculture, mining and roads, among others.
+Earlier in his address, the President of SURCON, Joseph Agbenla,[ noted] that with the 267 newly induct[ed] members, the number of[ registered] surveyors in the country had increased to 3,627.
+He urged the induct[ees] to uphold the ethics of the profession and stressed that anyone found wanting in the course of practice would have his or her certificate, which remains a property of SURCON, withdrawn.
+[�]�I am highly confident that you will always remember that the seal and the certificate you are all having today belong to the Surveyors Council of Nigeria and may be recalled by the council if your professional conduct contradicts the rules, regulations and ethics of the surveying profession,[�]� Agbenla said.
+The Surveyor-General of the Federation, Ebisintei Aw[ud]u, advised the induct[ees] to keep enhancing their capacity and ensure that their practice add more value to the profession.
+He said surveyors should strive to improve their skills in order to[ adequately] understand how to use the tools provided by the Office of the Surveyor-General of the Federation.
+Aw[ud]u[ stated], “By the constitution of Nigeria, the OSGOF is principally[ mandated] to do cadastral, geological and several other types of surveys. So try and improve your capacity on these aspects.
+[Despite] the poor performance of the real
+
+=== Text #9 ===
+> Standard[ dialogue] tags are said and asked. The mind skips over them, so they are invisible.
+"It is[ hotly] debated whether you should ever use colorful or adverb tags," she[ muttered]. "Some editors don't mind a few creative tags."
+"Some may allow adverb tags," she said[ skeptically]. "Adverb tags are generally[ frowned] upon."
+" Break this rule at your own peril," she said mis[chie]v[ously].
+Your[ dialogue] should look like one of these examples. Note the correct formatting. Commas, periods, and question marks should fall within the[ quotation] marks.
+A comma separates the dialogue from the standard tag. A period separates the dialogue from an action tag.
+The same formatting for the standard tag applies to a creative tag or action tags.
+Standard tag in the front: Sherlock said, "I see."
+Standard tag in the middle: "I see," Sherlock said. "I have been mis[informed]."
+Standard tag at the end: "I see," Sherlock said. (or) "I see," said Sherlock.
+Action tag in the front: Sherlock cleared his throat. "I see."
+Action tag in the middle: "I see." Sherlock cleared his throat. "I was mis[informed]."
+Action tag at the end: "I see." Sherlock cleared his throat.
+Action combined with a standard tag: Sherlock pointed to the clock and said, "I must be off."
+For more tips on how to make your[ dialogue] work for you, check out our previous posts.
+[Dialogue], just the way we talk?
+This is a great topic, Diana, one that trips up a lot of writers. It reminds me of some manuscripts I've edited where a page is filled with short exchanges between two characters, and the writer identifies each bit of[ conversation] with "he said" or "she said". Overuse of[ dialogue] tags--whether standard or action--diminishes the power of a scene, while proper use enhances it. All writers need to remember that.
+Great[ reminders] that "said" and "ask[ed]" are invisible to the reader. The only other one I like to use (sparingly) is "whis[pered]."
+Good post. I don't like adverb tags, either. The content of your writing should tell you if your are acting mis[chie]v[ously] or[ skeptically]. You see these tags a lot in older books.
+I don't mind the occasional adverb tag, as long as it's not
+
+=== Text #10 ===
+> That Which You Don[�]�t Be[ Aware] Of Write down Essay for my situation You should not must be troubled once you’ve had an essay heading up, needless to say, whenever you don’t feel you can find it finished after our g[urus] are right here as a way to provide you with a sustaining hands. Our essay aid isn[�]�t travelling to supply you with a dupl[icated] essay. There can be different types of guidelines essays. You shouldn[�]�t really have to be troubled when you’ve had an essay coming up, and of course if you don’t assume you can obtain it conducted then our professionals are below in order to supply you with a allowing fingers.
+You shouldn[�]�t ought to be anxious in case you have an essay coming, and will you do not presume you may get it done then our industry experts are on this site so that you can provide you with a assisting hand video poker basic strategy. Essays are in[escapable] an instructional pupil can produce suitable manner in her or his advisors Research Papers Online Writing Service. These days, based upon the total amount of sheets your essay should be quickly pay attention to a section additionally additionally inventory some information.
+One can find different varieties of essays, but practically all them be sure to ask that you will add lots of time towards a old fashioned paper. If you would like to get hold of a very little charge essay at our guidance, then it can be set in destination with the most effective affordable essay copy creator (professor of rehearse or simply just a scientist). The Foolproof Generate Essay for Me Process Publish essay i believe can be an on-line essay composing provider that components entry to producing, correction, croping and editing and higher first-class written content[ offerings] because of internet.
+In case you will need to present an essay as well as time restriction is coming, there isn’t any ought to obtain freak out since there are countless specialist writers who will encourage you to submit an original and remarkable essay. Essays are in[escapable] an educational learner could get absent outside of his or her advisors research paper writing service. The purchaser reports essays are prepared in[ reasonably] priced interest rates. Information On Produ[ce] Essay in my opinion You will have essays to your account. Essays have to expose people judgments[ util]ising any person concern.
+One can much too acquire essay for college from us should you be just much too he[ctic] to evaluate the investment. Essay is definitely important for
+
+=== Text #11 ===
+> [Trad]itionally,[ quantum] theory has been[ viewed] as a "difficult" topic, mainly because of the[ symbolic]-mathematical content. For example, Francl notes that two semesters of[ calculus] is usually required for physical chemistry (1), and this is certainly[ true] for[ quantum] theory. The traditional approach emphases the use of mathematical equations, derivations and[ calculations]. How do we deal with non-chemistry majors who have a weak background in mathematics, but wish to study p-chem?[ Similarly], how do we deal with chemistry majors who have a weak background in mathematics?
+[Interestingly], the last 20-30 years has witnessed a paradigm[ shift] in the practice of[ quantum] chemistry. Leading up to the 1970s,[ quantum] chemistry was monopol[ized] by theoretical chemists, who were as much mathematicians as chemists. One had to be conversant with the mathematical methodology in order to perform a[ quantum calculation]. More recently, the amazing increases in computing power have lead to graphical user interfaces, which has enabled a new group ofcomput[ational] chemists. These computational chemists are interested only in the significance of the[ computed] results, not in the details of the mathematical methods used. However, the same paradigm shift in the teaching of quantum chemistry has not occurred yet: students are still required to be[ competent] mathematicians.
+The "new[ calculus]" in mathematics education (eg, 2) advocates the "rule of four" (numerical, graphical,[ symbolic] and verbal descriptions) to deepen students' conceptual understanding (eg, 3). This "new[ calculus]"[ acknowledges] that a predominantly[ symbolic] approach to mathematics is suitable for some, but not all, students. The greater emphasis on graphical and verbal descriptions of a "problem" enables students to focus on the qualitative results. The numerical approach can refer either to approximate numerical solutions (cf modern computational chemistry software) or to specific numerical examples of more general[ symbolic] equations.
+This paper describes the use of spreadsheets to generate approximate numerical solutions and visual (graphical) descriptions as a method of avoiding or minimizing[ symbolic] manipulations, mathematical derivations and numerical computation. The aim here is to teach the qualitative results that arise from quantum theory, but with less "math". The specific example of the one-dimensional[ Schr]ödinger equation and some aspects of the educational pedag[ogy] of spreadsheet usage are[ discussed].
+Electrons (and atoms[?)] exhibit both wave-like and particle-like behavior.
+Students are usually first introduced to[ quantum] theory through the wavefunctions for the 1-dimensional[ Schr]ödinger equation
+
+=== Text #12 ===
+> Each writer is[ entitled] to their ain positions and how they allow them act upon their Hagiographas. O’Connor used her religion and the manner she viewed Christianity to pervade her narratives and deliver messages she believed to be the most equal manner to maneuver others of the same or similar religion in the right way. Her[ upbringing], her environment, and the manner she lived her life had an exponential[ correl]ativity with her religion and the manner she tied it into the short[ narratives mentioned]. You peril[ously word] all the information above this bold[ed] country in such a manner that suggests you knew O[�]�Connor. In the bold[ed] country, though, you claim something you can non[ cogn]ize without reading a beginning, which means you either accidentally plagiar[ized] or you made a headlong claim. One is illegal, and the other is unethical. Besides, retrieve how we can non hold any beginning information in our thesis statement, subject sentences, or decision. Though some claim that her messages are difficult to understand, or may even be[ misunderstood], her beliefs are still in the Hagiographas themselves. Her characters frequently seem to be missing in religion, or oppug[ning] their religion during the class of each narrative. The words and lines they speak in each piece of literature all have a spiritual[ significance] behind them. Flannery O’Connor expressed spiritual political orientation throughout her short[ narratives] “ Good State Peoples ” and “ A Good Man is Difficult to Find. ” You need to state throughout her authorship. We can discourse why subsequently.
+Need to bind all subject sentences to O’Connor. In “ A Good Man is Difficult to Find, ” the character The Misfit expressed his uncertainty over the instructions of Jesus and God when discoursing with the grandma. He said things refering to the idea of losing his religion after he was incarcerated in the penitentiary ( O’Connor, “ Good Man ” 375-[377] ) . He claimed “ It was the same instance with Him as with me except He had n’t[ committed] any offense and they could turn out that I had[ committed] onea[�]�[�]� ” ( O’Connor, “ Good Man ” 376 ) . He believed that no affair what he did, he would be punished. O’Connor most likely believed that adult male will ever confront what he has done one time he comes before concluding judgement. The Misfit[ mentions] Jesus and the manner he threw everything off balance by raising the
+
+=== Text #13 ===
+> [On] a[ proper] construction of an agreement, which required a supplier of warehouse services to give[ credit] to the user for additional business secured by the supplier in order to[ util]ise spare capacity, the additional business did not include business conducted from an extension to the warehouse.
+The[ appell]ants, a company (S) and a third party, appealed against a decision (([2008]) EWCA Civ 1286)) that on a proper construction of an agreement, which required the respondent supplier of warehouse services (W) to give[ credit] to S for additional business secured by W in order to[ util]ise spare capacity, the additional business did not include business conducted from an extension to the warehouse. At one time all three parties had been subsidiaries in the same group. W had constructed a national distribution centre and had entered into an agreement with S to provide warehousing services at the centre to S. Later, W was demer[ged] from the group and the centre became a multi-[user] site. Under a[ revised] agreement between S and W, S agreed to put a minimum amount of goods through the centre annually, failing which S would be liable to make a volume[ shortfall payment] to W. That[ payment] was to be reduced to the extent that W secured additional third party business. Parts of S's business were then sold and the[ revised] agreement was replaced by new[ agreements]. A side letter provided that W should use reasonable endeavours to develop and secure additional business with a view to[ util]ising spare capacity and throughput in the warehouse. By that time there was an extension to the warehouse at the centre. Unlike the[ original] warehouse, which was a chilled facility and contained automated[ handling] machinery, the extension was only[ partly] chilled and had no automated[ handling] machinery. A dispute arose when the threshold volume of goods under the agreement was not met and W claimed[ shortfall payments]. The issue was whether the reference to the warehouse in the side letter was to the warehouse as originally constructed and not as extended. S contended that to have to distinguish between third party custom in two different parts of an integrated warehouse was uncommercial and unrealistic. S submitted that W had itself[ regarded] all new business wherever it was s[ited] within the extended warehouse as within the concept of additional business.
+For the purposes of the instant appeal, it was sufficient to consider the third new agreement, the essential structure of which was the same as that of the revised agreement and, as was common ground, it was permissible to construe the new agreement and the side-letter against the background of that revised agreement, HIH[ Casual]ty & General Insurance Ltd v New Hampshire Insurance
+
+=== Text #14 ===
+> Do You Need a Master’s in Education Degree To Qualify for Tenure?
+If you are currently an educator or you are mapping out the route that you will take to become one, you may want to know if you need a Master in Education degree to qualify for[ tenure]. To work as a[ full]-time,[ tenure]-[track] educator, you must meet certain[ requirements] and prove that you are[ skilled] and[ passionate] about your role. Tenure offers you great protection in your career but every state and educational system has their own path that you must take. Read on, and find out when a master[�]�s is and is not required.
+What is a Tenure and Why is it So Important?
+[Ten]ure is[ technically] defined as the right to[ due] process so that high schools, colleges and other educational institutions cannot[ legally] fire a teacher or professor without providing evidence that they are not[ competent] or they have been inappropriate, according to the National Education Association. Since evidence must be provided and there is an entire process that school officials must follow, only about 2% of professors on the[ tenure]-[track] lose their job annually.
+To get your[ tenure], you must complete a probationary period and show that you are professional and[ competent] in your role. While a professor is on probation, it is okay for the seniors in charge of hiring to fire the professor without cause at any time and go with a new faculty contract. The senior professors in charge of evaluation will work with administrators and new non-ten[ured] faculty to evaluate their research capabilities and how they service the classroom to decide if they are[ deserving] of[ tenure]. If there are not recommended for[ tenure], the professor will lose their job and probation starts over when they begin under a new teaching contract.
+How Long Does it Take to Become a Ten[ured] Educator?
+Only about one-third of college professors are ten[ured] faculty, and this is a major cause for concern in the field. If you are hired on the[ tenure]-[track] in a college setting, it typically will take about three years at a junior college and seven years at a four-[year] college to be[ granted tenure]. If you are working in a high school, middle school or primary school, everything is[ based] on the state law that applies to public schools.
+Some states have five-[year requirements] and others have 10-[year requirements] where all public school teachers are[ considered] �[�]on probation[�]�. The average[ tenure]-[track] duration in the United States is about seven years when you average the laws across the country.
+You might
+
+=== Text #15 ===
+> [Unique] Essay: Apa format psychology paper example professional writers!
+A[pa] format psychology paper example - Funds were paper format apa psychology example not official residents. In j. Calderhead & p. Thagard ([eds.),] model-[based] reasoning: Science, technology, values (pp. Do not use the word. This process will enable you to stop by a[ largely] homodie[getic] framing narrators, whose narr[atorial] representation of (qu[asi-)]per[ceptions] in sin city: Hell and back number of observations.
+B. Shooting 1. Crew cameraperson assistant cameraperson is usually[ mentioned] at the end of fight club, the usual suspects in the gaps but also of using the example of such generalization are the[ ones] originally used to represent how her die[getic] experiencing I tries to understand how to identify learner-specific features to study the development of the audiovisual representation in contemporary films, comics, and video games use roughly example paper psychology apa format the same techniques, but they are almost[ guaranteed] to be primary school teaching. 4. To stress the 'if you want to build his structure of the preparations are completed using a sample of elementary astronomy in[ grade] level, racial composition, gender, and special-[needs] students. The latest phase in modelling. Other linguistic features appear in your study that mainly consists of 11,[364],977 words and the maysleses can work well without narration. When this kind of narr[ating] instance[ responsible] for internal and external forces were coded to a principle is a useful membership directory and mailing information for pedagogical tools. It is not really germane to our customers, may sound funny to record some basic support. U.S. During her[ tenure] as chief of the various semiotic types ( on the trans[med]ial concept 65[ plaus]ibil[ized] by[ reference] to processes by means of identifying potential academic words was therefore used to synthesize the inter[relations]hips between three or four trials of the.
+[Even] assuming that a sentence is between to capture the rich detail of the series the world example psychology apa format paper at war. Publishing your dissertation or thesis, condensed into one of two graphemic words in their field, the quantitative research designs are used to make the task of developing the concept. These factors include a faculty member who teaches your department s statistics courses. The first steps 140 in response to allchin s whole approach to teaching about science. 94 255 abolished nccan as a whole room[ful] of people. Instead, I would still be taken as general background
+
+=== Text #16 ===
+> This month some important Walmart news did not get the attention it[ deserved]. The news wasn't some[ flashy] announcement about virtual[ reality] or about some new service for[ busy] Manhattanites. It was something much more subtle and much more[ substantive].
+It was the hire of[ Valerie] Casey. Google "[Valerie] Casey" even today and only two[ listings] make[ mention] of her newfound connection with Walmart on the first page of the returned search results. This amount of attention is unjustif[iably] slight. Let this piece then serve as the hire's coming out party.
+Shrewdly, Walmart has made[ Valerie] Casey, formerly of Frog, Ideo, and Pentagram, its new head of design. She will be charged with leading Walmart into the future and ensuring that all its products and services, from websites to employee and consumer apps, will work in cohesion and from a[ singular] experience design point of view.
+"What's the big whup?" you might ask.
+The big whup is that this announcement clearly shows that Walmart has jumped feet first into the waters of next generation[ retailing]. Under Doug McMillon's bold leadership, Walmart here again is taking one of the most essential steps to long-[term] success for any[ legacy] bricks-and-[mort]ar[ retailer]—specific[ally], redef[ining] how it thinks of the[ word] "product."
+Instead of doing what many retailers do, like staffing de[ facto] "product" heads within owned brand development, store operations, e-commerce, etc. and then leaving them to collaborate inside complex organizations with competing priorities, Walmart[ rightly] understands that[ retailing] has become so complex that all these[ aforementioned] roles now need their own steward to ensure alignment.
+Walmart having a mission to help its customers save money and live better is one thing, but putting that promise into[ coherent] action is another thing[ entirely]. Many retailers take such[ coordinated] action for[ granted], which is why so many[ legacy retail] experiences feel disj[ointed] across the digital and physical divide. Success rarely is found in the[ compromise] and turf wars of internal politics. The buck needs to stop somewhere.
+[Prior] to e-commerce, before customers had the myriad of options they have today to consume products (via web portals, apps, social media, etc[.),] retailers were able to differentiate themselves by the products inside their four walls. The strategic practice of product differentiation became so[ prevalent] and[ such] a point of emphasis that it even gave way to the commonly heard par[lance] of[ retail] being a "merchant-[led] business."
+The growth of e-commerce in the 1990s and 2000s re
+
+=== Text #17 ===
+> (1) The scope of the individual services is based on the current service description in force at the time of placing the order.
+(2) If no other agreement has been[ expressly] reached, the provider shall also be[ entitled] to instruct expert staff or third parties to provide the services incumbent upon him. If active co-operation is required on the customer’s part on another server, e.g. during the transfer of a web space package or other data stored on the provider’s servers, the customer shall provide such co-operation in accordance with the provider’s instructions and within the stip[ulated] time.
+(3) If no other agreement has been reached the provider shall be[ entitled] to demand[ payment] in advance for all services ordered by the customer for the[ respective] period.
+All webhosting packages (“virtual servers”) offered by the provider (Tomattos) assume a minimum service period of twelve months with an automatic extension of the agreement and the corresponding domains/servers for twelve months.
+All server packages ([dedicated] servers, colocated servers, VPS, game servers) offered by the provider (Tomattos) assume a minimum service period selected by the customer when placing the order with an automatic extension of the contract and the corresponding domains/servers for the minium service period[ chosen] by the customer.
+(4) Once the[ payment] which had been made by the customer in advance for the agreed term has expired the contract is automatically terminated.
+The domains associated with the packages/servers however, are charged for the complete contract period (this is dependent upon the domain extension and can be seen here) and must be terminated at least 4 weeks before expiry of the contract period in order to prevent automatic extension of the agreement (an extension is[ equivalent] to renewed registration in respect of the contract period). If the package/server is terminated before the end of the contract for the[ relevant] domain(s) or if the contract has not yet ended or has not yet been renewed, you will be charged separately to cover the remaining months of the domain service. The amount charged depends on the extension of the domain (for a complete list, please click here).
+(5)[ Given] that the customer is placing the order as a private customer (as defined by § 13 BGB), the following applies: The customer has to pay the provider an appropriate fee which[ equals] the the ratio of the services already rendered in relation to the total services int[ially] intended for the contract, up to the point when the
+
+=== Text #18 ===
+> At our law firm, we strive to handle the wide-ranging legal needs of our clients in their corporate activities in a manner that is flexible and thorough. Our practice has been not just to put forward a simple legal theory, but to[ sufficiently] analyze the situation our client companies are in and provide forward-[looking] corporate legal services[ capable] of guiding a course of action for the company in question.
+At our law firm, we are well vers[ed] in civil[ substantive] law and the Code of[ Civil] Procedure and endeavor to settle disputes[ swiftly] and[ appropriately]. With lawsuits we develop sophisticated legal arguments based on "The Requ[isite] Facts Theory[�]� of the Legal Training and Research Institute of Japan and prepare[ carefully] for witness examinations. We are[ proud] of our track record with numerous cases over many years in the area of civil provisional remedies and civil execution, and we have also at times pro[actively] made[ submissions] with respect to court practices. Our advantage of developing appropriate outlooks on the outcome of legal procedures is useful in pre-trial negotiations and ADR (with alternative dispute resolution organizations).
+We also provide legal services[ regarding] the various types of regulations[ pertaining] to the Personal Information Protection Act and the Act[ Regarding] Use, etc. of Numbers for Identification of Specific Individual in Administrative Procedure (so-called the My Number Act). In particular, the characteristic feature of our law firm is that we are able to provide legal services paying[ careful] attention to the guidelines for the financial sector and the[ credit] sector by levering the knowledge we have accumulated in relation to financial institutions and various financial service providers. We not only provide simple regulatory compliance, but also have a track record in conducting various different types of examinations[ regarding] the utilization of data and new services, such as government systems used for[ authentication] of individuals.
+At our law firm, we not only[ correspond] to the[ constantly] changing labor-[related] laws and regulations and trends in labor administration, we also assist with the various human resources and labor issues that arise within companies.
+The[ revisions] to ISO9001 in 2000[ meant] that international quality control standards, such as PDCA cycles and spiral method[ologies], have come to apply not just to the manufacturing industry, but also to services and organizations. At our law firm, we are[ conscious] that this has been the fundamental trigger for the requirement to develop, maintain, and enhance internal controls and risk management systems to also be incorporated into various regulatory laws, such as the Companies Act and the Financial Instruments and Exchange Act. Our firm maintains this fundamental awareness whilst also on the other hand providing legal services and practice in risk management in keeping with the detailed
+
+=== Text #19 ===
+> 19 New Hairstyles for[ Naturally] Curly Hair – Truth[fully], nearly all of her ha[ird]os are[ intended] to be done on another person. It is really important that you select a hairstyle that[�]�s not over styled, but select a ha[ird]o that supplies you an informal and carefree look.[ Despite] the fact that it[�]�s simply a detail that might be incorporated in just about any type of hairstyle, it is going to make the whole distinction. Be certain you[�]�ve a hairstyle that matches in with the tiara to be able to stay clear of being uneasy. Each ha[ird]o likewise consists of extra details, like a preview,[ recognition] number as well as description. Cro[oked] short hairstyles will certainly have the ability to assist you create a punk motivated appearance that eman[ates] design and confidence since they are a magnet in relation to attraction.
+The look is excellent for tool hair sizes. If a lengthier look makes the face show up older or attracted, the choice to choose tool or a glance might be best. Not just are you going to find out a thing or 2[ regarding] producing the precise appearance you desire, you will certainly wind up stashing some cash money and also saving on your own a see to the salon.
+The greatest region of the hair isn[�]�t only one of the most[ noticeable] however likewise what the majority of men and women utilize to evaluate the quality of a hairstyle. Remember you do not have a bargain of hair to have a good time with, or so the shade you choose will want to work nicely with your very own complexion. Short hair isn[�]�t[ hard] to maintain as well as comb and is excellent for hot days. Brief hair may likewise look terrific with a glossy style and also devices to pick your dress. It[�]�s feasible to reduce your hair short also[ due] to the fact that it will certainly look finest for those that have oval shapes.[ Despite] the celebration, you would certainly like your hair to appear equally as great as your outfit. If you doubt[ concerning] the state of your hair and scalp after that listen from a[ seasoned] trichologist.
+There are lots of points which is should be to take into account in relation to ha[ird]o. You don[�]�t require any kind of ha[ird]o that[�]�s slick and also cared for. Always bear in mind that also when you look excellent, you aren[�]�t mosting likely to be comfortable need to you not feel excellent in the ha[ird]o you[�]�re wearing
+
+=== Text #20 ===
+> Cost-[effective] buffets and elegant[ formal] dinners near Rocky Mountain National Park.
+Here at The Ridg[eline] Hotel and Conference Center in Estes Park,[ catering] special events is one of our specialties. Whether you[�]�re planning a meeting, convention, corporate retreat, or wedding, The Ridg[eline] caters with innovative style and service. From cost-[effective] buffets to elegant[ formal] dinners, our award-[winning Executive Chef] and professional banquet staff provide our[ guests] with inspired, crowd-ple[asing] meals. We personally prepare custom menus based on theme, entertainment, decor, and ([most] importantly) budget.
+Nothing[ satisfies] a crowd like a buffet, and at The Ridg[eline], we have buffet[ catering] options to suit every palate. Our breakfast buffets run the gamut from The Continental,[ featuring assorted] danishes, turnovers, muffins, and fresh fruit, to the[ del]uxe Big Thompson, which includes pancakes, French toast, ham steaks, and more. Lunch buffet options cover an array of cuisine from around the globe, ranging from the Orient Express to the Taste of Italy to South of the Border. And when it comes to dinner buffets, we pull out all the stops! Just to name a few, you can choose from the Southern Hospitality Buffet, featuring BBQ Ribs, Southern Friend Chicken and Cajun Potato Salad; the Land and Sea Buffet, including Prime Rib with Au Jus and Horseradish, and Honey Pecan Gr[illed] Salmon; or The Rodeo Buffet,[ showcasing] Chipotle Roasted Pork Loin and Slow-Bra[ised] BBQ Brisket. Vegetarian options are also available, as well as a variety of a la carte selections.
+If the occasion calls for something more[ formal], look no further than our Pl[ated] Banquet menus. Choose from Pl[ated] Lunch options ranging from Chicken Penne Alfredo to London Broil, Se[ared] Salmon Filet to Homemade Pot Roast, Italian Chef Salad to Chicken Fried Chicken, and more. Pl[ated] Dinners take things a step further by including coffee, hot tea, fresh green garden salad, warm rolls, and a[ Chef�]�s choice dessert. Dinner entrees include Chicken Piccata, Seaf[ood] Trio Primavera, Gr[illed] NY Strip, Chicken Parmesan, Filet M[ign]on, and more!
+Are you interested in holding your event outdoors? We can do that! Our spacious Aspen Cour[tyard] accommod[ates] up to 250[ guests], with a special event tent that
+
+
+Description: 
+2025-07-25 21:46:09,124 - root - INFO - Body parts, financial transactions, surface coatings, entertainment, religious groups, computer security, hunting trophies, professional certifications, conversations, travel destinations, scientific concepts, childhood experiences, retail businesses, legal documents, hair styles, and food service
+
+2025-07-25 21:46:09,129 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-440_clusters-1_2025-07-25_19-36-32.csv
+2025-07-25 21:46:09,130 - root - INFO - ================================================================================
+2025-07-25 21:46:09,130 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 21:46:09,130 - root - INFO - ================================================================================
+2025-07-25 21:46:09,131 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-440_clusters-1_2025-07-25_19-36-32.log
+2025-07-25 21:46:09,131 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-440_clusters-1_2025-07-25_19-36-32.csv

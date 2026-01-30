@@ -1,0 +1,523 @@
+2025-07-26 00:14:26,957 - root - INFO - ================================================================================
+2025-07-26 00:14:26,991 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-26 00:14:26,992 - root - INFO - ================================================================================
+2025-07-26 00:14:26,993 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-26 00:14:26,993 - root - INFO - AGG_METHOD = mean
+2025-07-26 00:14:26,994 - root - INFO - BATCH_SIZE = 2
+2025-07-26 00:14:26,994 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:14:26,995 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-26 00:14:26,995 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-26 00:14:26,996 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-26 00:14:26,996 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-26 00:14:26,996 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-26 00:14:26,997 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-26 00:14:26,997 - root - INFO - CONTROL_SPLIT = train
+2025-07-26 00:14:26,998 - root - INFO - DATA_FILES = None
+2025-07-26 00:14:26,998 - root - INFO - DEVICE = cuda
+2025-07-26 00:14:26,998 - root - INFO - END_INTERVAL = 1.0
+2025-07-26 00:14:26,999 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:14:26,999 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-26 00:14:27,000 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-26 00:14:27,000 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-26 00:14:27,001 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-26 00:14:27,001 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-07-26 00:14:27,001 - root - INFO - LAYER_ID = 20
+2025-07-26 00:14:27,002 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-26 00:14:27,002 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-26 00:14:27,003 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-26 00:14:27,003 - root - INFO - MULTI_EVAL = True
+2025-07-26 00:14:27,003 - root - INFO - N_CLUSTERS = 1
+2025-07-26 00:14:27,004 - root - INFO - N_SAMPLES = 10
+2025-07-26 00:14:27,004 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-26 00:14:27,005 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-26 00:14:27,005 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-26 00:14:27,006 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-26 00:14:27,006 - root - INFO - SPLIT = train
+2025-07-26 00:14:27,006 - root - INFO - START_INTERVAL = 0.99
+2025-07-26 00:14:27,007 - root - INFO - STREAMING = True
+2025-07-26 00:14:27,007 - root - INFO - SUBSET_SIZE = 1000
+2025-07-26 00:14:27,007 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-26 00:14:27,008 - root - INFO - TARGET_DATA = c4
+2025-07-26 00:14:27,008 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-26 00:14:27,009 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:14:27,009 - root - INFO - UNIT_ID = 1424
+2025-07-26 00:14:27,009 - root - INFO - USE_API = True
+2025-07-26 00:14:27,010 - root - INFO - ================================================================================
+2025-07-26 00:14:27,010 - root - INFO - ANALYSIS RESULTS
+2025-07-26 00:14:27,011 - root - INFO - ================================================================================
+2025-07-26 00:14:27,011 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-1424_clusters-1_2025-07-25_22-14-26.log
+2025-07-26 00:23:18,265 - root - INFO - Reached 1000 samples.
+2025-07-26 00:23:20,410 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-26 00:23:20,410 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:23:33,908 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-26 00:24:11,951 - root - INFO - Number of candidates: 1001
+2025-07-26 00:24:14,734 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-26 00:24:14,735 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Resort (0.3140420615673065)
+Text #1:  at (0.225369393825531)
+Text #1: ne (0.863139271736145)
+Text #1:  of (0.8259175419807434)
+Text #1: ne (0.6702001094818115)
+Text #1: <|endoftext|> (0.18541212379932404)
+Text #1: <|endoftext|> (0.18563616275787354)
+Text #1: <|endoftext|> (0.18552923202514648)
+Text #1: <|endoftext|> (0.1855534464120865)
+Text #1: <|endoftext|> (0.18552127480506897)
+Text #1: <|endoftext|> (0.1854420155286789)
+Text #2: ? (0.26671552658081055)
+Text #2: The (0.4596579372882843)
+Text #2:  Party (0.5250322818756104)
+Text #2:  Jill (0.4732936918735504)
+Text #2:  recounts (0.3644510805606842)
+Text #2:  states (0.29673072695732117)
+Text #2: ? (0.5930319428443909)
+Text #2: illion (0.22102579474449158)
+Text #2:  school (0.7619969248771667)
+Text #2: , (0.7855972051620483)
+Text #2:  for (1.970205545425415)
+Text #2:  schools (0.6417578458786011)
+Text #2: . (0.34265080094337463)
+Text #2:  to (0.232930988073349)
+Text #2:  the (0.2941298186779022)
+Text #2: 
+ (0.3525714874267578)
+Text #2:  NASA (0.6441378593444824)
+Text #2:  research (0.7601062655448914)
+Text #2:  Trump (0.39208823442459106)
+Text #2: ? (0.6883615255355835)
+Text #2:  about (0.18294695019721985)
+Text #2:  of (0.5005447864532471)
+Text #2: . (0.6685693860054016)
+Text #2:  news (0.31569403409957886)
+Text #2:  if (0.743577241897583)
+Text #3:  Hands (0.9237314462661743)
+Text #3: <|endoftext|> (0.1665901392698288)
+Text #3: <|endoftext|> (0.16667889058589935)
+Text #3: <|endoftext|> (0.16665220260620117)
+Text #3: <|endoftext|> (0.1665755957365036)
+Text #3: <|endoftext|> (0.16660350561141968)
+Text #4:  You (0.2859852612018585)
+Text #4:  Attack (0.2299041599035263)
+Text #4: emaker (0.8824936151504517)
+Text #4:  pac (0.9475296139717102)
+Text #4: . (0.8488397598266602)
+Text #4:  stop (0.17984767258167267)
+Text #4:  prevent (0.16762827336788177)
+Text #4:  attacks (1.0232243537902832)
+Text #4:  attacks (0.5056188702583313)
+Text #4:  Management (0.3668268620967865)
+Text #4:  if (0.2786874771118164)
+Text #4:  You (0.1747923195362091)
+Text #4:  Attack (0.3997071087360382)
+Text #4:  Pac (0.27059707045555115)
+Text #4: <|endoftext|> (0.1625729501247406)
+Text #4: <|endoftext|> (0.16265377402305603)
+Text #4: <|endoftext|> (0.1625974327325821)
+Text #4: <|endoftext|> (0.1625489592552185)
+Text #4: <|endoftext|> (0.16281422972679138)
+Text #4: <|endoftext|> (0.1626112014055252)
+Text #4: <|endoftext|> (0.16252034902572632)
+Text #4: <|endoftext|> (0.1626383364200592)
+Text #4: <|endoftext|> (0.16254234313964844)
+Text #4: <|endoftext|> (0.16256916522979736)
+Text #5:  J (0.22775352001190186)
+Text #5:  & (1.2542356252670288)
+Text #5:  Ltd (0.6219375729560852)
+Text #5:  with (0.2805243730545044)
+Text #5:  Dent (0.3858751654624939)
+Text #5: 
+ (0.372297078371048)
+Text #5: 's (0.3540571331977844)
+Text #5: . (0.7317516803741455)
+Text #5: , (0.5881205797195435)
+Text #5: , (0.46097052097320557)
+Text #5:  & (0.8074538707733154)
+Text #5: <|endoftext|> (0.17139865458011627)
+Text #5: <|endoftext|> (0.17123861610889435)
+Text #6:  ensure (0.25169098377227783)
+Text #6:  about (0.5801104307174683)
+Text #6:  of (0.24150581657886505)
+Text #6:  they (0.21628901362419128)
+Text #6:  of (0.5886103510856628)
+Text #6:  M (0.2875128388404846)
+Text #6:  of (0.4713432788848877)
+Text #6:  project (0.23725251853466034)
+Text #6:  of (0.7336111068725586)
+Text #6: ahu (0.207403302192688)
+Text #6: <|endoftext|> (0.1814899891614914)
+Text #6: <|endoftext|> (0.18139998614788055)
+Text #6: <|endoftext|> (0.18142111599445343)
+Text #6: <|endoftext|> (0.18147584795951843)
+Text #6: <|endoftext|> (0.18152306973934174)
+Text #6: <|endoftext|> (0.18147796392440796)
+Text #6: <|endoftext|> (0.1815674602985382)
+Text #6: <|endoftext|> (0.18138617277145386)
+Text #6: <|endoftext|> (0.18138177692890167)
+Text #7:  Dry (0.4254717528820038)
+Text #7:  Dry (0.8499509692192078)
+Text #7: <|endoftext|> (0.1668340265750885)
+Text #7: <|endoftext|> (0.1669009029865265)
+Text #7: <|endoftext|> (0.16676592826843262)
+Text #7: <|endoftext|> (0.16684536635875702)
+Text #8:  Alberta (0.28311410546302795)
+Text #8:  child (0.44423651695251465)
+Text #8:  You (0.3913116753101349)
+Text #8: . (0.2303583323955536)
+Text #8:  consult (0.24270255863666534)
+Text #8:  if (0.4556388258934021)
+Text #8: . (0.6858415603637695)
+Text #8:  such (1.495182752609253)
+Text #8:  or (0.7862170934677124)
+Text #8:  such (0.7581040263175964)
+Text #8:  or (0.6499735713005066)
+Text #8: . (0.475777804851532)
+Text #8:  court (0.2941104471683502)
+Text #8:  in (0.1757851392030716)
+Text #8:  to (1.3938970565795898)
+Text #8:  if (0.7306917309761047)
+Text #8: . (0.3936381936073303)
+Text #8: <|endoftext|> (0.17123498022556305)
+Text #8: <|endoftext|> (0.17129307985305786)
+Text #8: <|endoftext|> (0.1712753176689148)
+Text #8: <|endoftext|> (0.1712334156036377)
+Text #8: <|endoftext|> (0.1712556779384613)
+Text #8: <|endoftext|> (0.17136044800281525)
+Text #8: <|endoftext|> (0.17132210731506348)
+Text #8: <|endoftext|> (0.171270951628685)
+Text #8: <|endoftext|> (0.17134632170200348)
+Text #8: <|endoftext|> (0.1713229864835739)
+Text #8: <|endoftext|> (0.17122729122638702)
+Text #9:  you (0.20846861600875854)
+Text #9:  of (0.27538666129112244)
+Text #9: . (0.5787052512168884)
+Text #9:  that (0.28728964924812317)
+Text #9: . (0.4222973585128784)
+Text #9:  from (0.24085842072963715)
+Text #9:  colleges (0.3222604990005493)
+Text #9:  universities (0.9647969007492065)
+Text #9: year (0.20422081649303436)
+Text #9:  to (0.18670231103897095)
+Text #9:  schools (0.9026303291320801)
+Text #9:  making (0.21428658068180084)
+Text #9:  universities (1.187711477279663)
+Text #9: . (0.6118410229682922)
+Text #9:  the (0.5023155212402344)
+Text #9:  students (0.19613613188266754)
+Text #9: <|endoftext|> (0.16257917881011963)
+Text #9: <|endoftext|> (0.16256937384605408)
+Text #9: <|endoftext|> (0.1627708524465561)
+Text #9: <|endoftext|> (0.1626466065645218)
+Text #9: <|endoftext|> (0.1625443398952484)
+Text #9: <|endoftext|> (0.16258931159973145)
+Text #9: <|endoftext|> (0.16261975467205048)
+Text #9: <|endoftext|> (0.1626003086566925)
+Text #9: <|endoftext|> (0.1626475304365158)
+Text #9: <|endoftext|> (0.16265985369682312)
+Text #9: <|endoftext|> (0.16255897283554077)
+Text #10:  I (0.39058464765548706)
+Text #10: ak (0.6800333857536316)
+Text #10: <|endoftext|> (0.17000235617160797)
+Text #10: <|endoftext|> (0.1700586974620819)
+Text #10: <|endoftext|> (0.1699848771095276)
+Text #11: acent (0.6366572976112366)
+Text #11:  supplement (0.39588093757629395)
+Text #11:  woman (0.8119195103645325)
+Text #11: acent (0.5318358540534973)
+Text #11:  supplement (1.2010258436203003)
+Text #11:  our (0.40849339962005615)
+Text #11: , (0.6463244557380676)
+Text #11:  we (0.3038296401500702)
+Text #11: <|endoftext|> (0.16675159335136414)
+Text #11: <|endoftext|> (0.16673800349235535)
+Text #11: <|endoftext|> (0.16675256192684174)
+Text #11: <|endoftext|> (0.16679689288139343)
+Text #11: <|endoftext|> (0.16671320796012878)
+Text #11: <|endoftext|> (0.16673646867275238)
+Text #11: <|endoftext|> (0.16678787767887115)
+Text #12:  person (0.6589909791946411)
+Text #12: <|endoftext|> (0.16306258738040924)
+Text #12: <|endoftext|> (0.16308856010437012)
+Text #12: <|endoftext|> (0.16304805874824524)
+Text #12: <|endoftext|> (0.16300365328788757)
+Text #12: <|endoftext|> (0.1630808562040329)
+Text #12: <|endoftext|> (0.16301722824573517)
+Text #12: <|endoftext|> (0.16297665238380432)
+Text #13:  Walmart (0.33825013041496277)
+Text #13: , (0.16673117876052856)
+Text #13: , (0.547966718673706)
+Text #13:  Express (0.5597955584526062)
+Text #13: ze (0.2334037572145462)
+Text #13:  City (1.03890061378479)
+Text #13: , (0.29496145248413086)
+Text #13: , (0.29737022519111633)
+Text #13: , (0.9790602326393127)
+Text #13: ys (0.20062170922756195)
+Text #13: ounters (1.7203119993209839)
+Text #13: umes (0.8046377897262573)
+Text #13:  Kingdom (0.9930049777030945)
+Text #13:  House (0.5654394626617432)
+Text #13:  Arkham (0.7993299961090088)
+Text #13: <|endoftext|> (0.16526702046394348)
+Text #13: <|endoftext|> (0.16534292697906494)
+Text #13: <|endoftext|> (0.16527855396270752)
+Text #13: <|endoftext|> (0.16542132198810577)
+Text #13: <|endoftext|> (0.16533814370632172)
+Text #14: ubuntu (0.20039938390254974)
+Text #14:  k (0.48826682567596436)
+Text #14: ? (0.2959437668323517)
+Text #14: <|endoftext|> (0.16045443713665009)
+Text #14: <|endoftext|> (0.16051240265369415)
+Text #14: <|endoftext|> (0.16059692203998566)
+Text #14: <|endoftext|> (0.1605176031589508)
+Text #14: <|endoftext|> (0.16049447655677795)
+Text #14: <|endoftext|> (0.16047193109989166)
+Text #14: <|endoftext|> (0.16048623621463776)
+Text #15: uda (0.1816079020500183)
+Text #15: ground (0.7382720112800598)
+Text #15: <|endoftext|> (0.1579938530921936)
+Text #15: <|endoftext|> (0.1579580157995224)
+Text #15: <|endoftext|> (0.15794464945793152)
+Text #15: <|endoftext|> (0.1579412817955017)
+Text #15: <|endoftext|> (0.1579590141773224)
+Text #15: <|endoftext|> (0.15796175599098206)
+Text #15: <|endoftext|> (0.15800924599170685)
+Text #15: <|endoftext|> (0.15796315670013428)
+Text #15: <|endoftext|> (0.15793393552303314)
+Text #15: <|endoftext|> (0.15793964266777039)
+Text #15: <|endoftext|> (0.1579742133617401)
+Text #15: <|endoftext|> (0.15803582966327667)
+Text #15: <|endoftext|> (0.15795816481113434)
+Text #15: <|endoftext|> (0.15796229243278503)
+Text #15: <|endoftext|> (0.15796364843845367)
+Text #15: <|endoftext|> (0.15797440707683563)
+Text #15: <|endoftext|> (0.15794716775417328)
+Text #15: <|endoftext|> (0.15796591341495514)
+Text #15: <|endoftext|> (0.15796896815299988)
+Text #15: <|endoftext|> (0.1580967903137207)
+Text #15: <|endoftext|> (0.15804356336593628)
+Text #16:  – (0.6244144439697266)
+Text #16:  for (0.8867154121398926)
+Text #16:  on (0.5470412969589233)
+Text #16:  Hill (1.1804231405258179)
+Text #16:  with (0.9880174994468689)
+Text #16:  if (0.4023289680480957)
+Text #16:  House (0.660818874835968)
+Text #16:  up (0.7190437912940979)
+Text #16: 
+ (0.46709150075912476)
+Text #16:  affairs (0.44592347741127014)
+Text #16:  the (0.494085431098938)
+Text #16:  House (1.0775383710861206)
+Text #16:  our (0.8128013014793396)
+Text #16:  of (0.44096729159355164)
+Text #16:  20 (0.9496833682060242)
+Text #16:  from (1.0238120555877686)
+Text #16:  to (0.8629851937294006)
+Text #16:  Russian (0.5061296820640564)
+Text #16: . (0.4668765962123871)
+Text #16:  during (0.7599313259124756)
+Text #16:  conference (0.6794795989990234)
+Text #16:  when (0.9690720438957214)
+Text #16:  beside (1.4276683330535889)
+Text #16:  and (0.41069385409355164)
+Text #16: S (0.49539026618003845)
+Text #16:  that (0.6314226984977722)
+Text #16:  the (0.5643187761306763)
+Text #16: . (1.19322669506073)
+Text #16: . (0.6587038636207581)
+Text #16: The (0.8684921264648438)
+Text #16:  better (0.5600533485412598)
+Text #16:  our (0.7446382641792297)
+Text #17:  need (0.4079342484474182)
+Text #17:  and (0.6383394598960876)
+Text #17:  program (0.3604753613471985)
+Text #17: IA (0.1873621791601181)
+Text #17: <|endoftext|> (0.1693008542060852)
+Text #17: <|endoftext|> (0.16949336230754852)
+Text #17: <|endoftext|> (0.16938883066177368)
+Text #18:  a (0.39907827973365784)
+Text #18:  when (0.9563866257667542)
+Text #18:  and (0.16785970330238342)
+Text #18: 
+ (0.4506851136684418)
+Text #18:  when (1.3399391174316406)
+Text #18:  for (0.6842420697212219)
+Text #18:  to (0.5592475533485413)
+Text #18: . (0.3090886175632477)
+Text #18:  what (0.20676738023757935)
+Text #18:  when (0.7672106027603149)
+Text #18: 
+ (0.5422976613044739)
+Text #18: , (0.3137345314025879)
+Text #18:  couldn (0.752269983291626)
+Text #18:  and (0.1797654926776886)
+Text #18: . (0.17417395114898682)
+Text #18:  my (1.2187700271606445)
+Text #18:  That (0.43252673745155334)
+Text #18: . (0.7899119257926941)
+Text #18:  You (0.40436792373657227)
+Text #18:  their (0.21090754866600037)
+Text #18: <|endoftext|> (0.160518616437912)
+Text #18: <|endoftext|> (0.16052542626857758)
+Text #18: <|endoftext|> (0.16057541966438293)
+Text #18: <|endoftext|> (0.16068467497825623)
+Text #18: <|endoftext|> (0.16063527762889862)
+Text #18: <|endoftext|> (0.16060711443424225)
+Text #18: <|endoftext|> (0.16051973402500153)
+Text #18: <|endoftext|> (0.16057240962982178)
+Text #18: <|endoftext|> (0.16055797040462494)
+Text #18: <|endoftext|> (0.16067445278167725)
+Text #18: <|endoftext|> (0.16052159667015076)
+Text #19:  so (1.0303517580032349)
+Text #19:  the (0.39319488406181335)
+Text #19: <|endoftext|> (0.17058704793453217)
+Text #19: <|endoftext|> (0.17070503532886505)
+Text #19: <|endoftext|> (0.17058275640010834)
+Text #19: <|endoftext|> (0.17051678895950317)
+Text #19: <|endoftext|> (0.1706579327583313)
+Text #19: <|endoftext|> (0.1705298274755478)
+Text #19: <|endoftext|> (0.17065493762493134)
+Text #19: <|endoftext|> (0.1705189198255539)
+Text #20: 't (0.3769376873970032)
+Text #20:  My (0.6277288198471069)
+Text #20:  Mother (0.21191193163394928)
+Text #20:  of (0.2764834761619568)
+Text #20:  Rick (0.4859658479690552)
+Text #20:  of (0.6216091513633728)
+Text #20:  South (0.6236000657081604)
+Text #20: ists (0.3875633776187897)
+Text #20: <|endoftext|> (0.17480821907520294)
+Text #20: <|endoftext|> (0.17476347088813782)
+Text #20: <|endoftext|> (0.17492099106311798)
+Text #20: <|endoftext|> (0.1748647689819336)
+
+=== Text #1 ===
+> Embrace world class facilities at East Bourne[ Resort &] Spa Shimla. Facilities[ at East] Bour[ne Resort & Spa] Shimla comprise multi cuisine restaurant, tours and travel desk. Avail facilities[ of East] Bour[ne Resort & Spa] Shimla.[][][][][][]
+
+=== Text #2 ===
+> Is an election recount a good idea[?]
+[The] Green[ Party]’s[ Jill] Stein is pushing for election[ recounts in] three battleground[ states.] Why and what could come of the effort[?]
+B[illionaire Betsy] DeVos is a Michigan philanthropist and a Republican activist. She is best known for pushing[ school] vouchers[,] a way[ for families to spend public] money[ schools of their] choice[.] She’s also President-elect Donald Trump’s pick[ to] run[ the Education Department].[
+]Then, will[ NASA] cease doing climate[ research under] a[ Trump presidency, and if] so what would the consequences be[?
+The] author of a new book[ about the] weird creatures[ of the wild] shares his findings[.
+]And finally, a peek into the business of fake[ news, and] the surprising culprits behind it.
+What happens[ if NASA stops] climate science research?
+
+=== Text #3 ===
+> My next one. Hands Up will never die!!!
+This track was tagged with the following keywords:[ Hands Up, Hands Up, Hands] Up.[][][][][]
+
+=== Text #4 ===
+> Can[ You] Have A Heart[ Attack] With A Pac[emaker?] A[ pacemaker] is not a cure[.] It will not prevent or[ stop heart disease, nor] will it[ prevent] heart[ attacks.] However, we offer you the best monitoring services to lessen the chance of heart[ attacks].
+Rhythm[ Management Group provides] you monitoring and information[ if] you Can[ You] still Have A Heart[ Attack With] A[ Pacemaker].[][][][][][][][][][]
+
+=== Text #5 ===
+> C. S. Lewis Signed Contract with[ J]. M. Dent[ &] Sons[ Ltd].
+C. Lewis Signed Contract[ with J]. M.[ Dent &] Sons Ltd.[
+]The Pilgrim['s] Regress[.] First edition.
+LEWIS[,] C. S., Signed note attached to the book of a friend.
+By: Williams[,] Charles[ &] Lewis, C. S.[][]
+
+=== Text #6 ===
+> Much of our work involves guiding public policies to[ ensure] Hawaii residents have choices[ about the] kind[ of] community[ they] want to live in and the type[ of home they can afford].
+In 2012, we launched I[ M]ua Rail, a multi-media campaign designed to engage supporters[ of] Honolulu’s Rail Transit[ project]. By understanding deeply ingrained values and concerns surrounding rail transit, we continue to help the community envision the future[ of] O[ahu] in a way that is tangible and meaningful.[][][][][][][][][]
+
+=== Text #7 ===
+> Have you hired Star[ Drywall Ltd]? Write a review and earn our First to Review badge.
+Star[ Drywall Ltd] has not added any photos.
+Looking for Insulation pros in Estevan?[][][][]
+
+=== Text #8 ===
+> NCSA has Family Courtworkers across[ Alberta] that can help you with your situation.
+You have the right to know what is happening. You will be told if your[ child] has been apprehended either verbally or in writing.[ You] will also be told the reasons why your child has been apprehended[.]
+You have the right to[ consult a lawyer and should contact] one immediately[ if] your child has been apprehended[. You might find] it helpful to involve an advocate[ such as] a courtworker[ or] other support[ such as] a family member[ or] friend[.
+]You have a right to be in[ court and] be involved[ in] the planning for your child.
+You have the right to speak[ to a lawyer to] find out[ if a] decision can be reviewed or appealed[.][][][][][][][][][][][]
+
+=== Text #9 ===
+> When[ you] confirm your enrollment at the school[ of] choice, your decision seems final[.] However,[ that]’s not always the case[.] There are plenty of college students who transfer[ from] two-year[ colleges] to four-year[ universities and] from four-[year] universities[ to] different[ schools. If you]’re thinking of[ making] a switch in[ universities,] you’re not alone[.] In fact,[ the schools listed] below have some of the highest acceptance rates for transfer[ students]![][][][][][][][][][][]
+
+=== Text #10 ===
+> Hey Buddy!,[ I] found this information for you: "Afspraak maken". Here is the website link: https://hypnose4all.nl/afspra[ak-]maken/. Thank you.[][][]
+
+=== Text #11 ===
+> Interesting product.. I have been taking another swiss pl[acent]a[ supplement], never been better! In my opinion, every[ woman should] take pl[acent]a[ supplement] once in a while as it can balance the hormone in[ our] body. With balanced hormone[, our] skin tend to be smoother and brighter, and[ we] will also be in a good mood too![][][][][][][]
+
+=== Text #12 ===
+> Please choose a security question What is your birth place? What is your pet's name? What is your mother's middle name? What kind of[ person] are you?[][][][][][][]
+
+=== Text #13 ===
+> Find Costume Contest Meme Halloween shopping results from Amazon & compare prices with other Halloween online stores: Ebay,[ Walmart], Target[, Sears], Asos, Spitit Halloween[,] Costume[ Express,] Costume Cra[ze,] Party[ City,] Oriental Trading[,] Yandy[,] Halloween Express[,] Smiff[ys,] Costume Disc[ounters,] BuyCost[umes,] Costume[ Kingdom,] and other stores.
+Don't satisfied with Costume Contest Meme results or need more Halloween costume ideas? Try to exlore these related searches: Costumes Holiday[ House,] Ant Insect Fancy Dress Costume, Batman[ Arkham] City Costume Cheat.[][][][][]
+
+=== Text #14 ===
+> > We also have support for forums. Should X[ubuntu] have forums on the site?
+> There has been some interest in it before.
+Do[ k]ubuntu or edubuntu have separate forums[?][][][][][][][]
+
+=== Text #15 ===
+> © 2017 Barrac[uda Boat &] RV Storage. All Rights Reserved. Website created by Electric Play[ground.] Powered by Akiba.[][][][][][][][][][][][][][][][][][][][][]
+
+=== Text #16 ===
+> Washington[ – The] Republican leaders in Congress are distancing themselves from President Donald Trump’s invitation[ for Vladimir Putin to visit] Washington in the fall, saying the Russian president is not welcome[ on] Capitol[ Hill.]
+Ryan and Senate Majority Leader Mitch McConnell have shown no interest in holding meetings[ with] Putin[ if] he accepts Trump’s invitation to the White[ House] to follow up on last week’s summit in Helsinki.
+“The speaker and I have made it clear that Putin will not be welcome[ up here at the Capitol],” McConnell told reporters Tuesday.[
+]But it may not matter anyway. Putin’s foreign[ affairs adviser] Yuri Ushakov threw cold water on the prospect of Putin accepting Trump’s invitation to visit[ the] White[ House.
+]Ushakov told journalists in Moscow on Tuesday that no preparations were underway for a meeting in Washington and there were “other options that[ our leaders] could consider,” such as the late November meeting[ of] the Group of[ 20] in Argentina or another international event that both would attend.
+Lawmakers[ from both] parties have raised concerns about Trump’s approach[ to] the[ Russian] leader[.] They strongly rebuked Trump’s comments[ during] a joint press[ conference] in Helsinki[ when] he stood[ beside] Putin[ and] denied U.[S.] intelligence findings[ that] Russia interfered in[ the 2016] election[.] Trump has since clarified his remarks to side with the intelligence community[.
+]“[The] Russians[ better] quit messing around in[ our elections,]” McConnell said.
+
+=== Text #17 ===
+> Almost every business is driven by technology and companies[ need] skilled employees to fill their IT positions. You can embark on a new and exciting career in the computer[ and] networking field by completing the Network Administrator[ program at] triOS College.
+Students will receive four certification exam vouchers including designations from Microsoft, CompT[IA] and Cisco.[][][]
+
+=== Text #18 ===
+> Love is when[ a girl] puts on perfume and a boy puts on shaving cologne and they go out and smell each other.
+Love is[ when you] go out[ and give] somebody most of your French fries without making them give you any of yours.[
+Love] is[ when my mummy makes] coffee[ for] my daddy and she takes a sip before giving it to him,[ to make sure] the taste is OK[.
+Love] is[ what makes] you smile[ when] you're tired.[
+When my] grandmother got arthritis[,] she[ couldn]'t bend over[ and] paint her toenails any more[.] So[ my] grandfather does it for her all the time, even when his hands got arthritis too.[ That]'s love[.
+When someone loves] you, the way they say your name is different.[ You just] know that your name is safe in[ their mouth].[][][][][][][][][][][]
+
+=== Text #19 ===
+> I was watching TV with Devin the other day and we were watching some of the filler programing between shows on PBS. We don't have cable[ so] the only kids shows[ the kids] can watch outside of Saturday morning is on PBS and TVO. Rather than have commercials these networks show these short 2 minute filler … Continue reading Humanism on PBS?[][][][][][][][]
+
+=== Text #20 ===
+> Come join us in celebrating the release of Greenville writer (and Presbyterian College professor) Terry Barr's first book of essays, Don['t Date Baptists and] Other Warnings from[ My] Alabama[ Mother]. A literary cousin of the great memoirs[ of] fellow Alabama boy[ Rick] Bragg, this collection explores what it was to come[ of] age in the deep New[ South of the] 1970s. Spread the word. Bring your friends, family, neighbors, Baptists, Method[ists], Athiests... in other words come one and all![][][][]
+
+
+Description: 
+2025-07-26 00:24:14,737 - root - INFO - Locations or establishments and organizations
+
+2025-07-26 00:24:14,741 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-1424_clusters-1_2025-07-25_22-14-26.csv
+2025-07-26 00:24:14,742 - root - INFO - ================================================================================
+2025-07-26 00:24:14,742 - root - INFO - ANALYSIS COMPLETED
+2025-07-26 00:24:14,742 - root - INFO - ================================================================================
+2025-07-26 00:24:14,743 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-1424_clusters-1_2025-07-25_22-14-26.log
+2025-07-26 00:24:14,743 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-1424_clusters-1_2025-07-25_22-14-26.csv

@@ -1,0 +1,601 @@
+2025-07-25 19:28:39,363 - root - INFO - ================================================================================
+2025-07-25 19:28:39,376 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 19:28:39,377 - root - INFO - ================================================================================
+2025-07-25 19:28:39,378 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 19:28:39,378 - root - INFO - AGG_METHOD = mean
+2025-07-25 19:28:39,379 - root - INFO - BATCH_SIZE = 2
+2025-07-25 19:28:39,379 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 19:28:39,380 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 19:28:39,381 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 19:28:39,381 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 19:28:39,382 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 19:28:39,383 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 19:28:39,383 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 19:28:39,384 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 19:28:39,384 - root - INFO - DATA_FILES = None
+2025-07-25 19:28:39,385 - root - INFO - DEVICE = cuda
+2025-07-25 19:28:39,386 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 19:28:39,386 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 19:28:39,386 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 19:28:39,387 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 19:28:39,388 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 19:28:39,388 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 19:28:39,389 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 19:28:39,390 - root - INFO - LAYER_ID = 0
+2025-07-25 19:28:39,390 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 19:28:39,391 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 19:28:39,391 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 19:28:39,392 - root - INFO - MULTI_EVAL = True
+2025-07-25 19:28:39,392 - root - INFO - N_CLUSTERS = 1
+2025-07-25 19:28:39,393 - root - INFO - N_SAMPLES = 10
+2025-07-25 19:28:39,393 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 19:28:39,394 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 19:28:39,394 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 19:28:39,394 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 19:28:39,395 - root - INFO - SPLIT = train
+2025-07-25 19:28:39,396 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 19:28:39,396 - root - INFO - STREAMING = True
+2025-07-25 19:28:39,397 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 19:28:39,397 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 19:28:39,398 - root - INFO - TARGET_DATA = c4
+2025-07-25 19:28:39,398 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 19:28:39,399 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 19:28:39,399 - root - INFO - UNIT_ID = 2725
+2025-07-25 19:28:39,400 - root - INFO - USE_API = True
+2025-07-25 19:28:39,400 - root - INFO - ================================================================================
+2025-07-25 19:28:39,401 - root - INFO - ANALYSIS RESULTS
+2025-07-25 19:28:39,401 - root - INFO - ================================================================================
+2025-07-25 19:28:39,401 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-2725_clusters-1_2025-07-25_17-28-39.log
+2025-07-25 19:37:12,976 - root - INFO - Reached 1000 samples.
+2025-07-25 19:37:14,519 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 19:37:14,520 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 19:37:28,884 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 19:38:05,740 - root - INFO - Number of candidates: 1001
+2025-07-25 19:38:08,604 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 19:38:08,605 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: � (0.773884654045105)
+Text #1: � (0.7837769985198975)
+Text #1: � (0.7668970823287964)
+Text #1: � (0.787921667098999)
+Text #1: � (0.7741432189941406)
+Text #1: � (0.8108319044113159)
+Text #1: � (0.7736037373542786)
+Text #1: � (0.8245329260826111)
+Text #1: � (0.7685778737068176)
+Text #1: � (0.7802122831344604)
+Text #1: � (0.8184212446212769)
+Text #1: � (0.7781966328620911)
+Text #1: � (0.8225452303886414)
+Text #1: � (0.7948881387710571)
+Text #1: � (0.7871870994567871)
+Text #1: � (0.8032656311988831)
+Text #1: � (0.7701420783996582)
+Text #1: � (0.7671190500259399)
+Text #1: � (0.795004665851593)
+Text #1: � (0.7657406330108643)
+Text #1: � (0.7638135552406311)
+Text #1: � (0.7934668660163879)
+Text #1: � (0.7650138139724731)
+Text #1: � (0.7813324928283691)
+Text #1: � (0.7676315903663635)
+Text #1: � (0.7778221368789673)
+Text #1: � (0.8043214678764343)
+Text #1: � (0.7670485973358154)
+Text #1: � (0.8111084699630737)
+Text #1: � (0.7843422293663025)
+Text #1: � (0.8558422327041626)
+Text #1: � (0.8192896842956543)
+Text #1: � (0.8140856623649597)
+Text #1: � (0.8034871220588684)
+Text #1: � (0.8439856171607971)
+Text #1: � (0.8055588603019714)
+Text #1: � (0.8224104642868042)
+Text #1: � (0.8418805003166199)
+Text #1: � (0.7755440473556519)
+Text #1: � (0.8382939100265503)
+Text #1: � (0.8334608674049377)
+Text #1: � (0.8025006055831909)
+Text #1: � (0.8001958727836609)
+Text #1: � (0.8033860921859741)
+Text #1: � (0.8581995368003845)
+Text #1: � (0.7637079954147339)
+Text #1: � (0.7948897480964661)
+Text #1: � (0.8205657005310059)
+Text #1: � (0.7902202606201172)
+Text #1: � (0.7684358954429626)
+Text #1: � (0.787291407585144)
+Text #1: � (0.7675743103027344)
+Text #2: ovich (0.8887843489646912)
+Text #2:  Piano (0.2415768802165985)
+Text #2:  piano (0.24658885598182678)
+Text #2:  pian (0.5729455351829529)
+Text #2:  piano (0.12602858245372772)
+Text #2: ovich (0.9097940325737)
+Text #2:  piano (0.10107166320085526)
+Text #2:  piano (0.07963523268699646)
+Text #2: ki (0.18131428956985474)
+Text #2: ovich (1.0097270011901855)
+Text #2: ovich (1.0416799783706665)
+Text #2: iano (0.14718295633792877)
+Text #2:  Piano (0.2256469875574112)
+Text #2:  piano (0.1425979733467102)
+Text #2: ki (0.25369879603385925)
+Text #2:  Score (1.3259834051132202)
+Text #2: ovich (1.0583986043930054)
+Text #2: score (2.027707815170288)
+Text #2:  Score (1.370289921760559)
+Text #2: kes (0.0726628378033638)
+Text #2: ovich (1.0569316148757935)
+Text #2: ovich (1.0752578973770142)
+Text #2: ello (0.8530526161193848)
+Text #2: ki (0.21206676959991455)
+Text #2: ovich (1.0815341472625732)
+Text #2:  score (1.4745240211486816)
+Text #2: ki (0.21464543044567108)
+Text #2: ki (0.2425844371318817)
+Text #2: 499 (0.7626725435256958)
+Text #2:  Score (1.3408888578414917)
+Text #2: ovich (1.0562646389007568)
+Text #2: score (1.950732707977295)
+Text #2:  Score (1.3571083545684814)
+Text #2: ki (0.26056256890296936)
+Text #2: ovich (1.0950496196746826)
+Text #2: Score (1.6320562362670898)
+Text #2:  Score (1.4437401294708252)
+Text #2:  Score (1.3801357746124268)
+Text #2: ovich (1.064956545829773)
+Text #2: score (1.9796695709228516)
+Text #2:  Score (1.381734848022461)
+Text #2: kes (0.06468856334686279)
+Text #2: ovich (1.072055459022522)
+Text #2: Viol (0.01621345244348049)
+Text #2: ki (0.25091788172721863)
+Text #2: ovich (1.0931837558746338)
+Text #2: ello (0.8916799426078796)
+Text #3: addin (0.5340027809143066)
+Text #3: addin (0.43234553933143616)
+Text #3:  Ahead (0.690412700176239)
+Text #3: addin (0.4717983901500702)
+Text #3: addin (0.5259532332420349)
+Text #3: street (0.2732506990432739)
+Text #3: � (0.12543179094791412)
+Text #3: grab (0.8450098037719727)
+Text #3:  meets (0.4204345643520355)
+Text #3: mine (0.09634893387556076)
+Text #3:  princess (0.28524649143218994)
+Text #3:  refuses (0.1344383805990219)
+Text #3:  suit (0.43119102716445923)
+Text #3: � (0.18292246758937836)
+Text #3: addin (0.5833112001419067)
+Text #3:  immediately (0.471325546503067)
+Text #3: itten (0.30861762166023254)
+Text #3: mine (0.08761201798915863)
+Text #3: � (0.1801605075597763)
+Text #3: addin (0.6374570727348328)
+Text #3:  saved (1.721195101737976)
+Text #3: � (0.04679803177714348)
+Text #3:  recruits (0.05043700337409973)
+Text #3: addin (0.5268888473510742)
+Text #3:  steal (0.47106876969337463)
+Text #3:  enchanted (0.18113477528095245)
+Text #3: addin (0.5743511915206909)
+Text #3:  Genie (0.7951703667640686)
+Text #3:  receives (1.979246973991394)
+Text #3: � (0.15501002967357635)
+Text #3: addin (0.5450876951217651)
+Text #3:  Genie (0.8078286051750183)
+Text #3: � (0.05845559015870094)
+Text #3: ulously (0.5646795630455017)
+Text #3: � (0.17419429123401642)
+Text #3: mine (0.10699931532144547)
+Text #3: � (0.12600871920585632)
+Text #3:  Genie (0.7835559248924255)
+Text #3: addin (0.6258568167686462)
+Text #3: addin (0.5587624907493591)
+Text #3:  lyrics (0.4269597828388214)
+Text #3: uel (0.40131324529647827)
+Text #3: uel (0.3804149627685547)
+Text #3:  premiered (0.843528687953949)
+Text #3:  Avenue (0.12418833374977112)
+Text #3:  played (0.07373415678739548)
+Text #3:  nominated (1.6711047887802124)
+Text #3:  indefinitely (0.4919458329677582)
+Text #3: addin (0.5113806128501892)
+Text #3: pay (0.0735488310456276)
+Text #3: addin (0.5773023962974548)
+Text #3: addin (0.532623291015625)
+Text #4: � (0.029874293133616447)
+Text #4:  excited (0.3248758018016815)
+Text #4:  Bunny (0.5013194680213928)
+Text #4:  arrive (0.4212842881679535)
+Text #4: � (0.02399430423974991)
+Text #4:  arrive (0.45797020196914673)
+Text #4:  Available (0.12747447192668915)
+Text #4:  Available (0.21871380507946014)
+Text #4: Soft (0.034670550376176834)
+Text #4: worth (1.6854194402694702)
+Text #4:  Available (0.20894582569599152)
+Text #4: worth (1.7017858028411865)
+Text #4:  Available (0.29474273324012756)
+Text #4: amel (0.14977599680423737)
+Text #4: bury (0.04664645716547966)
+Text #4:  available (0.03161237761378288)
+Text #4: bury (0.048214398324489594)
+Text #4:  available (0.0355348065495491)
+Text #4: bury (0.02850838378071785)
+Text #4: iant (0.3965219557285309)
+Text #4: ck (0.6065693497657776)
+Text #4: worth (1.6597306728363037)
+Text #4: azel (0.011003601364791393)
+Text #4: aline (0.45160701870918274)
+Text #4: iant (0.46782925724983215)
+Text #4: ousse (0.3651449680328369)
+Text #4: bury (0.038746852427721024)
+Text #4:  crispy (0.16969521343708038)
+Text #4: aline (0.4700262248516083)
+Text #4:  available (0.008507749997079372)
+Text #4:  filled (0.016941361129283905)
+Text #4: unn (1.3232455253601074)
+Text #4:  available (0.012852205894887447)
+Text #4: licks (1.0636699199676514)
+Text #4: worth (1.6544599533081055)
+Text #4: unn (1.282253384590149)
+Text #4: worth (1.6561577320098877)
+Text #4:  bunny (0.7250773310661316)
+Text #4: worth (1.7634435892105103)
+Text #4: worth (1.7726500034332275)
+Text #4:  available (0.0009513591649010777)
+Text #4: licks (0.9951925277709961)
+Text #5:  winning (2.6177494525909424)
+Text #5:  highly (0.07341934740543365)
+Text #5:  Flash (0.025172535330057144)
+Text #5:  awards (0.2405066341161728)
+Text #5:  criteria (0.32266443967819214)
+Text #5:  judges (0.18369731307029724)
+Text #5:  submission (0.014415794983506203)
+Text #5:  happy (0.10758737474679947)
+Text #5:  marginal (0.0767151266336441)
+Text #5:  disadvantaged (1.2426286935806274)
+Text #5:  suffering (0.5068731904029846)
+Text #5:  please (0.10415507107973099)
+Text #5:  Winners (1.4175293445587158)
+Text #5:  receive (1.3175907135009766)
+Text #5:  winners (1.862470030784607)
+Text #5:  nominated (1.9399281740188599)
+Text #5:  Awards (0.1831449717283249)
+Text #5:  winners (1.7394483089447021)
+Text #5: ook (0.07745161652565002)
+Text #5:  winners (1.6750462055206299)
+Text #5:  submitting (0.24450747668743134)
+Text #5:  submissions (0.03459382802248001)
+Text #5:  entrants (0.5237748622894287)
+Text #5:  keep (0.029614996165037155)
+Text #5: abeth (0.17438583076000214)
+Text #5:  Quarterly (0.023700039833784103)
+Text #5:  Award (0.5354090332984924)
+Text #5:  Award (0.6329618096351624)
+Text #5: � (0.001922509167343378)
+Text #5:  Award (0.574985921382904)
+Text #5:  won (1.5481361150741577)
+Text #5: � (0.01673722267150879)
+Text #5:  Glasgow (0.12348292022943497)
+Text #5:  won (1.5280077457427979)
+Text #6:  below (0.08391997963190079)
+Text #6:  getting (0.5187738537788391)
+Text #6: cat (0.6483119130134583)
+Text #6:  stored (0.05082797259092331)
+Text #6:  cookies (0.4443323612213135)
+Text #6:  automatically (2.31305193901062)
+Text #6:  prevent (0.11777374148368835)
+Text #6:  automated (0.8397414684295654)
+Text #6: rob (1.2646235227584839)
+Text #6:  please (0.34705281257629395)
+Text #6:  characters (0.13959909975528717)
+Text #6:  identifying (0.4786396920681)
+Text #6:  characters (0.16978900134563446)
+Text #6:  characters (0.19455157220363617)
+Text #6:  displayed (0.17849411070346832)
+Text #6: Choose (0.01191079430282116)
+Text #6:  characters (0.2664310932159424)
+Text #6:  alphabet (0.20620259642601013)
+Text #6:  underscores (0.6198320388793945)
+Text #6:  characters (0.12244407832622528)
+Text #6:  easy (0.02430277317762375)
+Text #6:  guess (1.5512675046920776)
+Text #6:  easily (0.9827908277511597)
+Text #7:  placeholder (0.954196035861969)
+Text #7:  Sawyer (0.3677842319011688)
+Text #7:  currently (0.13163766264915466)
+Text #7:  below (0.043788932263851166)
+Text #7:  Sawyer (0.3773886561393738)
+Text #7:  placeholder (1.173553466796875)
+Text #7:  Sawyer (0.3669069707393646)
+Text #7:  someone (0.49908024072647095)
+Text #7:  placeholder (1.2348074913024902)
+Text #7:  Sawyer (0.3909415602684021)
+Text #7:  automatically (2.374631404876709)
+Text #7:  Sawyer (0.3858007788658142)
+Text #7:  Sawyer (0.3967120349407196)
+Text #7: asca (0.14719533920288086)
+Text #8: bara (0.4869965612888336)
+Text #8:  Taylor (0.010736094787716866)
+Text #8: mont (0.5253628492355347)
+Text #8:  winning (1.981661081314087)
+Text #8:  award (0.05311333015561104)
+Text #8:  inspired (0.836606502532959)
+Text #8:  motivated (2.1692581176757812)
+Text #9: bert (0.5315123200416565)
+Text #9:  garnered (2.5927884578704834)
+Text #9:  Emmy (0.6376519203186035)
+Text #9:  starred (0.6959651112556458)
+Text #9:  Hurt (0.03986535593867302)
+Text #9:  nominated (1.5532208681106567)
+Text #9:  won (1.4436415433883667)
+Text #9:  Emmy (0.6282752752304077)
+Text #9:  received (1.1492375135421753)
+Text #9:  nominated (1.6247503757476807)
+Text #9:  starring (0.39547476172447205)
+Text #9: � (0.0626673623919487)
+Text #10:  win (0.16481581330299377)
+Text #10:  winning (1.870442271232605)
+Text #10:  seamlessly (0.6662993431091309)
+Text #10:  responded (0.28691908717155457)
+Text #10:  deserved (2.190965175628662)
+Text #11: Continue (0.17814569175243378)
+Text #11:  Makes (0.18217721581459045)
+Text #11:  picked (1.5867669582366943)
+Text #11: � (0.06864184141159058)
+Text #11:  excited (0.44360747933387756)
+Text #11: ibel (0.20368871092796326)
+Text #11: � (0.03311348706483841)
+Text #11:  excited (0.3073594868183136)
+Text #11:  picked (1.2694071531295776)
+Text #11:  excited (0.28914281725883484)
+Text #11: ibel (0.20738154649734497)
+Text #12: nell (0.0034848791547119617)
+Text #12:  respectively (0.06115458160638809)
+Text #12:  winners (1.4125183820724487)
+Text #12: worth (1.5164059400558472)
+Text #12:  score (1.0824356079101562)
+Text #12:  Toby (0.06770691275596619)
+Text #12: worth (1.4180094003677368)
+Text #12:  ahead (1.4632264375686646)
+Text #13: ICK (0.6300533413887024)
+Text #13: aughlin (0.7820155620574951)
+Text #13: aughlin (0.8670321106910706)
+Text #13: aughlin (0.7490489482879639)
+Text #13: aughlin (0.7884736657142639)
+Text #13: ureen (0.21746721863746643)
+Text #13: aughlin (0.672802209854126)
+Text #13: win (0.006643576547503471)
+Text #13: ck (0.4576537013053894)
+Text #13: onse (0.7142285108566284)
+Text #14:  receive (0.9316944479942322)
+Text #14:  receive (1.1362662315368652)
+Text #15:  uns (0.174869105219841)
+Text #15:  uns (0.09895056486129761)
+Text #15:  responds (1.2599478960037231)
+Text #15:  interested (0.4269721210002899)
+Text #16: urn (0.029024876654148102)
+Text #16:  inspiring (1.6058692932128906)
+Text #16:  worthy (2.1940181255340576)
+Text #16: 	 (0.8194497227668762)
+Text #16:  minimalist (0.4774859845638275)
+Text #17: urn (0.029024876654148102)
+Text #17:  inspiring (1.6058692932128906)
+Text #17:  worthy (2.1940181255340576)
+Text #17: 	 (0.8194497227668762)
+Text #17:  minimalist (0.4774859845638275)
+Text #18:  recipient (2.2001445293426514)
+Text #18:  Award (0.2609879970550537)
+Text #18:  Award (0.1855352818965912)
+Text #18: illian (0.26843538880348206)
+Text #18:  receive (1.1381970643997192)
+Text #18:  Award (0.4301387071609497)
+Text #18: quet (0.3145049512386322)
+Text #19:  received (0.8582226037979126)
+Text #19: oned (0.5063992142677307)
+Text #19:  given (0.20735494792461395)
+Text #19: � (0.06430701166391373)
+Text #19:  received (1.0349642038345337)
+Text #19:  invaluable (0.15651455521583557)
+Text #19:  received (0.8968994617462158)
+Text #20:  expected (0.249245285987854)
+Text #20:  demonstrate (0.16146355867385864)
+Text #20: Applic (0.043228745460510254)
+Text #20:  appropriate (1.0097450017929077)
+
+=== Text #1 ===
+> Key Features Material- CottonHalf Sleeve Warranty 3 Days Replacement Policy 100..
+Free Home Delivery! Key Features Material- Cotton; GSM-160Half Sleeve Warranty 3 Da..
+Free Home Delivery! Key Features Material- Cotton; GSM-200Half Sleeve Warranty 3 Da..
+Free Home Delivery! Key Features জার্সি কাপড়ের থাই কোয়া[�]�[�]�[�]�[�]�[�]�, [�]�র্[�]�ে[�]�্[�]�[�]�[�]�[�]� [�]�[�]�[�]�্[�]�ি[�]� [�]�া[�]�নে বামে ..
+Free Home Delivery! Key Features জ[�]�[�]�্সি [�]�াপড়ে[�]� [�]�[�]�[�]� কোয়[�]�[�]�ি[�]�[�]�[�]�, [�]�্[�]�[�]�[�]�[�]�[�]� [�]�[�]�[�]�্[�]�[�]�[�]� [�]�[�]�[�]�[�]�ে [�]�[�]�[�]�ে থ[�]�[�]�ছ..
+Free Home Delivery! Key Features Material- SyntheticHalf Sleeve Warranty 3 Days Rep..
+Free Home Delivery! Key Features Material- Synthetic Full Sleeve Warranty ..
+Free Home Delivery! Key Features Material- SyntheticFull Sleeve Warranty 3 Days Rep..
+Key Features Material- Cotton; GSM-160 Half Sleeve Warranty 3 Days Replacement ..
+
+=== Text #2 ===
+> Composed by Dmitri Shostak[ovich] (1906-1975). Op. 102.[ Piano] duet book (requires 2 copies for performance) for[ piano] duet (2[ pian]os, 4 hands). With solo part and[ piano] reduction. F Major. Published by International Music Co.
+Composed by Dmitri Shostak[ovich] (1906-1975). Set of performance parts (includes separate pull-out violin part) for violin and[ piano]. With solo part and[ piano] reduction. A Minor. 76 pages. Published by Sikors[ki].
+Unlocking the Masters Series. By Dmitri Shostak[ovich]. AMADEUS. Softcover with CD. Size 6x9 inches. 217 pages. Published by Amadeus Press.
+Two Pianos, Four Hands. By Dmitri Shostak[ovich]. (P[iano]).[ Piano] Large Works (Arranged for[ piano]). Book only. Size 9.25x12.5 inches. 64 pages. Published by Sikors[ki].
+Study[ Score]. By Dmitri Shostak[ovich]. ([score]). Study[ Score]. Size 4.2x7.5 inches. 104 pages. Published by Boosey & Haw[kes].
+Set of performance parts. By Dmitri Shostak[ovich]. Arranged by Mstislav Rostrop[ovich]. (C[ello]). String Solo. Size 9.25x12.25 inches. 68 pages. Published by Sikors[ki].
+Composed by Dmitri Shostak[ovich] (1906-1975). This edition: softcover. Study[ score]. 104 pages. Sikors[ki] #SIK6621. Published by Sikors[ki] (HS.50[499484]).
+Study[ Score]. By Dmitri Shostak[ovich]. ([score]). Study[ Score]. Size 6x8.2 inches. 72 pages. Published by Sikors[ki].
+By Dmitri Shostak[ovich]. ([Score]). Study[ Score]. Book only. Size 6x8.25 inches. 72 pages. Published by Hal Leonard.
+Study[ Score]. By Dmitri Shostak[ovich]. ([score]). Study[ Score]. Size 5.25x7.5 inches. 112 pages. Published by Boosey & Haw[kes].
+Set of performance parts. By Dmitri Shostak[ovich]. Arranged by David Oistrakh. ([Viol]in). String Solo. Size 8.25x11.75 inches. 64 pages. Published by Sikors[ki].
+By Dmitri Shostak[ovich]. C[ello]
+
+=== Text #3 ===
+> Sorry… No latest news for Al[addin].
+Seen Al[addin] on Broadway yet? You’re “One Jump[ Ahead]” of the crowd, since Al[addin] tickets are some of the most popular in New York this year.
+Based on the 1992 Disney animated film of the same name, Al[addin] is the story of a young “[street] rat�[�] in the city of A[grab]ah whose life is forever changed when he[ meets] Jas[mine], the[ princess] who[ refuses] to marry any of her[ suit]ors, wandering the city in disguise (“A Million Miles Away�[�]).
+Al[addin] is[ immediately] sm[itten], but when Jas[mine] is “rescued�[�] by the guards, Al[addin] is only[ saved] from execution by the interference of the Sultan�[�]s Vizier Jafar. Jafar[ recruits] Al[addin] to[ steal] a golden lamp from an[ enchanted] cave, but before he can return the lamp Al[addin] releases[ Genie], and[ receives] three wishes from him (“Friend Like Me�[�]).
+Al[addin] uses[ Genie]�[�]s power to become the fab[ulously] wealthy “Prince Ali�[�] and court Jas[mine] (“A Whole New World�[�]). However, he must now contend with the fury of Jafar, who wants to use the power of the genie to become Sultan himself.
+So what would wish for if you got three wishes from[ Genie]? How about tickets to Al[addin], Broadway’s hottest new Disney musical?
+Al[addin] was written based on the 1992 Disney animated movie, with music by Alan Menken,[ lyrics] by Howard Ashman, Tim Rice and Chad Beg[uel]in and book also by Chad Beg[uel]in. It[ premiered] at the 5th[ Avenue] Theatre in Seattle in July 2011. Other productions of the musical[ played] in Ivins from June–October 2012, St. Louis in July 2012 and Toronto from November 2013 to January 2014.
+Previews for the Broadway production began on February 26, 2014, with an official opening on March 20 at the New Amsterdam Theatre. It was[ nominated] for Best Musical in 2014 and continues to play on Broadway[ indefinitely], so come get your tickets for Al[addin] now!
+Never over[pay] for Al[addin] tickets again!
+Check CHARGED to stay up to date on Al[addin] tickets!
+
+=== Text #4 ===
+> Easter weekend is around the corner which means there�[�]s be loads of over[ excited] kids waiting for the Easter[ Bunny] to[ arrive]. There�[�]s be equally as many full grown women waiting for the chocolate van to[ arrive] as #TeamChocoholic from around the world celebrate the Christian holiday.
+Purple centered eggs by Cadburg.[ Available] at Pick n Pay.
+White chocolate eggs by Beacon.[ Available] at Pick n Pay.
+[Soft] yellow centre eggs by Wool[worth]s.[ Available] at Wool[worth]s.
+Deep yellow centered eggs by Pick n Pay.[ Available] at Pick n Pay.
+Car[amel] eggs by Cad[bury] UK,[ available] at Engen.
+Oreo filled eggs by Cad[bury] UK,[ available] at Engen.
+Creme egg by Cad[bury] UK, available at Engen.
+Mid-sized multi flavoured filled eggs (you choose), available from Pick n Pay.
+Mini Lindt Eggs (red, blue, white), available from Pick n Pay & Engen.
+G[iant] spe[ck]led eggs available from Wool[worth]s.
+H[azel] nut pr[aline] eggs available from Pick n Pay (these are divine!).
+G[iant] Lindt filled chocolate eggs available from Pick n Pay & Engen.
+White chocolate m[ousse] egg by Cad[bury] UK available from Engen.
+Crunchy rice[ crispy] & pr[aline filled] eggs by Riegelein Confiserie,[ available] from Pick n Pay.
+Malteser[ filled] mini or large Easter b[unn]ies[ available] from Engen.
+Lindt available from Pick n Pay, C[licks] and Engen.
+Large & Medium Wool[worth]s b[unn]ies available from Wool[worth]s.
+Large stand up[ bunny] by Reigelein Confiserie available from Pick n Pay.
+A variety available from Pick n Pay and Wool[worth]s.
+Medium sized available from Wool[worth]s.
+Large[ available] from Pick n Pay.
+I believe C[licks] may also have a version.
+Happy Feasting and celebrating family time!
+
+=== Text #5 ===
+> Every quarter we will be publishing the[ winning] and[ highly] commended[ Flash] Fiction entries in our Short Fiction section.
+Please see below for further details on the[ awards], general[ criteria],[ judges], and the[ submission] link.
+Following a conversation with Kit de Waal (interview with TSS here), we are[ happy] to announce that submission fees for the Flash Fiction 400 competition will be waived for any writers from[ marginal]ised and[ disadvantaged] communities, or anyone[ suffering] from economic hardship. For further details[ please] click here.
+Results: longlist announced mid-April.[ Winners] and Highly Commended in late April / early May.
+Highly Commended: Up to five further flash fictions will be highly commended and published online. They will also[ receive] £25 each.
+All 1st place[ winners] will be[ nominated] for the Best Small Fiction[ Awards].
+All[ winners] (1st, 2nd, 3rd) will be published in a chapbo[ook] within 12 months of the spring competition.
+All[ winners] (1st, 2nd, 3rd) will be interviewed, by TSS Publishing, about their flash fiction and their writing more generally.
+Please read through the Terms and Conditions before[ submitting].IMPORTANT: Due to the volume of[ submissions], we do not have the capability to email[ entrants] individually regarding results. Please sign up to our newsletter (right sidebar) to[ keep] up to date with competition news, or check the website directly.
+Sign up to our newsletter to stay up to date with news of competitions, results, and more.
+Elis[abeth Ingram] Wallace lives in Scotland, and her writing is published in SmokeLong[ Quarterly], Atticus Review, Flash Frontier, and the Bath Flash Fiction[ Award] anthologies. A finalist for The Best Small Fictions 2018, she has a Scottish Book Trust ‘New Writers[ Award]�[�], a Dewar Arts[ Award], and[ won] ‘Writing the Future 2017�[�]. She studied English as a mature student at Oxford University, and has a Creative Writing M.Litt. with Distinction from the University of[ Glasgow]. She also[ won] the TSS Flash 400 summer competition with her Flash ‘Space Hopped’ . You can find her on Twitter @ingram_wallace or on her website here.
+
+=== Text #6 ===
+> Create a free MyCatalogues.com account using the form[ below], and enjoy[ getting] the latest catalogue deals, special offers and more. Any "[catalogue favourites]" that you may already have set up,[ stored] in your[ cookies], will[ automatically] be imported into your new account.
+To help us[ prevent] abuse, by[ automated] Internet "[rob]ots",[ please] enter the five[ characters] you see in the image below.
+If you have difficulty[ identifying] the[ characters], refresh this page for a new code. All the[ characters] are either letters or numbers and are[ displayed] in lower-case.
+[Choose] a name between 6 and 25[ characters] long. Use any regular[ alphabet characters] (a-z, A-Z), numbers, hyphens, or[ underscores].
+Your password should be at least 6[ characters] long,[ easy] to remember, but hard to[ guess].
+You can, of course,[ easily] remove your account at any time, should you wish to. This can be done from within the Administration Menu, when you are signed in.
+
+=== Text #7 ===
+> This is a[ placeholder] page for Donald[ Sawyer], which means this person is not[ currently] on this site. We do suggest using the tools[ below] to find Donald[ Sawyer].
+You are visiting the[ placeholder] page for Donald[ Sawyer]. This page is here because[ someone] used our[ placeholder] utility to look for Donald[ Sawyer]. We created this page[ automatically] in hopes Donald[ Sawyer] would find it. If you are not Donald[ Sawyer], but are an alumni of It[asca] High School, register on this site for free now.
+
+=== Text #8 ===
+> Bar[bara] Brown[ Taylor] is the Butman Professor of Religion at Pied[mont] College in rural northeast Georgia. An Episcopal priest since 1984, she is the author of twelve books, including the New York Times bestseller An Altar in the World. Her first memoir, Leaving Church, met with widespread critical acclaim,[ winning] a 2006 Author of the Year[ award] from the Georgia Writers Association. Barbara lives with her husband on a working farm in the foothills of the Appalachians.
+We are so fortunate to be welcoming Barbara Brown Taylor to the 2013 Festival of Homiletics. You are sure to come away[ inspired] and[ motivated] following an evening spent with one of the best known preachers in the United States.
+
+=== Text #9 ===
+> Her[bert] Wise was a director best known for his work on the BBC miniseries I, Claudius. The series, set during the Roman Empire, aired in the U.S. in 1976 on PBS’s Masterpiece Theatre.
+I, Claudius[ garnered] Wise, who also notably took charge of casting 236 parts for the project, an[ Emmy Award nomination] for Outstanding Directing in a Drama Series. The story unfolded over 13 episodes and[ starred] Derek Jacobi in the title role and John[ Hurt] as Caligula. It was also[ nominated] for Outstanding Limited Series and[ won] the[ Emmy] for Outstanding Art Direction for a Drama Series.
+Wise[ received Emmy] recognition again in 1982, when he was[ nominated] for directing the television movie Skokie,[ starring] Danny Kaye, Eli Wallach and Brian Dennehy. The telefilm was based on the true story of the predominantly Jewish community of Skokie, Illinois, protesting the right for Neo-Nazis to march in their town.
+Additionally, Wise directed Richard Burton as Winston Churchill in the 1997 BBC Hall of Fame production The Gathering Storm, which aired on NBC. Wise directed Jacobi again in the 1996 BBC telefilm Breaking the Code, about mathematician Alan Turing, as well as Albert Finney as the title character in 1984�[�]s Pope John Paul II and Robert Mitchum and Deborah Kerr in the 1985 romantic drama Reunion at Fairborough.
+Wise died August 5, 2015, in London, England. He was 90.
+
+=== Text #10 ===
+> U14s Win Two Gold & Men’s Overall at CanAms!
+Submitted by U14 CanAm Head Coach Jacques Reid….”We all love to[ win] but this 2019 CanAm event was about more than[ winning]. In all of my duties as Head Coach, this event stands apart thanks to the coaches working as a united front, working[ seamlessly] for the good of each athlete. I truly believe the athletes[ responded] to this and acted like a true team that[ deserved] to hold our Ontario flag high! Well done everyone!
+
+=== Text #11 ===
+> [Continue] reading "The Daily 3: What[ Makes] Me Happy"
+I dig the design you[ picked]! I�[�]m[ excited] to read more. You know how I feel about Mar[ibel] the writer!
+Thanks Pearl, the reader! I�[�]m[ excited] to share and hear what people have to say. So PLEASE post whenever you want!
+I dig the design you[ picked]! I'm[ excited] to read more. You know how I feel about Mar[ibel] the writer!
+
+=== Text #12 ===
+> The full fixture list for the next few days in the Allied Counties Youth League has been posted and there are a couple of decent local ties to look out for.
+Brack[nell] Town and Windsor meet on Monday night in the Central Division with both sides in 6th and 7th on 18 points after 10 and 11 games[ respectively].
+The[ winners] will go top of the table, at least until Wednesday when Ascot United are in action while Han[worth] Villa, Flackwell Heath and Binfield play on Thursday.
+The league have also released the leading[ score]rs up to 29th November with Alexander Lacy (Bracknell Town) fourth in the Central Division with 11 while Josh Harris (pictured) and[ Toby] Illing[worth] (both Binfield) have seven each.
+Here’s the full list of fixtures for the week[ ahead]. All the latest league tables are here.
+
+=== Text #13 ===
+> WALDW[ICK], N.J. -- Thomas J. McL[aughlin], of Waldwick, died Thursday, Nov. 17. He was 86.
+Born in the Bronx, in 1930, he was a longtime resident of Waldwick. He was a construction supervisor at AJ Contracting in Manhattan, before retiring. He served in the U.S. Army during peacetime.
+He is survived by his wife, Theresa F. McL[aughlin]; children, Thomas J. McL[aughlin] Jr. and his wife Jayne, Theresa Karole, Michael McL[aughlin], Ma[ureen] McGinle and her husband Lawrence and Ellen M. McL[aughlin]; grandchildren, Katherine, Devin, Thomas, John, Michael and Ashley; and sister, Mary Kate Jensen.
+Visitation will from 2-5 p.m. Sunday at the Vander Plaat Funeral Home, 257 God[win] Ave., Wy[ck]off. A funeral Mass will be celebrated at 11 a.m. Monday at Church of the Nativity, 315 Prospect St., Midland Park. Interment will follow at Ascension Cemetery in M[onse]y, N.Y.
+
+=== Text #14 ===
+> And He came to earth as God’s only Son.
+Now He is seated next to the Father in the heavenly sky.
+That He is God’s Son indeed.
+We must accept Him and do what He says is right.
+That His promises are true so we will[ receive].
+The works of the evil one who is full of lies.
+When we accept Him we will[ receive] the prize.
+
+=== Text #15 ===
+> This magazine does not accept[ unsolicited] MSS, but will consider queries.
+Monthly food magazine. Welcomes[ unsolicited] queries but[ responds] only when[ interested].
+There is not yet any feedback for this magazine.
+If you have had any contact with this magazine, or if you make contact with this magazine, remember to come back and leave feedback – whether positive, negative, or neutral – to help other users.
+
+=== Text #16 ===
+> F[urn]iture — This furniture, is one of the 19 designs published under the gallery: Home Interior Wall Color Contrast. In the next page, we have the home interior wall colors[ inspiring] well home interior wall colors of[ worthy] interior luxury [ ... ]. While in[	]the previous page, we have the home interior wall colors photo of fine painting the house ideas interior interior home[ minimalist] [ ... ].
+
+=== Text #17 ===
+> F[urn]iture — This furniture, is one of the 19 designs published under the gallery: Home Interior Wall Color Contrast. In the next page, we have the home interior wall colors[ inspiring] well home interior wall colors of[ worthy] interior luxury [ ... ]. While in[	]the previous page, we have the home interior wall colors photo of fine painting the house ideas interior interior home[ minimalist] [ ... ].
+
+=== Text #18 ===
+> It is our privilege to announce that Jillian Williams is the[ recipient] of the 2017 Sports Imports/AVCA Courage[ Award]. The Courage[ Award] was founded to recognize a member of the volleyball community who in the face of hardship and adversity displays great courage and a determination to use their experience to better the world around them.
+Today, Jillian is back on the court and training with her sights set on the United States Sitting Team. She provides hope and encouragement through the blog she began at the beginning of this journey http://jilliansleapthroughcancer.com and through founding the and leading the Live ‘N’ Leap Foundation.
+J[illian] will[ receive] the Courage[ Award] at the American Volleyball Coaches Association All-America/Players of the Year Ban[quet] on Friday, December 15, 2017 in Kansas City, Missouri. The banquet will be held in conjunction with the AVCA Convention.
+
+=== Text #19 ===
+> “When I[ received] my diagnoses of thyroid cancer I went into total shock. I just closed down, I did not know how I was going to get through this difficult time, I did not know how the French health care worked and I did not speak French.
+I teleph[oned] Cancer Support France and asked so many questions; I was then[ given] an "active listener�[�].
+On our first meeting, we discussed my needs, my fears and concerns. The amount of help that I[ received] was[ invaluable]; my new friend came to see me every week. She attended hospital appointments and translated for me. She arranged all my medical papers and correspondence. She also spoke and supported my family. She allowed me to open up and let out all my emotions, it was handled with great respect and privacy.
+I can honestly say that the help that I[ received] was instrumental to my recovery.
+
+=== Text #20 ===
+> A good honours degree in chemistry, pharmacy, pharmaceutical science, pharmacology, biological science or biomedical science. Other chemistry or medical science degrees will be considered on an individual basis. All applicants will be[ expected] to pass all mathematics modules within their first degree and should[ demonstrate suffice] competency in biology and chemistry.
+[Applic]ants with alternative qualifications will also need[ appropriate] experience (in healthcare, the pharmaceutical industry or a regulatory body, for example).
+
+
+Description: 
+2025-07-25 19:38:08,608 - root - INFO - Awards, prizes, or desired outcomes, sometimes related to competitions or nominations
+
+2025-07-25 19:38:08,612 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-2725_clusters-1_2025-07-25_17-28-39.csv
+2025-07-25 19:38:08,613 - root - INFO - ================================================================================
+2025-07-25 19:38:08,614 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 19:38:08,614 - root - INFO - ================================================================================
+2025-07-25 19:38:08,615 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-2725_clusters-1_2025-07-25_17-28-39.log
+2025-07-25 19:38:08,616 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-2725_clusters-1_2025-07-25_17-28-39.csv

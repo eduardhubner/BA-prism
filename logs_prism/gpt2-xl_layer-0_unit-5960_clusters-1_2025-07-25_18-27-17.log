@@ -1,0 +1,774 @@
+2025-07-25 20:27:17,941 - root - INFO - ================================================================================
+2025-07-25 20:27:17,963 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 20:27:17,964 - root - INFO - ================================================================================
+2025-07-25 20:27:17,965 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 20:27:17,965 - root - INFO - AGG_METHOD = mean
+2025-07-25 20:27:17,966 - root - INFO - BATCH_SIZE = 2
+2025-07-25 20:27:17,967 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:27:17,967 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 20:27:17,968 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 20:27:17,968 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 20:27:17,969 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 20:27:17,969 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 20:27:17,970 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 20:27:17,970 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 20:27:17,971 - root - INFO - DATA_FILES = None
+2025-07-25 20:27:17,972 - root - INFO - DEVICE = cuda
+2025-07-25 20:27:17,972 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 20:27:17,973 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:27:17,973 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 20:27:17,974 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 20:27:17,974 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 20:27:17,975 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 20:27:17,975 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 20:27:17,976 - root - INFO - LAYER_ID = 0
+2025-07-25 20:27:17,976 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 20:27:17,977 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 20:27:17,977 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 20:27:17,978 - root - INFO - MULTI_EVAL = True
+2025-07-25 20:27:17,978 - root - INFO - N_CLUSTERS = 1
+2025-07-25 20:27:17,979 - root - INFO - N_SAMPLES = 10
+2025-07-25 20:27:17,980 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 20:27:17,980 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 20:27:17,981 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 20:27:17,981 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 20:27:17,982 - root - INFO - SPLIT = train
+2025-07-25 20:27:17,983 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 20:27:17,983 - root - INFO - STREAMING = True
+2025-07-25 20:27:17,984 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 20:27:17,984 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 20:27:17,985 - root - INFO - TARGET_DATA = c4
+2025-07-25 20:27:17,985 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 20:27:17,986 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:27:17,986 - root - INFO - UNIT_ID = 5960
+2025-07-25 20:27:17,987 - root - INFO - USE_API = True
+2025-07-25 20:27:17,987 - root - INFO - ================================================================================
+2025-07-25 20:27:17,988 - root - INFO - ANALYSIS RESULTS
+2025-07-25 20:27:17,988 - root - INFO - ================================================================================
+2025-07-25 20:27:17,989 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-5960_clusters-1_2025-07-25_18-27-17.log
+2025-07-25 20:35:56,669 - root - INFO - Reached 1000 samples.
+2025-07-25 20:35:58,066 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 20:35:58,067 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:36:08,619 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 20:36:44,740 - root - INFO - Number of candidates: 1001
+2025-07-25 20:36:48,238 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 20:36:48,238 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  screw (1.7283930778503418)
+Text #1:  shaft (0.26103001832962036)
+Text #1:  convey (1.091345191001892)
+Text #1:  shaft (0.17623786628246307)
+Text #1:  convey (0.9427347779273987)
+Text #1:  convey (0.9416391253471375)
+Text #1:  screw (1.6547348499298096)
+Text #1:  mounting (0.37601912021636963)
+Text #1:  convey (1.1284493207931519)
+Text #1:  shaft (0.18295854330062866)
+Text #1:  spiral (0.5635845065116882)
+Text #1:  screw (1.611697793006897)
+Text #1:  shaft (0.2083844244480133)
+Text #1:  convey (1.0834914445877075)
+Text #1:  spiral (0.5795297026634216)
+Text #1:  conve (1.6294649839401245)
+Text #1:  convey (1.222535252571106)
+Text #1:  screw (1.7716299295425415)
+Text #1:  universal (0.08607234805822372)
+Text #1:  convey (1.2820405960083008)
+Text #1: ishable (0.1826705038547516)
+Text #1:  material (0.2031160145998001)
+Text #1:  material (0.2407957762479782)
+Text #1:  bond (0.17788898944854736)
+Text #1:  spiral (0.8046948313713074)
+Text #1:  bearing (2.3707497119903564)
+Text #1:  screw (1.8987135887145996)
+Text #1:  sealing (2.4788529872894287)
+Text #1:  arrangement (0.08246413618326187)
+Text #1:  convey (1.288155198097229)
+Text #1:  material (0.15830519795417786)
+Text #1:  convey (1.265977382659912)
+Text #1:  screw (1.8332029581069946)
+Text #1:  convey (1.24224853515625)
+Text #1:  screw (1.8066120147705078)
+Text #1:  convey (1.2352254390716553)
+Text #1:  material (0.1443575620651245)
+Text #1:  Screw (1.062869906425476)
+Text #1:  curved (0.7899152636528015)
+Text #1:  Screw (1.075138807296753)
+Text #1:  conve (1.7920266389846802)
+Text #1:  material (0.16331808269023895)
+Text #1:  convey (1.2954925298690796)
+Text #1:  conve (1.7214505672454834)
+Text #2: icate (0.3715403079986572)
+Text #2:  Accessories (0.19604934751987457)
+Text #2:  Touch (0.22234684228897095)
+Text #2:  Sea (0.0038444341626018286)
+Text #2:  Beauty (0.5593127012252808)
+Text #2:  Pear (0.7258544564247131)
+Text #2: Pear (0.03850123658776283)
+Text #2:  Kiss (0.037033550441265106)
+Text #2:  jewelry (0.2032250463962555)
+Text #2:  suit (0.23218154907226562)
+Text #2:  pieces (0.22126737236976624)
+Text #2:  beautifully (0.5224657654762268)
+Text #2:  elegance (0.18361391127109528)
+Text #2:  timeless (0.34692278504371643)
+Text #2:  Ellen (0.03346831724047661)
+Text #2:  Kiss (0.03444698080420494)
+Text #2:  Jewel (1.3938788175582886)
+Text #2:  Ellen (0.0019581627566367388)
+Text #2:  centered (0.05174114927649498)
+Text #2:  delicate (0.10574031621217728)
+Text #2:  pearl (0.1746070384979248)
+Text #2:  brace (0.8203205466270447)
+Text #2:  ear (0.05021335929632187)
+Text #2:  pearl (0.17536799609661102)
+Text #2:  convey (1.2113887071609497)
+Text #2:  elegance (0.2120850682258606)
+Text #2:  romance (0.12070416659116745)
+Text #2:  pearl (0.13340206444263458)
+Text #2:  intricate (0.5904098153114319)
+Text #2:  necklace (0.7226559519767761)
+Text #2:  woven (0.48158299922943115)
+Text #2: anches (0.10362955182790756)
+Text #2:  Ellen (0.016868775710463524)
+Text #2:  pieces (0.18539965152740479)
+Text #2:  Kiss (0.01777358166873455)
+Text #2:  necklace (0.6731606721878052)
+Text #2:  charming (1.1923335790634155)
+Text #2:  piece (0.7909749746322632)
+Text #2:  wearer (0.32205531001091003)
+Text #2:  suited (0.02496461570262909)
+Text #2:  match (0.028689630329608917)
+Text #2:  romance (0.14709416031837463)
+Text #2:  Ellen (0.015510283410549164)
+Text #2:  passions (0.11463674157857895)
+Text #2:  Ellen (0.050052348524332047)
+Text #2:  delight (0.46553194522857666)
+Text #2:  jewelry (0.2942083179950714)
+Text #2:  pearl (0.15487009286880493)
+Text #3:  convey (0.8237269520759583)
+Text #3:  convey (1.0111154317855835)
+Text #3:  Con (0.8134101033210754)
+Text #3:  convey (1.206062912940979)
+Text #3:  cheap (0.048630159348249435)
+Text #3:  convey (1.2478457689285278)
+Text #3:  convey (1.2426109313964844)
+Text #3:  convey (1.1480745077133179)
+Text #3:  convey (1.234453558921814)
+Text #3:  fixed (0.49344438314437866)
+Text #3:  convey (1.3675471544265747)
+Text #3:  convey (1.3151711225509644)
+Text #3:  convey (1.2362312078475952)
+Text #3:  fooled (0.5877684354782104)
+Text #3:  convey (1.2171244621276855)
+Text #3:  disclose (0.029881250113248825)
+Text #3:  convey (1.1551865339279175)
+Text #3:  convey (1.2223855257034302)
+Text #3:  fixed (0.6024813652038574)
+Text #3:  convey (1.3309478759765625)
+Text #3:  rem (0.12366104871034622)
+Text #3:  convey (1.265425443649292)
+Text #3:  convey (1.2464498281478882)
+Text #3:  Find (0.2390175759792328)
+Text #3:  convey (1.2661563158035278)
+Text #3:  convey (1.2502950429916382)
+Text #3:  convey (1.0470634698867798)
+Text #3:  convey (1.0968871116638184)
+Text #3:  convey (1.133277416229248)
+Text #3:  Con (0.8620879054069519)
+Text #3:  convey (1.1593797206878662)
+Text #3:  handle (0.5471503734588623)
+Text #3:  convey (1.1608775854110718)
+Text #3: 684 (0.08627375960350037)
+Text #4:  whale (0.7017971873283386)
+Text #4:  Photo (0.06990733742713928)
+Text #4:  whale (0.506834089756012)
+Text #4:  Picture (2.121140480041504)
+Text #4:  whale (0.46560433506965637)
+Text #4:  whale (0.481825053691864)
+Text #4:  Photograph (0.478753000497818)
+Text #4:  whale (0.4363669455051422)
+Text #4:  Photos (0.7940982580184937)
+Text #4:  photos (0.03991391882300377)
+Text #4:  whale (0.478084534406662)
+Text #4:  Pictures (2.068657398223877)
+Text #4:  whale (0.4829528033733368)
+Text #4:  Broadcasting (1.4483904838562012)
+Text #4:  crew (0.2732997238636017)
+Text #4:  Photo (0.028328226879239082)
+Text #4:  whale (0.507071852684021)
+Text #4:  Picture (2.09440279006958)
+Text #4:  whale (0.48457732796669006)
+Text #4:  Photograph (0.4444682002067566)
+Text #5:  Foss (0.7839754819869995)
+Text #5:  Foot (0.6101309061050415)
+Text #5:  Investig (1.1068533658981323)
+Text #5:  Poss (1.3231161832809448)
+Text #5:  Books (0.21787774562835693)
+Text #5:  Weather (0.02457643486559391)
+Text #5:  Carolyn (0.026968693360686302)
+Text #5:  casts (0.3953215777873993)
+Text #5:  PVC (0.009817785583436489)
+Text #5:  carefully (0.16987086832523346)
+Text #5:  piece (0.8493242859840393)
+Text #5:  seal (2.370659589767456)
+Text #5:  flatt (0.42155516147613525)
+Text #5:  footprint (0.489828497171402)
+Text #5:  plaster (0.643633246421814)
+Text #5:  Measure (0.29334256052970886)
+Text #5:  plaster (0.7267168760299683)
+Text #5:  stirring (0.19021563231945038)
+Text #5:  plaster (0.8258530497550964)
+Text #5:  impression (0.04671129211783409)
+Text #5:  plaster (0.7602216005325317)
+Text #5:  bring (1.7617213726043701)
+Text #5:  plaster (0.7187986969947815)
+Text #5:  carefully (0.18766996264457703)
+Text #5:  plaster (0.6912879347801208)
+Text #5:  footprint (0.6244603395462036)
+Text #5:  plaster (0.6652617454528809)
+Text #5:  Desc (0.01697753369808197)
+Text #5:  Desc (0.02196538634598255)
+Text #5:  plaster (0.6853153109550476)
+Text #5:  jelly (0.037602126598358154)
+Text #5:  gently (0.013597032055258751)
+Text #5:  plaster (0.8202356100082397)
+Text #5:  wrap (2.309446096420288)
+Text #6: Details (0.5309820771217346)
+Text #6:  Siren (0.45416098833084106)
+Text #6:  soul (0.2664806544780731)
+Text #6:  clut (1.2298104763031006)
+Text #6:  twisted (0.4900725781917572)
+Text #6:  captive (1.419743537902832)
+Text #6:  mounting (0.3181707262992859)
+Text #6:  thrust (1.8318064212799072)
+Text #6:  Desmond (0.6793889999389648)
+Text #6:  Flor (0.16130118072032928)
+Text #6:  investigation (0.009477161802351475)
+Text #6:  striking (0.7238457798957825)
+Text #6:  deal (0.10878897458314896)
+Text #6:  uniquely (0.03576472029089928)
+Text #6:  barg (1.884697437286377)
+Text #6:  intrig (1.2626898288726807)
+Text #6:  flesh (0.9347826838493347)
+Text #6:  utter (0.12208262085914612)
+Text #6:  enigmatic (0.3119252622127533)
+Text #6:  Flor (0.07057515531778336)
+Text #6:  secrets (0.12335938960313797)
+Text #6:  slaves (0.016786856576800346)
+Text #6:  Something (0.15665458142757416)
+Text #6:  stirring (0.26821470260620117)
+Text #7:  bore (2.4068844318389893)
+Text #7:  drilling (0.2382972091436386)
+Text #7:  bore (2.268005132675171)
+Text #7:  hammer (1.0748704671859741)
+Text #7:  drilling (0.285346657037735)
+Text #7:  bore (2.1228435039520264)
+Text #7:  hammer (0.9085738658905029)
+Text #7:  drilling (0.20256522297859192)
+Text #7:  Bore (1.370447039604187)
+Text #7:  alloy (0.4233552813529968)
+Text #7:  forg (0.3367267847061157)
+Text #7:  Hole (0.22233915328979492)
+Text #7:  fabricated (0.22776877880096436)
+Text #7:  imm (0.3471020460128784)
+Text #7:  penetrating (0.13773523271083832)
+Text #7:  drilling (0.40077805519104004)
+Text #7:  fitted (0.36712419986724854)
+Text #7:  drilling (0.3094310760498047)
+Text #7:  keeping (0.6628519296646118)
+Text #7:  scope (0.5189709663391113)
+Text #7:  gro (0.14653752744197845)
+Text #7:  holes (0.15674875676631927)
+Text #7:  drilling (0.2964600622653961)
+Text #7:  Bore (1.404911756515503)
+Text #7:  alloy (0.4148617088794708)
+Text #7:  forg (0.36973536014556885)
+Text #7:  Hole (0.21388709545135498)
+Text #7:  fabricated (0.174878790974617)
+Text #7:  imm (0.31934496760368347)
+Text #7:  drilling (0.3113666772842407)
+Text #7:  fitted (0.32929033041000366)
+Text #7:  drilling (0.26551976799964905)
+Text #7:  keeping (0.5820978283882141)
+Text #7:  scope (0.5064233541488647)
+Text #7:  gro (0.17214693129062653)
+Text #7:  holes (0.12545828521251678)
+Text #7:  drilling (0.2716192901134491)
+Text #7:  material (0.10174297541379929)
+Text #7:  alloy (0.41038334369659424)
+Text #7:  forg (0.37763601541519165)
+Text #7:  Hole (0.22409342229366302)
+Text #7:  fabricated (0.16324777901172638)
+Text #7:  imm (0.2612902820110321)
+Text #7:  drilling (0.38171476125717163)
+Text #7:  fitted (0.29917144775390625)
+Text #7:  drilling (0.30863580107688904)
+Text #7:  keeping (0.6365780234336853)
+Text #7:  scope (0.49917465448379517)
+Text #7:  gro (0.17347337305545807)
+Text #8: Fe (0.6493709087371826)
+Text #8:  attached (1.6433894634246826)
+Text #8:  intric (1.095374584197998)
+Text #8:  delic (0.46003013849258423)
+Text #8:  assembled (0.021100053563714027)
+Text #8:  anchored (1.8533350229263306)
+Text #8:  globe (0.013739573769271374)
+Text #8:  Feather (0.884292483329773)
+Text #8:  attached (1.3631900548934937)
+Text #8:  intric (1.0031825304031372)
+Text #8:  delic (0.47295257449150085)
+Text #8:  assembled (0.006277038250118494)
+Text #8:  anchored (1.8444879055023193)
+Text #9: ploma (0.17835624516010284)
+Text #9:  Frame (0.8892916440963745)
+Text #9: ploma (0.23014524579048157)
+Text #9:  Timber (0.6322643756866455)
+Text #9:  timber (0.8495050668716431)
+Text #9:  qualification (0.0312374085187912)
+Text #9:  timber (0.922065019607544)
+Text #9: pent (0.3681224286556244)
+Text #9:  timber (0.9764456748962402)
+Text #9: penter (0.5036858320236206)
+Text #9:  qualification (0.14694194495677948)
+Text #9:  timber (1.0466663837432861)
+Text #9: ploma (0.1992654651403427)
+Text #9:  Timber (0.6987408399581909)
+Text #9:  Construction (0.013402847573161125)
+Text #10:  stunning (0.7711991667747498)
+Text #10:  charm (0.6905174851417542)
+Text #10:  captured (2.164174795150757)
+Text #10:  Eisenhower (0.10595298558473587)
+Text #10:  magnificent (0.3604620099067688)
+Text #10:  pear (0.7997662425041199)
+Text #10:  beads (1.483080506324768)
+Text #10:  diam (0.04745639115571976)
+Text #10:  fur (0.0037551862187683582)
+Text #10:  intricate (0.48457014560699463)
+Text #10:  gown (0.11360091716051102)
+Text #10:  pear (0.7224249839782715)
+Text #10:  metallic (0.09344133734703064)
+Text #10:  accent (0.30304762721061707)
+Text #10:  wonderfully (0.3751312792301178)
+Text #10:  metallic (0.04537023603916168)
+Text #10:  accents (0.03468266874551773)
+Text #10:  jewelry (0.08420747518539429)
+Text #10:  breathtaking (1.2110134363174438)
+Text #10: arov (0.10584945231676102)
+Text #10:  accent (0.36569830775260925)
+Text #10:  gorgeous (0.4800209403038025)
+Text #10: semb (0.01892119273543358)
+Text #10:  crest (0.007915392518043518)
+Text #10:  Collector (0.25315797328948975)
+Text #10:  details (0.05817261338233948)
+Text #10:  gown (0.09318098425865173)
+Text #11:  Pic (0.27673041820526123)
+Text #11:  Amazing (0.6826245784759521)
+Text #11:  Rust (0.23359183967113495)
+Text #11:  Pic (0.18898534774780273)
+Text #11:  Incredible (0.35027506947517395)
+Text #11:  Rust (0.23629529774188995)
+Text #11:  Pic (0.1763579547405243)
+Text #11: ches (0.17541173100471497)
+Text #11:  Rust (0.22493793070316315)
+Text #11:  Pic (0.1550343930721283)
+Text #11:  Att (0.755519449710846)
+Text #11:  Rust (0.2324621081352234)
+Text #11:  Pic (0.19563035666942596)
+Text #11:  Cedar (0.1375940442085266)
+Text #11:  Rust (0.2403930425643921)
+Text #11:  Pic (0.18059605360031128)
+Text #11:  Contemporary (0.7375956177711487)
+Text #11:  Amazing (0.6460254788398743)
+Text #11:  Fixed (1.2454066276550293)
+Text #11: ches (0.13493438065052032)
+Text #11:  Rust (0.2520979940891266)
+Text #11:  Pic (0.18202482163906097)
+Text #11:  Lodge (1.8133741617202759)
+Text #11:  Timber (0.7435668110847473)
+Text #11:  Rust (0.25364577770233154)
+Text #11:  Pic (0.1393749862909317)
+Text #11:  Furn (0.570939302444458)
+Text #11:  Rust (0.19936898350715637)
+Text #11:  Incredible (0.22534969449043274)
+Text #11:  Rust (0.17718370258808136)
+Text #11:  Pic (0.13342256844043732)
+Text #11:  Rust (0.1889878213405609)
+Text #11:  Pic (0.144502192735672)
+Text #11:  Incredible (0.25572502613067627)
+Text #11:  Rust (0.2818704843521118)
+Text #11:  Pic (0.17808282375335693)
+Text #11:  Rust (0.2027263194322586)
+Text #11:  Pic (0.13196319341659546)
+Text #11:  Rust (0.2027718722820282)
+Text #11:  Pic (0.126804918050766)
+Text #11:  Contemporary (0.747966468334198)
+Text #11:  Rust (0.21344631910324097)
+Text #11:  Pic (0.13916240632534027)
+Text #11:  Rust (0.2397460788488388)
+Text #11:  Pic (0.1360267996788025)
+Text #11:  Fur (0.3447316288948059)
+Text #11:  Rust (0.1597168743610382)
+Text #11:  Rust (0.2240516096353531)
+Text #11:  Pic (0.13993299007415771)
+Text #11:  Ground (0.12820185720920563)
+Text #11:  Furn (0.625942587852478)
+Text #12:  striving (0.0823148712515831)
+Text #12:  Anch (1.833079218864441)
+Text #12:  anchors (1.0927931070327759)
+Text #12:  anchors (1.0353357791900635)
+Text #12:  foreseeable (0.3939191401004791)
+Text #12:  concentrating (0.3353535532951355)
+Text #12:  preserve (0.8659948706626892)
+Text #12:  fiercely (0.5521168112754822)
+Text #12:  Anch (1.931455135345459)
+Text #12:  anchors (1.1063491106033325)
+Text #12:  anchors (1.0927404165267944)
+Text #13:  1100 (0.3681008517742157)
+Text #13:  poly (0.1633983850479126)
+Text #13:  odd (0.296193927526474)
+Text #13:  cylinder (0.4890446066856384)
+Text #13:  item (0.01969476230442524)
+Text #13:  seal (2.5027787685394287)
+Text #13:  ends (0.002094067633152008)
+Text #13:  bag (0.8398304581642151)
+Text #13:  fit (0.05718953162431717)
+Text #13: 1100 (0.42859864234924316)
+Text #13:  poly (0.11522688716650009)
+Text #13:  poly (0.10548966377973557)
+Text #13:  1100 (0.32851746678352356)
+Text #13: 003 (0.19083738327026367)
+Text #13:  1100 (0.2573477029800415)
+Text #13:  sealed (1.6685147285461426)
+Text #13:  sealing (2.3028080463409424)
+Text #14:  portable (0.012043348513543606)
+Text #14:  collaps (0.37221774458885193)
+Text #14: carry (1.4505348205566406)
+Text #14:  stainless (0.06878145039081573)
+Text #14:  stain (0.4056650698184967)
+Text #14:  corro (0.7584487199783325)
+Text #14:  collaps (0.1998300403356552)
+Text #14:  calmly (0.32592329382896423)
+Text #14:  accompanying (0.18331405520439148)
+Text #14:  carrying (1.1339197158813477)
+Text #14:  pocket (0.06970169395208359)
+Text #14:  bag (0.8491021394729614)
+Text #14:  Apart (0.08047806471586227)
+Text #14: ring (1.7246108055114746)
+Text #14:  attach (2.025115489959717)
+Text #14:  backpack (0.030007213354110718)
+Text #14:  collaps (0.2792181372642517)
+Text #14:  Mage (0.3450644612312317)
+Text #14:  Supp (0.11706629395484924)
+Text #14:  details (0.2235444188117981)
+Text #15:  Understand (0.1638578176498413)
+Text #15:  Divide (0.028081005439162254)
+Text #15:  App (0.027578752487897873)
+Text #15:  reveals (0.1633169800043106)
+Text #15:  Spirit (1.5526193380355835)
+Text #15:  Spirit (1.6654940843582153)
+Text #15:  deceived (0.14504492282867432)
+Text #15:  App (0.02479705959558487)
+Text #15:  Spirit (1.589795708656311)
+Text #15:  enlight (0.2096763551235199)
+Text #15:  reveals (0.2280462235212326)
+Text #15:  Spirit (1.614231824874878)
+Text #15:  Marriage (0.17236612737178802)
+Text #15:  woman (0.013183296658098698)
+Text #15:  Tab (0.2515840232372284)
+Text #15:  soul (0.23636795580387115)
+Text #15:  spirit (2.1930322647094727)
+Text #15:  buried (1.3391605615615845)
+Text #15:  soul (0.16565558314323425)
+Text #15:  soul (0.14486776292324066)
+Text #16:  stunning (0.7742931842803955)
+Text #16:  backdrop (0.26181191205978394)
+Text #16:  Ven (0.19272544980049133)
+Text #16:  gorgeous (0.5464634299278259)
+Text #16:  handsome (0.6689024567604065)
+Text #16:  beautiful (0.09913982450962067)
+Text #16:  beautiful (0.14005519449710846)
+Text #16:  elegant (0.31470194458961487)
+Text #16:  Esther (0.3062741458415985)
+Text #16:  photographed (1.1754660606384277)
+Text #16:  capturing (2.237891435623169)
+Text #16:  coordinating (0.19509150087833405)
+Text #16:  stunning (0.7809851765632629)
+Text #16:  Esther (0.23527593910694122)
+Text #16:  beautifully (0.498263418674469)
+Text #16:  Wed (0.9017841219902039)
+Text #16:  stunning (0.7248452305793762)
+Text #16: maid (0.023947490379214287)
+Text #16: maid (0.018461748957633972)
+Text #16:  fitting (0.35083624720573425)
+Text #16:  Esther (0.2771909236907959)
+Text #16:  beautifully (0.44327375292778015)
+Text #16:  beautifully (0.45488643646240234)
+Text #16:  Cre (0.031091786921024323)
+Text #16:  Esther (0.3160966634750366)
+Text #16:  stunning (0.7412466406822205)
+Text #16:  captured (1.9843453168869019)
+Text #16:  beautiful (0.1759973019361496)
+Text #16:  captured (1.9171290397644043)
+Text #16:  Kelvin (0.27894994616508484)
+Text #16:  aboard (1.3725095987319946)
+Text #16:  Cruise (0.7983506321907043)
+Text #16:  fantastic (0.04090762883424759)
+Text #16:  Islands (0.29986095428466797)
+Text #16:  Cape (0.051524121314287186)
+Text #16:  excitement (0.47013965249061584)
+Text #17:  coroner (1.0216238498687744)
+Text #17:  terribly (1.0117237567901611)
+Text #17: orset (0.11840774118900299)
+Text #17: intendent (0.9789630174636841)
+Text #17:  Division (0.4183151125907898)
+Text #17:  Inspector (1.0435822010040283)
+Text #17:  Investigation (0.30126580595970154)
+Text #17:  Inspector (0.9225783944129944)
+Text #17:  coroner (0.8993202447891235)
+Text #17:  Hodg (0.01893024891614914)
+Text #17:  proceedings (0.32528597116470337)
+Text #17:  summoned (0.24868996441364288)
+Text #17:  deal (0.1464279145002365)
+Text #17:  summoned (0.29217565059661865)
+Text #17:  affair (0.06305816769599915)
+Text #17:  Cor (0.03791853412985802)
+Text #17:  duly (0.2511441111564636)
+Text #17:  Inspector (0.9291284084320068)
+Text #17:  mort (1.1829694509506226)
+Text #17:  inspected (0.2550419867038727)
+Text #17: orset (0.08012458682060242)
+Text #17:  murder (0.2295115739107132)
+Text #17:  apartment (0.09558642655611038)
+Text #17:  Telegraph (1.2918739318847656)
+Text #17:  furnished (0.7912580966949463)
+Text #17:  Barnett (0.05841859057545662)
+Text #17:  ear (0.13148269057273865)
+Text #18:  teeth (1.0945403575897217)
+Text #18:  utmost (0.012712329626083374)
+Text #18:  teeth (0.9530937671661377)
+Text #18:  translucent (0.11325491219758987)
+Text #18:  preserve (0.6943259835243225)
+Text #18:  teeth (0.922338604927063)
+Text #18:  teeth (0.877339780330658)
+Text #18:  teeth (0.9739594459533691)
+Text #18:  teeth (1.0471305847167969)
+Text #18:  teeth (0.9436815977096558)
+Text #18:  absorbing (0.8421032428741455)
+Text #18:  revealing (0.8129470348358154)
+Text #18:  teeth (1.004539966583252)
+Text #18:  teeth (0.9222282767295837)
+Text #18:  dent (0.26459160447120667)
+Text #18:  dent (0.2450820505619049)
+Text #18:  match (0.07625169306993484)
+Text #18:  teeth (0.9117693305015564)
+Text #18:  teeth (1.0531798601150513)
+Text #18:  gag (0.4946841597557068)
+Text #18:  piece (1.0822441577911377)
+Text #18:  teeth (0.9384968280792236)
+Text #18:  teeth (0.9622393250465393)
+Text #18:  teeth (0.9813721179962158)
+Text #18:  teeth (1.0130629539489746)
+Text #18:  teeth (1.0413237810134888)
+Text #19:  crushing (1.0079591274261475)
+Text #19:  excavation (0.5110327005386353)
+Text #19:  trench (1.638031005859375)
+Text #19:  concrete (0.38606181740760803)
+Text #19:  underwater (0.014851794578135014)
+Text #19:  boring (1.1896474361419678)
+Text #19:  convey (1.1658543348312378)
+Text #19:  convey (1.1741801500320435)
+Text #19:  Document (0.1829296350479126)
+Text #19:  crore (0.06921853125095367)
+Text #19:  crushing (0.815841019153595)
+Text #20:  jacket (0.3763037621974945)
+Text #20: Letter (0.216302290558815)
+Text #20:  Jackets (1.0220085382461548)
+Text #20:  Jackets (1.0333582162857056)
+Text #20:  Clothing (0.005322171375155449)
+Text #20:  jackets (0.15650220215320587)
+Text #20:  jackets (0.11719527095556259)
+Text #20:  Leather (0.4114854335784912)
+Text #20:  Jackets (1.2913516759872437)
+Text #20:  Jackets (1.2338833808898926)
+Text #20:  Jacket (1.4742568731307983)
+Text #20:  jackets (0.15802952647209167)
+Text #20:  Chen (1.8339812755584717)
+Text #20: ches (0.1906004101037979)
+Text #20:  Jackets (1.277627944946289)
+Text #20:  Jackets (1.219843864440918)
+
+=== Text #1 ===
+> 1) The development of[ screw convey]or can be divided into two process,[ shaft] type auger[ convey]or and[ shaft]less type auger[ convey]or.
+a. Shaft type auger[ convey]or consists of[ screw], U type trough, cover plate, inlet, outlet and drive device, which has three types of installation mode, horizontal, inclined and vertical[ mounting].
+b. Shaftless type auger[ convey]or uses[ shaft]less[ spiral] blade to replace[ screw], and U type trough is equipped with replaceable lining. The structure of[ shaft]less type auger[ convey]or is simple, the material is fed into inlet and moving towards outlet by[ spiral] blades. The whole[ conve]ying process is made in a fully closed trough.
+2) GX type auger[ convey]or is appeared in early phase of[ screw convey]or and is the earliest[ universal] equipment in China. It mainly transports powdery, granular and small lumpy material, and is not suitable to[ convey] per[ishable], viscous, easily caked and large chunks of[ material], because these[ material] are easy to[ bond] on the[ spiral] blades, or block at the position of hanger[ bearing], which will cause inconvenience to the transportation process. The advantages of GX[ screw convey]or are energy-saving, low consumption, dust prevention, good[ sealing], low noise, well-adapted, easy operation and maintenance, flexible[ arrangement] of the positions of inlet and outlet. The disadvantages are huge power consumption, quick wearing of[ convey]or parts, serious[ material crushing] in the transportation process.
+3) LS type auger[ convey]or is new generation of[ screw convey]or, which is designed and improved on the basis of GX type auger[ convey]or. The advantages are novel structure, reliable performance, advanced technology, wide range of application, significant energy saving and consumption reducing.
+1) Large capacity, high speed and long service life.
+2) Low energy consumption. Most of the energy for[ screw convey]or is spent on abrasion.
+3) Intelligent development. The future auger[ convey]or should be closely connected with computer. It will be suitable for program control and intelligent operation. The[ material] handling, equipment installation and maintenance should be intelligent management.
+4)[ Screw convey]or can be[ curved] transportation.
+5) Combined, compound and large-scale transportation mode.[ Screw convey]ors are co-used with various kinds of continuous[ conve]ying equipments to finish complicated[ material] handling. Large-scale transportation includes large capacity, the length of single[ convey]or and high angle[ conve]ying, etc.
+
+=== Text #2 ===
+> Del[icate] & Whimsical[ Accessories] with a[ Touch] of the[ Sea]'s[ Beauty].
+Strings of[ Pear]lescent Pastels Paired with Silver, Gold or Sparkles.
+Style: Elegant, Graceful & "[Pear]l[ Kiss]ed"
+Today you can find trendy[ jewelry] to[ suit] any style, bold, colorful, sparkly, even nerdy. But[ pieces] that are[ beautifully] understated in their[ elegance] can be more of a challenge to come across. Perhaps because it's easy to overdo, but[ timeless]ness takes balance and the right materials like those favored by[ Ellen] vanHully-Bronson of Pearl[ Kiss]ed[ Jewel]ry. Most of[ Ellen]'s collections are[ centered] around one of Mother Nature's most[ delicate] and classic "gems" - the fresh water[ pearl]. Her necklaces,[ brace]lets and[ earrings] are all handmade and one-of-a-kind, much like each naturally derived[ pearl]. Her designs are meant to[ convey] an air of[ elegance] and[ romance], from her simpler strings of silver and the occasional[ pearl bead] or crystal to the more[ intricate] signature[ necklace] with[ woven] "br[anches]" that sit gracefully along your neckline.[ Ellen]'s[ pieces] make wonderful gifts for moms, daughters, sisters, wives and more. A Pearl[ Kiss]ed[ necklace] can enhance any outfit, from the more casual to an evening dress. They are that[ charming] and versatile. While Ellen has a handful of self-designed collections, she is happy to discuss custom requests for a[ piece] that's as special as its future[ wearer]. That makes her work very well[ suited] for bridal parties to[ match] the[ romance] you want on your special day! I love how creativity runs in[ Ellen]'s family, with this business originally started as a mother - daughter duo. Her daughter then continued to follow her[ passions] to metalwork, but still offers input on design and marketing to help drive success.[ Ellen] is a[ delight] much like her[ jewelry], a[ pearl] among artists!
+
+=== Text #3 ===
+> Choose cheap, low cost residential[ convey]ancing quotes for moving house in Magherafelt and[ convey]ancing solicitors in Magherafelt for your property move. Using The[ Con]veyancing Network's online[ convey]ancing quotes comparison service, you can find low cost,[ cheap], quality online[ convey]ancing quotes from regulated solicitors and licensed[ convey]ancers in the Magherafelt area.
+Using the[ convey]ancing comparison tool below, you can compare and instruct different solicitors and[ convey]ancers both nationally in the UK and in Magherafelt when moving home.
+All prices quoted above are fully inclusive,[ fixed] fee[ convey]ancing. All prices include VAT, disbursements and are some of the lowest and cheapest[ convey]ancing prices in the market. We offer simple low cost residential[ convey]ancing for people in Magherafelt. Do not be[ fooled] by companies offering £99[ convey]ancing. Some of these companies do not[ disclose] disbursements or residential[ convey]ancing search fees. We show the complete[ convey]ancing total. The price you see, is the price you pay!. We offer low cost,[ fixed] fee[ convey]ancing.
+If you are buying, selling or[ rem]ortgaging your home in Magherafelt, you will probably need the services of a[ convey]ancing solicitor or licensed[ convey]ancer to assist you with the legalities and paperwork involved.[ Find] a[ convey]ancing solicitor in Magherafelt, by using our[ convey]ancing quote and instruction tool, all completely online.
+When moving house, it's often best to use the services of a qualified residential[ convey]ancing solicitor or a licensed[ convey]ancer. Your solicitor or licensed[ convey]ancer does not need to be based in Magherafelt, using The[ Con]veyancing Network, we can put you in touch with a friendly, efficient legal professional to help you with your residential[ convey]ancing needs, that can[ handle] your property transaction from a distance. Don't pay over the top for a high street solicitor, when you can now instruct and compare[ convey]ancing quotes in Magherafelt all online!
+Whenever you are looking to move home in Magherafelt you should always consider other costs involved. With the average cost of moving house in 2017 being £9,[684], it pays to be aware of all of the costs involved, to avoid any nasty hidden surprises along the way. There are some quite handy moving costs calculators online, that can help you budget for your move, by providing you with some base costs for the different services involved in your potential Magherafelt move. These include estate agents fees, mortgage
+
+=== Text #4 ===
+> Sperm[ whale]. Sea Guap[ Photo].
+Sperm[ whale] and Olympic swimmer Mikako Kotani. Sea Guap[ Picture].
+Sperm[ whale]. Stock Photography of Sea Guap.
+Sperm[ whale] social group.[ Photograph] of Sea Guap.
+Sperm[ whale] blowhole (left side of head). Sea Guap[ Photos].
+Sperm whales. Sea Guap Image.
+Sperm whales diving. Professional stock[ photos] of Sea Guap.
+Mature male (bull) sperm[ whale].[ Pictures] of Sea Guap.
+Sperm[ whale] blows in front of Tokyo[ Broadcasting] System film[ crew]. Sea Guap[ Photo].
+WHITE juvenile sperm[ whale] in social group. Sea Guap[ Picture].
+Sperm whales diving. Stock Photography of Sea Guap.
+Sperm[ whale].[ Photograph] of Sea Guap.
+
+=== Text #5 ===
+> Teaching Creation Thursday ~ Make a[ Foss]ilized[ Foot]print!
+This is taken from a lesson in the[ Investig]ating the[ Poss]ibilities series by Master[ Books] that will be on the market soon. It is in the Water and[ Weather] book by Tom DeRosa and[ Carolyn Reeves].
+A fun activity to teach students more about how footprints,[ casts], and molds formed during the Great Flood.
+Smooth out about ½ to ¾ cup of playdough in a large paper plate. Use a roller or[ PVC] pipe to roll over the clay until it covers the bottom of the plate. Now turn the clay over so the smooth side is up.
+Recruit a volunteer with a fairly small foot. Rub the student’s foot with petroleum jelly. The student should[ carefully] press his foot into the clay as if walking, and then clean the petroleum jelly and clay off his foot.
+Take some more clay (about ½ to ¾ cup) and roll it into a tube or “snake” that is about an inch in diameter and long enough to go around the clay in the paper plate. Place the tube around the edge of the clay and press it into the bottom[ piece] of clay to make a[ seal]. Squeeze and[ flatt]en the tube to make a wall around the[ footprint] impression to make a bowl that can hold the liquid[ plaster].
+Now measure out 2 cups of Plaster of Paris into a disposable container.[ Measure] 1 cup of water, and pour it slowly into the[ plaster],[ stirring] and mixing continually. If the mixture is still dry, add more water a little at a time until it is like pudding. When mixed well, pour about half the[ plaster] over the[ impression] in the clay. Lift your plate with two hands a few cm high and let it plop down on the table. Do this a few more times. This will spread the[ plaster] and[ bring] air bubbles up to the surface.
+Allow the[ plaster] to harden. It should harden in an hour or more. After it has hardened,[ carefully] remove the[ plaster] from the clay and observe the impression of the[ footprint]. Look at the clay as well as the[ plaster].
+1.[ Desc]ribe the impression in the clay.
+2.[ Desc]ribe how the bottom of the Plaster of Paris looks.
+While your[ plaster] is still wet, put some of it in a small meat tray. Rub the leaf with petroleum[ jelly]. Quickly, but[ gently], place a leaf on top of the[ plaster] and cover with plastic[ wrap]. Use a block to
+
+=== Text #6 ===
+> [Details]:[ Siren] and[ soul]mate to the King of Night, Callypso Lillis survived the[ clutches] of Karnon, the mad king, and his[ twisted] prison. But the nightmare isn’t over. Callie wears the physical reminders of her time as a[ captive], and[ mounting] evidence suggests the Thief of Souls is still out there. When a fae celebration[ thrust]s Callie and her mate,[ Desmond] Flynn, into the Kingdom of[ Flor]a, they take their[ investigation] with them. But under the bright lights and[ striking] blooms of the realm, they find there are more immediate issues to[ deal] with. No place is more[ uniquely savage] than the great fae halls, and no amount of[ barg]ains can save Callie from royal[ intrig]ues. Fairies play dangerous games. Some want love, some want vengeance, some want[ flesh], and some want things too unspeakable to[ utter]. One thing is for sure: no one is who they appear to be. Not even Des, who only grows more[ enigmatic] with every passing secret. But the Kingdom of[ Flor]a has its own[ secrets], from bleeding trees to branded[ slaves] and missing guards.[ Something] is[ stirring] in the land of all that grows, and if Callie isn’t careful, it will claim everything and everyone she loves—and her along with it.
+
+=== Text #7 ===
+> Offering you a complete choice of products which include[ bore]well[ drilling] bits, dht[ bore]well[ hammer] bits, water well (dth), well[ drilling] dth bits, dth[ bore]well[ hammer] bits and water well[ drilling] dth bits.
+AQ DrillTech has manufacture[ Bore]well Drilling Bits from superior quality material EN 36C[ alloy] steel[ forg]ings to make sure long life and efficient[ Hole drilling] operations, it has been[ fabricated] through numerous machining process to deliver an[ imm]aculate body for high resistance to abrasion, wear and stretch that is normally experienced amid[ penetrating]. Bits body has heat treated to required hardness that extends the Bit life for maximum performance in the toughest[ drilling] conditions, and[ fitted] with high quality imported tungsten carbide buttons has to give greatest[ drilling] experience. The placement of carbide buttons on the bit face is powerful hydraulically pressed[ keeping] up proper interference and gauge allows full[ scope] of button bit diameter and face. The flushing[ gro]oves and[ holes] verify very nearly flushing efficiency for better[ drilling].
+AQ DrillTech has manufacture DHT[ Bore]well Hammer Bits from superior quality material EN 36C[ alloy] steel[ forg]ings to make sure long life and efficient[ Hole drilling] operations, it has been[ fabricated] through numerous machining process to deliver an[ imm]aculate body for high resistance to abrasion, wear and stretch that is normally experienced amid penetrating. Bits body has heat treated to required hardness that extends the Bit life for maximum performance in the toughest[ drilling] conditions, and[ fitted] with high quality imported tungsten carbide buttons has to give greatest[ drilling] experience. The placement of carbide buttons on the bit face is powerful hydraulically pressed[ keeping] up proper interference and gauge allows full[ scope] of button bit diameter and face. The flushing[ gro]oves and[ holes] verify very nearly flushing efficiency for better[ drilling].
+AQ DrillTech has manufacture Water Well (DTH) from superior quality[ material] EN 36C[ alloy] steel[ forg]ings to make sure long life and efficient[ Hole drilling] operations, it has been[ fabricated] through numerous machining process to deliver an[ imm]aculate body for high resistance to abrasion, wear and stretch that is normally experienced amid penetrating. Bits body has heat treated to required hardness that extends the Bit life for maximum performance in the toughest[ drilling] conditions, and[ fitted] with high quality imported tungsten carbide buttons has to give greatest[ drilling] experience. The placement of carbide buttons on the bit face is powerful hydraulically pressed[ keeping] up proper interference and gauge allows full[ scope] of button bit diameter and face. The flushing[ gro]oves
+
+=== Text #8 ===
+> [Fe]ather filled and[ attached] to an[ intric]ately laser cut hand crafted tail. Our balloons are[ delic]ately[ assembled] and[ anchored] by a[ globe].
+They can be personalised and enjoy good float times.
+Our blue butterfly design are perfect for the arrival of new babies. Equally effective in showrooms or exhibitions.
+Delivery[ Feather] filled and[ attached] to an[ intric]ately laser cut hand crafted tail. Our balloons are[ delic]ately[ assembled] and[ anchored] by a globe.
+
+=== Text #9 ===
+> Level 2 NVQ Di[ploma] in Wood Occupations (Timber[ Frame] Erection) - Q2W Ltd.
+The Level 2 NVQ Di[ploma] in Wood Occupations –[ Timber Frame] Erection is designed to assess occupational competence in the workplace. Learners are required to demonstrate their skills, knowledge and experience in the construction of[ timber frame] buildings. This[ qualification] is suitable for practicing[ timber frame] car[pent]ers.
+This NVQ provides formal recognition of practicing as[ timber frame] car[penter].
+There are no formal entry requirements for this NVQ[ qualification], however the potential learner must be able to demonstrate that they can meet the skills, knowledge and experience requirements of the NVQ in[ timber frame carp]entry before enrolment.
+The Level 2 NVQ Di[ploma] in Wood Occupations –[ Timber Frame] Erection qualifies the holder to apply for the[ Construction] Skills Certification Scheme (CSCS) blue skill card (https://www.cscs.uk.com/card-type/manager/).
+
+=== Text #10 ===
+> Queen Elizabeth II has always been a strong champion of British couture - especially in her[ stunning] 50s fashions. Her[ charm], confidence and regal style[ captured] the imagination of the American public when she hosted the President and Mrs.[ Eisenhower] at the British Embassy in Washington, D.C. Wearing a[ magnificent] pale green crinoline evening dress - hand-embroidered with sequins,[ pear]ls,[ beads] and[ diam]ante - she regally displayed her passion for fashion. Now, in honor of that historic occasion, The Hamilton Collection recreates her royal look with the Reflections of Queen Elizabeth II Figurine, an exclusive, limited-edition first-ever.
+Every inch of this handcrafted figurine is skillfully crafted and painted by hand, from her regal pose and sculptured[ fur wrap] to the[ intricate] bas-relief floral pattern on her[ gown]. Soft[ pear]lescent and brilliant[ metallic] gold paints[ accent]uate the bas-relief to[ wonderfully] reflect the design of the original dress, while[ metallic] silver paint and glitter[ accents] adorn her tiara and[ jewelry]. And if all that weren't enough, her[ breathtaking gown] is lavished with 90 individually hand-set Sw[arov]ski® crystals - like the ones the queen still uses to[ accent] her[ gorgeous] en[semb]les today! A beveled-edge, polished mirror base, graced with the queen's golden royal[ crest], further reflects the beauty of this glorious Royal Family collectible, which includes a[ Collector]'s Card featuring[ details] about the iconic[ gown] it depicts.
+
+=== Text #11 ===
+> Rustic[ Pic]nic Table[ Amazing] 31 Alluring Ideas Tables Coho Intended For 7.[ Rust]ic[ Pic]nic Table[ Incredible] Brilliant Download Architecture With In Plans 13 18.[ Rust]ic[ Pic]nic Table New And Ben[ches] IStage Homes In 14.[ Rust]ic[ Pic]nic Table[ Att]ractive Log Tables Great Northern Logworks Throughout 0.[ Rust]ic[ Pic]nic Table Modern Brilliant[ Cedar] For Sale Log Inside Design 6 In 12.[ Rust]ic[ Pic]nic Table[ Contemporary] Tables[ Amazing] Hand Crafted With[ Fixed] Ben[ches] Intended For 8.[ Rust]ic[ Pic]nic Table Elegant[ Lodge] Log And[ Timber Furn]iture Handcrafted From Green With 17.[ Rust]ic[ Pic]nic Table Popular Outdoor[ Furn]iture Handmade By Appalachian Designs Pertaining To 11.[ Rust]ic Picnic Table[ Incredible] Tables Warm 2 Wood Logs And Firewood Online Inside 5.[ Rust]ic[ Pic]nic Table Brilliant 1000 Ideas About Tables On Pinterest Plans Inside 15.[ Rust]ic[ Pic]nic Table[ Incredible] Tables For Rent Measuring Up Decoration Intended Ideas Throughout 6.[ Rust]ic[ Pic]nic Table Modern Awesome Tables With Coolers Measuring Up Decoration Regard To 9.[ Rust]ic[ Pic]nic Table Brilliant Cedar For Sale Log Pertaining To 3.[ Rust]ic[ Pic]nic Table[ Contemporary] Tables LisaCintosh Throughout 19.[ Rust]ic[ Pic]nic Table Awesome Tables Warm 2 Wood Logs And Firewood Online For 10.[ Rust]ic[ Pic]nic Table Stylish Best Douglas[ Fur] For Sale In Alamosa Colorado Regarding 2.[ Rust]ic Picnic Table Stylish Awesome Tables With Coolers Measuring Up Decoration Pertaining To 13.[ Rust]ic[ Pic]nic Table Elegant Wood Tables Higher[ Ground] Log[ Furn]ishings In Throughout 1.
+
+=== Text #12 ===
+> High quality Initial,and Buyer Supreme is our guideline to offer the ideal assistance to our shoppers.At present, we are[ striving] our best to become amongst the ideal exporters inside our industry to satisfy shoppers more want for Wall[ Anch]ors Lowes , wall[ anchors] lowes , drywall[ anchors] lowes , and hope to operate along with you during the close to[ foreseeable] future!
+"We have been also[ concentrating] on enhancing the things management and QC method so that we could[ preserve terrific] edge inside the[ fiercely]-competitive enterprise for Wall[ Anch]ors Lowes , wall[ anchors] lowes , drywall[ anchors] lowes , We are adhering to the philosophy of "attracting customers with the best products and excellent service". We welcome customers business associations and friends from all parts of the world to contact us and seek cooperation for mutual benefits.
+
+=== Text #13 ===
+> Our 28" x[ 1100]' 3 Mil[ poly] tubing is the key to packaging medium weight,[ odd]-size items or long[ cylinder] objects. Just slip the length or tubing over the[ item] you're packaging and[ seal] both[ ends] with a[ bag seal]er to give your product a custom[ fit] every time. All clear 28x[1100] 3mil[ polytub]ing is made from low density[ poly]ethylene and can be recycled. Our 28" x[ 1100]" .[003 poly] tubing features impressive clarity and make storage and organization simple for industrial, food service and healthcare applications. These medium weight 28 inch by[ 1100] feet plastic tubing can be[ sealed] by heat[ sealing], and they meet FDA requirements for use in food packaging and storage applications.
+
+=== Text #14 ===
+> Want to enjoy your drink at any time? Apparently you need a[ portable] cup such as the[ collaps]ible shot glass. If you’re curious, let’s go on checking.
+As we can see from the images, this is an easy-to-[carry] shot glass that measures 2 x 1-1/8 inches and weights 3 oz. The entire shot glass features[ stainless] steel construction, so it will never[ stain] or[ corro]de. Most importantly, the shot glass is[ collaps]ible. After enjoying your drink, you can[ calmly] fold it up into the[ accompanying] small zippered vinyl[ carrying] case and tuck into your[ pocket] or[ bag].[ Apart] from that, the key[ring] on the shot glass allows you to[ attach] it to your[ backpack] for a trip.
+The[ collaps]ible shot glass is priced at $15.85 USD. If you’re interested, jump to[ Mage]llan’s Travel[ Supp]lies for more[ details].
+Additionally, if you’re a fan of retro games from ATARI, don’t miss the ATARI themed glass shots.
+
+=== Text #15 ===
+> Below you'll find some great videos that will encourage you, train you and build you up in hearing from GOD and being able to let HIM fulfill HIS plan in your life.
+SOMETHING NEW THAT WILL HELP YOU HEAR GODS VOICE!
+How to[ Understand] and Rightly[ Divide] It & How It[ App]lies to Life!
+In this important teaching Terry[ reveals] the clear distinction between the[ Spirit] & Soul and how critical it is that we learn how to operate in the[ Spirit] and not be[ deceived]. It's a serious matter that must be reviewed no matter what your level of faith and maturity.
+Marriage & How it[ App]lies to the[ Spirit] & The Soul!
+In this[ enlight]ening class Terry[ reveals] a key insight that helps us to better discern the[ Spirit] vs the Soul as it's reflected in the[ Marriage relationship] from the intuitive nature, the emotional component of the[ woman] and the power aspect of a male in submission to the LORD.
+In this eye-opening teaching Terry shares how the[ Tab]ernacle as it represents the body[ soul] and[ spirit] of man and how it applies to our spiritual walk.
+This complete deliverance packet helps to walk you through what you can do to free yourself from the hidden forced[ buried] deep in your[ soul] that is hindering you from walking in the fullness that GOD paid for you to walk in.
+In today's video, Terry defines salvation better and the things that get in the way of our[ soul]'s salvation and ways we can increase our spiritual maturity.
+
+=== Text #16 ===
+> Esther and Kenso fell in love with , and chose , the[ stunning] Tuscany themed[ backdrop] of Central Florida’s Bella Collina Wedding[ Ven]ue for their Central Florida April wedding and what a wedding it was! How can you possibly go wrong with a[ gorgeous bride], a[ handsome groom], and a[ beautiful] venue?? This[ beautiful Haitian] couple chose a classic contemporary and[ elegant] theme for their Central Florida wedding. We have such a history with[ Esther]’s family ( We have already[ photographed] 3 of her siblings weddings with 2 to go!) that Stan and I were really excited as well as nervous about[ capturing Esther] and Kenso’s Bella Collina Wedding just perfectly. Everything went smoothly with the talented team of Lynn Stuckas of Your Events by L & L who was in charge of[ coordinating Esther] and Kenso’s[ stunning] Central Florida Bella Collina wedding.[ Esther]’s flowers were just[ beautifully] done by[ Wed]dings by Carly Anes, and complimented her[ stunning] mer[maid] dress from Demetrios Bridal. Her off white mer[maid] dress was heavily beaded, with lots of sparkle to compliment the dress, while the form[ fitting] skirt enhanced and complimented[ Esther]’s perfect curves. The finishing touches were hair and makeup and[ beautifully] done by LeJeune Artistry . The reception ballroom at Bella Collina was[ beautifully] decorated with linens by Eli of Linen[ Cre]ations, and D.J Geordany Jean Baptiste made sure that the music was a crowd pleaser, playing a well rounded selection of music from soca to hip hop to R & B. Of course we must include that[ Esther] and Kenso’s[ stunning] Bella Collina Wedding was[ captured] by S & S Photography and their[ beautiful] video[ captured] by[ Kelvin] Aultman .
+Brandy and Dave met working[ aboard] the Disney Fantasy[ Cruise] ship in 2013. Brandy worked with the cruise staff team while Dave worked on the ship wide tech team. After nearly 4 years of sailing the seven seas with Mickey Mouse, the two lovebirds decided it was time to start a life together on land, in far away New Zealand. For Brandy’s 28th birthday Dave surprised her with a[ fantastic] trip to the Bay of[ Islands] and[ Cape] Reinga, the northern most point of New Zealand. It was here, overlooking the ocean, on the last day of their trip, that Dave got down on one knee and popped the question. Brandy of course said “yes!” and the[ excitement] of planning their September 22 n
+
+=== Text #17 ===
+> Yesterday [12 Nov], at the Shoreditch Town Hall, Dr. Macdonald, M.P., the[ coroner] for the North- Eastern District of Middlesex, opened his inquiry relative to the death of Marie Jeanette Kelly, the woman whose body was discovered on Friday morning,[ terribly mut]ilated, in a room on the ground floor of 26, D[orset]-street, entrance to which was by a side door in Miller's-court.
+Super[intendent] T. Arnold, H[ Division];[ Inspector] Abberline, of the Criminal[ Investigation] Department, and[ Inspector] Nairn represented the police. The deputy[ coroner], Mr.[ Hodg]kinson, was present during the[ proceedings].
+The Coroner (to the juror, severely): Do you think that we do not know what we are doing here, and that we do not know our own district? The jury are[ summoned] in the ordinary way, and they have no business to object. If they persist in their objection I shall know how to[ deal] with them. Does any juror persist in objecting ?
+The Juror: We are[ summoned] for the Shoreditch district. This[ affair] happened in Spitalfields. The[ Cor]oner: It happened within my district.
+The jury having made no further objection, they were[ duly] sworn, and were conducted by[ Inspector] Abberline to view the body, which, decently coffined, was at the[ mortuary adjoining] Shoreditch Church, and subsequently the jury[ inspected] the room, in Miller's-court, D[orset]- street, where the[ murder] was committed. The[ apartment], a plan of which was given in yesterday's Daily[ Telegraph], is poorly[ furnished], and uncarpeted. The position of the two tables was not altered. One of them was placed near the bed, behind the door, and the other next to the largest of the two windows which look upon the yard in which the dustbin and water-tap are situated.
+Joseph[ Barnett] deposed : I was a fish-porter, and I work as a labourer and fruit- porter. Until Saturday last I lived at 24, New-street, Bishopsgate, and have since stayed at my sister's, 21, Portpool-lane, Gray's Inn-road. I have lived with the deceased one year and eight months. Her name was Marie Jeanette Kelly with the French spelling as described to me. Kelly was her maiden name. I have seen the body, and I identify it by the[ ear] and eyes, which are all that I can recognise
+
+=== Text #18 ===
+> Once, you have converted your yellow[ teeth] into white ones, you should take[ utmost] care to not to get them yellow again. Whitening the[ teeth], again and again, may lead them to become[ translucent] or even blue. So[ preserve] your[ teeth] so that you may smile with confidence at every time! Here are some proven and very effective home remedies to whiten your yellow[ teeth]. Take help of these remedies... Hi. I would say that it is possible to get 'Hollywood' white[ teeth], but naturally may be a bit stretched. But again, this depends on the current condition of your[ teeth].
+How To Whiten Yellow Teeth At Home (And Keep Them That Way) How it works: It will whiten your[ teeth] by[ absorbing] plaque, stains, and bacteria,[ revealing] a white and clean surface. How to use it:Use it once per day three days in a row when you notice your[ teeth] are becoming yellow. You can either brush or rinse with it. If you have sensitivity, it’s best to avoid brushing and stick to... Your natural[ teeth] have their own colour, which the[ dent]ists will use as reference so the dental restorations do not look out of place in the mouth. For certain cosmetic procedures,[ dent]ists will ask for your input on which shades you want. Some patients prefer to have the shade[ match] their natural tone, while others go for pearly white shades for Hollywood smile-type makeovers.
+Now they can whiten your[ teeth] in about a week, and you'll start to notice results in about 3 days. Hydrogen Peroxide Gels. Hydrogen peroxide also works, but here's why I hate it. I don't like sitting around for hours with a tray in my mouth while I could be doing better things with my time. Sure, it works well, but it makes my[ teeth] sensitive and I always[ gag] on the mouth[ piece]. Whitening... The perfect Hollywood smile is something we all want, perfectly white[ teeth], aligned to perfection making your smile even prettier. There are a number of dental procedures which can help you get your[ teeth] pearly white, but they can be quite costly and not everyone can afford them.
+There are many different methods you can use to whiten your[ teeth], and which one you choose can be influenced by how much you want to spend. Here is a breakdown of some of the most popular methods of[ teeth] whitening, and how much they typically cost.
+29/08/2007 · And your[ teeth] will be as white as snow
+
+=== Text #19 ===
+> The company's main products include:stone[ crushing] plant project report india,mining machinery, supporting equipment, safety drills and other three major categories of dozens of varieties. All of our products can be used for a variety of applications such as rock[ excavation],[ trench]ing, demolition and[ concrete] and[ underwater] cutting, tunneling and scaling. Provide full equipment and services for the comprehensive mechanized mining:[ boring] machines, shearers, scraper[ convey]ors. Customized product designs for roadheaders, supports, shearers, and scraper[ convey]ors for different geological conditions.
+Comprehensive Industry[ Document] Stone Crushers - CPCB ENVIS. India, the Stone Crushing Industry sector is estimated to have an annual turnover of Rs. 5000[ crore] (equivalent[ crushing] plant, transportation of mined stones and crushed products etc.
+
+=== Text #20 ===
+> A letterman, in U.S. activities/sports, is a high school or college student who has met a specified, Although sometimes, the colors of the[ jacket] may be customized to a certain extent by the student. There could, In schools where only varsity letters are awarded this is usually the practice in a student's junior or senior year.
+[Letter]man[ Jackets] Original Varsity[ Jackets] Reform[ Clothing] Co.
+Reform Clothing lets you design custom letterman[ jackets] for your class. Call us or check out our site to build the perfect senior class[ jackets] today!
+America's #1 Source for Class of 2018 Senior Shirts, Class of 2018 slogans and Class of 2018 custom designs.
+You'll love our[ Leather] Sleeve Varsity[ Jackets], customized with your colors, nicknames & logos. Made for the Senior Class of 2018 and other groups.
+Our Fleece Varsity[ Jackets] are custom made to your design requirements. For the perfect Senior Class of 2018 Varsity[ Jacket] call us today for a free quote.
+Design custom made varsity[ jackets] online. Free shipping, bulk discounts and no minimums or setups for custom made varsity outerwear. Free design templates.
+Custom[ Chen]ille Pat[ches], Embroidery Varsity[ Jackets], Sports[ Jackets].
+
+
+Description: 
+2025-07-25 20:36:48,242 - root - INFO - Mechanisms for joining, affixing, or connecting, often in the context of construction, assembly, or adornment
+
+2025-07-25 20:36:48,247 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-5960_clusters-1_2025-07-25_18-27-17.csv
+2025-07-25 20:36:48,248 - root - INFO - ================================================================================
+2025-07-25 20:36:48,248 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 20:36:48,249 - root - INFO - ================================================================================
+2025-07-25 20:36:48,249 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-5960_clusters-1_2025-07-25_18-27-17.log
+2025-07-25 20:36:48,249 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-5960_clusters-1_2025-07-25_18-27-17.csv

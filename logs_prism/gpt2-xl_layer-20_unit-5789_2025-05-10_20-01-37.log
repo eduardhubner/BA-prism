@@ -1,0 +1,864 @@
+2025-05-10 22:01:37,348 - root - INFO - ================================================================================
+2025-05-10 22:01:37,404 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-10 22:01:37,405 - root - INFO - ================================================================================
+2025-05-10 22:01:37,406 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-10 22:01:37,406 - root - INFO - AGG_METHOD = mean
+2025-05-10 22:01:37,407 - root - INFO - BATCH_SIZE = 2
+2025-05-10 22:01:37,407 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 22:01:37,408 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-10 22:01:37,408 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-10 22:01:37,409 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-10 22:01:37,409 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-10 22:01:37,410 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-10 22:01:37,410 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-10 22:01:37,411 - root - INFO - CONTROL_SPLIT = train
+2025-05-10 22:01:37,411 - root - INFO - DATA_FILES = None
+2025-05-10 22:01:37,412 - root - INFO - DEVICE = cuda
+2025-05-10 22:01:37,412 - root - INFO - END_INTERVAL = 1.0
+2025-05-10 22:01:37,413 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 22:01:37,413 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-10 22:01:37,413 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-10 22:01:37,414 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-10 22:01:37,414 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-10 22:01:37,415 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-10 22:01:37,415 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-05-10 22:01:37,416 - root - INFO - LAYER_ID = 20
+2025-05-10 22:01:37,416 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-10 22:01:37,417 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-10 22:01:37,417 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-10 22:01:37,417 - root - INFO - MULTI_EVAL = True
+2025-05-10 22:01:37,418 - root - INFO - N_CLUSTERS = 5
+2025-05-10 22:01:37,418 - root - INFO - N_SAMPLES = 10
+2025-05-10 22:01:37,419 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-10 22:01:37,419 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-10 22:01:37,419 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-10 22:01:37,420 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-10 22:01:37,420 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-10 22:01:37,421 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-10 22:01:37,421 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-10 22:01:37,422 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-10 22:01:37,422 - root - INFO - SIMEVAL_DATA = c4
+2025-05-10 22:01:37,423 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-10 22:01:37,423 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-10 22:01:37,423 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-10 22:01:37,424 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-10 22:01:37,424 - root - INFO - SPLIT = train
+2025-05-10 22:01:37,425 - root - INFO - START_INTERVAL = 0.99
+2025-05-10 22:01:37,425 - root - INFO - STREAMING = True
+2025-05-10 22:01:37,425 - root - INFO - SUBSET_SIZE = 1000
+2025-05-10 22:01:37,426 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-10 22:01:37,426 - root - INFO - TARGET_DATA = c4
+2025-05-10 22:01:37,427 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-10 22:01:37,427 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 22:01:37,427 - root - INFO - UNIT_ID = 5789
+2025-05-10 22:01:37,428 - root - INFO - USE_API = True
+2025-05-10 22:01:37,428 - root - INFO - ================================================================================
+2025-05-10 22:01:37,429 - root - INFO - ANALYSIS RESULTS
+2025-05-10 22:01:37,429 - root - INFO - ================================================================================
+2025-05-10 22:01:37,429 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.log
+2025-05-10 22:11:40,287 - root - INFO - Reached 1000 samples.
+2025-05-10 22:11:46,721 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-10 22:11:46,722 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 22:12:03,349 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-10 22:13:05,041 - root - INFO - Number of candidates: 1001
+2025-05-10 22:13:06,711 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-10 22:13:06,712 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  make (0.16711264848709106)
+Text #1: 't (0.41204768419265747)
+Text #1: <|endoftext|> (0.15998733043670654)
+Text #2:  in (0.7411994934082031)
+Text #2:  is (0.29404839873313904)
+Text #2: <|endoftext|> (0.1473645269870758)
+Text #3: <|endoftext|> (0.14371466636657715)
+Text #4:  request (0.14690570533275604)
+Text #4: <|endoftext|> (0.14963273704051971)
+Text #5:  in (0.23143015801906586)
+Text #5: <|endoftext|> (0.16319331526756287)
+Text #6:  read (0.4450933635234833)
+Text #6: <|endoftext|> (0.1480151265859604)
+Text #7:  without (0.23934222757816315)
+Text #7: <|endoftext|> (0.15613974630832672)
+Text #8:  made (1.614292025566101)
+Text #8:  made (1.6134637594223022)
+Text #8:  in (0.14362987875938416)
+Text #8: <|endoftext|> (0.14417874813079834)
+Text #9:  made (1.614292025566101)
+Text #9:  made (1.6134637594223022)
+Text #9:  in (0.14362987875938416)
+Text #9: <|endoftext|> (0.14417874813079834)
+Text #10:  made (0.2223563939332962)
+Text #10: <|endoftext|> (0.13360287249088287)
+Text #10: <|endoftext|> (0.13100427389144897)
+Text #10: <|endoftext|> (0.13088037073612213)
+Text #11: <|endoftext|> (0.14365017414093018)
+Text #12:  continues (2.39180326461792)
+Text #12: ) (0.23908358812332153)
+Text #12:  writing (0.602321207523346)
+Text #12: <|endoftext|> (0.14747050404548645)
+Text #13:  been (0.3504093587398529)
+Text #13:  full (0.22712132334709167)
+Text #13:  in (0.2992844581604004)
+Text #13: <|endoftext|> (0.13625477254390717)
+Text #13: <|endoftext|> (0.12327759712934494)
+Text #14: <|endoftext|> (0.14994995296001434)
+Text #15:  been (0.44138312339782715)
+Text #15: <|endoftext|> (0.13904421031475067)
+Text #16: I (0.11483772844076157)
+Text #16:  crafting (0.17990629374980927)
+Text #16:  creating (0.8798480033874512)
+Text #16:  making (0.9979411363601685)
+Text #16:  do (1.9914461374282837)
+Text #16: <|endoftext|> (0.13675405085086823)
+Text #17: 
+ (0.4338845908641815)
+Text #17:  conducting (0.9823569059371948)
+Text #17: <|endoftext|> (0.14172843098640442)
+Text #18: <|endoftext|> (0.13393861055374146)
+Text #19: Not (0.13554510474205017)
+Text #19:  are (0.2525447607040405)
+Text #19:  Use (0.20219290256500244)
+Text #19:  am (0.33854272961616516)
+Text #19:  not (0.19121184945106506)
+Text #19: <|endoftext|> (0.12817154824733734)
+Text #20: Not (0.13554510474205017)
+Text #20:  are (0.2525447607040405)
+Text #20:  Use (0.20219290256500244)
+Text #20:  am (0.33854272961616516)
+Text #20:  not (0.19121184945106506)
+Text #20: <|endoftext|> (0.12817154824733734)
+
+=== Text #1 ===
+> OpenWRT that use -Os to[ make] small binaries.
+OS X.  I don['t] know enough about the other platforms to say.
+Here's the Debian docs on the topic.[]
+
+=== Text #2 ===
+> This is my 19th year[ in] teaching, the 8th at Fairview. My daughter[ is] a junior this year at CU Boulder. I enjoy all things outdoors: climbing, biking, skiing...... .[]
+
+=== Text #3 ===
+> Nothing gay found in this area tagged with Hoegaarden, sorry honey. Try a new search. Please add if you know otherwise.[]
+
+=== Text #4 ===
+> All prints come in both sizes, on cream card, 350 gsm. Off sizes available on[ request].
+All rights of images and content belong to Salty Philip.[]
+
+=== Text #5 ===
+> Oriel Lighting - The ZOOM GU10 LED spot light is designed to accommodate most GU10 retrofit LED lamps. The reflector slides down to cover longer LED lamps - giving a very smart look[ in] any application. LED lamp sold separately.[]
+
+=== Text #6 ===
+> “…provides interest, suspense and word repetition. Illustrations excellent. Recommended.”–(starred) School Library Journal.
+This book is enhanced with[ read] aloud audio features.[]
+
+=== Text #7 ===
+> Pads allow you to transition nicely from floor to pole. Slide on the floor, dragging your knees without sticking to the floor. They cover just enough of your knee to protect it[ without] preventing you from gripping the pole.[]
+
+=== Text #8 ===
+> This dog brooch pin is[ made] with polymer clay, painted, and sealed with varnish for protection. It is[ made] and painted by hand so each pin has some variation and is unique[ in] its own way!
+The pin is 1.5" x 1.5" with rubber clutch backing and comes with a backing card.[]
+
+=== Text #9 ===
+> This dog brooch pin is[ made] with polymer clay, painted, and sealed with varnish for protection. It is[ made] and painted by hand so each pin has some variation and is unique[ in] its own way!
+The pin is 1.5" x 1.5" with rubber clutch backing and comes with a backing card.[]
+
+=== Text #10 ===
+> I[ made] a pizza with cauliflower crust last night. I didn’t die. But I wouldn’t want it to be my new normal.[][][]
+
+=== Text #11 ===
+> 5 Min walk to train & bus stops,linking you to Glasgow & Paisley.
+All prices plus vat except mot.
+Service prices are dependant on cost of parts and lubricants on certain makes & models.[]
+
+=== Text #12 ===
+> The Almond Tree books’ foreign and movie rights[ continues to] grow with the addition of Chinese Complex Characters’ Rights (Taiwan[)] sold to Faces/Cite Publishing.
+View all all foreign and movie rights and the various different cover versions of the book on the Foreign and Movie Rights Page.
+great item of[ writing], I’m sharing with my buddies.[]
+
+=== Text #13 ===
+> The Decorating Center in Olean, NY has[ been] providing professional decorating services and quality products for over 7 years. We are a[ full] service decorating center with a wide selection of decors and accessories for your home or business.
+We offer[ in]-home and office consultations.[][]
+
+=== Text #14 ===
+> Walked around Lake Merritt. Played two hours of the text adventure Firebird. Took BART into SF and went to dinner at Pane e Vino with my father's brother's ex-wife and her new boyfriend, a widower from a 55-year marriage.
+Said goodbye; she leaves for Vegas in the morning to visit some college friends.[]
+
+=== Text #15 ===
+> I'd like to see it return. I've been speaking to the team about it. Will investigate this as I don;t believe Brawl has[ been] implemented since the infinitization update.
+remember that "Robocraft Royale" map you devs have sitting around someplace?[]
+
+=== Text #16 ===
+> [I] love[ crafting] and[ creating] communities! I love the crafting community because of the focus on sharing and learning as well as[ making]. Right now I'm mostly into weaving, but I also[ do] crochet, embroidery, natural dyeing/ shibori, and macrame. You can find my latest projects @the.weekend.weaver or on May 6th at the Bat Haus market.[]
+
+=== Text #17 ===
+> "Extra Eyes for DWIs" on Halloween Here in Fairfax County | McGlone Law Firm, P.C.[
+]"Extra Eyes for DWIs" is an effort that will involve seven local police agencies[ conducting] saturation patrols in all seven jurisdictions on Halloween night (this Thursday, October 31). The police officers will be specifally looking for drunk drivers, in an effort to keep them off the streets.[]
+
+=== Text #18 ===
+> Search jobs24 for Contract jobs in Long Stratton. jobs24 works with local recruitment agencies and employers to provide a large range of local Contract employment opportunities in Long Stratton helping you find your new job quickly and simply.
+We have 0 jobs in Long Stratton that match your search.[]
+
+=== Text #19 ===
+> [Not]aries in Bridgeton, MO[ are] listed below.[ Use] the filters to search for specific criteria.
+I[ am] a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified[ not]ary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[]
+
+=== Text #20 ===
+> [Not]aries in Bridgeton, MO[ are] listed below.[ Use] the filters to search for specific criteria.
+I[ am] a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified[ not]ary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[]
+
+
+Description: 
+2025-05-10 22:13:06,713 - root - INFO - Creation, existence, or location of products or services
+
+2025-05-10 22:13:06,718 - root - INFO - Cluster #0 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.csv
+2025-05-10 22:13:07,444 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-10 22:13:07,445 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: <|endoftext|> (0.14949198067188263)
+Text #2:  make (0.16711264848709106)
+Text #2: 't (0.41204768419265747)
+Text #2: <|endoftext|> (0.15998733043670654)
+Text #3:  are (0.5805719494819641)
+Text #3: <|endoftext|> (0.16355165839195251)
+Text #3: <|endoftext|> (0.1490757018327713)
+Text #4: <|endoftext|> (0.14559489488601685)
+Text #5: <|endoftext|> (0.14735262095928192)
+Text #5: <|endoftext|> (0.1422414481639862)
+Text #6:  without (0.23934222757816315)
+Text #6: <|endoftext|> (0.15613974630832672)
+Text #7: <|endoftext|> (0.14338885247707367)
+Text #8:  complete (1.327850341796875)
+Text #8:  complete (1.8222625255584717)
+Text #8: Completed (1.6260980367660522)
+Text #8: <|endoftext|> (0.12701402604579926)
+Text #9: ) (0.1352183222770691)
+Text #9:  perform (2.3018972873687744)
+Text #9:  in (0.26213884353637695)
+Text #9: <|endoftext|> (0.1439334899187088)
+Text #10:  doing (1.6930760145187378)
+Text #10: <|endoftext|> (0.13175560534000397)
+Text #11:  doing (1.6930760145187378)
+Text #11: <|endoftext|> (0.13175560534000397)
+Text #12:  doing (1.6930760145187378)
+Text #12: <|endoftext|> (0.13175560534000397)
+Text #13:  is (0.2049146145582199)
+Text #13:  use (0.27408310770988464)
+Text #13: <|endoftext|> (0.144623264670372)
+Text #14: Business (0.12259160727262497)
+Text #14: <|endoftext|> (0.12109354138374329)
+Text #15: , (0.4954834580421448)
+Text #15:  creating (0.7273465394973755)
+Text #15:  create (0.7044742703437805)
+Text #15: <|endoftext|> (0.14401477575302124)
+Text #16: <|endoftext|> (0.13393861055374146)
+Text #17: <|endoftext|> (0.14069439470767975)
+Text #17: <|endoftext|> (0.11989403516054153)
+Text #18: Our (0.11387982964515686)
+Text #18:  DO (0.7858009934425354)
+Text #18:  make (0.4794895350933075)
+Text #18: <|endoftext|> (0.12641257047653198)
+Text #19: ) (0.5218498706817627)
+Text #19:  in (0.4486809968948364)
+Text #19:  In (0.23790177702903748)
+Text #19: <|endoftext|> (0.1525702029466629)
+Text #20:  complete (1.2762504816055298)
+Text #20:  do (2.3388006687164307)
+Text #20: <|endoftext|> (0.13138847053050995)
+
+=== Text #1 ===
+> Folio: 166v - Feast: Comm. plur. Conf.[]
+
+=== Text #2 ===
+> OpenWRT that use -Os to[ make] small binaries.
+OS X.  I don['t] know enough about the other platforms to say.
+Here's the Debian docs on the topic.[]
+
+=== Text #3 ===
+> Self-taught amateur photographer, interested in Analog Black &amp; White Photography.
+Two of his portfolios[ are] featured on the Dodho Magazine website.
+Licenciado (5 years degree) in Philosophy.
+Based in La Palma, Canary Islands, Spain.[][]
+
+=== Text #4 ===
+> Tech enthusiast. Graphic designer. Aspiring polymath. Operator of a sparkling mind.
+12: Straight-Up "Silence of the Lambs"[]
+
+=== Text #5 ===
+> Create a solid foundation for your outfit with the Building Blocks Oval Gold Earrings! A texture gold metal oval shape. Earrings measure 1.5" long.
+Long Hoop at the back.[][]
+
+=== Text #6 ===
+> Pads allow you to transition nicely from floor to pole. Slide on the floor, dragging your knees without sticking to the floor. They cover just enough of your knee to protect it[ without] preventing you from gripping the pole.[]
+
+=== Text #7 ===
+> Welcome to Forces Reunited the place where you can find information and friends from HMS Manchester.
+We can reunite you with your friends who served at HMS Manchester and we have a wealth of information on different units, bases and ships in the site.
+Below are just some of our members who have served at HMS Manchester.[]
+
+=== Text #8 ===
+> For each modeling standard, you will[ complete] a Modeling Project Form. Find the appropriate standard/version on the Suggested Exercises site, then[ complete] the version assigned to you below.
+[Completed] projects should be uploaded to Gradescope.[]
+
+=== Text #9 ===
+> Stitch can replicate data from all your sources (including Shippo[)] to a central warehouse. From there, it's easy to use Slemma to[ perform] the[ in]-depth analysis you need.
+Integrate Shippo and Slemma to turn your data into actionable insights.[]
+
+=== Text #10 ===
+> Human trafficking is definitely an important issue and still exists today even in the United States! We should be[ doing] more to combat human trafficking, especially since human traffickers usually prey on those who are young and underprivileged.
+Handling human rights abuses in war-torn countries is a major issue.[]
+
+=== Text #11 ===
+> Human trafficking is definitely an important issue and still exists today even in the United States! We should be[ doing] more to combat human trafficking, especially since human traffickers usually prey on those who are young and underprivileged.
+Handling human rights abuses in war-torn countries is a major issue.[]
+
+=== Text #12 ===
+> Human trafficking is definitely an important issue and still exists today even in the United States! We should be[ doing] more to combat human trafficking, especially since human traffickers usually prey on those who are young and underprivileged.
+Handling human rights abuses in war-torn countries is a major issue.[]
+
+=== Text #13 ===
+> Weldtite Dot brake fluid is a premium DOT formulation offering excellent brake performance. The fluid will mix safely with other DOT3, 4 and 5.1 brake fluids but[ is not] compatitble with 5 silicone based fluid.
+It is essential to[ use] the correct fluid in your hydraulic brakes.[]
+
+=== Text #14 ===
+> [Business]es: Strategy sessions while sailing, intervision, personal training, etc.
+Ideal to combine with onshore activities.
+Please let us advice you, anything can be arranged.[]
+
+=== Text #15 ===
+> Gibeault Design, located on Boulevard St-Laurent in Montreal[,] offers an inspiring and architectural universe. With over 30 years of experience in[ creating] high quality spaces, Guy Gibeault and his team combine the functional aesthetics with exclusive products in order to[ create] exceptional residential spaces.
+Facebook : Gibeault Design Inc.[]
+
+=== Text #16 ===
+> Search jobs24 for Contract jobs in Long Stratton. jobs24 works with local recruitment agencies and employers to provide a large range of local Contract employment opportunities in Long Stratton helping you find your new job quickly and simply.
+We have 0 jobs in Long Stratton that match your search.[]
+
+=== Text #17 ===
+> Powdercoated my grill for an #RA28 and smiley bumper brackets for a 72 #TA22. Both are “gloss stealth charcoal” and look absolutely amazing!!!
+Welded up 35 sets of #ra28 #ra23 hood hinges! Assembled and shipped 10 raw sets and sent the rest for powdercoat![][]
+
+=== Text #18 ===
+> [Our] website address is: https://www.floortique.co.uk.
+We[ DO] NOT share your data with anyone. We neither sell it nor[ make] it available, and we will not be contacting you with offers.
+Your data is hidden from view and only administrators to this site can access it.[]
+
+=== Text #19 ===
+> LOS ANGELES -- USC pitcher Ian Kennedy (Huntington Beach, Calif/La Quinta HS[) was] named today to the 2004 Baseball America Freshman All-America Team. Kennedy becomes the third straight Trojan[ in] as many years to earn first team honors (Jeff Clement in 2003 and Joey Metropoulos in 2002).
+This season as the first freshman No. 1 starter at USC since Randy Flores in 1994, Kennedy went 7-2 with a 2.91 ERA.[ In] 92 2/3 innings, Kennedy allowed 86 hits while walking 31 and striking out 120 batters.[]
+
+=== Text #20 ===
+> The perfect 3 step strategy that turns losing FB campaigns into high quality leads… and convert leads into high paying customers.
+Discover the[ complete] guide to dominate FB marketing.
+Discover how to leverage video and get more eyeballs to your offer.
+Discover how FB will[ do] all the work for you saving you time and money.
+Discover how to skyrocket your ROI on every Facebook ads campaign.[]
+
+
+Description: 
+2025-05-10 22:13:07,447 - root - INFO - Actions, tasks, or processes
+
+2025-05-10 22:13:07,450 - root - INFO - Cluster #1 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.csv
+2025-05-10 22:13:08,120 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-10 22:13:08,121 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: <|endoftext|> (0.15628889203071594)
+Text #2:  in (0.7411994934082031)
+Text #2:  is (0.29404839873313904)
+Text #2: <|endoftext|> (0.1473645269870758)
+Text #3: <|endoftext|> (0.15216796100139618)
+Text #4: <|endoftext|> (0.15216796100139618)
+Text #5: <|endoftext|> (0.14740359783172607)
+Text #6:  using (0.6377748250961304)
+Text #6:  used (0.5858907699584961)
+Text #6:  will (0.2650972306728363)
+Text #6: <|endoftext|> (0.14605873823165894)
+Text #7:  in (0.23143015801906586)
+Text #7: <|endoftext|> (0.16319331526756287)
+Text #8: Enjoy (0.12630586326122284)
+Text #8: Make (0.16417305171489716)
+Text #8: <|endoftext|> (0.1070689707994461)
+Text #8: <|endoftext|> (0.1069183275103569)
+Text #8: <|endoftext|> (0.10695847868919373)
+Text #9: 
+ (0.6082836389541626)
+Text #9: <|endoftext|> (0.14225906133651733)
+Text #10: <|endoftext|> (0.14559918642044067)
+Text #11: <|endoftext|> (0.13222636282444)
+Text #12:  read (0.4450933635234833)
+Text #12: <|endoftext|> (0.1480151265859604)
+Text #13:  in (0.1547868847846985)
+Text #13: <|endoftext|> (0.14448051154613495)
+Text #13: <|endoftext|> (0.13791318237781525)
+Text #14:  in (0.1547868847846985)
+Text #14: <|endoftext|> (0.14448051154613495)
+Text #14: <|endoftext|> (0.13791318237781525)
+Text #15:  without (0.23934222757816315)
+Text #15: <|endoftext|> (0.15613974630832672)
+Text #16:  without (0.23934222757816315)
+Text #16: <|endoftext|> (0.15613974630832672)
+Text #17:  without (0.23934222757816315)
+Text #17: <|endoftext|> (0.15613974630832672)
+Text #18:  in (0.5356161594390869)
+Text #18: <|endoftext|> (0.15406127274036407)
+Text #19: <|endoftext|> (0.1257782280445099)
+Text #19: <|endoftext|> (0.12553009390830994)
+Text #20:  made (0.2223563939332962)
+Text #20: <|endoftext|> (0.13360287249088287)
+Text #20: <|endoftext|> (0.13100427389144897)
+Text #20: <|endoftext|> (0.13088037073612213)
+
+=== Text #1 ===
+> I and my friend's family went hiking!! At night, we visited Victoria Peak and saw the most beautiful night view of Hongkong!![]
+
+=== Text #2 ===
+> This is my 19th year[ in] teaching, the 8th at Fairview. My daughter[ is] a junior this year at CU Boulder. I enjoy all things outdoors: climbing, biking, skiing...... .[]
+
+=== Text #3 ===
+> Nitrosamine free! Keep baby's teeth and gums clean and healthy.
+Click the button below to add the Silicone Toothbrush to your wish list.[]
+
+=== Text #4 ===
+> Nitrosamine free! Keep baby's teeth and gums clean and healthy.
+Click the button below to add the Silicone Toothbrush to your wish list.[]
+
+=== Text #5 ===
+> Say I Love You with this delicate charm depicting a hand signing ILY. Charm measures approximately 1 High x 3/4 Wide. Chain measures 18 long. Secure clasp. Gold tone.[]
+
+=== Text #6 ===
+> Is Google Chrome the recommended web browser for[ using] uiuLearn? Or can other browsers be[ used]?
+If your internet browser or settings are not compatible with uiuLearn, you[ will] receive a pop-up notification on the login page to inform you.[]
+
+=== Text #7 ===
+> Oriel Lighting - The ZOOM GU10 LED spot light is designed to accommodate most GU10 retrofit LED lamps. The reflector slides down to cover longer LED lamps - giving a very smart look[ in] any application. LED lamp sold separately.[]
+
+=== Text #8 ===
+> [Enjoy] your family. Enjoy your friends.
+[Make] lots of special memories.[][][]
+
+=== Text #9 ===
+> Did Early Christians Have the Bible?[
+]7 New Testament Valentines for your Sweetie!
+Mormons in ConTEXT: What Happens in Mormon Temples?[]
+
+=== Text #10 ===
+> Mephisto's sandals cover the full spectrum of casual to dressy. Walk all day in Mephisto sandals. Free shipping & free returns.[]
+
+=== Text #11 ===
+> It's the food. And it's more than the food.
+Home > Posts tagged "Blasey Kavanaugh hearing"
+Every board of directors has one….[]
+
+=== Text #12 ===
+> “…provides interest, suspense and word repetition. Illustrations excellent. Recommended.”–(starred) School Library Journal.
+This book is enhanced with[ read] aloud audio features.[]
+
+=== Text #13 ===
+> Sports Traveler has your South Carolina Gamecocks Tickets to the game! Purchase securely online[ in] our real time inventory. Follow the team to the College Football Playoffs, Bowl Games, and the National Championship Game as part of a travel package![][]
+
+=== Text #14 ===
+> Sports Traveler has your South Carolina Gamecocks Tickets to the game! Purchase securely online[ in] our real time inventory. Follow the team to the College Football Playoffs, Bowl Games, and the National Championship Game as part of a travel package![][]
+
+=== Text #15 ===
+> Pads allow you to transition nicely from floor to pole. Slide on the floor, dragging your knees without sticking to the floor. They cover just enough of your knee to protect it[ without] preventing you from gripping the pole.[]
+
+=== Text #16 ===
+> Pads allow you to transition nicely from floor to pole. Slide on the floor, dragging your knees without sticking to the floor. They cover just enough of your knee to protect it[ without] preventing you from gripping the pole.[]
+
+=== Text #17 ===
+> Pads allow you to transition nicely from floor to pole. Slide on the floor, dragging your knees without sticking to the floor. They cover just enough of your knee to protect it[ without] preventing you from gripping the pole.[]
+
+=== Text #18 ===
+> Things I liked: Great for sighting in & target practice!
+What others should know: Get these[ in] bulk & save even more!
+Things I liked: Great product. Use it with my GAmo P25, and my John Wayne colt replica. No complaints. They shoot great with this pellet.[]
+
+=== Text #19 ===
+> The sign has arrived and I couldn’t be more thrilled! It’s PERFECT!!! Thanks a million![][]
+
+=== Text #20 ===
+> I[ made] a pizza with cauliflower crust last night. I didn’t die. But I wouldn’t want it to be my new normal.[][][]
+
+
+Description: 
+2025-05-10 22:13:08,122 - root - INFO - Location or position of something
+
+2025-05-10 22:13:08,126 - root - INFO - Cluster #2 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.csv
+2025-05-10 22:13:09,068 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-10 22:13:09,069 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: <|endoftext|> (0.14949198067188263)
+Text #2: <|endoftext|> (0.15048407018184662)
+Text #3: ) (0.5830113887786865)
+Text #3: IP (0.1641319990158081)
+Text #3: <|endoftext|> (0.14108806848526)
+Text #4:  in (0.23143015801906586)
+Text #4: <|endoftext|> (0.16319331526756287)
+Text #5: <|endoftext|> (0.1476651132106781)
+Text #6:  without (0.23934222757816315)
+Text #6: <|endoftext|> (0.15613974630832672)
+Text #7:  in (0.5356161594390869)
+Text #7: <|endoftext|> (0.15406127274036407)
+Text #8:  made (0.2223563939332962)
+Text #8: <|endoftext|> (0.13360287249088287)
+Text #8: <|endoftext|> (0.13100427389144897)
+Text #8: <|endoftext|> (0.13088037073612213)
+Text #9: <|endoftext|> (0.14727813005447388)
+Text #9: <|endoftext|> (0.13085201382637024)
+Text #10: <|endoftext|> (0.14365017414093018)
+Text #11:  complete (1.327850341796875)
+Text #11:  complete (1.8222625255584717)
+Text #11: Completed (1.6260980367660522)
+Text #11: <|endoftext|> (0.12701402604579926)
+Text #12:  in (0.5089794993400574)
+Text #12:  un (0.46791404485702515)
+Text #12: <|endoftext|> (0.1384410709142685)
+Text #13: Business (0.12259160727262497)
+Text #13: <|endoftext|> (0.12109354138374329)
+Text #14: <|endoftext|> (0.1483963429927826)
+Text #15: , (0.18165285885334015)
+Text #15: <|endoftext|> (0.1599394977092743)
+Text #16:  is (0.24741826951503754)
+Text #16:  making (0.16699422895908356)
+Text #16: <|endoftext|> (0.14173388481140137)
+Text #17:  is (0.24741826951503754)
+Text #17:  making (0.16699422895908356)
+Text #17: <|endoftext|> (0.14173388481140137)
+Text #18: Not (0.13554510474205017)
+Text #18:  are (0.2525447607040405)
+Text #18:  Use (0.20219290256500244)
+Text #18:  am (0.33854272961616516)
+Text #18:  not (0.19121184945106506)
+Text #18: <|endoftext|> (0.12817154824733734)
+Text #19: Are (0.11880727857351303)
+Text #19:  not (0.36860087513923645)
+Text #19: <|endoftext|> (0.1475139558315277)
+Text #20: Using (0.2044023722410202)
+Text #20:  in (0.16674798727035522)
+Text #20:  of (0.43274566531181335)
+Text #20:  will (0.21692582964897156)
+Text #20:  display (0.3407716453075409)
+Text #20:  display (0.369300901889801)
+Text #20: <|endoftext|> (0.14748409390449524)
+
+=== Text #1 ===
+> Folio: 166v - Feast: Comm. plur. Conf.[]
+
+=== Text #2 ===
+> Embrace world class facilities at East Bourne Resort & Spa Shimla. Facilities at East Bourne Resort & Spa Shimla comprise multi cuisine restaurant, tours and travel desk. Avail facilities of East Bourne Resort & Spa Shimla.[]
+
+=== Text #3 ===
+> UGLYS Electric Motors and Controls Book FREE SHIP !
+UGLYS T-Shirt (Large[)] FREE SH[IP] !
+UGLYS T-Shirt (XXL) FREE SHIP ![]
+
+=== Text #4 ===
+> Oriel Lighting - The ZOOM GU10 LED spot light is designed to accommodate most GU10 retrofit LED lamps. The reflector slides down to cover longer LED lamps - giving a very smart look[ in] any application. LED lamp sold separately.[]
+
+=== Text #5 ===
+> Have you hired Star Drywall Ltd? Write a review and earn our First to Review badge.
+Star Drywall Ltd has not added any photos.
+Looking for Insulation pros in Estevan?[]
+
+=== Text #6 ===
+> Pads allow you to transition nicely from floor to pole. Slide on the floor, dragging your knees without sticking to the floor. They cover just enough of your knee to protect it[ without] preventing you from gripping the pole.[]
+
+=== Text #7 ===
+> Things I liked: Great for sighting in & target practice!
+What others should know: Get these[ in] bulk & save even more!
+Things I liked: Great product. Use it with my GAmo P25, and my John Wayne colt replica. No complaints. They shoot great with this pellet.[]
+
+=== Text #8 ===
+> I[ made] a pizza with cauliflower crust last night. I didn’t die. But I wouldn’t want it to be my new normal.[][][]
+
+=== Text #9 ===
+> Rock n' Roll Express Retro Classic Wrestling Tag Team T Shirt is available on a Black 100% Cotton Tee. The Rock n' Roll Express Retro Classic Wrestling Tag Team T Shirt is available in all sizes. Please select your desired shirt style and size from the drop down above.[][]
+
+=== Text #10 ===
+> 5 Min walk to train & bus stops,linking you to Glasgow & Paisley.
+All prices plus vat except mot.
+Service prices are dependant on cost of parts and lubricants on certain makes & models.[]
+
+=== Text #11 ===
+> For each modeling standard, you will[ complete] a Modeling Project Form. Find the appropriate standard/version on the Suggested Exercises site, then[ complete] the version assigned to you below.
+[Completed] projects should be uploaded to Gradescope.[]
+
+=== Text #12 ===
+> Funding for scholarships is[ in] accordance with Georgia’s[ un]claimed property laws, O.C.G.A. § 44-12-236. For more information, please contact Stacey Fields, Director of Public Relations, at 706-253-5287.[]
+
+=== Text #13 ===
+> [Business]es: Strategy sessions while sailing, intervision, personal training, etc.
+Ideal to combine with onshore activities.
+Please let us advice you, anything can be arranged.[]
+
+=== Text #14 ===
+> C. S. Lewis Signed Contract with J. M. Dent & Sons Ltd.
+C. Lewis Signed Contract with J. M. Dent & Sons Ltd.
+The Pilgrim's Regress. First edition.
+LEWIS, C. S., Signed note attached to the book of a friend.
+By: Williams, Charles & Lewis, C. S.[]
+
+=== Text #15 ===
+> Ille Arts in Amagansett presents Don Christensen’s solo exhibition at the gallery, “STAX and METERS.” The show opens on October 13[,] with a reception for the artist from 5 to 7 PM, and closes on November 12. This is Christensen’s third exhibition at the gallery, having previously shown in 2013 and 2015. The exhibition will include acrylic on wood panel paintings and oil on paper paintings.[]
+
+=== Text #16 ===
+> Simple collegiate-style lettering is printed on a 3/4 sleeve shirt. Three fashionable buttons line the v-neck, giving the shirt a relaxed look.
+Printed on an MV Sport shirt, it[ is] 55% cotton and 45% polyester[ making] this bi-blend have a soft feel.[]
+
+=== Text #17 ===
+> Simple collegiate-style lettering is printed on a 3/4 sleeve shirt. Three fashionable buttons line the v-neck, giving the shirt a relaxed look.
+Printed on an MV Sport shirt, it[ is] 55% cotton and 45% polyester[ making] this bi-blend have a soft feel.[]
+
+=== Text #18 ===
+> [Not]aries in Bridgeton, MO[ are] listed below.[ Use] the filters to search for specific criteria.
+I[ am] a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified[ not]ary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[]
+
+=== Text #19 ===
+> [Are] you looking ‘Missing a temporary folder’ on your WordPress site? This error will[ not] allow you to update images, update themes and plugins, or update WordPress core. In this article, I will explain you how to easily fix “Missing a temporary folder” error in WordPress.
+What is the Reason for the ‘Missing a Temporary Folder’ Error in WordPress?[]
+
+=== Text #20 ===
+> Copies Source file to Dest file, preserving modification date. Required units: Classes, SysUtils.
+[Using] a stored procedure as the source[ in] an OLE_DB Source for SSIS, the package can’t detect the output[ of] the stored proc.
+Better way to handle Broken Image. Missing images[ will] either just[ display] nothing, or[ display] a [ ? ] style box.[]
+
+
+Description: 
+2025-05-10 22:13:09,071 - root - INFO - Locations, products/services, or actions related to completion, creation, or availability
+
+2025-05-10 22:13:09,074 - root - INFO - Cluster #3 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.csv
+2025-05-10 22:13:09,956 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-10 22:13:09,956 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: <|endoftext|> (0.15628889203071594)
+Text #2: 
+ (0.9688267707824707)
+Text #2: <|endoftext|> (0.1377004086971283)
+Text #2: <|endoftext|> (0.13749052584171295)
+Text #3:  to (0.34942159056663513)
+Text #3:  In (1.000698208808899)
+Text #3: ), (0.1507389098405838)
+Text #3: <|endoftext|> (0.15267404913902283)
+Text #4: <|endoftext|> (0.14251866936683655)
+Text #5:  undertaking (1.0099992752075195)
+Text #5:  is (0.45374491810798645)
+Text #5: <|endoftext|> (0.13505317270755768)
+Text #6: <|endoftext|> (0.14559489488601685)
+Text #7: Enjoy (0.12630586326122284)
+Text #7: Make (0.16417305171489716)
+Text #7: <|endoftext|> (0.1070689707994461)
+Text #7: <|endoftext|> (0.1069183275103569)
+Text #7: <|endoftext|> (0.10695847868919373)
+Text #8: 
+ (0.6082836389541626)
+Text #8: <|endoftext|> (0.14225906133651733)
+Text #9: 
+ (0.6120266318321228)
+Text #9: Created (0.9716411232948303)
+Text #9: Created (0.56233149766922)
+Text #9: <|endoftext|> (0.13171891868114471)
+Text #10: <|endoftext|> (0.14365017414093018)
+Text #11: <|endoftext|> (0.1336069256067276)
+Text #11: <|endoftext|> (0.1226244866847992)
+Text #12: <|endoftext|> (0.1243954449892044)
+Text #13:  doing (1.6930760145187378)
+Text #13: <|endoftext|> (0.13175560534000397)
+Text #14:  run (0.5938205718994141)
+Text #14:  is (0.287433922290802)
+Text #14: <|endoftext|> (0.14196117222309113)
+Text #15: <|endoftext|> (0.14221392571926117)
+Text #16:  did (0.7807509899139404)
+Text #16: <|endoftext|> (0.13485051691532135)
+Text #17: <|endoftext|> (0.1408025622367859)
+Text #18:  participating (0.5740031599998474)
+Text #18: <|endoftext|> (0.13049371540546417)
+Text #19:  been (0.44138312339782715)
+Text #19: <|endoftext|> (0.13904421031475067)
+Text #20: Now (0.10668084770441055)
+Text #20:  completed (2.091646194458008)
+Text #20:  will (0.4232800006866455)
+Text #20:  endeavor (0.3919111490249634)
+Text #20:  is (0.15005536377429962)
+Text #20:  purchase (0.2562960684299469)
+Text #20:  unused (1.649531602859497)
+Text #20:  start (1.3013039827346802)
+Text #20:  after (0.26885247230529785)
+Text #20:  been (0.35451817512512207)
+Text #20:  used (0.9737168550491333)
+Text #20:  will (0.12326239049434662)
+Text #20: <|endoftext|> (0.13165302574634552)
+
+=== Text #1 ===
+> I and my friend's family went hiking!! At night, we visited Victoria Peak and saw the most beautiful night view of Hongkong!![]
+
+=== Text #2 ===
+> Information Security Risk Awareness Programs in K-12: Is This the Right Approach?[
+Copyright] © 1996-2017 TIIJ. All Rights Reserved.[][]
+
+=== Text #3 ===
+> Summary: An introduction[ to] historiography and the theory of counterfactuals.
+Published:[ In] w88 android (ed. Rasmus Dahlberg[),] q.v.[]
+
+=== Text #4 ===
+> Efun.top promotions on hundreds of vape products. Get cheapest vaping here.
+Don't forget to log in to get best price![]
+
+=== Text #5 ===
+> Please see below for any positions we currently have available.
+To work in a diligent, efficient and conscientious manner[ undertaking] building cleaning activities.
+A basic disclosure from Disclosure Scotland[ is required] for this post.[]
+
+=== Text #6 ===
+> Tech enthusiast. Graphic designer. Aspiring polymath. Operator of a sparkling mind.
+12: Straight-Up "Silence of the Lambs"[]
+
+=== Text #7 ===
+> [Enjoy] your family. Enjoy your friends.
+[Make] lots of special memories.[][][]
+
+=== Text #8 ===
+> Did Early Christians Have the Bible?[
+]7 New Testament Valentines for your Sweetie!
+Mormons in ConTEXT: What Happens in Mormon Temples?[]
+
+=== Text #9 ===
+> Date: June 22, 2016, 3:46 p.m.[
+]Date: July 15, 2015, 8:50 p.m.
+[Created]: July 15, 2015, 8:50 p.m.
+[Created]: June 22, 2016, 3:46 p.m.[]
+
+=== Text #10 ===
+> 5 Min walk to train & bus stops,linking you to Glasgow & Paisley.
+All prices plus vat except mot.
+Service prices are dependant on cost of parts and lubricants on certain makes & models.[]
+
+=== Text #11 ===
+> A photo from the 1940’s showing all the members of the wedding.
+Previous Post A photo from the 1940’s showing all the members of the wedding. Next Post A photo from the 1940’s showing all the members of the wedding.[][]
+
+=== Text #12 ===
+> Please choose a security question What is your birth place? What is your pet's name? What is your mother's middle name? What kind of person are you?[]
+
+=== Text #13 ===
+> Human trafficking is definitely an important issue and still exists today even in the United States! We should be[ doing] more to combat human trafficking, especially since human traffickers usually prey on those who are young and underprivileged.
+Handling human rights abuses in war-torn countries is a major issue.[]
+
+=== Text #14 ===
+> > god-mode in the new buffer.
+`setq-default' to set a default for all other buffers.
+better approach.  This is a per-buffer feature.
+easy way to[ run] code automatically when it[ is] toggled.[]
+
+=== Text #15 ===
+> We are one of the leading Manufacturer of a wide range of Lenin Fabric, Polyester Dupion and Polyester Silk.
+Our organization is highly acclaimed as a manufacturer of Lenin Fabric, Polyester Dupion and Polyester Silk. These are offered to our clients in a variety of choices.[]
+
+=== Text #16 ===
+> Check out these two awesome ladies!!
+They competed all weekend at the Heart of America CrossFit Competition. Three days of workouts and fun. They[ did] GREAT!!! Very cool to see them compete. More to come on this, once I’ve rested a little.[]
+
+=== Text #17 ===
+> 2014 Czech Ringette Challenge Cup was held in Prague, Czech Republic on 25th - 27th July for the 12th time. This year there was also Team Czech attending! Other attending teams were from Canada, Finland, France and Slovakia; there were also players from Austria, Sweden and USA among the attending teams. Officials of the tournament were from Canada, Finland and Slovakia.[]
+
+=== Text #18 ===
+> We occasionally offer online coupons and other special offers. Or, if you’re interested in[ participating] with product research, check 'in-home product placement' and answer a few more questions. What are you waiting for?[]
+
+=== Text #19 ===
+> I'd like to see it return. I've been speaking to the team about it. Will investigate this as I don;t believe Brawl has[ been] implemented since the infinitization update.
+remember that "Robocraft Royale" map you devs have sitting around someplace?[]
+
+=== Text #20 ===
+> [Now] you can "Buy Them All"!
+** Seeing all 50 states, the District of Columbia and the 5 permanently inhabited U.S. territories has been[ completed] within a year's time by numerous travelers, but for most of us, it[ will] be a lifetime[ endeavor]. This set[ is] only recommended for those travelers that anticipate achieving this goal within 5 years of[ purchase]. The adhesive (stickiness) of an[ unused Travel] Stamp can[ start to] break down[ after] 5 years. This situation only applies to Travel Stamps that haven't[ been used yet]. Once you've[ used] a Travel Stamp by applying it into your book, it[ will] stick permanently.[]
+
+
+Description: 
+2025-05-10 22:13:09,957 - root - INFO - Actions, activities, or states of being
+
+2025-05-10 22:13:09,961 - root - INFO - Cluster #4 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.csv
+2025-05-10 22:13:09,962 - root - INFO - ================================================================================
+2025-05-10 22:13:09,962 - root - INFO - ANALYSIS COMPLETED
+2025-05-10 22:13:09,963 - root - INFO - ================================================================================
+2025-05-10 22:13:09,963 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.log
+2025-05-10 22:13:09,964 - root - INFO - CSV saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/gpt2-xl_layer-20_unit-5789_2025-05-10_20-01-37.csv

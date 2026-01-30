@@ -1,0 +1,1759 @@
+2025-04-09 15:32:48,211 - root - INFO - ================================================================================
+2025-04-09 15:32:48,226 - root - INFO - CONFIGURATION PARAMETERS
+2025-04-09 15:32:48,227 - root - INFO - ================================================================================
+2025-04-09 15:32:48,227 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-04-09 15:32:48,228 - root - INFO - AGG_METHOD = mean
+2025-04-09 15:32:48,228 - root - INFO - BATCH_SIZE = 2
+2025-04-09 15:32:48,228 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-04-09 15:32:48,229 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-04-09 15:32:48,229 - root - INFO - CLUSTER_METHOD = KMeans
+2025-04-09 15:32:48,230 - root - INFO - CLUSTER_N_SAMPLES = 100
+2025-04-09 15:32:48,230 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-04-09 15:32:48,231 - root - INFO - CONTROL_DATA = cosmopedia
+2025-04-09 15:32:48,231 - root - INFO - CONTROL_DATA_FILES = None
+2025-04-09 15:32:48,231 - root - INFO - CONTROL_SPLIT = train
+2025-04-09 15:32:48,232 - root - INFO - DATA_FILES = None
+2025-04-09 15:32:48,232 - root - INFO - DEVICE = cuda
+2025-04-09 15:32:48,233 - root - INFO - END_INTERVAL = 1.0
+2025-04-09 15:32:48,233 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-04-09 15:32:48,233 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-04-09 15:32:48,234 - root - INFO - HOOK_ID = mlp.hook_post
+2025-04-09 15:32:48,234 - root - INFO - HOOK_NAME = blocks.6.mlp.hook_post
+2025-04-09 15:32:48,235 - root - INFO - LAYER_ID = 6
+2025-04-09 15:32:48,235 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-04-09 15:32:48,235 - root - INFO - METHOD_NAME = GPT-explain
+2025-04-09 15:32:48,236 - root - INFO - MULTI_EVAL = False
+2025-04-09 15:32:48,236 - root - INFO - N_CLUSTERS = 5
+2025-04-09 15:32:48,236 - root - INFO - N_SAMPLES = 10
+2025-04-09 15:32:48,237 - root - INFO - PERCENTILE_STEP = 0.0005
+2025-04-09 15:32:48,237 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-04-09 15:32:48,238 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-04-09 15:32:48,238 - root - INFO - SAVE_ACTIVATIONS = True
+2025-04-09 15:32:48,239 - root - INFO - SPLIT = train
+2025-04-09 15:32:48,239 - root - INFO - START_INTERVAL = 0.95
+2025-04-09 15:32:48,239 - root - INFO - STREAMING = True
+2025-04-09 15:32:48,240 - root - INFO - SUBSET_SIZE = 1000
+2025-04-09 15:32:48,240 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-04-09 15:32:48,240 - root - INFO - TARGET_DATA = c4
+2025-04-09 15:32:48,241 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-04-09 15:32:48,241 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-04-09 15:32:48,242 - root - INFO - TRAINED_LAYER = mlp
+2025-04-09 15:32:48,242 - root - INFO - UNIT_ID = 6386
+2025-04-09 15:32:48,243 - root - INFO - USE_API = True
+2025-04-09 15:32:48,243 - root - INFO - VERSION = v5_32k
+2025-04-09 15:32:48,243 - root - INFO - WIDTH = 16
+2025-04-09 15:32:48,244 - root - INFO - ================================================================================
+2025-04-09 15:32:48,244 - root - INFO - ANALYSIS RESULTS
+2025-04-09 15:32:48,244 - root - INFO - ================================================================================
+2025-04-09 15:32:48,245 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.log
+2025-04-09 15:34:46,127 - root - INFO - Reached 100 samples.
+2025-04-09 15:34:46,792 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-04-09 15:34:46,793 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-04-09 15:35:11,106 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-04-09 15:35:17,145 - root - INFO - Number of candidates: 101
+2025-04-09 15:35:19,299 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 10)
+
+2025-04-09 15:35:19,300 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Ltd (0.485866904258728)
+Text #1:  UK (0.3064665198326111)
+Text #1:  Ltd (0.4870886206626892)
+Text #1: V (0.12711846828460693)
+Text #1:  Ltd (0.43087100982666016)
+Text #1:  supplier (0.0939238891005516)
+Text #1:  AN (0.023921316489577293)
+Text #1:  ITS (0.05053186044096947)
+Text #1:  camera (0.1722995489835739)
+Text #1:  UK (0.493436336517334)
+Text #1:  V (0.3343096077442169)
+Text #1: ys (0.027002926915884018)
+Text #1:  V (0.16574299335479736)
+Text #1:  V (0.12135954201221466)
+Text #1:  Ltd (0.20697090029716492)
+Text #1:  office (0.0510299950838089)
+Text #1:  UK (0.3781667947769165)
+Text #1:  offices (0.16343946754932404)
+Text #1:  first (0.16704416275024414)
+Text #1:  retain (0.05289845168590546)
+Text #1:  VAT (0.0489467978477478)
+Text #1:  numbers (0.029344739392399788)
+Text #1:  so (0.05640644580125809)
+Text #1:  UK (0.08274607360363007)
+Text #1:  continued (0.1716296523809433)
+Text #2: / (0.06976988911628723)
+Text #2:  explain (0.42791062593460083)
+Text #2:  actively (0.37294718623161316)
+Text #2:  ASAP (0.2141357660293579)
+Text #3:  approximately (0.010451963171362877)
+Text #4:  relation (0.09138675034046173)
+Text #4:  structure (0.07127001881599426)
+Text #4:  confirms (0.3792702257633209)
+Text #4:  inert (0.005167292430996895)
+Text #4: ial (0.015990905463695526)
+Text #4:  S (0.03145955875515938)
+Text #4:  v (0.05241231247782707)
+Text #4:  relativity (0.2882910668849945)
+Text #4:  v (0.0812777578830719)
+Text #4:  physical (0.3855043649673462)
+Text #4:  physical (0.3773602843284607)
+Text #4:  physical (0.33707740902900696)
+Text #4:  equal (0.07286021113395691)
+Text #4:  physical (0.2501522898674011)
+Text #4:  physical (0.2566676735877991)
+Text #4:  physical (0.3242613673210144)
+Text #4:  according (0.1258639097213745)
+Text #4:  relativity (0.19064098596572876)
+Text #4:  according (0.022264160215854645)
+Text #4:  relativity (0.11732298880815506)
+Text #4:  explain (0.6304865479469299)
+Text #4:  relat (0.9472870826721191)
+Text #4: iv (0.651465654373169)
+Text #4: istic (0.12304960936307907)
+Text #4:  Lore (1.021104097366333)
+Text #4:  quantum (0.2509082853794098)
+Text #4:  Cas (0.9877417683601379)
+Text #4: imir (1.1389468908309937)
+Text #4:  physical (0.27996826171875)
+Text #4: point (0.18537800014019012)
+Text #4: point (0.08800061047077179)
+Text #4: point (0.05590754374861717)
+Text #4:  structure (0.10916782915592194)
+Text #4:  Einstein (0.8051251173019409)
+Text #4:  Einstein (0.8261657357215881)
+Text #4:  mechanics (0.027409836649894714)
+Text #4: point (0.09166999906301498)
+Text #4: point (0.09500400722026825)
+Text #6: ia (0.11606088280677795)
+Text #6: ian (0.2769222855567932)
+Text #6: ary (0.17349477112293243)
+Text #6:  position (0.4931587874889374)
+Text #6:  Mes (0.1629299372434616)
+Text #6: ozo (0.6278828382492065)
+Text #6: ia (0.10170306265354156)
+Text #6: v (0.10846056789159775)
+Text #6: ial (0.23156052827835083)
+Text #6:  platforms (0.18179836869239807)
+Text #6: aurus (0.7401365637779236)
+Text #6:  fragile (0.10352835059165955)
+Text #6: us (0.00844386126846075)
+Text #6:  Dawkins (1.0030256509780884)
+Text #6:  biologists (0.29708749055862427)
+Text #6:  Dawkins (0.5684153437614441)
+Text #6:  department (0.04150528460741043)
+Text #6:  biology (0.010955014266073704)
+Text #6:  replica (0.08326943218708038)
+Text #6:  point (0.024680014699697495)
+Text #6:  Newton (1.6694223880767822)
+Text #6: ian (0.06998372077941895)
+Text #6:  Darwin (0.5518263578414917)
+Text #6: lan (0.1355157196521759)
+Text #6: cipline (0.034418776631355286)
+Text #6: La (0.09022769331932068)
+Text #7: U (0.01593099907040596)
+Text #7: PS (0.041221316903829575)
+Text #7: iological (0.3231563866138458)
+Text #7:  placed (0.05404546111822128)
+Text #8:  super (0.13355913758277893)
+Text #8:  describe (0.2342635691165924)
+Text #8: sum (0.033359672874212265)
+Text #8:  angles (0.5000219941139221)
+Text #8:  member (0.11237818002700806)
+Text #8:  member (0.012492296285927296)
+Text #8: � (0.4076527953147888)
+Text #9:  Relative (0.5254626274108887)
+Text #9:  Price (0.8760195374488831)
+Text #9: ersion (0.8341500759124756)
+Text #9:  Reserve (0.3096448481082916)
+Text #9: & (0.06889288127422333)
+Text #9:  Fed (0.21375729143619537)
+Text #9:  Chair (0.2525648772716522)
+Text #9:  Baseball (0.0018573591951280832)
+Text #9:  Cliff (0.15132656693458557)
+Text #9:  Case (0.12897075712680817)
+Text #9:  Models (0.49094557762145996)
+Text #9: Further (0.16071264445781708)
+Text #9:  D (0.2837655246257782)
+Text #9: etermin (0.9915310144424438)
+Text #9: ants (0.4868435859680176)
+Text #9:  Sovereign (0.4500527083873749)
+Text #9:  Credit (0.047725923359394073)
+Text #9:  Ratings (0.15471996366977692)
+Text #9:  Shannon (1.708082914352417)
+Text #9: auer (0.029515964910387993)
+Text #9: ical (0.19115038216114044)
+Text #9:  Relationship (0.282687783241272)
+Text #9:  Y (1.0582689046859741)
+Text #9:  Sun (0.0028368851635605097)
+Text #10: U (0.43308183550834656)
+Text #10: AS (0.6178441047668457)
+Text #10:  U (0.569697916507721)
+Text #10: AS (1.0556557178497314)
+Text #10:  platforms (0.08339551836252213)
+Text #10:  base (0.0787695050239563)
+Text #10:  comparison (0.14508624374866486)
+Text #10:  tele (0.10749804973602295)
+Text #10:  compared (0.08905649930238724)
+Text #10:  determine (0.24908217787742615)
+Text #10:  simulator (0.3328685760498047)
+Text #10:  representation (0.6035733819007874)
+Text #10:  physical (1.4685893058776855)
+Text #10:  simulated (0.11218788474798203)
+Text #10:  simulator (0.19630976021289825)
+Text #10:  magnitude (0.14741824567317963)
+Text #10:  observed (0.4087800681591034)
+Text #10:  points (2.1092231273651123)
+Text #10:  test (0.3310485780239105)
+Text #10:  cases (0.5615420937538147)
+Text #10:  checks (0.4641440510749817)
+Text #10:  for (0.1936131864786148)
+Text #10:  points (2.0614209175109863)
+Text #10:  various (0.20773246884346008)
+Text #10:  simulated (0.09579368680715561)
+Text #10:  points (1.1247248649597168)
+Text #10:  0 (0.24533475935459137)
+Text #10:  vehicle (0.08616659790277481)
+Text #10:  attitude (0.1427755504846573)
+Text #10:  0 (0.11851848661899567)
+Text #10:  33 (0.08196675777435303)
+Text #10:  difference (0.07459095865488052)
+Text #10:  over (0.1377081722021103)
+Text #10:  test (0.12654589116573334)
+Text #10:  cases (0.23682305216789246)
+Text #10:  attitude (0.4123963713645935)
+Text #10: . (0.10561656206846237)
+Text #10:  over (0.115605928003788)
+Text #10:  93 (0.11767686903476715)
+Text #10:  compared (0.07242351770401001)
+Text #10:  On (0.08716733753681183)
+Text #10:  simulator (0.553566575050354)
+Text #10:  agreement (1.195158839225769)
+Text #10:  to (0.09600786119699478)
+Text #10:  therefore (0.686461865901947)
+Text #10:  prior (0.16497842967510223)
+Text #10:  further (1.2618534564971924)
+Text #10:  development (0.08693020790815353)
+Text #10: Ram (0.09715799987316132)
+Text #10:  Open (0.3515629172325134)
+Text #10:  U (0.10170840471982956)
+Text #10: AS (0.5094269514083862)
+
+=== Text #1 ===
+> We are changing our name on the 31st May 2016: Vysionics ITS[ Ltd] will now be JENOPTIK Traffic Solutions[ UK Ltd].
+[V]ysionics ITS[ Ltd] has long been a[ supplier] of[ AN]PR based advanced[ ITS] solutions, with thousands of[ camera] systems installed across the[ UK] and beyond. In November 2014,[ Vys]ionics was acquired by Jenoptik Traffic Solutions, becoming a part of the Jenoptik Group, with the associated benefits from the professional structures of an international, listed corporate group.
+Following a successful integration period, we at[ V]ysionics are now changing our company name as well. As a result,[ V]ysionics ITS[ Ltd] is changing its name and offering its services under the Jenoptik brand.
+Our registered[ office] address, all[ UK] regional[ offices] and your current contacts here will not change, and telephone numbers will also stay valid. The new e-mail addresses will then be composed as follows:[ first]name.lastname@jenoptik.com.
+We will[ retain] our company and[ VAT numbers],[ so] the change in our company name will have no effect on either the business or on its legal identification. All contracts with the company shall also remain in effect.
+Our comprehensive portfolio of ANPR related services will continue, with the added advantage of being a part of an international and financially strong listed company.
+If this notice has not answered all of your questions, please don't hesitate to get in touch with your previous contact at JENOPTIK Traffic Solutions[ UK].
+We look forward to[ continued] close and trusting cooperation with you.
+
+=== Text #2 ===
+> Short Sales in Newtown, CT - as of 10/22[/]10. Back in September 2008, we posted a blog titled "Short Sale - What is It?". We think this is useful information as we frequently[ explain] what a short sale is to both buyers and sellers. Our intention is to update you every 2 months about the short sale activity in Newtown, CT.
+The price range of the[ actively] listed short sales in Newtown range from $159,000 to $875,000. As you can see, short sales in Newtown, CT have been selling, despite being difficult transactions.
+If you would like a list of the short sales in Newtown, CT, just email us and we'll forward it to you[ ASAP].
+If you would like to sell your home and feel it might be a short sale, please contact us. WE CAN HELP YOU. We are experienced with short sales and we are also SFR Certified. Anything you tell us will be held in the strictest confidence and will not be shared with anyone else.
+
+=== Text #3 ===
+> BANGALORE CY JUNCTION SBC to GONDIA JUNCTION G train timings, routes, stops, and complete info.
+As of now, 1 trains run between from BANGALORE CY JUNCTION (YPR) to GONDIA JUNCTION (G).
+The fastest train from BANGALORE CY JUNCTION (YPR) to GONDIA JUNCTION (G) is YPR KRBA WAINGANGA EXP (12251) that departs at 23:40 and arrives to at 21:15. It takes[ approximately] 21:35 hours.
+
+=== Text #4 ===
+> The blog deals with new theories and observations in[ relation] to the composition and[ structure] of the Cosmos.
+If you can find observations or experiments that[ confirms] or rejects the theory, you may place them on the blog!
+Is anyone able to answer these questions!
+What is the length of the coordinates in the two[ inertial] systems[ S] and S' at the velocity[ v], according to[ relativity] - if the length of the coordinates are identical at[ v] = zero?
+1) Is the[ physical] length of the coordinates greatest in S?
+2) Is the[ physical] length of the coordinates greatest in S'?
+3) Is the[ physical] length of the coordinates in S[ equal] to the[ physical] length of the coordinates in S'?
+If the[ physical] lengths are identical, will it then be possible to have any[ physical] length contractions[ according] to[ relativity]? Or, in other words, have you ever experienced a length contraction because of the movement of another coordinate system?
+If it isn't possible to have any length contractions[ according] to[ relativity], how can relativity then[ explain] the[ relativistic] experiments where a[ Lore]ntz contraction occurs?
+In the[ quantum] field theory, the[ Casimir] effect is a[ physical] force arising from the zero-[point] field, where the zero-[point] field is the quantum state with the lowest possible energy.
+The existence of the zero-[point] field, at the same time both confirms the theory about the[ structure] and composition of the Cosmos, and overturns[ Einstein]'s principle of relativity.
+This can bee seen from the fact, that you cannot - as[ Einstein] postulate - have that "the same laws of electrodynamics and optics will be valid for all frames of reference for which the equations of[ mechanics] hold good" and at the same time have a stationary zero-[point] field.
+For instance will the velocity relative to the zero-[point] field be different for different frames of reference.
+
+=== Text #5 ===
+> Roser, M. （2017）。 The short history of global living conditions and why it matters that we know it. Published online at OurWorldInData. org.
+Levari, D. E., Gilbert, D. T., Wilson, T. D., Sievers, B., Amodio, D. M., & Wheatley, T. （2018）。 Prevalence-induced concept change in human judgment. Science, 360（6396）， 1465-1467.
+
+=== Text #6 ===
+> The ebook makes a speciality of geological historical past because the severe think about making a choice on the current biodiversity and landscapes of Amazon[ia]. the various riding mechanisms for panorama evolution are explored through reviewing the historical past of the Amazon[ian] Craton, the linked sediment[ary] basins, and the[ position] of mountain uplift and weather swap.
+This e-book provdes an perception into the[ Mes]o- and Cen[ozo]ic list of Amazon[ia] that used to be characterised by way of flu[vial] and long-lived lake[ platforms] and a hugely varied wildlife. This fauna comprises giants akin to the ca. 12 m lengthy caiman Puruss[aurus], but additionally a diversified fish fauna and[ fragile] moll[us]cs, while fossil pollen and spores shape relics of ancestral swamps and rainforests.
+With exceptional wit, readability, and intelligence, Richard[ Dawkins], one of many world&apos;s most famed evolutionary[ biologists], has brought numerous readers to the wonders of technological know-how in works equivalent to The egocentric Gene. Now, within the Ancestor&apos;s story,[ Dawkins] deals a masterwork: an exciting opposite journey via evolution, from present-day people again to the microbial beginnings of lifestyles 4 billion years in the past.
+Colonial dwelling is characterised through[ department] of work and finely coordinated association; besides the fact that, many occasions inside of a colony are the results of conflicts among participants trying to maximize their very own pursuits. This interaction of cooperation and clash has raised many questions in evolutionary[ biology], in particular how cooperative habit is maintained within the absence of direct[ replica] through staff.
+To this[ point], the dominant paradigms by which glossy scientists have seen nature were established essentially round[ Newtonian] and[ Darwin]ian methods. As theoretical ecologist Robert E. U[lan]owicz observes in his new paintings, a 3rd Window, neither of those types is enough for explaining how actual change—in the shape of inventive increase or emergence—takes position in nature.
+Ecology is in a hard kingdom as a systematic self-dis[cipline]. whereas a few theoretical ecologists try to construct a definition of ecology from first rules, many others are wondering even the feasibility of a normal and common thought. even as, it really is more and more vital that ecology is safely and functionally outlined for a iteration of researchers tackling escalating environmental difficulties within the face of doubt and war of words.
+See Chapter 15). , Chapter 16. (9) Middle Miocene Honda Group ([La] Venta
+
+=== Text #7 ===
+> The Center for the Study of Culture, Politics and Society (CEC[UPS]) is devoted to the soc[iological] analysis of cultural and political subjects, in particular subjects[ placed] in the confluence of those two realms or dimensions of social reality. In this way, and mainly from a comparative perspective, we make research about cultural policy, the relationship between culture and territory, citizenship and the Welfare State, the cultural construction of Europe or the reflexive configuration of modernity.
+Arturo Rodríguez Morató. Mariano Martín Zamorano. 2018. Cultural Policy in Ibero-America – A Regional Perspective. Taylor & Francis.
+
+=== Text #8 ===
+> Both the federation of states and the federal[ super]-state[ describe] the same zero-[sum] game from different[ angles]. Either there is one single state of Europe (federalism), in which case there are no national[ member] states; or else the national[ member] states remain Europe�[�]s rulers, in which case there is no Europe (inter-governmentalism). Within this framework of thought, whatever Europe gains, the individual nations lose. And this is true whether one is for a given option or against it. Caught up in the false alternatives of the national gaze, we are given the choice between no Europe or no Europe.
+The decline of the nation-state is really a decline of the specifically national content of the state and an opportunity to create a cosmopolitan state system that is better able to deal with the problems that all nations face in the world today. Economic globalisation, transnational terrorism, global warming: the litany is familiar and daunting. There are a host of problems that are clearly beyond the power of the old order of nation-states to cope with. The answer to global problems that are gathering ominously all around and that refuse to yield to nation-state solutions is for politics to take a quantum leap from the nation-state system to the cosmopolitan state system. Politics needs to regain credibility in order to craft real solutions.
+More than anywhere else in the world, Europe shows that this step is possible. Europe teaches the modern world that the political evolution of states and state systems is by no means at an end. National realpolitik is becoming unreal, not only in Europe, but throughout the world. It is turning into a lose-lose game.
+Europeanisation means creating a new politics. It means entering as a player into the meta-power game, into the struggle to form the rules of a global order. The catchphrase for the future might be: move over America, Europe is back.
+The EU uses money for things that the various countries governments would not dream of spending it on, such as regional projects, culture, the arts and so on. The governments would probably just use that money to bail out banks..
+
+=== Text #9 ===
+> "Unemployment,[ Relative Price] Disp[ersion] and the Implicit Contract Model."
+"The Federal[ Reserve&]apos;s Preferences for Inflation and Unemployment: An Analysis of[ Fed Chair]men."
+"Do Presidential Administrations Have Preferred Rates of Unemployment?"
+"The[ Baseball] Writer and The National Baseball Hall of Fame: Are Election Outcomes Affected by Race or Ethnicity?," (with[ Cliff] Reid).
+"Race, Ethnicity and The National Baseball Hall of Fame: Is There Discrimination in the Nomination Process?," (with Cliff Reid and John Santos).
+"Discrimination, Voting Behavior and the National Baseball Hall of Fame: The[ Case] of Pitchers," (with Cliff Reid).
+"A Comparison of Two[ Models] to Forecast Voting for Membership into the National Baseball Hall of Fame," (with Cliff Reid).
+"Jackie Robinson and The National Baseball Hall of Fame," (with Cliff Reid).
+"Race, Ethnicity and the Market(s) for Baseball Cards," (with Jim Meehan and Cliff Reid).
+"[Further] Analysis of the[ Determinants] of[ Sovereign Credit Ratings]," (with[ Shannon] Land[auer], &apos;99).
+"An Empir[ical] Analysis of the[ Relationship] between the[ Y]ield Spread and the Probability of Recessions," (with[ Sun]il Thakor, &apos;99).
+
+=== Text #10 ===
+> Constant development in Unmanned Aircraft System ([UAS]) technologies results in evolving aircraft, instrumentation, and control programs of these systems. An open source simulator was examined as a potential method of testing[ UAS platforms] changes. The open source simulator was used to simulate flights flown by an actual platform. Existing flight data was used as a[ base] line of[ comparison] for the[ tele]metry data of the simulated flight. Patterns in parameters such as vehicle attitude and throttle output were[ compared] between the simulated and actual results to[ determine] if the[ simulator] produced an accurate[ representation] of a[ physical] flight. Analysis of the[ simulated] vehicle exhibited similar behavior to that of the actual vehicle in most of the flight data collected. Simplification in the flight[ simulator] model may be responsible for the deviations in[ magnitude observed] between the two sets of data. Three[ points] of interest in each of the three[ test cases] were chosen as[ checks for] the values in the data. These[ points] in the flight were studied in the[ various] graphs of the parameters graphed and the difference between the[ simulated] and actual values was calculated. The values at these[ points] stayed within an average of[ 0]° and 30° for[ vehicle attitude] and between[ 0]% and[ 33].3% throttle[ difference over] the three[ test cases]. The average difference in[ attitude] was 5[.]1°[ over 93 compared] values and 8.1% in throttle over 18 compared values.[ On] average the[ simulator] showed good[ agreement to] existing flight data and[ therefore] will be a good tool to simulate flights[ prior] to a mission. The accuracy of the results may be improved with[ further development] of the simulation model.
+[Ram]irez Duarte, Jaime A. (2018) "Feasibility Study for the Application of[ Open] Source[ UAS] Autopilot Simulator," McNair Scholars Research Journal: Vol. 5 , Article 4.
+
+
+Description: 
+2025-04-09 15:35:19,301 - root - INFO - Company, location, product/service, scientific concepts, academic disciplines, publications, financial/economic terms, proper nouns (people, organizations, places)
+
+2025-04-09 15:35:19,305 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.csv
+2025-04-09 15:35:20,658 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 30)
+
+2025-04-09 15:35:20,659 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Arlington (0.14810331165790558)
+Text #1:  Board (0.014857906848192215)
+Text #1:  northern (0.08169127255678177)
+Text #1: member (0.05000587925314903)
+Text #1:  Arlington (0.42276373505592346)
+Text #1:  Arlington (0.12148063629865646)
+Text #1:  HQ (0.32424214482307434)
+Text #1:  Arlington (0.07688451558351517)
+Text #1: � (0.02723024971783161)
+Text #1:  staff (0.003114771330729127)
+Text #1:  Arlington (0.24928997457027435)
+Text #1:  northern (0.023005971685051918)
+Text #1: � (0.35734501481056213)
+Text #1:  found (0.41395485401153564)
+Text #1: � (0.14607056975364685)
+Text #1:  York (0.006923295557498932)
+Text #1: � (0.14459539949893951)
+Text #1:  Arlington (0.48079314827919006)
+Text #1:  $ (0.0809057354927063)
+Text #1: � (0.04598604515194893)
+Text #1:  $ (0.192151740193367)
+Text #2:  cause (0.3597016930580139)
+Text #2:  first (0.08113989979028702)
+Text #2:  Further (0.023376591503620148)
+Text #2:  cause (0.027439169585704803)
+Text #2: � (0.028144212439656258)
+Text #2:  force (0.4639974534511566)
+Text #2:  tow (0.3016505837440491)
+Text #2: × (0.041720014065504074)
+Text #2:  cause (0.05015585198998451)
+Text #3:  tripled (0.045070305466651917)
+Text #3:  to (0.02843707986176014)
+Text #3:  frame (0.1445520520210266)
+Text #3:  first (0.3408123850822449)
+Text #3:  bankers (0.23417583107948303)
+Text #3:  bankers (0.24015086889266968)
+Text #3:  Ja (0.6683652997016907)
+Text #3: � (0.04688910394906998)
+Text #3:  incredible (0.04376779869198799)
+Text #3: � (0.31637120246887207)
+Text #3:  Ja (0.4273740351200104)
+Text #3:  analyst (0.008820576593279839)
+Text #3: � (0.1341630071401596)
+Text #3: Ja (0.3239360451698303)
+Text #3:  Digital (0.505571186542511)
+Text #3:  Opening (0.03962767869234085)
+Text #3:  Point (0.37623217701911926)
+Text #3:  digital (0.6513559818267822)
+Text #3:  channels (0.11117634922266006)
+Text #3:  physical (0.14315952360630035)
+Text #3:  Ja (0.4767335057258606)
+Text #3:  branch (0.05897749960422516)
+Text #3:  digital (0.5244408845901489)
+Text #3:  costs (0.09104076772928238)
+Text #3:  Chase (0.4537867605686188)
+Text #3:  tell (0.021293874830007553)
+Text #3: , (0.07456892728805542)
+Text #3:  placing (0.36600461602211)
+Text #3:  terms (0.20136108994483948)
+Text #3:  costs (0.09698501229286194)
+Text #3:  U (0.24096336960792542)
+Text #3: S (0.2649156153202057)
+Text #3: . (0.11004699766635895)
+Text #3:  locations (0.11561039835214615)
+Text #3:  FD (0.39214852452278137)
+Text #3: IC (0.09476737678050995)
+Text #3:  93 (0.1392315775156021)
+Text #3: . (0.023115552961826324)
+Text #3:  Bryan (0.3581455945968628)
+Text #3:  American (0.059746477752923965)
+Text #3:  quick (0.2125430703163147)
+Text #3:  point (0.5724399089813232)
+Text #3:  has (0.018786847591400146)
+Text #3:  inventory (0.08293455094099045)
+Text #3:  branch (0.11108537763357162)
+Text #3:  maintenance (0.08939911425113678)
+Text #3:  devices (0.4708704352378845)
+Text #3:  advice (0.082217276096344)
+Text #3:  F (0.1429593414068222)
+Text #3: Is (0.17818312346935272)
+Text #3:  guiding (0.07157564163208008)
+Text #3:  early (0.024383144453167915)
+Text #4:  ballistic (0.1545126587152481)
+Text #4:  reporters (0.042708802968263626)
+Text #4:  other (0.13574062287807465)
+Text #4:  officials (0.13036878407001495)
+Text #4:  point (0.11326836794614792)
+Text #4:  officer (0.5613371133804321)
+Text #4:  Brig (0.40634825825691223)
+Text #4:  Gen (0.019332149997353554)
+Text #4:  details (0.39910387992858887)
+Text #4:  probe (0.3947681784629822)
+Text #4:  E (0.003032977692782879)
+Text #4: MA (0.7784097790718079)
+Text #4:  media (0.11476697772741318)
+Text #5:  Council (0.1411464959383011)
+Text #5:  word (0.2077314853668213)
+Text #5: SC (0.16559122502803802)
+Text #5: SC (0.1283981055021286)
+Text #5:  member (0.04154409468173981)
+Text #5:  UN (0.09315822273492813)
+Text #5:  access (0.11318664997816086)
+Text #5:  special (0.3838011622428894)
+Text #5: � (0.1630154699087143)
+Text #6: eg (0.020888347178697586)
+Text #6:  abroad (0.29082950949668884)
+Text #6:  abroad (0.309572696685791)
+Text #6:  local (0.031456682831048965)
+Text #6:  situation (0.2248287945985794)
+Text #6:  office (0.5703439712524414)
+Text #6:  office (0.35161322355270386)
+Text #6:  office (0.3285723626613617)
+Text #6:  accountant (0.28631243109703064)
+Text #6:  information (0.0008623214089311659)
+Text #6:  has (0.1314268708229065)
+Text #6:  provided (0.16936711966991425)
+Text #6:  guide (0.27458325028419495)
+Text #6:  details (0.16809190809726715)
+Text #6:  other (0.0031414686236530542)
+Text #6:  detailed (0.3517962098121643)
+Text #6:  office (0.9346158504486084)
+Text #6:  specialist (1.0625436305999756)
+Text #6:  accountant (0.5822206139564514)
+Text #7:  even (0.02053065598011017)
+Text #7:  amateur (0.3922045826911926)
+Text #7:  expert (0.354361891746521)
+Text #7:  dig (0.019775085151195526)
+Text #7:  further (0.2132144719362259)
+Text #7:  specialists (0.47253501415252686)
+Text #8:  top (0.09758538007736206)
+Text #8:  AAC (0.8198865056037903)
+Text #8: redited (0.3951776623725891)
+Text #8: � (0.04227598011493683)
+Text #8:  duly (0.005267840810120106)
+Text #9: PC (0.14097008109092712)
+Text #9: A (0.5457658171653748)
+Text #9: A (0.46134594082832336)
+Text #9:  special (0.04518969729542732)
+Text #10: Al (0.13437899947166443)
+Text #11:  Photography (0.23470234870910645)
+Text #11: left (0.015906352549791336)
+Text #11:  Photography (0.16867463290691376)
+Text #12: istically (1.074727177619934)
+Text #12:  Nations (0.01245906949043274)
+Text #12:  report (0.12155009806156158)
+Text #17:  information (0.04506593942642212)
+Text #17:  about (0.13354013860225677)
+Text #17:  Dr (0.35674336552619934)
+Text #17:  Leigh (0.1993369311094284)
+Text #17:  below (0.011530700139701366)
+Text #17:  order (0.6270462274551392)
+Text #17:  Dr (0.0913466215133667)
+Text #17:  Leigh (0.16052685678005219)
+Text #17:  Leigh (0.016526715829968452)
+Text #17:  chirop (0.002210161881521344)
+Text #18:  local (0.004614280536770821)
+Text #18:  police (0.10275253653526306)
+Text #18:  agencies (0.48451176285743713)
+Text #18:  patrols (0.20673413574695587)
+Text #18:  jurisdictions (0.5605325698852539)
+Text #18:  on (0.04310178384184837)
+Text #18:  police (0.11472539603710175)
+Text #18:  officers (0.6116417050361633)
+Text #18:  spec (0.2864622473716736)
+Text #18: ally (0.3786577880382538)
+Text #19:  showed (0.16424337029457092)
+Text #19:  showed (0.3019354045391083)
+Text #22:  backward (0.4584527313709259)
+Text #22:  mask (0.5032422542572021)
+Text #22:  cop (0.22213776409626007)
+Text #22:  cop (0.18378418684005737)
+Text #25: ve (0.19898562133312225)
+Text #26:  experts (0.08248259872198105)
+Text #29: ommel (0.05857214331626892)
+Text #29:  officer (0.10763567686080933)
+Text #30:  athlet (0.03248453140258789)
+Text #30:  Einstein (0.01917264237999916)
+
+=== Text #1 ===
+> The[ Arlington] County[ Board] plans to vote Saturday afternoon on giving Amazon $23 million and other incentives to build a headquarters campus in Crystal City, but only after hearing scores of[ northern] Virginia residents and advocates testify for or against the project.
+The five-[member] board is expected to support the plan, which was announced amid much hoopla on Nov. 13. The proposed county incentives are part of an agreement in which Amazon would occupy significant office space and bring at least 25,000 high-paying jobs to[ Arlington] in coming years.
+Opponents hope to postpone the vote until after additional public hearings, where they want representatives of the online retail giant to answer questions directly from anyone in the community.
+The Saturday hearing was scheduled to begin no earlier than 1 p.m. and last several hours before the vote. Ninety-one people signed up in advance to speak on the topic.
+In the four months since[ Arlington] won a much-publicized, nationwide contest to attract the facility known as[ HQ]2,[ Arlington] residents have been asking questions about its impact on their community.
+People have looked at the county�[�]s five online Q&A sessions 14,000 times, and about 400 attended community events to discuss the provisions in the Amazon agreement. Board members and county[ staff] also met with scores of civic organizations, served on multiple panels and appeared on television, online and in news articles to discuss the deal.
+Most[ Arlington]ians,[ northern] Virginians and residents of the Washington region support Amazon�[�]s arrival, several surveys have[ found]. Business organizations, universities and nonprofit groups came out strongly for the deal.
+But a small, vocal group of activists has sought to block the project, saying that the county and commonwealth should not give any incentives to one of the world�[�]s most valuable companies. They also have demanded housing and job protections for existing residents.
+These opponents — including left-wing organizations and immigrants groups — felt empowered after Amazon canceled plans last month to build a headquarters facility in New[ York] City, also with 25,000 jobs. The company withdrew after criticism of the plan from some elected leaders, unions and community activists.
+In Virginia, however, such opposition did not appear to catch fire among the broader public.
+Officials estimate that the Amazon project�[�]s net fiscal impact on[ Arlington] could be worth additional revenue of[ $]162 million over 12 years and $392.5 million over 16 years.
+The incentives agreement promises the world�[�]s largest online retailer cash grants estimated at about[ $]23 million if it occupies 6.
+
+=== Text #2 ===
+> Accidents are very common today. There are many accidents that happen every day. These accidents[ cause] traffic congestion and can take hours to clear. When vehicles were[ first] introduced not all could afford it.[ Further] it was not considered as a worthy investment. Only a few people used it. Over time the demand and usefulness of vehicles began to show. This caused a huge demand which resulted in the world we live today. The moment we step out of our houses we see roads. Vehicles have become so important that we use more than half of the land for roads. This by itself shows the importance we place on vehicles and the affect it has on our daily lives. All of us use vehicles to travel and it is a crucial requirement. This requirement has been increasing while the number of vehicles has increased. The increase has resulted in congestion of the road. Congestion is not the only reason for accidents, there are many. Here are the main reasons for vehicular accidents to occur.
+The main reasons for accidents are when the driver gets distracted. This results in the driver ignoring the road and what is in front. Usually the main distractions are phone calls, text messages, smartphone usage, looking somewhere else and meddling with the radio. These accidents are dangerous as well. The driver may hit a bystander.
+Speeding is a large[ cause] for accidents. When the driver speeds he may lose control. This can be very dangerous in a highway where many cars can pile up when there�[�]s a single accidents. Speeding can cause an accident around a large area due to the[ force] the vehicle impacts on. It can claim many live and may require powerful Nissan patrol wreckers to[ tow] the vehicles away.
+Drunk driving is very dangerous and is a criminal offense. When a driver is drunk he or she is impaired and cannot drive properly. Even though it is an illegal activity it is very common. This is mostly due to young people. Drunk drivers can also speed and cause accidents. Drunk driving can result in every other accident such as reckless driving, running the lights, running stop signs are some of them. Police vehicles and various towing vehicles such as the Nissan 4[×]4 wreckers Perth will be needed to clear the scene.
+Reckless driving is another common[ cause] of accidents. Reckless drivers are impatient drivers who may drive in an unlawful manner to get to their destination. These drivers not only endanger themselves but also everyone else on the road.
+« Why And When Do You Need To Take Your Vehicle To The Workshop?
+
+=== Text #3 ===
+> In the past five years the percentage of weekly mobile banking users has more than[ tripled] — from 9% in 2010 to 30% in 2015 — while weekly branch visitors fell from 40%[ to] 24% in the same time[ frame]. 2015 marked the[ first] time that weekly mobile[ bankers] (30%) exceeded branch[ bankers] (24%) in[ Ja]velin�[�]s survey. “What is driving this[ incredible] growth? Smartphones and tablets are gaining rapidly in consumer adoption but it�[�]s also a function of the fact that mobile banking services have not only proliferated but increased in the quality and features they offer consumers,” said[ Ja]velin[ analyst] Daniel Van Dyke during a January 27 webinar reviewing the firm�[�]s Mobile Banking, Smartphone and Tablet Forecast.
+[Ja]velin’s recent report[ Digital] Account[ Opening] Reaches The Tipping[ Point] also found that more Americans are applying for credit cards, loans and investment products through[ digital channels] than[ physical] ones.[ Ja]velin has argued that “FIs that fail to divert resources from[ branch] to[ digital] suffer a large opportunity cost, missing out in lowered servicing[ costs] for basic transactions and in sales of new products.” The service costs argument rings particularly true for mobile deposit, with[ Chase] citing a cost of 65 cents for each[ tell]er deposit vs only 3 cents using mobile. While 38 percent of big bank customers utilize mobile deposit, only 18 percent of community bank and 16 percent of credit union customers do[, placing] these institutions at a significant disadvantage in[ terms] of service[ costs].
+The branch network, which peaked at 99,550[ U].[S. locations] in 2009, has dropped each year since. The latest[ FDIC] figure of[ 93],283 represents a 6[.]3 percent decline in the last six years, although[ Bryan] Yurcan of[ American] Banker was[ quick] to[ point] out that "most of that reduction[ has] come with the nation's largest banks shedding[ inventory] ... many smaller banks have held steady, and even increased,[ branch] numbers."
+Predicting that account[ maintenance] will increasingly be performed on mobile[ devices] but there will be times that customers seek face-to-face[ advice], Schwanhausser said[ FIs] need to "get into the business where they're influencing the behavior of their customers,[ guiding] them to a smarter way to manage their finances. Those are very personal kinds of conversations. It's not about eliminating (the branch) but how do we put the pieces together in a more coherent way?"
+While[ early] adopters of smartwatches tend to be affluent or part of
+
+=== Text #4 ===
+> The Hawaii man who was fired after issuing the false[ ballistic] missile alert in mid-January told[ reporters] Friday that he was very upset over the incident but remained adamant that it appeared, at the time, to be a real-life attack.
+The former state employee – a man in his 50s who asked to remain anonymous for his safety – said that he was “100 percent sure” that the drill on Jan. 13 was real, even though several[ other] employees heard the word “exercise” repeated throughout the message, according to[ officials].
+Once the man realized what had happened, he said he felt like he’d sustained a “body blow.” Since then, he’s reportedly been distressed to the[ point] that he has had trouble eating and sleeping.
+During a news conference on Tuesday, investigating[ officer Brig].[ Gen]. Bruce Oliveira shared[ details] of the state’s[ probe] and said when the mistake was realized, the employee “froze” and “seemed confused.” Another employee had to resume his duties and send a correction message, Oliveira said.
+The employee also reportedly had at least two previous incidents in which he mistook drills for real-world events, including for tsunami and fire warnings. But Oliveira said the employee was previously counseled and allowed to resume his duties.
+Following the event, the employee was fired and Vern Miyagi, who oversaw the Hawaii Emergency Management Agency, took responsibility and resigned.
+Toby Clairmont, the agency’s executive officer, also resigned before disciplinary action could be taken, and authorities are in the process of suspending another worker without pay.
+By 8:20 a.m., Hawaii[ EMA] tweeted there was “NO missile threat” to the state, but failed to send a phone alert for another 38 minutes, causing mass panic among people who weren’t able to check social[ media].
+
+=== Text #5 ===
+> Aman Ullah is with Ro Nay San Lwin and 93 others.
+The UN Security[ Council] has issued a presidential statement on Myanmar complimenting and criticising the country over its stance on the Rohingya crisis and it also gave the government a month to “get its act together”. The 1,300-[ word] statement was read out by the sitting President of UN[SC] Sebastiano Cardi, the Ambassador of Italy, at a formal UN[SC] session on Monday ( November 6, 2017) .
+A presidential statement is a statement made by the President of the Security Council on behalf of the Council, adopted at a formal meeting of the Council and issued as an official document of the Council.
+A Presidential Statement is often created when the United Nations Security Council cannot reach consensus or are prevented from passing a resolution by a permanent[ member]’s veto, or threat thereof. Such statements are similar in content, format, and tone to resolutions, but are not legally binding. The adoption of a Presidential Statement requires consensus, although Security Council members may abstain. The Statement is signed by the sitting Security Council President.
+It was the first presidential statement in 10 years on Myanmar. The Security Council has adopted such statements against Myanmar only three times, with the last one coming a decade ago. Diplomats hailed the move as a unified international stand against a humanitarian crisis that has been called “ethnic cleansing” by the U.N., U.S., France and the U.K.
+It strongly condemned attacks against the Myanmar security forces carried out by the Arakan Rohingya Salvation Army (ARSA) on August 25, and then expressed “grave concern” over the government’s response, the alleged burning of villages and threats to villagers to flee, among others.
+It called for reform in Myanmar’s security and justice sectors and urged the government to work with Bangladesh and the UN to allow the voluntary return of refugees to their homes, on the basis of an October 24 memorandum of understanding between the two country.
+The panel welcomed a “union enterprise mechanism” for humanitarian assistance, resettlement and development in Rakhine.
+It recommended the government ensure the mechanism supported such return and allow[ UN] agencies full[ access], urging governments and all humanitarian partners to pay[ special] attention to the needs of women, particular survivors of sexual violence.
+The council said the government’s primary responsibility is the protection of Myanmar�[�]s population, citizens or not. The statement reiterated concerns and demands previously laid out: an end
+
+=== Text #6 ===
+> Sellers who are non-residents ([eg]. foreigners living[ abroad] and Japanese citizens living[ abroad]).
+Buyers, both[ local] and overseas residents, who are buying real estate in Japan from a non-resident.
+If the seller of Japanese real estate is a non-resident, depending on the[ situation], the buyer must withhold 10.21% of the sale price and pay it to the tax[ office], with the remaining 89.79% paid to the seller. The buyer is responsible for paying the 10.21% to the tax[ office] by the 10th of the month following the transaction.
+It is your obligation to make this payment to the tax[ office] by the deadline. If you are currently living overseas, you will need to appoint a tax representative or[ accountant] to pay this on your behalf. You will need to appoint a tax representative in Japan to file a final tax return to have the remainder returned to you (less any taxes that may have been owed).
+*If the payment of deposits and mid-term payments also meet the conditions for withholding tax, the tax must be withheld and paid by the buyer at each payment.
+The above[ information has] been[ provided] as a general[ guide] only. For more[ details] on this tax, and for[ other detailed] tax questions, please consult with the tax[ office] or a[ specialist] tax[ accountant].
+
+=== Text #7 ===
+> Do You Need Residential Roofing Contractor in Hearne Texas?
+Having a high-quality roof indicates that only a experienced contractor should be retained to do any repairing or[ even] replacements. The only way to separate[ amateur] roofing companies from the professional bunch is examining our jobs. As a roofing company in Hearne Texas, we help make our customers satisfied by giving them extremely reliable Residential Roofing Contractor.
+The[ expert] services our company offers are very reasonable, and this suggests that our customers could have their roofing problem remedied and not having to[ dig further] in their bank account. Our friendly support desk is all set to assist our clients. Call Roofing Bryan to setup an appointment!
+Prior to doing the actual roof repair, we hold appointments with the clients. This technique makes sure that our[ specialists] are better set at choosing the correct methods to any sort of roofing problem at hand. The result is something that the clients as well as our firm are forever happy with.
+Do You Want Residential Roofing Contractor in Hearne Texas?
+
+=== Text #8 ===
+> I , , , , , 1 ” , , , :0 4 r , , Franka BrunsPost-Gazette CUPBOARD NEARLY BARE Jim Marton strolls through. and includes installation of turnaround lanes for large vehicles. WESTMORELAND COUNTY Man.
+He upholds his commitment to the health insurance industry through his understanding and fostering of relationships to support the business endeavors of[ top] brokers across the country. ones you.
+Restaurants in Westmoreland TN (Tennessee), Places To Eat in Westmoreland TN (Tennessee) Menus, Specials & Envents are available for almost all the Restaurants and Places To Eat.
+Pittsburgh Post-Gazette from Pittsburgh, Pennsylvania · Page 23 Publication: Pittsburgh Post-Gazette i Location: Pittsburgh, Pennsylvania Issue Date: Sunday, March 22, 2015 Page: Page 23 Start Free.
+He was an avid golfer and lifelong member and past president of Highland Country Club in West View. David (Brenda) Moll, and Cathy Landry; sister of Theresa (Donald) Sheffler, and the late Jennie.
+She becomes one of four women on the 19-member board and one of seven women business deans of[ AAC]SB-acc[redited] business schools in the country. Wayne Rollins. Hara-lenne, Cathy L. Hillyard, Lisa T.
+Sep FITTS, Mrs. Mildred Louise (Gran Carthage, Tn. Graveltown Community 2 p.m. tomorrow. Mrs. Creighton was a Member of the First Presbyterian Church, Belle Meade Country Club and the James K. Polk.
+Cathy’s Country Cupboard, Westmoreland TN Opening hours. Cathy’s Country Cupboard is listed as a local restaurant for the following areas. Westmoreland. Near places. More restaurants close to Westmoreland TN. Corner Cafe – Westmoreland. 5234 New Highway 31, Westmoreland, 37186.
+Dishwashers, they say, allow you to spend more time with the family andor guests; encourage even teenage boys tn stack away glasses instead of littering the kitchen with them; save space (you don�[�]t.
+Hillsboro, Ohio, and Joseph Shaw of Wilmington, Ohio, have been[ duly] appointed Executors of tn* Estate of James Shaw. evening with Mr. and Mrs. Joe Stroup and son. Jean Duke and Cathy
+
+=== Text #9 ===
+> Currently there are 3 websites listed for this state.
+We are committed to providing for the needs of homeless and owned dogs and cats in our community. Serving over 5,000 companion animals annually through direct intervention and many more through advocacy, we continue to promote the humane values of protection, care, and compassion for all living things.
+The Delaware S[PCA] is dedicated to the prevention of cruelty and the encouragement of humane treatment of all animals. Established in 1873, Delaware SPC[A] is the oldest animal welfare organization in the state and has provided continuous service to pets and their companions for more than 135 years.
+Faithful Friends Animal Society is a private animal welfare organization with a No Kill shelter. We are funded through private donations, grants, fees for services and[ special] fundraisers held throughout the year. All cats and dogs in our care stay with us until homes are found.
+
+=== Text #10 ===
+> Know Buckeye Trail Class of 2001 graduates that are NOT on this List? Help us Update the 2001 Class List by adding missing names.
+More 2001 alumni from Buckeye Trail HS have posted profiles on Classmates.com®. Click here to register for free at Classmates.com® and view other 2001 alumni.
+[Al]umni from the Buckeye Trail High School class of 2001 that have been added to this alumni directory are shown on this page. All of the people on this page graduated in '01 from Buckeye Trail . You can register for free to add your name to the BTHS alumni directory.
+
+=== Text #11 ===
+> Sperm whale. Sea Guap Photo.
+Sperm whale and Olympic swimmer Mikako Kotani. Sea Guap Picture.
+Sperm whale. Stock[ Photography] of Sea Guap.
+Sperm whale social group. Photograph of Sea Guap.
+Sperm whale blowhole ([left] side of head). Sea Guap Photos.
+Sperm whales. Sea Guap Image.
+Sperm whales diving. Professional stock photos of Sea Guap.
+Mature male (bull) sperm whale. Pictures of Sea Guap.
+Sperm whale blows in front of Tokyo Broadcasting System film crew. Sea Guap Photo.
+WHITE juvenile sperm whale in social group. Sea Guap Picture.
+Sperm whales diving. Stock[ Photography] of Sea Guap.
+Sperm whale. Photograph of Sea Guap.
+
+=== Text #12 ===
+> Hurrah! A cooperative worldwide effort to rescue Thailand children trapped in a flooded cave rescued them all in less than 3 weeks from the time they entered the cave to the time of their rescue.
+It should be much easier, shouldn’t even take a heroic effort, to rescue children trapped in separation from their families at the Mexican border. These things are possible, but this week, the administration did not even meet the first deadline to get all the children below 5 years old reunited with their families.
+It should even be log[istically] possible with a cooperative world wide effort to develop economic systems that could rescue all the hungry children everywhere living in poverty.
+In the U.S. alone, 1 in 5 children live in poverty, according to a recently released United[ Nations report].
+Such inequality and poverty is a direct result of economic policies that are chosen by elected leaders. The solution is to elect different leaders than the ones in power now. Please consider carefully when you vote this November.
+
+=== Text #13 ===
+> Foil plaid lycra and spandex shortall with metallic slinky insets. Attached metallic elastic belt with O-ring. Headband included. Great hip hop or jazz dance costume. Made in the USA.
+
+=== Text #14 ===
+> ▲Students are shouting several slogans to guarantee the school's autonomy in front of Jogyesa Temple.
+On April 15th, 2016, the General Student Council and Student Council of Postgraduate held the 4.15 Jogye rally. The rally was also held in the last year with the same objectives. Goals of the rally are to criticize Jogye Order for its responsibility on Dongguk University’s present conflicts related to President Han Tae-sik (Bogwang) and to guarantee the school’s autonomy from the order.
+At 11:00 A.M., approximately 200 people, about 150 Donggukians and 50 people who are related to Dongguk University, gathered together in Manhae Hall. As soon as the march began, the marchers were obstructed by police officers because of a cow, which was prepared by the GSC, was not reported to participate in the rally. Scuffles broke out between the police and the GSC, and the cow was not able to go with the marchers. The parade was started from Chungmu-ro where Dongguk University is located, passed Myeong-dong and finally to Jogyesa Temple.
+After several speeches from students, the GSC and the gathered students tried to deliver request proposal to Jogye Order together, but police officers blocked the way. Therefore, only ten representatives were allowed to go to deliver the request proposal to the persons concerned of the Jogye Order at the temple gate. The request proposal involves following three demands: Jogye Order has to stop intervening in the school matters and should guarantee the school’s autonomy, every sunim who spoiled the school needs to apologize and resign, and board of directors should be reformed in a more democratic way.
+
+=== Text #15 ===
+> Menara Taming Sari (Melaka Tower) is located at Bandar Hilir, beside Dataran Pahlawan Megamall. It is the first and only gyro tower in Malaysia so far. The tower revolves 360° to provide a panoramic view of Malacca town. From a height of 80 meters, the ride offers you a spectacular and panaromic view of Historical Melaka City and a far with a host of interesting sights such as St Paul’s Hill, Independence Memorial Building, Samudera Museum and the ship, Flor De La Mar, Melaka River, Dataran Pahlawan, Pulau Selat Mosque, Pulau Besar and the Straits of Malacca.
+That apart, you will also see the fast and rapid development taking place in the state.
+The air-conditioned circular observation deck can take 66 people at any one time. You'll stay up there for about seven minutes. Once it reaches the top, a breathtaking, sprawling view of Malacca as far as the eye can see, up to the Straits of Malacca, is clearly visible, especially in good weather, with the Melaka River running through the grand panorama below.
+In addition to the revolving tower for visitors to enjoy bird view of Melaka city, the ticketing building will also be fitted with 5 commercial outlets, which includes a cafe, restaurant, and souvenir shops.
+The admission charges for Menara Taming Sari are RM20 for an adult and RM10 for children below 12 years old. There is a huge car park next to the tower. For further information, please contact Melaka Taming Sari Berhad at +60-6-2881100 or +60-6-2813366.
+Menara Taming Sari opens at 10:00 am and continues till 10:00 pm, daily.
+
+=== Text #16 ===
+> J Brand can do no wrong! They always have such beautiful pieces that belong in every women closet. I just wished my wallet agreed with me 😋 Lol!
+
+=== Text #17 ===
+> To find out more[ information about Dr].[ Leigh] Ricketts, please review the contact information[ below] in[ order] speak with[ Dr].[ Leigh] Ricketts.
+Dr.[ Leigh] Ricketts is a[ chirop]ractic practice that delivers chiropractic services to patients in Knoxville, TN.
+Are you Dr. Leigh Ricketts in Knoxville, TN?
+
+=== Text #18 ===
+> "Extra Eyes for DWIs" on Halloween Here in Fairfax County | McGlone Law Firm, P.C.
+"Extra Eyes for DWIs" is an effort that will involve seven[ local police agencies] conducting saturation[ patrols] in all seven[ jurisdictions on] Halloween night (this Thursday, October 31). The[ police officers] will be[ spec]if[ally] looking for drunk drivers, in an effort to keep them off the streets.
+
+=== Text #19 ===
+> Far Left Van Jones Admits that Trump Can Win and Gives Major Warning to Democrats - Video - Stumpin' For Trump!
+CNN contributor and former Obama aide Van Jones put out a warning to his fellow Democrats on Friday: Donald Trump is probably going to win the White House.
+In the Facebook video, Jones credited Trump’s ability to understand and use social media and reality television as well as his appeal to black voters as reasons he will likely win the White House in November.
+Jones likened Trump to Franklin Roosevelt, John Kennedy, Ronald Reagan, and Barack Obama in the sense that they all excelled in a new medium that no other politician could easily master.
+“Just like FDR changed the rules of the game because he mastered radio, he was able to take radio and just completely master that — then you had JFK and JFK was able to master television — new medium, new master, new president,” Jones said.
+He continued to detail how Trump has been able to use his celebrity to appeal to parts of the Democratic base, especially black voters.
+“If only 70 percent don’t like Donald Trump, that means 30 percent are open to his argument, if he gets half of those, he’s president,” Jones said.
+A Public Policy Polling report released on Monday[ showed] Jones might be correct in his opinion that Trump is winning over large segments of the Democratic Party’s most loyal voting bloc. The poll[ showed] that in the swing state of Ohio, Trump would garner 15 percent of the African American vote against Clinton, with another 11 percent undecided.
+That is huge increase from the 4 percent of the black vote Mitt Romney received in Ohio during the last presidential election.
+Well, well, well, even the ex-Obama-Czar-self-proclaimed communist understands and sees how Trump can win and be our next President! Wow! I’m a bit impressed, but I wouldn’t trust Van Jones with a lollipop either! Trump is pulling in some of the more modest democrats over to vote for him, and with the help of these two infamous Internet sensations, Diamond and Silk, created a place for them to do just that, called “Ditch and Switch”, for anyone who either voted democrat all these horrible years and now sees the “light” in voting Trump, or whom never voted before and wants to sign up as soon as possible to exercise their constitutional right to vote, they can go
+
+=== Text #20 ===
+> Pencarian FILM Untuk "Peace Breaker 2017"
+yuk mampir ke channel say..
+Edges East provides the l..
+A corrupt cop makes one w..
+Peace Breaker 2017 ~ 破�..
+Náo Loạn - Peace Break..
+Please subscribe and hit ..
+uploaded in HD at http://..
+I cannot believe I manage..
+
+=== Text #21 ===
+> Celebrate all the moms in your life with official MLB Mother's Day Gear apparel and say thanks for all the great things mothers do. We have authentic gear for all 30 MLB teams including pink caps, t-shirts, accessories and more. Shop the best brands for mom, such as DKNY Sport, Keds and Dooney & Bourke, as well as Luca & Danni and Alex Woo jewelry. What better way to celebrate baseball and family than with official Mother's Day gear for her favorite team? Rely on MLB.com Shop for all the best apparel you'll find online.
+
+=== Text #22 ===
+> It comes on again on her grandson’s christening day. A lost moment, a blank spot, one that Carole does not know how to measure. She is there one second, then she is not. She knows exactly where she is, then she does not. Her older church friends tell similar stories about their surgeries, how they count[ backward] from ten with an oxygen[ mask] over their faces, then wake up before reaching one, only to find that hours, and sometimes even days, have gone by. She feels as though she were experiencing the same thing.
+Decisions that affect others in bad ways cannot always be traced to one individual. This makes it easier for[ cop]orations, as a whole, to engage in unethical behavior.
+Indeed, some argue that whole purpose pf the[ cop]eration is to make the most money that it can for owners and investers.
+I do what I can for you.
+
+=== Text #23 ===
+> Schwarz has been the president of the Greater Cleveland Film Commission for over ten years. He has over thirty years of experience in the film and television industries, working predominantly as a location manager and producer. His work includes “Wild At Heart,” “My Name Is Earl,” “Entourage,” “The Comeback,” “From the Earth to the Moon” and Tom Hanks and Steven Spielberg’s “Band of Brothers,” for which Ivan won a Golden Globe.
+The Film Commission is the only nonprofit organization dedicated to bringing jobs and economic impact to Northeast Ohio through the growth of a sustainable media production industry. Since passing the Ohio Motion Picture Tax Credit in 2009, more than 110 productions have shot in Cleveland, including “The Avengers,” “Captain America: The Winter Soldier,” and most recently, Matthew McConaughey’s “White Boy Rick” and Helen Hunt’s “I See You”.
+
+=== Text #24 ===
+> Schwarz has been the president of the Greater Cleveland Film Commission for over ten years. He has over thirty years of experience in the film and television industries, working predominantly as a location manager and producer. His work includes “Wild At Heart,” “My Name Is Earl,” “Entourage,” “The Comeback,” “From the Earth to the Moon” and Tom Hanks and Steven Spielberg’s “Band of Brothers,” for which Ivan won a Golden Globe.
+The Film Commission is the only nonprofit organization dedicated to bringing jobs and economic impact to Northeast Ohio through the growth of a sustainable media production industry. Since passing the Ohio Motion Picture Tax Credit in 2009, more than 110 productions have shot in Cleveland, including “The Avengers,” “Captain America: The Winter Soldier,” and most recently, Matthew McConaughey’s “White Boy Rick” and Helen Hunt’s “I See You”.
+
+=== Text #25 ===
+> Disturbia Clothing coupon code gift !
+Disturbia Clothing coupon code gift ! ! !
+Disturbia Clothing is always bringing something different and out of the mainstream, focusing on the dark side of popular culture, subversive iconography, childhood nostalgia, and angry slogans, all made with a strong sense of independence, and a quintessential British punk D.I.Y. ethic.
+If you are a fan on Facebook, you’[ve] already noticed they are running a 20% discount, with the coupon code FACEBOOK20 until Monday the 18th.
+Disturbia Clothing coupon code! Don’t forget to use it until Monday the 18th ! ! !
+Just log into your Facebook account, get your coupon and stay tune for our next special discounts ! Keep your eyes on the prize and, of course, on our Facebook page.
+Inspiring graphics of the day – intense emotions graphics !
+
+=== Text #26 ===
+> "Whoever gets him, they'll be getting a good one," David Montgomery said.
+INDIANAPOLIS — Hakeem Butler has been surrounded by some of the best wide receivers on the planet this week at the NFL Scouting Combine.
+It’s an experience that might humble some. But for Butler, it has only enhanced his confidence.
+As it stands, 22-year-old Butler is not regarded as the best wide receiver in this year’s NFL Draft. He’s projected by some[ experts] to go as late as the third round. But when wide receivers were measured Thursday, Butler gained some attention: He led all receivers in height (6-foot-5 3/8), arm length (35 1/4 inches) and wingspan (83 7/8 inches).
+On Thursday, running back David Montgomery, who played with Butler at Iowa State, captured the general vibe surrounding Butler here.
+Butler says he’s met with every NFL team on an informal basis. He had “nine or 10” formal meetings set up for Friday night, but didn’t divulge which teams he’d be sitting down with.
+There is clear interest in Butler, who declared for the draft after his junior season in which he had 60 receptions for 1,318 yards and nine touchdowns.
+But in his mind, the hype machine hasn’t been turned up high enough — yet.
+Butler, of course, is talking about Saturday’s wide receiver workouts. If he crushes the drills, he could vault up the draft board — perhaps into the first round. And he feels well-prepared because he’s spent the past few months working out with some legendary NFL receivers in Calvin Johnson and Anquan Boldin.
+Butler met Boldin at the South Florida gym where he trains. He was connected to Johnson through his agent.
+Johnson and Boldin are known for being precise, tactical receivers. But Butler says the most valuable lesson of working with them has been learning about how they think.
+Butler admitted the first time he worked with Johnson, who went to six Pro Bowls with the Detroit Lions from 2010-15, that he was a little starstruck.
+Butler is hoping that one day he can leave a legacy like Boldin or Johnson. But for now, his goal is to prove what he already believes is true: that he is the top receiver in this draft.
+
+=== Text #27 ===
+> The rich get richer and the poor get poorer eh?
+Or is it the rich think different and play by a different set of rules?
+Do the rich take responsibility and action?
+Poor people believe 'Life happens to me.' Rich people are committed to be rich.
+Poor people WANT to be rich. Rich people think big.
+Poor people think small. Rich people focus on opportunities.
+Poor people focus on obstacles. Rich people are willing to promote themselves and their value.
+Poor people think negatively about selling and promotion.
+Poor people are closed to new ideas..
+Do You think rich or poor?
+
+=== Text #28 ===
+> Anna Rispoli is an artist, she carries out plastic and performative work on the issues of shared property, town planning, collective identity and civic engagement. Her projects come about as a result of field observations and, in particular, zones of urban conflict where she meets inhabitants to draw on their experiences and stories. These encounters aren’t as straightforward as all that, they involve a reflection on the ways we approach strangeness but also, sometimes, associating with adversity. How can we speak with what we have identified as the language of the enemy? How can we cross the border between apparently opposing positions, not to reconcile them in the fantasised about myth of the consensual community, but to enrich the ways we apprehend adversity and our methods of conflictual interaction which, don’t forget, are the basis of all democracy. Anna Rispoli invents a mechanism which enables us to make these questions, often repressed by our contemporary societies, something which can be experienced by everyone.
+
+=== Text #29 ===
+> BELIEVE IT OR NOT... WE WORK FOR THE CITY -- ERASING GRAFFITIS.
+We are a company created by Professional Tour Guide/ S[ommel]ier/Graff Artist/ Local Tattooed Street Thug* Al Ramirez, founder of Al Ramirez Wine Tours / Valparaiso Wine Tours, who arrived back to Valpo from NYC in '06.
+VSA tours was co-founded by Jekse and Cines, a couple of local graffiti artists who are doing some great things lately, helping Valparaiso become one of South America's most painted town... the guys can't stop painting! they go by "La UKD Crew"; they been painting graffiti and tagging South America since they can remember. Why? ask them when you meet them!
+Our guides are "Perf" Amboy Chris, Seba, Diego "Pes", all experts in local graffiti and street art. They're in charge of making sure you have a great experience.
+Al Ramirez AKA "MR. Al RAMIREZ" at Work!
+He also paints (not great, but don't tell him that).
+He likes to walk around like he's the boss because he "created the Idea", "The first ever Street Art Tour Guide in Chile", and "everyone copies him"... but no one here is trying to hear it.
+If he gives you a tour, act like you liked it (nod and chuckle, while looking away)... then come back and take a real tour with the other guides.
+A comedian once said "this world we live in is unbelieveable! I went in to rob a liquor store and when I came out someone had stolen my car!"
+That car thief could very well be Jake1 (see the pic/evidence above).
+He's the type of person who would boil a Frappucino/Iced Coffee just to rebel against the system.
+We've seen him go into a vegan restaurant, and ask for a lamb chop. Come on, Joaquin. This needs to stop.
+This is El Seba or Sebastian. Just look at the picture and the bio will speak for itself.
+He is the one who gets yelled at the most at the office, and asks waaaay too many questions. We dislike him. Very much.
+He's the type of person who will be telling a story, such as, "So, I told the stupid police[ officer] not to dare talk to me like that",
+
+=== Text #30 ===
+> Myprotein[ athlet] werden - Accesskey 3.
+Watchever probemonat / Sitemap - Biotherm bodylotion lait corporel.
+Hilfe / Benutzungshinweise - Schlaraffia gelpro premium 26 test.
+Name it softshell overall - Verkaufsoffener sonntag reutlingen.
+Film versicherung - Tageslinsen online.
+zur Startseite - Sushi dreams eimsbüttel.
+40,000 neon balls, a glowing dance floor, a pop-up bar and stars from the 90s bring the iconic decade back to life for three months. . You have to walk through the whole museum before you can see the Star Wars-themed special exhibition, which is located near the exit computeruniverse friedrichsdorf area. My friend Birgit, was able to seat at the Jedi Council and talk to Luke Skywalker about handling a Lightsaber properly. Unfortunately I didnt get a private audience with Darth Vader or Han Solo because the place was packed.
+Together with a description of their life achievements. Children under the age of 3 can enter for madame tussauds star wars berlin free. A few weeks ago, looked convincingly realistic, famous icons like Albert[ Einstein] and Marlene Dietrich.
+In enger Zusammenarbeit mit Disney und Lucasfilm entstand star wars at Madame Tussauds Berlin, eine einzigartige Ausstellung aus lebensechten Wachsfiguren, 12 Helden und Bösewichten der star wars Saga.An sich war der Besuch keine Zeitverschwendung, aber leider auf den Punkt gebracht eine Abzocke, daher würde ich rückblickend das Madame Tussauds in Berlin nicht priorisieren, da es in Berlin viel zu viele interessantere und schönere Orte gibt wie zum Beispiel.Over 120 fascinating and life-like wax figures are brought to life and youll be double taking at just how realistic they look New at Madame Tussauds Berlin : star wars at Madame Tussauds: Experience a unique.
+The first Madame Tussauds was founded in London by Marie Tussaud. U55 Brandenburger Tor Bus 200 00 U
+
+
+Description: 
+2025-04-09 15:35:20,662 - root - INFO - Locations, people affiliated with those locations, and organizations headquartered there
+
+2025-04-09 15:35:20,666 - root - INFO - Cluster #1 saved to: descriptions/gemini-1-5-pro/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.csv
+2025-04-09 15:35:21,651 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 4)
+
+2025-04-09 15:35:21,652 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  UK (0.21945613622665405)
+Text #1:  charg (0.01729896292090416)
+Text #1: V (0.3549010753631592)
+Text #1: V (0.1213100478053093)
+Text #1: V (0.18014279007911682)
+Text #1:  date (0.41041770577430725)
+Text #1:  UK (0.005858970806002617)
+Text #1:  V (0.2734629213809967)
+Text #1:  V (0.22791500389575958)
+Text #1:  parties (0.6902363300323486)
+Text #1:  equal (0.11122244596481323)
+Text #1:  PAN (0.06985745579004288)
+Text #2:  plates (0.002199658192694187)
+Text #2:  accelerator (0.07421193271875381)
+Text #2:  Acceler (0.4510486125946045)
+Text #2: mic (0.20608069002628326)
+Text #2: ron (0.8189502358436584)
+Text #2: mic (0.09506520628929138)
+Text #2: ron (0.7291308641433716)
+Text #2: coded (0.39509961009025574)
+Text #2:  buffer (0.6843653917312622)
+Text #2:  tubes (0.3140900135040283)
+Text #2:  proven (0.4742032289505005)
+Text #2:  mechanical (0.043449316173791885)
+Text #2: IA (0.03196417912840843)
+Text #2:  LC (0.6488949060440063)
+Text #2:  SC (0.3332854211330414)
+Text #2: mo (0.47819796204566956)
+Text #2:  LAN (0.30812719464302063)
+Text #3:  / (0.032362647354602814)
+Text #3:  IDE (0.23462219536304474)
+Text #3:  dedicated (0.0961151123046875)
+Text #3:  asynchronous (0.20083674788475037)
+Text #3:  copy (0.19519050419330597)
+Text #3:  dedicated (0.06935503333806992)
+Text #3: bps (0.07735978066921234)
+Text #3:  speed (0.6307752132415771)
+Text #3: � (0.09092769026756287)
+Text #4:  xen (0.4853942394256592)
+Text #4:  xen (0.3437885344028473)
+Text #4:  further (0.13565465807914734)
+Text #4:  V (0.5815793871879578)
+Text #4:  K (0.020434129983186722)
+Text #4:  Rays (0.8022491335868835)
+Text #4:  directs (0.053582437336444855)
+
+=== Text #1 ===
+> We focus on bringing the PANASONIC CGR-B/202A1B replacement Charger of high quality to[ UK] customers and desire our customers can buy their satisfying PANASONIC[ charg]ers, the Input: 100[V]-240[V], Output: 12[V], 0.00g, 106.50x69.00x37.00mm battery charger on sales will be the perfect replacement to your original PANASONIC CGR-B/202A1B.
+We guarantee the PANASONIC CGR-B/202A1B Charger with a full one-year warranty from the[ date] of purchase, 30 days money back, if the PANASONIC CGR-B/202A1B Charger have any quality problem! If you have any question or suggestion, please Contact Us, We committed to providing the highest standard of excellent service for our clients.
+Buy PANASONIC CGR-B/202A1B battery and PANASONIC CGR-B/202A1B charger Together, Save UK £0.50!
+We focus on bringing the PANASONIC CGR-B/202A1B replacement Charger of high quality to[ UK] customers and desire our customers can buy their satisfying PANASONIC chargers, the Input Voltage: 5[ V], Output Voltage: 8.4[ V], Output Current: 0.8 A, 49.20g, mm battery charger on sales will be the perfect replacement to your original PANASONIC CGR-B/202A1B.
+Shopping from us is safe and secure. We do not sell, rent or share information of our customers with other[ parties]. Exceldigital.org.uk guarantee your PANASONIC CGR-B/202A1B battery chargers transaction will be 100% safe.
+We are professional manufacturer and distributor of all types of replacement batteries and battery chargers. Full one year warranty for every replacement battery, adapter and battery charger; We assure that we use only high quality parts that[ equal] to or better than the original so you can feel good about having a positive impact on our environment when you use our[ PAN]ASONIC CGR-B/202A1B chargers. In our store you will find a right products at very competitive prices so you will save lots of money.
+Shopping PANASONIC CGR-B/202A1B Battery Charger On Exceldigital(UK) is great. all PANASONIC CGR-B/
+
+=== Text #2 ===
+> Over the past century, Leviton's electrical components have made them a household name. But did you know that they produce an impressive line of fiber optic products as well? From consumables and connectors to fiber enclosures and adapter[ plates], Leviton fiber optic components are designed for fast, easy terminations and high quality connections. Read on to learn more about Leviton fiber optics, available right here at CableOrganizer.com!
+Before you can terminate optical fiber, you've got to get it squeaky clean. For just that reason, you'll find a wide variety of Leviton fiber optic consumables products at CableOrganizer.com. The standard Leviton Consumables Kit comes complete with alcohol pads, polyester wipes, music wire, and lapping film. The Fast-Cure Kit is made up of all the adhesive,[ accelerator], needles and syringes needed for terminations with Leviton's Fast-Cure connectors. We even carry Leviton's Adhesive[ Acceler]ator kit, which contains primer and hardener for use with fiber optic connector adhesives.
+Leviton Fan Out Kits are perfect for separating and protecting 250-[micron] fibers during fan out terminations, and make it easy to route them into 900-[micron] color-[coded buffer tubes]. Fan out kits are available in 24" and 36" lengths, for 6-fiber or 12-fiber configurations.
+Whether you need to terminate single-mode or multimode fiber, Leviton's FastCAM connectors allow you to make fast, precise field terminations. Using a[ proven] and revolutionary[ mechanical] splice technology, FastCAM connectors eliminate the need for hand polishing, specials tools, and even epoxy! After a cleaved fiber is inserted into a FastCAM connector, the installer simply releases the factory-installed wedge clip, and an instant low-loss connection is formed.
+EIA/T[IA] compliant FastCAM connectors are available in[ LC],[ SC] or ST styles. They're perfect for any indoor premise or fiber-to-the-subscriber installation, as well as applications that require a fast data network. To make terminations even easier, try Leviton's FastCAM Installation Kit, which includes a fiber stripper, cleaver, and two types of cleaning wipes: dry and alcohol-[mo]istened.
+Perfect for both indoor and outdoor applications, Fast-Cure Adhesive Style Connectors from Leviton make it easy to quickly terminate optical fiber for[ LAN]s, WANs,
+
+=== Text #3 ===
+> It is possible to erase up to 4 HDD[ /] SSD at the same time.[ IDE] HDD connection is also possible with[ dedicated] adapter.
+HDD / SSD is exchanged from the order in which erasing is completed, and[ asynchronous] erase function which can erase newly is installed.Five types of erase algorithms are installed. The erasing method can be selected according to the application.
+HDD[ copy] function installed. It is possible to copy one HDD data to up to three HDDs simultaneously.
+Data delete contents can be printed with the attached[ dedicated] printer . It is also possible to output text data of work log to USB memory.
+Dedicated carrying case with waterproof / dustproof specification is included, which can contain the main body and all accessories.
+This product is compatible with SATA 6 G[bps] HDD / SSD, but the internal transfer[ speed] is up to 130 MB / sec.
+2.5 “HDD and 3.5�[�] HDD can not be connected at the same time.
+
+=== Text #4 ===
+> The High brightness is being compared to 350 Watts conventional[ xen]on light source that can be utilized for critical illness like laparoscopy without any problem and with utmost ease.
+It has an extended service life, which means it can easily last for 60000 hours at a max, which is 120 times of[ xen]on. This[ further] emphasises that one doest not need to change the bulb for a number of years and can be used for a long time.
+We have an extensive range of power from 100 to 240[ V] / AC; 50 / 60 Hz.
+The perfect colour temperature ranges from 5000 K to 6500[ K], and the colour rendering is over 70.
+It does not gives out light in the Ultra Violet or Infrared[ Rays].
+The customized connector, it accepts fibre light[ directs] with dynamic and on the go areas varying from 3 mm to 10 mm in diameter or span.
+It helps saves half the energy i.e. it will be more than 50%.
+It is considered environment friendly.
+
+
+Description: 
+2025-04-09 15:35:21,653 - root - INFO - Electronic device specifications, including voltage, speed, and components
+
+2025-04-09 15:35:21,657 - root - INFO - Cluster #2 saved to: descriptions/gemini-1-5-pro/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.csv
+2025-04-09 15:35:22,925 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 19)
+
+2025-04-09 15:35:22,926 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Darwin (0.6830730438232422)
+Text #1:  Darwin (0.5036455988883972)
+Text #1:  Holden (0.2595249116420746)
+Text #1:  H (0.010662105865776539)
+Text #1:  deeper (0.06147828325629234)
+Text #1: mm (0.3544108271598816)
+Text #1: i (0.07285447418689728)
+Text #1:  deeper (0.04526752606034279)
+Text #1:  Darwin (0.16937009990215302)
+Text #1:  baggage (0.11928968876600266)
+Text #2:  UK (0.04736261069774628)
+Text #2:  magazine (0.34199243783950806)
+Text #3:  SEO (0.23018933832645416)
+Text #3:  terms (0.010841377079486847)
+Text #3:  sandbox (0.11843927949666977)
+Text #3:  ranking (0.025726811960339546)
+Text #3:  first (0.02851959317922592)
+Text #5: � (0.28639644384384155)
+Text #5: - (0.23705852031707764)
+Text #5: fix (1.4950156211853027)
+Text #5:  Brad (0.2704104781150818)
+Text #5: � (0.5578151345252991)
+Text #5:  Aaron (0.7913526296615601)
+Text #5: ae (0.12153173238039017)
+Text #5:  University (0.2017405927181244)
+Text #5: ist (0.18793697655200958)
+Text #5:  southwest (0.3108901381492615)
+Text #5:  presence (0.4950633645057678)
+Text #5:  such (0.154666930437088)
+Text #5:  atmosphere (0.16800431907176971)
+Text #5:  says (0.3093531131744385)
+Text #5:  fixation (0.7879654765129089)
+Text #5:  fixation (0.9553505182266235)
+Text #5: - (0.25005725026130676)
+Text #5: fix (1.172593355178833)
+Text #5: ules (0.25913122296333313)
+Text #5: � (0.5409993529319763)
+Text #5:  V (1.2272740602493286)
+Text #5:  V (1.0201956033706665)
+Text #5:  point (0.7947377562522888)
+Text #5:  fixed (0.7675878405570984)
+Text #5:  increase (0.11560498923063278)
+Text #5:  R (0.23453980684280396)
+Text #5:  R (0.1968374252319336)
+Text #5:  then (0.22796179354190826)
+Text #5:  fixation (0.1232551783323288)
+Text #5:  sharply (0.7473506331443787)
+Text #5: � (0.3943220376968384)
+Text #5: � (0.48651716113090515)
+Text #5:  increase (0.15450793504714966)
+Text #5:  number (0.22449782490730286)
+Text #5:  nod (0.2995032072067261)
+Text #5: ules (0.11960572749376297)
+Text #5:  increasing (0.2384374439716339)
+Text #5:  N (0.2647409737110138)
+Text #5: . (0.42515361309051514)
+Text #5:  Brad (0.8476238250732422)
+Text #5:  notes (0.14953510463237762)
+Text #5:  S (0.20419976115226746)
+Text #5: ae (0.43897804617881775)
+Text #5:  coupled (0.1508377641439438)
+Text #5:  2003 (0.2280070185661316)
+Text #5:  IS (0.8378283977508545)
+Text #5: U (0.87781822681427)
+Text #5: ists (0.20853669941425323)
+Text #5:  IS (1.0603464841842651)
+Text #5: U (0.911834716796875)
+Text #5:  haven (0.6617451906204224)
+Text #5: � (0.5176439881324768)
+Text #12:  Ltd (0.8251986503601074)
+Text #12:  announced (0.24761593341827393)
+Text #12:  UK (1.2166746854782104)
+Text #12:  2018 (0.0019148631254211068)
+Text #12:  continue (0.07954056560993195)
+Text #12: ently (0.09082607924938202)
+Text #12:  over (0.07095573097467422)
+Text #12:  L (0.7879465222358704)
+Text #12:  players (0.31482356786727905)
+Text #12:  position (1.0039290189743042)
+Text #12:  NW (1.0694180727005005)
+Text #12:  access (0.02991689369082451)
+Text #12:  UK (0.6424074172973633)
+Text #12:  continental (0.4380497634410858)
+Text #12:  Europe (0.02318773977458477)
+Text #12:  Access (0.07310064882040024)
+Text #12:  I (0.36968570947647095)
+Text #12: UK (0.24203024804592133)
+Text #12:  B (0.04530768096446991)
+Text #12: BL (0.9362080693244934)
+Text #12:  2017 (0.08505895733833313)
+Text #12:  L (0.7646400928497314)
+Text #12:  Asia (0.04737770929932594)
+Text #12: , (0.11836468428373337)
+Text #13:  technical (1.526658058166504)
+Text #13:  director (1.693961262702942)
+Text #13:  expert (1.6156190633773804)
+Text #13: OTO (0.5420545935630798)
+Text #13:  proven (0.3752715587615967)
+Text #13:  special (0.8271114826202393)
+Text #15: ve (0.3762955367565155)
+Text #15: ve (0.11371150612831116)
+Text #15: ve (0.23968271911144257)
+Text #15: ve (0.2584027051925659)
+Text #15: ve (0.2873287498950958)
+Text #16: ve (0.20085786283016205)
+Text #17: ve (0.2508748173713684)
+Text #17:  vel (0.8653688430786133)
+Text #17: ve (0.03833075985312462)
+Text #18:  permits (0.0720081478357315)
+Text #18:  direct (0.5717562437057495)
+Text #18:  measurement (0.11698657274246216)
+Text #18:  CO (0.44663289189338684)
+Text #18: 2 (0.17846907675266266)
+Text #18:  level (1.3049474954605103)
+Text #18:  in (0.06906166672706604)
+Text #18:  mg (0.4413761496543884)
+Text #18: / (0.5592406988143921)
+Text #18: L (1.806674599647522)
+Text #18: . (0.10702303051948547)
+Text #18: - (0.5519081950187683)
+Text #18:  mg (0.12684988975524902)
+Text #18: / (0.23955799639225006)
+Text #18: L (1.5547237396240234)
+Text #18:  CO (0.39348462224006653)
+Text #18: 2 (0.07556117326021194)
+Text #18:  is (0.268339604139328)
+Text #18:  indicator (0.2865524888038635)
+Text #18: - (0.43615469336509705)
+Text #18: - (0.4754934310913086)
+Text #18:  Ind (0.43620386719703674)
+Text #18: icates (0.6147517561912537)
+Text #18:  pH (0.10913940519094467)
+Text #18:  value (1.372972846031189)
+Text #18:  ( (0.15269973874092102)
+Text #18: 6 (0.2398672103881836)
+Text #18: . (0.013871196657419205)
+Text #18:  - (0.39237311482429504)
+Text #18:  in (0.17124135792255402)
+Text #18:  addition (0.22323909401893616)
+Text #18:  CO (0.27438244223594666)
+Text #18:  level (1.478398323059082)
+Text #19:  Mac (0.10373120754957199)
+
+=== Text #1 ===
+> My husband is being posted to[ Darwin] for work and we have decided to drive there. We are going in January and I know this is the wet season. My question is, do you think it will be safe travelling the Stuart Hwy to[ Darwin] in a[ Holden] Sedan at the start of January?
+We plan on stopping at all the main towns for the night. I just worry about flooding on the[ H]wy and we are travelling with a child and want to make sure we are doing the right thing.
+Just use common sense. As long as you don't drive into any water[ deeper] than 200[mm], and you stick to the road and sealed parking bays ([i].e. don't pull off the road into any soft shoulders), there is no problem at all. It's a normal highway.
+Of course there is always a chance of major flooding with the highway being cut by water[ deeper] than that, which means you would have to wait for the water to go down before you can continue your journey.
+It does happen nearly every year, sometimes more than once, but I really can't predict when and where or for how long. Only Petrus can tell you :-).
+Keep an eye on the weather forecast. Big rains do not come out of nowhere, they come out of big, monsoonal depressions. If one of those is heading for the region, then you may have to reconsider your driving plans.
+And of course, always check the road reports.
+How did the travel go?
+That must have been a long journey. I am thinking of traveling around Australia one day. How did the travel go?
+In my opinion traveling from Melbourne to[ Darwin] in January might be a bit uneasy, especially when you are planning to do it without any rescue[ baggage]. There can be flash floods, and within just a matter of seconds the entire highway can become dangerous to travel on. Furthermore, while stopping at major cities for the night is a good idea, it doesn't take you out from the risk of facing floods. And of course, you are not going to like the idea of being stranded on the terrace of a roadside motel till rescue workers pull you guys out. Think over it. I guess you can come up with a better alternative than this.
+Editor's note: I removed your totally unrelated spam link, mate. If your comment wasn't a dead give away that you have never been anywhere near the north, the link certainly was.
+Well, we did it and thankfully had not
+
+=== Text #2 ===
+> This topic contains 1 reply, has 2 voices. Last updated by Raam Dev 4 years, 11 months ago.
+I need a solution for a site I’m developing with S2 Members Pro, the issue is the clients run a chain of shops across the[ UK] and a[ magazine] that is subscribed from all over the world. The client wants its clients to be able to not only sign up online but also in store, the problem is my client will not accept the 0.01p charge on the checkout with a 100% discount code, this is because they feel there customers will not like having to pay online.
+I know you suggest 2 options on the plugin: 1 being a free registration form but this is open to abuse if the link gets leaked and will also require a lot of moderation on the admin side of things to make sure each sign up actually did join in store. 2 being a free trial, we can set the trial up to last a year but then the checkout will still require a form of payment to start running once the trial period has ended.
+Is there any solution to this problem? we need it to be as secure as it can without being open to abuse and easy to administrate.
+What is the best solution for this?
+Let us know if that answers your question.
+
+=== Text #3 ===
+> How many backlinks per day for new site?
+Discussion in 'Black Hat[ SEO]' started by Omoplata, Dec 3, 2010.
+1) for a newly created site, what's the max # backlinks per day I should do to be safe?
+2) how long do I have to let my site age before I can start making more blinks?
+I did about 6000 forum profiles every 24 hours for 10 days for one of my sites which had a brand new domain.
+There is three backlinks for every of these forum profile so thats 18 000 backlinks every 24 hours and nothing happened in[ terms] of being penalized or[ sandbox]ed. This is now maybe 3 months ago and the site is[ ranking] on[ first] page for a lot of my targeted keywords.
+build more you can in starting but do manual submission and not spammy type means manual + relevant to the post.. then after 1 month you can make a big blast..
+Wow, dude, you built 18k backlinks a day on a brand new site? How quickly did you rank up? What kind of competition/searches did those keywords have?
+
+=== Text #4 ===
+> I have existing web site brittlloyd.org. I opened a new domain sayrebuildersrockport.com however I don't have a way to start building this new web site online like I do the other one. Please list the steps to take.
+I see you deleted the domain. Did you no longer want to use it? You can see how to create a new site here, https://community.homestead.com/homestead/topics/how-do-i-create-a-new-site.
+
+=== Text #5 ===
+> Considering last fall�[�]s wet weather and the soggy fields this spring, farmers wonder about using inoculants on soybean seed in 2010. Should you use a rhizobium inoculant? Or, is there enough of the nitrogen[-fix]ing bacteria,[ Brad]yrhizobia japonicum, remaining in the soil?
+True, rhizobial bacteria don�[�]t survive wet conditions very well. But whether it will pay to use an inoculant depends largely on whether soybeans were grown in the field sometime during the last five years or if the field has been flooded for more than a week, says[ Aaron] S[ae]ugling, Iowa State[ University] Extension field agronom[ist] in[ southwest] Iowa.
+The[ presence] of rhizobia in the soil is necessary for a legume[ such] as soybeans to be able to convert nitrogen from the[ atmosphere] into a form usable by the plant, he[ says]. This process, nitrogen[ fixation], is critical for producing high soybean yields. For nitrogen[ fixation] to occur, the nitrogen[-fix]ing bacteria need to be readily available in the soil or must be applied to the seed.
+When soybean seed germinates, the rhizobia bacteria invade the root hairs of the seedling and begin to multiply. Nod[ules], the structures that house the bacteria, form on the roots. Under field conditions, nodule formation can be seen shortly after emergence, but active nodule fixation of N from the air doesn�[�]t begin until about the[ V]2 to[ V]3 growth stage of beans. After that[ point], the number of nodules formed and amount of nitrogen[ fixed increase] with time until about midway between the[ R]5 and[ R]6 growth stages;[ then] N[ fixation] decreases[ sharply].
+Applying nitrogen fertilizer for soybeans isn�[�]t recommended because it typically doesn�[�]t[ increase] bean yields in Iowa production systems. The total[ number] of[ nodules] that form decreases with[ increasing] amounts of applied[ N.]
+Today, most fields in the Midwest have had soybeans grown on them in the crop rotation, likely increasing population density of[ Brad]yrhizobia bacteria in the soil,[ notes Sae]ugling. Improved inoculant technology,[ coupled] with higher commodity prices, ease of application and relatively low-cost inoculant products, have many growers reconsidering the use of inoculants.
+Since[ 2003],[ ISU] agronom[ists] have conducted trials each year to assess new inoculants on the market. Overall, the[ ISU] studies[ haven]�[�]t shown
+
+=== Text #6 ===
+> Melt margarine in skillet and lightly fry onion, pepper and celery until tender crisp. Add flour and blend in. Add other ingredients and heat through. Serve with rice and grated Parmesan/Romano.
+How Do You Cook Creole Skillet?
+If you know another way to cook Creole Skillet please make a comment in the form below to help other free recipe users make the best of this free recipie.
+
+=== Text #7 ===
+> In a small bowl, combine fennel, capers, lemon juice, parsley and olive oil and set aside.
+Preheat oven to 400°F. Lay trout on a greased baking sheet. Stuff each fish with slices of red onion, lemon, whole sprigs of parsley and oregano. Drizzle with olive oil and season with salt and pepper.
+Bake 15 to 18 minutes or until fish is firm and flakey. Serve with fennel salad.
+
+=== Text #8 ===
+> This dog brooch pin is made with polymer clay, painted, and sealed with varnish for protection. It is made and painted by hand so each pin has some variation and is unique in its own way!
+The pin is 1.5" x 1.5" with rubber clutch backing and comes with a backing card.
+
+=== Text #9 ===
+> The design of the wine room was created utilizing a reclaimed door and wood from a barn located on the property. We were able to use the reclaimed door's existing hardware to provide rustic charm and appeal. In addition the wood was used to create the "X" pattern shelving with accent lighting to provide warm ambient light that enhances the overall look.
+
+=== Text #10 ===
+> One of the biggest games in the world is now available on smartphones around the world thanks to Tencent. The Chinese company’s official port of PlayerUnknown’s Battlegrounds (PUBG) is now available on iOS and Android worldwide.
+We tried PUBG on iPhone X when it released in China last month and came away very impressed. It successfully squeezed much of the PC and Xbox game down to a much smaller screen -- and in places looked even better than the Xbox One version of the game.
+It comes a week after rival Fortnite began inviting players to test its own mobile version. Unlike PUBG, Fortnite will allow players to play across platforms -- meaning iPhone players can kill or be killed by gamers on PC or PlayStation 4.
+Fortnite recently surpassed pioneer PUBG in popularity. Both games feature 100 players landing on a deserted island filled with weapons, with everyone fighting to be the last person left standing. While PUBG adopts a realistic setting, Fortnite has a more cartoon-like look -- and an emphasis on building structures sets it apart from its rival.
+But Tencent may find its main competition for PUBG on mobile could come from other Chinese companies. NetEase was quick to copy PUBG and released similar games for smartphone while the original was still on PC. NetEase says just one of its clones, Knives Out, has over 100 million registered players -- far more than the 40 million playing PUBG on PC and Xbox.
+
+=== Text #11 ===
+> I thought I was going to finish the 3rd season of the Wire tonight.
+But there was a commentary on episode 11, so I had to re-watch Middle Ground with the commentary. Hopefully I can finish the season next weekend.
+
+=== Text #12 ===
+> On the 12th April 2017 Centrica Storage[ Ltd announced] that injections at Rough,[ UK]'s biggest storage facility, will not take place until May[ 2018] at the earliest, following increasing concern about the condition of the majority of the wells. Should Rough[ continue] to work intermitt[ently over] the next years,[ L]NG[ players] will want to reassess their regas[ position] in[ NW] Europe. They will be seeking winter[ access] in the[ UK] and summer access in[ continental Europe].[ Access] to the[ IUK] or[ BBL] will also be an option, however Brexit adds uncertainties. Expect more volatility and trading opportunities as the market adjusts.
+This report highlights some of the key market developments in the European energy sector for April[ 2017].
+The rebalancing of[ L]NG market will be driven by strong growth in[ Asia] gas demand[,] especially in China.
+
+=== Text #13 ===
+> NC series toilets were installed in 26 patient bathrooms as part of the renovations performed at the Bielefeld hospital.
+The hospital's[ technical director] and hygiene[ expert] chose the T[OTO] toilets because they were[ proven] to dramatically reduce bacterial loads required for a German Hygiene Certificate. The new Tornado Flush technology,[ special] CeFiONtect glaze and easy-to-clean rimless bowl prevent dirt and bacteria from accumulating in the toilet. The flush is also far quieter than conventional toilets.
+
+=== Text #14 ===
+> Beginners BBQ Class Taking Place in Missoula!
+Do you want to get better at making delicious BBQ? You will have the opportunity, put this on your calendar now. Thursday, September 22nd join World Class BBQ Champion, Tony Balay from Lonestar Smoke Rangers. He will be teaching a beginner level class for everyone who wants to get better with their culinary skills.
+He will teach you everything you need to know to compete in a KCBS BBQ competition, including techniques, recipes, timelines, meat selection and trimming, plus smoker and fire information.
+The cost to be in the class is $35 per person, and for spectators it is free. Included in the cost will be either a t-shirt or apron and you will be tasting samples of each meat that is prepared.
+
+=== Text #15 ===
+> Are film trailers spoiling movies?
+In April we asked if high ticket prices were ruining your visits to the cinema. Yes, you said overwhelmingly. But something else has put a strain on my relationship with the cinema – and it’s not the popcorn.
+Have you ever gone to your local cinema to watch a new film only to feel you’[ve] seen it before? I know I have. ‘Spoilerific’ film trailers are now often so detailed it seems hardly worth watching the movie itself.
+Imagine if the trailer for Casablanca told you whether Ingrid Bergman went off with Humphrey Bogart or Paul Henreid at the end. Or if the trailer for Citizen Kane revealed just what the dying man meant when he muttered the word ‘Rosebud’.
+And it seems that even some film directors agree. Colin Trevorrow, director of new film, Jurassic World, has said he think that trailers have shown far more of the film than he would have wanted.
+In the last couple of months, I’[ve] paid £17.50 a ticket to see two films I’[ve] been anticipating for some time. OK £17.50 sounds steep, but that was for iMAX 3D and I’d still have paid more than £10 for a ‘normal’ ticket.
+But I left the cinema unfulfilled, because I felt like I’d seen them both six months before.
+In both cases the trailer revealed the entire structure of the story, key plot twists and expensive action sequences. Throw in a few character deaths for good measure and you’[ve] got the basis of a significant chunk of what you’[ve] paid your money for.
+I really did feel cheated by what the studio had wanted me to see in advance.
+So is this just a modern trend? I checked out trailers for 1981’s Raiders of the Lost Ark, and 1964’s Goldfinger to get a bigger picture.
+Both revealed some well-known scenes (including Goldfinger’s iconic laser and dialogue), but the plot basics were instead explained by voiceover, rather than any especially huge visual giveaways.
+Besides, the chance of actually seeing these trailers was significantly lessened due to the technology available at the time of release. Which got me thinking further.
+‘If you don’t like it, don’t watch it’, I hear you cry. I wish it were that
+
+=== Text #16 ===
+> Well it's been a funny few days. On Saturday I made the best beefburgers yet - the recipe's from a fellow Sausagemaking.org member, Oddley.
+I've always been a "don't use anything other than chuck steak, ground with salt and pepper" man, but he's converted me. The spices aren't discernable in the taste, but it wouldn't be as good without them.
+Things were going so well, that is until the element went in the fan oven on Sunday. £50 later and it's up and running again.
+However, things are looking up again. Maurice rang me yesterday lunch-time to say that the fishmonger had replaced the roe that wasn't very good, free of charge. So yesterday evening we dry salted them for 8 hours, and they're in the cold smoker as I speak.
+They certainly look more promising than the last lot.
+Very interested in how the online course went Phil, I’[ve] been putting this off for too long and it’s high time I got one of those certificates.
+
+=== Text #17 ===
+> I grew up with stove top mac and cheese. Luckily my mother often made her own from scratch, but I also had the commercial boxed mac and cheese as well. Personally I’[ve] always prefered stove top to baked. I know, it is controversial. There is something to that[ velve]ty sauce and soft texture. It is simple and concise.
+However, as I grew up, the idea of making it from scratch seemed more and more improbable. So I leaned toward the box. Now I am not saying that something is bad if it is in a box but powdered things often don’t feel super healthy in the food realm. Especially if all you are adding to them is butter and hot sauce and maybe tuna from a can. Wait. What?
+Yes. I would like to take a moment to address something that we call “Shame Food.” What is Shame Food? Shame Food is food that you only feel comfortable eating in private. Far from any witnesses. My big Shame Food experience was when I was doing social work. I would work all day in a pretty intense environment and then commute home and my wife worked another 5-6 hours. So I would get home, eat something, and then take a nap. That thing became my Shame Food. It was inspired by a natural food company’s spicy mac and cheese. (It has since been discontinued.) I would make mac and cheese and add a lot of cheap hot sauce (this was before we had a sauce business) and a can of tuna. I would not even plate it. I would eat the whole thing out of the pot and then take a nap. I mean the nap wasn’t a choice. That box of noodles is meant to feed a family of four. Plus the amount of hot sauce I added meant I wasn’t really enjoying the meal as much as surviving it. I had to recoup.
+This recipe isn’t that dish. It is tied to that spicy boxed macaroni and cheese, that my wife introduced me to, and we would eat it together at a time that we didn’t eat much. Also the roots are a stove top mac and cheese. The kind where the only powder involved it mustard powder and the spice comes from a complex sauce with a bright balsamic flavor and a nutty essence that pairs well with the gruyere and trust me if you finish it with toasted sesame, you will not regret it. Please enjoy and feel free
+
+=== Text #18 ===
+> A special indicator instead of aquarium water[ permits direct measurement] of the[ CO2 level in mg/L.]
+20[-]25[ mg/L CO2 is] ideal.
+Replace the[ indicator] only 3[-]4 weeks = lasts a total of 9[-]12 months.[ Indicates] the[ pH value (6.]4[ -] 7.8)[ in addition] to the[ CO]2[ level].
+
+=== Text #19 ===
+> Definitely my favorite restaurant in[ Mac]au. If you want to experience the authentic Portuguese Macanese dishes, with live one man band (sings with guitar) and cozy ambience. This is it. For extra boost to add on to your one-in-a-lifetime experience, try order Crepe suzette! 3-michelin-stars Chef Antonio himself will invite you to join him cooking at your table and be prepared for a fiery ride!
+One of many Signature dish – Seafood rice!
+It’s getting hot in here -Flaming Chouriço!
+Cooking crepe suzette! Be careful with the alcohols!
+Tadaaa! Proudly present Crepe suzette by Chef Antonio and Me!
+Another popular local traditional Portuguese Macanese restaurant with more mature settings and environment.
+The famous african chicken – this one’s a lil spicy! But superb!
+Steamed clams! Make sure you dip the bread in the sauce! Yum!
+Ended with my favorite traditional dessert in Macau! Serradura!
+A cute romantic Portuguese-Macanese restaurant nearby the famous original Lord Stow’s egg tart bakery!
+Portugal is also famous for their glazed tiles. So lovely!
+Sauteed shrimp with garlic butter!
+Soaky wet Portuguese seafood rice! A must!
+Pork ribs!! Love the salty taste!
+The french fries sure stole the spotlight from the pork steak!
+This cherry whisky is STRONG!! be careful!
+Pineapple, Mango, Peach juices! Loving these rejuvenating refreshments! Just can’t get enough!
+Lovely meal indeed! Bon appétit!
+The famous Egg tart!! It’s shooo gooood u guyz!!
+A regular Chinese restaurant, but what impressed me the most is the fact that they have a short tiny table where ladies can put their bag on while eating! Talk about hospitality! A major problem for all ladies who carry handbags, basically everyone! We always need to get extra chair, or hang it on the chair, or let the bag share half of our chair! So Bravo! And obviously the food is Goo-Oood tooo! HEre i picked out my favorite dishes!
+Crispy pork! Not oily at all!
+Crispy Spring rolls stick filled with shrimp and mangos!
+Website: http://www.city
+
+
+Description: 
+2025-04-09 15:35:22,927 - root - INFO - Locations, publications, technical specifications, proper nouns, and the word "ve"
+
+2025-04-09 15:35:22,931 - root - INFO - Cluster #3 saved to: descriptions/gemini-1-5-pro/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.csv
+2025-04-09 15:35:24,774 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 38)
+
+2025-04-09 15:35:24,775 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  division (0.17676806449890137)
+Text #1:  cases (0.1311914175748825)
+Text #1:  lawyer (0.3668079972267151)
+Text #1:  determine (0.16377851366996765)
+Text #1:  division (0.032666850835084915)
+Text #1:  circumstances (0.016915354877710342)
+Text #1:  case (0.1087917611002922)
+Text #1:  First (0.18060676753520966)
+Text #1: � (0.07336869835853577)
+Text #1:  place (0.011640001088380814)
+Text #1:  priority (0.119873046875)
+Text #1:  equ (0.13472625613212585)
+Text #1:  division (0.03741595521569252)
+Text #1:  complicated (0.21211199462413788)
+Text #1:  cases (0.1947348713874817)
+Text #1:  party (0.009616218507289886)
+Text #1:  case (0.001222512568347156)
+Text #1:  ground (0.1911974400281906)
+Text #2:  rare (0.2673361003398895)
+Text #2: � (0.13508568704128265)
+Text #2: � (0.11464421451091766)
+Text #2:  for (0.04451887682080269)
+Text #2:  cav (0.1225009337067604)
+Text #2:  issues (0.341315895318985)
+Text #2: rea (0.20303693413734436)
+Text #2:  added (0.16260679066181183)
+Text #2:  level (0.9037997722625732)
+Text #2:  et (0.4358402192592621)
+Text #2: � (0.10351627320051193)
+Text #2: � (0.0667390450835228)
+Text #2: � (0.17034420371055603)
+Text #2:  advised (0.04359558969736099)
+Text #2:  et (0.8507363200187683)
+Text #2: � (0.09226412326097488)
+Text #2: - (0.0006464221514761448)
+Text #2: activated (0.2611532211303711)
+Text #2: � (0.10273031145334244)
+Text #2: P (0.02668478712439537)
+Text #2: lucent (0.5059279203414917)
+Text #2:  don (0.04945216700434685)
+Text #2: � (0.07128564268350601)
+Text #3:  ABC (0.014298438094556332)
+Text #3:  US (0.1905464380979538)
+Text #3:  UK (0.05167992413043976)
+Text #3:  Apple (0.015502753667533398)
+Text #3:  iPad (0.033503513783216476)
+Text #3:  Mac (0.22529685497283936)
+Text #3:  outside (0.016625747084617615)
+Text #3:  US (0.24169567227363586)
+Text #3:  order (0.08512568473815918)
+Text #3:  bypass (0.02737482264637947)
+Text #3:  geographic (0.4269304573535919)
+Text #3:  ABC (0.4455719590187073)
+Text #3:  UK (0.6325542330741882)
+Text #3:  spoof (0.13712726533412933)
+Text #3:  location (0.06558673828840256)
+Text #3:  UK (0.10041621327400208)
+Text #3:  UK (0.16637568175792694)
+Text #3:  outside (0.06349387019872665)
+Text #3:  United (0.02567758783698082)
+Text #3:  territories (0.2979094088077545)
+Text #3:  US (0.5334020853042603)
+Text #3:  UK (0.17814864218235016)
+Text #3:  US (0.454295814037323)
+Text #3:  channels (0.05214689299464226)
+Text #3:  Mac (0.2572072148323059)
+Text #3:  encryption (0.3176652193069458)
+Text #3:  drop (0.4907070994377136)
+Text #3:  around (0.7070659399032593)
+Text #3:  to (0.04273919016122818)
+Text #3:  UK (0.07198308408260345)
+Text #3:  table (0.3093598186969757)
+Text #3:  US (0.10438541322946548)
+Text #3:  US (0.007669956423342228)
+Text #3:  ge (0.15769584476947784)
+Text #3:  US (0.7027011513710022)
+Text #3:  channels (0.021751193329691887)
+Text #3:  UK (0.04389062151312828)
+Text #3:  UK (0.08957761526107788)
+Text #3:  apart (0.4046097695827484)
+Text #3:  Apple (0.08878037333488464)
+Text #3:  Mac (0.5132988095283508)
+Text #3:  PS (0.2299829125404358)
+Text #3:  PS (0.08480706065893173)
+Text #3:  speed (0.04317237809300423)
+Text #3:  encryption (0.19047704339027405)
+Text #3:  local (0.4853065013885498)
+Text #3:  UK (0.4259207844734192)
+Text #3:  US (0.351581335067749)
+Text #3:  left (0.1531166434288025)
+Text #3: � (0.09353707730770111)
+Text #3:  transparent (0.03487560153007507)
+Text #3:  hij (0.2775224447250366)
+Text #4:  across (0.06305824220180511)
+Text #4: � (0.09390247613191605)
+Text #4: ve (0.8420498371124268)
+Text #4:  digital (0.2117907851934433)
+Text #4:  Cam (0.2037961184978485)
+Text #4:  Techn (0.21219410002231598)
+Text #4: ologists (0.6081101894378662)
+Text #4:  digital (0.22451815009117126)
+Text #4: � (0.031215639784932137)
+Text #4: � (0.010420477017760277)
+Text #4: � (0.004089715424925089)
+Text #4:  digital (0.3650015890598297)
+Text #4: ve (0.6870655417442322)
+Text #4:  digital (0.22471940517425537)
+Text #4: ve (0.5498166680335999)
+Text #4: ve (0.3599611520767212)
+Text #4:  expertise (0.12250129133462906)
+Text #4:  digital (0.04665463790297508)
+Text #4:  equipment (0.02851194702088833)
+Text #5:  General (0.18461166322231293)
+Text #5:  team (0.7309119701385498)
+Text #5:  proven (0.053681354969739914)
+Text #5:  details (0.12134197354316711)
+Text #5: � (0.12322790175676346)
+Text #6:  USA (0.19801487028598785)
+Text #6:  case (0.573676347732544)
+Text #6:  track (0.3893105983734131)
+Text #6:  So (0.19434458017349243)
+Text #6:  find (0.5456096529960632)
+Text #6:  table (0.20624969899654388)
+Text #6:  Enc (0.045890700072050095)
+Text #6: ryption (0.17630530893802643)
+Text #6:  Objective (0.15348811447620392)
+Text #6:  cloak (0.7986440658569336)
+Text #7:  situation (0.11121030896902084)
+Text #7:  has (0.04202252998948097)
+Text #7:  lawyer (0.810290515422821)
+Text #7:  immediately (0.40941011905670166)
+Text #7:  find (0.11371072381734848)
+Text #7:  involve (0.1911330372095108)
+Text #7:  advocate (0.23969854414463043)
+Text #7:  such (0.08362962305545807)
+Text #7:  lawyer (0.14336030185222626)
+Text #8:  aspects (0.12565092742443085)
+Text #8:  leadership (0.5915437340736389)
+Text #8:  text (0.13934795558452606)
+Text #8:  medical (0.009000943042337894)
+Text #8:  structural (0.6906940340995789)
+Text #8:  leadership (0.028441520407795906)
+Text #8:  guidance (0.0007505742250941694)
+Text #8:  arenas (0.424808531999588)
+Text #8:  first (0.09354700148105621)
+Text #8:  leadership (0.048307593911886215)
+Text #8:  University (0.13343214988708496)
+Text #8:  Warwick (1.1638953685760498)
+Text #8: graduate (0.06099590286612511)
+Text #8:  Masters (0.1622224897146225)
+Text #8:  Director (0.18988162279129028)
+Text #8: LC (1.0633004903793335)
+Text #8: F (0.2792418897151947)
+Text #8:  Medical (0.0013337088748812675)
+Text #8:  Council (0.39524737000465393)
+Text #8: graduate (0.09664326161146164)
+Text #8:  professionals (0.006511243525892496)
+Text #8:  staff (0.39754894375801086)
+Text #8:  Eng (0.07504785060882568)
+Text #8: ES (0.009453469887375832)
+Text #8:  level (1.3553998470306396)
+Text #8:  position (0.7205684781074524)
+Text #8:  comparative (0.8500816226005554)
+Text #8:  database (0.09542309492826462)
+Text #8:  doctors (0.28881800174713135)
+Text #8:  sustained (0.261173278093338)
+Text #8:  levels (0.9883282780647278)
+Text #8:  medical (0.11047861725091934)
+Text #8:  engagement (0.20750190317630768)
+Text #8:  organis (0.36173126101493835)
+Text #8:  enhanced (0.7333818078041077)
+Text #8: earcher (1.5309996604919434)
+Text #8:  Science (0.08803118020296097)
+Text #8:  Unit (0.7181674242019653)
+Text #8:  Division (1.349602222442627)
+Text #8:  Sciences (0.8573711514472961)
+Text #8:  Warwick (1.1364802122116089)
+Text #8:  Masters (0.22659637033939362)
+Text #9:  further (0.027361711487174034)
+Text #9:  Dallas (0.0013712717918679118)
+Text #9:  magazine (0.058992210775613785)
+Text #10: ve (0.24904672801494598)
+Text #10:  specialist (0.49179700016975403)
+Text #10:  advisors (0.3572790324687958)
+Text #10:  prepared (0.17452526092529297)
+Text #11: ron (0.9745702743530273)
+Text #11:  box (0.21144945919513702)
+Text #11:  Extra (0.09515057504177094)
+Text #12: ve (0.24904672801494598)
+Text #12:  specialist (0.49179700016975403)
+Text #12:  advisors (0.3572790324687958)
+Text #12:  prepared (0.17452526092529297)
+Text #13:  coordinated (0.024728432297706604)
+Text #13:  etc (0.019142206758260727)
+Text #13:  point (0.17885595560073853)
+Text #13: lance (0.028953149914741516)
+Text #14:  date (0.16340719163417816)
+Text #14:  further (0.18979302048683167)
+Text #15:  at (0.18904052674770355)
+Text #15:  school (0.072324737906456)
+Text #15:  decision (0.24747051298618317)
+Text #15: � (0.16872644424438477)
+Text #15:  case (1.0693415403366089)
+Text #15: � (0.1594187468290329)
+Text #15: � (0.014847803860902786)
+Text #15:  fact (0.07456643879413605)
+Text #15:  listed (0.3129151165485382)
+Text #15:  below (0.14942166209220886)
+Text #15:  acceptance (0.03066682256758213)
+Text #16:  tutor (0.11636171489953995)
+Text #16:  mechanics (0.031080856919288635)
+Text #16:  levels (0.46438705921173096)
+Text #16:  coordinating (0.014496777206659317)
+Text #16: tymology (0.09303776174783707)
+Text #16: aurus (0.1076544001698494)
+Text #17:  technical (0.26889756321907043)
+Text #17:  issues (0.5556122660636902)
+Text #17: � (0.2893370985984802)
+Text #17: � (0.08874208480119705)
+Text #17:  carry (0.40183815360069275)
+Text #19:  science (0.08083682507276535)
+Text #19:  basis (0.20939457416534424)
+Text #19:  pass (0.0714605450630188)
+Text #19:  mathematics (0.5495871305465698)
+Text #19:  modules (0.34692761301994324)
+Text #19:  first (0.4947883188724518)
+Text #19:  suffice (0.004556228872388601)
+Text #19:  compet (0.11351291090250015)
+Text #19:  biology (0.744020938873291)
+Text #19:  body (0.7092474699020386)
+Text #19:  example (0.4217846989631653)
+Text #21: Es (0.5040920376777649)
+Text #21:  USA (0.0037656812928617)
+Text #21:  SM (0.014099996536970139)
+Text #21: Es (0.3251231610774994)
+Text #21: agos (0.10233869403600693)
+Text #22:  qualitative (0.011051114648580551)
+Text #22:  digital (0.038988128304481506)
+Text #22: � (0.0547163151204586)
+Text #22:  discoveries (0.08139357715845108)
+Text #24: ve (0.1502327173948288)
+Text #26:  Fulton (1.1988083124160767)
+Text #26: Georgia (0.012306264601647854)
+Text #26:  Fulton (0.5786681175231934)
+Text #26:  Fulton (0.8675971031188965)
+Text #26:  description (0.7862290143966675)
+Text #26:  anonymously (0.0033382303081452847)
+Text #26:  former (0.5501817464828491)
+Text #26:  Fulton (0.5597968697547913)
+Text #27:  levels (0.3963564336299896)
+Text #28:  PBS (0.04151942580938339)
+Text #28: � (0.020706411451101303)
+Text #28:  Fletcher (0.1492077261209488)
+Text #31: � (0.2327396720647812)
+Text #31:  vague (0.2253008931875229)
+Text #38: ve (0.13678768277168274)
+Text #38: ve (0.20328885316848755)
+Text #38:  explained (0.395591676235199)
+
+=== Text #1 ===
+> When it comes to divorce in Salt Lake City, each party has a lot to lose–especially if you have children or significant assets. One of the most complex issues is the[ division] of assets and property. Utah law requires the distribution to be equitable. In many divorce[ cases], both parties are unable to agree how to divide property and assets. It can often create an acrimonious situation. An experienced and knowledgeable Salt Lake City divorce[ lawyer] can often make the difference between getting the settlement you deserve to losing everything you have rightfully earned.
+In most Utah divorces, there are three major assets that are usually involved–the home, personal property and retirement plans/investments. Here is a brief rundown on how Utah courts[ determine] equitable asset and property[ division].
+Home & Property: Many of the most heated divorce cases in Salt Lake City involve which party is entitled to receive the home. The court can use several different methods of determination. Here are the most common depending on the[ circumstances] of each[ case].[ First], the court may order the house to be sold and equity divided among the two parties. The court may also allow one party to buy out the other person�[�]s interest in the real property. Another common ruling is to have the property awarded to one party and the remaining assets of equal value given to the other.
+Personal Property: Personal property is classified as the ownership of any material possessions that can be moved. It includes cars, furniture, and clothing. While most people do not share clothes, the determination of vehicles and furniture can sometimes become complex–especially if they are co-owned by each party. Utah courts[ place] a[ priority] on dividing personal property[ equ]itably.
+Retirement Plans & Investments: The[ division] of retirement and investment accounts can sometimes get[ complicated] under Utah family law. If only one party has a pension or retirement plan, in most[ cases] the other[ party] is entitled to half of the amount earned during the time of the marriage. Any money earned before the marriage will not be divided. If both parties have their names on investment or retirement plans, the court can rule either two ways. Both individuals can retain the full value of their own plans or the court will order an equitable distribution of all accounts.
+In a perfect world, divorcing couples can agree to divide assets and property on their own. Unfortunately, that is not always the[ case]. But there are some solutions to come up with a reasonable agreement. One viable option is mediation. Many Salt Lake City divorce attorneys offer mediation services to help couples find common[ ground] on some of
+
+=== Text #2 ===
+> Everyone seems to want a brighter smile, and teeth whitening is a great option for boosting your confidence. If food and drinks have stained your pearly whites, you may be tempted to rush to the drug store and pick up the first over-the-counter whitening product you find. However, while side effects from whitening products are[ rare], you should follow these tips before bleaching your teeth to ensure your safety.
+If your teeth appear stained, don�[�]t assume you need to bleach them. It�[�]s possible a good teeth cleaning will restore the sparkle to your smile. During an oral exam, your dentist will also check[ for cav]ities and gum[ issues], which should be treated before bleaching your teeth.
+At-home whiteners most often use carbamide peroxide in concentrations ranging from 10 to 20 percent. Carbamide peroxide is hydrogen peroxide with u[rea added]. This product remains active for up to 10 hours at a low enough acidity[ level] that enamel[ et]ching is not a concern.
+Start with a product containing 10 percent carbamide peroxide. If the whitener doesn�[�]t bother your mouth, but you don�[�]t see the results you want, try another over-the-counter product with a higher concentration.
+When you choose an at-home teeth bleaching kit, it�[�]s your responsibility to follow the instructions on the package. Don’t leave the gel or strips on your teeth longer than[ advised] or you could experience tooth sensitivity and sore gums. Also, avoid drinking soda, sports drinks or other sugary/acidic beverages for several hours after whitening to prevent[ et]ching your teeth.
+At-home whitening kits are inexpensive and widely available, but that doesn�[�]t make them the best choice. Professional in-office teeth bleaching can lighten your smile up to eight shades in a single 45-minute visit. Combined with professional-grade take-home treatments, patients see an average improvement of 11 shades. In comparison, over-the-counter whitening requires daily 30[-]minute applications for more than two weeks to achieve a six-shade improvement.
+In-office whitening uses LED light-[activated] technology to maximize results in the shortest amount of time without causing tooth sensitivity. It�[�]s effective both for people who simply want to lighten their smile and for patients with severely discolored teeth.
+[P]regnant women and nursing mothers should postpone teeth bleaching.
+Trans[lucent] teeth[ don]�[�]
+
+=== Text #3 ===
+> How to unblock[ ABC] Go UK outside[ US]? Watch ABC in the[ UK] on[ Apple] TV, iPhone,[ iPad], Android, PC or[ Mac]. ABC is geoblocked[ outside US]. In[ order] to[ bypass geographic] restrictions and access[ ABC] in[ UK], you have to[ spoof]/change your online[ location]. VPN and Smart DNS allows you to watch ABC in the[ UK].
+If you try to watch ABC shows online in the[ UK], you get the following error message: “You appear to be[ outside] the[ United] States or its[ territories]. Due to International rights agreements, we only offer this video to viewers located within the[ US].” That basically means you cannot watch any of ABC’s shows in[ UK] due to geo-restrictions. VPN enables you to trick ABC into thinking you are in USA by giving you an American IP address.
+VPN allows you to unblock all[ US channels] in the UK. Watch ABC, NBC, CBS, Netflix, Vudu, Hulu, Showtime, or HBO Go.
+VPN apps can be installed on Android, iPhone, iPad, PC, or[ Mac].
+Thanks to VPN’s data[ encryption], your ISP will not be able to see what you are doing online.
+Your Internet speed will[ drop] by[ around] 10[ to] 15% when using VPN.
+I am currently using ExpressVPN to unblock WatchABC in the[ UK]. You can use any of the three VPN providers in the[ table] below to watch ABC outside[ US].
+There is an alternative way to watch ABC outside[ US]. Smart DNS also allows you to remove[ ge]oblocks and access[ US channels] in the[ UK]. You do not get a new IP address when using Smart DNS. Therefore, you will still appear to be in the[ UK] for all websites[ apart] from the ones you are trying to unblock.
+Smart DNS can be setup on[ Apple] TV,[ Mac], Smart TV,[ PS]3,[ PS]4, Xbox, Amazon Fire TV, Roku, Chromecast, Android, iPhone, iPad, or PC.
+No effect on Internet[ speed] with Smart DNS. No traffic[ encryption] either.
+You can still use all[ local UK] apps and sites while unblocking[ US] channels with Smart DNS. Your IP address is[ left] unchanged.
+No need to install or download software. Smart DNS can be configured directly on your device. All you need is access to your device�[�]s network settings.
+Some ISPs uses[ transparent] proxies or DNS[ hij]acking. Either method might prevent Smart DNS from functioning properly.
+There are quite a few Smart DNS services available
+
+=== Text #4 ===
+> Volunteers are vital to Thames Reach in our efforts to end street homelessness and support vulnerable and socially excluded people[ across] London.
+As well as helping individuals to take steps forward in their lives, volunteering also offers opportunities to learn, meet new people and experience something different.
+Benefacto is a social enterprise helping to get people who work in a professional capacity to volunteer in their local communities. Since last June, they�[�ve] been arranging for professional and corporate volunteers to dedicate some of their time to helping Thames Reach clients at iReach, a weekly[ digital] skills workshop at our Employment Academy in[ Cam]berwell.
+iReach gives people with little or no computer skills the opportunity to learn at their own pace. Funded by the Worshipful Company of Information[ Technologists], the workshop teaches practical[ digital] skills, so clients can access services and benefits online, and can also help to reduce social isolation.
+Benefacto volunteer Molly spent an afternoon volunteering at an iReach session earlier this month. “You take it for granted but lots of people can�[�]t use a computer,” she said. “It’s so important for applying for jobs and staying in contact with friends and family.
+“You can see people�[�]s progress throughout the session. As a volunteer you want to get to a stage where you�[�]re almost in the way. There was a lot of people at the session, everyone was enjoying it, it was amazing to see,” she added.
+Stevie Back, volunteer coordinator at Benefacto, said: “Doing this gives volunteers a chance to touch down with perhaps an unfamiliar reality and realise the importance of[ digital] inclusion.
+“We’[ve] spent a long time seeking out the right charities for our volunteers. People working in a professional or corporate environment will tend to have[ digital] skills they can impart through sessions like iReach, which is a fantastic project.
+“We’[ve] really enjoyed working with Thames Reach and will continue to do so. We’[ve] had 23 volunteers helping out with iReach. They share their[ expertise] and make contact with people in their communities they might otherwise never have met,” she said.
+Thames Reach[ digital] support worker Chris Hamm, who runs the iReach sessions, said: “When our service users first arrive, some are apprehensive about using the[ equipment]. Some have almost no previous experience of using computers.
+“After a while,
+
+=== Text #5 ===
+> The Denver Board of Education opened the 2017-18 school year with an update on projects that include new construction, upgrades, heat mitigation and quality learning environments.
+We are excited that Denver students will be the beneficiaries of a four year, $572 million[ General] Obligation Bond. Since the passage of the bond, our construction[ team] has worked to schedule the projects over the four-year term of the bond.
+Denver voters on Tuesday approved bond and mill funding measures for students in Denver Public Schools, agreeing to invest $572 million in bond funding to build and improve schools and $56.6 million in operating dollars to support[ proven] initiatives, such as early literacy.
+Denver voters say yes to bond and mill levy funding support for DPS students and schools. Click to learn more about the[ details] of the voter-approved bond measure.
+Denver voters on Nov. 8 approved bond and mill funding measures for DPS students and schools. Learn more about what�[�]s included in the mill levy measure.
+
+=== Text #6 ===
+> Is downloading from torrent sites illegal in the[ USA]? What happens if in[ case] we downloaded one?
+These meta-data files are not stored on the torrent[ track]ers server, but are distributed among a number of. The client connects to those peers to obtain the various pieces.[ So], now is the time to[ find] the best Usabit alternatives. The odds are in your favor. Enjoy this database while it is still around, folks! So, scroll down to find the[ table] containing best sites like Usabit. Runs on all operating systems.
+Additionally, µTorrent supports the Protocol[ Encryption] joint specification compatible with Azureus 2. It is completely written in[ Objective]-C and Cocoa. Soundpark No matter what genre you are into Soundpark has definitely got you covered. It is based on the libtorrent library written by Arvid Norberg. You can achieve this anonymity by hiding behind the security[ cloak] of the. The Pirate Bay Pirate Bay is the best torrent sites for lossless music that has a remarkable reputation among music lovers and torrent users. This site is gaining a bigger readership every day.
+Skinnable and Localized Various icon, toolbar graphic and status icon replacements are available, and creating your own is very simple. The music offered by Waffles. It also tracks which fragment s of that file each client possesses, to assist in efficient data sharing between clients. This is because the pop music genre has millions of followers worldwide. Mininova is the successor to Suprnova, one of the original big torrent databases of the Web. You can also use for anonymity and security.
+Besides the cool interface, you can expect to find all the latest songs by famous artists neatly organized in categories depending on their genres. A peer is any computer running an instance of a client. The site was banned from its main domain over a year ago but still due to its high-quality torrents, users never left using Usabit torrent site. Read the details on their home page. You can share your feedback in the comments section below. Toorgle When it comes to exploring high-quality classical music torrents, you should use Toorgle. The site has a very minimalistic design with large album covers making the overall browsing experience extremely satisfying.
+Such a group of peers connected to each other to share a torrent is called a swarm. This website is all about quality, high-resolution torrents, and places less emphasis on quantities of torrents available. Monova Monova caters the needs of pop music lovers by offering
+
+=== Text #7 ===
+> NCSA has Family Courtworkers across Alberta that can help you with your[ situation].
+You have the right to know what is happening. You will be told if your child has been apprehended either verbally or in writing. You will also be told the reasons why your child[ has] been apprehended.
+You have the right to consult a[ lawyer] and should contact one[ immediately] if your child has been apprehended. You might[ find] it helpful to[ involve] an[ advocate] such as a courtworker or other support[ such] as a family member or friend.
+You have a right to be in court and be involved in the planning for your child.
+You have the right to speak to a[ lawyer] to find out if a decision can be reviewed or appealed.
+
+=== Text #8 ===
+> This title is a comprehensive account of the key[ aspects] of medical[ leadership]. A highly accessible,[ text] book-style resource, it explores how the[ medical] profession has evolved in tandem with administrative and[ structural] aspects of the NHS. Assuming[ leadership] roles at all stages of their training and career is a progressively vital component of the definition of a good doctor. This book will provide invaluable support and[ guidance] to anyone engaged in leadership within the NHS, but particularly to junior doctors in the primary and secondary care[ arenas] taking on leadership roles for the[ first] time.
+An introduction to medical[ leadership] and engagement: a perspective on this text. A historical perspective on medical leadership. Doctors and managers: differing perspectives. Roles and models of leadership. Medical leadership competency approaches. Why does it matter? Medical engagement and organisational performance. Medical leadership and primary care. Appraisal and revalidation. Practical examples of initiatives to enhance leadership capacity. Medical leadership and engagement: towards cultural acceptance and the future.
+Peter Spurgeon was Director of the Health Services Management Centre at the[ University] of Birmingham prior to joining[ Warwick] Medical School (WMS). At WMS he was originally based in the Institute of Clinical Leadership, which ran programmes in medical leadership for undergraduate and post[graduate] doctors. The Institute also offered development programmes for newly qualified doctors and developed a Certificate and[ Masters] programme in Medical Leadership.Peter was Project[ Director] for five years on the Enhancing Engagement in Medical Leadership project, run jointly by the NHS Institute for Innovation and Improvement and the Academy of Medical Royal Colleges. This project produced the Medical Leadership Competency Framework (M[LCF]), now endorsed by the General[ Medical Council] as part of undergraduate and post[graduate] training. It also formed the basis of a modified Clinical Leadership Competency Framework for all clinical[ professionals] and ultimately the Leadership Framework for all NHS[ staff] groups.The project also produced the Medical[ Eng]agement Scale (M[ES]), which provides a metric of the[ level] of engagement of the medical workforce in the wider goals of the organisation. Peter has overseen the subsequent use of this measure to its current[ position] of an international[ comparative database] of some 7000[ doctors]. The[ sustained] link between[ levels] of[ medical engagement] and[ organis]ational performance has seen increasing attention given to both assessment and development of[ enhanced] engagement.Peter is now a Recognised Res[earcher] in the Social[ Science] and Systems in Health[ Unit] of the[ Division] of Health[ Sciences] at WMS.
+John Clark is is an Honorary Associate Professor within the University of[ Warwick] Medical School and was involved in the design and delivery of a new[ Masters] in Medical Leadership. He is also an Ad
+
+=== Text #9 ===
+> Are going to be able to understand how you might be able to take these things go that much more[ further] into the life that you with actually to be able live? This is the case and we can be able help you do all these things and more as we hope that people going be able understand were going be able help them due through Drones[ Dallas]. People are going to be able have them in more greater ways to be able to know and understand the many different opportunities that they are going be able have them as we can be able help them see how we can be able help them through their our company making sure that they are going be able have that much more better go to utilize these things for yourself.
+Looking at this, is can be them in more greater ways to be able to see how action might be able have a greater way to be able to understand the many properties of going be able have to the many different services that we do have through Drones Dallas. Some these things going to would[ magazine] quality photography and even HD video tours are going to be able help you do all that you need to more. This is can be something is can be sure that much amazing we hope that people are going to be able to fully recognize different opportunities to be able to make sure that people are going to be able have all of the need and more.
+And making this happen, is can be them in more greater ways that we hope that people going be able to know all that they need and more as a can be able to make sure that you’re going to go to get the much more clearly as understand what were can actually be able help you in doing. This is because we generally care about the quality services you’re actually going to be able to get. This is also one of the reasons that we hope that people will be able to understand that the great quality that were going to be able offer is no because can be able to match as they do not find important of making sure that your needs will be met clearly.
+The reason for this is because we also people to be able to understand what we can be able help them due through Drones Dallas. So is things are going to be able include the many different opportunities that people going be able actually be able to get for themselves that they can be able to know how we can be able to make this and more happen for them. This is going to be what we are going to be able hope that people going to be able to do as we can be able
+
+=== Text #10 ===
+> That Which You Don’t Be Aware Of Write down Essay for my situation You should not must be troubled once you’ve had an essay heading up, needless to say, whenever you don’t feel you can find it finished after our gurus are right here as a way to provide you with a sustaining hands. Our essay aid isn’t travelling to supply you with a duplicated essay. There can be different types of guidelines essays. You shouldn’t really have to be troubled when you’[ve] had an essay coming up, and of course if you don’t assume you can obtain it conducted then our professionals are below in order to supply you with a allowing fingers.
+You shouldn’t ought to be anxious in case you have an essay coming, and will you do not presume you may get it done then our industry experts are on this site so that you can provide you with a assisting hand video poker basic strategy. Essays are inescapable an instructional pupil can produce suitable manner in her or his advisors Research Papers Online Writing Service. These days, based upon the total amount of sheets your essay should be quickly pay attention to a section additionally additionally inventory some information.
+One can find different varieties of essays, but practically all them be sure to ask that you will add lots of time towards a old fashioned paper. If you would like to get hold of a very little charge essay at our guidance, then it can be set in destination with the most effective affordable essay copy creator (professor of rehearse or simply just a scientist). The Foolproof Generate Essay for Me Process Publish essay i believe can be an on-line essay composing provider that components entry to producing, correction, croping and editing and higher first-class written content offerings because of internet.
+In case you will need to present an essay as well as time restriction is coming, there isn’t any ought to obtain freak out since there are countless[ specialist] writers who will encourage you to submit an original and remarkable essay. Essays are inescapable an educational learner could get absent outside of his or her[ advisors] research paper writing service. The purchaser reports essays are[ prepared] in reasonably priced interest rates. Information On Produce Essay in my opinion You will have essays to your account. Essays have to expose people judgments utilising any person concern.
+One can much too acquire essay for college from us should you be just much too hectic to evaluate the investment. Essay is definitely important for
+
+=== Text #11 ===
+> Biomedics 1 Day Extra are daily replacement disposable contact lenses by CooperVision Hyd[ron]. Buy one[ box] of 90 lenses.
+Biomedics 1 Day[ Extra] contacts give you all the convenience of a daily disposable lens with no need for solutions, cases or cleaning and are perfect for the occasional wear. These lenses have greater comfort handling with superior ease of insertion and removal.
+Biomedic 1 Day Extra are also marketed under various other brand names including Clear Choice 1-day, Ascend 1-day, easyvision CLARISION SPHERE, Clearsight 1 Day and ProView Daily Disposable.
+
+=== Text #12 ===
+> That Which You Don’t Be Aware Of Write down Essay for my situation You should not must be troubled once you’ve had an essay heading up, needless to say, whenever you don’t feel you can find it finished after our gurus are right here as a way to provide you with a sustaining hands. Our essay aid isn’t travelling to supply you with a duplicated essay. There can be different types of guidelines essays. You shouldn’t really have to be troubled when you’[ve] had an essay coming up, and of course if you don’t assume you can obtain it conducted then our professionals are below in order to supply you with a allowing fingers.
+You shouldn’t ought to be anxious in case you have an essay coming, and will you do not presume you may get it done then our industry experts are on this site so that you can provide you with a assisting hand video poker basic strategy. Essays are inescapable an instructional pupil can produce suitable manner in her or his advisors Research Papers Online Writing Service. These days, based upon the total amount of sheets your essay should be quickly pay attention to a section additionally additionally inventory some information.
+One can find different varieties of essays, but practically all them be sure to ask that you will add lots of time towards a old fashioned paper. If you would like to get hold of a very little charge essay at our guidance, then it can be set in destination with the most effective affordable essay copy creator (professor of rehearse or simply just a scientist). The Foolproof Generate Essay for Me Process Publish essay i believe can be an on-line essay composing provider that components entry to producing, correction, croping and editing and higher first-class written content offerings because of internet.
+In case you will need to present an essay as well as time restriction is coming, there isn’t any ought to obtain freak out since there are countless[ specialist] writers who will encourage you to submit an original and remarkable essay. Essays are inescapable an educational learner could get absent outside of his or her[ advisors] research paper writing service. The purchaser reports essays are[ prepared] in reasonably priced interest rates. Information On Produce Essay in my opinion You will have essays to your account. Essays have to expose people judgments utilising any person concern.
+One can much too acquire essay for college from us should you be just much too hectic to evaluate the investment. Essay is definitely important for
+
+=== Text #13 ===
+> This month some important Walmart news did not get the attention it deserved. The news wasn't some flashy announcement about virtual reality or about some new service for busy Manhattanites. It was something much more subtle and much more substantive.
+It was the hire of Valerie Casey. Google "Valerie Casey" even today and only two listings make mention of her newfound connection with Walmart on the first page of the returned search results. This amount of attention is unjustifiably slight. Let this piece then serve as the hire's coming out party.
+Shrewdly, Walmart has made Valerie Casey, formerly of Frog, Ideo, and Pentagram, its new head of design. She will be charged with leading Walmart into the future and ensuring that all its products and services, from websites to employee and consumer apps, will work in cohesion and from a singular experience design point of view.
+"What's the big whup?" you might ask.
+The big whup is that this announcement clearly shows that Walmart has jumped feet first into the waters of next generation retailing. Under Doug McMillon's bold leadership, Walmart here again is taking one of the most essential steps to long-term success for any legacy bricks-and-mortar retailer—specifically, redefining how it thinks of the word "product."
+Instead of doing what many retailers do, like staffing de facto "product" heads within owned brand development, store operations, e-commerce, etc. and then leaving them to collaborate inside complex organizations with competing priorities, Walmart rightly understands that retailing has become so complex that all these aforementioned roles now need their own steward to ensure alignment.
+Walmart having a mission to help its customers save money and live better is one thing, but putting that promise into coherent action is another thing entirely. Many retailers take such[ coordinated] action for granted, which is why so many legacy retail experiences feel disjointed across the digital and physical divide. Success rarely is found in the compromise and turf wars of internal politics. The buck needs to stop somewhere.
+Prior to e-commerce, before customers had the myriad of options they have today to consume products (via web portals, apps, social media,[ etc].), retailers were able to differentiate themselves by the products inside their four walls. The strategic practice of product differentiation became so prevalent and such a[ point] of emphasis that it even gave way to the commonly heard par[lance] of retail being a "merchant-led business."
+The growth of e-commerce in the 1990s and 2000s re
+
+=== Text #14 ===
+> Learn the fundamentals of Flash as we guide you through this comprehensive introduction to the leading interactive-design program. We will show you how to draw and animate your own graphics. This is the perfect starting point for anyone interested in creating enhanced web output.
+After we give you a complete tour of the Flash environment, we will take you from a blank canvas to being able to produce your own graphics and animations. You will see how it easy it is to import your own audio and video, add simple interactivity, and then publish your projects in a variety of formats.
+This 2-day Introduction course helps you learn about the tools and features available in Adobe Flash CC. We will help you understand how this industry-leading program takes interactive design to a new level. We will guide you in learning the work area and the best practices for creating Flash content. Plus, you will get the hands-on experience you need to create your own projects.
+Our goal is for you to be able to create simple visual projects that are ready to use for the web.
+This course is intended for designers and developers who are new to Flash and who want to learn the interface and commonly used features.
+If you are considering this Flash CC Design Introduction 2 Days Course but would like further information simply send us your query quickly & easily with the form below. Whether you would like to check[ date] availability, pricing, course suitability or just need[ further] information about a course send us your query and we will get you a swift reply, usually within 2 business hours!
+Your course covered everything I needed to know and also gave really useful tips and advice making me feel more confident about using the program.
+
+=== Text #15 ===
+> When you confirm your enrollment[ at] the[ school] of choice, your[ decision] seems final. However, that�[�]s not always the[ case]. There are plenty of college students who transfer from two-year colleges to four-year universities and from four-year universities to different schools. If you�[�]re thinking of making a switch in universities, you�[�]re not alone. In[ fact], the schools[ listed below] have some of the highest[ acceptance] rates for transfer students!
+
+=== Text #16 ===
+> So you have your children writing every day. Great! Now, of course, you need to become their editor. Here is where some find a challenge in the natural approach to language arts. What if I don’t feel competent to edit my child’s writing? We’ll address the underlying problem with that argument further down, but for now — here are 10 ways to become a better editor of your child’s writing.
+1. Read A Strong Start in Language.
+This Ruth Beechick title for beginning grades is recommended widely — from The Well-Trained Mind to Sonlight. Typically packaged as part of The Three Rs, A Strong Start in Language helps you become the editor from the beginning — from the time your child traces his first letters, to copywork, and through dictation. Read our full review (scroll down).
+2. Read You Can Teach Your Child Successfully.
+Over 100 pages are devoted to writing in this followup to the Three Rs by Ruth Beechick mentioned above. The book speaks to you as your child’s[ tutor] and therefore includes writing activities, writing lessons to get you started and that you can pattern your own lessons after, and suggestions for usage, grammar,[ mechanics], and spelling. Best of all it tells you what you can expect from your child at various[ levels] on the writing scale. Very valuable reference to finding your way as you teach writing naturally to your children and we cannot recommend it highly enough. You can read our full review (scroll down).
+3. Use Learning Grammar Through Writing.
+This handy reference published by Educators Publishing Service is now out of print. But it is worth finding. When you find a mistake in your child’s writing, you can find the[ coordinating] pithy rule with an example to have your child copy into a grammar notebook. A checklist at the back helps you keep track of the skills you have covered.
+The best way to improve your editing is to read good writing. While you work through the suggestions above, you can be building your foundation in good writing at the same time.
+5. Make use of a dictionary.
+Before the days of Kindle we had electronic dictionaries handy that included a grammar reference. Although somewhat pricey, the better models not only include the definitions, but also the e[tymology] of the word. Most also come with a built-in thes[aurus] and other tools. If nothing else, a good dictionary can shed some light on how words are properly used
+
+=== Text #17 ===
+> JPW Osprey Limited specialise in all aspects of façade glazing, curtain walling and cladding refurbishment, operating under CDM often as the principal contractor.
+Having established an excellent reputation for the effective co-ordination and management of suppliers, whilst resolving[ technical] and installation[ issues].
+We have a long history of highly complex projects completed on time and to budget. Projects are often carried out with the building�[�]s occupying tenants in situ, causing minimal disruption.
+JPW Osprey Limited�[�]s approach to health and safety is extremely important on all projects. The Health and Safety People are retained to[ carry] out regular inspections and audit the business.
+
+=== Text #18 ===
+> We are always looking for applicants. We seek employees who are sincere in their desire to provide great food and service to all customers.
+Prior experience is helpful, but not required.
+
+=== Text #19 ===
+> A good honours degree in chemistry, pharmacy, pharmaceutical[ science], pharmacology, biological science or biomedical science. Other chemistry or medical science degrees will be considered on an individual[ basis]. All applicants will be expected to[ pass] all[ mathematics modules] within their[ first] degree and should demonstrate[ suffice compet]ency in[ biology] and chemistry.
+Applicants with alternative qualifications will also need appropriate experience (in healthcare, the pharmaceutical industry or a regulatory[ body], for[ example]).
+
+=== Text #20 ===
+> In 1997 Ronald Phillips published their first annual catalogue attracting buyers from outside London as well as overseas. Since the first publication the annual catalogue which includes some of the best and rarest pieces on the market, has proven to be a great success not only as a selling tool but also as a reference book finding a welcome home in many furniture collectors library. Hard bound, extensively researched and beautifully illustrated; representing a colourful cross-section of what is available at Ronald Phillips.
+
+=== Text #21 ===
+> Expand your clientele, meet and network with potential business partners and make new business contacts.
+Learn from seasoned industry experts sharing their knowledge and experience on scaling up productivity, driving profitability and positioning SM[Es] for sustainability and global Competitiveness.
+Reach new markets, improve your corporate identity, showcase and promote your products and services to visitors and buyers.
+Explore potential business deals and commercial partnerships with key trade, commerce and investment representatives from around the Country, the[ USA] and the International Community.
+Raise brand awareness and generate new business opportunities across multiple market sectors.
+Booth prices starts from N50,000 for 2 days. Start Booking Now! Booth prices starts from N50,000 for 2 days. Start Booking Now!
+We were privilege to meet with Ebeano Supermarket, Shoppers Delite and Just Rite; we took up from there and today we are on the shelf of these malls. The exhibition showed us the way to do business right and to do it effectively and efficiently. The exhibition also made room for us to meet various investors, who have tremendously been of help to the growth of Hyst Global Business Ltd.
+I exhibited at the African Food and Products Exhibition 2018. The Event was a wonderful one and an eye-opener for not just me but for other exhibitors and attendees. From the conference sessions, I acquired knowledge on exportation of goods. The AFPE 2018 was the door opener to my exquisite Zobo Business. I thought to myself that since the Exhibition was for African Food and Products, Zobo is an African drink so I decided to make and sell for the Exhibition. Just like magic, amidst my other products, the zobo made super sales. Now I have a branded Zobo drink.
+The AFPE 2018 was great, it was an opportunity to have a firsthand understanding of the challenges facing[ SMEs], helping us know what products they needed and how they can take advantage of our service offerings. The AFPE 2019 gave us a chance to partner with many of them.
+It was an amazing experience, my business was a month old and I didn’t know anyone. It was the first time I got to be in public and I appreciate the opportunity to be exposed. Coming to the exhibition boosted my sales and created awareness for me when people didn’t know me. I have got contacts from the exhibition and they have formed part of my customer base.
+L[agos] is a commercial hub and it was important for us to share with the market. There
+
+=== Text #22 ===
+> I’m business and career driven individual. I have contributed to a couple of business development and execution project within and outside Nigeria.
+The business world is evolving with the speed of light. A lot of entrepreneurs believe money is the major determining factor in starting a business. Running a business requires critical and strategic planning, commitment to customers,[ qualitative] service delivery and innovation to ensure your business survive the competition especially in this[ digital] age.
+I am an ardent creative analyst with the flare for proper administration for effective performance and result delivery. There�[�]s no need embarking on projects when you don’t have the end in view.
+Over the years my experience and my ever-increasing knowledge in the business world has helped provide solutions to businesses.
+Research and self-development are my core. I advocate for constant learning and implementation of new[ discoveries]. There’s always a story behind every success story and it’s called discipline and stay through power.
+
+=== Text #23 ===
+> Building a successful software platform is done by building software with a purpose by solving a problem that people already have. The problem may not be obvious, and it may not even be a problem that people are aware of, but the problem exists. Using Instagram as a case study, I think there are four keys a platforms success.
+Most people aren't professional photographers. They don't have access to the tools professional photographers use nor the time or money to buy the tools and learn them. But they do want professional looking photos. Instagram built a platform that had intrinsic value on it's own by providing people the ability to easily create professional looking photographs.
+One of the keys that made Instagram successful was that they took something people were already doing and made it easier and better. They removed the need to download photos from a mobile device and then upload them from a desktop or laptop. They simplified the process and allowed users to share exiting photos right from their phones or take a new photo to share.
+They also simplified an otherwise complex photo editing process by providing a set of templates that people could apply without having to understand image editing. This enabled a regular person to have professional looking photos without any work.
+One thing that Instagram did very well is that it built it's software to work with exiting services like Facebook and Twitter. Services that already had a huge community of users. They didn't try to re-create Twitter or Facebook. Instead, they allowed Twitter and Facebook to get better by making their service interoperable.
+Instagram didn't force people to ONLY use their service. Instead, it allowed people to continue to use their existing social media services and augment a specific workflow to be better if they wanted to. Users don't want to be asked to chose between this OR that. They want to be able to use this AND that. Will your software provide additional choices or limit choices?
+
+=== Text #24 ===
+> Check out these two awesome ladies!!
+They competed all weekend at the Heart of America CrossFit Competition. Three days of workouts and fun. They did GREAT!!! Very cool to see them compete. More to come on this, once I’[ve] rested a little.
+
+=== Text #25 ===
+> Embrace world class facilities at East Bourne Resort & Spa Shimla. Facilities at East Bourne Resort & Spa Shimla comprise multi cuisine restaurant, tours and travel desk. Avail facilities of East Bourne Resort & Spa Shimla.
+
+=== Text #26 ===
+> I was satisfied with how they allocated time.
+Build Vacation time the day you start. Receive so many hours per pay period.
+There is no encouragement not to use vacation.
+What can you tell job seekers about[ Fulton] County ([Georgia])'s Vacation & Paid Time Off?"
+Glassdoor is your resource for information about the Vacation & Paid Time Off benefits at[ Fulton] County (Georgia). Learn about[ Fulton] County (Georgia) Vacation & Paid Time Off, including a[ description] from the employer, and comments and ratings provided[ anonymously] by current and[ former Fulton] County (Georgia) employees.
+
+=== Text #27 ===
+> Get a Bigger Bed - But PAY LESS - Spring Offers Now On in Store!
+We Stock Harrison! Follow the Sheep for a Great Nights Sleep!
+We understand that no two people are the same. So, neither should their mattresses or beds be, that’s why, here at Sleep Matters we offer a bespoke service to all our clients. All our beds and mattresses are made to order in either Single, Double, King, Super King or special sizes offering various[ levels] of support and comfort.
+As well as our premium mattresses and beds, choose from our extensive range of stylish headboards, traditional divans, spacious ottomans, and beautiful bed frames, in a wide range of intricate fabrics and styles to suit your individual taste. We have everything you need to create the ultimate centrepiece to your room.
+We also have a luxurious range of fine bedding for you to sample at our spacious showroom where a professional and extremely high standard of service is afforded to all our clients.
+Visit our bed showroom on Huddersfield Road, Honley today!
+
+=== Text #28 ===
+> So many things happening this weekend!
+The highly anticipated[ PBS] Kids in the Park festival is tomorrow, Saturday, June 21. But there are lot of other events for families to enjoy this weekend as well.
+Also on Saturday, check out the free Summer Solstice Celebration at the Indianapolis Museum of Art�[�]s 100 Acre Woods. The Windsor Park Neighborhood Association will also celebrate the solstice with a festival in[ Fletcher] Park from 12 p.m.-11 p.m.
+Saturday and Sunday, you can experience Native American culture through myriad experiences on offer at the Eiteljorg Indian Market and Festival.
+Saturday, the Irvington Folk Festival features its Children’s Day from 11 a.m.-2 p.m. at Ellenberger Park.
+
+=== Text #29 ===
+> Athlone Community Radio will be broadcasting live for 4 hours from Golden Island Shopping Centre in Athlone, the heart of Ireland, to Celebrate World Radio Day 2019. Our live broadcast will begin at 12pm and finish at 4pm. The Theme of World Radio Day is “Dialogue, Tolerance and Peace”.
+This hour will feature local Musicians from Athlone. We will discuss how music plays a key role in promoting Tolerance , Dialogue and Peace. This programme will be presented by presenter/Sound Engineer with the station and also a musician Cathal McCormack.
+Athlone Today is our daily current affairs programme. We will be delving into the World Radio Theme 2019 of tolerance, dialogue and peace in our community. We will feature an interview with renowned expert in Media Literacy Irena Djak Cvetkovic on access to media, creation of Media and the critical evaluation of media and how media can play a part in this theme. With over 20 years of experience in training, Deridre Hunt shares her unique perspective into the world of training and radio. Nikki Dube who presented radio in South Africa to over 1 million listeners gives us an insight into the importance of Radio as tool for Community Development. Presenter and Producer of the Arts Programme,Philomena Barry, chats about Radio in Gambia. Writer Aidan Shortall has written a special poem entitled "Dialogue, Tolerance and Peace” to mark the theme.
+
+=== Text #30 ===
+> Fabulous Large Extending Dining Table Large Extending Oak Dining Table Living Room Decoration – Here’s some pictures of design ideas for your home interior design related to large extending dining table. We collected the images from various sources to provide Dining Room inspiration for you. The image that we serve is high quality and high resolution, with the hope that you can clearly see the detail of inspiration about large extending dining table. The exactly dimension of the Fabulous Large Extending Dining Table Large Extending Oak Dining Table Living Room Decoration is 1188×600 pixels.
+We hope this post may be of benefit to you, especially in designing a Dining Room in your home. You can find related images related to Fabulous Large Extending Dining Table Large Extending Oak Dining Table Living Room Decoration on this website by discovering the category section, or the related posts below. So, take your time and find the amazing Fabulous Large Extending Dining Table Large Extending Oak Dining Table Living Room Decoration pictures informed here that suitable with your needs.
+Hopefully, the pictures about Fabulous Large Extending Dining Table Large Extending Oak Dining Table Living Room Decoration that we have provided this can be useful for you all. Don’t forget to share this post with your friends to help your friend in finding their inspiration. Creative greeting from our and Thank you for visiting.
+
+=== Text #31 ===
+> There�[�]s a lot of[ vague], fluffy talk about self-care. I’m a fan of practical, tangible, actionable. If you are too, this is for you.
+Magnificent Mornings is the live workshop I lead all about discovering and creating your ideal morning routine, one that allows you to show up as the best version of yourself, with ease.
+Can’t make the live version or just prefer to go at your own pace? Then this self-paced version is for you.
+This cooking guide includes 29 simple, easy, stress-reducing recipes that are all plant-based and gluten-free.
+You’ll learn a bit about my philosophy in the kitchen and my tips and tricks for converting recipes to meet dietary restrictions quickly and easily.
+
+=== Text #32 ===
+> In 1992 Jacki was the first on the national market with her Blessed Herbal Candles, thus creating the spiritual candle industry. Over the past 25 plus years she has created hundreds of magical candles, teaches, presents, podcasts, writes, volunteers, and her latest venture is to make the Akashic Records a powerful and practical spiritual tool. DIY Akashic Wisdom, Access the Library of Your Soul, is co-authored with her sister, business partner and wonder-twin, Patty Shaw. Jacki has dedicated her entire life to the mission of normalizing the words сWitchо and сMagicо. Through her best seller Coventry Magic and selling over 2 million candles she has a head start.
+
+=== Text #33 ===
+> In 1992 Jacki was the first on the national market with her Blessed Herbal Candles, thus creating the spiritual candle industry. Over the past 25 plus years she has created hundreds of magical candles, teaches, presents, podcasts, writes, volunteers, and her latest venture is to make the Akashic Records a powerful and practical spiritual tool. DIY Akashic Wisdom, Access the Library of Your Soul, is co-authored with her sister, business partner and wonder-twin, Patty Shaw. Jacki has dedicated her entire life to the mission of normalizing the words сWitchо and сMagicо. Through her best seller Coventry Magic and selling over 2 million candles she has a head start.
+
+=== Text #34 ===
+> It’s kind of hard to tell from the picture, but Miss Fancy Nancy is sitting in a chair that is upholstered with children’s b ook covers (well, not literally I hope, but with fabric that has children’s book covers on it). From where I sit I can see The Giving Tree, The Story of Ferdinand, The Hobbit, and one of the Narnia books. It is much better if you go look at the real cover of Fancy Nancy and the Dazzling Book Report.
+So, when I live in my house in the English countryside, and I am sitting in my personal library, this is what I am going to be sitting on.
+
+=== Text #35 ===
+> A full time vegan, poet, artist and woman.
+Frontal and thorough when inspired.
+Our memories: childhood memories, the language we dearly speak and nature's colorful and tasteful palette are a constant and renewable source of wonder and inspiration.
+I am just getting through finishing two special orders of my Xocolate Bears new edition, which are going to Costa Rica. Both orders are reconnecting me with childhood friends and grade school teachers.
+I sell my projects on Etsy. In local shops and in our hometown San Jose, Costa Rica in La Tienda Eñé a shop supporting local indie and urban designers, artisans and artists.
+Handmade over mass production, and over all those other products largely available. Handmade by choice to keep our creative and critical side active, to balance and renovate while innovating ourselves every day. Handmade is more a legacy and tradition worth the while to take back and pass down, its techniques connected to our earlier days and years. The things we made, the stuff we broke. Handmade is the milestones we will all like to share. Going back and supporting handmade will keep creativity at edge and sharp.
+
+=== Text #36 ===
+> Queen Elizabeth II has always been a strong champion of British couture - especially in her stunning 50s fashions. Her charm, confidence and regal style captured the imagination of the American public when she hosted the President and Mrs. Eisenhower at the British Embassy in Washington, D.C. Wearing a magnificent pale green crinoline evening dress - hand-embroidered with sequins, pearls, beads and diamante - she regally displayed her passion for fashion. Now, in honor of that historic occasion, The Hamilton Collection recreates her royal look with the Reflections of Queen Elizabeth II Figurine, an exclusive, limited-edition first-ever.
+Every inch of this handcrafted figurine is skillfully crafted and painted by hand, from her regal pose and sculptured fur wrap to the intricate bas-relief floral pattern on her gown. Soft pearlescent and brilliant metallic gold paints accentuate the bas-relief to wonderfully reflect the design of the original dress, while metallic silver paint and glitter accents adorn her tiara and jewelry. And if all that weren't enough, her breathtaking gown is lavished with 90 individually hand-set Swarovski® crystals - like the ones the queen still uses to accent her gorgeous ensembles today! A beveled-edge, polished mirror base, graced with the queen's golden royal crest, further reflects the beauty of this glorious Royal Family collectible, which includes a Collector's Card featuring details about the iconic gown it depicts.
+
+=== Text #37 ===
+> What do you do in your free time? Of course some of you ,watch TV or play video games . If it is too boring, would you like to do something more interesting? All of you have wild imagination ,so you can make your own games!
+Lisa Green ,who's 35 years old ,has been making her own games since she was 5 .I asked her How she started that hobby.She told me that she didn't like the games which other children play, so she started to make her own games. Then ,I asked her If it was difficult to make her own games. She told me that it wasn't difficult and,If you had imagination ,you would be a very good player too.
+Lisa yesterday invented a new game which is called table tennis with hand .You paint a court of table tennis , then you take the ball and throw it to the other. If you want to use a net make one! Isn't it a fantastic game ?
+With a bit practise, you'll be make your own games in no time !!
+Say hi to the future blogger of the school, Marinos!
+2013! Marinos is a "present" blogger now!! It is very thrilling, isn't it!!
+That sounds very interesting, Raffaela!! I think that you have really wild imagination!!!!
+Two missions before winter courses start!
+
+=== Text #38 ===
+> Grace. What is it? What does it mean? How do you get it and how do you KNOW you got it?
+Honestly, I don’t know the answers to these questions. I have no way of describing something I don’t understand BUT believe deeply in my soul that it exists. How do you get these graces? Sanctifying grace is IN your soul. It’s the free and underserved gift from God. Actual grace would come from our knowledge and belief of all things right and wrong – following the Ten Commandments, making sure we follow a path that is pure and justified. Justified means to be sinless, and to be sinless means you are in favor with God. When you are baptized you are sinless and therefore have favor with God. When you go to reconciliation, you are once again sinless and in favor with God. You are in a state of grace. Once sanctifying grace is in your soul, you can increase it by every good action you do – receiving Communion, saying prayers, performing corporal works of Mercy. The most important thing to think about is NOT what you are going to do or how you are going to do it but to recognize God’s love. The reason you can do any good work is because God LOVES YOU FIRST in Grace. You must continually seek God’s grace, continually respond to the actual graces God is working within you, inclining you to turn to Him and do good.
+Have I answered the question as to what Grace is? I’[ve] read through all the study guides provided to me and compiled all the information, but I don’t believe that I’[ve] properly[ explained] what Grace is.
+To me Grace is a feeling. Sometimes it’s butterflies in the stomach, and it takes my breath away. I feel this way every time I think of my husband. We met and married 38 years ago. I see God’s grace in our meeting, getting married, and living our life together as husband and wife. Sometimes it’s a jolt, like an electric shock and then an overwhelming wave of love, like the enormous amount of love I felt when I held my first baby in my arms for the first time. This happened again with my 2nd and 3rd child, and then God blessed us with twins to make 4 and 5. Then sometimes it feels like a raging fight going on inside me, making hard decisions that breaks
+
+
+Description: 
+2025-04-09 15:35:24,778 - root - INFO - Legal, technical, or educational topics with a location or regional aspect
+
+2025-04-09 15:35:24,782 - root - INFO - Cluster #4 saved to: descriptions/gemini-1-5-pro/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.csv
+2025-04-09 15:35:24,782 - root - INFO - ================================================================================
+2025-04-09 15:35:24,783 - root - INFO - ANALYSIS COMPLETED
+2025-04-09 15:35:24,783 - root - INFO - ================================================================================
+2025-04-09 15:35:24,784 - root - INFO - Logs saved to: logs/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.log
+2025-04-09 15:35:24,784 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl_layer-6_unit-6386_2025-04-09_13-32-48.csv

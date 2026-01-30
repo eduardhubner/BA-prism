@@ -1,0 +1,1967 @@
+2025-05-11 01:43:08,369 - root - INFO - ================================================================================
+2025-05-11 01:43:08,449 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-11 01:43:08,450 - root - INFO - ================================================================================
+2025-05-11 01:43:08,451 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-11 01:43:08,451 - root - INFO - AGG_METHOD = mean
+2025-05-11 01:43:08,452 - root - INFO - BATCH_SIZE = 2
+2025-05-11 01:43:08,452 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-11 01:43:08,453 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-11 01:43:08,453 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-11 01:43:08,454 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-11 01:43:08,454 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-11 01:43:08,454 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-11 01:43:08,455 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-11 01:43:08,456 - root - INFO - CONTROL_SPLIT = train
+2025-05-11 01:43:08,456 - root - INFO - DATA_FILES = None
+2025-05-11 01:43:08,456 - root - INFO - DEVICE = cuda
+2025-05-11 01:43:08,457 - root - INFO - END_INTERVAL = 1.0
+2025-05-11 01:43:08,458 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-11 01:43:08,458 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-11 01:43:08,458 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-11 01:43:08,459 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-11 01:43:08,459 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-11 01:43:08,460 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-11 01:43:08,460 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-05-11 01:43:08,461 - root - INFO - LAYER_ID = 20
+2025-05-11 01:43:08,461 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-11 01:43:08,461 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-11 01:43:08,462 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-11 01:43:08,462 - root - INFO - MULTI_EVAL = True
+2025-05-11 01:43:08,463 - root - INFO - N_CLUSTERS = 5
+2025-05-11 01:43:08,463 - root - INFO - N_SAMPLES = 10
+2025-05-11 01:43:08,463 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-11 01:43:08,464 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-11 01:43:08,464 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-11 01:43:08,465 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-11 01:43:08,465 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-11 01:43:08,465 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-11 01:43:08,466 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-11 01:43:08,466 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-11 01:43:08,466 - root - INFO - SIMEVAL_DATA = c4
+2025-05-11 01:43:08,467 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-11 01:43:08,467 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-11 01:43:08,468 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-11 01:43:08,468 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-11 01:43:08,469 - root - INFO - SPLIT = train
+2025-05-11 01:43:08,469 - root - INFO - START_INTERVAL = 0.99
+2025-05-11 01:43:08,469 - root - INFO - STREAMING = True
+2025-05-11 01:43:08,470 - root - INFO - SUBSET_SIZE = 1000
+2025-05-11 01:43:08,470 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-11 01:43:08,470 - root - INFO - TARGET_DATA = c4
+2025-05-11 01:43:08,471 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-11 01:43:08,471 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-11 01:43:08,472 - root - INFO - UNIT_ID = 3885
+2025-05-11 01:43:08,472 - root - INFO - USE_API = True
+2025-05-11 01:43:08,472 - root - INFO - ================================================================================
+2025-05-11 01:43:08,473 - root - INFO - ANALYSIS RESULTS
+2025-05-11 01:43:08,473 - root - INFO - ================================================================================
+2025-05-11 01:43:08,474 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.log
+2025-05-11 01:53:24,785 - root - INFO - Reached 1000 samples.
+2025-05-11 01:53:31,118 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-11 01:53:31,119 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-11 01:53:49,652 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-11 01:54:51,027 - root - INFO - Number of candidates: 1001
+2025-05-11 01:54:53,386 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-11 01:54:53,387 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: . (0.42150261998176575)
+Text #1:  well (0.5612282156944275)
+Text #1: , (0.3550448715686798)
+Text #1:  if (2.552086591720581)
+Text #1:  today (0.9209983348846436)
+Text #1: . (0.4076687693595886)
+Text #1: . (0.946646511554718)
+Text #1:  as (0.9343750476837158)
+Text #1: . (2.056471824645996)
+Text #1: s (1.7463345527648926)
+Text #1:  cool (0.42411381006240845)
+Text #1: . (0.7867734432220459)
+Text #1: , (0.3904561996459961)
+Text #1: ly (0.625031590461731)
+Text #1:  bit (0.6663175225257874)
+Text #1: . (1.6276226043701172)
+Text #1:  a (0.6039627194404602)
+Text #1:  as (0.5860703587532043)
+Text #1: . (2.1804049015045166)
+Text #1:  would (0.9116784334182739)
+Text #1: , (0.5622956156730652)
+Text #1:  fact (0.7594000101089478)
+Text #1: . (0.6550877690315247)
+Text #1: . (0.6728034019470215)
+Text #1:  passed (0.6434794664382935)
+Text #1:  too (0.3845546543598175)
+Text #1: Off (0.3920142352581024)
+Text #1:  on (0.7992606163024902)
+Text #1: � (0.3368834853172302)
+Text #1: . (0.791032075881958)
+Text #1:  again (0.5242781639099121)
+Text #1:  way (1.624941110610962)
+Text #1: , (1.5614800453186035)
+Text #1:  went (1.2750391960144043)
+Text #1: . (2.019381523132324)
+Text #1: , (0.6816394329071045)
+Text #1: . (1.6468361616134644)
+Text #1:  about (0.361518919467926)
+Text #1:  in (0.7038125395774841)
+Text #2: . (1.0740681886672974)
+Text #2:  than (1.3279081583023071)
+Text #2:  if (1.4808459281921387)
+Text #2: . (1.1134982109069824)
+Text #2: ly (0.30995187163352966)
+Text #2:  barely (0.3455387055873871)
+Text #2: . (0.628450870513916)
+Text #2: abies (0.3682732880115509)
+Text #2:  to (0.7345451712608337)
+Text #2: … (1.0357041358947754)
+Text #2:  was (0.37288013100624084)
+Text #2:  in (1.2108869552612305)
+Text #2:  nothing (0.3343176245689392)
+Text #2: . (0.5128865838050842)
+Text #2: iro (0.5204022526741028)
+Text #2:  just (0.5741344690322876)
+Text #2:  very (1.0112723112106323)
+Text #2:  in (0.2747431695461273)
+Text #2:  having (0.4218669831752777)
+Text #2: . (1.2777522802352905)
+Text #2:  to (0.437183678150177)
+Text #2:  very (2.5505733489990234)
+Text #2: . (0.9396247267723083)
+Text #2:  that (0.4282706379890442)
+Text #2: . (0.47130852937698364)
+Text #2:  an (0.5803110599517822)
+Text #2:  be (0.48183074593544006)
+Text #2: . (0.8863606452941895)
+Text #2: . (0.9630724787712097)
+Text #2:  from (0.4032277464866638)
+Text #2: t (0.4199627637863159)
+Text #2:  at (0.41096341609954834)
+Text #2:  to (0.7769739627838135)
+Text #2: a (0.4562240540981293)
+Text #2: nob (0.4063144028186798)
+Text #2:  to (0.3409309685230255)
+Text #2: no (0.7692034244537354)
+Text #2: an (0.86771160364151)
+Text #2: t (0.48957982659339905)
+Text #2: nob (0.555882453918457)
+Text #2: now (1.9362084865570068)
+Text #2:  that (1.0829428434371948)
+Text #2:  closer (0.2932722568511963)
+Text #2: . (0.6558957695960999)
+Text #3:  Been (2.3621671199798584)
+Text #3:  just (0.09559700638055801)
+Text #3: <|endoftext|> (0.036057740449905396)
+Text #4:  still (0.3247280716896057)
+Text #4:  AM (0.2032417356967926)
+Text #4: <|endoftext|> (0.03151693567633629)
+Text #5:  first (0.41454288363456726)
+Text #5: , (0.3475600481033325)
+Text #5:  was (0.3098490238189697)
+Text #5:  but (0.35739055275917053)
+Text #5:  no (0.37236082553863525)
+Text #5: ! (1.7672538757324219)
+Text #5:  a (0.36113718152046204)
+Text #5: ! (0.3242165744304657)
+Text #5:  grow (0.7202603816986084)
+Text #5: . (0.9793899059295654)
+Text #5:  you (0.4136176109313965)
+Text #5: o (0.528465986251831)
+Text #5: ! (1.1184725761413574)
+Text #5: it (1.1412063837051392)
+Text #5: ) (0.5544131398200989)
+Text #5: . (0.716561496257782)
+Text #5:  to (0.4706590175628662)
+Text #5:  going (0.3100133240222931)
+Text #5: ll (0.5021973848342896)
+Text #5: . (0.5377275943756104)
+Text #5:  going (0.6079343557357788)
+Text #5: , (0.36409664154052734)
+Text #5: kins (0.4213952422142029)
+Text #5: , (0.32841426134109497)
+Text #5: oc (0.7744436860084534)
+Text #5: ! (1.3475751876831055)
+Text #5:  a (0.689917802810669)
+Text #5: re (0.695859432220459)
+Text #5: . (0.5856653451919556)
+Text #5: ! (0.3812505006790161)
+Text #5:  hopefully (1.5143758058547974)
+Text #5:  as (0.3871809244155884)
+Text #5:  as (1.256518840789795)
+Text #5:  tuned (0.369418740272522)
+Text #5:  ton (0.5804941058158875)
+Text #5: oc (0.5037501454353333)
+Text #5:  to (0.42509105801582336)
+Text #5: Q (1.010650396347046)
+Text #5: . (1.307013750076294)
+Text #5: , (0.44274023175239563)
+Text #5:  6 (0.5318285226821899)
+Text #5: . (0.6923498511314392)
+Text #5:  no (0.6929885149002075)
+Text #5: t (0.5999852418899536)
+Text #5:  foster (0.7273886203765869)
+Text #6: an (0.03441531956195831)
+Text #6:  way (0.5136355757713318)
+Text #6: . (0.02374519407749176)
+Text #6:  time (0.7342963814735413)
+Text #7: co (3.5969431400299072)
+Text #7:  a (0.5109076499938965)
+Text #7: . (0.02945423126220703)
+Text #7: � (0.029942698776721954)
+Text #7: !!! (0.32800301909446716)
+Text #7: ra (0.3500920534133911)
+Text #7: ra (0.5355985164642334)
+Text #7: ! (0.5287869572639465)
+Text #7: led (0.3577613830566406)
+Text #7:  for (0.1484663188457489)
+Text #7: ! (0.16764280200004578)
+Text #8: 4 (1.6285176277160645)
+Text #8: M (0.3495047390460968)
+Text #8: C (0.2464001327753067)
+Text #8: ale (0.49016904830932617)
+Text #8: <|endoftext|> (0.020488521084189415)
+Text #9: ito (1.1702378988265991)
+Text #9: The (0.396471232175827)
+Text #9: Gene (0.08346705138683319)
+Text #9: . (0.48465168476104736)
+Text #9:  is (0.1109478697180748)
+Text #9: . (0.7351272106170654)
+Text #9:  interviewed (0.10114400833845139)
+Text #9:  helped (0.07766781002283096)
+Text #9: o (0.33021894097328186)
+Text #9: . (0.18161439895629883)
+Text #9: ito (1.248777985572815)
+Text #9: t (0.21450340747833252)
+Text #9:  an (0.2677602469921112)
+Text #9:  from (0.11984650790691376)
+Text #9: . (0.19541199505329132)
+Text #9: . (0.293968141078949)
+Text #9: ! (0.2979985475540161)
+Text #9: ito (2.0081710815429688)
+Text #9: s (0.24492914974689484)
+Text #9:  beginnings (0.33347856998443604)
+Text #9: ito (0.799108624458313)
+Text #9: ito (0.31753969192504883)
+Text #9:  experience (0.6848976612091064)
+Text #9:  finally (1.0112082958221436)
+Text #9:  Got (0.3387944996356964)
+Text #9: . (0.7409428954124451)
+Text #9: ito (0.09955102950334549)
+Text #9:  that (0.2045641988515854)
+Text #9:  would (0.25286146998405457)
+Text #9: . (0.08562251180410385)
+Text #9: ito (1.1102275848388672)
+Text #9:  that (0.6072652339935303)
+Text #9:  is (0.7069746255874634)
+Text #9: . (0.6534085273742676)
+Text #9: aldo (0.7017049789428711)
+Text #9: Is (0.3365878462791443)
+Text #9:  for (0.09195728600025177)
+Text #9:  So (2.026916027069092)
+Text #9: ano (0.5609656572341919)
+Text #9: <|endoftext|> (0.0279775969684124)
+Text #10:  a (0.31529006361961365)
+Text #10:  in (0.030167922377586365)
+Text #10: <|endoftext|> (0.022848110646009445)
+Text #11:  a (0.31529006361961365)
+Text #11:  in (0.030167922377586365)
+Text #11: <|endoftext|> (0.022848110646009445)
+Text #12: Wind (0.012341178022325039)
+Text #12: ro (1.983095407485962)
+Text #12: � (0.1350744664669037)
+Text #12: <|endoftext|> (0.012731404043734074)
+Text #13: Ca (0.012797200120985508)
+Text #13: be (1.792734146118164)
+Text #13:  be (1.4538546800613403)
+Text #13: <|endoftext|> (0.018056197091937065)
+Text #14:  read (0.1893938034772873)
+Text #14: <|endoftext|> (0.010505110025405884)
+Text #15: F (0.019847247749567032)
+Text #15: io (0.45338189601898193)
+Text #16: Have (0.026266487315297127)
+Text #16: an (0.928845226764679)
+Text #16: <|endoftext|> (0.013334139250218868)
+Text #17:  earth (0.18019846081733704)
+Text #17: mel (0.2210865467786789)
+Text #17:  just (0.3084944188594818)
+Text #17: . (0.02831009402871132)
+Text #17: <|endoftext|> (0.03692670911550522)
+Text #18: Dig (0.012686967849731445)
+Text #18: <|endoftext|> (0.013231211341917515)
+Text #18: <|endoftext|> (0.01223700400441885)
+Text #19: You (0.018883241340517998)
+Text #19:  to (0.010855043306946754)
+Text #19:  to (0.1043093279004097)
+Text #19: as (0.19701345264911652)
+Text #19:  An (0.27615490555763245)
+Text #19:  co (1.3246811628341675)
+Text #19:  grown (0.1283055692911148)
+Text #19: . (0.05823887512087822)
+Text #19:  An (1.468043327331543)
+Text #19: ias (1.035595417022705)
+Text #19: olia (0.06843828409910202)
+Text #19: An (0.02058371715247631)
+Text #19: i (0.15771305561065674)
+Text #19:  co (1.6139196157455444)
+Text #19:  An (0.26867568492889404)
+Text #19: i (0.31653469800949097)
+Text #19:  an (0.2286805510520935)
+Text #19: An (0.026292622089385986)
+Text #19: i (0.07646995782852173)
+Text #19:  co (1.878653645515442)
+Text #19:  are (0.3080446720123291)
+Text #19: <|endoftext|> (0.02008797787129879)
+Text #20:  Can (1.5701524019241333)
+Text #20: ! (0.3169068694114685)
+Text #20:  Can (0.6373237371444702)
+Text #20:  Can (0.9787728786468506)
+Text #20:  done (0.038559526205062866)
+Text #20: <|endoftext|> (0.024340763688087463)
+
+=== Text #1 ===
+> Emeritas Kerr and his Tocs Borderers patrol are ambushed by Yordist insurgents whilst on patrol[.]
+Emeritas Kerr began the morning patrol as he always did, with a long forward drop of his[ well]-muscled[,] tattooed right arm. As the other three Tocs Borderers took their intervals in the snaking Indian single file line behind him, Kerr wondered[ if they were going to be] hit[ today.] Other patrols had taken a walloping in the past month[.] He and his men had been lucky so far.
+Improvised Explosive Devices (IEDs) created from scavenged military munitions, mines, old fashioned dynamite or in some cases a few hundred pounds of fertilizer, easily found on the surrounding farms outside of the city. Bomb making had seemingly become a fashionable hobby among the remaining Yordist insurgents left behind ensuring the populace remained stirred up and unable to make a normal life for themselves[.]
+The squad sighed with relief as one[ as] they rested packs against the cool shady wall of the fountain[. It]’[s] bubbling water[ cool] and tranquil to the mind[.] Kerr filled his pipe and kept watch on the rooftops and alleys as his lads drank water[,] smoked and hurried[ly] wolfed down a[ bit] of cold ration[.] His squad’s chosen man, Craig Cormier, silently chewed on[ a] dry cracker topped with some sort of meat paste as he watched the locals moving by them[ as] they sat[.] He[ would] bring up the rear of the formation when they moved out on the second leg of the routine patrol.
+These patrols never took the same route[,] they always changed, but this precaution was somewhat affected by the[ fact] they had to always cover the same ground[.] Ground dictated by the confines of their current area of operation this made them vulnerable to sudden attack by a variety of different means[.]
+The ten minute respite[ passed] all[ too quickly.
+]“[Off] and[ on]! Time ta earn yer pay.�[�] Kerr commanded his Borderers[.] Once[ again] the patrol paced its[ way along] the street[,] the crowd thinning as they[ went, until] there were only a very few civilians around them[.] Kerr tensed[,] his senses on edge as he noted this[.] Sometimes in Yordist friendly areas the civilians were warned of bad things[ about] to happen. Passing a short row of vendors carts Chosen Man Cormier was startled to see one of the brightly coloured cart balloons seem to catch the breeze and break away from its fellows[ in] the bunch. Cormier’s guts froze as
+
+=== Text #2 ===
+> Menstrual like cramps started Friday mid-morning, but I didn’t think too much of it[.] By afternoon, I noticed they were still there and out of curiosity more[ than anything] thought I’d see[ if] there was a pattern[.] There was! Extreme[ly] timeable, but very short and could[ barely] feel them[.]
+After several hours of monitoring, nothing was picking up and I started to worry it was prodromal, but in my Hypnob[abies] birth visualizations that I had been doing I would go to sleep and get the real party started in the morning, so I kept faith, turned on my birthing day tracks and attempted[ to] get some sleep[… but] I[ was] way too excited though for that just[ in case!] Morning brought[ nothing] more though[.]
+So instead, I headed into the ch[iro] and[ just] took it very[ very] easy at home just[ in case] and just enjoyed[ having] such a calm and relaxing morning[.]
+After arriving, she agreed that it was hard[ to] tell if we were still practicing or just in a very[ very] early time[.] I convinced myself[ that maybe] it just LOOKED that way because I was using my hypnosis, but the timings and lengths just weren’t promising[.] After about[ an] hour, I started to get real antsy and wanted to[ be] downstairs[.] Out of nowhere I vomited[.] Ok! NOT in practice!!
+Things picked up beautifully[ from] there. I could just sense that my waves were getting longer, but sensation wise, couldn’[t] really tell in comparison thanks to my hypnosis. Each wave felt powerful and intense but never painful. I could tell I was hanging longer[ at] the top of the waves but just let myself go[ to] center ([a] Hyp[nob]abies hypnosis technique), vocalize through it and reminded myself[ to] smile at the end.
+I was very vocal through each wave which felt good and helped me direct my hyp[no]-[an]esthesia. I couldn’[t] stand having the headphones in so asked to put my Hyp[nob]abies tracks on out loud on repeat, which was great. I easily went back and forth from center to off but kept in center the majority of the time.
+Time seemed to both linger, yet rush. My husband ([now) has] told me that I didn’t sound comfortable, but I truly only felt slight discomfort and just very very strong pressure. My birthing day affirmations played loudly in my head reminding myself[ that] each wave was easy, comfortable and bringing me one step[ closer] to holding my baby[.]
+
+=== Text #3 ===
+> Photo gallery - Welcome to the BCSA Website!
+Spring 2017 "KIDS FISHING DERBY"
+2017 Ham and[ Been] Supper.
+I[ just] Bought an Elk Hunt![]
+
+=== Text #4 ===
+> Watch out for snakes. I also love how the OG's[ still] sneak in and MJP looks[ AM]AZING!!![]
+
+=== Text #5 ===
+> Happy Halloween: Smiley’s Dog Costumes!
+Our[ first] event came up unexpectedly[,] the Bridge and Tunnel Brewery[ was just a] five minute walk from our apartment[ but] we had[ no] costume[!] I quickly cut out an avocado out of Dollar Tree cardboard paper and it was[ a] success[!] Smiley won some toys and we got a[ grow]ler for our fun last-minute costume[.]
+You may have noticed the dog pictures on my Instagram, or read the two posts I wrote about our rescue Smiley –[ you] may have even read the viral Dod[o] article about his rescue story[!] Our unexpected adoption ([it only] took two weeks of fostering to realize that Smiley belonged with us forever[)] changed all our plans[.] All those crazy Halloween parties we wanted to go[ to] turned into us[ going] to dog-friendly pub events, the dog parade and tonight we’[ll be] going to the big NYC Halloween Parade with Smiley in tow[.]
+We ended up[ going] to another last minute event[,] the Tomp[kins] Square dog parade[,] so Smiley wore his same av[oc]adog costume and got outshined by popes and other crazy intricate creative costumes[!] It was[ a lot] of fun and we’[re definitely going] again next year with a better costume[.] Although most dogs wore hot dogs, delivery costumes and they rocked them, as a crafter I got inspired to do something a little more creative[!]
+Tonight, the parade is mainly for people but Smiley will[ hopefully] steal the show –[ as] long[ as] he actually wears the costume I made him and it doesn’t fall apart. Stay[ tuned] for photos of[ ton]ights shenanigans.
+Author olenakaguiPosted on October 31, 2018 Categories Animals and Pets, New YorkTags Av[oc]adog, Halloween, Halloween parade, Halloween party, New York, Smiley, TompkinsLeave a comment on Happy Halloween: Smiley’s Dog Costumes!
+Two days ago we sent a $300 adoption fee[ to] Pound Hounds Res-[Q], the place that pulled Smiley from Brooklyn’s high kill shelter, NYACC[.] We had originally planned on fostering Smiley[,] the cute[ 6] year old pit mix who was abandoned because his former owners got pregnant[.] We were in[ no] position to get a dog – we don’t make enough money and live in a small apartment, but we couldn’[t] let Smiley die.
+We ended up adopting Smiley after just two weeks of fostering, mostly because we fell in love with our[ foster] boy and
+
+=== Text #6 ===
+> Kelsey Nelson is an Ohio-[an gone] South Carolina. After journalism school at Ohio University, Kelsey started her career in communications in Cleveland and now works for a Greenville-based advertising agency. A runner and a foodie, you can find Kelsey on the trails or eating her[ way] through her new town[. Hopefully not] at the same[ time.]
+
+=== Text #7 ===
+> Powder[co]ated my grill for an #RA28 and smiley bumper brackets for[ a 72] #TA22[.] Both are �[�gl]oss stealth charcoal” and look absolutely amazing[!!!]
+Welded up 35 sets of #[ra]28 #[ra]23 hood hinges[! As]semb[led and] shipped 10 raw sets and sent the rest[ for] powdercoat[!]
+
+=== Text #8 ===
+> The AVM[4]108C Widescreen HD Display is a product you’ll want to watch — quite literally. This high-quality, 1280×800 resolution screen is sunlight-readable, touch-responsive and capable of the crystal-clear pictures you need on critical missions.
+Want to see the AV[M4]108[C] display in action? Request more info from the Av[ale]x team now.[]
+
+=== Text #9 ===
+> Marcel[ito] Pomoy recently appeared at “[The] Ellen De[Gene]res Show[.]” He[ is] the latest Filipino to guest in this popular talk show[.]
+He was[ interviewed first] by Ellen and an interpreter[ helped] Marcelin[o] answer the questions[.] Marcel[ito] said that at h didn’[t] immediately believe that he got[ an] invite[ from] the show and initially thought that it was a spam email[.] Even after he had a Skype call with a representative of the show he still had doubts[.] It was not until his ticket was emailed to him that he finally got convinced that it was real[!]
+The Kapamilya singer and Ellen talked about Marcel[ito]’[s] humble[ beginnings.] According to Marcel[ito], he started to sing at early age of seven and learned that he had this gift to switch voices at the age of eighteen. Ellen also asked Marcel[ito about] his[ experience living in] the streets and[ finally] ending up as winner at the 2012 Pilipinas[ Got] Talent[.] Marcel[ito] said that he worked as a Pin boy and was paid Php 50 for each and slept at the streets at night. He said that he joined the contest with the inspiration[ that] he[ would be able] to see his family[.]
+Ellen said that he was thrilled with Marcel[ito Pom]oy ‘s videos and was excited[ that] he[ is] in the show[.]
+Related topics for this article: "reyn[aldo] [email protected] comp"
+[Is] Enrique destined[ for] Liza[ So]ber[ano]?[]
+
+=== Text #10 ===
+> Timer is a great utility for cooking or reminding you about some small tasks. The application features a convenient interface the mimics a kitchen timer. This[ a] program also allows you to set multiple timers with sound notifications, while the program runs[ in] the background mode.[]
+
+=== Text #11 ===
+> Timer is a great utility for cooking or reminding you about some small tasks. The application features a convenient interface the mimics a kitchen timer. This[ a] program also allows you to set multiple timers with sound notifications, while the program runs[ in] the background mode.[]
+
+=== Text #12 ===
+> [Wind] River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sand[ro] Baebler. This article appears in MovieMaker�[�]s Summer 2017 issue.[]
+
+=== Text #13 ===
+> [Ca] l’Ar[be]quí is located between the fruit fields in Lleida. If you come during the fruit season, you will have the opportunity to look up everything closely, and if agreed, to participate in the gathering of the fruit.
+You can also have access to care for hens and chicks, and participate in collecting honey from[ beeh]ives.
+All activities must be agreed in advance.[]
+
+=== Text #14 ===
+> “…provides interest, suspense and word repetition. Illustrations excellent. Recommended.”–(starred) School Library Journal.
+This book is enhanced with[ read aloud] audio features.[]
+
+=== Text #15 ===
+> [F]ol[io]: 166v - Feast: Comm. plur. Conf.
+
+=== Text #16 ===
+> [Have] you hired Star Drywall Ltd? Write a review and earn our First to Review badge.
+Star Drywall Ltd has not added any photos.
+Looking for Insulation pros in Estev[an]?[]
+
+=== Text #17 ===
+> With EDEM eliquid you may find your heaven on[ earth]! This irresistible, water[mel]ony sweet vape with the intense taste of dragon fruit is tough to put down and is[ just] one of the flavors that put MAD JUICE on the map[.] EDEM has a cool, refreshing watermelon and dragon fruit inhale that finishes off smooth and sweet with the hints of mango and pineapple. All this mixture comes to boost a sweet cream creating a bottle of juice that you’ll finish as fast as a speeding bullet.[]
+
+=== Text #18 ===
+> [Dig] and Rig Equipment Dedicated to the HDD industry and those within it. Consulting, service, tooling, and MTI Equipment. We offer a full line of underground tooling and replacement parts for directional drills and trenchers.[][]
+
+=== Text #19 ===
+> [You] are buying one beautiful piece of Manzanita driftwood averaging 7[ to] 10 inches long by 2 "[ to] 3" wide ([as] seen in the picture) with a full[ An]ubias[ co]ffeefolia[ grown] on it[.] The[ An]ub[ias Co]ffeef[olia will have] 5 or more leaves.
+[An]ubias barter[i] var.[ co]ffeefolia is a low cultivar of[ An]ubias barter[i]. Its characteristic is that the leaves arch considerably between the leaf ribs, and the new leaves are red-brown. The color combination and leaf shape make it[ an] attractive variety in both large and small aquariums. It flowers frequently under water but does not produce seeds.
+[An]ubias barter[i] var.[ co]ffeefolia is not eaten by herbivorous fish.
+I have a few of these available so you[ are not] buying the exact piece shown in the picture but all the pieces will look just as good if not better than the one pictured.[]
+
+=== Text #20 ===
+> U14s Win Two Gold & Men’s Overall at[ CanA]ms[!]
+Submitted by U14[ CanAm] Head Coach Jacques Reid….”We all love to win but this 2019[ CanAm] event was about more than winning. In all of my duties as Head Coach, this event stands apart thanks to the coaches working as a united front, working seamlessly for the good of each athlete. I truly believe the athletes responded to this and acted like a true team that deserved to hold our Ontario flag high! Well[ done] everyone![]
+
+
+Description: 
+2025-05-11 01:54:53,389 - root - INFO - Locations, events, or activities
+
+2025-05-11 01:54:53,393 - root - INFO - Cluster #0 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.csv
+2025-05-11 01:54:54,626 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-11 01:54:54,627 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: . (0.42150261998176575)
+Text #1:  well (0.5612282156944275)
+Text #1: , (0.3550448715686798)
+Text #1:  if (2.552086591720581)
+Text #1:  today (0.9209983348846436)
+Text #1: . (0.4076687693595886)
+Text #1: . (0.946646511554718)
+Text #1:  as (0.9343750476837158)
+Text #1: . (2.056471824645996)
+Text #1: s (1.7463345527648926)
+Text #1:  cool (0.42411381006240845)
+Text #1: . (0.7867734432220459)
+Text #1: , (0.3904561996459961)
+Text #1: ly (0.625031590461731)
+Text #1:  bit (0.6663175225257874)
+Text #1: . (1.6276226043701172)
+Text #1:  a (0.6039627194404602)
+Text #1:  as (0.5860703587532043)
+Text #1: . (2.1804049015045166)
+Text #1:  would (0.9116784334182739)
+Text #1: , (0.5622956156730652)
+Text #1:  fact (0.7594000101089478)
+Text #1: . (0.6550877690315247)
+Text #1: . (0.6728034019470215)
+Text #1:  passed (0.6434794664382935)
+Text #1:  too (0.3845546543598175)
+Text #1: Off (0.3920142352581024)
+Text #1:  on (0.7992606163024902)
+Text #1: � (0.3368834853172302)
+Text #1: . (0.791032075881958)
+Text #1:  again (0.5242781639099121)
+Text #1:  way (1.624941110610962)
+Text #1: , (1.5614800453186035)
+Text #1:  went (1.2750391960144043)
+Text #1: . (2.019381523132324)
+Text #1: , (0.6816394329071045)
+Text #1: . (1.6468361616134644)
+Text #1:  about (0.361518919467926)
+Text #1:  in (0.7038125395774841)
+Text #2:  and (0.07223279774188995)
+Text #2: . (0.5634627342224121)
+Text #2:  course (0.5372064113616943)
+Text #2: t (1.0188871622085571)
+Text #2: . (0.16013884544372559)
+Text #2:  something (0.09027574956417084)
+Text #2: . (0.24451632797718048)
+Text #2:  first (0.46269097924232483)
+Text #2: , (0.12841233611106873)
+Text #2: � (0.310133159160614)
+Text #2: m (0.5890368223190308)
+Text #2: . (1.0600275993347168)
+Text #2: � (0.3695679306983948)
+Text #2:  day (0.3697039783000946)
+Text #3:  OUT (0.5276309251785278)
+Text #3: � (0.7491356134414673)
+Text #3: � (2.481227397918701)
+Text #3: � (1.231197476387024)
+Text #3: � (1.7599952220916748)
+Text #3: � (1.730958342552185)
+Text #3: . (0.11019635200500488)
+Text #3: , (0.0784783735871315)
+Text #3: oss (0.7168691158294678)
+Text #3:  woven (0.06123727560043335)
+Text #3: <|endoftext|> (0.04191989824175835)
+Text #4:  As (0.07067915052175522)
+Text #4: Up (0.35268592834472656)
+Text #4: <|endoftext|> (0.03809990733861923)
+Text #5:  go (2.0149409770965576)
+Text #5: to (0.03752085566520691)
+Text #5:  go (1.8830537796020508)
+Text #5: to (0.08363226801156998)
+Text #5:  a (0.49867433309555054)
+Text #5: s (0.3847491145133972)
+Text #5:  will (0.272391676902771)
+Text #5: toe (1.1216650009155273)
+Text #5: <|endoftext|> (0.029782963916659355)
+Text #6: . (0.03502017259597778)
+Text #6: But (0.03681490197777748)
+Text #6: . (0.8950576782226562)
+Text #6:  can (1.2949997186660767)
+Text #6: . (0.05881703644990921)
+Text #7: . (0.03502017259597778)
+Text #7: But (0.03681490197777748)
+Text #7: . (0.8950576782226562)
+Text #7:  can (1.2949997186660767)
+Text #7: . (0.05881703644990921)
+Text #8:  first (0.41454288363456726)
+Text #8: , (0.3475600481033325)
+Text #8:  was (0.3098490238189697)
+Text #8:  but (0.35739055275917053)
+Text #8:  no (0.37236082553863525)
+Text #8: ! (1.7672538757324219)
+Text #8:  a (0.36113718152046204)
+Text #8: ! (0.3242165744304657)
+Text #8:  grow (0.7202603816986084)
+Text #8: . (0.9793899059295654)
+Text #8:  you (0.4136176109313965)
+Text #8: o (0.528465986251831)
+Text #8: ! (1.1184725761413574)
+Text #8: it (1.1412063837051392)
+Text #8: ) (0.5544131398200989)
+Text #8: . (0.716561496257782)
+Text #8:  to (0.4706590175628662)
+Text #8:  going (0.3100133240222931)
+Text #8: ll (0.5021973848342896)
+Text #8: . (0.5377275943756104)
+Text #8:  going (0.6079343557357788)
+Text #8: , (0.36409664154052734)
+Text #8: kins (0.4213952422142029)
+Text #8: , (0.32841426134109497)
+Text #8: oc (0.7744436860084534)
+Text #8: ! (1.3475751876831055)
+Text #8:  a (0.689917802810669)
+Text #8: re (0.695859432220459)
+Text #8: . (0.5856653451919556)
+Text #8: ! (0.3812505006790161)
+Text #8:  hopefully (1.5143758058547974)
+Text #8:  as (0.3871809244155884)
+Text #8:  as (1.256518840789795)
+Text #8:  tuned (0.369418740272522)
+Text #8:  ton (0.5804941058158875)
+Text #8: oc (0.5037501454353333)
+Text #8:  to (0.42509105801582336)
+Text #8: Q (1.010650396347046)
+Text #8: . (1.307013750076294)
+Text #8: , (0.44274023175239563)
+Text #8:  6 (0.5318285226821899)
+Text #8: . (0.6923498511314392)
+Text #8:  no (0.6929885149002075)
+Text #8: t (0.5999852418899536)
+Text #8:  foster (0.7273886203765869)
+Text #9: ! (0.8616694211959839)
+Text #9: 5 (0.39498069882392883)
+Text #9: <|endoftext|> (0.030349668115377426)
+Text #10: ! (0.8616694211959839)
+Text #10: 5 (0.39498069882392883)
+Text #10: <|endoftext|> (0.030349668115377426)
+Text #11: co (3.5969431400299072)
+Text #11:  a (0.5109076499938965)
+Text #11: . (0.02945423126220703)
+Text #11: � (0.029942698776721954)
+Text #11: !!! (0.32800301909446716)
+Text #11: ra (0.3500920534133911)
+Text #11: ra (0.5355985164642334)
+Text #11: ! (0.5287869572639465)
+Text #11: led (0.3577613830566406)
+Text #11:  for (0.1484663188457489)
+Text #11: ! (0.16764280200004578)
+Text #12: co (3.5969431400299072)
+Text #12:  a (0.5109076499938965)
+Text #12: . (0.02945423126220703)
+Text #12: � (0.029942698776721954)
+Text #12: !!! (0.32800301909446716)
+Text #12: ra (0.3500920534133911)
+Text #12: ra (0.5355985164642334)
+Text #12: ! (0.5287869572639465)
+Text #12: led (0.3577613830566406)
+Text #12:  for (0.1484663188457489)
+Text #12: ! (0.16764280200004578)
+Text #13: ward (0.13656024634838104)
+Text #13:  but (0.6688533425331116)
+Text #13:  ready (0.2047348916530609)
+Text #13:  trip (0.10217490792274475)
+Text #13: . (0.697421669960022)
+Text #13:  flight (0.2569868564605713)
+Text #13: ots (0.14614255726337433)
+Text #13: ! (1.3487217426300049)
+Text #13:  no (0.6536135673522949)
+Text #13:  going (0.09463468939065933)
+Text #13:  is (0.42989498376846313)
+Text #13: ides (0.23388376832008362)
+Text #13:  ill (0.7054427862167358)
+Text #13:  well (0.34050536155700684)
+Text #13: . (0.7005597352981567)
+Text #13:  be (0.10680649429559708)
+Text #13: . (0.09394083172082901)
+Text #13: . (0.15540404617786407)
+Text #13:  less (0.22041922807693481)
+Text #13:  is (0.3576970398426056)
+Text #13: ! (0.494457870721817)
+Text #13: 're (0.13097091019153595)
+Text #13: ited (0.6739897727966309)
+Text #13: ! (0.4594425857067108)
+Text #13:  are (0.630942702293396)
+Text #13:  uber (1.239740014076233)
+Text #13: ited (0.5819163918495178)
+Text #13: . (0.5795141458511353)
+Text #13:  lots (0.12499216198921204)
+Text #13:  and (0.15151692926883698)
+Text #13:  too (0.27917999029159546)
+Text #13: ! (0.4721008241176605)
+Text #13: . (0.5269808173179626)
+Text #13:  luck (2.009526491165161)
+Text #13: . (0.20757248997688293)
+Text #13:  will (0.9605278968811035)
+Text #13: ! (0.2624194025993347)
+Text #14: 4 (1.6285176277160645)
+Text #14: M (0.3495047390460968)
+Text #14: C (0.2464001327753067)
+Text #14: ale (0.49016904830932617)
+Text #14: <|endoftext|> (0.020488521084189415)
+Text #15:  on (0.32880210876464844)
+Text #15:  no (0.2901657819747925)
+Text #15:  could (0.03368573263287544)
+Text #15: . (0.9287954568862915)
+Text #15:  no (1.0768322944641113)
+Text #15: . (0.06878626346588135)
+Text #15: . (0.5168562531471252)
+Text #15:  like (0.0723976194858551)
+Text #15:  for (0.3091041147708893)
+Text #15:  bands (0.12630008161067963)
+Text #15: It (0.1164289265871048)
+Text #15: s (1.0018388032913208)
+Text #15:  to (0.31364795565605164)
+Text #15: . (0.07727357745170593)
+Text #15:  feels (0.6100869178771973)
+Text #15: . (0.17818240821361542)
+Text #16: © (0.018474996089935303)
+Text #16: iba (0.7509691119194031)
+Text #16: <|endoftext|> (0.014760722406208515)
+Text #17: go (2.1071338653564453)
+Text #17:  L (0.5042681097984314)
+Text #17: <|endoftext|> (0.018399067223072052)
+Text #18: 5 (0.019019706174731255)
+Text #18: <|endoftext|> (0.01926015503704548)
+Text #18: <|endoftext|> (0.0178288072347641)
+Text #19: ardo (0.9690426588058472)
+Text #19:  a (1.7728939056396484)
+Text #19: ardo (1.1161280870437622)
+Text #19: <|endoftext|> (0.02046692743897438)
+Text #20: Who (0.01694187894463539)
+Text #20: !! (0.9535177946090698)
+Text #20:  care (0.2481318563222885)
+Text #20: <|endoftext|> (0.013858775608241558)
+
+=== Text #1 ===
+> Emeritas Kerr and his Tocs Borderers patrol are ambushed by Yordist insurgents whilst on patrol[.]
+Emeritas Kerr began the morning patrol as he always did, with a long forward drop of his[ well]-muscled[,] tattooed right arm. As the other three Tocs Borderers took their intervals in the snaking Indian single file line behind him, Kerr wondered[ if they were going to be] hit[ today.] Other patrols had taken a walloping in the past month[.] He and his men had been lucky so far.
+Improvised Explosive Devices (IEDs) created from scavenged military munitions, mines, old fashioned dynamite or in some cases a few hundred pounds of fertilizer, easily found on the surrounding farms outside of the city. Bomb making had seemingly become a fashionable hobby among the remaining Yordist insurgents left behind ensuring the populace remained stirred up and unable to make a normal life for themselves[.]
+The squad sighed with relief as one[ as] they rested packs against the cool shady wall of the fountain[. It]’[s] bubbling water[ cool] and tranquil to the mind[.] Kerr filled his pipe and kept watch on the rooftops and alleys as his lads drank water[,] smoked and hurried[ly] wolfed down a[ bit] of cold ration[.] His squad’s chosen man, Craig Cormier, silently chewed on[ a] dry cracker topped with some sort of meat paste as he watched the locals moving by them[ as] they sat[.] He[ would] bring up the rear of the formation when they moved out on the second leg of the routine patrol.
+These patrols never took the same route[,] they always changed, but this precaution was somewhat affected by the[ fact] they had to always cover the same ground[.] Ground dictated by the confines of their current area of operation this made them vulnerable to sudden attack by a variety of different means[.]
+The ten minute respite[ passed] all[ too quickly.
+]“[Off] and[ on]! Time ta earn yer pay.�[�] Kerr commanded his Borderers[.] Once[ again] the patrol paced its[ way along] the street[,] the crowd thinning as they[ went, until] there were only a very few civilians around them[.] Kerr tensed[,] his senses on edge as he noted this[.] Sometimes in Yordist friendly areas the civilians were warned of bad things[ about] to happen. Passing a short row of vendors carts Chosen Man Cormier was startled to see one of the brightly coloured cart balloons seem to catch the breeze and break away from its fellows[ in] the bunch. Cormier’s guts froze as
+
+=== Text #2 ===
+> Each time I made about five drawings[ and] took them back to my room to paint them in[.] Of[ course,] I couldn’[t] remember what color her clothes were and even if I did it was fun to use bright colors[. In] the end there was[ something] about the spirit of the day and our friendship that came through[.]
+The[ first] thing she ever said to me was[,] �[�I]’[m going to be] your friend[.]�[� That was] my lucky[ day.]
+
+=== Text #3 ===
+> The PUMA x[ OUT]LAW MOSCOW Court Platform Sneakers bring the classic silhouette to a whole new level with bold �[�]�[�]�[�]�[�]�[�] influences[.] The iconic court shape with a smooth tonal suede upper features added military detailing and a thick[,] bold rubber sole with large emb[oss]ed brick texture around the midsole. A[ woven] label at the outer heel and Russian Cyrillic wording adds a striking touch that makes these sneakers perfectly streetwear-ready.[]
+
+=== Text #4 ===
+> Tech enthusiast. Graphic designer.[ As]piring polymath. Operator of a sparkling mind.
+12: Straight-[Up] "Silence of the Lambs"[]
+
+=== Text #5 ===
+> The SASS is your[ go]-[to] office mule or even your[ go]-[to] after work cocktails mule. What –[ a] day into evening shoe? That’[s] right. You[ will definitely] appreciate the versatility of SASS!
+Peep-[toe] mid-heel with back-zip tassel.[]
+
+=== Text #6 ===
+> I thought I was going to finish the 3rd season of the Wire tonight[.]
+[But] there was a commentary on episode 11, so I had to re-watch Middle Ground with the commentary[. Hopefully] I[ can] finish the season next weekend[.]
+
+=== Text #7 ===
+> I thought I was going to finish the 3rd season of the Wire tonight[.]
+[But] there was a commentary on episode 11, so I had to re-watch Middle Ground with the commentary[. Hopefully] I[ can] finish the season next weekend[.]
+
+=== Text #8 ===
+> Happy Halloween: Smiley’s Dog Costumes!
+Our[ first] event came up unexpectedly[,] the Bridge and Tunnel Brewery[ was just a] five minute walk from our apartment[ but] we had[ no] costume[!] I quickly cut out an avocado out of Dollar Tree cardboard paper and it was[ a] success[!] Smiley won some toys and we got a[ grow]ler for our fun last-minute costume[.]
+You may have noticed the dog pictures on my Instagram, or read the two posts I wrote about our rescue Smiley –[ you] may have even read the viral Dod[o] article about his rescue story[!] Our unexpected adoption ([it only] took two weeks of fostering to realize that Smiley belonged with us forever[)] changed all our plans[.] All those crazy Halloween parties we wanted to go[ to] turned into us[ going] to dog-friendly pub events, the dog parade and tonight we’[ll be] going to the big NYC Halloween Parade with Smiley in tow[.]
+We ended up[ going] to another last minute event[,] the Tomp[kins] Square dog parade[,] so Smiley wore his same av[oc]adog costume and got outshined by popes and other crazy intricate creative costumes[!] It was[ a lot] of fun and we’[re definitely going] again next year with a better costume[.] Although most dogs wore hot dogs, delivery costumes and they rocked them, as a crafter I got inspired to do something a little more creative[!]
+Tonight, the parade is mainly for people but Smiley will[ hopefully] steal the show –[ as] long[ as] he actually wears the costume I made him and it doesn’t fall apart. Stay[ tuned] for photos of[ ton]ights shenanigans.
+Author olenakaguiPosted on October 31, 2018 Categories Animals and Pets, New YorkTags Av[oc]adog, Halloween, Halloween parade, Halloween party, New York, Smiley, TompkinsLeave a comment on Happy Halloween: Smiley’s Dog Costumes!
+Two days ago we sent a $300 adoption fee[ to] Pound Hounds Res-[Q], the place that pulled Smiley from Brooklyn’s high kill shelter, NYACC[.] We had originally planned on fostering Smiley[,] the cute[ 6] year old pit mix who was abandoned because his former owners got pregnant[.] We were in[ no] position to get a dog – we don’t make enough money and live in a small apartment, but we couldn’[t] let Smiley die.
+We ended up adopting Smiley after just two weeks of fostering, mostly because we fell in love with our[ foster] boy and
+
+=== Text #9 ===
+> By The Abyssinian | On May 13, 2015 | in Fun with Comments Off on Ethiopian food on The Simpsons[!]
+Eat my Shiro! Check out the clip from The Simpsons! (23×[5]).[]
+
+=== Text #10 ===
+> By The Abyssinian | On May 13, 2015 | in Fun with Comments Off on Ethiopian food on The Simpsons[!]
+Eat my Shiro! Check out the clip from The Simpsons! (23×[5]).[]
+
+=== Text #11 ===
+> Powder[co]ated my grill for an #RA28 and smiley bumper brackets for[ a 72] #TA22[.] Both are �[�gl]oss stealth charcoal” and look absolutely amazing[!!!]
+Welded up 35 sets of #[ra]28 #[ra]23 hood hinges[! As]semb[led and] shipped 10 raw sets and sent the rest[ for] powdercoat[!]
+
+=== Text #12 ===
+> Powder[co]ated my grill for an #RA28 and smiley bumper brackets for[ a 72] #TA22[.] Both are �[�gl]oss stealth charcoal” and look absolutely amazing[!!!]
+Welded up 35 sets of #[ra]28 #[ra]23 hood hinges[! As]semb[led and] shipped 10 raw sets and sent the rest[ for] powdercoat[!]
+
+=== Text #13 ===
+> joel may[ward]: Feeling stressed,[ but] looking good!
+Feeling stressed, but looking good!
+We're getting[ ready] for our[ trip to] Arizona today by doing lots of laundry and thinking through everything we need[.] We're checking our[ flight] information, hotel information, car rental information...l[ots] of information[!] We have maps of the greater Phoenix area and the city of Mesa. We have driving directions to the hotel from the airport, the hotel to the church, and anywhere else we need to go. Preparing these things ahead of time is a must: it's[ no] fun to arrive in a new city and realize you have no idea how to get around! We also have a basic timeline for every day we're in Arizona: who we're meeting, where we're[ going], times for relaxing, etc. Preparation is key!
+I think the weightiness of this excursion[ is] playing havoc with my ins[ides]: I'm feeling mildly[ ill] and not sleeping too[ well] at night[.] This could[ be] due to stress[.] I'm not a doctor, but that's my diagnosis[.] Finding out we might be getting a new job, a new home, and essentially a new life in[ less than a] week[ is a] stressful endeavor[!]
+We['re uber]-exc[ited!] We leave tomorrow[!]
+we[ are] dang[ uber]-exc[ited too!! will call] katie tomorrow- wanted to tonight but ran out of time[. have been] thinking[ lots about] her[ and] praying[ too in] preparation[!] bring your running/hiking shoes in case we have time to hit pinnacle[.]
+Good[ luck] you guys[.] You[ will be] awesome[!]
+
+=== Text #14 ===
+> The AVM[4]108C Widescreen HD Display is a product you’ll want to watch — quite literally. This high-quality, 1280×800 resolution screen is sunlight-readable, touch-responsive and capable of the crystal-clear pictures you need on critical missions.
+Want to see the AV[M4]108[C] display in action? Request more info from the Av[ale]x team now.[]
+
+=== Text #15 ===
+> Bowling balls at painted[ on] wall wickets.
+Kicking bottles through posts in the backstreet.
+Clutching all of our football tickets.
+From dawn until dusk[ no] dream[ could] compete[.]
+With a run down the field the game is mine.
+Summer days;[ no] care for clinching a win[.]
+I catch the ball as I jump past the line[.]
+Screaming[ like] the fans[ for] giant rock[ bands.]
+[It]’[s] time[ to] bring out your celebrations[.]
+Kicking, throwing, catching, dunking, hitting.
+Oh child what it[ feels to be] ball game king[.]
+
+=== Text #16 ===
+> [©] 2017 Barracuda Boat & RV Storage. All Rights Reserved. Website created by Electric Playground. Powered by Ak[iba].[]
+
+=== Text #17 ===
+> Ch[go] Latvian Ev[ L]uth Zion Congregation can be found at 6551 W Montrose Ave . The following is offered: Religious Organizations . In Chicago there are 932 other Religious Organizations. An overview can be found here.[]
+
+=== Text #18 ===
+> [5] Min walk to train & bus stops,linking you to Glasgow & Paisley.
+All prices plus vat except mot.
+Service prices are dependant on cost of parts and lubricants on certain makes & models.[][]
+
+=== Text #19 ===
+> M[ardo] El-Noor is a multi-talented artist who lives in New Zealand. Check out his[ a] selection of his motion portfolio below which features stunning animated typography set to well-chosen tunes.
+See M[ardo]’s image portfolio and motion showreels for more.[]
+
+=== Text #20 ===
+> [Who]a[!!] The Take[ care] Pharmacy Mobile application is available in App stores now. This app brings the pharmacy to your mobile device.[]
+
+
+Description: 
+2025-05-11 01:54:54,629 - root - INFO - Events, activities, or locations involving a duration or point in time
+
+2025-05-11 01:54:54,633 - root - INFO - Cluster #1 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.csv
+2025-05-11 01:54:55,875 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-11 01:54:55,876 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  at (0.4097576439380646)
+Text #1: . (0.6732526421546936)
+Text #1: . (0.2893911600112915)
+Text #1: . (0.3821304142475128)
+Text #1:  will (1.0616159439086914)
+Text #1:  to (1.0968788862228394)
+Text #1:  thankful (0.4649794101715088)
+Text #1: . (0.30154138803482056)
+Text #1: , (0.7670792937278748)
+Text #1:  of (0.5498234033584595)
+Text #1:  helps (0.3695284426212311)
+Text #1:  peacefully (0.5642824769020081)
+Text #1:  for (0.5660486221313477)
+Text #1:  has (0.37726274132728577)
+Text #1:  hours (1.5717154741287231)
+Text #1:  only (0.5107675790786743)
+Text #1:  to (2.2516870498657227)
+Text #1:  sort (0.697830080986023)
+Text #1:  that (0.773409366607666)
+Text #1: 're (0.3280594050884247)
+Text #1:  co (0.8731271624565125)
+Text #1: you (0.5241919159889221)
+Text #1:  one (0.3914549946784973)
+Text #1: . (0.428751140832901)
+Text #1:  from (0.40466827154159546)
+Text #1:  thankful (1.0687363147735596)
+Text #1:  is (0.29113784432411194)
+Text #1: . (0.6681551933288574)
+Text #1: o (2.9008424282073975)
+Text #1:  not (0.5660192966461182)
+Text #1:  that (1.2158942222595215)
+Text #1:  is (0.4409225583076477)
+Text #1:  am (0.3836962878704071)
+Text #1: , (0.7024443745613098)
+Text #1:  well (0.9506272673606873)
+Text #1:  is (0.26369550824165344)
+Text #2:  must (0.39474570751190186)
+Text #2:  frustrating (0.5611432194709778)
+Text #2: . (0.4856022000312805)
+Text #2:  now (0.8208259344100952)
+Text #2: . (0.4450109601020813)
+Text #2:  for (1.090780258178711)
+Text #2: . (0.1465829759836197)
+Text #2: lad (1.2499150037765503)
+Text #2: . (0.27335384488105774)
+Text #2:  from (0.12614642083644867)
+Text #2: igh (0.07903937995433807)
+Text #3: s (0.4264761805534363)
+Text #3: . (0.18619824945926666)
+Text #3:  a (0.2480560541152954)
+Text #3:  that (0.3878227174282074)
+Text #3: ole (0.07466752827167511)
+Text #3:  how (0.24189330637454987)
+Text #3: . (1.1597483158111572)
+Text #3:  is (0.5428255200386047)
+Text #3: . (0.10211291164159775)
+Text #3:  is (0.13598132133483887)
+Text #3:  friends (0.39040908217430115)
+Text #3:  about (0.4540707468986511)
+Text #3:  surgeries (0.6908420920372009)
+Text #3:  from (0.4834144711494446)
+Text #3:  oxygen (0.45612290501594543)
+Text #3:  faces (0.14152829349040985)
+Text #3:  only (1.2784347534179688)
+Text #3:  that (0.04653564468026161)
+Text #3:  gone (0.2255764603614807)
+Text #3:  feels (0.05354325473308563)
+Text #3:  same (0.028907708823680878)
+Text #3:  cannot (0.23839792609214783)
+Text #3:  makes (0.063587985932827)
+Text #3: or (1.0075914859771729)
+Text #3:  a (0.6538311243057251)
+Text #3: <|endoftext|> (0.02209312655031681)
+Text #4:  now (0.7249616980552673)
+Text #4: 's (0.12670238316059113)
+Text #4: ... (0.05001130327582359)
+Text #4:  much (0.7454889416694641)
+Text #4: . (0.10199113190174103)
+Text #5: Ever (0.03315911069512367)
+Text #5: , (0.1182679682970047)
+Text #5: o (1.375365972518921)
+Text #5: o (0.07437743246555328)
+Text #5: . (0.09192940592765808)
+Text #5:  and (0.150383859872818)
+Text #5:  free (0.17961485683918)
+Text #5:  Eco (0.5895529985427856)
+Text #5: In (2.1912548542022705)
+Text #5:  TO (2.7721195220947266)
+Text #5: . (0.7845698595046997)
+Text #5: <|endoftext|> (0.014600352384150028)
+Text #6: co (3.5969431400299072)
+Text #6:  a (0.5109076499938965)
+Text #6: . (0.02945423126220703)
+Text #6: � (0.029942698776721954)
+Text #6: !!! (0.32800301909446716)
+Text #6: ra (0.3500920534133911)
+Text #6: ra (0.5355985164642334)
+Text #6: ! (0.5287869572639465)
+Text #6: led (0.3577613830566406)
+Text #6:  for (0.1484663188457489)
+Text #6: ! (0.16764280200004578)
+Text #7: co (3.5969431400299072)
+Text #7:  a (0.5109076499938965)
+Text #7: . (0.02945423126220703)
+Text #7: � (0.029942698776721954)
+Text #7: !!! (0.32800301909446716)
+Text #7: ra (0.3500920534133911)
+Text #7: ra (0.5355985164642334)
+Text #7: ! (0.5287869572639465)
+Text #7: led (0.3577613830566406)
+Text #7:  for (0.1484663188457489)
+Text #7: ! (0.16764280200004578)
+Text #8: F (0.7054153680801392)
+Text #8: BT (1.6350735425949097)
+Text #8: To (3.0983808040618896)
+Text #8:  PB (0.22221152484416962)
+Text #8:  be (0.05356381833553314)
+Text #8: ready (0.02429436519742012)
+Text #8: <|endoftext|> (0.018190909177064896)
+Text #9:  the (0.2358652949333191)
+Text #9:  watching (0.0675002783536911)
+Text #9: . (0.6464141011238098)
+Text #9: 't (0.3463928997516632)
+Text #9:  only (0.41996341943740845)
+Text #9: O (0.738036572933197)
+Text #9:  2 (0.41635021567344666)
+Text #9:  Continue (0.24965861439704895)
+Text #9: <|endoftext|> (0.027781076729297638)
+Text #10:  the (0.2358652949333191)
+Text #10:  watching (0.0675002783536911)
+Text #10: . (0.6464141011238098)
+Text #10: 't (0.3463928997516632)
+Text #10:  only (0.41996341943740845)
+Text #10: O (0.738036572933197)
+Text #10:  2 (0.41635021567344666)
+Text #10:  Continue (0.24965861439704895)
+Text #10: <|endoftext|> (0.027781076729297638)
+Text #11:  the (0.2358652949333191)
+Text #11:  watching (0.0675002783536911)
+Text #11: . (0.6464141011238098)
+Text #11: 't (0.3463928997516632)
+Text #11:  only (0.41996341943740845)
+Text #11: O (0.738036572933197)
+Text #11:  2 (0.41635021567344666)
+Text #11:  Continue (0.24965861439704895)
+Text #11: <|endoftext|> (0.027781076729297638)
+Text #12: ardo (0.9690426588058472)
+Text #12:  a (1.7728939056396484)
+Text #12: ardo (1.1161280870437622)
+Text #12: <|endoftext|> (0.02046692743897438)
+Text #13:  recently (0.03528489172458649)
+Text #13: U (0.34412866830825806)
+Text #13:  FOR (0.7532534003257751)
+Text #13:  N (0.10963577777147293)
+Text #13: ka (0.055982064455747604)
+Text #13:  Writ (0.21449211239814758)
+Text #13: <|endoftext|> (0.031282939016819)
+Text #14:  and (0.13510319590568542)
+Text #14:  to (0.09517594426870346)
+Text #14:  from (0.062320444732904434)
+Text #14: . (0.5816553831100464)
+Text #14: ! (0.02833349071443081)
+Text #14:  so (1.0033589601516724)
+Text #14: 't (0.39806675910949707)
+Text #14: . (0.22482670843601227)
+Text #14:  a (0.07102623581886292)
+Text #14: <|endoftext|> (0.030369220301508904)
+Text #15: 3 (0.5154176950454712)
+Text #15: . (0.18034859001636505)
+Text #15:  Road (0.09391852468252182)
+Text #15:  A (0.09420404583215714)
+Text #15:  mell (0.2794595956802368)
+Text #15:  an (0.07591326534748077)
+Text #15: <|endoftext|> (0.02830502763390541)
+Text #16: >> (0.016919434070587158)
+Text #16: . (1.0529423952102661)
+Text #16: 
+ (0.09186606854200363)
+Text #16:  for (0.839476466178894)
+Text #16:  G (0.1463148295879364)
+Text #16: " (0.027157902717590332)
+Text #16: <|endoftext|> (0.0218027476221323)
+Text #17: G (0.014671855606138706)
+Text #17:  St (0.36735162138938904)
+Text #17: e (0.6091521978378296)
+Text #17: e (0.49271634221076965)
+Text #17: <|endoftext|> (0.015891635790467262)
+Text #18: You (0.018883241340517998)
+Text #18:  to (0.010855043306946754)
+Text #18:  to (0.1043093279004097)
+Text #18: as (0.19701345264911652)
+Text #18:  An (0.27615490555763245)
+Text #18:  co (1.3246811628341675)
+Text #18:  grown (0.1283055692911148)
+Text #18: . (0.05823887512087822)
+Text #18:  An (1.468043327331543)
+Text #18: ias (1.035595417022705)
+Text #18: olia (0.06843828409910202)
+Text #18: An (0.02058371715247631)
+Text #18: i (0.15771305561065674)
+Text #18:  co (1.6139196157455444)
+Text #18:  An (0.26867568492889404)
+Text #18: i (0.31653469800949097)
+Text #18:  an (0.2286805510520935)
+Text #18: An (0.026292622089385986)
+Text #18: i (0.07646995782852173)
+Text #18:  co (1.878653645515442)
+Text #18:  are (0.3080446720123291)
+Text #18: <|endoftext|> (0.02008797787129879)
+Text #19:  no (0.1492418646812439)
+Text #19: <|endoftext|> (0.016338542103767395)
+Text #20:  Can (1.5701524019241333)
+Text #20: ! (0.3169068694114685)
+Text #20:  Can (0.6373237371444702)
+Text #20:  Can (0.9787728786468506)
+Text #20:  done (0.038559526205062866)
+Text #20: <|endoftext|> (0.024340763688087463)
+
+=== Text #1 ===
+> Not feeling well today, so back in bed[ at eleven] in the morning[.] Sore throat[.] Sinus pressure. Yuck[.]
+I[ will] say, though, it's nice[ to be] alone up here in my room in the middle of the day with some items I have come to count as dearest companions - my Bible, journal, daily devotion book,[ thankful] journal, and a collection of gel pens[.]
+Currently, I am reading Jesus Calling[,] by Sarah Young. Filled with lovely little reminders[ of] God's presence and His love for me, this daily devotional[ helps] focus my thoughts either to start my day right or rest[ peacefully] during the night.
+Also by my side today is God's Wisdom[ for a] Mother's Heart, by Bobbie Wolgemuth. This[ has] provided hours and[ hours] of conversation starters for the bi-monthly mentoring group I help lead at my church. Though[ only] 128 pages in length, we have used this book for more than a year. The girls in Moms[ to Moms meet] the first and second Wednesday nights of the month, a[ sort of] round-table, open forum where no topic is off limits, but mostly parenting and reassuring[ that] they['re going to] make it. We study the Word, pray, laugh, cry, teach each other, and we are all growing.
+My[ co]-leaders and I agree these young ladies with their children around them are our heroes. Represented are single and married moms, working outside and inside their homes, public/private/homeschooling moms...[you] name it, we've got it. This is[ one] group we hate to miss[. A] gift[ from] God. Truly.
+My[ thankful] journal[ is] simply a little leather-bound book where I record the gifts God has given me[.] Eucharist[o]. Thanks. One Thousand Gifts. 10,000 reasons. Why write them down? Because I dare[ not] forget the goodness of God. In the remembering and the acknowledging I am overwhelmed with reassurance[ that] God[ is] my provider, comforter, healer, friend, joy, strength, and so much more. I[ am much less] likely to lose my focus and wander if I am remembering God's deeds and giving thanks.
+Last[, but certainly not] least, is my personal journal. It may as[ well be] my heart on paper. This is where it all comes pouring forth to be sorted, processed, saved or discarded. You know, keep the good and throw out the chaff. That's what the journal is for - it[ is] fearsome
+
+=== Text #2 ===
+> That[ must] be[ frustrating , just] when you are getting used to another one[.]
+My computer has lasted a number of years[ now], but getting slow with clutter[.]
+Mine covers me,[ for that] kind of mishap[.]
+G[lad I] mentioned it, then[.]
+I didn't when I bought mine[ from] Argos a couple of years ago.......*s[igh.]
+
+=== Text #3 ===
+> It comes on again on her grandson’[s christ]ening day[. A lost] moment,[ a] blank spot, one[ that] Car[ole] does not know[ how] to measure[.] She[ is there] one second, then she is not[.] She knows exactly where she[ is,] then she does not. Her older church[ friends] tell similar stories[ about] their[ surgeries, how] they count backward[ from ten] with an[ oxygen] mask over their[ faces,] then wake up before reaching one,[ only] to find[ that] hours, and sometimes even days, have[ gone by.] She[ feels] as though she were experiencing the[ same thing.]
+Decisions that affect others in bad ways[ cannot] always be traced to one individual. This[ makes] it easier for cop[or]ations, as[ a] whole, to engage in unethical behavior.
+Indeed, some argue that whole purpose pf the coperation is to make the most money that it can for owners and investers.
+I do what I can for you.[]
+
+=== Text #4 ===
+> Ok,[ now]. Ohhh... There['s] whole new world to discover[... Thank] you VERY[ much]!
+Comments later, I've got a few ideas but I feel too tired to make halfway good comments[.]
+
+=== Text #5 ===
+> [Ever since] the company was founded[,] the development of advanced products has been an essential component of the Tok[o] philosophy. Today, Tok[o] is a leading global company with excellent future prospects in the areas of ski, textile and footware.
+When you buy it, your functional gear is both breathable and weather-proof and thus prepared for any outdoor adventure[.] With time and a few washing cycles later, your high-tech gear is damaged and becomes less effective. With the use of Toko Care products, you restore its functions and prolong the lifetime of your functional wear[ and] gear.
+The fluor[ free TO]KO[ Eco] Wash-[In] impregnation is new in our[ TOKO] Proof product line[.] Clean and simple, you use it in the next washing cycle, which makes it a great alternative for all who quickly want to get started with optimum weather protection.[]
+
+=== Text #6 ===
+> Powder[co]ated my grill for an #RA28 and smiley bumper brackets for[ a 72] #TA22[.] Both are �[�gl]oss stealth charcoal” and look absolutely amazing[!!!]
+Welded up 35 sets of #[ra]28 #[ra]23 hood hinges[! As]semb[led and] shipped 10 raw sets and sent the rest[ for] powdercoat[!]
+
+=== Text #7 ===
+> Powder[co]ated my grill for an #RA28 and smiley bumper brackets for[ a 72] #TA22[.] Both are �[�gl]oss stealth charcoal” and look absolutely amazing[!!!]
+Welded up 35 sets of #[ra]28 #[ra]23 hood hinges[! As]semb[led and] shipped 10 raw sets and sent the rest[ for] powdercoat[!]
+
+=== Text #8 ===
+> Original spare cable for the use with Polar[F]IS devices and old Polar[BT] Blue[To]oth[ PB01]. You can order it in the case your original cable[ be] damaged. This cable already comes with your device when you place one order (al[ready] included in the price), so only is necessary for replacing original cable.[]
+
+=== Text #9 ===
+> I was watching TV with Devin[ the] other day and we were[ watching some] of the filler programing between shows on PBS[.] We don['t] have cable so the[ only] kids shows the kids can watch outside of Saturday morning is on PBS and TV[O. Rather] than have commercials these networks show these short[ 2] minute filler …[ Continue] reading Humanism on PBS?[]
+
+=== Text #10 ===
+> I was watching TV with Devin[ the] other day and we were[ watching some] of the filler programing between shows on PBS[.] We don['t] have cable so the[ only] kids shows the kids can watch outside of Saturday morning is on PBS and TV[O. Rather] than have commercials these networks show these short[ 2] minute filler …[ Continue] reading Humanism on PBS?[]
+
+=== Text #11 ===
+> I was watching TV with Devin[ the] other day and we were[ watching some] of the filler programing between shows on PBS[.] We don['t] have cable so the[ only] kids shows the kids can watch outside of Saturday morning is on PBS and TV[O. Rather] than have commercials these networks show these short[ 2] minute filler …[ Continue] reading Humanism on PBS?[]
+
+=== Text #12 ===
+> M[ardo] El-Noor is a multi-talented artist who lives in New Zealand. Check out his[ a] selection of his motion portfolio below which features stunning animated typography set to well-chosen tunes.
+See M[ardo]’s image portfolio and motion showreels for more.[]
+
+=== Text #13 ===
+> Open to adults & teens. Registration requested. Meet Echezonachukwu Nduka, author of the[ recently] released poetry collection CHRYSANTHEM[U]MS[ FOR] WIDE-EYED GHOSTS. Mr.[ N]du[ka has] been hosted at various local and international festivals, including Africa[ Writes] organized by the Royal African Society London.
+Refreshments will be served. Please advise staff of any food allergies.[]
+
+=== Text #14 ===
+> It sounds nice doesn't it? I read it in a fanfiction[ and] tried[ to find out] where it was[ from but] failed[.] I didn't want to lose the quote either so here it is[!] Mmn, there's[ so] much I want to write about but I don['t] feel like writing about anything[.] I guess this entry shall just be[ a] quote.
+This page was loaded Apr 20th 2019, 12:20 am GMT.[]
+
+=== Text #15 ===
+> osk@rbiddl[3] lovely[.] Im very happy I stumbled over this by accident Favorite track: The Longest[ Road].
+Gal Leshem[ A] display of different[ mell]ow moments. Favorite track: Clouds.
+Aaron What[ an inspired] session. This is beautiful, timeless music. Would love to hear more from this group.[]
+
+=== Text #16 ===
+> [>>] I was looking for “seeing Hydra in action”[.]
+> Service temporarily unavailable or 404. Sorry for the inconvenience.[
+]Next message: Ruben Verborgh: "moving forward: Doodle[ for] conf call"
+Previous message: Chris Andrew: "Re: Possible[ GSo]C application["]
+In reply to: Dietrich Schulten: "Re: Hydra examples for describing APIs"[]
+
+=== Text #17 ===
+> [Gibe]ault Design, located on Boulevard[ St]-Laurent in Montreal, offers an inspiring and architectural universe. With over 30 years of experience in creating high quality spaces, Guy Gib[e]ault and his team combine the functional aesthetics with exclusive products in order to create exceptional residential spaces.
+Facebook : Gib[e]ault Design Inc.[]
+
+=== Text #18 ===
+> [You] are buying one beautiful piece of Manzanita driftwood averaging 7[ to] 10 inches long by 2 "[ to] 3" wide ([as] seen in the picture) with a full[ An]ubias[ co]ffeefolia[ grown] on it[.] The[ An]ub[ias Co]ffeef[olia will have] 5 or more leaves.
+[An]ubias barter[i] var.[ co]ffeefolia is a low cultivar of[ An]ubias barter[i]. Its characteristic is that the leaves arch considerably between the leaf ribs, and the new leaves are red-brown. The color combination and leaf shape make it[ an] attractive variety in both large and small aquariums. It flowers frequently under water but does not produce seeds.
+[An]ubias barter[i] var.[ co]ffeefolia is not eaten by herbivorous fish.
+I have a few of these available so you[ are not] buying the exact piece shown in the picture but all the pieces will look just as good if not better than the one pictured.[]
+
+=== Text #19 ===
+> I'm the type of woman who will drive you crazy . There is[ no] force equal to a woman determined to rise. I'm not afraid to take control and you might love it. Role-playing is one of my favorite fantasies.[]
+
+=== Text #20 ===
+> U14s Win Two Gold & Men’s Overall at[ CanA]ms[!]
+Submitted by U14[ CanAm] Head Coach Jacques Reid….”We all love to win but this 2019[ CanAm] event was about more than winning. In all of my duties as Head Coach, this event stands apart thanks to the coaches working as a united front, working seamlessly for the good of each athlete. I truly believe the athletes responded to this and acted like a true team that deserved to hold our Ontario flag high! Well[ done] everyone![]
+
+
+Description: 
+2025-05-11 01:54:55,878 - root - INFO - Time, numbers, or quantities in relation to events, actions, or descriptions
+
+2025-05-11 01:54:55,882 - root - INFO - Cluster #2 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.csv
+2025-05-11 01:54:57,185 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-11 01:54:57,186 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  certainly (1.1541857719421387)
+Text #1:  full (0.8289951086044312)
+Text #1: . (0.6295421123504639)
+Text #1: t (0.8232752084732056)
+Text #1:  have (0.6731231808662415)
+Text #1:  yet (1.212552785873413)
+Text #1: , (0.18169674277305603)
+Text #1:  time (0.2796938419342041)
+Text #1: . (0.5651689171791077)
+Text #1:  first (0.5104666948318481)
+Text #1:  one (0.227882519364357)
+Text #1: re (0.33094143867492676)
+Text #1:  first (0.2693045437335968)
+Text #1: . (0.18749693036079407)
+Text #1:  first (0.5491641759872437)
+Text #1:  already (0.8027386665344238)
+Text #1: ll (0.5999581813812256)
+Text #1: Can (2.4887020587921143)
+Text #1: t (2.002161979675293)
+Text #1:  !! (0.2587279677391052)
+Text #1: ac (0.19290697574615479)
+Text #1:  more (0.636748731136322)
+Text #1:  has (1.2248848676681519)
+Text #1:  of (0.22900398075580597)
+Text #1:  already (0.664036750793457)
+Text #1:  can (0.2480505108833313)
+Text #1: t (1.2420223951339722)
+Text #1:  to (1.047767996788025)
+Text #1: , (0.2348877191543579)
+Text #1: ! (0.9907176494598389)
+Text #1:  react (0.41001781821250916)
+Text #1:  ( (0.8376277089118958)
+Text #1:  first (1.0582622289657593)
+Text #1: Co (1.951831579208374)
+Text #2: up (1.26565682888031)
+Text #2: . (0.40375083684921265)
+Text #2:  just (1.6988896131515503)
+Text #2: . (0.2854437828063965)
+Text #2:  many (0.27658572793006897)
+Text #2:  to (0.44650664925575256)
+Text #2: . (0.5314153432846069)
+Text #2:  will (1.720033049583435)
+Text #2:  finally (1.0367645025253296)
+Text #2:  one (0.6936832666397095)
+Text #2: . (0.5376648902893066)
+Text #2:  it (0.37327611446380615)
+Text #2: m (0.3512239456176758)
+Text #2: . (0.6711004972457886)
+Text #2:  of (0.542790949344635)
+Text #2:  Nothing (0.5125085115432739)
+Text #2:  to (0.6700630187988281)
+Text #2: No (1.4406012296676636)
+Text #2:  something (0.44885674118995667)
+Text #2: . (0.4144740104675293)
+Text #2: to (0.9227026104927063)
+Text #2: o (0.558983325958252)
+Text #2: He (0.4110725522041321)
+Text #2:  so (1.152269721031189)
+Text #2:  from (0.31625527143478394)
+Text #2:  that (0.9015146493911743)
+Text #2:  how (0.43100133538246155)
+Text #2: 't (0.7304708361625671)
+Text #2:  yet (1.110467553138733)
+Text #2: ! (0.5293270349502563)
+Text #2:  to (1.5658879280090332)
+Text #2:  hope (0.7553101778030396)
+Text #2:  is (0.9407588243484497)
+Text #2: BT (0.4558793902397156)
+Text #2: . (1.283316969871521)
+Text #2: . (0.36461731791496277)
+Text #2:  ML (0.5484176278114319)
+Text #2: 's (0.7414246201515198)
+Text #2: . (0.48690542578697205)
+Text #3:  05 (0.8419987559318542)
+Text #3: . (0.3424886465072632)
+Text #4: . (1.0740681886672974)
+Text #4:  than (1.3279081583023071)
+Text #4:  if (1.4808459281921387)
+Text #4: . (1.1134982109069824)
+Text #4: ly (0.30995187163352966)
+Text #4:  barely (0.3455387055873871)
+Text #4: . (0.628450870513916)
+Text #4: abies (0.3682732880115509)
+Text #4:  to (0.7345451712608337)
+Text #4: … (1.0357041358947754)
+Text #4:  was (0.37288013100624084)
+Text #4:  in (1.2108869552612305)
+Text #4:  nothing (0.3343176245689392)
+Text #4: . (0.5128865838050842)
+Text #4: iro (0.5204022526741028)
+Text #4:  just (0.5741344690322876)
+Text #4:  very (1.0112723112106323)
+Text #4:  in (0.2747431695461273)
+Text #4:  having (0.4218669831752777)
+Text #4: . (1.2777522802352905)
+Text #4:  to (0.437183678150177)
+Text #4:  very (2.5505733489990234)
+Text #4: . (0.9396247267723083)
+Text #4:  that (0.4282706379890442)
+Text #4: . (0.47130852937698364)
+Text #4:  an (0.5803110599517822)
+Text #4:  be (0.48183074593544006)
+Text #4: . (0.8863606452941895)
+Text #4: . (0.9630724787712097)
+Text #4:  from (0.4032277464866638)
+Text #4: t (0.4199627637863159)
+Text #4:  at (0.41096341609954834)
+Text #4:  to (0.7769739627838135)
+Text #4: a (0.4562240540981293)
+Text #4: nob (0.4063144028186798)
+Text #4:  to (0.3409309685230255)
+Text #4: no (0.7692034244537354)
+Text #4: an (0.86771160364151)
+Text #4: t (0.48957982659339905)
+Text #4: nob (0.555882453918457)
+Text #4: now (1.9362084865570068)
+Text #4:  that (1.0829428434371948)
+Text #4:  closer (0.2932722568511963)
+Text #4: . (0.6558957695960999)
+Text #5: t (0.9334036707878113)
+Text #5: ! (1.1261541843414307)
+Text #5: s (0.5892866253852844)
+Text #5: !!! (0.06505667418241501)
+Text #5: <|endoftext|> (0.034214992076158524)
+Text #5: <|endoftext|> (0.029373347759246826)
+Text #6:  it (0.10330919176340103)
+Text #6: , (0.2632942199707031)
+Text #6: . (0.12787418067455292)
+Text #6: <|endoftext|> (0.04354790970683098)
+Text #7:  P (0.19296668469905853)
+Text #7:  org (0.07373543828725815)
+Text #7:  ways (0.14772827923297882)
+Text #7: <|endoftext|> (0.04130157455801964)
+Text #8: <|endoftext|> (0.027837427332997322)
+Text #9: co (3.5969431400299072)
+Text #9:  a (0.5109076499938965)
+Text #9: . (0.02945423126220703)
+Text #9: � (0.029942698776721954)
+Text #9: !!! (0.32800301909446716)
+Text #9: ra (0.3500920534133911)
+Text #9: ra (0.5355985164642334)
+Text #9: ! (0.5287869572639465)
+Text #9: led (0.3577613830566406)
+Text #9:  for (0.1484663188457489)
+Text #9: ! (0.16764280200004578)
+Text #10: Built (0.02126738801598549)
+Text #10:  built (0.12411276996135712)
+Text #10:  in (0.3803810775279999)
+Text #10:  for (0.05020933598279953)
+Text #10:  in (0.34100204706192017)
+Text #10: Built (0.25387102365493774)
+Text #10:  In (0.9584187269210815)
+Text #10:  In (0.9733940958976746)
+Text #10:  In (0.7473002076148987)
+Text #10:  Built (0.08442807197570801)
+Text #10:  Do (1.6141722202301025)
+Text #10:  Built (0.01347549818456173)
+Text #10:  In (0.6521064639091492)
+Text #10:  Built (0.006463084369897842)
+Text #10:  In (0.4368189871311188)
+Text #10:  To (1.2036232948303223)
+Text #10:  In (0.4225810468196869)
+Text #10:  In (0.39068058133125305)
+Text #10:  In (0.5221466422080994)
+Text #10: mo (3.3998403549194336)
+Text #10:  In (0.6155281066894531)
+Text #10:  In (0.574582040309906)
+Text #10: . (0.024930059909820557)
+Text #10:  In (0.2714940011501312)
+Text #10:  Imp (0.3347591757774353)
+Text #10:  In (0.21030235290527344)
+Text #10:  In (0.5047532320022583)
+Text #10:  In (0.5159795880317688)
+Text #10:  Off (0.0757518857717514)
+Text #10: <|endoftext|> (0.0030976615380495787)
+Text #11:  first (0.6078366041183472)
+Text #11: . (0.8801588416099548)
+Text #11:  have (1.3364417552947998)
+Text #11:  a (0.38230156898498535)
+Text #11:  having (0.5767601728439331)
+Text #11:  themselves (0.6169071793556213)
+Text #11:  drive (0.8920295238494873)
+Text #11: . (0.9781751036643982)
+Text #11:  walk (0.5049918293952942)
+Text #11: , (0.38440123200416565)
+Text #11: . (1.353842854499817)
+Text #11:  patiently (0.46736276149749756)
+Text #11: . (0.9962829947471619)
+Text #11:  did (0.38932889699935913)
+Text #11: . (0.4345480799674988)
+Text #11:  just (0.3662900924682617)
+Text #11: . (0.3264077603816986)
+Text #11: . (0.6903796195983887)
+Text #11: . (0.45009875297546387)
+Text #11:  to (1.2694041728973389)
+Text #11:  once (0.35906827449798584)
+Text #11: . (1.2810994386672974)
+Text #11: s (1.3303018808364868)
+Text #11:  Only (0.8855446577072144)
+Text #11: . (0.4840473532676697)
+Text #11: i (0.5858890414237976)
+Text #11:  is (0.49476346373558044)
+Text #11:  today (0.7380863428115845)
+Text #11:  is (0.5003864765167236)
+Text #11:  6 (0.42324402928352356)
+Text #11: whe (0.5568723678588867)
+Text #11:  Absolutely (1.0520423650741577)
+Text #11:  it (0.390432208776474)
+Text #11:  being (0.7482461929321289)
+Text #11:  only (1.035733938217163)
+Text #11:  think (0.41991645097732544)
+Text #11: ll (0.5050381422042847)
+Text #12: ito (1.1702378988265991)
+Text #12: The (0.396471232175827)
+Text #12: Gene (0.08346705138683319)
+Text #12: . (0.48465168476104736)
+Text #12:  is (0.1109478697180748)
+Text #12: . (0.7351272106170654)
+Text #12:  interviewed (0.10114400833845139)
+Text #12:  helped (0.07766781002283096)
+Text #12: o (0.33021894097328186)
+Text #12: . (0.18161439895629883)
+Text #12: ito (1.248777985572815)
+Text #12: t (0.21450340747833252)
+Text #12:  an (0.2677602469921112)
+Text #12:  from (0.11984650790691376)
+Text #12: . (0.19541199505329132)
+Text #12: . (0.293968141078949)
+Text #12: ! (0.2979985475540161)
+Text #12: ito (2.0081710815429688)
+Text #12: s (0.24492914974689484)
+Text #12:  beginnings (0.33347856998443604)
+Text #12: ito (0.799108624458313)
+Text #12: ito (0.31753969192504883)
+Text #12:  experience (0.6848976612091064)
+Text #12:  finally (1.0112082958221436)
+Text #12:  Got (0.3387944996356964)
+Text #12: . (0.7409428954124451)
+Text #12: ito (0.09955102950334549)
+Text #12:  that (0.2045641988515854)
+Text #12:  would (0.25286146998405457)
+Text #12: . (0.08562251180410385)
+Text #12: ito (1.1102275848388672)
+Text #12:  that (0.6072652339935303)
+Text #12:  is (0.7069746255874634)
+Text #12: . (0.6534085273742676)
+Text #12: aldo (0.7017049789428711)
+Text #12: Is (0.3365878462791443)
+Text #12:  for (0.09195728600025177)
+Text #12:  So (2.026916027069092)
+Text #12: ano (0.5609656572341919)
+Text #12: <|endoftext|> (0.0279775969684124)
+Text #13: Come (0.024751633405685425)
+Text #13: and (0.08505620807409286)
+Text #13:  first (0.6807287931442261)
+Text #13:  Don (0.3008915185928345)
+Text #13: . (0.6654697060585022)
+Text #13:  cousin (0.289408415555954)
+Text #13:  what (0.11438440531492233)
+Text #13:  to (1.007324457168579)
+Text #13: . (0.2508802115917206)
+Text #13:  come (1.1551889181137085)
+Text #13: <|endoftext|> (0.02764195203781128)
+Text #14: Come (0.024751633405685425)
+Text #14: and (0.08505620807409286)
+Text #14:  first (0.6807287931442261)
+Text #14:  Don (0.3008915185928345)
+Text #14: . (0.6654697060585022)
+Text #14:  cousin (0.289408415555954)
+Text #14:  what (0.11438440531492233)
+Text #14:  to (1.007324457168579)
+Text #14: . (0.2508802115917206)
+Text #14:  come (1.1551889181137085)
+Text #14: <|endoftext|> (0.02764195203781128)
+Text #15: Who (0.01694187894463539)
+Text #15: !! (0.9535177946090698)
+Text #15:  care (0.2481318563222885)
+Text #15: <|endoftext|> (0.013858775608241558)
+Text #16: Wind (0.012341178022325039)
+Text #16: ro (1.983095407485962)
+Text #16: � (0.1350744664669037)
+Text #16: <|endoftext|> (0.012731404043734074)
+Text #17: Do (1.4617384672164917)
+Text #17:  about (0.11250334233045578)
+Text #17:  2 (0.2240425944328308)
+Text #17:  F (0.2817974388599396)
+Text #17: Or (0.23985256254673004)
+Text #17:  So (0.5995248556137085)
+Text #17:  2 (0.29946357011795044)
+Text #17: Give (0.9408837556838989)
+Text #17:  hopefully (0.8271968960762024)
+Text #17:  way (0.19354845583438873)
+Text #17:  2 (1.3749676942825317)
+Text #17: !' (0.9190506339073181)
+Text #17:  well (0.028571078553795815)
+Text #17: <|endoftext|> (0.020406469702720642)
+Text #18: Ca (0.012797200120985508)
+Text #18: be (1.792734146118164)
+Text #18:  be (1.4538546800613403)
+Text #18: <|endoftext|> (0.018056197091937065)
+Text #19: A (0.022542016580700874)
+Text #19: - (0.12225178629159927)
+Text #19: free (0.03178497031331062)
+Text #19:  be (0.31457647681236267)
+Text #19: uke (0.23256319761276245)
+Text #19: <|endoftext|> (0.027203906327486038)
+Text #20: ino (1.6789531707763672)
+Text #20: os (0.32338571548461914)
+Text #20:  just (0.16391588747501373)
+Text #20: ue (0.16722194850444794)
+Text #20:  W (0.050868310034275055)
+Text #20:  a (0.07796159386634827)
+Text #20:  ease (0.04303451627492905)
+Text #20: <|endoftext|> (0.02976648509502411)
+
+=== Text #1 ===
+> Blac Chyna and Rob Kardashian will[ certainly have] their hands[ full on] their new reality show when their baby girl arrives[. But] they don’[t] quite[ have] to worry about dirty diapers and sleepless nights just[ yet]. For now[,] they’re enjoying their[ time together] as expectant parents of the newest Kardashian gal[.] Part of that is getting a[ first] look at their little[ one,] and they’[re letting] us in on the fun as well — in fact, Rob and Chyna have shared the[ first] sonogram of their baby girl[. How can] a black and white profile possibly be so cute?!
+The[ first] little babe for 29-year-old Rob and second for 28-year-old Chyna (who is[ already] mom to little King Cairo, who she had with ex and possible future brother-in-law, Tyga), the newest Kardashian looks like she’[ll be arriving very soon.]
+Posting the pic to Instagram, Rob added the caption, “[Can]’[t wait to meet] my beautiful baby girl[ !!] @bl[ac]chyna … looking forward to that bond[ more than] anything.” Rob[ has] recently spoken about the bond he shared with his own father and from the sounds[ of] things, he’s[ already] forming a similar love with his own child.
+We[ can]’[t] wait[ to] meet you[,] either, baby Kardashian[!]
+How did you[ react to] seeing your[ (]or your friend’s / family member’s)[ first] sonogram? Tweet us @Britand[Co]!
+
+=== Text #2 ===
+> Motherhood, mayhem, and mirth: Playing catch-[up].
+Christmas morning, our little Tinkerbell and Sleeping Beauty[.]
+The girls[ just being] silly[.]
+One of my[ many] resolutions for the year is[ to] change my attitude. As I typed those words, I heard my Mom’s voice say them[.] My parents[ will be so happy that] I’ve[ finally] decided to do this because as a teen it’s the[ one] phrase I’m sure I heard everyday[. So] there[ it is]. I’[m] changing my attitude[.] See?
+In the vein[ of being] positive with a good attitude, I thought I’d share some pictures of the girls.[ Nothing] like a little shot of cute kids to remind you[ to have a] good attitude.
+[No] matter what the situation, I attempt to find[ something] good about it[.] Whenever I lose it with the kids, I have to remind myself: I am thankful we have them!
+[to] see my horse THe[o].[He]'s[ so] cute!
+Just yesterday I got an email[ from] my sister in law sharing the website www.acomplaintfreeworld.org She said[ that] The premise is to monitor[ how] much you complain each day, in turn spreading more positive energy to yourself and to the world. I haven['t] checked it out[ yet,] but I will. It sounds like something I need too[!]
+Hugs[ to you] Kathy! I[ hope] your world[ is] starting to smooth out.
+[BT]W met someone at a party Saturday night who went to PC with you[.] She knows Claudine very well too[.] Her initials are[ ML] (hint: French Basque). She['s a] doll[.]
+
+=== Text #3 ===
+> Welcome to S&F Electronics! It's[ 05]:00 Sunday 21 April 2019. There are 71 clients connected[.]
+
+=== Text #4 ===
+> Menstrual like cramps started Friday mid-morning, but I didn’t think too much of it[.] By afternoon, I noticed they were still there and out of curiosity more[ than anything] thought I’d see[ if] there was a pattern[.] There was! Extreme[ly] timeable, but very short and could[ barely] feel them[.]
+After several hours of monitoring, nothing was picking up and I started to worry it was prodromal, but in my Hypnob[abies] birth visualizations that I had been doing I would go to sleep and get the real party started in the morning, so I kept faith, turned on my birthing day tracks and attempted[ to] get some sleep[… but] I[ was] way too excited though for that just[ in case!] Morning brought[ nothing] more though[.]
+So instead, I headed into the ch[iro] and[ just] took it very[ very] easy at home just[ in case] and just enjoyed[ having] such a calm and relaxing morning[.]
+After arriving, she agreed that it was hard[ to] tell if we were still practicing or just in a very[ very] early time[.] I convinced myself[ that maybe] it just LOOKED that way because I was using my hypnosis, but the timings and lengths just weren’t promising[.] After about[ an] hour, I started to get real antsy and wanted to[ be] downstairs[.] Out of nowhere I vomited[.] Ok! NOT in practice!!
+Things picked up beautifully[ from] there. I could just sense that my waves were getting longer, but sensation wise, couldn’[t] really tell in comparison thanks to my hypnosis. Each wave felt powerful and intense but never painful. I could tell I was hanging longer[ at] the top of the waves but just let myself go[ to] center ([a] Hyp[nob]abies hypnosis technique), vocalize through it and reminded myself[ to] smile at the end.
+I was very vocal through each wave which felt good and helped me direct my hyp[no]-[an]esthesia. I couldn’[t] stand having the headphones in so asked to put my Hyp[nob]abies tracks on out loud on repeat, which was great. I easily went back and forth from center to off but kept in center the majority of the time.
+Time seemed to both linger, yet rush. My husband ([now) has] told me that I didn’t sound comfortable, but I truly only felt slight discomfort and just very very strong pressure. My birthing day affirmations played loudly in my head reminding myself[ that] each wave was easy, comfortable and bringing me one step[ closer] to holding my baby[.]
+
+=== Text #5 ===
+> The sign has arrived and I couldn’[t] be more thrilled[!] It’[s] PERFECT[!!!] Thanks a million![][]
+
+=== Text #6 ===
+> well[ it was] big fat electric[, for] sure[.] Very techno, mathematical sounding. Sort of maddening but I like it. I could see it as one of those Chariot of Fire style film backings.[]
+
+=== Text #7 ===
+> A set of 12 fanciful and fun Shawl[ P]ins. Each Shawl Pin comes with an[ org]andy gift pouch. Direct your customers to our video, which features creative[ ways] to use the Shaune Bazner Shawl Pin![]
+
+=== Text #8 ===
+> Date: June 22, 2016, 3:46 p.m.
+Date: July 15, 2015, 8:50 p.m.
+Created: July 15, 2015, 8:50 p.m.
+Created: June 22, 2016, 3:46 p.m.[]
+
+=== Text #9 ===
+> Powder[co]ated my grill for an #RA28 and smiley bumper brackets for[ a 72] #TA22[.] Both are �[�gl]oss stealth charcoal” and look absolutely amazing[!!!]
+Welded up 35 sets of #[ra]28 #[ra]23 hood hinges[! As]semb[led and] shipped 10 raw sets and sent the rest[ for] powdercoat[!]
+
+=== Text #10 ===
+> [Built In] Closets Architecture | Scarschwartz.com[ built in] closets calgary. built[ in] closets[ for] small bedrooms. built[ in] closets for sale.
+[Built In] Closets Amazing Bedroom 6 Regarding 9. Built[ In] Closets New Master Bedroom Regarding 18. Built[ In] Closets Attractive Custom Woodwork Regarding 7. Built[ In] Closets Elegant Bedroom Closet High Park Two Traditional Pertaining To 13.[ Built In] Closets Popular[ Do] Away With Sliding Closet Doors Or Bi Fold Country System Intended For 0.[ Built In] Closets Amazing Closet Ideas Design Best Home For 3. Built[ In] Closets Brilliant Atlanta Closet Storage Solutions Ins And Bookcases Pertaining To 17.[ Built In] Closets New Closet Plans Brilliant Ideas Ins Roselawnlutheran Splendid Throughout 8. Built[ In] Closets Stylish Custom Closet Ideas Large Size Of[ To Go Build] 19. Built[ In] Closets Brilliant Perfect Closet Ins Dream Pinterest Pertaining To 6. Built[ In] Closets Elegant Closet Organizers And Systems For 5. Built[ In] Closets Brilliant Ikea Closet Traditional With Wardrobes Ar[mo]ires For 10. Built[ In] Closets Popular Closet Solutions 12. Built[ In] Closets Contemporary Fantastic Wardrobes Sydney Storage Solutions With 2[.] Built[ In] Closets Popular Closet Plans Incredible[ Imp]ressive Storage Think Were Intended For 14. Built[ In] Closets New Bedroom Closet Intended For 4. Built[ In] Closets Contemporary Closet Plans Builtin Inside 15. Built[ In] Closets Incredible 60[ Off] A Custom Closet Cornerstone Groupon With Throughout 1.[]
+
+=== Text #11 ===
+> When we went to the beach a few weeks ago, Kate and Lexi had their[ first] surf lesson[.]
+They[ have been] interested in surfing for[ a] long time and dreamed of[ having a] chance to try it for[ themselves.] Most people in Memphis and Birmingham go to the Gulf when they go to the beach, but we always go to the Atlantic with my family. I figured we should take advantage of the upside of the longer[ drive] and give them a little something to remember[.] It started with a long[ walk to] the beach[,] carrying their boards[.]
+They[ patiently learned] all the things you need to learn on the beach[.] They[ did] safety exercises and practiced good posture[.] They tried a few things from[ just a few] yards out, getting a feel for the board under their feet[.] Then we watched as the instructor led them out far from the shore.
+Then there are the few seconds you have to find your balance as you try to get on your feet[.] I wish you could see the delight on Kate’s face when she realized she was really surfing[.]
+Trying new things is not easy. Watching Kate and Lexi learn[ to] surf was thrilling and frightening and humbling all at[ once.]
+The whole experience made me start thinking about this latest round of job hunting[. It]’[s hard to] put myself out there and be willing to fail. But like a child who dreams of catching a wave and popping up onto her feet, I must be prepared to fall and to let the waves beat me.[ Only] then will I know the true delight of doing what I only hoped I could[.] Thankful for these two, parenting them is a constant education.
+Happy Birthday to Lex[i] who[ is] SEVEN[ today!] She[ is] full of life and navigates all kinds of situations with ease: diligent in the classroom, tenacious on the soccer field, fun with friends. I am proud to be her mom.
+What was the best thing about being[ 6?] Starting first grade.
+What are you most proud of learning? How to do cart[whe]els.
+What was the best book you read? The one I am reading right now,[ Absolutely] Lucy by Ilene Cooper.
+What is your favorite song? I like too many to choose.
+What is your favorite tv show? Shake[ it Up]!
+What are you looking forward to about[ being 7]? Going to the beach on vacation.
+What college do you want to go to? I’m[ only] seven, Mom.
+Do you[ think] you’[ll] get married when you
+
+=== Text #12 ===
+> Marcel[ito] Pomoy recently appeared at “[The] Ellen De[Gene]res Show[.]” He[ is] the latest Filipino to guest in this popular talk show[.]
+He was[ interviewed first] by Ellen and an interpreter[ helped] Marcelin[o] answer the questions[.] Marcel[ito] said that at h didn’[t] immediately believe that he got[ an] invite[ from] the show and initially thought that it was a spam email[.] Even after he had a Skype call with a representative of the show he still had doubts[.] It was not until his ticket was emailed to him that he finally got convinced that it was real[!]
+The Kapamilya singer and Ellen talked about Marcel[ito]’[s] humble[ beginnings.] According to Marcel[ito], he started to sing at early age of seven and learned that he had this gift to switch voices at the age of eighteen. Ellen also asked Marcel[ito about] his[ experience living in] the streets and[ finally] ending up as winner at the 2012 Pilipinas[ Got] Talent[.] Marcel[ito] said that he worked as a Pin boy and was paid Php 50 for each and slept at the streets at night. He said that he joined the contest with the inspiration[ that] he[ would be able] to see his family[.]
+Ellen said that he was thrilled with Marcel[ito Pom]oy ‘s videos and was excited[ that] he[ is] in the show[.]
+Related topics for this article: "reyn[aldo] [email protected] comp"
+[Is] Enrique destined[ for] Liza[ So]ber[ano]?[]
+
+=== Text #13 ===
+> [Come] join us in celebrating the release of Greenville writer ([and] Presbyterian College professor) Terry Barr's[ first] book of essays,[ Don't] Date Baptists and Other Warnings from My Alabama Mother[. A] literary[ cousin] of the great memoirs of fellow Alabama boy Rick Bragg, this collection explores[ what] it was[ to] come of age in the deep New South of the 1970s[.] Spread the word. Bring your friends, family, neighbors, Baptists, Methodists, Athiests... in other words[ come one and all]![]
+
+=== Text #14 ===
+> [Come] join us in celebrating the release of Greenville writer ([and] Presbyterian College professor) Terry Barr's[ first] book of essays,[ Don't] Date Baptists and Other Warnings from My Alabama Mother[. A] literary[ cousin] of the great memoirs of fellow Alabama boy Rick Bragg, this collection explores[ what] it was[ to] come of age in the deep New South of the 1970s[.] Spread the word. Bring your friends, family, neighbors, Baptists, Methodists, Athiests... in other words[ come one and all]![]
+
+=== Text #15 ===
+> [Who]a[!!] The Take[ care] Pharmacy Mobile application is available in App stores now. This app brings the pharmacy to your mobile device.[]
+
+=== Text #16 ===
+> [Wind] River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sand[ro] Baebler. This article appears in MovieMaker�[�]s Summer 2017 issue.[]
+
+=== Text #17 ===
+> "[Do]zens of network-attached storage (NAS) servers and other consumer appliances are[ about to] gain mainline kernel and Debian GNU/Linux support. The[ 2].6.25 kernel, currently in the final stages of testing, will support Marvell's[ Fero]ceon micro-architecture and '[Or]ion'[ So]Cs, with Debian support close behind, sources say.
+"Yesterday, Linus Torvalds launched release candidate 7 (rc7) for the[ 2.6].25 kernel, commenting, '[Give] it a good testing, because we're[ hopefully now well] on our[ way] towards that eventual real[ 2.6].25 release[!'] The comment suggests the newest kernel could[ well] launch this week..."[]
+
+=== Text #18 ===
+> [Ca] l’Ar[be]quí is located between the fruit fields in Lleida. If you come during the fruit season, you will have the opportunity to look up everything closely, and if agreed, to participate in the gathering of the fruit.
+You can also have access to care for hens and chicks, and participate in collecting honey from[ beeh]ives.
+All activities must be agreed in advance.[]
+
+=== Text #19 ===
+> [A] volumizing, long-lasting mascara. With a smudge-, drip[- fl]ake-[free] formula. Easily[ be] removed with l[uke]warm water or eye makeup remover. Creates thick, dramatic alluring lashes with just one coat. . Packaged in a slim, red tube with a thin spool for detailed application from roots to tips.[]
+
+=== Text #20 ===
+> Hostal El P[ino] is a beautiful residence that is in an excellent place for travelers who want to know Cienfueg[os]. Our hostel is located[ just] 200 meters from the cienf[ueguero] boardwalk. From various points of the house you will have full access to the hostel's[ WIF]I so that you can communicate with your family and work. The most important thing is that you as[ a] guest feel at[ ease], with privacy and always well attended by our family with whom you will have direct contact.[]
+
+
+Description: 
+2025-05-11 01:54:57,188 - root - INFO - First occurrences, initial instances, or beginnings
+
+2025-05-11 01:54:57,192 - root - INFO - Cluster #3 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.csv
+2025-05-11 01:54:58,606 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-11 01:54:58,607 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  certainly (1.1541857719421387)
+Text #1:  full (0.8289951086044312)
+Text #1: . (0.6295421123504639)
+Text #1: t (0.8232752084732056)
+Text #1:  have (0.6731231808662415)
+Text #1:  yet (1.212552785873413)
+Text #1: , (0.18169674277305603)
+Text #1:  time (0.2796938419342041)
+Text #1: . (0.5651689171791077)
+Text #1:  first (0.5104666948318481)
+Text #1:  one (0.227882519364357)
+Text #1: re (0.33094143867492676)
+Text #1:  first (0.2693045437335968)
+Text #1: . (0.18749693036079407)
+Text #1:  first (0.5491641759872437)
+Text #1:  already (0.8027386665344238)
+Text #1: ll (0.5999581813812256)
+Text #1: Can (2.4887020587921143)
+Text #1: t (2.002161979675293)
+Text #1:  !! (0.2587279677391052)
+Text #1: ac (0.19290697574615479)
+Text #1:  more (0.636748731136322)
+Text #1:  has (1.2248848676681519)
+Text #1:  of (0.22900398075580597)
+Text #1:  already (0.664036750793457)
+Text #1:  can (0.2480505108833313)
+Text #1: t (1.2420223951339722)
+Text #1:  to (1.047767996788025)
+Text #1: , (0.2348877191543579)
+Text #1: ! (0.9907176494598389)
+Text #1:  react (0.41001781821250916)
+Text #1:  ( (0.8376277089118958)
+Text #1:  first (1.0582622289657593)
+Text #1: Co (1.951831579208374)
+Text #2: up (1.26565682888031)
+Text #2: . (0.40375083684921265)
+Text #2:  just (1.6988896131515503)
+Text #2: . (0.2854437828063965)
+Text #2:  many (0.27658572793006897)
+Text #2:  to (0.44650664925575256)
+Text #2: . (0.5314153432846069)
+Text #2:  will (1.720033049583435)
+Text #2:  finally (1.0367645025253296)
+Text #2:  one (0.6936832666397095)
+Text #2: . (0.5376648902893066)
+Text #2:  it (0.37327611446380615)
+Text #2: m (0.3512239456176758)
+Text #2: . (0.6711004972457886)
+Text #2:  of (0.542790949344635)
+Text #2:  Nothing (0.5125085115432739)
+Text #2:  to (0.6700630187988281)
+Text #2: No (1.4406012296676636)
+Text #2:  something (0.44885674118995667)
+Text #2: . (0.4144740104675293)
+Text #2: to (0.9227026104927063)
+Text #2: o (0.558983325958252)
+Text #2: He (0.4110725522041321)
+Text #2:  so (1.152269721031189)
+Text #2:  from (0.31625527143478394)
+Text #2:  that (0.9015146493911743)
+Text #2:  how (0.43100133538246155)
+Text #2: 't (0.7304708361625671)
+Text #2:  yet (1.110467553138733)
+Text #2: ! (0.5293270349502563)
+Text #2:  to (1.5658879280090332)
+Text #2:  hope (0.7553101778030396)
+Text #2:  is (0.9407588243484497)
+Text #2: BT (0.4558793902397156)
+Text #2: . (1.283316969871521)
+Text #2: . (0.36461731791496277)
+Text #2:  ML (0.5484176278114319)
+Text #2: 's (0.7414246201515198)
+Text #2: . (0.48690542578697205)
+Text #3:  and (0.07223279774188995)
+Text #3: . (0.5634627342224121)
+Text #3:  course (0.5372064113616943)
+Text #3: t (1.0188871622085571)
+Text #3: . (0.16013884544372559)
+Text #3:  something (0.09027574956417084)
+Text #3: . (0.24451632797718048)
+Text #3:  first (0.46269097924232483)
+Text #3: , (0.12841233611106873)
+Text #3: � (0.310133159160614)
+Text #3: m (0.5890368223190308)
+Text #3: . (1.0600275993347168)
+Text #3: � (0.3695679306983948)
+Text #3:  day (0.3697039783000946)
+Text #4:  C (0.3660656213760376)
+Text #4: BE (1.7647219896316528)
+Text #4: . (0.524205207824707)
+Text #4: 's (0.535255491733551)
+Text #4:  nervous (0.17884479463100433)
+Text #4:  how (0.18231870234012604)
+Text #4:  are (0.4836769998073578)
+Text #4:  a (0.27334126830101013)
+Text #4:  Dun (0.6753085255622864)
+Text #4:  for (0.34937232732772827)
+Text #4:  into (0.2685217261314392)
+Text #4:  were (0.34420815110206604)
+Text #4: ." (0.4336361289024353)
+Text #4:  to (0.8860474228858948)
+Text #4: andre (1.0757278203964233)
+Text #4: iz (0.7924455404281616)
+Text #4: It (0.23076024651527405)
+Text #4:  glad (1.065073013305664)
+Text #4:  back (0.18612265586853027)
+Text #4: iz (0.9200984239578247)
+Text #4:  first (1.5560214519500732)
+Text #4:  away (0.2523531913757324)
+Text #4:  no (1.4072444438934326)
+Text #4:  experience (0.2868599593639374)
+Text #4:  but (0.28338390588760376)
+Text #4:  adjusting (0.19907590746879578)
+Text #4:  before (0.4719776213169098)
+Text #4: . (0.5765904784202576)
+Text #4:  O (0.523084819316864)
+Text #4:  minutes (0.5042185187339783)
+Text #4:  first (1.2770127058029175)
+Text #4: Its (0.35255908966064453)
+Text #4:  nine (1.6084380149841309)
+Text #4:  so (0.35149669647216797)
+Text #4:  to (0.922140896320343)
+Text #4:  12 (0.6539406776428223)
+Text #4:  to (0.9038094282150269)
+Text #4: . (0.3775581121444702)
+Text #4: ." (0.4014386534690857)
+Text #5:  P (0.19296668469905853)
+Text #5:  org (0.07373543828725815)
+Text #5:  ways (0.14772827923297882)
+Text #5: <|endoftext|> (0.04130157455801964)
+Text #6:  very (0.07354450970888138)
+Text #6: o (3.0335068702697754)
+Text #6: amar (0.2423657476902008)
+Text #6: . (0.18290260434150696)
+Text #6:  just (0.4067143499851227)
+Text #6: <|endoftext|> (0.022304320707917213)
+Text #7:  very (0.07354450970888138)
+Text #7: o (3.0335068702697754)
+Text #7: amar (0.2423657476902008)
+Text #7: . (0.18290260434150696)
+Text #7:  just (0.4067143499851227)
+Text #7: <|endoftext|> (0.022304320707917213)
+Text #8: ward (0.13656024634838104)
+Text #8:  but (0.6688533425331116)
+Text #8:  ready (0.2047348916530609)
+Text #8:  trip (0.10217490792274475)
+Text #8: . (0.697421669960022)
+Text #8:  flight (0.2569868564605713)
+Text #8: ots (0.14614255726337433)
+Text #8: ! (1.3487217426300049)
+Text #8:  no (0.6536135673522949)
+Text #8:  going (0.09463468939065933)
+Text #8:  is (0.42989498376846313)
+Text #8: ides (0.23388376832008362)
+Text #8:  ill (0.7054427862167358)
+Text #8:  well (0.34050536155700684)
+Text #8: . (0.7005597352981567)
+Text #8:  be (0.10680649429559708)
+Text #8: . (0.09394083172082901)
+Text #8: . (0.15540404617786407)
+Text #8:  less (0.22041922807693481)
+Text #8:  is (0.3576970398426056)
+Text #8: ! (0.494457870721817)
+Text #8: 're (0.13097091019153595)
+Text #8: ited (0.6739897727966309)
+Text #8: ! (0.4594425857067108)
+Text #8:  are (0.630942702293396)
+Text #8:  uber (1.239740014076233)
+Text #8: ited (0.5819163918495178)
+Text #8: . (0.5795141458511353)
+Text #8:  lots (0.12499216198921204)
+Text #8:  and (0.15151692926883698)
+Text #8:  too (0.27917999029159546)
+Text #8: ! (0.4721008241176605)
+Text #8: . (0.5269808173179626)
+Text #8:  luck (2.009526491165161)
+Text #8: . (0.20757248997688293)
+Text #8:  will (0.9605278968811035)
+Text #8: ! (0.2624194025993347)
+Text #9: Built (0.02126738801598549)
+Text #9:  built (0.12411276996135712)
+Text #9:  in (0.3803810775279999)
+Text #9:  for (0.05020933598279953)
+Text #9:  in (0.34100204706192017)
+Text #9: Built (0.25387102365493774)
+Text #9:  In (0.9584187269210815)
+Text #9:  In (0.9733940958976746)
+Text #9:  In (0.7473002076148987)
+Text #9:  Built (0.08442807197570801)
+Text #9:  Do (1.6141722202301025)
+Text #9:  Built (0.01347549818456173)
+Text #9:  In (0.6521064639091492)
+Text #9:  Built (0.006463084369897842)
+Text #9:  In (0.4368189871311188)
+Text #9:  To (1.2036232948303223)
+Text #9:  In (0.4225810468196869)
+Text #9:  In (0.39068058133125305)
+Text #9:  In (0.5221466422080994)
+Text #9: mo (3.3998403549194336)
+Text #9:  In (0.6155281066894531)
+Text #9:  In (0.574582040309906)
+Text #9: . (0.024930059909820557)
+Text #9:  In (0.2714940011501312)
+Text #9:  Imp (0.3347591757774353)
+Text #9:  In (0.21030235290527344)
+Text #9:  In (0.5047532320022583)
+Text #9:  In (0.5159795880317688)
+Text #9:  Off (0.0757518857717514)
+Text #9: <|endoftext|> (0.0030976615380495787)
+Text #10: © (0.018474996089935303)
+Text #10: iba (0.7509691119194031)
+Text #10: <|endoftext|> (0.014760722406208515)
+Text #11: © (0.018474996089935303)
+Text #11: iba (0.7509691119194031)
+Text #11: <|endoftext|> (0.014760722406208515)
+Text #12: Wind (0.012341178022325039)
+Text #12: ro (1.983095407485962)
+Text #12: � (0.1350744664669037)
+Text #12: <|endoftext|> (0.012731404043734074)
+Text #13: Wind (0.012341178022325039)
+Text #13: ro (1.983095407485962)
+Text #13: � (0.1350744664669037)
+Text #13: <|endoftext|> (0.012731404043734074)
+Text #14: Wind (0.012341178022325039)
+Text #14: ro (1.983095407485962)
+Text #14: � (0.1350744664669037)
+Text #14: <|endoftext|> (0.012731404043734074)
+Text #15: Bob (0.02018982358276844)
+Text #15:  and (0.14954060316085815)
+Text #15:  BS (0.27149850130081177)
+Text #15: s (0.22079811990261078)
+Text #15: . (0.15304021537303925)
+Text #15:  BS (1.0284072160720825)
+Text #15:  just (0.2302459329366684)
+Text #15:  not (0.2809802293777466)
+Text #15: <|endoftext|> (0.025796223431825638)
+Text #16: It (0.014271805062890053)
+Text #16: <|endoftext|> (0.006834626663476229)
+Text #16: <|endoftext|> (0.005093242507427931)
+Text #16: <|endoftext|> (0.005053847096860409)
+Text #16: <|endoftext|> (0.005089305806905031)
+Text #16: <|endoftext|> (0.005092197563499212)
+Text #16: <|endoftext|> (0.0050847032107412815)
+Text #16: <|endoftext|> (0.005094984080642462)
+Text #16: <|endoftext|> (0.005072226747870445)
+Text #17:  one (0.24896296858787537)
+Text #17: <|endoftext|> (0.033915430307388306)
+Text #18: G (0.014671855606138706)
+Text #18:  St (0.36735162138938904)
+Text #18: e (0.6091521978378296)
+Text #18: e (0.49271634221076965)
+Text #18: <|endoftext|> (0.015891635790467262)
+Text #19: Have (0.026266487315297127)
+Text #19: an (0.928845226764679)
+Text #19: <|endoftext|> (0.013334139250218868)
+Text #20: Business (0.016683096066117287)
+Text #20: <|endoftext|> (0.008282803930342197)
+
+=== Text #1 ===
+> Blac Chyna and Rob Kardashian will[ certainly have] their hands[ full on] their new reality show when their baby girl arrives[. But] they don’[t] quite[ have] to worry about dirty diapers and sleepless nights just[ yet]. For now[,] they’re enjoying their[ time together] as expectant parents of the newest Kardashian gal[.] Part of that is getting a[ first] look at their little[ one,] and they’[re letting] us in on the fun as well — in fact, Rob and Chyna have shared the[ first] sonogram of their baby girl[. How can] a black and white profile possibly be so cute?!
+The[ first] little babe for 29-year-old Rob and second for 28-year-old Chyna (who is[ already] mom to little King Cairo, who she had with ex and possible future brother-in-law, Tyga), the newest Kardashian looks like she’[ll be arriving very soon.]
+Posting the pic to Instagram, Rob added the caption, “[Can]’[t wait to meet] my beautiful baby girl[ !!] @bl[ac]chyna … looking forward to that bond[ more than] anything.” Rob[ has] recently spoken about the bond he shared with his own father and from the sounds[ of] things, he’s[ already] forming a similar love with his own child.
+We[ can]’[t] wait[ to] meet you[,] either, baby Kardashian[!]
+How did you[ react to] seeing your[ (]or your friend’s / family member’s)[ first] sonogram? Tweet us @Britand[Co]!
+
+=== Text #2 ===
+> Motherhood, mayhem, and mirth: Playing catch-[up].
+Christmas morning, our little Tinkerbell and Sleeping Beauty[.]
+The girls[ just being] silly[.]
+One of my[ many] resolutions for the year is[ to] change my attitude. As I typed those words, I heard my Mom’s voice say them[.] My parents[ will be so happy that] I’ve[ finally] decided to do this because as a teen it’s the[ one] phrase I’m sure I heard everyday[. So] there[ it is]. I’[m] changing my attitude[.] See?
+In the vein[ of being] positive with a good attitude, I thought I’d share some pictures of the girls.[ Nothing] like a little shot of cute kids to remind you[ to have a] good attitude.
+[No] matter what the situation, I attempt to find[ something] good about it[.] Whenever I lose it with the kids, I have to remind myself: I am thankful we have them!
+[to] see my horse THe[o].[He]'s[ so] cute!
+Just yesterday I got an email[ from] my sister in law sharing the website www.acomplaintfreeworld.org She said[ that] The premise is to monitor[ how] much you complain each day, in turn spreading more positive energy to yourself and to the world. I haven['t] checked it out[ yet,] but I will. It sounds like something I need too[!]
+Hugs[ to you] Kathy! I[ hope] your world[ is] starting to smooth out.
+[BT]W met someone at a party Saturday night who went to PC with you[.] She knows Claudine very well too[.] Her initials are[ ML] (hint: French Basque). She['s a] doll[.]
+
+=== Text #3 ===
+> Each time I made about five drawings[ and] took them back to my room to paint them in[.] Of[ course,] I couldn’[t] remember what color her clothes were and even if I did it was fun to use bright colors[. In] the end there was[ something] about the spirit of the day and our friendship that came through[.]
+The[ first] thing she ever said to me was[,] �[�I]’[m going to be] your friend[.]�[� That was] my lucky[ day.]
+
+=== Text #4 ===
+> FORT[ C]AMP[BE]LL, Ky. -- On Tuesday, hundreds of soldiers returned home from a nine-month deployment in Afghanistan[.]
+"It['s] excitement (and)[ nervous]ness because you never know[ how] the children[ are going to] react, but overall just[ a] lot of excitement," said Lindsay Dunne.
+Lindsay[ Dun]ne, and her two boys were waiting[ for] their soldier to get off the plane and march[ into] the hangar, "The boys[ were] yelling and screaming and I was looking for him[."]
+Gail Mintz was there[ to] find her little cousin Ke[andre] Cor[iz]ine, "[It feels amazing]. We are just[ glad] they all made it[ back] safely."
+This was Cor[iz]ine's[ first] deployment. He says although he got used to being[ away], there is[ no] feeling like coming home, "New[ experience] being away from family,[ but] I was adapting and[ adjusting to] most things. Dealing with the heat and the workouts was pretty tough some days but, you know just brush it off."
+For fifteen minutes,[ before] leaving briefly to return their gear, these soldiers were holding their loved ones tight[.] Kevin[ O]'Malley spent those[ minutes] meeting his son for the[ first time,] "[Its been a] long[ nine months] or[ so] but I'm just happy[ to be home."]
+After a[ 12]-hour flight and an emotional reunion soldiers like Joseph Dunne are ready to head home, "I was excited[ to] see them[.] I was ready to get all this over with so we can go home and see each other[."]
+During this deployment, the 101st Combat Aviation Brigade provided aviation support to U.S. coalition and Afghan forces.
+In February, 700 soldiers will return home to Fort Campbell.
+
+=== Text #5 ===
+> A set of 12 fanciful and fun Shawl[ P]ins. Each Shawl Pin comes with an[ org]andy gift pouch. Direct your customers to our video, which features creative[ ways] to use the Shaune Bazner Shawl Pin![]
+
+=== Text #6 ===
+> This[ very well] presented Pool View apartment is located in the heart of the very popular Cab[o Ro]ig strip, in the Play[amarina 1] complex building, with lobby, reception, with communal pool, pool bar, and underground garage[.]
+The Health Center is[ just] 100 m away, and pharmacy nearby.
+Fully tiled bathroom with bath and shower attachment. Wash basin with vanity unit under, and WC.
+Undergroung garage, with lift with access to all floors.[]
+
+=== Text #7 ===
+> This[ very well] presented Pool View apartment is located in the heart of the very popular Cab[o Ro]ig strip, in the Play[amarina 1] complex building, with lobby, reception, with communal pool, pool bar, and underground garage[.]
+The Health Center is[ just] 100 m away, and pharmacy nearby.
+Fully tiled bathroom with bath and shower attachment. Wash basin with vanity unit under, and WC.
+Undergroung garage, with lift with access to all floors.[]
+
+=== Text #8 ===
+> joel may[ward]: Feeling stressed,[ but] looking good!
+Feeling stressed, but looking good!
+We're getting[ ready] for our[ trip to] Arizona today by doing lots of laundry and thinking through everything we need[.] We're checking our[ flight] information, hotel information, car rental information...l[ots] of information[!] We have maps of the greater Phoenix area and the city of Mesa. We have driving directions to the hotel from the airport, the hotel to the church, and anywhere else we need to go. Preparing these things ahead of time is a must: it's[ no] fun to arrive in a new city and realize you have no idea how to get around! We also have a basic timeline for every day we're in Arizona: who we're meeting, where we're[ going], times for relaxing, etc. Preparation is key!
+I think the weightiness of this excursion[ is] playing havoc with my ins[ides]: I'm feeling mildly[ ill] and not sleeping too[ well] at night[.] This could[ be] due to stress[.] I'm not a doctor, but that's my diagnosis[.] Finding out we might be getting a new job, a new home, and essentially a new life in[ less than a] week[ is a] stressful endeavor[!]
+We['re uber]-exc[ited!] We leave tomorrow[!]
+we[ are] dang[ uber]-exc[ited too!! will call] katie tomorrow- wanted to tonight but ran out of time[. have been] thinking[ lots about] her[ and] praying[ too in] preparation[!] bring your running/hiking shoes in case we have time to hit pinnacle[.]
+Good[ luck] you guys[.] You[ will be] awesome[!]
+
+=== Text #9 ===
+> [Built In] Closets Architecture | Scarschwartz.com[ built in] closets calgary. built[ in] closets[ for] small bedrooms. built[ in] closets for sale.
+[Built In] Closets Amazing Bedroom 6 Regarding 9. Built[ In] Closets New Master Bedroom Regarding 18. Built[ In] Closets Attractive Custom Woodwork Regarding 7. Built[ In] Closets Elegant Bedroom Closet High Park Two Traditional Pertaining To 13.[ Built In] Closets Popular[ Do] Away With Sliding Closet Doors Or Bi Fold Country System Intended For 0.[ Built In] Closets Amazing Closet Ideas Design Best Home For 3. Built[ In] Closets Brilliant Atlanta Closet Storage Solutions Ins And Bookcases Pertaining To 17.[ Built In] Closets New Closet Plans Brilliant Ideas Ins Roselawnlutheran Splendid Throughout 8. Built[ In] Closets Stylish Custom Closet Ideas Large Size Of[ To Go Build] 19. Built[ In] Closets Brilliant Perfect Closet Ins Dream Pinterest Pertaining To 6. Built[ In] Closets Elegant Closet Organizers And Systems For 5. Built[ In] Closets Brilliant Ikea Closet Traditional With Wardrobes Ar[mo]ires For 10. Built[ In] Closets Popular Closet Solutions 12. Built[ In] Closets Contemporary Fantastic Wardrobes Sydney Storage Solutions With 2[.] Built[ In] Closets Popular Closet Plans Incredible[ Imp]ressive Storage Think Were Intended For 14. Built[ In] Closets New Bedroom Closet Intended For 4. Built[ In] Closets Contemporary Closet Plans Builtin Inside 15. Built[ In] Closets Incredible 60[ Off] A Custom Closet Cornerstone Groupon With Throughout 1.[]
+
+=== Text #10 ===
+> [©] 2017 Barracuda Boat & RV Storage. All Rights Reserved. Website created by Electric Playground. Powered by Ak[iba].[]
+
+=== Text #11 ===
+> [©] 2017 Barracuda Boat & RV Storage. All Rights Reserved. Website created by Electric Playground. Powered by Ak[iba].[]
+
+=== Text #12 ===
+> [Wind] River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sand[ro] Baebler. This article appears in MovieMaker�[�]s Summer 2017 issue.[]
+
+=== Text #13 ===
+> [Wind] River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sand[ro] Baebler. This article appears in MovieMaker�[�]s Summer 2017 issue.[]
+
+=== Text #14 ===
+> [Wind] River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sand[ro] Baebler. This article appears in MovieMaker�[�]s Summer 2017 issue.[]
+
+=== Text #15 ===
+> [Bob] offers a quick[ and] entertaining synopsis of the Vikings’ season in this[ BS nanoShow].
+Bob Sansevere offers his take, and it’[s a] quick one, on the Vikings’ 34-6 loss to the Indianapolis Colts[.]
+In this special abbreviated edition of The[ BS Show], Bob gives his quick take on[ just] where the Vikings stand after their Thanksgiving Day loss to Detroit. And it’s[ not] a good place to be.[]
+
+=== Text #16 ===
+> [It's] Quick. It's Easy. It's Free! Are You an Columbia Contractor?[][][][][][][][]
+
+=== Text #17 ===
+> Beautiful penthouse in Elviria Hills for sale. Elviria Hills is[ one] of the most sought after communities on the east coast of Marbella. Overlooking the golfcourse towards the sea, this penthouse has one of the best views of Elviria Hills. It consists of 3 bedrooms and 2 bathrooms. The spacious living has een open plan kitchen and it’s nicely furnished.[]
+
+=== Text #18 ===
+> [Gibe]ault Design, located on Boulevard[ St]-Laurent in Montreal, offers an inspiring and architectural universe. With over 30 years of experience in creating high quality spaces, Guy Gib[e]ault and his team combine the functional aesthetics with exclusive products in order to create exceptional residential spaces.
+Facebook : Gib[e]ault Design Inc.[]
+
+=== Text #19 ===
+> [Have] you hired Star Drywall Ltd? Write a review and earn our First to Review badge.
+Star Drywall Ltd has not added any photos.
+Looking for Insulation pros in Estev[an]?[]
+
+=== Text #20 ===
+> [Business]es: Strategy sessions while sailing, intervision, personal training, etc.
+Ideal to combine with onshore activities.
+Please let us advice you, anything can be arranged.[]
+
+
+Description: 
+2025-05-11 01:54:58,609 - root - INFO - Initial experiences, often the first time, and related anticipation, sometimes mixed with nervousness
+
+2025-05-11 01:54:58,613 - root - INFO - Cluster #4 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.csv
+2025-05-11 01:54:58,613 - root - INFO - ================================================================================
+2025-05-11 01:54:58,614 - root - INFO - ANALYSIS COMPLETED
+2025-05-11 01:54:58,614 - root - INFO - ================================================================================
+2025-05-11 01:54:58,615 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.log
+2025-05-11 01:54:58,615 - root - INFO - CSV saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/gpt2-xl_layer-20_unit-3885_2025-05-10_23-43-08.csv

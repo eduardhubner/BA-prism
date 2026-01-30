@@ -1,0 +1,650 @@
+2025-07-25 20:37:06,822 - root - INFO - ================================================================================
+2025-07-25 20:37:06,830 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 20:37:06,830 - root - INFO - ================================================================================
+2025-07-25 20:37:06,831 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 20:37:06,831 - root - INFO - AGG_METHOD = mean
+2025-07-25 20:37:06,832 - root - INFO - BATCH_SIZE = 2
+2025-07-25 20:37:06,832 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:37:06,833 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 20:37:06,833 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 20:37:06,833 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 20:37:06,834 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 20:37:06,834 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 20:37:06,834 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 20:37:06,835 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 20:37:06,835 - root - INFO - DATA_FILES = None
+2025-07-25 20:37:06,836 - root - INFO - DEVICE = cuda
+2025-07-25 20:37:06,836 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 20:37:06,836 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:37:06,837 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 20:37:06,837 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 20:37:06,838 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 20:37:06,838 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 20:37:06,839 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 20:37:06,839 - root - INFO - LAYER_ID = 0
+2025-07-25 20:37:06,839 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 20:37:06,840 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 20:37:06,840 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 20:37:06,840 - root - INFO - MULTI_EVAL = True
+2025-07-25 20:37:06,841 - root - INFO - N_CLUSTERS = 1
+2025-07-25 20:37:06,841 - root - INFO - N_SAMPLES = 10
+2025-07-25 20:37:06,842 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 20:37:06,842 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 20:37:06,843 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 20:37:06,843 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 20:37:06,843 - root - INFO - SPLIT = train
+2025-07-25 20:37:06,844 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 20:37:06,844 - root - INFO - STREAMING = True
+2025-07-25 20:37:06,845 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 20:37:06,845 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 20:37:06,845 - root - INFO - TARGET_DATA = c4
+2025-07-25 20:37:06,846 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 20:37:06,846 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:37:06,847 - root - INFO - UNIT_ID = 3696
+2025-07-25 20:37:06,847 - root - INFO - USE_API = True
+2025-07-25 20:37:06,847 - root - INFO - ================================================================================
+2025-07-25 20:37:06,848 - root - INFO - ANALYSIS RESULTS
+2025-07-25 20:37:06,848 - root - INFO - ================================================================================
+2025-07-25 20:37:06,849 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-3696_clusters-1_2025-07-25_18-37-06.log
+2025-07-25 20:45:44,726 - root - INFO - Reached 1000 samples.
+2025-07-25 20:45:45,789 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 20:45:45,789 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:45:58,112 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 20:46:33,526 - root - INFO - Number of candidates: 1001
+2025-07-25 20:46:36,112 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 20:46:36,113 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: : (5.270237922668457)
+Text #1: : (5.451807975769043)
+Text #1: : (5.221156120300293)
+Text #1: : (5.226099967956543)
+Text #1: : (5.209736347198486)
+Text #1: : (5.202991485595703)
+Text #1: : (4.965106010437012)
+Text #1: : (5.081350803375244)
+Text #1: : (5.150871753692627)
+Text #1: : (5.2051310539245605)
+Text #1: : (5.344235897064209)
+Text #1: : (5.37183952331543)
+Text #1: : (5.293026447296143)
+Text #1: : (5.2482733726501465)
+Text #1:  Tracks (0.1876213252544403)
+Text #1: : (5.404344081878662)
+Text #1: : (5.321946144104004)
+Text #1: : (5.340605735778809)
+Text #1: : (5.396951198577881)
+Text #1: : (5.344223499298096)
+Text #1: : (5.256200313568115)
+Text #1: : (5.373776435852051)
+Text #1: : (5.359119415283203)
+Text #1: : (5.390013694763184)
+Text #1: : (5.334989547729492)
+Text #1: : (5.2267069816589355)
+Text #1: : (5.2586517333984375)
+Text #1:  Category (0.1501559466123581)
+Text #1: : (4.976118564605713)
+Text #1: : (4.987098217010498)
+Text #1: : (5.070511341094971)
+Text #1: : (5.117190361022949)
+Text #1: : (5.244290828704834)
+Text #1: : (5.154236793518066)
+Text #1: : (5.305160999298096)
+Text #1: : (5.297140121459961)
+Text #1: : (5.2768402099609375)
+Text #1: : (5.252368927001953)
+Text #1: : (5.132186412811279)
+Text #1: : (5.182945728302002)
+Text #1: : (5.105594635009766)
+Text #1: : (5.105602264404297)
+Text #2: : (5.270237922668457)
+Text #2: : (5.451807975769043)
+Text #2: : (5.221156120300293)
+Text #2: : (5.226099967956543)
+Text #2: : (5.209736347198486)
+Text #2: : (5.202991485595703)
+Text #2: : (4.965106010437012)
+Text #2: : (5.081350803375244)
+Text #2: : (5.150871753692627)
+Text #2: : (5.2051310539245605)
+Text #2: : (5.344235897064209)
+Text #2: : (5.37183952331543)
+Text #2: : (5.293026447296143)
+Text #2: : (5.2482733726501465)
+Text #2:  Tracks (0.1876213252544403)
+Text #2: : (5.404344081878662)
+Text #2: : (5.321946144104004)
+Text #2: : (5.340605735778809)
+Text #2: : (5.396951198577881)
+Text #2: : (5.344223499298096)
+Text #2: : (5.256200313568115)
+Text #2: : (5.373776435852051)
+Text #2: : (5.359119415283203)
+Text #2: : (5.390013694763184)
+Text #2: : (5.334989547729492)
+Text #2: : (5.2267069816589355)
+Text #2: : (5.2586517333984375)
+Text #2:  Category (0.1501559466123581)
+Text #2: : (4.976118564605713)
+Text #2: : (4.987098217010498)
+Text #2: : (5.070511341094971)
+Text #2: : (5.117190361022949)
+Text #2: : (5.244290828704834)
+Text #2: : (5.154236793518066)
+Text #2: : (5.305160999298096)
+Text #2: : (5.297140121459961)
+Text #2: : (5.2768402099609375)
+Text #2: : (5.252368927001953)
+Text #2: : (5.132186412811279)
+Text #2: : (5.182945728302002)
+Text #2: : (5.105594635009766)
+Text #2: : (5.105602264404297)
+Text #3:  Reflex (0.5227603912353516)
+Text #3: IER (0.07908179610967636)
+Text #3: : (5.019062042236328)
+Text #3: : (5.056211471557617)
+Text #3: : (4.867713451385498)
+Text #3: : (4.95859432220459)
+Text #3: : (4.9208879470825195)
+Text #3: : (4.989912033081055)
+Text #3: : (5.003441333770752)
+Text #3: : (4.846944332122803)
+Text #3: : (4.825210094451904)
+Text #3: : (4.857989311218262)
+Text #3: : (4.864577293395996)
+Text #3: : (4.907954692840576)
+Text #3: ): (4.495779991149902)
+Text #3: IER (0.06073927506804466)
+Text #3:  : (3.38364839553833)
+Text #3: : (4.9103264808654785)
+Text #3:  Micro (0.06719086319208145)
+Text #3:  : (3.300560712814331)
+Text #3:  Dimensions (0.03678304702043533)
+Text #3:  : (3.4358057975769043)
+Text #3:  159 (0.2154201865196228)
+Text #3:  415 (0.0026741225738078356)
+Text #3:  fren (0.06623880565166473)
+Text #4:  color (0.1193571463227272)
+Text #4:  color (0.04102984815835953)
+Text #4:  Type (0.016700759530067444)
+Text #4:  digit (0.030364645645022392)
+Text #4: 138 (0.08725369721651077)
+Text #4:  RGB (0.2767278552055359)
+Text #4:  color (0.03931422159075737)
+Text #4: : (4.695095062255859)
+Text #4:  color (0.03551344946026802)
+Text #4:  color (0.054790399968624115)
+Text #4:  complementary (0.04176759347319603)
+Text #4:  analogous (0.05568161606788635)
+Text #4:  complementary (0.026608390733599663)
+Text #4: rad (0.034539707005023956)
+Text #4:  color (0.011196658946573734)
+Text #4:  Color (0.3967207074165344)
+Text #4:  gradient (0.15350309014320374)
+Text #4:  palette (0.3208778202533722)
+Text #4:  Color (0.4023071527481079)
+Text #4:  color (0.01532388012856245)
+Text #4:  color (0.02223963662981987)
+Text #4:  RGB (0.3707272708415985)
+Text #4:  CM (0.05297350138425827)
+Text #4:  color (0.03453937545418739)
+Text #4:  color (0.08345358818769455)
+Text #4:  color (0.05308165401220322)
+Text #4:  color (0.0336281917989254)
+Text #4:  color (0.0272390004247427)
+Text #4:  : (3.255977153778076)
+Text #4:  color (0.04269471764564514)
+Text #4:  color (0.040623147040605545)
+Text #4: 138 (0.1670360416173935)
+Text #4:  RGB (0.37114962935447693)
+Text #4:  color (0.08099407702684402)
+Text #4: : (5.149229049682617)
+Text #4: : (5.208767890930176)
+Text #4: : (5.140607833862305)
+Text #4: : (5.273277282714844)
+Text #4: : (5.133847236633301)
+Text #4:  Blue (0.01933499239385128)
+Text #4:  CM (0.09494331479072571)
+Text #4:  color (0.11003851145505905)
+Text #4: : (5.161261558532715)
+Text #4: : (5.13718843460083)
+Text #4: : (5.149054527282715)
+Text #4: : (4.984977722167969)
+Text #4:  color (0.12649725377559662)
+Text #4:  color (0.06477866321802139)
+Text #4:  ital (0.206219881772995)
+Text #4:  color (0.04926880821585655)
+Text #4:  ital (0.1932319700717926)
+Text #5:  White (0.05720467492938042)
+Text #5:  straightforward (0.17039144039154053)
+Text #5: : (4.911984443664551)
+Text #5: : (4.905192852020264)
+Text #5: : (4.944201946258545)
+Text #5: : (4.965217113494873)
+Text #5: : (4.922943592071533)
+Text #5: : (5.076696395874023)
+Text #5: : (5.00531005859375)
+Text #5: : (4.938185214996338)
+Text #5:  basics (0.18604826927185059)
+Text #5: : (5.052423477172852)
+Text #6: : (5.3372697830200195)
+Text #6: ): (4.273805618286133)
+Text #6: : (5.128285884857178)
+Text #6: : (5.144477367401123)
+Text #6: : (5.1461005210876465)
+Text #6: : (4.789260387420654)
+Text #6: : (4.940727710723877)
+Text #6: : (4.9068450927734375)
+Text #6: : (4.768918991088867)
+Text #6: : (4.7733564376831055)
+Text #7:  Himal (0.2467230260372162)
+Text #7:  Yorkshire (0.20314174890518188)
+Text #7: : (5.403324604034424)
+Text #7:  1971 (0.015361694619059563)
+Text #7: : (5.410120487213135)
+Text #7:  1969 (0.039483457803726196)
+Text #7: : (5.3035569190979)
+Text #7: : (5.218739032745361)
+Text #7: : (5.280158042907715)
+Text #7: : (5.141881465911865)
+Text #7:  1979 (0.2847372889518738)
+Text #7: : (5.2108378410339355)
+Text #7:  1979 (0.2558797001838684)
+Text #7: : (5.171784400939941)
+Text #7:  1976 (0.0778675302863121)
+Text #7: : (5.162890911102295)
+Text #8: : (4.878888130187988)
+Text #8: : (4.9845147132873535)
+Text #8: : (4.908349990844727)
+Text #8: : (5.107719898223877)
+Text #8: emonic (0.07769917696714401)
+Text #8: : (5.429669380187988)
+Text #8:  rhy (0.10985001921653748)
+Text #8: : (4.953130722045898)
+Text #8:  diagrams (0.08390611410140991)
+Text #8:  charts (0.014751494862139225)
+Text #8:  charts (0.04378168284893036)
+Text #8: : (5.0016913414001465)
+Text #9:  hotly (0.15134289860725403)
+Text #9:  comma (0.05234689638018608)
+Text #9:  formatting (0.033127427101135254)
+Text #9: : (4.977160930633545)
+Text #9: : (5.031607627868652)
+Text #9: : (4.992810249328613)
+Text #9: : (4.861762523651123)
+Text #9: : (4.757877349853516)
+Text #9: : (4.728690147399902)
+Text #9: : (4.767001628875732)
+Text #9: dim (0.6048280596733093)
+Text #10: : (5.219058036804199)
+Text #10: : (5.070194244384766)
+Text #10: : (4.933166980743408)
+Text #10: : (4.705694198608398)
+Text #10: : (4.654500484466553)
+Text #10: : (4.943881988525391)
+Text #11: : (4.905621528625488)
+Text #11: : (5.1871256828308105)
+Text #11: : (4.700135707855225)
+Text #11: : (4.536983013153076)
+Text #11: : (4.61674690246582)
+Text #11:  Nikola (0.1504228413105011)
+Text #11: : (4.606091022491455)
+Text #11: : (4.712219715118408)
+Text #11: : (4.735227108001709)
+Text #11: : (4.626011371612549)
+Text #11: : (4.512260913848877)
+Text #11: umbnail (0.29475608468055725)
+Text #12:  Hydra (0.4576531648635864)
+Text #12: : (4.98231840133667)
+Text #12: : (5.0448832511901855)
+Text #12: : (5.146235942840576)
+Text #12: : (5.156936168670654)
+Text #12: : (5.216657638549805)
+Text #12: : (5.147392749786377)
+Text #12: : (4.909666061401367)
+Text #12: ult (0.2658159136772156)
+Text #12: : (4.985220432281494)
+Text #12: : (4.887279510498047)
+Text #13: : (5.468287944793701)
+Text #13: : (4.823930263519287)
+Text #13: : (4.8228535652160645)
+Text #13: : (4.6178460121154785)
+Text #13: : (4.751023292541504)
+Text #13: : (4.892353057861328)
+Text #13: : (4.874093055725098)
+Text #13: : (4.920131683349609)
+Text #13: : (5.126408576965332)
+Text #14: : (5.5319929122924805)
+Text #14: : (5.34019136428833)
+Text #14: : (5.174145698547363)
+Text #14:  Polar (0.47676655650138855)
+Text #14:  : (3.691218137741089)
+Text #14: : (5.1504082679748535)
+Text #15: : (4.604248046875)
+Text #15:  FTP (0.005964652169495821)
+Text #15: : (4.539577960968018)
+Text #15:  maps (0.1890331655740738)
+Text #15: : (4.705280780792236)
+Text #15: : (4.948490142822266)
+Text #15: : (4.946820259094238)
+Text #15:  Chrome (0.020001795142889023)
+Text #15: : (4.750243186950684)
+Text #16: � (0.0774994045495987)
+Text #16: : (5.253207683563232)
+Text #16: : (5.212319850921631)
+Text #16: ): (4.6873860359191895)
+Text #16: : (5.306990146636963)
+Text #16: : (5.312917232513428)
+Text #16: : (5.24367094039917)
+Text #16: : (5.2894392013549805)
+Text #16:  Corner (0.049765437841415405)
+Text #16: : (4.608583450317383)
+Text #17: : (5.093801498413086)
+Text #17: : (5.388466835021973)
+Text #17: : (4.967711925506592)
+Text #17: : (4.936342239379883)
+Text #18: : (5.372371196746826)
+Text #18:  Bav (0.003191347699612379)
+Text #18: : (5.17523717880249)
+Text #18: : (5.092397689819336)
+Text #18:  aluminium (0.1031973734498024)
+Text #18: : (5.209232807159424)
+Text #18: : (5.18421745300293)
+Text #19: :/ (2.5401036739349365)
+Text #19: ongyang (0.06989401578903198)
+Text #19: :: (1.6324074268341064)
+Text #19: : (4.994682788848877)
+Text #19: :: (1.6745258569717407)
+Text #19: :: (1.7108436822891235)
+Text #19: : (4.976884365081787)
+Text #19: :: (1.75031578540802)
+Text #19: :: (1.7066890001296997)
+Text #19:  follows (0.6985709071159363)
+Text #19: : (4.731539249420166)
+Text #19: :: (1.7143168449401855)
+Text #19: : (5.182618618011475)
+Text #20: : (5.657280921936035)
+Text #20:  Hem (0.1466926783323288)
+Text #20:  Rept (0.49604856967926025)
+Text #20: : (5.350625038146973)
+Text #20:  myriad (0.03204508125782013)
+Text #20:  hem (0.031044846400618553)
+Text #20:  diagnoses (0.105818010866642)
+Text #20:  262 (0.21028779447078705)
+Text #20:  hem (0.03871490806341171)
+Text #20:  hem (0.05334587022662163)
+Text #20: onomic (0.1754588931798935)
+Text #20:  color (0.11671487241983414)
+Text #20:  geographic (0.08549283444881439)
+Text #20:  vectors (0.0035208885092288256)
+Text #20:  morph (0.4174472987651825)
+Text #20: ibliography (0.2473699301481247)
+Text #20:  morphology (0.26730602979660034)
+Text #20: : (5.158313751220703)
+Text #20: : (5.209245204925537)
+Text #20: : (5.007998466491699)
+Text #20: : (5.075967311859131)
+
+=== Text #1 ===
+> 2019-04-10 07[:]51[:]21 done Log events to all pages and users.
+2019-04-09 18[:]12[:]13 done All pages, current versions only.
+2019-04-04 00[:]01[:]40 done Articles, templates, media/file descriptions, and primary meta-pages.
+2019-04-10 07[:]49[:]59 done Namespaces, namespace aliases, magic words.
+2019-04-02 14[:]18[:]11 done This contains the SiteMatrix information from meta.wikimedia.org provided as a table.
+2019-04-02 14[:]17[:]35 done User group assignments.
+2019-04-02 14[:]16[:]46 done[ Tracks] which pages use which Wikidata items or properties and what aspect (e.g. item label) is used.
+2019-04-02 14[:]18[:]20 done Base per-page data (id, title, old restrictions, etc).
+2019-04-02 14[:]18[:]02 done Name/value pairs for pages.
+2019-04-02 14[:]16[:]04 done Nonexistent pages that have been protected.
+2019-04-02 14[:]16[:]36 done Wiki template inclusion link records.
+2019-04-02 14[:]17[:]25 done Wiki media/files usage records.
+2019-04-02 14[:]15[:]42 done[ Category] information.
+2019-04-02 14[:]15[:]19 done A few statistics such as the page count.
+2019-04-02 14[:]15[:]31 done Wiki interlanguage link records.
+2019-04-02 14[:]16[:]56 done Newer per-page restrictions table.
+2019-04-02 14[:]15[:]53 done Wiki external URL link records.
+2019-04-02 14[:]17[:]15 done Wiki category membership link records.
+2019-04-02 14[:]17[:]53 done Wiki page-to-page link records.
+2019-04-02 14[:]16[:]15 done Metadata on current versions of uploaded media/files.
+
+=== Text #2 ===
+> 2019-04-10 07[:]51[:]21 done Log events to all pages and users.
+2019-04-09 18[:]12[:]13 done All pages, current versions only.
+2019-04-04 00[:]01[:]40 done Articles, templates, media/file descriptions, and primary meta-pages.
+2019-04-10 07[:]49[:]59 done Namespaces, namespace aliases, magic words.
+2019-04-02 14[:]18[:]11 done This contains the SiteMatrix information from meta.wikimedia.org provided as a table.
+2019-04-02 14[:]17[:]35 done User group assignments.
+2019-04-02 14[:]16[:]46 done[ Tracks] which pages use which Wikidata items or properties and what aspect (e.g. item label) is used.
+2019-04-02 14[:]18[:]20 done Base per-page data (id, title, old restrictions, etc).
+2019-04-02 14[:]18[:]02 done Name/value pairs for pages.
+2019-04-02 14[:]16[:]04 done Nonexistent pages that have been protected.
+2019-04-02 14[:]16[:]36 done Wiki template inclusion link records.
+2019-04-02 14[:]17[:]25 done Wiki media/files usage records.
+2019-04-02 14[:]15[:]42 done[ Category] information.
+2019-04-02 14[:]15[:]19 done A few statistics such as the page count.
+2019-04-02 14[:]15[:]31 done Wiki interlanguage link records.
+2019-04-02 14[:]16[:]56 done Newer per-page restrictions table.
+2019-04-02 14[:]15[:]53 done Wiki external URL link records.
+2019-04-02 14[:]17[:]15 done Wiki category membership link records.
+2019-04-02 14[:]17[:]53 done Wiki page-to-page link records.
+2019-04-02 14[:]16[:]15 done Metadata on current versions of uploaded media/files.
+
+=== Text #3 ===
+> Beskara 5000 with LA-5000 300 watts (150 watts x 2 , 8ohms) power output, built-in 13 steps key control for entry level karaoke enthusiasm. with SA-5000, 3 ways 3 speaker, 450 watts output Bass[ Reflex] speaker system, 10" subwoofer and 2 x8 cm Tweeter could produce an extra-ordinary sound output that will made you sing all day long. ..
+BIK BA-77 KARAOKE POWER AMPLIF[IER] Max Rated Output Power[:] 350W + 350W (8ohms) Music Frequency Response[:] 20Hz – 25KHz Mic Frequency Response[:] 20Hz – 30KHz Total Harmonic Distortion[:] 0.08% Music Tone Control[:] Treble[:] +10dB (10KHz) Bass[:] +10dB (100Hz) Mic Tone Control[:] Bass[:] +5dB (100Hz) Mid[:] +5dB (2KHz) Treble[:] +5dB (10KHz) Key Control[:] 11 Steps +/- 2 pitch F.B. EX. (mic howling[):] 3 modes (small, mid, large room) Music..
+DAX-1000 (SE) II1000 BMB DIGITAL ECHO AMPLIF[IER] > High Power 4 Channel AV Amplifier > Digital Stereo Echo > Anti-Feedback Feature > Remote Control > Maximum Output Power[ :] 200W x 4 CH > Key Control[:] 13-StepStepStepStep >[ Micro]phone Input[ :] 5 Systems (Front 3, Rear 2) >[ Dimensions] (mm)[ :] 420(W) x[ 159](H)[ 415](D) BMB DAX-1000 Digital Karaoke Amplifier ..
+BMB DAX-1000 Digital echo Karaoke system ideal for home entertainment, Club House, Karaoke room. System consist of BMB DAX-1000 II with 800 watts music output power (200 watts x 4), with BMB CSX-1000, 12" Bass reflex Subwoofer produce fine low frequency, 2 x 8cm tweeter and 2 x8 cm squewker take care of the high[ fren]quency, CSX-1000 could handle up to 700 watts input power. ..
+
+=== Text #4 ===
+> This is a great online[ color] tester and designer. Unlike other hex code[ color] testers, this application can also test hex colors on a selected background and guides you in color mixing.[ Type] the color(s) in 3 or 6[ digit] hex code format eg. #173086, #[138] or[ RGB] numbers format eg. 23, 48, 134. Backgroud color is optional. Default value FFFFFF (white) is selected when no value supplied for bg[ color]. (Note[:] no matter whether the symbol # is used in hex code or not.) The online[ color] tester also helps you to select the harmonic[ color] combinations. The[ complementary], triadic,[ analogous], split[ complementary], tet[rad]ic and square[ color] schemes in the[ Color] combining guide recommend you the best color groups for the two, three or four color design. You can also pick up the colors from the[ gradient] scale, best brightness (lightness) level from tints or shades scale and the best suitable vibrance level from the saturation scale. Moreover you can pick the color you like from the random color[ palette] generator.[ Color] tester also shows you the negative and monochrome (grayscale) representation of selected[ color] and the closest websafe[ color]. You also find there the[ RGB] and[ CM]YK representations calculation.
+Dummy text written in hex #173086[ color] on a background[ color]. Text in[ color] #173086 on the desired background[ color] will look just like this. You just see the hex #173086 colored text written on a hex #FFFFFF[ color] backgroud... Or you can't see, if you selected the wrong combination of colors[ :]). The background[ color] should be selected so that the intended #173086 text[ color] is well visible on it. Alternatively, you can choose text color different than #173086 to achieve better text readability. It can be rounded to the 3 character hex code #[138]. The[ RGB] values of the #173086 hex[ color] are R[:] 23, G[:] 48, B[:] 134. In percentage it is Red[:] 9%, Green[:] 18.8%,[ Blue:] 52.5%. The[ CM]YK values of the #173086 hex[ color] are C[:] 0.828, M[:] 0.642, Y[:] 0, K[:] 0.475. The nearest web safe[ color] is #003399. Test of bold text in selected[ color]. Test of[ ital]ic text in the[ color]. Finally the test of bold[ ital]ic.
+
+=== Text #5 ===
+> The[ White] Russian is among the most popular drinks in the country. This likely has to do with the fact that the ingredients are easy to obtain and it takes no special skills or tools to make. Beyond that, many find it the perfect libation for those who don’t like to drink much. While there is plenty of alcohol involved, the taste is smooth and almost makes you forget liquor is even involved.
+The White Russian is among the most popular drinks in the country. This likely has to do with the fact that the ingredients are easy to obtain and it takes no special skills or tools to make. Beyond that, many find it the perfect libation for those who don't like to drink much. While there is plenty of alcohol involved, the taste is smooth and almost makes you forget liquor is even included.
+Our recipe is fairly[ straightforward]. The drink is simple to make and best served layered. Pour the cream over the back of a barspoon to keep it floating on the top. The drinker may choose to stir it all together if desired. While our recipe uses the ratio of 2[:]1[:]1, some prefer this drink with a 1[:]1[:]1 ratio instead.
+1[:] Add vodka to an old-fashioned glass filled with ice.
+2[:] Add coffee liqueur and stir.
+3[:] Pour cream over the back of a bar spoon.
+4[:] Top with a grating of fresh nutmeg, if desired.
+The White Russian is among the most popular drinks in the country. Many find it the perfect libation for those who don't like to drink much. While there is plenty of alcohol involved, the taste is smooth and almost makes you forget liquor is even included. Cream is poured over to finish the drink and give it that milky, delicious taste.
+Often referred to as the oldest American cocktail, the Sazerac dates back to the pre-Civil War era. It has seen its share of changes, including the substitution of anise-flavored spirits when absinthe was banned in the US in 1912. Because of that, you may see some variation in recipes, but the[ basics] remain.
+Give a favorite childhood candy an adult twist by getting gummy worms drunk, then whipping up a tipsy worm's perfect match[:] a tasty, classic margarita.
+Spice up happy hour with these unusual but oh-so-tasty beer cocktails.
+This candy-infused frozen treat puts a grown-up twist on a childhood favorite.
+
+=== Text #6 ===
+> MY WORK/JOB CONSISTS OF[:] As Administrator, I run the day-to-day operations of the Bossier Parish Police Jury. My bosses are the 12 Police Jurors. I am responsible for the 300+ employees inder them.
+HOW I GOT TO LSUS (OR WHY I CHOSE LSUS[):] I went to BPCC for my first year and then transferred to LSUS. I wanted a 4-year degree and LSUS was in town.
+FOND MEMORIES OF LSUS[:] My first year was the first year of the business building. There were not a lot of buildings as far as a "campus" was concerned.
+HOW LSUS HELPED ME SUCCEED[:] LSUS provided me with a great education that provided a great basis for my career path.
+ADVICE TO COLLEGE BOUND STUDENTS[:] Study hard. What you do in school will follow you everywhere.
+ADVICE TO SOMEONE WHO WANTS TO ENTER MY FIELD[:] Finance and business education is used daily.
+TIPS ON CHOSING A MAJOR[:] Find something you enjoy and can make some money at. Money is good.
+MY TOUGHEST PROFESSIONAL CHALLENGE[:] Keeping in mind that when one door closes, another opens.
+MY TOUGHEST PERSONAL CHALLENGE[:] Continuing to learn. We must make time to do so.
+I'VE LEARNED THIS FROM LIFE[:] Treat everyone well and with respect; it all comes back to you.
+"Always keep in mind when one door closes, another one opens."
+
+=== Text #7 ===
+> Peter Cousins covers what we should know if we are to take on a cave survey for real.
+Caving has entered a new phase as cavers look long and hard at the caves of the[ Himal]ayas.
+Some cave rescue teams are considering the difficulties of rescuing an injured caver from some of the latest super-severe pots that are being opened up by exploration.
+Digging on[ Yorkshire]’s Gragareth has revealed a new and serious undertaking[:] The Mohole.
+New rescue dumps have been placed in Little Neath River Cave.
+Descent (19), November[ 1971] SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (9), December[ 1969] SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (26), January 1974 SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (29), August 1974 SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (16), January 1971 SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (42), July[ 1979] SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (41), March[ 1979] SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about second-hand copies of Descent.
+Descent (33), April[ 1976] SECOND-HAND Collector's copy[:] price includes postage and takes condition and scarcity into account. See Description tab for details of condition and the Notes tab for general information about
+
+=== Text #8 ===
+> A powerful memory is all what we all are looking for these days. A better and powerful memory always helps you to be a step ahead in your jobs, schools, and more in your life. With a powerful memory you can learn new things very fast which can help you to make money as fast learners always in demand of every employer. You can consider few memory improvement tips in your daily life to enhance your memorizing capabilities. Although except all those tips to improve your memory the best way you can try out by yourself in remembering process which involves most of your memory and helps to pay a better attention, planning and organizing.
+Now, here I am with some memory improvement tips which can change your lifestyle and helps you to have a powerful memory. So, here are 10 such memory improvement tips.
+Clench your fist[:] According toresearch, clenching your right hand and squeezing it tightly can help you to memorize phone numbers or shopping lists.
+Say it loud[:] This is the easiest way to improve your memory. Saying the things you want to remember to yourself loudly can help you to recall.
+Focus your attention on materials you are studying[:] In order to memorize something deeply and converting that knowledge or information from short-term memory into long-term memory you need to be active and pay your full attention.
+Exercise more[:] It is also said that exercise helps to increase the number of brain cells, with the growth of new brain cells in the hippocampus (i.e. an area of the brain important in memory and learning). According to the several studies, it has been found that aerobic exercise enhances memory and improves cognitive functions.
+Utilization of mn[emonic] devices[:] You can use mnemonics for remembering things. This is the simple way to memorize something you want to keep in your mind for long-term memory. You can use mnemonics[ rhy]me, song or a joke which is somehow related to the matter you want to memorize and those kinds of mnemonics are best which utilize positive imagery, humor and novelty.
+Visualizing concept[:] If you are studying something then it will be fruitful to you when that remains in your memory so for that pay an extra attentions to pictures,[ diagrams],[ charts] or graphics. You can also highlights the important things you need to remember with colorful pens draw[ charts] or figures with your idea on your note books so that it will be easier for you to remember things.
+Drink Green Tea[:] Regularly drinking green tea can improve your memory and
+
+=== Text #9 ===
+> Standard dialogue tags are said and asked. The mind skips over them, so they are invisible.
+"It is[ hotly] debated whether you should ever use colorful or adverb tags," she muttered. "Some editors don't mind a few creative tags."
+"Some may allow adverb tags," she said skeptically. "Adverb tags are generally frowned upon."
+" Break this rule at your own peril," she said mischievously.
+Your dialogue should look like one of these examples. Note the correct formatting. Commas, periods, and question marks should fall within the quotation marks.
+A[ comma] separates the dialogue from the standard tag. A period separates the dialogue from an action tag.
+The same[ formatting] for the standard tag applies to a creative tag or action tags.
+Standard tag in the front[:] Sherlock said, "I see."
+Standard tag in the middle[:] "I see," Sherlock said. "I have been misinformed."
+Standard tag at the end[:] "I see," Sherlock said. (or) "I see," said Sherlock.
+Action tag in the front[:] Sherlock cleared his throat. "I see."
+Action tag in the middle[:] "I see." Sherlock cleared his throat. "I was misinformed."
+Action tag at the end[:] "I see." Sherlock cleared his throat.
+Action combined with a standard tag[:] Sherlock pointed to the clock and said, "I must be off."
+For more tips on how to make your dialogue work for you, check out our previous posts.
+Dialogue, just the way we talk?
+This is a great topic, Diana, one that trips up a lot of writers. It reminds me of some manuscripts I've edited where a page is filled with short exchanges between two characters, and the writer identifies each bit of conversation with "he said" or "she said". Overuse of dialogue tags--whether standard or action--[dim]inishes the power of a scene, while proper use enhances it. All writers need to remember that.
+Great reminders that "said" and "asked" are invisible to the reader. The only other one I like to use (sparingly) is "whispered."
+Good post. I don't like adverb tags, either. The content of your writing should tell you if your are acting mischievously or skeptically. You see these tags a lot in older books.
+I don't mind the occasional adverb tag, as long as it's not
+
+=== Text #10 ===
+> Becoming a professional coach is one of the most rewarding jobs I’ve ever had. It’s such an honor to be able to help people grow in their personal leadership skills and pursue their true purpose and passions to make a huge impact in the world. I love facilitating “a-ha moments” for people and guiding them towards success. I never thought I would become a coach because I didn’t even know that the coaching industry existed until about 3 years ago. Since then, I learned more about it, volunteered and practiced it as much as I could, and took steps to call this my career. Today, I wanted to answer some FAQs for people who are interested in becoming a coach or adding coaching skills to their repertoire. As you read this, imagine us chatting together at a coffee shop with the freedom for you to pick my brain. My hope is that this gives you more insight to the industry and provides a little bit of direction of your next steps.
+Q[:] I love helping people. I’ve always enjoyed mentoring and guiding younger people. Is coaching right for me? A[:] Yes! The heart of coaching is helping people to figure out what they want, why they want it, and provide the support and accountability for them to be successful. When you get down to it, a coach sees someone for their potential and equips them with the skills and resources for them to be the best version of themselves. A coach is someone who wants to facilitate change, growth, and get people from where they are now to where they want to be. It’s definitely considered to be a “helping profession.” It doesn’t necessarily have to be with someone younger than you, but people tend to work with coaches that they can relate to. The question to ask yourself is, “WHY do you want to become a coach?” Get clear on your definition of success. If it’s genuinely to help people get better in a motivating way, then coaching may be a good fit for you.
+Q[:] What are my options as a coach? // What can I do as a coach? A[:] There are many paths you can take, or make yourself! Typically you could[:] be to go-to coach for your current company, be a coach that consults for other companies, or start your own private coaching business/practice. There are many different niches as well[:] including health/wellness, business, life, executive
+
+=== Text #11 ===
+> Image Title[:] Pottery Barn Counter Stools In Decker Leather Seat Barstool Inside Bar Plans 8. Filename[:] pottery-barn-counter-stools-in-decker-leather-seat-barstool-inside-bar-plans-8.jpg. Image Dimension[:] 710 x 639 pixels. Images Format[:] jpg/jpeg. Publisher/Author[:] Zackary[ Nikola]us. Uploaded Date[:] Monday - May 14th. 2018 18[:]35[:]16 PM. Category[:] Architecture. Image Source[:] interior.com.
+Tap The Th[umbnail] Bellow to See Related Gallery of "Pottery Barn Counter Stools In Decker Leather Seat Barstool Inside Bar Plans 8"
+
+=== Text #12 ===
+> >> I was looking for “seeing[ Hydra] in action”.
+> Service temporarily unavailable or 404. Sorry for the inconvenience.
+Next message[:] Ruben Verborgh[:] "moving forward[: Doodle] for conf call"
+Previous message[:] Chris Andrew[:] "Re[:] Possible GSoC application"
+In reply to[:] Dietrich Sch[ult]en[:] "Re[: Hydra] examples for describing APIs"
+
+=== Text #13 ===
+> GetHuman[:] ~shane - can you tell our other US Citizenship & Immigration Service (USCIS) customers when your case took place?
+~shane[:] Yeah. It was afternoon, on November 19th.
+~shane[:] "Schedule Appointment" was why I was trying to call.
+~shane[:] Getting a human at US CIS is impossible because only heartless ******** would work for US CIS. None of them are "human"
+~shane[:] I'd give them a three out of five for ease of finding your way to help.
+~shane[:] I'd give them a five out of five on communication.
+~shane[:] For that I would say three out of five.
+~shane[:] Call them early in the day or late. Don't forget any personal or account information you might need for US Citizenship & Immigration Service (USCIS) to know who you are.
+GetHuman[:] Well there you have it. Some useful feedback and words from ~shane taken from his US Citizenship & Immigration Service (USCIS) customer service problem that occurred on November 19th, 2017.
+
+=== Text #14 ===
+> Replies[:] 2 (Who?), Viewed[:] 4642 times.
+#1 10th Sep 2018 at 5[:]44 PM Last edited by[ Polar]BearSims[ :] 20th Feb 2019 at 10[:]49 PM.
+I started this challenge on my youtube and you can find that HERE if you would like to watch it.
+I had an idea to do a challenge where my sim had to build everything for the town. So I started googling to see if there was any challenges already out there that did what I was looking for. A few that I found wasn't really what I was looking for. I wanted to also create all the rabbit hole lots along with the residential lots with out having to move into each house and leave other sims behind. I didn't want to have to repopulate the whole town with just my sim either so I decided to create my own. So here is what I have come up with so far.
+I was requested to write down the rules for this challenge so here are the challenge rules!
+Your sim has come from an over crowded town with lots of noise and pollution. They have traveled far away from any civilization and has settled here to start over from scratch. This area has no buildings, no houses and no residents. This is a great place for your sim to start over in life and build everything from scratch from the ground up.
+Pick any world you like and go into Edit Town and delete every house and building. This includes any rabbit holes.
+Pick your sim either by creating new or a preexisting one.
+Your lifespan can be what ever you want, I suggest a long one. I'm using a fairy so I have a very long life span.
+Your sim will not have a job to start out with so you will need to make money in other ways like fishing, searching for flowers or gems to sell.
+Once your sim has some money you can do other things to make money as well like painting, photography, writing for example.
+Once some job buildings are placed you can have your sim have a job along with previous mentions of money making activities.
+Your sim can buy properties or become business owners to make money as well.
+~When you build the house to rent, you don't need to build with your own money otherwise your sim will end up spending double the cost. Build the house then go in and have your sim rent it out.
+~Once a residential lot has been created for a certain category, you can add to
+
+=== Text #15 ===
+> Expressing yourself by sharing photos on Instagram is a buzz especially when the service is backed up by Facebook. It has already added its presence in Social Media. Instagram app is available on Android and iPhone only, as of now. Instagram also works the same way as the Twitter works but the only difference is that your status is expressed with photos clicked by you.
+Related Post[:] How to take Cloud Backup from major cloud services and[ FTP].
+Since, it is supported on limited mobile operating systems it is less used by mobile users. But, I must say you should join Instagram and experience photo sharing. Today I would be sharing ways on how can you access Instagram on web. Instagram is being used more for the Photo contest and social media campaigns these days. Even I have seen few images which I am sure it is not clicked by mobile camera, but they upload it by third-party applications uploading directly from the computer. Apart from that, you can even search in Instagram or know the stats of the users using the service.
+How can you use Instagram on your PC?
+Gramfeed[:] gives an interactive Instagram UI which helps you to manage your friends photos likes and check out familiar photos which are active. It also shows the[ maps] which helps to know from where the photo is being clicked. It provides you grid view if you want to see the photos in one go or you can select it in normal view which helps you to check out the photos with time format.
+Ink361[:] is another Instagram third-party service, which helps you to give the full view of the photos uploaded by other users like you see in Instagram. Ink361 shows their ad in between of other images which irritates using the service sometimes as Instagram does not provide any ad placement on mobile service. The geo tagging feature is more useful than Gramfeed.
+Related Post[:] Learning from Red Bull Stratos – How to create Buzz!
+Instagram for Chrome[:] this one is the best browser based application which gives the exact feel of using Instagram on the mobile. All the features are similar to the Instagram app on the mobile. But you can use this app in only Google[ Chrome] browser.
+Luxogram[:] This service is still in a beta phase. But will give all the needed features of Instagram. The photo feed gets updates as and when your friends add up the photos. When you move the cursor on the photo you will see the details of the photo and the update status. You can even like by double clicking the photo.
+Let me know your experience
+
+=== Text #16 ===
+> Perhaps we should rename this page to the Great Nacho page owing to the posts we dedicate to the Mexican beauty.[�]� In frame[:] Fully Loaded Nachos Price[:] Rs. 300-350 In frame (2[):] The Paneer Breakfast Series with Baked Beans (You might’ve to ask for this separately as the menu card has gone for a revamp) Price[:] Rs. 350 Rate[:] 7.5/10 Where[:] @godoolally At[:] Kemps[ Corner], Sanpada, Andheri, Khar #bingingityourway #food #foodie #foodblogger #foodphotography #doolally #instafood #mumbaifood #nachos #mumbaifoodies #bakedbeans #paneer #toastbread #beer PS[:] They’ve a wide range of games & books to choose from, as accompaniment.
+
+=== Text #17 ===
+> Addiction Step Eleven[:] Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of His will for us and the power to carry that out.
+What is your understanding of God and how would you characterize your relationship with Him? I can open up any number of books and read about God, or read the Bible and not know anything about His nature and character. Through these steps, how has your perception of God changed? We have talked a lot about establishing a relationship with God, but how can you have any kind of a relationship with someone you don’t talk to? Through prayer and meditation we improve our conscious contact with God.
+Prayer is simply talking to God. In Steps 4-7 we were honest with ourselves, and turned to God for His help. Working through the steps, that greater power we have relied on is not just a transcendent being, someone who is unreachable, unknowable and uninterested in our recovery. When we get to the point where we surrender and rely wholly on God, we are ready to move forward into Step 11.
+This passage shows that the person’s relationship with God is a daily undertaking, that he is completely surrendered to God’s leading and knows that God is always with him. In Psalm 25[:]4-5, the writer is asking God to show him His way.
+Trusting in God, and not yourself, implies a close relationship and the surrender that opens us up to God’s leading.
+The Alcoholics Anonymous Big Book offers some insight into this interesting journey. “In thinking about our day we are faced with indecision. We may not be able to determine which course to take. Here we ask God for inspiration, an intuitive thought or a decision. We are often surprised how the right answers come after we have tried this for a while. (page 86)” As the relationship grows, through prayer and meditation, the wisdom of God is channeled back and what we used to think was a good guess or a good idea, becomes a regular occurrence. We are open to the leading of God.
+“So I say to you[:] Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. For everyone who asks receives; he who seeks finds; and to him who knocks, the door will be opened” (Luke 11[:]9-10).
+Even in our indec
+
+=== Text #18 ===
+> Where you’re from[:] I live in a place called Regensburg, one of the most beautiful towns in[ Bav]aria (if I do say so myself)! The city is both old and new[:] its history goes all the way back to the 9th century and it was named a UNESCO World Heritage Site in 2006 for its uniquely well-preserved medieval Old Town. At the same time, the universities make it feel very young! It’s a great place to have grown up.
+Where and what you’re studying[:] I am in the final stages of gaining my Bachelor’s degree in political science and British Studies, having studied in Regensburg and Hong Kong.
+What is one project or activity you enjoyed at the Embassy?
+Being an intern in the economics department at the embassy, the tariffs on steel and[ aluminium] introduced by the United States during my time in DC had a great impact on my work[:] it was fascinating watching the political process at such proximity! I also really appreciated the department itself because it covers such a wide range of topics. For example, I was able to gain insights into farming and agricultural exports, the implications of the General Data Protection Regulation (GDPR) in the US, but also the challenges of migration and developmental work by visiting various events around the city and aiding colleagues in their research.
+What do you think is one of Germany’s main foreign policy challenges and what should Germany do about it?
+I can only echo what my fellow interns have mentioned in this section[:] finding and preserving unity – both domestically and within the EU –, strengthening the transatlantic relationship and tackling the rise of populism around the world are issues that must be taken seriously. Likewise, making sure the art of diplomacy and skilled conversation is not lost in a world where a Tweet travels faster than actions.
+What are some cultural impressions you gained of the United States?
+I love how open and communicative people are in the US compared to Germany. Every conversation here starts with a “How are you?” – be it a random person on the street or your Uber driver. If you ask cashiers in Germany about their well-being I can guarantee all you will get are strange looks.
+What has been your biggest surprise with regard to living in Washington?
+I have never been to a place that is more political than DC! This city lives and breathes politics, be it all the government agencies and organizations that are based here, the think tanks and the events they host,
+
+=== Text #19 ===
+> This section provides a tutorial example on how to call an RPC method defined a WSDL 1.1 document with SOAP 1.1 binding.
+I used the local version of my WSDL document, c[:/]herong/GetExchangeRate_WSDL_11_SOAP_11_RPC.wsdl. The online version at http://www.her[ongyang].com/Service/ GetExchangeRate_WSDL_11_SOAP_11_RPC.wsdl gives me an access problem because the site does not like Perl HTTP client agent.
+I used readable('true') to make the SOAP request XML message is nice format.
+SOAP[::]Lite does allow you to make an RPC call through a WSDL document like a local method call[:] GetExchangeRate('USD', 'JPY', '2007-07-07').
+SOAP[::]Lite is smart to convert the RPC call into a SOAP request message.
+SOAP[::]Lite is smart to provide type information xsi[:]type="..." to support message encoding.
+SOAP[::]Lite is smart to pick up the return value from the SOAP response message.
+SOAP[::]Lite is not smart to follow the parts="fromCurrencyPart toCurrencyPart datePart" specified in the WSDL document to order the parameters. It[ follows] the original order of how these message parts were defined in the WSDL document. To correct the issue, you need to make the call like this[:] GetExchangeRate('2007-07-07', 'USD', 'JPY').
+Conclusion, SOAP[::]Lite 0.710 does not support the parts="..." of the "soap[:]body" WSDL statement.
+
+=== Text #20 ===
+> Notice[:] This is an old thread. The last post was 2737 days ago. If your post is not directly related to this discussion please consider making a new thread.
+Every researcher or diagnostician working with reptiles has faced the challenge of identifying reptile hemoparasites and then determining whether they are of importance or merely incidental. Another challenge is how to easily find the information required to make the proper identification. A distillation of knowledge from world-renowned expert Sam R. Telford, Jr,[ Hem]oparasites of the[ Rept]ilia[: Color] Atlas and Text provides a comprehensive compilation of information on how to differentiate between the[ myriad] species of reptile[ hem]oparasites.
+The atlas provides[ diagnoses] for[ 262] species of plasmodiids,[ hem]ogregarines,[ hem]ococcidians, trypansosomes, and leishmanias, including descriptions of eight new species or new tax[onomic] designations. It also discusses lesser known groups, such as piroplasms, rickettsiae, chlamydia, and erythrocytic viruses. Each genus and many species are represented among the 166 taxa illustrated in[ color]. The species accounts contain host and[ geographic] distribution, with precise localities when possible, prevalence, life cycles and[ vectors] when known, effects upon the host, and ecology of the host-parasite relationship,[ morph]ological variation, and an exhaustive b[ibliography]. The book also includes an illustrated key showing diagnostic characters.
+Telford draws on his 45 years of experience and his personal collection, considered the world’s most complete, to provide information on the[ morphology] of the unicellular parasites of reptilian blood. He includes information from hard-to-find original papers and articles from sources throughout the world. The illustrated key and photomicrographs from Telford’s collection make identifying species quicker and easier.
+Last edited by Motoko; 6th September 2012 at 07[:]09 PM. Reason[:] UPDATE!
+Last edited by Motoko; 12th October 2018 at 08[:]19 PM. Reason[:] UPDATE.
+
+
+Description: 
+2025-07-25 20:46:36,115 - root - INFO - Categories/Categorization of information related to pages, Wikidata, and wiki metadata
+
+2025-07-25 20:46:36,120 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3696_clusters-1_2025-07-25_18-37-06.csv
+2025-07-25 20:46:36,121 - root - INFO - ================================================================================
+2025-07-25 20:46:36,121 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 20:46:36,122 - root - INFO - ================================================================================
+2025-07-25 20:46:36,122 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-3696_clusters-1_2025-07-25_18-37-06.log
+2025-07-25 20:46:36,123 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3696_clusters-1_2025-07-25_18-37-06.csv

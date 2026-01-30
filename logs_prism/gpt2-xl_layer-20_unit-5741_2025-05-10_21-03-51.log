@@ -1,0 +1,1396 @@
+2025-05-10 23:03:51,764 - root - INFO - ================================================================================
+2025-05-10 23:03:51,791 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-10 23:03:51,791 - root - INFO - ================================================================================
+2025-05-10 23:03:51,792 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-10 23:03:51,793 - root - INFO - AGG_METHOD = mean
+2025-05-10 23:03:51,793 - root - INFO - BATCH_SIZE = 2
+2025-05-10 23:03:51,793 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 23:03:51,794 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-10 23:03:51,794 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-10 23:03:51,795 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-10 23:03:51,795 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-10 23:03:51,796 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-10 23:03:51,797 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-10 23:03:51,797 - root - INFO - CONTROL_SPLIT = train
+2025-05-10 23:03:51,798 - root - INFO - DATA_FILES = None
+2025-05-10 23:03:51,798 - root - INFO - DEVICE = cuda
+2025-05-10 23:03:51,799 - root - INFO - END_INTERVAL = 1.0
+2025-05-10 23:03:51,799 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 23:03:51,800 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-10 23:03:51,800 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-10 23:03:51,800 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-10 23:03:51,801 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-10 23:03:51,801 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-10 23:03:51,802 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-05-10 23:03:51,802 - root - INFO - LAYER_ID = 20
+2025-05-10 23:03:51,802 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-10 23:03:51,803 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-10 23:03:51,803 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-10 23:03:51,803 - root - INFO - MULTI_EVAL = True
+2025-05-10 23:03:51,804 - root - INFO - N_CLUSTERS = 5
+2025-05-10 23:03:51,804 - root - INFO - N_SAMPLES = 10
+2025-05-10 23:03:51,805 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-10 23:03:51,805 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-10 23:03:51,806 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-10 23:03:51,806 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-10 23:03:51,807 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-10 23:03:51,807 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-10 23:03:51,808 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-10 23:03:51,808 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-10 23:03:51,809 - root - INFO - SIMEVAL_DATA = c4
+2025-05-10 23:03:51,809 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-10 23:03:51,809 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-10 23:03:51,810 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-10 23:03:51,810 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-10 23:03:51,811 - root - INFO - SPLIT = train
+2025-05-10 23:03:51,811 - root - INFO - START_INTERVAL = 0.99
+2025-05-10 23:03:51,812 - root - INFO - STREAMING = True
+2025-05-10 23:03:51,812 - root - INFO - SUBSET_SIZE = 1000
+2025-05-10 23:03:51,812 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-10 23:03:51,813 - root - INFO - TARGET_DATA = c4
+2025-05-10 23:03:51,813 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-10 23:03:51,814 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 23:03:51,814 - root - INFO - UNIT_ID = 5741
+2025-05-10 23:03:51,815 - root - INFO - USE_API = True
+2025-05-10 23:03:51,815 - root - INFO - ================================================================================
+2025-05-10 23:03:51,816 - root - INFO - ANALYSIS RESULTS
+2025-05-10 23:03:51,816 - root - INFO - ================================================================================
+2025-05-10 23:03:51,817 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.log
+2025-05-10 23:14:02,094 - root - INFO - Reached 1000 samples.
+2025-05-10 23:14:08,416 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-10 23:14:08,417 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 23:14:21,964 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-10 23:15:23,861 - root - INFO - Number of candidates: 1001
+2025-05-10 23:15:25,877 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-10 23:15:25,877 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  to (1.819883108139038)
+Text #1:  for (1.3112808465957642)
+Text #1:  article (0.4528530240058899)
+Text #1: , (0.28371578454971313)
+Text #1:  you (0.21516603231430054)
+Text #1: <|endoftext|> (0.09390877932310104)
+Text #1: <|endoftext|> (0.09380721300840378)
+Text #1: <|endoftext|> (0.09381725639104843)
+Text #1: <|endoftext|> (0.09387713670730591)
+Text #1: <|endoftext|> (0.0939011424779892)
+Text #1: <|endoftext|> (0.09394083172082901)
+Text #1: <|endoftext|> (0.09379982948303223)
+Text #1: <|endoftext|> (0.09392029047012329)
+Text #1: <|endoftext|> (0.09383850544691086)
+Text #1: <|endoftext|> (0.09383011609315872)
+Text #1: <|endoftext|> (0.09388045221567154)
+Text #1: <|endoftext|> (0.09378870576620102)
+Text #1: <|endoftext|> (0.09380006790161133)
+Text #1: <|endoftext|> (0.09376805275678635)
+Text #2: . (0.23745985329151154)
+Text #2: , (0.4724634289741516)
+Text #2: <|endoftext|> (0.09480907022953033)
+Text #2: <|endoftext|> (0.09503898024559021)
+Text #3: <|endoftext|> (0.09259133785963058)
+Text #3: <|endoftext|> (0.09248319268226624)
+Text #3: <|endoftext|> (0.09266030788421631)
+Text #3: <|endoftext|> (0.09254319220781326)
+Text #3: <|endoftext|> (0.09245689958333969)
+Text #4:  need (0.12495966255664825)
+Text #4:  enjoy (0.1360434591770172)
+Text #4: <|endoftext|> (0.10857320576906204)
+Text #4: <|endoftext|> (0.1059492751955986)
+Text #5: <|endoftext|> (0.08815371245145798)
+Text #5: <|endoftext|> (0.08836659789085388)
+Text #6:  one (0.1227353885769844)
+Text #6: <|endoftext|> (0.09081169217824936)
+Text #6: <|endoftext|> (0.0905873104929924)
+Text #7:  on (1.4154534339904785)
+Text #7:  for (0.9562811255455017)
+Text #7:  work (0.2230142056941986)
+Text #7:  to (0.13459816575050354)
+Text #7:  with (0.22898414731025696)
+Text #7:  definitely (0.5864570736885071)
+Text #7: <|endoftext|> (0.09126357734203339)
+Text #7: <|endoftext|> (0.0912821814417839)
+Text #7: <|endoftext|> (0.09134113788604736)
+Text #7: <|endoftext|> (0.09140234440565109)
+Text #7: <|endoftext|> (0.09126770496368408)
+Text #7: <|endoftext|> (0.09145539999008179)
+Text #8: <|endoftext|> (0.0968460813164711)
+Text #8: <|endoftext|> (0.0963694378733635)
+Text #8: <|endoftext|> (0.09638150036334991)
+Text #9: <|endoftext|> (0.09516413509845734)
+Text #9: <|endoftext|> (0.09310996532440186)
+Text #9: <|endoftext|> (0.09316094219684601)
+Text #10: <|endoftext|> (0.08457513898611069)
+Text #11:  for (0.7478178143501282)
+Text #11:  friends (0.49655354022979736)
+Text #11:  you (0.11658542603254318)
+Text #11: <|endoftext|> (0.09022992104291916)
+Text #11: <|endoftext|> (0.08988793194293976)
+Text #11: <|endoftext|> (0.08935229480266571)
+Text #12: <|endoftext|> (0.09138725697994232)
+Text #12: <|endoftext|> (0.09088974446058273)
+Text #13: <|endoftext|> (0.08268526941537857)
+Text #13: <|endoftext|> (0.08239465951919556)
+Text #13: <|endoftext|> (0.08242885023355484)
+Text #13: <|endoftext|> (0.08244039863348007)
+Text #13: <|endoftext|> (0.08250011503696442)
+Text #13: <|endoftext|> (0.08241050690412521)
+Text #13: <|endoftext|> (0.08241381496191025)
+Text #13: <|endoftext|> (0.08237995952367783)
+Text #13: <|endoftext|> (0.08240915089845657)
+Text #14: <|endoftext|> (0.08268526941537857)
+Text #14: <|endoftext|> (0.08239465951919556)
+Text #14: <|endoftext|> (0.08242885023355484)
+Text #14: <|endoftext|> (0.08244039863348007)
+Text #14: <|endoftext|> (0.08250011503696442)
+Text #14: <|endoftext|> (0.08241050690412521)
+Text #14: <|endoftext|> (0.08241381496191025)
+Text #14: <|endoftext|> (0.08237995952367783)
+Text #14: <|endoftext|> (0.08240915089845657)
+Text #15:  procedures (0.14843297004699707)
+Text #15: <|endoftext|> (0.10019554942846298)
+Text #15: <|endoftext|> (0.09993766993284225)
+Text #15: <|endoftext|> (0.09998471289873123)
+Text #15: <|endoftext|> (0.10010824352502823)
+Text #16: <|endoftext|> (0.0749412477016449)
+Text #16: <|endoftext|> (0.07495022565126419)
+Text #16: <|endoftext|> (0.07498273253440857)
+Text #16: <|endoftext|> (0.07495985180139542)
+Text #16: <|endoftext|> (0.0750269740819931)
+Text #16: <|endoftext|> (0.0749606117606163)
+Text #16: <|endoftext|> (0.07496485114097595)
+Text #16: <|endoftext|> (0.07502255588769913)
+Text #16: <|endoftext|> (0.0749843642115593)
+Text #16: <|endoftext|> (0.07503747195005417)
+Text #16: <|endoftext|> (0.0750657469034195)
+Text #16: <|endoftext|> (0.07515845447778702)
+Text #16: <|endoftext|> (0.07502298802137375)
+Text #16: <|endoftext|> (0.07496130466461182)
+Text #16: <|endoftext|> (0.07495521754026413)
+Text #16: <|endoftext|> (0.0749497190117836)
+Text #16: <|endoftext|> (0.07495163381099701)
+Text #16: <|endoftext|> (0.0749630406498909)
+Text #16: <|endoftext|> (0.07494331151247025)
+Text #16: <|endoftext|> (0.07505376636981964)
+Text #16: <|endoftext|> (0.07508523017168045)
+Text #16: <|endoftext|> (0.07513567060232162)
+Text #16: <|endoftext|> (0.0750395730137825)
+Text #16: <|endoftext|> (0.07500506937503815)
+Text #16: <|endoftext|> (0.0749875083565712)
+Text #16: <|endoftext|> (0.07509986311197281)
+Text #16: <|endoftext|> (0.07515479624271393)
+Text #17:  about (0.11587844789028168)
+Text #17:  linking (0.48525792360305786)
+Text #17:  to (1.4072352647781372)
+Text #17:  fascinating (1.1024765968322754)
+Text #17: <|endoftext|> (0.09432749450206757)
+Text #17: <|endoftext|> (0.09426235407590866)
+Text #17: <|endoftext|> (0.09443861991167068)
+Text #17: <|endoftext|> (0.0943680852651596)
+Text #17: <|endoftext|> (0.09429345279932022)
+Text #17: <|endoftext|> (0.09431608766317368)
+Text #18:  - (0.0902775451540947)
+Text #18: <|endoftext|> (0.07115034013986588)
+Text #18: <|endoftext|> (0.07119623571634293)
+Text #18: <|endoftext|> (0.07128468155860901)
+Text #18: <|endoftext|> (0.07135551422834396)
+Text #18: <|endoftext|> (0.07126565277576447)
+Text #18: <|endoftext|> (0.07124241441488266)
+Text #18: <|endoftext|> (0.07120492309331894)
+Text #18: <|endoftext|> (0.0711761936545372)
+Text #18: <|endoftext|> (0.07117238640785217)
+Text #19:  fun (0.3087191879749298)
+Text #19:  set (0.23901313543319702)
+Text #19: <|endoftext|> (0.09473132342100143)
+Text #19: <|endoftext|> (0.09487434476613998)
+Text #20:  mentioned (0.3438251316547394)
+Text #20:  I (0.2692824602127075)
+Text #20:  mine (0.14256508648395538)
+Text #20: <|endoftext|> (0.07965514808893204)
+Text #20: <|endoftext|> (0.0797305703163147)
+Text #20: <|endoftext|> (0.0796947032213211)
+Text #20: <|endoftext|> (0.07966873794794083)
+Text #20: <|endoftext|> (0.07978750765323639)
+Text #20: <|endoftext|> (0.07962008565664291)
+Text #20: <|endoftext|> (0.07978362590074539)
+Text #20: <|endoftext|> (0.07970175892114639)
+Text #20: <|endoftext|> (0.07966713607311249)
+Text #20: <|endoftext|> (0.07970555871725082)
+Text #20: <|endoftext|> (0.07977990061044693)
+Text #20: <|endoftext|> (0.0797635167837143)
+Text #20: <|endoftext|> (0.07970830798149109)
+
+=== Text #1 ===
+> A philosophical meditation on the meaning of Eames toys from the July / August 1957 issue of Architectural Association Journal.
+Thanks[ to] Catherine Ince of the Barbican[ for sharing this] interesting[ article] about Eames toys[, including] two illustrations from the Eames Giant House of Cards.
+You can read it large if[ you] click on it.
+Elsewhere on this website you can read an Eames bibliography also published by the Architectural Association.[][][][][][][][][][][][][][]
+
+=== Text #2 ===
+> Renault workshop manual, M.R[.] 164[,] additive, R1178 Sedan, R1332 Station wagon.
+Renault automobile -- Maintenance and repair -- Handbooks, manuals, etc.[][]
+
+=== Text #3 ===
+> OpenWRT that use -Os to make small binaries.
+OS X.  I don't know enough about the other platforms to say.
+Here's the Debian docs on the topic.[][][][][]
+
+=== Text #4 ===
+> Coming to a show and[ need] a little help finding your way?
+Here’s the information you’ll need. We look forward to your visit, and[ enjoy] the show.[][]
+
+=== Text #5 ===
+> Road map for PM Modi's complete road-show. Watch complete video for complete details.
+PM Modi's road show to be 7 km long. Watch complete video to know more.[][]
+
+=== Text #6 ===
+> It's the food. And it's more than the food.
+Home > Posts tagged "Blasey Kavanaugh hearing"
+Every board of directors has[ one]….[][]
+
+=== Text #7 ===
+> Exclusively[ on] Fivesquid[ for] only 5pounds!
+I will create this amazing logo animation intro!
+This video intro is available in 3 versions, depends on your logo structure.
+The intro is delivered in HD resolution (1280x760).
+Music included, same as on the example.
+Final output is in a .mp4 format.
+Hi, great[ work] love it. Thank you Darko, looking forward[ to] working[ with] you again. Would[ definitely recommend]. David.[][][][][][]
+
+=== Text #8 ===
+> Notaries in Bridgeton, MO are listed below. Use the filters to search for specific criteria.
+I am a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified notary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[][][]
+
+=== Text #9 ===
+> Need to make a doctor appointment for Tetralogy of Fallot (TOF) this week? Use Zocdoc to find doctors near you who take your insurance. It’s simple, secure and free.[][][]
+
+=== Text #10 ===
+> Rachel McAdams Widescreen karatasi la kupamba ukuta. Made from image found at: Bellazon.com. HD Wallpaper and background images in the Rachel McAdams club tagged: rachel mcadams wallpaper widescreen desktop.[]
+
+=== Text #11 ===
+> Here is all the information you need about "My Daddy is in Heaven" on American Netflix. Details include the date it was added to Netflix in the USA, any known expiry dates and new episodes/seasons, the ratings and cast etc. So scroll down[ for] more information or share the link on social media to let your[ friends know] what[ you]'re watching.[][][]
+
+=== Text #12 ===
+> Windham, ME is in zip code 04062. The current total local sales tax rate in Windham, ME is 5.500%. The 2018 total local sales tax rate was 5.000%.
+Windham, ME is in Cumberland County. Windham is in the following zip codes: 04062.[][]
+
+=== Text #13 ===
+> Vellamo is led by the performing and songwriting team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning concert will be in our chapel. Their music features ethereal Finnish folk with … read more.[][][][][][][][][]
+
+=== Text #14 ===
+> Vellamo is led by the performing and songwriting team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning concert will be in our chapel. Their music features ethereal Finnish folk with … read more.[][][][][][][][][]
+
+=== Text #15 ===
+> The Petitioner must meet with the Planning and Zoning Department prior to submitting any applications. This permits a Petitioner to discuss the proposal with Staff and become familiar with the Village’s requirements and[ procedures]. A pre-submittal meeting may be scheduled by contacting the Planning and Zoning Department at 847-359-9047.
+Completed applications may submitted directly to the Department of Planning and Zoning.[][][][]
+
+=== Text #16 ===
+> Time Team Play ARMY Win Prob.
+It's over, @ArmyWP_MLax beat @navymlax 9-8. Check out the #LaxWP win probability chart.[][][][][][][][][][][][][][][][][][][][][][][][][][][]
+
+=== Text #17 ===
+> I think this is one of the most interesting pieces of researching in epidemiology and profound effects on society I have ever seen. I wrote[ about] Kevin Drum’s original work on the connection between lead in the environment and crime rates (I’m not[ linking to] my piece, his piece is linked to in the Brookings piece). This is one of those things where the evidence is so clear, but the conclusion just seems too easy, that contingents in sociology believe it too good[ to be true].
+I think it’s[ fascinating], your mileage may vary.[][][][][][]
+
+=== Text #18 ===
+> Page 83[ -] Gallery Design of Interior | Tissustartares.com Green Glass Subway Tile. Lavender And Grey Bedroom. Tile For Shower Walls.[][][][][][][][][]
+
+=== Text #19 ===
+> Rent the Centre. Celebrations, Parties or just for[ fun].
+In order to provide a flavour of the Grenville House experience[ set] out below are a collection of images showing the range of activities and other aspects of a visit to the Centre.
+To open an album click on the chosen category image. Click on any image to enlarge it and finally to enable you to scroll through the selected album float the cursor over the end of the image to reveal the direction arrow.[][]
+
+=== Text #20 ===
+> That must be frustrating , just when you are getting used to another one.
+My computer has lasted a number of years now, but getting slow with clutter.
+Mine covers me, for that kind of mishap.
+Glad I[ mentioned it], then.
+I didn't when[ I] bought[ mine from] Argos a couple of years ago.......*sigh.[][][][][][][][][][][][][]
+
+
+Description: 
+2025-05-10 23:15:25,879 - root - INFO - Giving, sharing, or recommending something to someone
+
+2025-05-10 23:15:25,884 - root - INFO - Cluster #0 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.csv
+2025-05-10 23:15:26,830 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-10 23:15:26,831 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: , (0.24089673161506653)
+Text #1: . (0.5401533246040344)
+Text #1: - (0.825894296169281)
+Text #1: <|endoftext|> (0.10432034730911255)
+Text #1: <|endoftext|> (0.10425123572349548)
+Text #2:  tagged (0.11652481555938721)
+Text #2:  if (0.20713049173355103)
+Text #2: <|endoftext|> (0.10032149404287338)
+Text #2: <|endoftext|> (0.09789975732564926)
+Text #2: <|endoftext|> (0.0978974774479866)
+Text #2: <|endoftext|> (0.09818379580974579)
+Text #3: <|endoftext|> (0.10961814224720001)
+Text #3: <|endoftext|> (0.1052151620388031)
+Text #4: <|endoftext|> (0.09998569637537003)
+Text #4: <|endoftext|> (0.09807198494672775)
+Text #4: <|endoftext|> (0.0979381650686264)
+Text #4: <|endoftext|> (0.09782741963863373)
+Text #4: <|endoftext|> (0.09842138737440109)
+Text #4: <|endoftext|> (0.09814214706420898)
+Text #4: <|endoftext|> (0.09788019210100174)
+Text #4: <|endoftext|> (0.09817218780517578)
+Text #5: <|endoftext|> (0.10003519058227539)
+Text #6: <|endoftext|> (0.09168987721204758)
+Text #6: <|endoftext|> (0.09173370897769928)
+Text #6: <|endoftext|> (0.0916936919093132)
+Text #6: <|endoftext|> (0.09175030142068863)
+Text #6: <|endoftext|> (0.09173962473869324)
+Text #6: <|endoftext|> (0.091790571808815)
+Text #6: <|endoftext|> (0.09188585728406906)
+Text #6: <|endoftext|> (0.09195630997419357)
+Text #6: <|endoftext|> (0.09178604930639267)
+Text #6: <|endoftext|> (0.09169552475214005)
+Text #6: <|endoftext|> (0.0916714072227478)
+Text #6: <|endoftext|> (0.09175457060337067)
+Text #6: <|endoftext|> (0.09181754291057587)
+Text #7: <|endoftext|> (0.09330515563488007)
+Text #7: <|endoftext|> (0.09196867793798447)
+Text #8:  never (0.4289800226688385)
+Text #8:  thought (3.0470688343048096)
+Text #8:  for (0.45423635840415955)
+Text #8: <|endoftext|> (0.07391329109668732)
+Text #8: <|endoftext|> (0.07391761988401413)
+Text #8: <|endoftext|> (0.07395504415035248)
+Text #8: <|endoftext|> (0.0739457979798317)
+Text #8: <|endoftext|> (0.07395514845848083)
+Text #8: <|endoftext|> (0.07397458702325821)
+Text #8: <|endoftext|> (0.07392127066850662)
+Text #8: <|endoftext|> (0.07399427145719528)
+Text #8: <|endoftext|> (0.07398870587348938)
+Text #8: <|endoftext|> (0.07391675561666489)
+Text #9:  you (0.3139130175113678)
+Text #9: <|endoftext|> (0.08454784750938416)
+Text #9: <|endoftext|> (0.08380936831235886)
+Text #9: <|endoftext|> (0.08372876793146133)
+Text #9: <|endoftext|> (0.08382463455200195)
+Text #10:  on (1.4154534339904785)
+Text #10:  for (0.9562811255455017)
+Text #10:  work (0.2230142056941986)
+Text #10:  to (0.13459816575050354)
+Text #10:  with (0.22898414731025696)
+Text #10:  definitely (0.5864570736885071)
+Text #10: <|endoftext|> (0.09126357734203339)
+Text #10: <|endoftext|> (0.0912821814417839)
+Text #10: <|endoftext|> (0.09134113788604736)
+Text #10: <|endoftext|> (0.09140234440565109)
+Text #10: <|endoftext|> (0.09126770496368408)
+Text #10: <|endoftext|> (0.09145539999008179)
+Text #11:  on (1.4154534339904785)
+Text #11:  for (0.9562811255455017)
+Text #11:  work (0.2230142056941986)
+Text #11:  to (0.13459816575050354)
+Text #11:  with (0.22898414731025696)
+Text #11:  definitely (0.5864570736885071)
+Text #11: <|endoftext|> (0.09126357734203339)
+Text #11: <|endoftext|> (0.0912821814417839)
+Text #11: <|endoftext|> (0.09134113788604736)
+Text #11: <|endoftext|> (0.09140234440565109)
+Text #11: <|endoftext|> (0.09126770496368408)
+Text #11: <|endoftext|> (0.09145539999008179)
+Text #12: <|endoftext|> (0.089268259704113)
+Text #12: <|endoftext|> (0.08924514800310135)
+Text #12: <|endoftext|> (0.08928079158067703)
+Text #12: <|endoftext|> (0.08918211609125137)
+Text #12: <|endoftext|> (0.08926158398389816)
+Text #12: <|endoftext|> (0.08931728452444077)
+Text #13: , (0.4696595072746277)
+Text #13:  sponsoring (0.9089726209640503)
+Text #13:  by (1.8137465715408325)
+Text #13: <|endoftext|> (0.09815481305122375)
+Text #13: <|endoftext|> (0.09829931706190109)
+Text #13: <|endoftext|> (0.09827746450901031)
+Text #13: <|endoftext|> (0.09861785918474197)
+Text #13: <|endoftext|> (0.09896429628133774)
+Text #13: <|endoftext|> (0.09834747016429901)
+Text #14: <|endoftext|> (0.08268526941537857)
+Text #14: <|endoftext|> (0.08239465951919556)
+Text #14: <|endoftext|> (0.08242885023355484)
+Text #14: <|endoftext|> (0.08244039863348007)
+Text #14: <|endoftext|> (0.08250011503696442)
+Text #14: <|endoftext|> (0.08241050690412521)
+Text #14: <|endoftext|> (0.08241381496191025)
+Text #14: <|endoftext|> (0.08237995952367783)
+Text #14: <|endoftext|> (0.08240915089845657)
+Text #15: <|endoftext|> (0.08268526941537857)
+Text #15: <|endoftext|> (0.08239465951919556)
+Text #15: <|endoftext|> (0.08242885023355484)
+Text #15: <|endoftext|> (0.08244039863348007)
+Text #15: <|endoftext|> (0.08250011503696442)
+Text #15: <|endoftext|> (0.08241050690412521)
+Text #15: <|endoftext|> (0.08241381496191025)
+Text #15: <|endoftext|> (0.08237995952367783)
+Text #15: <|endoftext|> (0.08240915089845657)
+Text #16:  name (0.45521485805511475)
+Text #16: <|endoftext|> (0.09093201160430908)
+Text #16: <|endoftext|> (0.09022249281406403)
+Text #17:  by (0.29701468348503113)
+Text #17: <|endoftext|> (0.08852671831846237)
+Text #17: <|endoftext|> (0.08798359334468842)
+Text #17: <|endoftext|> (0.08803405612707138)
+Text #17: <|endoftext|> (0.08810528367757797)
+Text #17: <|endoftext|> (0.08819057047367096)
+Text #17: <|endoftext|> (0.08813365548849106)
+Text #17: <|endoftext|> (0.08816230297088623)
+Text #18: <|endoftext|> (0.09026917815208435)
+Text #19:  - (0.0902775451540947)
+Text #19: <|endoftext|> (0.07115034013986588)
+Text #19: <|endoftext|> (0.07119623571634293)
+Text #19: <|endoftext|> (0.07128468155860901)
+Text #19: <|endoftext|> (0.07135551422834396)
+Text #19: <|endoftext|> (0.07126565277576447)
+Text #19: <|endoftext|> (0.07124241441488266)
+Text #19: <|endoftext|> (0.07120492309331894)
+Text #19: <|endoftext|> (0.0711761936545372)
+Text #19: <|endoftext|> (0.07117238640785217)
+Text #20:  fun (0.3087191879749298)
+Text #20:  set (0.23901313543319702)
+Text #20: <|endoftext|> (0.09473132342100143)
+Text #20: <|endoftext|> (0.09487434476613998)
+
+=== Text #1 ===
+> Funding for scholarships is in accordance with Georgia’s unclaimed property laws[,] O.C[.G.A.] § 44-12[-]236. For more information, please contact Stacey Fields, Director of Public Relations, at 706-253-5287.[][]
+
+=== Text #2 ===
+> Nothing gay found in this area[ tagged] with Hoegaarden, sorry honey. Try a new search. Please add[ if] you know otherwise.[][][][]
+
+=== Text #3 ===
+> Welcome to S&F Electronics! It's 05:00 Sunday 21 April 2019. There are 71 clients connected.[][]
+
+=== Text #4 ===
+> Did Early Christians Have the Bible?
+7 New Testament Valentines for your Sweetie!
+Mormons in ConTEXT: What Happens in Mormon Temples?[][][][][][][][]
+
+=== Text #5 ===
+> Efun.top promotions on hundreds of vape products. Get cheapest vaping here.
+Don't forget to log in to get best price![]
+
+=== Text #6 ===
+> avosplumes.plectra-music.net is Expired or Suspended.
+「 avosplumes.plectra-music.net 」is Expired or Suspended. The WHOIS is here.[][][][][][][][][][][][][]
+
+=== Text #7 ===
+> Stitch can replicate data from all your sources (including Shippo) to a central warehouse. From there, it's easy to use Slemma to perform the in-depth analysis you need.
+Integrate Shippo and Slemma to turn your data into actionable insights.[][]
+
+=== Text #8 ===
+> Water Media Paper - 5x7" 11x17"
+Color Burst - Pthalo Green, Terra Verte, Fuchsia, Orchid, Yellow Ochre, Merlot.
+AWESOME cards! I love my Colorburst powders!
+would[ never] have[ thought of that] background behind the tree but seeing it makes me just love it!! And that frame is to die[ for]!![][][][][][][][][][]
+
+=== Text #9 ===
+> Businesses: Strategy sessions while sailing, intervision, personal training, etc.
+Ideal to combine with onshore activities.
+Please let us advice[ you], anything can be arranged.[][][][]
+
+=== Text #10 ===
+> Exclusively[ on] Fivesquid[ for] only 5pounds!
+I will create this amazing logo animation intro!
+This video intro is available in 3 versions, depends on your logo structure.
+The intro is delivered in HD resolution (1280x760).
+Music included, same as on the example.
+Final output is in a .mp4 format.
+Hi, great[ work] love it. Thank you Darko, looking forward[ to] working[ with] you again. Would[ definitely recommend]. David.[][][][][][]
+
+=== Text #11 ===
+> Exclusively[ on] Fivesquid[ for] only 5pounds!
+I will create this amazing logo animation intro!
+This video intro is available in 3 versions, depends on your logo structure.
+The intro is delivered in HD resolution (1280x760).
+Music included, same as on the example.
+Final output is in a .mp4 format.
+Hi, great[ work] love it. Thank you Darko, looking forward[ to] working[ with] you again. Would[ definitely recommend]. David.[][][][][][]
+
+=== Text #12 ===
+> On of the key elements for most cloud solutions and hosting environments is networking. In Azure, using the ARM deployment model, this lab will cover various topics regarding Azure Virtual Networks and how to use them. We will cover proper CIDR selection, region selection, and deploy new virtual networks.[][][][][][]
+
+=== Text #13 ===
+> If you are going to be at ISTE in Denver this year[,] come join coffeeEDU one morning. CoffeeEDU (coffeeEDU.org) is a ONE HOUR meet up of educators in the style of edcamp.
+While 6am may be early for some folks it is a great start to your day. This is a fun way to chat and connect with some awesome educators and have your morning coffee!
+Amazon Education is[ sponsoring the] coffeeEDU this year[ by supplying] donuts and coffee.[][][][][][]
+
+=== Text #14 ===
+> Vellamo is led by the performing and songwriting team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning concert will be in our chapel. Their music features ethereal Finnish folk with … read more.[][][][][][][][][]
+
+=== Text #15 ===
+> Vellamo is led by the performing and songwriting team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning concert will be in our chapel. Their music features ethereal Finnish folk with … read more.[][][][][][][][][]
+
+=== Text #16 ===
+> Please choose a security question What is your birth place? What is your pet's name? What is your mother's middle[ name]? What kind of person are you?[][]
+
+=== Text #17 ===
+> Almost every business is driven by technology and companies need skilled employees to fill their IT positions. You can embark on a new and exciting career in the computer and networking field[ by] completing the Network Administrator program at triOS College.
+Students will receive four certification exam vouchers including designations from Microsoft, CompTIA and Cisco.[][][][][][][]
+
+=== Text #18 ===
+> The Decorating Center in Olean, NY has been providing professional decorating services and quality products for over 7 years. We are a full service decorating center with a wide selection of decors and accessories for your home or business.
+We offer in-home and office consultations.[]
+
+=== Text #19 ===
+> Page 83[ -] Gallery Design of Interior | Tissustartares.com Green Glass Subway Tile. Lavender And Grey Bedroom. Tile For Shower Walls.[][][][][][][][][]
+
+=== Text #20 ===
+> Rent the Centre. Celebrations, Parties or just for[ fun].
+In order to provide a flavour of the Grenville House experience[ set] out below are a collection of images showing the range of activities and other aspects of a visit to the Centre.
+To open an album click on the chosen category image. Click on any image to enlarge it and finally to enable you to scroll through the selected album float the cursor over the end of the image to reveal the direction arrow.[][]
+
+
+Description: 
+2025-05-10 23:15:26,832 - root - INFO - Prepositions, punctuation, and the end-of-text token
+
+2025-05-10 23:15:26,836 - root - INFO - Cluster #1 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.csv
+2025-05-10 23:15:27,927 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-10 23:15:27,928 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: , (0.24089673161506653)
+Text #1: . (0.5401533246040344)
+Text #1: - (0.825894296169281)
+Text #1: <|endoftext|> (0.10432034730911255)
+Text #1: <|endoftext|> (0.10425123572349548)
+Text #2: <|endoftext|> (0.09774849563837051)
+Text #2: <|endoftext|> (0.09774963557720184)
+Text #2: <|endoftext|> (0.09785205870866776)
+Text #2: <|endoftext|> (0.09805609285831451)
+Text #2: <|endoftext|> (0.09807111322879791)
+Text #2: <|endoftext|> (0.09800170361995697)
+Text #2: <|endoftext|> (0.09772348403930664)
+Text #2: <|endoftext|> (0.09773265570402145)
+Text #2: <|endoftext|> (0.09772314131259918)
+Text #2: <|endoftext|> (0.09771396964788437)
+Text #2: <|endoftext|> (0.09772041440010071)
+Text #2: <|endoftext|> (0.0977962538599968)
+Text #2: <|endoftext|> (0.09774497896432877)
+Text #2: <|endoftext|> (0.09778139740228653)
+Text #2: <|endoftext|> (0.09771048277616501)
+Text #2: <|endoftext|> (0.0978512242436409)
+Text #3:  used (0.8204240202903748)
+Text #3:  to (0.24068357050418854)
+Text #3:  created (1.9292373657226562)
+Text #3: . (0.6733527183532715)
+Text #3:  of (0.24426068365573883)
+Text #3: <|endoftext|> (0.09936296194791794)
+Text #3: <|endoftext|> (0.09972381591796875)
+Text #3: <|endoftext|> (0.09935874491930008)
+Text #3: <|endoftext|> (0.09932661801576614)
+Text #3: <|endoftext|> (0.09942691028118134)
+Text #3: <|endoftext|> (0.09932231903076172)
+Text #4: <|endoftext|> (0.09168987721204758)
+Text #4: <|endoftext|> (0.09173370897769928)
+Text #4: <|endoftext|> (0.0916936919093132)
+Text #4: <|endoftext|> (0.09175030142068863)
+Text #4: <|endoftext|> (0.09173962473869324)
+Text #4: <|endoftext|> (0.091790571808815)
+Text #4: <|endoftext|> (0.09188585728406906)
+Text #4: <|endoftext|> (0.09195630997419357)
+Text #4: <|endoftext|> (0.09178604930639267)
+Text #4: <|endoftext|> (0.09169552475214005)
+Text #4: <|endoftext|> (0.0916714072227478)
+Text #4: <|endoftext|> (0.09175457060337067)
+Text #4: <|endoftext|> (0.09181754291057587)
+Text #5:  one (0.1227353885769844)
+Text #5: <|endoftext|> (0.09081169217824936)
+Text #5: <|endoftext|> (0.0905873104929924)
+Text #6:  better (0.7852689027786255)
+Text #6:  and (0.5229846239089966)
+Text #6:  than (2.5398457050323486)
+Text #6: <|endoftext|> (0.1038566306233406)
+Text #6: <|endoftext|> (0.10350564122200012)
+Text #6: <|endoftext|> (0.10346461087465286)
+Text #6: <|endoftext|> (0.10374794155359268)
+Text #6: <|endoftext|> (0.1037771925330162)
+Text #6: <|endoftext|> (0.10360758006572723)
+Text #7: <|endoftext|> (0.09656967967748642)
+Text #7: <|endoftext|> (0.09698937833309174)
+Text #8:  you (0.3139130175113678)
+Text #8: <|endoftext|> (0.08454784750938416)
+Text #8: <|endoftext|> (0.08380936831235886)
+Text #8: <|endoftext|> (0.08372876793146133)
+Text #8: <|endoftext|> (0.08382463455200195)
+Text #9:  on (1.4154534339904785)
+Text #9:  for (0.9562811255455017)
+Text #9:  work (0.2230142056941986)
+Text #9:  to (0.13459816575050354)
+Text #9:  with (0.22898414731025696)
+Text #9:  definitely (0.5864570736885071)
+Text #9: <|endoftext|> (0.09126357734203339)
+Text #9: <|endoftext|> (0.0912821814417839)
+Text #9: <|endoftext|> (0.09134113788604736)
+Text #9: <|endoftext|> (0.09140234440565109)
+Text #9: <|endoftext|> (0.09126770496368408)
+Text #9: <|endoftext|> (0.09145539999008179)
+Text #10:  on (1.4154534339904785)
+Text #10:  for (0.9562811255455017)
+Text #10:  work (0.2230142056941986)
+Text #10:  to (0.13459816575050354)
+Text #10:  with (0.22898414731025696)
+Text #10:  definitely (0.5864570736885071)
+Text #10: <|endoftext|> (0.09126357734203339)
+Text #10: <|endoftext|> (0.0912821814417839)
+Text #10: <|endoftext|> (0.09134113788604736)
+Text #10: <|endoftext|> (0.09140234440565109)
+Text #10: <|endoftext|> (0.09126770496368408)
+Text #10: <|endoftext|> (0.09145539999008179)
+Text #11: <|endoftext|> (0.09516413509845734)
+Text #11: <|endoftext|> (0.09310996532440186)
+Text #11: <|endoftext|> (0.09316094219684601)
+Text #12: / (0.5813268423080444)
+Text #12: / (0.2315140813589096)
+Text #12: <|endoftext|> (0.08382204920053482)
+Text #12: <|endoftext|> (0.08418325334787369)
+Text #12: <|endoftext|> (0.08393194526433945)
+Text #12: <|endoftext|> (0.08369536697864532)
+Text #12: <|endoftext|> (0.08401741087436676)
+Text #12: <|endoftext|> (0.0842207744717598)
+Text #12: <|endoftext|> (0.08364520221948624)
+Text #12: <|endoftext|> (0.08382219821214676)
+Text #12: <|endoftext|> (0.08366452157497406)
+Text #13: / (0.5813268423080444)
+Text #13: / (0.2315140813589096)
+Text #13: <|endoftext|> (0.08382204920053482)
+Text #13: <|endoftext|> (0.08418325334787369)
+Text #13: <|endoftext|> (0.08393194526433945)
+Text #13: <|endoftext|> (0.08369536697864532)
+Text #13: <|endoftext|> (0.08401741087436676)
+Text #13: <|endoftext|> (0.0842207744717598)
+Text #13: <|endoftext|> (0.08364520221948624)
+Text #13: <|endoftext|> (0.08382219821214676)
+Text #13: <|endoftext|> (0.08366452157497406)
+Text #14: <|endoftext|> (0.08385675400495529)
+Text #14: <|endoftext|> (0.08373164385557175)
+Text #14: <|endoftext|> (0.08399652689695358)
+Text #14: <|endoftext|> (0.08378787338733673)
+Text #14: <|endoftext|> (0.08388961106538773)
+Text #15:  bet (2.0548243522644043)
+Text #15: <|endoftext|> (0.07874715328216553)
+Text #15: <|endoftext|> (0.07879656553268433)
+Text #15: <|endoftext|> (0.07897231727838516)
+Text #15: <|endoftext|> (0.07887827605009079)
+Text #15: <|endoftext|> (0.07889112830162048)
+Text #15: <|endoftext|> (0.07884101569652557)
+Text #15: <|endoftext|> (0.07886999845504761)
+Text #15: <|endoftext|> (0.07893350720405579)
+Text #15: <|endoftext|> (0.07884418964385986)
+Text #16:  bet (2.0548243522644043)
+Text #16: <|endoftext|> (0.07874715328216553)
+Text #16: <|endoftext|> (0.07879656553268433)
+Text #16: <|endoftext|> (0.07897231727838516)
+Text #16: <|endoftext|> (0.07887827605009079)
+Text #16: <|endoftext|> (0.07889112830162048)
+Text #16: <|endoftext|> (0.07884101569652557)
+Text #16: <|endoftext|> (0.07886999845504761)
+Text #16: <|endoftext|> (0.07893350720405579)
+Text #16: <|endoftext|> (0.07884418964385986)
+Text #17: <|endoftext|> (0.08457513898611069)
+Text #18: <|endoftext|> (0.09133189171552658)
+Text #18: <|endoftext|> (0.09123195707798004)
+Text #18: <|endoftext|> (0.09085713326931)
+Text #18: <|endoftext|> (0.09106945246458054)
+Text #19: <|endoftext|> (0.09133189171552658)
+Text #19: <|endoftext|> (0.09123195707798004)
+Text #19: <|endoftext|> (0.09085713326931)
+Text #19: <|endoftext|> (0.09106945246458054)
+Text #20:  but (0.15022800862789154)
+Text #20:  the (0.14742004871368408)
+Text #20:  is (0.5117236375808716)
+Text #20:  to (0.2804756164550781)
+Text #20:  by (1.1505773067474365)
+Text #20:  choice (0.13390925526618958)
+Text #20:  name (0.1961335390806198)
+Text #20: <|endoftext|> (0.09330087155103683)
+Text #20: <|endoftext|> (0.0937502309679985)
+Text #20: <|endoftext|> (0.09313029050827026)
+
+=== Text #1 ===
+> Funding for scholarships is in accordance with Georgia’s unclaimed property laws[,] O.C[.G.A.] § 44-12[-]236. For more information, please contact Stacey Fields, Director of Public Relations, at 706-253-5287.[][]
+
+=== Text #2 ===
+> Needs a rebuild. Hard to find. $100 USD. Located in Ottawa, Canada. Will ship.[][][][][][][][][][][][][][][][]
+
+=== Text #3 ===
+> This is a placeholder page for Donald Sawyer, which means this person is not currently on this site. We do suggest using the tools below to find Donald Sawyer.
+You are visiting the placeholder page for Donald Sawyer. This page is here because someone[ used] our placeholder utility[ to] look for Donald Sawyer. We[ created this page automatically in hopes] Donald Sawyer would find it[.] If you are not Donald Sawyer, but are an alumni[ of] Itasca High School, register on this site for free now.[][][][][][]
+
+=== Text #4 ===
+> avosplumes.plectra-music.net is Expired or Suspended.
+「 avosplumes.plectra-music.net 」is Expired or Suspended. The WHOIS is here.[][][][][][][][][][][][][]
+
+=== Text #5 ===
+> It's the food. And it's more than the food.
+Home > Posts tagged "Blasey Kavanaugh hearing"
+Every board of directors has[ one]….[][]
+
+=== Text #6 ===
+> Celebrate all the moms in your life with official MLB Mother's Day Gear apparel and say thanks for all the great things mothers do. We have authentic gear for all 30 MLB teams including pink caps, t-shirts, accessories and more. Shop the best brands for mom, such as DKNY Sport, Keds and Dooney & Bourke, as well as Luca & Danni and Alex Woo jewelry. What[ better way to] celebrate baseball[ and] family[ than] with official Mother's Day gear for her favorite team? Rely on MLB.com Shop for all the best apparel you'll find online.[][][][][][]
+
+=== Text #7 ===
+> Homer is back and is crazier than ever. He continues his killing spree in this Simpsons crazed shooting game. You get to kill the whole gang in this game, Bart, Lisa, Marge, Ned Flanders, Rod Flanders, Tod Flanders, Police Chief Wiggum, Barney, Moe, Dr Nick Riviera, and many more.[][]
+
+=== Text #8 ===
+> Businesses: Strategy sessions while sailing, intervision, personal training, etc.
+Ideal to combine with onshore activities.
+Please let us advice[ you], anything can be arranged.[][][][]
+
+=== Text #9 ===
+> Exclusively[ on] Fivesquid[ for] only 5pounds!
+I will create this amazing logo animation intro!
+This video intro is available in 3 versions, depends on your logo structure.
+The intro is delivered in HD resolution (1280x760).
+Music included, same as on the example.
+Final output is in a .mp4 format.
+Hi, great[ work] love it. Thank you Darko, looking forward[ to] working[ with] you again. Would[ definitely recommend]. David.[][][][][][]
+
+=== Text #10 ===
+> Exclusively[ on] Fivesquid[ for] only 5pounds!
+I will create this amazing logo animation intro!
+This video intro is available in 3 versions, depends on your logo structure.
+The intro is delivered in HD resolution (1280x760).
+Music included, same as on the example.
+Final output is in a .mp4 format.
+Hi, great[ work] love it. Thank you Darko, looking forward[ to] working[ with] you again. Would[ definitely recommend]. David.[][][][][][]
+
+=== Text #11 ===
+> Need to make a doctor appointment for Tetralogy of Fallot (TOF) this week? Use Zocdoc to find doctors near you who take your insurance. It’s simple, secure and free.[][][]
+
+=== Text #12 ===
+> Jewish Women's Archive. "Lesson Plans." (Viewed on April 22, 2019) <https://jwa.org[/]teach[/]lessonplans>.[][][][][][][][][]
+
+=== Text #13 ===
+> Jewish Women's Archive. "Lesson Plans." (Viewed on April 22, 2019) <https://jwa.org[/]teach[/]lessonplans>.[][][][][][][][][]
+
+=== Text #14 ===
+> I and my friend's family went hiking!! At night, we visited Victoria Peak and saw the most beautiful night view of Hongkong!![][][][][]
+
+=== Text #15 ===
+> Light machining capabilities? You[ bet]. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[][][][][][][][][]
+
+=== Text #16 ===
+> Light machining capabilities? You[ bet]. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[][][][][][][][][]
+
+=== Text #17 ===
+> Rachel McAdams Widescreen karatasi la kupamba ukuta. Made from image found at: Bellazon.com. HD Wallpaper and background images in the Rachel McAdams club tagged: rachel mcadams wallpaper widescreen desktop.[]
+
+=== Text #18 ===
+> Last week, Madonna’s MDNA tour played three dates in Italy.
+Footage from the last day of filming has surfaced, showing Madonna being driven through the streets of Florence.
+Next week, the MDNA tour plays three shows in Germany, including two dates at Berlin’s O2 Arena.[][][][]
+
+=== Text #19 ===
+> Last week, Madonna’s MDNA tour played three dates in Italy.
+Footage from the last day of filming has surfaced, showing Madonna being driven through the streets of Florence.
+Next week, the MDNA tour plays three shows in Germany, including two dates at Berlin’s O2 Arena.[][][][]
+
+=== Text #20 ===
+> Trying to find a way to say "thank you" to someone special?
+Need a gift for someone who has everything?
+Want to celebrate a speical occassion[ but unsure] what type of gift is best?
+Your gift to[ the] Foundation[ is] a great way[ to] honor someone[ by] giving to the fund of your[ choice] in that person's[ name].[][][]
+
+
+Description: 
+2025-05-10 23:15:27,929 - root - INFO - Emphasis, affirmation, or contrast related to choices, actions, or descriptions
+
+2025-05-10 23:15:27,934 - root - INFO - Cluster #2 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.csv
+2025-05-10 23:15:28,861 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-10 23:15:28,861 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: <|endoftext|> (0.09774849563837051)
+Text #1: <|endoftext|> (0.09774963557720184)
+Text #1: <|endoftext|> (0.09785205870866776)
+Text #1: <|endoftext|> (0.09805609285831451)
+Text #1: <|endoftext|> (0.09807111322879791)
+Text #1: <|endoftext|> (0.09800170361995697)
+Text #1: <|endoftext|> (0.09772348403930664)
+Text #1: <|endoftext|> (0.09773265570402145)
+Text #1: <|endoftext|> (0.09772314131259918)
+Text #1: <|endoftext|> (0.09771396964788437)
+Text #1: <|endoftext|> (0.09772041440010071)
+Text #1: <|endoftext|> (0.0977962538599968)
+Text #1: <|endoftext|> (0.09774497896432877)
+Text #1: <|endoftext|> (0.09778139740228653)
+Text #1: <|endoftext|> (0.09771048277616501)
+Text #1: <|endoftext|> (0.0978512242436409)
+Text #2: <|endoftext|> (0.09998569637537003)
+Text #2: <|endoftext|> (0.09807198494672775)
+Text #2: <|endoftext|> (0.0979381650686264)
+Text #2: <|endoftext|> (0.09782741963863373)
+Text #2: <|endoftext|> (0.09842138737440109)
+Text #2: <|endoftext|> (0.09814214706420898)
+Text #2: <|endoftext|> (0.09788019210100174)
+Text #2: <|endoftext|> (0.09817218780517578)
+Text #3: , (0.22726339101791382)
+Text #3:  posted (0.1399436593055725)
+Text #3:  interview (0.12802976369857788)
+Text #3:  but (0.2056974470615387)
+Text #3: ! (1.1003676652908325)
+Text #3:  to (0.1135687455534935)
+Text #3:  rarely (0.5394210815429688)
+Text #3:  I (0.09935710579156876)
+Text #3:  this (0.3079594075679779)
+Text #3: 't (1.2922303676605225)
+Text #3: <|endoftext|> (0.09292571991682053)
+Text #3: <|endoftext|> (0.0929328128695488)
+Text #3: <|endoftext|> (0.09302422404289246)
+Text #3: <|endoftext|> (0.09308818727731705)
+Text #3: <|endoftext|> (0.09302670508623123)
+Text #3: <|endoftext|> (0.09295079857110977)
+Text #3: <|endoftext|> (0.0930241122841835)
+Text #3: <|endoftext|> (0.09297266602516174)
+Text #3: <|endoftext|> (0.0931520089507103)
+Text #3: <|endoftext|> (0.0931289866566658)
+Text #4:  course (0.34624403715133667)
+Text #4:  for (0.21706260740756989)
+Text #4: <|endoftext|> (0.09963411092758179)
+Text #4: <|endoftext|> (0.09966342896223068)
+Text #4: <|endoftext|> (0.09982258826494217)
+Text #4: <|endoftext|> (0.09960029274225235)
+Text #4: <|endoftext|> (0.09961391240358353)
+Text #4: <|endoftext|> (0.09970197081565857)
+Text #4: <|endoftext|> (0.09961140155792236)
+Text #4: <|endoftext|> (0.0996180921792984)
+Text #4: <|endoftext|> (0.09970673173666)
+Text #4: <|endoftext|> (0.0996156632900238)
+Text #4: <|endoftext|> (0.09966358542442322)
+Text #4: <|endoftext|> (0.09962170571088791)
+Text #4: <|endoftext|> (0.0997118279337883)
+Text #4: <|endoftext|> (0.09962904453277588)
+Text #5: , (0.15093818306922913)
+Text #5:  2 (0.21996350586414337)
+Text #5: <|endoftext|> (0.09779561311006546)
+Text #5: <|endoftext|> (0.09806637465953827)
+Text #6: . (0.1678970754146576)
+Text #6: <|endoftext|> (0.08807846903800964)
+Text #6: <|endoftext|> (0.08820579200983047)
+Text #6: <|endoftext|> (0.08798355609178543)
+Text #7:  to (0.22086480259895325)
+Text #7: <|endoftext|> (0.09688489884138107)
+Text #7: <|endoftext|> (0.09493466466665268)
+Text #8: <|endoftext|> (0.09330515563488007)
+Text #8: <|endoftext|> (0.09196867793798447)
+Text #9:  on (1.4154534339904785)
+Text #9:  for (0.9562811255455017)
+Text #9:  work (0.2230142056941986)
+Text #9:  to (0.13459816575050354)
+Text #9:  with (0.22898414731025696)
+Text #9:  definitely (0.5864570736885071)
+Text #9: <|endoftext|> (0.09126357734203339)
+Text #9: <|endoftext|> (0.0912821814417839)
+Text #9: <|endoftext|> (0.09134113788604736)
+Text #9: <|endoftext|> (0.09140234440565109)
+Text #9: <|endoftext|> (0.09126770496368408)
+Text #9: <|endoftext|> (0.09145539999008179)
+Text #10:  bet (2.0548243522644043)
+Text #10: <|endoftext|> (0.07874715328216553)
+Text #10: <|endoftext|> (0.07879656553268433)
+Text #10: <|endoftext|> (0.07897231727838516)
+Text #10: <|endoftext|> (0.07887827605009079)
+Text #10: <|endoftext|> (0.07889112830162048)
+Text #10: <|endoftext|> (0.07884101569652557)
+Text #10: <|endoftext|> (0.07886999845504761)
+Text #10: <|endoftext|> (0.07893350720405579)
+Text #10: <|endoftext|> (0.07884418964385986)
+Text #11: , (0.4696595072746277)
+Text #11:  sponsoring (0.9089726209640503)
+Text #11:  by (1.8137465715408325)
+Text #11: <|endoftext|> (0.09815481305122375)
+Text #11: <|endoftext|> (0.09829931706190109)
+Text #11: <|endoftext|> (0.09827746450901031)
+Text #11: <|endoftext|> (0.09861785918474197)
+Text #11: <|endoftext|> (0.09896429628133774)
+Text #11: <|endoftext|> (0.09834747016429901)
+Text #12:  but (0.15022800862789154)
+Text #12:  the (0.14742004871368408)
+Text #12:  is (0.5117236375808716)
+Text #12:  to (0.2804756164550781)
+Text #12:  by (1.1505773067474365)
+Text #12:  choice (0.13390925526618958)
+Text #12:  name (0.1961335390806198)
+Text #12: <|endoftext|> (0.09330087155103683)
+Text #12: <|endoftext|> (0.0937502309679985)
+Text #12: <|endoftext|> (0.09313029050827026)
+Text #13: <|endoftext|> (0.08268526941537857)
+Text #13: <|endoftext|> (0.08239465951919556)
+Text #13: <|endoftext|> (0.08242885023355484)
+Text #13: <|endoftext|> (0.08244039863348007)
+Text #13: <|endoftext|> (0.08250011503696442)
+Text #13: <|endoftext|> (0.08241050690412521)
+Text #13: <|endoftext|> (0.08241381496191025)
+Text #13: <|endoftext|> (0.08237995952367783)
+Text #13: <|endoftext|> (0.08240915089845657)
+Text #14: . (0.594752311706543)
+Text #14:  & (0.5413094758987427)
+Text #14:  and (0.25771310925483704)
+Text #14: <|endoftext|> (0.1001761332154274)
+Text #14: <|endoftext|> (0.10045421123504639)
+Text #14: <|endoftext|> (0.10000887513160706)
+Text #14: <|endoftext|> (0.10008684545755386)
+Text #14: <|endoftext|> (0.10034309327602386)
+Text #14: <|endoftext|> (0.10021273046731949)
+Text #14: <|endoftext|> (0.10025129467248917)
+Text #14: <|endoftext|> (0.10014540702104568)
+Text #14: <|endoftext|> (0.10018127411603928)
+Text #15:  ( (0.13851386308670044)
+Text #15: <|endoftext|> (0.08988326787948608)
+Text #15: <|endoftext|> (0.09049574285745621)
+Text #15: <|endoftext|> (0.09003950655460358)
+Text #15: <|endoftext|> (0.08995352685451508)
+Text #16: , (0.5212258696556091)
+Text #16: <|endoftext|> (0.08285172283649445)
+Text #17: <|endoftext|> (0.09506390243768692)
+Text #17: <|endoftext|> (0.09452419728040695)
+Text #17: <|endoftext|> (0.09521625936031342)
+Text #18:  and (0.17423386871814728)
+Text #18:  pride (0.13286390900611877)
+Text #18:  want (0.13468419015407562)
+Text #18:  wanted (0.8279669284820557)
+Text #18:  and (0.1634640395641327)
+Text #18:  decided (2.3575022220611572)
+Text #18: . (0.17819982767105103)
+Text #18: <|endoftext|> (0.08156974613666534)
+Text #18: <|endoftext|> (0.08204760402441025)
+Text #18: <|endoftext|> (0.08153363317251205)
+Text #18: <|endoftext|> (0.08152970671653748)
+Text #18: <|endoftext|> (0.08155219256877899)
+Text #19: <|endoftext|> (0.07699260860681534)
+Text #19: <|endoftext|> (0.07705441862344742)
+Text #19: <|endoftext|> (0.07702004909515381)
+Text #19: <|endoftext|> (0.07719077914953232)
+Text #19: <|endoftext|> (0.07708532363176346)
+Text #19: <|endoftext|> (0.07705838233232498)
+Text #19: <|endoftext|> (0.07703510671854019)
+Text #19: <|endoftext|> (0.0771564170718193)
+Text #19: <|endoftext|> (0.07701300084590912)
+Text #19: <|endoftext|> (0.07698889821767807)
+Text #19: <|endoftext|> (0.07695639878511429)
+Text #19: <|endoftext|> (0.07696344703435898)
+Text #19: <|endoftext|> (0.07700086385011673)
+Text #19: <|endoftext|> (0.07700256258249283)
+Text #19: <|endoftext|> (0.07695130258798599)
+Text #19: <|endoftext|> (0.07695981860160828)
+Text #20:  thought (0.2292231023311615)
+Text #20: <|endoftext|> (0.07691604644060135)
+Text #20: <|endoftext|> (0.07680799067020416)
+
+=== Text #1 ===
+> Needs a rebuild. Hard to find. $100 USD. Located in Ottawa, Canada. Will ship.[][][][][][][][][][][][][][][][]
+
+=== Text #2 ===
+> Did Early Christians Have the Bible?
+7 New Testament Valentines for your Sweetie!
+Mormons in ConTEXT: What Happens in Mormon Temples?[][][][][][][][]
+
+=== Text #3 ===
+> In case you don't check NPR on a regular basis[,] they[ posted] an[ interview] + live performance from The Weepies on World Cafe.
+Obviously this is for anyone,[ but] Katrina's love affair is well documented.
+Cool[!] I subscribe[ to] a few NPR podcasts, but[ rarely] check their website. Thanks,[ I] would have missed[ this if you] hadn['t posted]![][][][][][][][][][]
+
+=== Text #4 ===
+> new neighbors, new challenges and, of[ course], new romances, the sisters must depend on one another to navigate the City of Angels.
+Cierra Ramirez, Jennifer Lopez, Elaine Goldsmith-Thomas and Benny Medina.
+Are you watching Good Trouble? Excited[ for] season two? Sound off in the comments![][][][][][][][][][][][][][]
+
+=== Text #5 ===
+> This entry was posted on Wednesday, May 15th[,] 2013 at 9:10 am	and is filed under events, Uncategorized. You can follow any responses to this entry through the RSS[ 2].0 feed. Both comments and pings are currently closed.[][]
+
+=== Text #6 ===
+> Sq[.] Ft. Above Ground. 2,218 Sq. Ft. Below Ground.
+I am interested in 7702 S 775 E, Zionsville, IN 46077.[][][]
+
+=== Text #7 ===
+> SCU Middletown makes it easy for you to get a quote online. Find the quote you're interested in, and click the link[ to] get started. It's that easy![][]
+
+=== Text #8 ===
+> Stitch can replicate data from all your sources (including Shippo) to a central warehouse. From there, it's easy to use Slemma to perform the in-depth analysis you need.
+Integrate Shippo and Slemma to turn your data into actionable insights.[][]
+
+=== Text #9 ===
+> Exclusively[ on] Fivesquid[ for] only 5pounds!
+I will create this amazing logo animation intro!
+This video intro is available in 3 versions, depends on your logo structure.
+The intro is delivered in HD resolution (1280x760).
+Music included, same as on the example.
+Final output is in a .mp4 format.
+Hi, great[ work] love it. Thank you Darko, looking forward[ to] working[ with] you again. Would[ definitely recommend]. David.[][][][][][]
+
+=== Text #10 ===
+> Light machining capabilities? You[ bet]. Northern Metal Products’ cnc lathe and cnc vertical milling machines will no doubt assist you in lead time reduction.[][][][][][][][][]
+
+=== Text #11 ===
+> If you are going to be at ISTE in Denver this year[,] come join coffeeEDU one morning. CoffeeEDU (coffeeEDU.org) is a ONE HOUR meet up of educators in the style of edcamp.
+While 6am may be early for some folks it is a great start to your day. This is a fun way to chat and connect with some awesome educators and have your morning coffee!
+Amazon Education is[ sponsoring the] coffeeEDU this year[ by supplying] donuts and coffee.[][][][][][]
+
+=== Text #12 ===
+> Trying to find a way to say "thank you" to someone special?
+Need a gift for someone who has everything?
+Want to celebrate a speical occassion[ but unsure] what type of gift is best?
+Your gift to[ the] Foundation[ is] a great way[ to] honor someone[ by] giving to the fund of your[ choice] in that person's[ name].[][][]
+
+=== Text #13 ===
+> Vellamo is led by the performing and songwriting team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning concert will be in our chapel. Their music features ethereal Finnish folk with … read more.[][][][][][][][][]
+
+=== Text #14 ===
+> Hulen R. Loyd, Sept. 27, 1884 - Aug. 30, 1959. Margaret F. Loyd, Aug., 24, 1878 - Mar. 14, 1934. Hulen R. Loyd was a son of James S[.] Loyd[ &] Nancy or Martha Wilkerson. He married Margaret Finley McIntosh on Sept. 5, 1902 in Callaway Co., Missouri. She was a daughter of William McIntosh[ and] Emma Finley.[][][][][][][][][]
+
+=== Text #15 ===
+> Stefi has degrees in medical history (UC Berkeley) and international public health[ (]UCLA). In 2010 she co-founded the Sustainable Healthcare Education network to integrate sustainability and health into medical and nursing education. She led public health teaching at Norwich Medical School, global public health at Azim Premji University in Bangalore, and violence prevention for the Medical Peace Work Partnership at the University of Bergen, Norway.[][][][]
+
+=== Text #16 ===
+> Oh, yes[,] make me cry.
+Oh, now you're making me cry.
+Don't make me sleep again.
+Oh, don't cry for me, Benjamina.
+Oh, I think I'm gonna start crying again.[]
+
+=== Text #17 ===
+> View alumni that have participated in Mendota High School Basketball. If you participated in Basketball while at Mendota HS, register now and add your name to the list with a message to your old friends.
+Looking for Mendota alumni who participated in Basketball but are not listed? Classmates.com® has hundreds of more Mendota alumni listed.[][][]
+
+=== Text #18 ===
+> Getting a medalion for doing well on the MSA test is both a great award[ and] a great incentive. The children receiving the medalion wear it with[ pride] and those seeing the award definitely[ want] to earn one. The medalions were such a success last year, that we[ wanted] to use them again this year;[ and] have[ decided to] make the presentation of this prestigious looking award part of our MSA program[.][][][][][]
+
+=== Text #19 ===
+> Explore the High Country & Follow the Shotover to pristine Lochnagar. Explore the High Country & Follow the Shotover to pristine Lochnagar.
+experience part of the natural beauty of New Zealand and its secluded backcountry.[][][][][][][][][][][][][][][][]
+
+=== Text #20 ===
+> It is a beautiful home. A rose blooms in my garden now.
+Thank you! I[ thought so], my Dad cooks with it.
+Do you cook the curry for how many people?[][]
+
+
+Description: 
+2025-05-10 23:15:28,863 - root - INFO - Emphasis or additional information
+
+2025-05-10 23:15:28,867 - root - INFO - Cluster #3 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.csv
+2025-05-10 23:15:30,204 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-10 23:15:30,205 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  closely (0.4063464403152466)
+Text #1:  Requ (0.13910284638404846)
+Text #1:  to (0.3525775671005249)
+Text #1:  page (0.1420561522245407)
+Text #1: <|endoftext|> (0.114080049097538)
+Text #1: <|endoftext|> (0.11413490772247314)
+Text #2:  closely (0.4063464403152466)
+Text #2:  Requ (0.13910284638404846)
+Text #2:  to (0.3525775671005249)
+Text #2:  page (0.1420561522245407)
+Text #2: <|endoftext|> (0.114080049097538)
+Text #2: <|endoftext|> (0.11413490772247314)
+Text #3:  tagged (0.11652481555938721)
+Text #3:  if (0.20713049173355103)
+Text #3: <|endoftext|> (0.10032149404287338)
+Text #3: <|endoftext|> (0.09789975732564926)
+Text #3: <|endoftext|> (0.0978974774479866)
+Text #3: <|endoftext|> (0.09818379580974579)
+Text #4: <|endoftext|> (0.09722930938005447)
+Text #5:  used (0.8204240202903748)
+Text #5:  to (0.24068357050418854)
+Text #5:  created (1.9292373657226562)
+Text #5: . (0.6733527183532715)
+Text #5:  of (0.24426068365573883)
+Text #5: <|endoftext|> (0.09936296194791794)
+Text #5: <|endoftext|> (0.09972381591796875)
+Text #5: <|endoftext|> (0.09935874491930008)
+Text #5: <|endoftext|> (0.09932661801576614)
+Text #5: <|endoftext|> (0.09942691028118134)
+Text #5: <|endoftext|> (0.09932231903076172)
+Text #6: <|endoftext|> (0.0968460813164711)
+Text #6: <|endoftext|> (0.0963694378733635)
+Text #6: <|endoftext|> (0.09638150036334991)
+Text #7: <|endoftext|> (0.07936619967222214)
+Text #7: <|endoftext|> (0.0776611790060997)
+Text #7: <|endoftext|> (0.07748449593782425)
+Text #7: <|endoftext|> (0.07754917442798615)
+Text #7: <|endoftext|> (0.07758145779371262)
+Text #7: <|endoftext|> (0.07759186625480652)
+Text #7: <|endoftext|> (0.07757771760225296)
+Text #7: <|endoftext|> (0.07755885273218155)
+Text #7: <|endoftext|> (0.07748555392026901)
+Text #7: <|endoftext|> (0.07749100774526596)
+Text #7: <|endoftext|> (0.07750073075294495)
+Text #8:  to (0.3845674395561218)
+Text #8:  happy (0.8346570134162903)
+Text #8:  you (0.43662047386169434)
+Text #8: <|endoftext|> (0.09596923738718033)
+Text #8: <|endoftext|> (0.0942058116197586)
+Text #8: <|endoftext|> (0.09449446946382523)
+Text #9: <|endoftext|> (0.09133189171552658)
+Text #9: <|endoftext|> (0.09123195707798004)
+Text #9: <|endoftext|> (0.09085713326931)
+Text #9: <|endoftext|> (0.09106945246458054)
+Text #10: <|endoftext|> (0.08347737044095993)
+Text #10: <|endoftext|> (0.08346020430326462)
+Text #11: <|endoftext|> (0.07761196047067642)
+Text #11: <|endoftext|> (0.07772380858659744)
+Text #11: <|endoftext|> (0.07771142572164536)
+Text #11: <|endoftext|> (0.07805635780096054)
+Text #11: <|endoftext|> (0.07771346718072891)
+Text #11: <|endoftext|> (0.07785844057798386)
+Text #11: <|endoftext|> (0.07767993211746216)
+Text #12: <|endoftext|> (0.07761196047067642)
+Text #12: <|endoftext|> (0.07772380858659744)
+Text #12: <|endoftext|> (0.07771142572164536)
+Text #12: <|endoftext|> (0.07805635780096054)
+Text #12: <|endoftext|> (0.07771346718072891)
+Text #12: <|endoftext|> (0.07785844057798386)
+Text #12: <|endoftext|> (0.07767993211746216)
+Text #13: <|endoftext|> (0.09333975613117218)
+Text #13: <|endoftext|> (0.0916241705417633)
+Text #14: <|endoftext|> (0.074038065969944)
+Text #14: <|endoftext|> (0.07435382902622223)
+Text #14: <|endoftext|> (0.07405973970890045)
+Text #14: <|endoftext|> (0.07401692122220993)
+Text #14: <|endoftext|> (0.07407335937023163)
+Text #15: <|endoftext|> (0.07391364872455597)
+Text #15: <|endoftext|> (0.07398831099271774)
+Text #15: <|endoftext|> (0.07395573705434799)
+Text #15: <|endoftext|> (0.07399792224168777)
+Text #15: <|endoftext|> (0.07391473650932312)
+Text #15: <|endoftext|> (0.07399362325668335)
+Text #15: <|endoftext|> (0.07401736080646515)
+Text #15: <|endoftext|> (0.0739162489771843)
+Text #15: <|endoftext|> (0.07398585975170135)
+Text #15: <|endoftext|> (0.07399904727935791)
+Text #15: <|endoftext|> (0.07390757650136948)
+Text #15: <|endoftext|> (0.07401884347200394)
+Text #15: <|endoftext|> (0.07398903369903564)
+Text #15: <|endoftext|> (0.07404272258281708)
+Text #15: <|endoftext|> (0.07398758828639984)
+Text #15: <|endoftext|> (0.07405327260494232)
+Text #15: <|endoftext|> (0.0740634948015213)
+Text #16: . (1.696927785873413)
+Text #16:  if (1.3357511758804321)
+Text #16: <|endoftext|> (0.08845304697751999)
+Text #16: <|endoftext|> (0.08836495876312256)
+Text #16: <|endoftext|> (0.08838527649641037)
+Text #16: <|endoftext|> (0.08864633738994598)
+Text #16: <|endoftext|> (0.08835026621818542)
+Text #16: <|endoftext|> (0.08849593251943588)
+Text #16: <|endoftext|> (0.08854010701179504)
+Text #16: <|endoftext|> (0.08829616010189056)
+Text #17: <|endoftext|> (0.06671633571386337)
+Text #17: <|endoftext|> (0.06719037890434265)
+Text #17: <|endoftext|> (0.06682402640581131)
+Text #17: <|endoftext|> (0.06649848818778992)
+Text #17: <|endoftext|> (0.06639517843723297)
+Text #17: <|endoftext|> (0.06643401086330414)
+Text #17: <|endoftext|> (0.06644133478403091)
+Text #17: <|endoftext|> (0.06650526821613312)
+Text #17: <|endoftext|> (0.06646692752838135)
+Text #17: <|endoftext|> (0.06658297777175903)
+Text #17: <|endoftext|> (0.06657028943300247)
+Text #17: <|endoftext|> (0.06640185415744781)
+Text #17: <|endoftext|> (0.06639361381530762)
+Text #17: <|endoftext|> (0.06642158329486847)
+Text #18:  loan (0.9761467576026917)
+Text #18:  collection (1.0509026050567627)
+Text #18: <|endoftext|> (0.08649516105651855)
+Text #18: <|endoftext|> (0.08597221225500107)
+Text #18: <|endoftext|> (0.08592766523361206)
+Text #18: <|endoftext|> (0.08603377640247345)
+Text #18: <|endoftext|> (0.08594018965959549)
+Text #18: <|endoftext|> (0.08603285253047943)
+Text #18: <|endoftext|> (0.08631764352321625)
+Text #18: <|endoftext|> (0.08597563207149506)
+Text #19: <|endoftext|> (0.07399918884038925)
+Text #19: <|endoftext|> (0.07361442595720291)
+Text #19: <|endoftext|> (0.07353325188159943)
+Text #19: <|endoftext|> (0.07374027371406555)
+Text #19: <|endoftext|> (0.07383805513381958)
+Text #20: <|endoftext|> (0.07739858329296112)
+Text #20: <|endoftext|> (0.07742667198181152)
+Text #20: <|endoftext|> (0.07747620344161987)
+Text #20: <|endoftext|> (0.07731431722640991)
+Text #20: <|endoftext|> (0.07751531898975372)
+Text #20: <|endoftext|> (0.07738006114959717)
+Text #20: <|endoftext|> (0.07748391479253769)
+Text #20: <|endoftext|> (0.07746750116348267)
+
+=== Text #1 ===
+> The Alliance de l’industrie touristique du Québec works[ closely with] the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments?[ Requ]ests? We will be happy[ to] answer you!
+You can also check the Team[ page] to contact a specific person.[][]
+
+=== Text #2 ===
+> The Alliance de l’industrie touristique du Québec works[ closely with] the tourism community to ensure that Quebec remains a major and competitive destination. Questions? Comments?[ Requ]ests? We will be happy[ to] answer you!
+You can also check the Team[ page] to contact a specific person.[][]
+
+=== Text #3 ===
+> Nothing gay found in this area[ tagged] with Hoegaarden, sorry honey. Try a new search. Please add[ if] you know otherwise.[][][][]
+
+=== Text #4 ===
+> Wind River opens in theaters August 4, 2017, courtesy of The Weinstein Company. Top image photographed by Sandro Baebler. This article appears in MovieMaker‘s Summer 2017 issue.[]
+
+=== Text #5 ===
+> This is a placeholder page for Donald Sawyer, which means this person is not currently on this site. We do suggest using the tools below to find Donald Sawyer.
+You are visiting the placeholder page for Donald Sawyer. This page is here because someone[ used] our placeholder utility[ to] look for Donald Sawyer. We[ created this page automatically in hopes] Donald Sawyer would find it[.] If you are not Donald Sawyer, but are an alumni[ of] Itasca High School, register on this site for free now.[][][][][][]
+
+=== Text #6 ===
+> Notaries in Bridgeton, MO are listed below. Use the filters to search for specific criteria.
+I am a former loan officer and title officer, with 12 years experience in the mortgage closing industry.
+Im certified notary and have been for over 12 years. Have experience with legal & mortgage documents, etc.[][][]
+
+=== Text #7 ===
+> DIY Co Sleeper For Baby. Great Idea!![][][][][][][][][][][]
+
+=== Text #8 ===
+> Contact us by email, call or whatsapp, we'll be happy[ to] assist you!
+If you are enquiring about our wedding and event planning services please either use the enquiry form opposite, or email or telephone or whatsapp us on the numbers above. We will be more than[ happy to] assit[ you].[][][]
+
+=== Text #9 ===
+> Last week, Madonna’s MDNA tour played three dates in Italy.
+Footage from the last day of filming has surfaced, showing Madonna being driven through the streets of Florence.
+Next week, the MDNA tour plays three shows in Germany, including two dates at Berlin’s O2 Arena.[][][][]
+
+=== Text #10 ===
+> Anyone else have actual experience?
+are these UFOs over China??
+What makes you likely to be abducted by aliens?
+What do you know about black magic ?
+Are the ghosts real or unreal?
+Ladies, what do you do if you're picked up by a bird?[][]
+
+=== Text #11 ===
+> Whether on the beach or on a court. Volleyball trophies recognize your team members and celebrates that victorious win.
+An Elegant Diamond Volleyball Sport Award that can be a Desk Accessory, Mounted on a Plaque or on a Wall.[][][][][][][]
+
+=== Text #12 ===
+> Whether on the beach or on a court. Volleyball trophies recognize your team members and celebrates that victorious win.
+An Elegant Diamond Volleyball Sport Award that can be a Desk Accessory, Mounted on a Plaque or on a Wall.[][][][][][][]
+
+=== Text #13 ===
+> If you are interested in knowing more about New Life Community Church or becoming a member, we invite you to join us April 15 at 10:30am in the Meeting Room for our Starting Points class. This class will provide a deeper look at our beliefs, our history, and our ministries.
+You can sign-up at the Welcome Desk or by filling out the form below.[][]
+
+=== Text #14 ===
+> 56 amazing Lollipop Pictures images in these Lollipop Pictures group starting with L letter.
+Giant Chupa Chups Lollipop: 65 times larger than a normal sucker.
+Giant Lollipop: Traditional style sucker the size of your face.
+What is your Lollipop Moment?
+Original Honey Lollipops for every occasion. Gifts. Treats. Tea.[][][][][]
+
+=== Text #15 ===
+> A phase II pilot study to evaluate use of intravenous lidocaine for opioid-refractory pain in cancer patients.
+Kerala, India: status of cancer pain relief and palliative care.
+Nurse moral distress and cancer pain management: an ethnography of oncology nurses in India.[][][][][][][][][][][][][][][][][]
+
+=== Text #16 ===
+> A copy of the agenda will be available 72 hours before a meeting. If you need a reader, amplifier, qualified sign language interpreter, or any other form of auxiliary aid or service to attend or participate in the meeting, please contact Jane Tabor at least 48 hours prior to the hearing. Public documents can be provided in various accessible formats. Please email jane.tabor@state.nm[.]us or call (505) 476-3400[ if] a summary or other type of format is needed.[][][][][][][][]
+
+=== Text #17 ===
+> This item is fully hand embroidered with shiny silky threads cushion cover. The Embroidery patterns are beautifully Fabric. A gorgeous decoration for your home interior!
+The back is made of black cotton and the cover can be closed with a zip.[][][][][][][][][][][][][][]
+
+=== Text #18 ===
+> Per Hüttner will show a piece called “The Schendel-Fahlström Institute for Research” at the 33 Panorama da arte brasileira, curated by Lisette Lagnado at Museu de Arte Moderna (MAM) in Sao Paulo in October. The work includes a new film shot in Trinidad in 2013, work by Öyvind Fahlström on[ loan from] Moderna Museet in Stockholm, work by Swiss-born brasilian artist Mira Schendel from the MAM[ collection]. More info about the exhibition here and about the project here.[][][][][][][][]
+
+=== Text #19 ===
+> This dog brooch pin is made with polymer clay, painted, and sealed with varnish for protection. It is made and painted by hand so each pin has some variation and is unique in its own way!
+The pin is 1.5" x 1.5" with rubber clutch backing and comes with a backing card.[][][][][]
+
+=== Text #20 ===
+> >> I was looking for “seeing Hydra in action”.
+> Service temporarily unavailable or 404. Sorry for the inconvenience.
+Next message: Ruben Verborgh: "moving forward: Doodle for conf call"
+Previous message: Chris Andrew: "Re: Possible GSoC application"
+In reply to: Dietrich Schulten: "Re: Hydra examples for describing APIs"[][][][][][][][]
+
+
+Description: 
+2025-05-10 23:15:30,206 - root - INFO - Requests or inquiries directed to a page or contact person, including offers of assistance
+
+2025-05-10 23:15:30,210 - root - INFO - Cluster #4 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.csv
+2025-05-10 23:15:30,211 - root - INFO - ================================================================================
+2025-05-10 23:15:30,211 - root - INFO - ANALYSIS COMPLETED
+2025-05-10 23:15:30,212 - root - INFO - ================================================================================
+2025-05-10 23:15:30,212 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.log
+2025-05-10 23:15:30,213 - root - INFO - CSV saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/gpt2-xl_layer-20_unit-5741_2025-05-10_21-03-51.csv

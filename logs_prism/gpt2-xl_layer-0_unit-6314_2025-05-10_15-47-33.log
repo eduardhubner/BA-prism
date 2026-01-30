@@ -1,0 +1,2881 @@
+2025-05-10 17:47:33,781 - root - INFO - ================================================================================
+2025-05-10 17:47:33,800 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-10 17:47:33,801 - root - INFO - ================================================================================
+2025-05-10 17:47:33,802 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-10 17:47:33,803 - root - INFO - AGG_METHOD = mean
+2025-05-10 17:47:33,803 - root - INFO - BATCH_SIZE = 2
+2025-05-10 17:47:33,804 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 17:47:33,805 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-10 17:47:33,806 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-10 17:47:33,807 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-10 17:47:33,808 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-10 17:47:33,808 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-10 17:47:33,809 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-10 17:47:33,810 - root - INFO - CONTROL_SPLIT = train
+2025-05-10 17:47:33,811 - root - INFO - DATA_FILES = None
+2025-05-10 17:47:33,811 - root - INFO - DEVICE = cuda
+2025-05-10 17:47:33,812 - root - INFO - END_INTERVAL = 1.0
+2025-05-10 17:47:33,813 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 17:47:33,813 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-10 17:47:33,814 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-10 17:47:33,815 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-10 17:47:33,816 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-10 17:47:33,816 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-10 17:47:33,817 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-05-10 17:47:33,818 - root - INFO - LAYER_ID = 0
+2025-05-10 17:47:33,818 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-10 17:47:33,819 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-10 17:47:33,820 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-10 17:47:33,821 - root - INFO - MULTI_EVAL = True
+2025-05-10 17:47:33,821 - root - INFO - N_CLUSTERS = 5
+2025-05-10 17:47:33,822 - root - INFO - N_SAMPLES = 10
+2025-05-10 17:47:33,822 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-10 17:47:33,823 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-10 17:47:33,824 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-10 17:47:33,824 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-10 17:47:33,825 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-10 17:47:33,826 - root - INFO - RANDOMIZE_SENTENCES = True
+2025-05-10 17:47:33,826 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-10 17:47:33,827 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-10 17:47:33,828 - root - INFO - SIMEVAL_DATA = c4
+2025-05-10 17:47:33,828 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-10 17:47:33,829 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-10 17:47:33,829 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-10 17:47:33,830 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-10 17:47:33,831 - root - INFO - SPLIT = train
+2025-05-10 17:47:33,832 - root - INFO - START_INTERVAL = 0.99
+2025-05-10 17:47:33,832 - root - INFO - STREAMING = True
+2025-05-10 17:47:33,833 - root - INFO - SUBSET_SIZE = 1000
+2025-05-10 17:47:33,834 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-10 17:47:33,834 - root - INFO - TARGET_DATA = c4
+2025-05-10 17:47:33,835 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-10 17:47:33,836 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-10 17:47:33,836 - root - INFO - UNIT_ID = 6314
+2025-05-10 17:47:33,837 - root - INFO - USE_API = True
+2025-05-10 17:47:33,837 - root - INFO - ================================================================================
+2025-05-10 17:47:33,838 - root - INFO - ANALYSIS RESULTS
+2025-05-10 17:47:33,839 - root - INFO - ================================================================================
+2025-05-10 17:47:33,840 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.log
+2025-05-10 17:57:52,115 - root - INFO - Reached 1000 samples.
+2025-05-10 17:57:58,402 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-10 17:57:58,403 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-10 17:58:57,160 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-10 18:00:02,274 - root - INFO - Number of candidates: 1001
+2025-05-10 18:00:06,186 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-05-10 18:00:06,187 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  colors (0.7951444983482361)
+Text #1:  Quartz (0.2482834756374359)
+Text #1:  Quartz (0.2772277593612671)
+Text #1:  Quartz (0.30627304315567017)
+Text #1:  color (0.8069814443588257)
+Text #1:  colors (0.8583654761314392)
+Text #1:  Quartz (0.25677213072776794)
+Text #1:  purple (0.5227786898612976)
+Text #1:  Quartz (0.28411465883255005)
+Text #1:  purple (0.5996816754341125)
+Text #1: ethyst (0.23381097614765167)
+Text #1: brown (0.47904470562934875)
+Text #1:  Quartz (0.365585058927536)
+Text #1:  colored (0.7111070156097412)
+Text #1: ethyst (0.2349846512079239)
+Text #1: oky (0.17983871698379517)
+Text #1:  Quartz (0.42001646757125854)
+Text #1: oky (0.28055739402770996)
+Text #1:  brown (0.508232057094574)
+Text #1: oky (0.2828829884529114)
+Text #1:  Quartz (0.4543282091617584)
+Text #1:  color (1.1766636371612549)
+Text #1:  brown (0.48184487223625183)
+Text #1:  color (0.9489938616752625)
+Text #1: oky (0.2277064472436905)
+Text #1:  pink (0.7760273814201355)
+Text #1:  Quartz (0.4714656472206116)
+Text #1:  Quartz (0.4585696756839752)
+Text #1:  color (0.9600608348846436)
+Text #1:  pink (0.6791526675224304)
+Text #1:  pink (0.6312827467918396)
+Text #1:  Quartz (0.4478836953639984)
+Text #1: zy (0.5975711941719055)
+Text #1:  Quartz (0.4245612323284149)
+Text #1:  color (1.0733669996261597)
+Text #1:  Quartz (0.4218752384185791)
+Text #1:  Quartz (0.3557671010494232)
+Text #1:  translucent (0.4953639507293701)
+Text #1:  Quartz (0.32978305220603943)
+Text #1: Color (0.74589604139328)
+Text #1:  Quartz (0.3922422528266907)
+Text #1:  Quartz (0.2626127302646637)
+Text #1:  Quartz (0.24247094988822937)
+Text #1:  color (0.8140479326248169)
+Text #1:  purple (0.7170178890228271)
+Text #1: ethyst (0.21518705785274506)
+Text #1:  brown (0.3261566758155823)
+Text #1:  Quartz (0.40687718987464905)
+Text #1:  Quartz (0.3765769600868225)
+Text #2:  folders (0.41065216064453125)
+Text #2:  folders (0.24346263706684113)
+Text #2:  customize (1.1954530477523804)
+Text #2:  options (0.8895410895347595)
+Text #2:  Pictures (0.08179785311222076)
+Text #2:  Music (0.48977130651474)
+Text #2:  buttons (1.319126844406128)
+Text #2:  activities (0.8916405439376831)
+Text #2:  Slide (0.49410727620124817)
+Text #2:  Pictures (0.2937910556793213)
+Text #2:  Music (1.0999395847320557)
+Text #2:  folder (0.008349888026714325)
+Text #2:  customize (1.3665056228637695)
+Text #2:  pictures (0.49183979630470276)
+Text #2:  music (1.3005542755126953)
+Text #2:  videos (0.43506428599357605)
+Text #2:  tasks (0.18161772191524506)
+Text #2:  options (0.6310569047927856)
+Text #2:  tasks (0.08243126422166824)
+Text #2:  options (0.48083046078681946)
+Text #2:  pictures (0.21743041276931763)
+Text #2:  music (0.7471407055854797)
+Text #2:  videos (0.11268819123506546)
+Text #2: ize (0.3899443447589874)
+Text #2:  Optim (0.16216184198856354)
+Text #2:  arrow (0.07134386152029037)
+Text #2:  Items (0.45074349641799927)
+Text #2:  Pictures (0.20865723490715027)
+Text #2:  Music (0.7506449222564697)
+Text #2:  option (0.5178055763244629)
+Text #2:  picture (0.4538445770740509)
+Text #2:  icon (1.2256361246109009)
+Text #2:  Choose (0.21627585589885712)
+Text #2:  restore (0.5288714170455933)
+Text #2:  picture (0.4521910548210144)
+Text #2:  Restore (0.5504212379455566)
+Text #2: izing (1.1729397773742676)
+Text #2: bar (0.2070140540599823)
+Text #2: bar (0.07554011791944504)
+Text #3:  thinking (0.3601917028427124)
+Text #3:  organizing (0.7767048478126526)
+Text #3:  friends (0.29319489002227783)
+Text #3:  Dallas (1.3329477310180664)
+Text #3:  Transportation (0.05856114625930786)
+Text #3:  entertaining (0.2661261558532715)
+Text #3:  friends (0.18643347918987274)
+Text #3:  family (0.07931338995695114)
+Text #3:  wedding (1.109525203704834)
+Text #3:  prom (0.5962432026863098)
+Text #3:  closes (0.03569791465997696)
+Text #3:  Wedding (0.6855222582817078)
+Text #3:  Dallas (0.847352147102356)
+Text #3:  venues (0.3523455858230591)
+Text #3: achel (0.864795982837677)
+Text #3:  Dallas (0.7774065136909485)
+Text #3:  night (0.12853318452835083)
+Text #3:  Dallas (0.8483423590660095)
+Text #3:  Dallas (0.8181097507476807)
+Text #3:  ideas (0.28748953342437744)
+Text #3:  Dallas (0.8340499997138977)
+Text #3: achelor (0.6225966811180115)
+Text #3:  Esc (0.06371907144784927)
+Text #3:  champagne (2.1764605045318604)
+Text #3:  wine (0.04292885586619377)
+Text #3: achel (0.8810824751853943)
+Text #3:  ideas (0.3231814503669739)
+Text #3:  Esc (0.02652820385992527)
+Text #3:  Dallas (0.8268064260482788)
+Text #3:  Dallas (0.7929905652999878)
+Text #3: � (0.05127480626106262)
+Text #3:  worry (0.6676880121231079)
+Text #3:  parking (0.16214993596076965)
+Text #3:  concert (1.1171913146972656)
+Text #3:  Esc (0.04088832437992096)
+Text #3:  designated (0.1172129437327385)
+Text #3:  black (0.05009067803621292)
+Text #3:  Dallas (0.8255699872970581)
+Text #3:  Cadillac (0.6349174380302429)
+Text #3:  beautiful (0.40275102853775024)
+Text #3:  Dallas (0.7453973293304443)
+Text #3:  wedding (0.6198323369026184)
+Text #3:  wedding (0.6432392597198486)
+Text #4:  weekend (0.39190414547920227)
+Text #4:  wardrobe (1.0057928562164307)
+Text #4:  missed (0.088129922747612)
+Text #4: !), (0.3928448259830475)
+Text #4:  essentials (0.8047065138816833)
+Text #4: � (0.043429721146821976)
+Text #4:  nice (0.30874133110046387)
+Text #4:  dress (0.1702764332294464)
+Text #4:  occasions (0.9074461460113525)
+Text #4:  gorgeous (1.4153369665145874)
+Text #4:  pink (0.9789981842041016)
+Text #4:  tucked (0.5844313502311707)
+Text #4:  jeans (0.8776223659515381)
+Text #4:  ones (0.5731379389762878)
+Text #4:  ones (0.5692498683929443)
+Text #4: !), (0.10222507268190384)
+Text #4:  amazing (0.31072527170181274)
+Text #4:  skirt (0.2785814702510834)
+Text #4:  tucked (0.345550000667572)
+Text #4:  boyfriend (0.5543093085289001)
+Text #4:  skinny (0.18686242401599884)
+Text #4:  possibilities (0.7579969167709351)
+Text #4:  colors (1.2956970930099487)
+Text #4:  everything (0.8694765567779541)
+Text #4:  Nord (0.16098548471927643)
+Text #4:  basics (0.39049795269966125)
+Text #4:  sometimes (0.016790369525551796)
+Text #4:  weather (0.7114372253417969)
+Text #4: :] (0.1912950724363327)
+Text #4:  access (0.05662466213107109)
+Text #4:  Nord (0.209810271859169)
+Text #4:  favorites (1.4367526769638062)
+Text #4:  favorites (1.4118040800094604)
+Text #4:  sizing (0.5551525354385376)
+Text #4:  dream (0.5802736878395081)
+Text #4: !!! (0.05337204784154892)
+Text #4:  lace (1.539893627166748)
+Text #5:  dancing (1.7925359010696411)
+Text #5:  thing (0.016440777108073235)
+Text #5:  slow (0.12653538584709167)
+Text #5:  thing (0.09583650529384613)
+Text #5:  ritual (0.09831087291240692)
+Text #5:  dance (1.421575665473938)
+Text #5:  forever (0.0023586349561810493)
+Text #5:  question (0.0048165456391870975)
+Text #6:  Past (0.019021283835172653)
+Text #6:  Salad (0.6210888624191284)
+Text #6:  carbs (0.3465732932090759)
+Text #6:  Salad (0.5637849569320679)
+Text #6:  facts (0.026843693107366562)
+Text #6:  eat (0.14770200848579407)
+Text #6:  Gym (1.2816139459609985)
+Text #6:  Salad (0.5683554410934448)
+Text #6:  Salad (0.44312819838523865)
+Text #6:  calculator (0.365756630897522)
+Text #6:  carbs (0.04327162727713585)
+Text #6:  recipes (1.4496290683746338)
+Text #6:  vegetables (0.08714083582162857)
+Text #6:  Chill (0.14024397730827332)
+Text #6:  foods (0.6868299245834351)
+Text #6:  Salad (0.3157796263694763)
+Text #6:  Gym (1.0416374206542969)
+Text #6:  foods (0.982548713684082)
+Text #6:  recipes (1.5710911750793457)
+Text #7:  Past (0.019021283835172653)
+Text #7:  Salad (0.6210888624191284)
+Text #7:  carbs (0.3465732932090759)
+Text #7:  Salad (0.5637849569320679)
+Text #7:  facts (0.026843693107366562)
+Text #7:  eat (0.14770200848579407)
+Text #7:  Gym (1.2816139459609985)
+Text #7:  Salad (0.5683554410934448)
+Text #7:  Salad (0.44312819838523865)
+Text #7:  calculator (0.365756630897522)
+Text #7:  carbs (0.04327162727713585)
+Text #7:  recipes (1.4496290683746338)
+Text #7:  vegetables (0.08714083582162857)
+Text #7:  Chill (0.14024397730827332)
+Text #7:  foods (0.6868299245834351)
+Text #7:  Salad (0.3157796263694763)
+Text #7:  Gym (1.0416374206542969)
+Text #7:  foods (0.982548713684082)
+Text #7:  recipes (1.5710911750793457)
+Text #8:  homes (0.044953376054763794)
+Text #8:  bonuses (0.3921791613101959)
+Text #8:  discounts (1.0035043954849243)
+Text #8: bah (0.28733786940574646)
+Text #8:  times (0.6630560755729675)
+Text #8:  chill (0.5587693452835083)
+Text #8:  lounge (1.3137873411178589)
+Text #8:  music (1.1354068517684937)
+Text #8:  genres (0.2837671637535095)
+Text #9:  stressful (0.14750973880290985)
+Text #9:  reasons (1.0089025497436523)
+Text #9:  kind (0.028315406292676926)
+Text #9:  anxiety (0.3847705125808716)
+Text #9:  anxiety (0.415528267621994)
+Text #9:  anxiety (0.3767017424106598)
+Text #9:  anxiety (0.4307540953159332)
+Text #9:  reasons (1.330922245979309)
+Text #9:  mindfulness (0.08616126328706741)
+Text #9:  educators (0.4141414165496826)
+Text #9:  coping (0.2032960206270218)
+Text #9:  situations (1.5611419677734375)
+Text #9: fulness (0.4563148617744446)
+Text #9:  time (0.002918718382716179)
+Text #9:  mindfulness (0.04890662804245949)
+Text #9:  empowering (0.17066673934459686)
+Text #9:  happening (0.011719952337443829)
+Text #9:  anxiety (0.589015781879425)
+Text #9:  situational (1.352070689201355)
+Text #9:  thoughts (0.23692773282527924)
+Text #9:  actions (0.5628489851951599)
+Text #9:  times (0.84747314453125)
+Text #9:  skills (0.09768291562795639)
+Text #9: fulness (0.5454756021499634)
+Text #9:  superpower (0.7933757901191711)
+Text #9:  activate (0.0010159638477489352)
+Text #9:  superpower (0.8740272521972656)
+Text #9:  things (1.366511344909668)
+Text #9:  reason (0.8849507570266724)
+Text #9:  mindfulness (0.17696647346019745)
+Text #9: � (0.02381574735045433)
+Text #9:  ways (1.1854033470153809)
+Text #9:  mindfulness (0.08029734343290329)
+Text #9:  activity (0.996483325958252)
+Text #9:  breathing (0.02663159929215908)
+Text #9:  thoughts (0.27709436416625977)
+Text #9:  emotions (0.8008999228477478)
+Text #9:  wonderful (1.4198722839355469)
+Text #9:  little (0.040439289063215256)
+Text #9:  buttons (1.2158918380737305)
+Text #9:  breathe (0.13336677849292755)
+Text #10:  criminals (0.006101077422499657)
+Text #10:  lighting (0.14243662357330322)
+Text #10:  crime (0.08264707028865814)
+Text #10:  LED (0.0005568735650740564)
+Text #10:  lights (0.8869112133979797)
+Text #10:  dull (0.20087115466594696)
+Text #10: oor (0.09115465730428696)
+Text #10:  option (0.49622413516044617)
+Text #10:  lights (0.8344825506210327)
+Text #10:  lights (0.8788686394691467)
+Text #10:  lights (0.8751590251922607)
+Text #10:  lum (0.35594964027404785)
+Text #10:  lights (0.8298957943916321)
+Text #10:  color (1.448596477508545)
+Text #10:  lights (0.9140093922615051)
+Text #10:  lights (0.9225841164588928)
+Text #10:  eco (0.09821860492229462)
+Text #10:  lighting (0.2700881063938141)
+Text #10:  UV (0.47631990909576416)
+Text #10:  lights (0.7295225858688354)
+Text #10:  lights (0.792367696762085)
+Text #10:  lights (0.7779315710067749)
+Text #10:  lighting (0.06543955951929092)
+Text #10: ways (0.0751519501209259)
+Text #10:  lights (0.6229584217071533)
+Text #10:  activities (0.8887161016464233)
+Text #11:  black (0.1846601516008377)
+Text #11:  liked (0.1702776998281479)
+Text #11:  themes (0.30809906125068665)
+Text #11:  boring (0.4877071976661682)
+Text #11:  green (0.3472987413406372)
+Text #11:  light (0.08404512703418732)
+Text #11:  green (0.18619154393672943)
+Text #12:  necklace (1.3894962072372437)
+Text #12:  beads (0.13743898272514343)
+Text #12:  tone (0.2013646513223648)
+Text #12:  necklace (1.2985529899597168)
+Text #12:  tone (0.2055685669183731)
+Text #13: � (0.05869244039058685)
+Text #13:  vague (0.20514513552188873)
+Text #13: Magn (0.4304483234882355)
+Text #13: ornings (1.7058053016662598)
+Text #13:  morning (0.03590361028909683)
+Text #13:  pace (0.04172185808420181)
+Text #13:  cooking (0.8589321374893188)
+Text #13:  recipes (1.847111701965332)
+Text #13:  kitchen (0.10456560552120209)
+Text #13:  recipes (1.5525312423706055)
+Text #13:  restrictions (0.6211352348327637)
+Text #14: � (0.05869244039058685)
+Text #14:  vague (0.20514513552188873)
+Text #14: Magn (0.4304483234882355)
+Text #14: ornings (1.7058053016662598)
+Text #14:  morning (0.03590361028909683)
+Text #14:  pace (0.04172185808420181)
+Text #14:  cooking (0.8589321374893188)
+Text #14:  recipes (1.847111701965332)
+Text #14:  kitchen (0.10456560552120209)
+Text #14:  recipes (1.5525312423706055)
+Text #14:  restrictions (0.6211352348327637)
+Text #15:  ornament (0.11609592288732529)
+Text #15:  colorful (1.1625018119812012)
+Text #15:  cocktail (0.22349081933498383)
+Text #15: Dim (0.29585522413253784)
+Text #16:  romance (1.2876769304275513)
+Text #16:  charm (0.13988997042179108)
+Text #16:  flowers (0.011136693879961967)
+Text #16:  baby (0.9900153875350952)
+Text #18:  cotton (0.13141250610351562)
+Text #19:  feminine (0.05646800622344017)
+Text #19:  outfits (0.7781134843826294)
+Text #19:  gem (0.08650534600019455)
+Text #20:  fantastic (0.46038395166397095)
+Text #20:  bedrooms (0.3666595220565796)
+Text #20:  baths (0.384536474943161)
+Text #20:  kitchen (0.0558566115796566)
+Text #20:  quartz (0.6135655045509338)
+Text #20:  granite (0.10421144217252731)
+Text #20:  cozy (0.8648343682289124)
+
+=== Text #1 ===
+> Quartz is one of the most common and varied minerals on earth, and its abundant[ colors] produce many gemstone types. Amethyst and Citrine are the most popular and valuable gem varieties of[ Quartz], but other forms also make important gemstones. Chalcedony describes any form of[ Quartz] that is microcrystalline, in compact form without any visible crystals. Chalcedony also has several varieties used as gemstones, most notably Agate, Carnelian, Tiger's Eye, and Chrysoprase.
+Pure[ Quartz], which is also known as Rock Crystal, is[ color]less. Various impurities are responsible for the extensive range of[ colors]. The main crystalline[ Quartz] varieties used as gemstones are described below.
+Amethyst, the[ purple] variety, is the most popular and valuable[ Quartz] gemstone. Amethyst ranges from light to dark[ purple]. See the Am[ethyst] gemstone page for more details.
+Citrine is the yellow, orange, or reddish-[brown] variety of[ Quartz]. It is usually[ colored] by heat treatment of Am[ethyst] or Sm[oky Quartz]. Light yellow or lemon yellow Citrine is often called Lemon[ Quartz] in the gem trade. See the Citrine gemstone page for more details.
+Sm[oky Quartz] is the[ brown] "sm[oky]" variety of[ Quartz]. It ranges in[ color] from light[ brown] to black. Despite its dark[ color], it is rarely opaque. See the Sm[oky Quartz] gemstone page for more details.
+The rosy[ pink] variety of[ Quartz] is known as Rose[ Quartz], and its[ color] is usually soft, ranging from very light[ pink] to medium[ pink] in intensity. Rose[ Quartz] is often milky or ha[zy], and it may lack good transparency. See the Rose[ Quartz] gemstone page for more details.
+The[ color]less, transparent variety of[ Quartz], free of any impurities, is known as "Rock Crystal". Flawless and very large cuts may be cut from Rock Crystal.
+Milky[ Quartz] is the white,[ translucent] to opaque variety of[ Quartz]. Though very common in nature, it is not used as a gemstone.
+[Color]less[ Quartz] with golden yellow Rutile inclusions, as hairlike growths within the gemstone, are known as Rutilated[ Quartz]. See the Rutilated[ Quartz] gemstone page for more details.
+Ametrine is an interesting,[ color]-zoned combination of[ purple] Am[ethyst] and[ brown]ish-yellow Citrine. See the Ametrine gemstone page for more details.
+Prasiolite, or Green[ Quartz], describes a light green[ Quartz]
+
+=== Text #2 ===
+> In your personal[ folders], you can create your own[ folders] and[ customize] view[ options] based on the contents. In the toolbar of the[ Pictures] and[ Music folders], Windows provides[ buttons] with file management[ activities] specifically related to the contents of the folder, such as[ Slide] Show in the[ Pictures] folder, or Play All in the[ Music folders]. When you create a new[ folder], you can[ customize] it for documents,[ pictures],[ music], and[ videos] by applying a folder template, which is a collection of folder[ tasks] and viewing[ options]. When you apply a template to a folder, you apply specific features to the folder, such as specialized[ tasks] and viewing[ options] for working with documents,[ pictures],[ music], and[ videos].
+Click the Custom[ize tab] for a folder.
+Click the[ Optimize] this folder for list[ arrow], and then select the type of folder you want: General[ Items], Documents,[ Pictures], Videos, or[ Music].
+Select the Also apply this template to all subfolders check box to apply the[ option].
+To select a[ picture] for display on the folder[ icon], click[ Choose] File.
+To[ restore] the default[ picture] for the folder, click[ Restore] Default.
+See “Custom[izing] the Task[bar]” on page 118 for information on modifying the task[bar].
+
+=== Text #3 ===
+> Are you[ thinking] of[ organizing] a special day with your[ friends]?[ Dallas Esc]alade Limousine Rental Services[ Transportation] is the limo you want to have when[ entertaining] your[ friends],[ family],[ wedding],[ prom dates] with your[ closes friends]. With more space than a standard limousine, more people can be included in all the fun.[ Wedding venues] in[ Dallas] Tx, Prom[ venues] in Dalas Tx, B[achel]orette Party Venues in[ Dallas] Tx,[ night] out in[ Dallas] Tx, Dine In[ Dallas] Tx.
+Book a Escalade Limo with these best Anniversary[ ideas] in[ Dallas Texas].
+B[achelor] Party[ Esc]alade Limousine Rental Services.
+Enjoy[ champagne] or[ wine] to one of these top B[acheloret]te party[ ideas] in your[ Esc]alade limo in[ Dallas].
+Tour top breweries in[ Dallas] in a Escalade Limo.
+Don�[�]t[ worry] about[ parking] at any[ concert] when you reserve a[ Esc]alade Limousine.
+Have your own[ designated] driver with your Escalade limo.
+Book a[ black] Escalade limo in[ Dallas] for Funerals, Wakes and Memorial Services.
+White or black Escalade Limos available for High School Prom.
+Tailgate in a[ Cadillac] Escalade Limousine.
+Enjoy the[ beautiful Dallas scenery] in a Escalade Limo.
+Check out a wine tasting tour in[ Dallas] with some of the best wineries around in your Escalade Limo.
+A Escalade limo is a great choice for your[ wedding] get away cars and additional[ wedding transportation].
+
+=== Text #4 ===
+> Last[ weekend] I shared a post about building a functional[ wardrobe] (the post is here if you[ missed] it[!),] and one of the[ essentials] I shared was blouses. I[�]�m all about t-shirts, but[ nice] blouses that can be worn for slightly[ dress]ier[ occasions] are an absolute must.
+I found this one on sale last week and the[ gorgeous] dusty[ pink lace] instantly pulled me in. The details of the ladder trim at the neckline, and the mock neck make it feel really special. It runs a tiny bit big — I’m in an XS!
+I[ tucked] it into a pair of high waisted[ jeans] (I’m wearing these[ ones], but these[ ones] are similar and on sale[!),] but it would look[ amazing tucked] into an a-line[ skirt] with heels, or half[ tucked] into[ boyfriend jeans] with flat sandals, or with white[ skinny jeans] and wedges. Lots of[ possibilities]!
+I also just got these little studded bow flats, and although they come in a bunch of other[ colors], I love a good neutral flat I can wear with[ everything]. These run slightly small, so size up a half size!
+18 Summer Tops Under $50!
+The[ Nordstrom] Anniversary sale is filled with tons of good Fall[ basics], but[ sometimes] it can be hard to shop for cold[ weather items] when it’s so hot outside! So I rounded up 18 of the best tops under $50, all perfect for summer — check them out below!
+[note[:]] The sale is still in early[ access], and only open to[ Nordstrom] card holders, but it opens to the public this Friday!
+I also rounded up a bunch of[ favorites] here, and tried on some[ favorites] in the dressing room with fit and[ sizing] details right here!
+That top is so[ dream]y[!!!]
+I love the[ lace] top but is it lined at all?
+The neck and sleeves are not lined, but the whole front is!
+
+=== Text #5 ===
+> 9 Oct Neil asks KZN if slow[ dancing] is a[ thing] of the past?
+Is[ slow dancing] a[ thing] of the past? Is the[ ritual] of asking for a[ dance] lost[ forever]? That was Neil's[ question] to the listeners of KZN this past Sunday.
+
+=== Text #6 ===
+> Check out the Italian[ Past]a[ Salad calories] and how many[ carbs] in Italian Pasta[ Salad]. Learn all the nutrition[ facts] about what you[ eat] at[ Gym]America.
+Tip: Click on the ingredient links to learn the nutritional information for all the Italian Pasta[ Salad] ingredients. The serving size for any ingredient in Italian Pasta[ Salad] may be adjusted using the nutrition facts serving size[ calculator]. Use it to help cut calories,[ carbs] and more from your[ recipes].
+Clean and chop all[ vegetables]. Cook pasta until tender.
+In a large bowl, combine all ingredients.[ Chill] before serving.
+Are you interested in seeing additional[ foods] like Italian Pasta[ Salad]? Then click here.[ Gym]America has detailed nutrition facts information for over 40,000[ foods] and[ recipes].
+
+=== Text #7 ===
+> Check out the Italian[ Past]a[ Salad calories] and how many[ carbs] in Italian Pasta[ Salad]. Learn all the nutrition[ facts] about what you[ eat] at[ Gym]America.
+Tip: Click on the ingredient links to learn the nutritional information for all the Italian Pasta[ Salad] ingredients. The serving size for any ingredient in Italian Pasta[ Salad] may be adjusted using the nutrition facts serving size[ calculator]. Use it to help cut calories,[ carbs] and more from your[ recipes].
+Clean and chop all[ vegetables]. Cook pasta until tender.
+In a large bowl, combine all ingredients.[ Chill] before serving.
+Are you interested in seeing additional[ foods] like Italian Pasta[ Salad]? Then click here.[ Gym]America has detailed nutrition facts information for over 40,000[ foods] and[ recipes].
+
+=== Text #8 ===
+> Meet the fighters post event to see who take[ homes fight] of the night[ bonuses].
+Special drink[ discounts] starting at just 100[bah]t, free entry, and FMD style good[ times].
+Chat with the Ring Girls,[ chill] by the pool,[ lounge] on the astroturfed roof top and enjoy a classic mix of[ music] from all[ genres].
+
+=== Text #9 ===
+> As much as teachers do all that they can to make their classrooms a place of comfort and security, for some students the school environment can be a[ stressful] one. For a whole gamut of[ reasons], at some stage during their time spent at school, most kids experience some[ kind] of school-related[ anxiety]. Whether it be separation[ anxiety] in the early years,[ anxiety] about testing and assessment or social[ anxiety], the[ reasons] are many but the negative effects often the same. Teaching[ mindfulness] is one way that[ educators] and parents alike can help to build the[ coping skills kids] need when they are faced with challenging[ situations] and environments.
+Mind[fulness] is the practice of paying attention, on purpose, to the present moment (Grossman, 2016). It’s something that came so naturally to us as small children, when we could easily spend[ time] silently mesmerised by a single ant wandering across the ground. Though it’s true that as we get older, as our understanding of the world grows wider and our minds subsequently busier, that time spent in silent wonderment doesn’t happen quite so easily.
+Teaching children the conscious skill of[ mindfulness] is an[ empowering] one. The ability to stop, to centre ourselves, to notice what is[ happening] in any given moment goes a long way towards self-regulation and self-awareness. For children who experience[ anxiety], whether[ situational] or prolonged, having simple and familiar[ thoughts] or[ actions] to call upon during[ times] of stress become important, lifelong[ skills].
+Mind[fulness] is a[ superpower] that everyone can have. To[ activate] this[ superpower] we only need two[ things], our mind and our breath. It is for this[ reason], and so many more, that teaching[ mindfulness] to children is something that should be on every teacher, parent and carers�[�] radar.
+With that in mind, here are some fun and simple[ ways] to introduce the concept of[ mindfulness] to young children.
+This simple[ activity] is a way to teach your child about “belly[ breathing]”. Centering our[ thoughts] and[ emotions] through our breath is a[ wonderful] self-regulation skill for everyone to learn.
+Lay down on the floor beside your child and place a small soft toy, like the[ little] wuppy®, or any other light-weight object such as a small bean bag or wooden block onto your belly[ buttons].
+With your child, lay still and watch the toy move up and down as you both[ breathe] in and out.
+Talk with your child about what you notice. About how quickly or slowly the toy moves.
+You can also count
+
+=== Text #10 ===
+> According to many studies, it is revealed that the number of crimes can be reduced by almost 50%, if there is better street illumination thus demotivating[ criminals] to commence any kind of crime due to the fear of getting caught. If you are also considering some better[ lighting] alternative to reduce[ crime] from your area then you can install[ LED] pole[ lights] that will never make streets dark or[ dull]. Install Out[oor LED] Pole Light 300w that have photocell[ option] as well which will give you added savings in addition to maximum safety.
+These[ lights] are electrician friendly and can be installed easily, also with the lifespan of more than 50,000 hours; you can completely rely on these[ lights] to provide maximum visibility.
+These[ lights] produce 39982[ lum]ens by using just 300watts of power and you can replace them with 1000w of MH[ lights].
+Also the[ color temperature] of these[ lights] is 5700K and these[ lights] offer[ eco]-friendly[ lighting] results without emitting any harmful[ UV]/IV rays as well.
+These[ lights] are photocell sensor enabled[ lights] that reduces the wastage of[ lights] as well, enjoy even and uniform[ lighting] that can cater to the bigger and larger areas.
+The Pre-built LED Shoebox fixture delivers energy-efficient illumination for boulevards, parking lots, park[ways] & pathways among many other places.
+So install LED pole light 300w that are more powerful than the traditional[ lights] and can give maximum energy savings and can keep the city safe from the criminal[ activities].
+
+=== Text #11 ===
+> All[ black themes] are always well[ liked] by people. It is likely that you like it a lot too but if you find plain black[ themes] so[ boring], you will probably like this theme with its[ green streaks] similar to leaves being shined on with[ light]. The[ green colored icons] fit well with the theme.
+
+=== Text #12 ===
+> this 15 and 1/2" ling[ necklace] is a Y shaped. The white[ beads] are 4mm round and it features gold[ tone] findings. In the center there is a piece that can swing making it appear like aY shaped[ necklace]. This has a gold[ tone twist] closure.
+
+=== Text #13 ===
+> There[’]s a lot of[ vague], fluffy talk about self-care. I’m a fan of practical, tangible, actionable. If you are too, this is for you.
+[Magnificent] M[ornings] is the live workshop I lead all about discovering and creating your ideal[ morning routine], one that allows you to show up as the best version of yourself, with ease.
+Can’t make the live version or just prefer to go at your own[ pace]? Then this self-paced version is for you.
+This[ cooking] guide includes 29 simple, easy, stress-reducing[ recipes] that are all plant-based and gluten-free.
+You’ll learn a bit about my philosophy in the[ kitchen] and my tips and tricks for converting[ recipes] to meet dietary[ restrictions] quickly and easily.
+
+=== Text #14 ===
+> There[’]s a lot of[ vague], fluffy talk about self-care. I’m a fan of practical, tangible, actionable. If you are too, this is for you.
+[Magnificent] M[ornings] is the live workshop I lead all about discovering and creating your ideal[ morning routine], one that allows you to show up as the best version of yourself, with ease.
+Can’t make the live version or just prefer to go at your own[ pace]? Then this self-paced version is for you.
+This[ cooking] guide includes 29 simple, easy, stress-reducing[ recipes] that are all plant-based and gluten-free.
+You’ll learn a bit about my philosophy in the[ kitchen] and my tips and tricks for converting[ recipes] to meet dietary[ restrictions] quickly and easily.
+
+=== Text #15 ===
+> The fruit coasters are[ ornament] and very[ colorful]. They are great for[ cocktail] parties.
+[Dim]ensions: 4.25" x 3.8" x 3.65"
+
+=== Text #16 ===
+> Evoking the[ romance] of a countryside vineyard, the Grapevine Heart Wreath will bring rustic[ charm] to your home. For a unique display, thread sprays of dried[ flowers] such as[ baby]'s breath, through the grapevine frame. This piece is 26in wide, 22in tall, and 5in deep.
+
+=== Text #17 ===
+> Renault workshop manual, M.R. 164, additive, R1178 Sedan, R1332 Station wagon.
+Renault automobile -- Maintenance and repair -- Handbooks, manuals, etc.
+
+=== Text #18 ===
+> White[ cotton] t-shirt, ribbed crewneck, back central seam detail, front graphic print, oversized fit. The model is 185 cm and wears size M. Composition: 100% cotton. Made in Italy.
+
+=== Text #19 ===
+> In town or in the country, these beige ankle boots are the real deal! Made with a leather upper and a rubber outer sole, they bring a[ feminine] touch to your[ outfits]. Its contemporary finishes bring that little something extra. The Bogles from SPM is a real[ gem] of creativity!
+
+=== Text #20 ===
+> Model Home open daily 10am-4pm. Lot size 12,000 sq. ft. The 2245 plan offers[ fantastic] single level living with a huge open concept great room & kitchen, 4[ bedrooms] and 2.5[ baths]. The[ kitchen] includes slab[ quartz] or[ granite] counter-tops, under-mount sink, and shaker style cabinetry. The great room features a warm &[ cozy fireplace] w/ eat-in nook.
+
+
+Description: 
+2025-05-10 18:00:06,191 - root - INFO - Attributes of items, like colors, customization options, or nutritional information
+
+2025-05-10 18:00:06,195 - root - INFO - Cluster #0 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.csv
+2025-05-10 18:00:08,115 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-05-10 18:00:08,116 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  don (0.021696019917726517)
+Text #1:  love (0.17618122696876526)
+Text #1:  recipe (0.7630612850189209)
+Text #1:  busy (0.20470035076141357)
+Text #1: azy (0.2525693476200104)
+Text #1:  But (0.002091217553243041)
+Text #1: � (0.16798140108585358)
+Text #1:  been (0.03854410722851753)
+Text #1:  tired (0.20337851345539093)
+Text #1:  taco (1.8919358253479004)
+Text #1: � (0.1058717742562294)
+Text #1:  anymore (0.7631178498268127)
+Text #1:  recipes (2.163925886154175)
+Text #1:  her (0.0025545537937432528)
+Text #1:  amazing (0.7760263681411743)
+Text #1:  cooking (0.8415111303329468)
+Text #1:  scratch (0.07326779514551163)
+Text #1:  didn (0.20684702694416046)
+Text #1:  recipe (0.5483660101890564)
+Text #1: � (0.05669369176030159)
+Text #1:  things (1.4907490015029907)
+Text #1:  taco (1.5035984516143799)
+Text #1:  brown (0.5812339782714844)
+Text #1:  cook (0.21509480476379395)
+Text #1:  towels (0.20324596762657166)
+Text #1:  okay (0.4528769552707672)
+Text #2:  Lilly (0.7139292359352112)
+Text #2:  collaborations (0.5989259481430054)
+Text #2:  Lilly (0.5102909207344055)
+Text #2:  music (0.9399059414863586)
+Text #2:  rap (0.11486108601093292)
+Text #2:  definitely (0.03902675583958626)
+Text #2:  song (0.6008940935134888)
+Text #2:  songs (1.1298904418945312)
+Text #2:  woke (1.0551187992095947)
+Text #2:  songs (1.299471139907837)
+Text #2:  Needless (0.649732232093811)
+Text #2:  music (1.0271333456039429)
+Text #2:  empowering (0.201126366853714)
+Text #2:  favorite (0.5862414240837097)
+Text #2:  songs (1.1677864789962769)
+Text #2:  music (1.2668715715408325)
+Text #2:  Songs (0.06332828104496002)
+Text #2:  songs (0.8166120052337646)
+Text #2:  Lilly (0.6992506384849548)
+Text #2:  topics (0.24460525810718536)
+Text #2:  unrealistic (0.057961355894804)
+Text #2:  issues (0.058485113084316254)
+Text #2:  bisexual (0.438644140958786)
+Text #2:  songs (1.0053436756134033)
+Text #2:  rap (0.052157796919345856)
+Text #2:  everything (0.7425432205200195)
+Text #2:  everything (0.998604953289032)
+Text #2:  entertainment (0.3507990837097168)
+Text #2:  rap (0.0704541727900505)
+Text #2:  song (0.6831327080726624)
+Text #2:  Lilly (0.669488251209259)
+Text #2:  loves (0.07057974487543106)
+Text #2:  rap (0.13188143074512482)
+Text #2:  favorite (0.7523047924041748)
+Text #2:  rap (0.20179763436317444)
+Text #2:  empowering (0.22521178424358368)
+Text #2:  sket (0.17404702305793762)
+Text #2:  collaborations (0.6302568316459656)
+Text #2:  ones (0.4066169857978821)
+Text #2: wayne (0.08307624608278275)
+Text #2:  Pri (0.07268174737691879)
+Text #2:  Chop (0.20447814464569092)
+Text #2:  music (0.8337405920028687)
+Text #2:  social (0.035025645047426224)
+Text #2:  night (0.01514391228556633)
+Text #3: washer (1.0987191200256348)
+Text #3: washer (0.8815022706985474)
+Text #3: washer (0.8947647213935852)
+Text #3: washer (0.8994402289390564)
+Text #3: washer (0.9802468419075012)
+Text #3:  rinse (0.5462707281112671)
+Text #3: washer (1.0363807678222656)
+Text #3:  rinse (0.6108254194259644)
+Text #3: azon (0.6287292838096619)
+Text #3: washer (0.9649323225021362)
+Text #3: washer (1.0345633029937744)
+Text #3: washer (0.9848848581314087)
+Text #3:  rinse (0.5340526103973389)
+Text #3: washer (0.9550150632858276)
+Text #3:  rinse (0.5100935101509094)
+Text #3:  rinse (0.4946969449520111)
+Text #3: washer (0.9655590653419495)
+Text #3: washer (0.9810106158256531)
+Text #3:  blue (0.8702844381332397)
+Text #3: washer (0.9824089407920837)
+Text #3:  blue (0.875596284866333)
+Text #3: washer (1.0155339241027832)
+Text #3:  rinse (0.5528516173362732)
+Text #3:  rinse (0.4849684238433838)
+Text #3: washer (0.9047324657440186)
+Text #3: washer (0.9016939997673035)
+Text #3: washer (0.9222558736801147)
+Text #3: washer (0.8670863509178162)
+Text #3: washer (0.9379265904426575)
+Text #3:  rinse (0.4980817437171936)
+Text #3: washer (1.0045924186706543)
+Text #3:  rinse (0.5058113932609558)
+Text #3:  rinse (0.5322278141975403)
+Text #3:  rinse (0.5316694974899292)
+Text #3:  rinse (0.5125632286071777)
+Text #3: washer (0.9038987159729004)
+Text #3: washer (0.9405838251113892)
+Text #3:  rinse (0.5157790184020996)
+Text #3: washer (0.9885094165802002)
+Text #3:  rinse (0.5726615190505981)
+Text #3: washer (1.017717719078064)
+Text #4: washer (1.0987191200256348)
+Text #4: washer (0.8815022706985474)
+Text #4: washer (0.8947647213935852)
+Text #4: washer (0.8994402289390564)
+Text #4: washer (0.9802468419075012)
+Text #4:  rinse (0.5462707281112671)
+Text #4: washer (1.0363807678222656)
+Text #4:  rinse (0.6108254194259644)
+Text #4: azon (0.6287292838096619)
+Text #4: washer (0.9649323225021362)
+Text #4: washer (1.0345633029937744)
+Text #4: washer (0.9848848581314087)
+Text #4:  rinse (0.5340526103973389)
+Text #4: washer (0.9550150632858276)
+Text #4:  rinse (0.5100935101509094)
+Text #4:  rinse (0.4946969449520111)
+Text #4: washer (0.9655590653419495)
+Text #4: washer (0.9810106158256531)
+Text #4:  blue (0.8702844381332397)
+Text #4: washer (0.9824089407920837)
+Text #4:  blue (0.875596284866333)
+Text #4: washer (1.0155339241027832)
+Text #4:  rinse (0.5528516173362732)
+Text #4:  rinse (0.4849684238433838)
+Text #4: washer (0.9047324657440186)
+Text #4: washer (0.9016939997673035)
+Text #4: washer (0.9222558736801147)
+Text #4: washer (0.8670863509178162)
+Text #4: washer (0.9379265904426575)
+Text #4:  rinse (0.4980817437171936)
+Text #4: washer (1.0045924186706543)
+Text #4:  rinse (0.5058113932609558)
+Text #4:  rinse (0.5322278141975403)
+Text #4:  rinse (0.5316694974899292)
+Text #4:  rinse (0.5125632286071777)
+Text #4: washer (0.9038987159729004)
+Text #4: washer (0.9405838251113892)
+Text #4:  rinse (0.5157790184020996)
+Text #4: washer (0.9885094165802002)
+Text #4:  rinse (0.5726615190505981)
+Text #4: washer (1.017717719078064)
+Text #5:  Dil (0.19863058626651764)
+Text #5:  beautiful (0.14738385379314423)
+Text #5:  birth (0.07600383460521698)
+Text #5:  comeback (0.7636073231697083)
+Text #5: � (0.04251708835363388)
+Text #5:  Nab (0.017039818689227104)
+Text #5:  movie (0.8703490495681763)
+Text #5:  movie (0.8679319620132446)
+Text #5:  movie (0.9488784670829773)
+Text #5: � (0.016925925388932228)
+Text #5:  movies (1.7747832536697388)
+Text #5: � (0.04709920287132263)
+Text #5: hy (0.08255203068256378)
+Text #5:  married (0.00621586199849844)
+Text #5:  Movies (1.214039921760559)
+Text #5:  Dil (0.4708956778049469)
+Text #5:  nep (0.941840648651123)
+Text #5:  movie (0.885429859161377)
+Text #5:  movie (1.0208760499954224)
+Text #5:  nice (0.43995028734207153)
+Text #5:  fantastic (1.0077942609786987)
+Text #5: Thank (0.38534197211265564)
+Text #5:  Maj (0.12304310500621796)
+Text #5:  Movie (0.15879857540130615)
+Text #5:  appreciate (0.5238203406333923)
+Text #5:  grade (0.10531886667013168)
+Text #5:  dont (0.49055835604667664)
+Text #5:  movie (0.9556993842124939)
+Text #5: —— (0.1351538449525833)
+Text #5:  funny (0.04561563953757286)
+Text #5: nice (0.520659327507019)
+Text #5:  fantastic (0.9262309074401855)
+Text #5: oooooooooooooooo (1.0140118598937988)
+Text #5:  movies (1.819936990737915)
+Text #5:  ta (0.6210121512413025)
+Text #6:  favorite (1.0150877237319946)
+Text #6:  authentic (0.24311980605125427)
+Text #6:  dishes (0.4030185639858246)
+Text #6:  guitar (0.19529546797275543)
+Text #6:  cozy (1.3167847394943237)
+Text #6: etime (0.27602419257164)
+Text #6:  Cre (0.17879903316497803)
+Text #6:  Antonio (0.8956696391105652)
+Text #6:  invite (0.32316622138023376)
+Text #6:  cooking (1.0082156658172607)
+Text #6:  Antonio (0.7199474573135376)
+Text #6:  restaurant (0.7967657446861267)
+Text #6:  settings (0.750503420829773)
+Text #6:  af (0.2556189000606537)
+Text #6:  lil (1.6977148056030273)
+Text #6:  favorite (0.6313348412513733)
+Text #6:  dessert (0.5163013339042664)
+Text #6:  cute (0.3776984214782715)
+Text #6:  restaurant (0.963758647441864)
+Text #6:  bakery (0.4037648141384125)
+Text #6: azed (0.21008697152137756)
+Text #6:  lovely (0.549185574054718)
+Text #6:  shrimp (0.2714002728462219)
+Text #6:  french (0.24136941134929657)
+Text #6:  steak (0.5073185563087463)
+Text #6: apple (0.41451749205589294)
+Text #6:  juices (0.3889177739620209)
+Text #6:  meal (0.6617813110351562)
+Text #6:  app (0.3601618707180023)
+Text #6:  guy (0.23397524654865265)
+Text #6:  restaurant (0.9588854908943176)
+Text #6:  ladies (0.14958007633686066)
+Text #6:  Talk (0.2941037118434906)
+Text #6:  hospitality (0.7186203598976135)
+Text #6:  problem (0.11652985960245132)
+Text #6:  ladies (0.2870621085166931)
+Text #6:  Bravo (0.8088641166687012)
+Text #6:  HE (0.13866253197193146)
+Text #6:  favorite (0.8675558567047119)
+Text #6:  oily (0.15285490453243256)
+Text #6:  shrimp (0.39785873889923096)
+Text #6: city (0.21632255613803864)
+Text #7: Jew (0.32526180148124695)
+Text #7: ry (0.029255196452140808)
+Text #7:  eleg (0.4743384122848511)
+Text #7:  gift (0.1384408324956894)
+Text #7: ..." (0.9035335779190063)
+Text #7:  jewel (0.5591174364089966)
+Text #7:  shimmer (0.021746836602687836)
+Text #7:  az (0.5339638590812683)
+Text #7:  blue (0.45896053314208984)
+Text #7:  lil (1.3824771642684937)
+Text #7:  purple (0.7207448482513428)
+Text #7:  flashes (1.107584834098816)
+Text #7:  jewelry (1.2585525512695312)
+Text #7:  jewelry (1.1303576231002808)
+Text #7:  wipe (0.3025287389755249)
+Text #8:  ways (1.2204055786132812)
+Text #8:  handwriting (0.7245295643806458)
+Text #8:  pencil (0.1001640036702156)
+Text #8:  handwriting (0.5781451463699341)
+Text #8: !" (0.01224870141595602)
+Text #8:  struggles (0.26467248797416687)
+Text #8:  handwriting (0.7534127831459045)
+Text #8:  ways (0.9901735186576843)
+Text #8:  handwriting (0.6951334476470947)
+Text #8:  pencil (0.24622464179992676)
+Text #8:  pencil (0.1508108526468277)
+Text #8:  handwriting (0.5386872291564941)
+Text #8:  activities (0.8519593477249146)
+Text #8:  bilateral (0.09990224987268448)
+Text #8:  coordination (0.13972894847393036)
+Text #8:  activities (0.8868778347969055)
+Text #8:  grab (0.004017149563878775)
+Text #8:  teachers (0.06939670443534851)
+Text #8:  ideas (0.08617059886455536)
+Text #8:  handwriting (0.6581762433052063)
+Text #8:  ways (0.9686099290847778)
+Text #8:  Activities (0.8030639886856079)
+Text #8:  ideas (0.010331234894692898)
+Text #8:  handwriting (0.6809382438659668)
+Text #8:  pencil (0.27097317576408386)
+Text #8:  skills (0.004564452450722456)
+Text #8:  checklist (0.4421733617782593)
+Text #8:  activities (1.1280697584152222)
+Text #8:  OT (0.2589438259601593)
+Text #8:  teachers (0.055563826113939285)
+Text #8:  handwriting (0.5480399131774902)
+Text #8:  pencil (0.14404648542404175)
+Text #8:  again (0.2161533236503601)
+Text #8:  again (0.2530413866043091)
+Text #8:  favorite (0.6748053431510925)
+Text #8:  skills (0.04477846249938011)
+Text #8:  pencil (0.21433411538600922)
+Text #8:  handwriting (0.6187590956687927)
+Text #9:  arts (0.19446925818920135)
+Text #9:  activities (0.5489053726196289)
+Text #9:  times (0.5547239780426025)
+Text #9:  gotten (0.31898385286331177)
+Text #9:  anything (0.06507115066051483)
+Text #9:  whirlwind (0.3873005509376526)
+Text #9:  gorgeous (1.3952001333236694)
+Text #9:  luxury (0.15734371542930603)
+Text #9:  delicious (0.6639450192451477)
+Text #9:  lots (0.007713882252573967)
+Text #9:  laughter (0.24072352051734924)
+Text #9:  senses (0.26163527369499207)
+Text #9: etime (0.11915632337331772)
+Text #9:  forever (0.08449295908212662)
+Text #9: Cele (0.2528221309185028)
+Text #9:  designer (0.05079266056418419)
+Text #9: efined (0.3900497257709503)
+Text #9:  crafts (0.1603739708662033)
+Text #9:  chefs (0.440395712852478)
+Text #9:  senses (0.12343117594718933)
+Text #9:  immersive (0.0774846225976944)
+Text #9:  glorious (0.045379068702459335)
+Text #9:  luxurious (0.07987470924854279)
+Text #9:  trip (0.7183674573898315)
+Text #9:  exquisite (0.5711739659309387)
+Text #9:  arts (0.6962368488311768)
+Text #9:  luxurious (0.0924547016620636)
+Text #9:  watering (1.2215923070907593)
+Text #9:  beautiful (0.30529624223709106)
+Text #9:  scenery (0.45714622735977173)
+Text #9:  crafted (0.07621568441390991)
+Text #9:  perfect (0.02619437873363495)
+Text #9:  appreciate (0.20560163259506226)
+Text #9:  forever (0.06043048948049545)
+Text #9:  access (0.2290784865617752)
+Text #9:  ways (0.8350980281829834)
+Text #10:  arts (0.19446925818920135)
+Text #10:  activities (0.5489053726196289)
+Text #10:  times (0.5547239780426025)
+Text #10:  gotten (0.31898385286331177)
+Text #10:  anything (0.06507115066051483)
+Text #10:  whirlwind (0.3873005509376526)
+Text #10:  gorgeous (1.3952001333236694)
+Text #10:  luxury (0.15734371542930603)
+Text #10:  delicious (0.6639450192451477)
+Text #10:  lots (0.007713882252573967)
+Text #10:  laughter (0.24072352051734924)
+Text #10:  senses (0.26163527369499207)
+Text #10: etime (0.11915632337331772)
+Text #10:  forever (0.08449295908212662)
+Text #10: Cele (0.2528221309185028)
+Text #10:  designer (0.05079266056418419)
+Text #10: efined (0.3900497257709503)
+Text #10:  crafts (0.1603739708662033)
+Text #10:  chefs (0.440395712852478)
+Text #10:  senses (0.12343117594718933)
+Text #10:  immersive (0.0774846225976944)
+Text #10:  glorious (0.045379068702459335)
+Text #10:  luxurious (0.07987470924854279)
+Text #10:  trip (0.7183674573898315)
+Text #10:  exquisite (0.5711739659309387)
+Text #10:  arts (0.6962368488311768)
+Text #10:  luxurious (0.0924547016620636)
+Text #10:  watering (1.2215923070907593)
+Text #10:  beautiful (0.30529624223709106)
+Text #10:  scenery (0.45714622735977173)
+Text #10:  crafted (0.07621568441390991)
+Text #10:  perfect (0.02619437873363495)
+Text #10:  appreciate (0.20560163259506226)
+Text #10:  forever (0.06043048948049545)
+Text #10:  access (0.2290784865617752)
+Text #10:  ways (0.8350980281829834)
+Text #11:  homes (0.044953376054763794)
+Text #11:  bonuses (0.3921791613101959)
+Text #11:  discounts (1.0035043954849243)
+Text #11: bah (0.28733786940574646)
+Text #11:  times (0.6630560755729675)
+Text #11:  chill (0.5587693452835083)
+Text #11:  lounge (1.3137873411178589)
+Text #11:  music (1.1354068517684937)
+Text #11:  genres (0.2837671637535095)
+Text #12:  criminals (0.006101077422499657)
+Text #12:  lighting (0.14243662357330322)
+Text #12:  crime (0.08264707028865814)
+Text #12:  LED (0.0005568735650740564)
+Text #12:  lights (0.8869112133979797)
+Text #12:  dull (0.20087115466594696)
+Text #12: oor (0.09115465730428696)
+Text #12:  option (0.49622413516044617)
+Text #12:  lights (0.8344825506210327)
+Text #12:  lights (0.8788686394691467)
+Text #12:  lights (0.8751590251922607)
+Text #12:  lum (0.35594964027404785)
+Text #12:  lights (0.8298957943916321)
+Text #12:  color (1.448596477508545)
+Text #12:  lights (0.9140093922615051)
+Text #12:  lights (0.9225841164588928)
+Text #12:  eco (0.09821860492229462)
+Text #12:  lighting (0.2700881063938141)
+Text #12:  UV (0.47631990909576416)
+Text #12:  lights (0.7295225858688354)
+Text #12:  lights (0.792367696762085)
+Text #12:  lights (0.7779315710067749)
+Text #12:  lighting (0.06543955951929092)
+Text #12: ways (0.0751519501209259)
+Text #12:  lights (0.6229584217071533)
+Text #12:  activities (0.8887161016464233)
+Text #13:  awesome (0.08890879899263382)
+Text #13:  weekend (0.16645163297653198)
+Text #13:  Competition (0.018051745370030403)
+Text #13:  workouts (2.968100070953369)
+Text #13:  fun (0.01859278604388237)
+Text #13:  GREAT (0.44340503215789795)
+Text #13: � (0.118729367852211)
+Text #13:  little (0.15646585822105408)
+Text #14: creen (1.3300946950912476)
+Text #14: uta (0.26483604311943054)
+Text #14: azon (0.8623267412185669)
+Text #14: paper (0.4811997711658478)
+Text #14:  mc (0.03214383125305176)
+Text #14:  wallpaper (1.6944971084594727)
+Text #14: creen (1.4151835441589355)
+Text #15: � (0.2868226170539856)
+Text #15: themed (0.0781092569231987)
+Text #15:  Nov (0.004015399143099785)
+Text #15:  fairy (0.25749194622039795)
+Text #15:  transportation (0.021992754191160202)
+Text #15:  surroundings (0.16993442177772522)
+Text #15:  ways (0.4400551915168762)
+Text #15:  noises (0.38432520627975464)
+Text #15:  visuals (0.13499219715595245)
+Text #15:  nuance (0.5756885409355164)
+Text #15:  relaxing (1.2911423444747925)
+Text #15:  layout (0.03757176175713539)
+Text #15:  icons (1.4327303171157837)
+Text #15: iffin (0.07143805176019669)
+Text #15:  blonde (0.3538457453250885)
+Text #15:  fairy (0.24095751345157623)
+Text #15:  unicorn (0.8563543558120728)
+Text #15:  icons (1.246336579322815)
+Text #15:  icons (1.1955288648605347)
+Text #15:  wonderfully (0.5468654036521912)
+Text #15:  icon (1.0278204679489136)
+Text #16:  craz (1.261857271194458)
+Text #16:  spree (0.4183844029903412)
+Text #16:  Simpsons (0.10609056800603867)
+Text #16:  kill (0.0018420704873278737)
+Text #16:  Bart (0.35099440813064575)
+Text #16:  Ned (0.3517192006111145)
+Text #16:  Barney (0.23189620673656464)
+Text #16:  Riv (0.23084650933742523)
+Text #17:  craz (1.261857271194458)
+Text #17:  spree (0.4183844029903412)
+Text #17:  Simpsons (0.10609056800603867)
+Text #17:  kill (0.0018420704873278737)
+Text #17:  Bart (0.35099440813064575)
+Text #17:  Ned (0.3517192006111145)
+Text #17:  Barney (0.23189620673656464)
+Text #17:  Riv (0.23084650933742523)
+Text #18:  drills (0.1379130631685257)
+Text #19:  TV (0.07008519768714905)
+Text #19:  Devin (1.3588848114013672)
+Text #19:  filler (0.1316441297531128)
+Text #19:  PBS (0.5753980875015259)
+Text #19:  kids (0.1894446462392807)
+Text #19:  kids (0.27868521213531494)
+Text #19:  watch (0.19235579669475555)
+Text #19:  morning (0.36094677448272705)
+Text #19:  PBS (0.7298787236213684)
+Text #19:  TV (0.0064071789383888245)
+Text #19:  commercials (1.2326098680496216)
+Text #19:  minute (0.15153910219669342)
+Text #19:  PBS (0.7015539407730103)
+Text #20:  Wow (0.33278194069862366)
+Text #20:  stunning (0.12843097746372223)
+Text #20:  Beaut (0.5035080909729004)
+Text #20:  fabulous (1.497122049331665)
+Text #20:  bedroom (0.9502054452896118)
+Text #20:  furniture (1.3125439882278442)
+Text #20:  glam (0.5680963397026062)
+Text #20:  dining (0.2185724675655365)
+Text #20: boys (0.02206582948565483)
+
+=== Text #1 ===
+> I[ don’]t know about you, but I[ love tacos]! They are a great go-to[ recipe] for[ busy]/l[azy days].[ But], I[’]ve[ been] getting[ tired] of using my[ taco seasoning] mix. I think I may have overused it or something but it just doesn[’]t taste good[ anymore]!
+I was going through my[ recipes] the other day and found one from my Grandma for[ her tacos]. She is an[ amazing cook] and does her[ cooking] from[ scratch]. Why I[ didn’]t think to use the[ recipe] before, I don[’]t know. Especially because of how easy it is! And it uses[ things] that most of us already have on hand.
+Cook ground beef with seasonings,[ taco] sauce, and ketchup until[ brown]ed. Heat oil in separate pan over medium-high heat. When heated, drop one tortilla in the oil and[ cook] for 10 seconds (or so) on each side. Lay flat on paper[ towels] to cool down until[ okay] to touch. Add ground beef and other toppings. Enjoy!
+
+=== Text #2 ===
+> T he popular YouTuber[ Lilly] Singh who is more prominent as Superwoman is genuinely making marks. Apart from all the social work and impressive[ collaborations],[ Lilly] has now released a[ music] video. Although nobody was quite expecting it from her, the[ rap song] is[ definitely] on fire. But what makes this[ song] grab attention worldwide is that she brought into light what Bollywood[ songs] would look like if they were turned into a[ woke rap].
+Choosing three[ songs] from the industry, Superwoman gave them a whole new meaning and added her unique beats alongside it.[ Needless] to say, this version highlights the blatant misogyny in the Bollywood[ music] industry.
+The internet just can not seem to get enough of Superwoman’s[ empowering] reinterpretation of their[ favorite] Bollywood[ songs]. The YouTuber released her own[ music] video titled If Bollywood[ Songs] Were Rap, with a compilation of three different hit[ songs]. However, she added her own touch to it, and did not just translate the lyrics. There is much more to hear as[ Lilly] has touched upon[ topics] like[ unrealistic] beauty standards of women, mental health[ issues],[ bisexuality] and so much more.
+Lilly Singh has chosen three hit[ songs] including Choli Ke Peeche Kya Hai, All Izz Well and Aankh Marey. Apparently, her new[ rap] version is[ everything] that Bollywood never tells you about. Or[ everything] that the[ entertainment] industry gets wrong about women. Superwoman has smashed stereotypes with this new touch. Plus, she completely slayed the[ rap] game.
+While sharing the[ song],[ Lilly] claimed that she[ loves] Bollywood and[ rap music]. So, she decided to make an impact by turning her[ favorite ones] into[ rap]. But she wanted to do more so she added positive and[ empowering messages] into them.
+Lilly Singh aka Superwoman is a very popular YouTuber who has a massive following on the platform. She has ventured into various fields doing comic[ sket]ched, impressive[ collaborations] including[ ones] with D[wayne] Johnson and[ Pri]yanka[ Chop]ra, and[ music videos]. Apart from doing[ social] work, she is now heading into Hollywood by getting her own late[ night] show.
+
+=== Text #3 ===
+> rinse aid dispenser whirlpool whirlpool w10524920 dish[washer rinse] aid dispenser cap genuine original equipment manufacturer oem part dish[washer] not dispensing soap dish[washer] not dissolving detergent dish[washer] not dispensing soap whirlpool dish[washer] dispenser clean out[ rinse] aid dispenser if clogged whirlpool gold.
+rinse aid dispenser whirlpool dish[washer] soap and[ rinse] aid door replacement kit am[azon]com whirlpool w dish[washer rinse]aid dispenser cap whirlpool w dish[washer rinse]aid dispenser cap genuine original equipment manufacturer oem.
+rinse aid dispenser whirlpool dish[washer] parts detergent[ rinse] aid dispenser .
+rinse aid dispenser whirlpool whirlpool maytag etc dish[washer rinse] aid dispenser cap wpw10199683 wp 8558307[ rinse]aid dispenser cap wp whirlpool replacement parts[ rinse]aid dispenser cap wp alternate product view.
+rinse aid dispenser whirlpool dish[washer rinse] aid dispenser how to video leaking whirlpool cap d w whirlpool dish[washer rinse] aid dispenser cap[ blue] w whirlpool dish[washer rinse] aid dispenser cap[ blue].
+rinse aid dispenser whirlpool dish[washer rinse] aid for better wash[ rinse] aid[ rinse] aid x w rinse aid ingredients rinse aid sparkle dish[washer] rinse aid western industrial cleaning supplies whirlpool rinse aid dispenser not.
+rinse aid dispenser whirlpool whirlpool dispenser cap wp8558307 from appliancepartsproscom dish[washer] not dispensing soap dish[washer] not dissolving detergent dish[washer] not dispensing soap whirlpool dish[washer] dispenser clean out[ rinse] aid dispenser if clogged whirlpool gold.
+rinse aid dispenser whirlpool whirlpool w10524922 dish[washer rinse] aid dispenser cap genuine original equipment manufacturer oem part whirlpool wpw detergent and[ rinse] aid dispenser easy detergent and[ rinse] aid dispenser part number wpw.
+rinse aid dispenser whirlpool[ rinse] aid dispenser[ rinse] aid dispenser fill rinse aid dispenser whirlpool whirlpool dish[washer rinse] aid dispenser whirlpool wpw dish[washer] dispenser[ rinse] aid cap walmartcom whirlpool wpw dish[washer] dispenser[ rinse] aid cap.
+rinse aid dispenser whirlpool whirlpool wpw10524920 cap description whirlpool wpw10524920 dish[washer rinse] aid dispenser cap
+
+=== Text #4 ===
+> rinse aid dispenser whirlpool whirlpool w10524920 dish[washer rinse] aid dispenser cap genuine original equipment manufacturer oem part dish[washer] not dispensing soap dish[washer] not dissolving detergent dish[washer] not dispensing soap whirlpool dish[washer] dispenser clean out[ rinse] aid dispenser if clogged whirlpool gold.
+rinse aid dispenser whirlpool dish[washer] soap and[ rinse] aid door replacement kit am[azon]com whirlpool w dish[washer rinse]aid dispenser cap whirlpool w dish[washer rinse]aid dispenser cap genuine original equipment manufacturer oem.
+rinse aid dispenser whirlpool dish[washer] parts detergent[ rinse] aid dispenser .
+rinse aid dispenser whirlpool whirlpool maytag etc dish[washer rinse] aid dispenser cap wpw10199683 wp 8558307[ rinse]aid dispenser cap wp whirlpool replacement parts[ rinse]aid dispenser cap wp alternate product view.
+rinse aid dispenser whirlpool dish[washer rinse] aid dispenser how to video leaking whirlpool cap d w whirlpool dish[washer rinse] aid dispenser cap[ blue] w whirlpool dish[washer rinse] aid dispenser cap[ blue].
+rinse aid dispenser whirlpool dish[washer rinse] aid for better wash[ rinse] aid[ rinse] aid x w rinse aid ingredients rinse aid sparkle dish[washer] rinse aid western industrial cleaning supplies whirlpool rinse aid dispenser not.
+rinse aid dispenser whirlpool whirlpool dispenser cap wp8558307 from appliancepartsproscom dish[washer] not dispensing soap dish[washer] not dissolving detergent dish[washer] not dispensing soap whirlpool dish[washer] dispenser clean out[ rinse] aid dispenser if clogged whirlpool gold.
+rinse aid dispenser whirlpool whirlpool w10524922 dish[washer rinse] aid dispenser cap genuine original equipment manufacturer oem part whirlpool wpw detergent and[ rinse] aid dispenser easy detergent and[ rinse] aid dispenser part number wpw.
+rinse aid dispenser whirlpool[ rinse] aid dispenser[ rinse] aid dispenser fill rinse aid dispenser whirlpool whirlpool dish[washer rinse] aid dispenser whirlpool wpw dish[washer] dispenser[ rinse] aid cap walmartcom whirlpool wpw dish[washer] dispenser[ rinse] aid cap.
+rinse aid dispenser whirlpool whirlpool wpw10524920 cap description whirlpool wpw10524920 dish[washer rinse] aid dispenser cap
+
+=== Text #5 ===
+> Starring Cast Rajesh Hamal, Sanchita Luitel,[ Dil]ip Rayamajhi, Deepak Chhetri, Simpal Khanal etc.
+Sanchita Luitel – One of the most[ beautiful] actress in Nepali film industry, Sanchita Luitel had married actor Nikhil Upreti. After giving[ birth] to two children, Sanchita is trying to get back into acting these days. Sanchita’s[ comeback movie] �[�]Nai[ Nab]hannu La 3’ was a super hit[ movie].
+Simpal Khanal – The model and actress Simpal Khanal debuted as a actress in this[ movie]. After this[ movie] Simpal didn�[�]t do any more[ movies] for almost a decade before being featured in leading role in �[�]Ad[hy]aya’. Simpal[ married] a businessman in UK in January 2016.
+This entry was posted in Nepali[ Movies] and tagged Bijaya Kerung, Deepak Chhetri,[ Dil]ip Rayamajhi, M film, Majhi Dai, Rajesh Hamal, Sanchita Luitel, Simpal Khanal, Simple Khanal. Bookmark the permalink.
+fantastic . Really reflects[ nep]ali culture . Fell like you get what your heart wants .
+agdam ramro[ movie] i like it-keep on send this type of[ movie] hai.
+Really very[ nice movie].keep on post like this[ fantastic movies].
+[Thank] you! I like this[ Maj]hi Dai[ Movie]. I[ appreciate] very much to Film maker. Please make more film in a realistic. I give[ grade] in 8/10. its a great!
+I[ dont] like this[ movie] its always push so[——]—–[ funny].
+[nice movie……].keep on posting other[ fantastic] and co[ooooooooooooooooooo]ool[ movies] hai[ ta]..
+
+=== Text #6 ===
+> Definitely my[ favorite restaurant] in Macau. If you want to experience the[ authentic Portuguese] Macanese[ dishes], with live one man band (sings with[ guitar]) and[ cozy amb]ience. This is it. For extra boost to add on to your one-in-a-lif[etime] experience, try order[ Cre]pe suzette! 3-michelin-stars Chef[ Antonio] himself will[ invite] you to join him[ cooking] at your table and be prepared for a fiery ride!
+One of many Signature dish – Seafood rice!
+It’s getting hot in here -Flaming Chouriço!
+Cooking crepe suzette! Be careful with the alcohols!
+Tadaaa! Proudly present Crepe suzette by Chef[ Antonio] and Me!
+Another popular local traditional Portuguese Macanese[ restaurant] with more mature[ settings] and environment.
+The famous[ african] chicken – this one’s a[ lil spicy]! But superb!
+Steamed clams! Make sure you dip the bread in the sauce! Yum!
+Ended with my[ favorite] traditional[ dessert] in Macau! Serradura!
+A[ cute romantic Portuguese]-Macanese[ restaurant] nearby the famous original Lord Stow’s egg tart[ bakery]!
+Portugal is also famous for their gl[azed tiles]. So[ lovely]!
+Sauteed[ shrimp] with garlic butter!
+Soaky wet Portuguese seafood rice! A must!
+Pork ribs!! Love the salty taste!
+The[ french fries] sure stole the spotlight from the pork[ steak]!
+This cherry whisky is STRONG!! be careful!
+Pine[apple], Mango, Peach[ juices]! Loving these rejuvenating refreshments! Just can’t get enough!
+Lovely[ meal] indeed! Bon[ app]étit!
+The famous Egg tart!! It’s shooo gooood u[ guy]z!!
+A regular Chinese[ restaurant], but what impressed me the most is the fact that they have a short tiny table where[ ladies] can put their bag on while eating![ Talk] about[ hospitality]! A major[ problem] for all[ ladies] who carry handbags, basically everyone! We always need to get extra chair, or hang it on the chair, or let the bag share half of our chair! So[ Bravo]! And obviously the food is Goo-Oood tooo![ HE]re i picked out my[ favorite dishes]!
+Crispy pork! Not[ oily] at all!
+Crispy Spring rolls stick filled with[ shrimp] and mangos!
+Website: http://www.[city]
+
+=== Text #7 ===
+> [Jew]el[ry] is[ eleg]antly[ gift boxed].
+Included with an inspired saying[..."]You are a precious[ jewel]" Zech. 9:16.
+This pristine cut crystal is faceted to attract rays of[ shimmer]ing light.
+Pale sky-blues and metallic steel greys are combined with cool[ az]ure at the 'base' light-filled end of its spectrum. A large variation in tonal displays results from changes in ambient and background light conditions. Upon the lighter[ blue shades], Light Vitrail builds[ lil]ac and[ purple], blending[ flashes] of mauve and some transient pinks.
+Care for your[ jewelry] can be cleaned with a delicate hand-washing detergent and water with a soft cloth, so as not to scratch any beads, crystal, and rhinestones.
+The best way to clean the[ jewelry] is to first spot clean with the soft cloth and a bit of the detergent, and then[ wipe] softly with a slightly damp cloth (water).
+
+=== Text #8 ===
+> There are so many[ ways] to work on[ handwriting] without actually using a[ pencil]. You probably know the face your child makes when you suggest a little[ handwriting] practice. It's a cross between "NO!" and "Why???!![!"] Anyone who has worked with a child who[ struggles] with[ handwriting] knows this face. But, what if I told you there were[ ways] to work on the skills needed for[ handwriting] and[ pencil] grasp that don't actually require a[ pencil]?
+It's true! Kids can strengthen the fine motor skills and bimanual skills needed for[ handwriting] legibility and written work through[ activities] that develop skills such as fine motor strength, precision,[ bilateral coordination], eye-hand[ coordination], and even posture and core stability.
+Want to get a printable handout that contains creative[ activities] to develop these skills? It's a free offer this week only from the Functional Skills for Kids therapy team. You can[ grab] the free three page handout here and pass it on to therapists,[ teachers], and parents who are looking for fresh[ ideas] to improve[ handwriting] in fun[ ways].
+Grab your copy of Motor[ Activities] to Improve Handwriting HERE.
+These are just a FEW[ ideas] that you can try to work on[ handwriting] and[ pencil] grasp[ skills].
+Print off the printable handout for a[ checklist]-type list of[ activities] that can be used as a home program for therapists. School-based[ OT]s will love to add these checklists to their toolbox of resources that can be shared with[ teachers] and parents. It's a great explanation sheet for helping parents and teachers understand the underlying skill areas that go into[ handwriting] and[ pencil] grasp.
+This printable handout is a tool you need in your therapy binder to copy and share[ again] and[ again]!
+What are your[ favorite ways] to work on the[ skills] needed for written work and[ pencil] grasp? Share them in our private[ handwriting] Facebook group, Sweet Ideas for Handwriting Help.
+
+=== Text #9 ===
+> The Retreat Teaser from The Retreat on Vimeo.
+them, including in the[ arts], education in a whole range of human[ activities].
+I've been to Ireland three[ times] and have never[ gotten] to experience[ anything] like I did on The Retreat. Getting to visit the studios - and homes! - of iconic designers, and chat with them like old friends was so special and something I would never have been able to do on my own. The whole week flew by in a[ whirlwind] of[ gorgeous scenery],[ luxury accommodations],[ delicious food] and[ lots] of[ laughter]. The Retreat is a treat for the[ senses] and a once-in-a-lif[etime] experience that will stay with me[ forever].
+[Cele]brated international[ designer] Grania Murray has almost magically red[efined travel] with The Retreat. She takes you behind closed doors to meet the best designers, artists,[ crafts]man,[ chefs] and experts in Ireland. It’s a feast for the five[ senses], providing an[ immersive intimacy] with a[ glorious] country and its people, at a[ luxurious] level that simply cannot be found anywhere else.
+The Retreat is a[ trip] unlike any other, combining[ exquisite] Irish[ arts] and fashion,[ luxurious accommodations], and mouth[ watering cuisine] with[ beautiful] Irish[ scenery] and culture. Grania has[ crafted] a truly unique experience,[ perfect] for those who can[ appreciate] passion and detail. My experience on The Retreat is one that will stay close to my heart[ forever]. Gaining exclusive[ access] to some of Ireland’s top artisans and designers and experiencing their craft in a personal way changed the way I viewed art and its entire creative process. I cannot recommend The Retreat enough - you will leave Ireland feeling full in more[ ways] than one!
+
+=== Text #10 ===
+> The Retreat Teaser from The Retreat on Vimeo.
+them, including in the[ arts], education in a whole range of human[ activities].
+I've been to Ireland three[ times] and have never[ gotten] to experience[ anything] like I did on The Retreat. Getting to visit the studios - and homes! - of iconic designers, and chat with them like old friends was so special and something I would never have been able to do on my own. The whole week flew by in a[ whirlwind] of[ gorgeous scenery],[ luxury accommodations],[ delicious food] and[ lots] of[ laughter]. The Retreat is a treat for the[ senses] and a once-in-a-lif[etime] experience that will stay with me[ forever].
+[Cele]brated international[ designer] Grania Murray has almost magically red[efined travel] with The Retreat. She takes you behind closed doors to meet the best designers, artists,[ crafts]man,[ chefs] and experts in Ireland. It’s a feast for the five[ senses], providing an[ immersive intimacy] with a[ glorious] country and its people, at a[ luxurious] level that simply cannot be found anywhere else.
+The Retreat is a[ trip] unlike any other, combining[ exquisite] Irish[ arts] and fashion,[ luxurious accommodations], and mouth[ watering cuisine] with[ beautiful] Irish[ scenery] and culture. Grania has[ crafted] a truly unique experience,[ perfect] for those who can[ appreciate] passion and detail. My experience on The Retreat is one that will stay close to my heart[ forever]. Gaining exclusive[ access] to some of Ireland’s top artisans and designers and experiencing their craft in a personal way changed the way I viewed art and its entire creative process. I cannot recommend The Retreat enough - you will leave Ireland feeling full in more[ ways] than one!
+
+=== Text #11 ===
+> Meet the fighters post event to see who take[ homes fight] of the night[ bonuses].
+Special drink[ discounts] starting at just 100[bah]t, free entry, and FMD style good[ times].
+Chat with the Ring Girls,[ chill] by the pool,[ lounge] on the astroturfed roof top and enjoy a classic mix of[ music] from all[ genres].
+
+=== Text #12 ===
+> According to many studies, it is revealed that the number of crimes can be reduced by almost 50%, if there is better street illumination thus demotivating[ criminals] to commence any kind of crime due to the fear of getting caught. If you are also considering some better[ lighting] alternative to reduce[ crime] from your area then you can install[ LED] pole[ lights] that will never make streets dark or[ dull]. Install Out[oor LED] Pole Light 300w that have photocell[ option] as well which will give you added savings in addition to maximum safety.
+These[ lights] are electrician friendly and can be installed easily, also with the lifespan of more than 50,000 hours; you can completely rely on these[ lights] to provide maximum visibility.
+These[ lights] produce 39982[ lum]ens by using just 300watts of power and you can replace them with 1000w of MH[ lights].
+Also the[ color temperature] of these[ lights] is 5700K and these[ lights] offer[ eco]-friendly[ lighting] results without emitting any harmful[ UV]/IV rays as well.
+These[ lights] are photocell sensor enabled[ lights] that reduces the wastage of[ lights] as well, enjoy even and uniform[ lighting] that can cater to the bigger and larger areas.
+The Pre-built LED Shoebox fixture delivers energy-efficient illumination for boulevards, parking lots, park[ways] & pathways among many other places.
+So install LED pole light 300w that are more powerful than the traditional[ lights] and can give maximum energy savings and can keep the city safe from the criminal[ activities].
+
+=== Text #13 ===
+> Check out these two[ awesome ladies]!!
+They competed all[ weekend] at the Heart of America CrossFit[ Competition]. Three days of[ workouts] and[ fun]. They did[ GREAT!!! Very cool] to see them compete. More to come on this, once I[’]ve rested a[ little].
+
+=== Text #14 ===
+> Rachel McAdams Wides[creen] karatasi la kupamba uk[uta]. Made from image found at: Bell[azon].com. HD Wall[paper] and background images in the Rachel McAdams club tagged: rachel[ mc]adams[ wallpaper] wides[creen] desktop.
+
+=== Text #15 ===
+> If you[’]re a fan of fantasy-[themed] games, you’ll no doubt be very much enchanted by the[ Nov]omatic release, ‘Secret Forest’. It’s full of[ fairy], elf and gnome magic, providing players with a[ transportation] to another world. It’s a little unfortunate that the interface is set up to include much of what would be considered a traditional slot machine cabinet, otherwise the developer could have had some fun with providing a foliage-based background and[ surroundings]. However, this is not the biggest mishap with this game. Instead, they still haven’t seen the error of their[ ways], and have seen fit to incorporate their tired old arcade[ noises] into this every time the reels spin. Audio should be concentrated on as well as the[ visuals], and it just seems like Novomatic haven’t really bothered thinking about it too much. However, with this[ nuance] put aside, Secret Forest offers up an easy and[ relaxing] game to play.
+There are a total of five reels in this game, and these are accompanied by three rows, which presents a standard[ layout] for frequent online video slots players. Upon these reels, various[ icons] relating to the game’s theme can be found, including a gr[iffin], a[ blonde]-haired[ fairy], a golden-horned[ unicorn], trees with faces, white-spotted toadstools, two gnomes and a regal castle. Furthermore, the addition of A, J, Q, K, 9 and 10[ icons] can also be seen. These[ icons] are[ wonderfully] animated and very intricately designed, providing a very visually appealing product.
+In addition to these reels and rows, Novomatic have added a total of nine separate pay lines. All of these are able to be easily altered, ranging from a single one up to three, five, seven and the maximum of nine. Furthermore, the value of a single credit in the game can be changed between $0.50 and up to $1 and finally, $2. Also, players are also able to change around the bet placed per line, which will range from its minimum of one and increase up to the maximum of 100. Overall, players are able to place a maximum wager per round of $900.
+A large amount of features are usually added in to the best games, and while Secret Forest does have a few, it’s not overwhelmed by them. Its specialities start off with its wild[ icon], and this is represented by the
+
+=== Text #16 ===
+> Homer is back and is[ craz]ier than ever. He continues his killing[ spree] in this[ Simpsons craz]ed shooting game. You get to[ kill] the whole gang in this game,[ Bart], Lisa, Marge,[ Ned] Flanders, Rod Flanders, Tod Flanders, Police Chief Wiggum,[ Barney], Moe, Dr Nick[ Riv]iera, and many more.
+
+=== Text #17 ===
+> Homer is back and is[ craz]ier than ever. He continues his killing[ spree] in this[ Simpsons craz]ed shooting game. You get to[ kill] the whole gang in this game,[ Bart], Lisa, Marge,[ Ned] Flanders, Rod Flanders, Tod Flanders, Police Chief Wiggum,[ Barney], Moe, Dr Nick[ Riv]iera, and many more.
+
+=== Text #18 ===
+> Dig and Rig Equipment Dedicated to the HDD industry and those within it. Consulting, service, tooling, and MTI Equipment. We offer a full line of underground tooling and replacement parts for directional[ drills] and trenchers.
+
+=== Text #19 ===
+> I was watching[ TV] with[ Devin] the other day and we were watching some of the[ filler] programing between shows on[ PBS]. We don't have cable so the only[ kids] shows the[ kids] can[ watch] outside of Saturday[ morning] is on[ PBS] and[ TV]O. Rather than have[ commercials] these networks show these short 2[ minute filler] … Continue reading Humanism on[ PBS]?
+
+=== Text #20 ===
+> or 4 interest-free payments of $330.50 with Learn more.
+Black Glass Furniture -[ Wow]! This is[ stunning]![ Beautifully crafted] and unique, this range will be[ fabulous] in the[ bedroom] or any other room. This range of[ furniture] adds[ glam]our to all decors so be sure to check out all the pieces in this range - chest, bedside tables,[ dining] table, tall[boys] and mirrors. Stunning grouped together or individually placed.
+The bedside table features three deep drawers and a subtle reflective finish.
+
+
+Description: 
+2025-05-10 18:00:08,120 - root - INFO - Food, music, appliances, movies, luxury travel, leisure activities, lighting, and violent video games
+
+2025-05-10 18:00:08,124 - root - INFO - Cluster #1 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.csv
+2025-05-10 18:00:09,986 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-05-10 18:00:09,987 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  PAN (0.40808436274528503)
+Text #1:  Charg (0.758108913898468)
+Text #1:  PAN (0.2804439067840576)
+Text #1:  charg (1.2962483167648315)
+Text #1:  battery (0.1542811244726181)
+Text #1:  PAN (0.34220531582832336)
+Text #1:  PAN (0.30784088373184204)
+Text #1:  Charg (0.7927448153495789)
+Text #1:  PAN (0.3951259255409241)
+Text #1:  Charg (0.8535111546516418)
+Text #1:  PAN (0.35021236538887024)
+Text #1:  battery (0.21748663485050201)
+Text #1:  PAN (0.3890751302242279)
+Text #1:  charger (1.518768072128296)
+Text #1:  PAN (0.36636969447135925)
+Text #1:  Charg (0.8194097280502319)
+Text #1:  PAN (0.3399983048439026)
+Text #1:  charg (1.3461748361587524)
+Text #1:  Voltage (0.4932743012905121)
+Text #1:  Voltage (0.41880539059638977)
+Text #1:  charger (1.3692022562026978)
+Text #1:  PAN (0.3747422397136688)
+Text #1: opping (0.23607423901557922)
+Text #1:  PAN (0.3976522982120514)
+Text #1:  battery (0.17335806787014008)
+Text #1:  transaction (0.1517203450202942)
+Text #1:  charg (1.2456083297729492)
+Text #1:  battery (0.17505621910095215)
+Text #1:  adapter (0.6113819479942322)
+Text #1:  charger (1.4372000694274902)
+Text #1:  PAN (0.2966134250164032)
+Text #1:  charg (1.267447829246521)
+Text #1: opping (0.27920258045196533)
+Text #1:  Charg (0.8786787986755371)
+Text #1:  PAN (0.383199006319046)
+Text #2:  colors (0.7951444983482361)
+Text #2:  Quartz (0.2482834756374359)
+Text #2:  Quartz (0.2772277593612671)
+Text #2:  Quartz (0.30627304315567017)
+Text #2:  color (0.8069814443588257)
+Text #2:  colors (0.8583654761314392)
+Text #2:  Quartz (0.25677213072776794)
+Text #2:  purple (0.5227786898612976)
+Text #2:  Quartz (0.28411465883255005)
+Text #2:  purple (0.5996816754341125)
+Text #2: ethyst (0.23381097614765167)
+Text #2: brown (0.47904470562934875)
+Text #2:  Quartz (0.365585058927536)
+Text #2:  colored (0.7111070156097412)
+Text #2: ethyst (0.2349846512079239)
+Text #2: oky (0.17983871698379517)
+Text #2:  Quartz (0.42001646757125854)
+Text #2: oky (0.28055739402770996)
+Text #2:  brown (0.508232057094574)
+Text #2: oky (0.2828829884529114)
+Text #2:  Quartz (0.4543282091617584)
+Text #2:  color (1.1766636371612549)
+Text #2:  brown (0.48184487223625183)
+Text #2:  color (0.9489938616752625)
+Text #2: oky (0.2277064472436905)
+Text #2:  pink (0.7760273814201355)
+Text #2:  Quartz (0.4714656472206116)
+Text #2:  Quartz (0.4585696756839752)
+Text #2:  color (0.9600608348846436)
+Text #2:  pink (0.6791526675224304)
+Text #2:  pink (0.6312827467918396)
+Text #2:  Quartz (0.4478836953639984)
+Text #2: zy (0.5975711941719055)
+Text #2:  Quartz (0.4245612323284149)
+Text #2:  color (1.0733669996261597)
+Text #2:  Quartz (0.4218752384185791)
+Text #2:  Quartz (0.3557671010494232)
+Text #2:  translucent (0.4953639507293701)
+Text #2:  Quartz (0.32978305220603943)
+Text #2: Color (0.74589604139328)
+Text #2:  Quartz (0.3922422528266907)
+Text #2:  Quartz (0.2626127302646637)
+Text #2:  Quartz (0.24247094988822937)
+Text #2:  color (0.8140479326248169)
+Text #2:  purple (0.7170178890228271)
+Text #2: ethyst (0.21518705785274506)
+Text #2:  brown (0.3261566758155823)
+Text #2:  Quartz (0.40687718987464905)
+Text #2:  Quartz (0.3765769600868225)
+Text #3:  colour (0.19629572331905365)
+Text #3:  purple (1.2332510948181152)
+Text #3:  purple (1.2237012386322021)
+Text #3:  kid (0.44477325677871704)
+Text #3:  Talk (0.4374438524246216)
+Text #3:  decor (0.35962989926338196)
+Text #3:  couldn (0.5201857686042786)
+Text #3:  anything (0.11787924915552139)
+Text #3:  Fortunately (0.40242883563041687)
+Text #3:  purple (1.499478816986084)
+Text #3:  likes (0.2126871645450592)
+Text #3:  icing (0.3206406831741333)
+Text #3: cakes (0.44570231437683105)
+Text #3:  purple (1.2553409337997437)
+Text #3:  purple (1.2608174085617065)
+Text #3:  flowers (0.10937168449163437)
+Text #3:  butterfly (0.4578353464603424)
+Text #3:  purple (1.0129444599151611)
+Text #3:  icing (0.2800825834274292)
+Text #3: essert (0.7733592391014099)
+Text #3:  icing (0.12423337996006012)
+Text #3:  butterfly (0.5725235939025879)
+Text #3:  Birthday (0.3063965439796448)
+Text #3:  daughter (0.1520848423242569)
+Text #3:  pics (1.5948983430862427)
+Text #3:  everything (1.3639498949050903)
+Text #3:  daughters (0.3385626971721649)
+Text #3:  beautifully (0.470634400844574)
+Text #3: Thank (0.41691043972969055)
+Text #3:  🙂 (0.367953896522522)
+Text #3:  birthday (0.17781341075897217)
+Text #3:  time (0.22231653332710266)
+Text #3:  plan (0.18050959706306458)
+Text #3: � (0.13060139119625092)
+Text #3:  wait (0.11650215834379196)
+Text #3:  weekend (0.37661081552505493)
+Text #3: � (0.11949610710144043)
+Text #3:  Birthday (0.49016842246055603)
+Text #3:  daughter (0.31433185935020447)
+Text #3: � (0.1557362973690033)
+Text #3:  cake (0.11614344269037247)
+Text #3:  thrilled (1.5602837800979614)
+Text #3:  liked (0.11211427301168442)
+Text #3:  🙂 (0.20858876407146454)
+Text #3:  appreciate (0.5946640372276306)
+Text #3:  stuff (0.7781577706336975)
+Text #3:  nice (0.4319944977760315)
+Text #3:  cook (0.5342007875442505)
+Text #3:  recipes (1.7889354228973389)
+Text #4:  Kardashian (0.5411093831062317)
+Text #4:  baby (1.6733882427215576)
+Text #4: � (0.05848679691553116)
+Text #4:  worry (0.7288631200790405)
+Text #4:  diapers (1.692445993423462)
+Text #4:  slee (1.5481157302856445)
+Text #4: � (0.14886139333248138)
+Text #4:  time (0.31638431549072266)
+Text #4:  newest (0.19186407327651978)
+Text #4:  little (0.2580203115940094)
+Text #4: � (0.08476339280605316)
+Text #4:  letting (0.21439103782176971)
+Text #4:  fun (0.02981560491025448)
+Text #4:  baby (1.634141445159912)
+Text #4:  black (0.058546554297208786)
+Text #4:  cute (0.6391582489013672)
+Text #4:  little (0.1439962089061737)
+Text #4:  mom (0.7604130506515503)
+Text #4:  little (0.09012369066476822)
+Text #4:  newest (0.01758645847439766)
+Text #4: � (0.008101132698357105)
+Text #4:  pic (0.2522563636302948)
+Text #4:  Instagram (0.19621556997299194)
+Text #4:  beautiful (0.2732957601547241)
+Text #4:  things (1.0507835149765015)
+Text #4:  baby (1.4786263704299927)
+Text #4:  react (0.15293453633785248)
+Text #4: � (0.0782315582036972)
+Text #4:  family (0.030236417427659035)
+Text #4: � (0.06590324640274048)
+Text #4: Brit (0.16502484679222107)
+Text #5:  destinations (0.6984227895736694)
+Text #5:  feelings (0.09143553674221039)
+Text #5:  peaceful (0.0921143963932991)
+Text #5:  blessing (0.33432915806770325)
+Text #5:  mystery (0.024400603026151657)
+Text #5:  bed (0.24952715635299683)
+Text #5:  creatures (0.367784708738327)
+Text #5:  happiest (0.3405928909778595)
+Text #5:  wonderful (1.2652066946029663)
+Text #5:  happiest (0.31956276297569275)
+Text #5:  happy (0.026452677324414253)
+Text #5:  mc (0.09006558358669281)
+Text #5:  bedroom (1.0711381435394287)
+Text #5:  Adults (0.06507036834955215)
+Text #5:  romantic (0.9533951878547668)
+Text #5:  ones (0.943909764289856)
+Text #5:  dwelling (0.032279420644044876)
+Text #5:  sleepy (0.473327100276947)
+Text #5:  calm (0.4210284650325775)
+Text #5:  peaceful (0.12788407504558563)
+Text #5:  surroundings (0.7612670063972473)
+Text #5:  bed (0.06758701056241989)
+Text #5:  intellig (0.009892878122627735)
+Text #5:  adorable (0.8618372082710266)
+Text #5:  mc (0.06897460669279099)
+Text #5:  bedroom (1.054246425628662)
+Text #5:  kids (0.05900237709283829)
+Text #5:  charm (0.5201010704040527)
+Text #5:  lovely (0.7601046562194824)
+Text #5:  bed (0.1537250429391861)
+Text #5: inkle (0.22350995242595673)
+Text #5:  tv (1.1396692991256714)
+Text #5:  dress (0.48468104004859924)
+Text #5:  bedroom (1.1496860980987549)
+Text #5:  ways (1.0445187091827393)
+Text #5:  happy (0.013268704526126385)
+Text #6: Awesome (0.0022138834465295076)
+Text #6:  comfortable (0.0877838283777237)
+Text #6:  Thanks (0.29543912410736084)
+Text #6:  Lum (0.3736822009086609)
+Text #6:  Alert (0.3705618977546692)
+Text #6:  pad (0.29845407605171204)
+Text #6:  alert (0.12688583135604858)
+Text #6:  careg (0.15956176817417145)
+Text #6:  slips (0.09240728616714478)
+Text #6:  alarm (1.914031744003296)
+Text #6:  variety (0.6295620799064636)
+Text #6:  styles (0.31654274463653564)
+Text #6: chairs (0.05756792798638344)
+Text #6:  alarm (1.845771074295044)
+Text #6:  Pad (0.1484701782464981)
+Text #6:  alarm (1.829071283340454)
+Text #6:  sensor (0.3184206187725067)
+Text #6:  Alert (0.521904706954956)
+Text #6:  device (0.11040755361318588)
+Text #6:  careg (0.10990073531866074)
+Text #6:  nursing (0.1509855091571808)
+Text #6:  alarm (1.759979486465454)
+Text #6:  alert (0.01010589674115181)
+Text #6:  Alert (0.4624917507171631)
+Text #6:  sensor (0.2098812758922577)
+Text #6:  options (0.787315845489502)
+Text #6:  Protect (0.009434597566723824)
+Text #6:  sensor (0.2593872547149658)
+Text #6:  waterproof (0.7550610899925232)
+Text #7:  chose (0.15635965764522552)
+Text #7:  stunning (0.11407823860645294)
+Text #7:  themed (0.8367036581039429)
+Text #7:  Bella (0.39304453134536743)
+Text #7:  Wedding (0.44557371735572815)
+Text #7:  wedding (0.446437269449234)
+Text #7:  wedding (0.4982333183288574)
+Text #7:  gorgeous (1.5675981044769287)
+Text #7:  handsome (0.14157487452030182)
+Text #7:  beautiful (0.3186689615249634)
+Text #7:  beautiful (0.25180497765541077)
+Text #7:  chose (0.1461324840784073)
+Text #7:  elegant (0.13886189460754395)
+Text #7:  wedding (0.45111969113349915)
+Text #7:  weddings (0.8188586831092834)
+Text #7: !) (0.17487174272537231)
+Text #7:  Bella (0.3798489272594452)
+Text #7:  Wedding (0.3942314684391022)
+Text #7:  Everything (1.418201208114624)
+Text #7:  Lynn (0.2959733009338379)
+Text #7:  Events (0.6726754307746887)
+Text #7:  charge (0.5509928464889526)
+Text #7:  coordinating (0.40874069929122925)
+Text #7:  stunning (0.19425395131111145)
+Text #7:  Bella (0.47890958189964294)
+Text #7:  wedding (0.5953489542007446)
+Text #7:  Esther (0.11134102195501328)
+Text #7:  flowers (0.4274730384349823)
+Text #7:  beautifully (0.22895027697086334)
+Text #7:  stunning (0.2239176481962204)
+Text #7:  dress (0.34015217423439026)
+Text #7:  dress (0.28584861755371094)
+Text #7:  dress (0.18063916265964508)
+Text #7:  skirt (0.3138596713542938)
+Text #7:  Bella (0.39884334802627563)
+Text #7:  Eli (0.4377485513687134)
+Text #7:  Baptist (1.0204733610153198)
+Text #7:  music (1.2772284746170044)
+Text #7:  ple (0.3406393229961395)
+Text #7:  music (1.0949901342391968)
+Text #7:  soc (0.1427396833896637)
+Text #7:  Bella (0.38642436265945435)
+Text #7:  Wedding (0.5199177265167236)
+Text #7:  Photography (0.5687313675880432)
+Text #7:  beautiful (0.20895622670650482)
+Text #7:  Kelvin (1.0419502258300781)
+Text #7: birds (0.513015866279602)
+Text #7:  fantastic (0.8333640098571777)
+Text #7:  trip (0.46050673723220825)
+Text #7:  excitement (0.44393229484558105)
+Text #8:  NYC (0.1959201693534851)
+Text #8:  entertainment (0.10939453542232513)
+Text #8:  Yorkers (0.17486116290092468)
+Text #8:  Aven (0.036191992461681366)
+Text #8:  boutique (0.08344072103500366)
+Text #8:  Events (0.2811143398284912)
+Text #8: night (0.02913386933505535)
+Text #8:  wellness (0.47656169533729553)
+Text #8:  Lounge (0.013807523064315319)
+Text #8:  Lounge (0.01958063617348671)
+Text #8: arios (0.7617566585540771)
+Text #8:  Events (0.4596889019012451)
+Text #8:  legendary (0.1426277756690979)
+Text #8:  nights (0.11371880769729614)
+Text #8:  Lounge (0.026927432045340538)
+Text #8:  nightly (0.2040347307920456)
+Text #8:  dance (1.559966802597046)
+Text #8:  LED (0.018096501007676125)
+Text #8:  dance (1.356829047203064)
+Text #8:  boutique (0.3406924307346344)
+Text #8:  upscale (0.5620790123939514)
+Text #8:  chic (1.4618176221847534)
+Text #8:  restaurant (0.7982993125915527)
+Text #8:  favorite (0.38879379630088806)
+Text #8:  Eater (0.20021001994609833)
+Text #8:  Restaurant (0.1387021243572235)
+Text #8:  upscale (0.39962440729141235)
+Text #8:  Eater (0.20001977682113647)
+Text #8:  Restaurant (0.1761404424905777)
+Text #8:  NYC (0.03745134547352791)
+Text #8:  types (0.09916999936103821)
+Text #8:  everything (0.7785818576812744)
+Text #8:  dinners (0.9189643859863281)
+Text #8:  weddings (0.7170583009719849)
+Text #8:  wellness (0.5595298409461975)
+Text #8: Pink (0.9759790897369385)
+Text #8:  NYC (0.09772589057683945)
+Text #8:  Lauderdale (1.1329277753829956)
+Text #8:  Lauderdale (0.9688425660133362)
+Text #8:  Pink (0.8120976686477661)
+Text #8:  browsing (0.16598621010780334)
+Text #8: ifestyle (0.6801616549491882)
+Text #9: cing (1.853561282157898)
+Text #9:  nursing (0.18402430415153503)
+Text #9:  breastfeeding (0.5369451642036438)
+Text #9:  nursing (0.19927063584327698)
+Text #9:  gorgeous (1.7600535154342651)
+Text #9:  waist (0.014568462036550045)
+Text #9: ooo (0.05406024679541588)
+Text #9:  Looks (0.1095077395439148)
+Text #9:  pregnancy (0.6176981329917908)
+Text #9:  flattering (0.10572778433561325)
+Text #9:  nursing (0.12530362606048584)
+Text #9: heart (0.021314140409231186)
+Text #9:  nursing (0.04115166515111923)
+Text #9:  discreet (0.407454252243042)
+Text #9:  maternity (0.37928423285484314)
+Text #9:  pregnancy (0.429260790348053)
+Text #9:  Looks (0.06457901746034622)
+Text #9:  jersey (0.4946802854537964)
+Text #10:  Dil (0.19863058626651764)
+Text #10:  beautiful (0.14738385379314423)
+Text #10:  birth (0.07600383460521698)
+Text #10:  comeback (0.7636073231697083)
+Text #10: � (0.04251708835363388)
+Text #10:  Nab (0.017039818689227104)
+Text #10:  movie (0.8703490495681763)
+Text #10:  movie (0.8679319620132446)
+Text #10:  movie (0.9488784670829773)
+Text #10: � (0.016925925388932228)
+Text #10:  movies (1.7747832536697388)
+Text #10: � (0.04709920287132263)
+Text #10: hy (0.08255203068256378)
+Text #10:  married (0.00621586199849844)
+Text #10:  Movies (1.214039921760559)
+Text #10:  Dil (0.4708956778049469)
+Text #10:  nep (0.941840648651123)
+Text #10:  movie (0.885429859161377)
+Text #10:  movie (1.0208760499954224)
+Text #10:  nice (0.43995028734207153)
+Text #10:  fantastic (1.0077942609786987)
+Text #10: Thank (0.38534197211265564)
+Text #10:  Maj (0.12304310500621796)
+Text #10:  Movie (0.15879857540130615)
+Text #10:  appreciate (0.5238203406333923)
+Text #10:  grade (0.10531886667013168)
+Text #10:  dont (0.49055835604667664)
+Text #10:  movie (0.9556993842124939)
+Text #10: —— (0.1351538449525833)
+Text #10:  funny (0.04561563953757286)
+Text #10: nice (0.520659327507019)
+Text #10:  fantastic (0.9262309074401855)
+Text #10: oooooooooooooooo (1.0140118598937988)
+Text #10:  movies (1.819936990737915)
+Text #10:  ta (0.6210121512413025)
+Text #11:  favorite (1.0150877237319946)
+Text #11:  authentic (0.24311980605125427)
+Text #11:  dishes (0.4030185639858246)
+Text #11:  guitar (0.19529546797275543)
+Text #11:  cozy (1.3167847394943237)
+Text #11: etime (0.27602419257164)
+Text #11:  Cre (0.17879903316497803)
+Text #11:  Antonio (0.8956696391105652)
+Text #11:  invite (0.32316622138023376)
+Text #11:  cooking (1.0082156658172607)
+Text #11:  Antonio (0.7199474573135376)
+Text #11:  restaurant (0.7967657446861267)
+Text #11:  settings (0.750503420829773)
+Text #11:  af (0.2556189000606537)
+Text #11:  lil (1.6977148056030273)
+Text #11:  favorite (0.6313348412513733)
+Text #11:  dessert (0.5163013339042664)
+Text #11:  cute (0.3776984214782715)
+Text #11:  restaurant (0.963758647441864)
+Text #11:  bakery (0.4037648141384125)
+Text #11: azed (0.21008697152137756)
+Text #11:  lovely (0.549185574054718)
+Text #11:  shrimp (0.2714002728462219)
+Text #11:  french (0.24136941134929657)
+Text #11:  steak (0.5073185563087463)
+Text #11: apple (0.41451749205589294)
+Text #11:  juices (0.3889177739620209)
+Text #11:  meal (0.6617813110351562)
+Text #11:  app (0.3601618707180023)
+Text #11:  guy (0.23397524654865265)
+Text #11:  restaurant (0.9588854908943176)
+Text #11:  ladies (0.14958007633686066)
+Text #11:  Talk (0.2941037118434906)
+Text #11:  hospitality (0.7186203598976135)
+Text #11:  problem (0.11652985960245132)
+Text #11:  ladies (0.2870621085166931)
+Text #11:  Bravo (0.8088641166687012)
+Text #11:  HE (0.13866253197193146)
+Text #11:  favorite (0.8675558567047119)
+Text #11:  oily (0.15285490453243256)
+Text #11:  shrimp (0.39785873889923096)
+Text #11: city (0.21632255613803864)
+Text #12:  Past (0.019021283835172653)
+Text #12:  Salad (0.6210888624191284)
+Text #12:  carbs (0.3465732932090759)
+Text #12:  Salad (0.5637849569320679)
+Text #12:  facts (0.026843693107366562)
+Text #12:  eat (0.14770200848579407)
+Text #12:  Gym (1.2816139459609985)
+Text #12:  Salad (0.5683554410934448)
+Text #12:  Salad (0.44312819838523865)
+Text #12:  calculator (0.365756630897522)
+Text #12:  carbs (0.04327162727713585)
+Text #12:  recipes (1.4496290683746338)
+Text #12:  vegetables (0.08714083582162857)
+Text #12:  Chill (0.14024397730827332)
+Text #12:  foods (0.6868299245834351)
+Text #12:  Salad (0.3157796263694763)
+Text #12:  Gym (1.0416374206542969)
+Text #12:  foods (0.982548713684082)
+Text #12:  recipes (1.5710911750793457)
+Text #13:  Past (0.019021283835172653)
+Text #13:  Salad (0.6210888624191284)
+Text #13:  carbs (0.3465732932090759)
+Text #13:  Salad (0.5637849569320679)
+Text #13:  facts (0.026843693107366562)
+Text #13:  eat (0.14770200848579407)
+Text #13:  Gym (1.2816139459609985)
+Text #13:  Salad (0.5683554410934448)
+Text #13:  Salad (0.44312819838523865)
+Text #13:  calculator (0.365756630897522)
+Text #13:  carbs (0.04327162727713585)
+Text #13:  recipes (1.4496290683746338)
+Text #13:  vegetables (0.08714083582162857)
+Text #13:  Chill (0.14024397730827332)
+Text #13:  foods (0.6868299245834351)
+Text #13:  Salad (0.3157796263694763)
+Text #13:  Gym (1.0416374206542969)
+Text #13:  foods (0.982548713684082)
+Text #13:  recipes (1.5710911750793457)
+Text #14:  Past (0.019021283835172653)
+Text #14:  Salad (0.6210888624191284)
+Text #14:  carbs (0.3465732932090759)
+Text #14:  Salad (0.5637849569320679)
+Text #14:  facts (0.026843693107366562)
+Text #14:  eat (0.14770200848579407)
+Text #14:  Gym (1.2816139459609985)
+Text #14:  Salad (0.5683554410934448)
+Text #14:  Salad (0.44312819838523865)
+Text #14:  calculator (0.365756630897522)
+Text #14:  carbs (0.04327162727713585)
+Text #14:  recipes (1.4496290683746338)
+Text #14:  vegetables (0.08714083582162857)
+Text #14:  Chill (0.14024397730827332)
+Text #14:  foods (0.6868299245834351)
+Text #14:  Salad (0.3157796263694763)
+Text #14:  Gym (1.0416374206542969)
+Text #14:  foods (0.982548713684082)
+Text #14:  recipes (1.5710911750793457)
+Text #15:  Past (0.019021283835172653)
+Text #15:  Salad (0.6210888624191284)
+Text #15:  carbs (0.3465732932090759)
+Text #15:  Salad (0.5637849569320679)
+Text #15:  facts (0.026843693107366562)
+Text #15:  eat (0.14770200848579407)
+Text #15:  Gym (1.2816139459609985)
+Text #15:  Salad (0.5683554410934448)
+Text #15:  Salad (0.44312819838523865)
+Text #15:  calculator (0.365756630897522)
+Text #15:  carbs (0.04327162727713585)
+Text #15:  recipes (1.4496290683746338)
+Text #15:  vegetables (0.08714083582162857)
+Text #15:  Chill (0.14024397730827332)
+Text #15:  foods (0.6868299245834351)
+Text #15:  Salad (0.3157796263694763)
+Text #15:  Gym (1.0416374206542969)
+Text #15:  foods (0.982548713684082)
+Text #15:  recipes (1.5710911750793457)
+Text #16:  stressful (0.14750973880290985)
+Text #16:  reasons (1.0089025497436523)
+Text #16:  kind (0.028315406292676926)
+Text #16:  anxiety (0.3847705125808716)
+Text #16:  anxiety (0.415528267621994)
+Text #16:  anxiety (0.3767017424106598)
+Text #16:  anxiety (0.4307540953159332)
+Text #16:  reasons (1.330922245979309)
+Text #16:  mindfulness (0.08616126328706741)
+Text #16:  educators (0.4141414165496826)
+Text #16:  coping (0.2032960206270218)
+Text #16:  situations (1.5611419677734375)
+Text #16: fulness (0.4563148617744446)
+Text #16:  time (0.002918718382716179)
+Text #16:  mindfulness (0.04890662804245949)
+Text #16:  empowering (0.17066673934459686)
+Text #16:  happening (0.011719952337443829)
+Text #16:  anxiety (0.589015781879425)
+Text #16:  situational (1.352070689201355)
+Text #16:  thoughts (0.23692773282527924)
+Text #16:  actions (0.5628489851951599)
+Text #16:  times (0.84747314453125)
+Text #16:  skills (0.09768291562795639)
+Text #16: fulness (0.5454756021499634)
+Text #16:  superpower (0.7933757901191711)
+Text #16:  activate (0.0010159638477489352)
+Text #16:  superpower (0.8740272521972656)
+Text #16:  things (1.366511344909668)
+Text #16:  reason (0.8849507570266724)
+Text #16:  mindfulness (0.17696647346019745)
+Text #16: � (0.02381574735045433)
+Text #16:  ways (1.1854033470153809)
+Text #16:  mindfulness (0.08029734343290329)
+Text #16:  activity (0.996483325958252)
+Text #16:  breathing (0.02663159929215908)
+Text #16:  thoughts (0.27709436416625977)
+Text #16:  emotions (0.8008999228477478)
+Text #16:  wonderful (1.4198722839355469)
+Text #16:  little (0.040439289063215256)
+Text #16:  buttons (1.2158918380737305)
+Text #16:  breathe (0.13336677849292755)
+Text #17:  black (0.1846601516008377)
+Text #17:  liked (0.1702776998281479)
+Text #17:  themes (0.30809906125068665)
+Text #17:  boring (0.4877071976661682)
+Text #17:  green (0.3472987413406372)
+Text #17:  light (0.08404512703418732)
+Text #17:  green (0.18619154393672943)
+Text #18:  Costume (0.7790912985801697)
+Text #18:  shopping (0.5518096089363098)
+Text #18:  prices (0.2952854037284851)
+Text #18:  Walmart (1.0942970514297485)
+Text #18:  Sears (0.48071911931037903)
+Text #18:  Costume (0.4470193684101105)
+Text #18:  Costume (0.45933422446250916)
+Text #18:  Oriental (0.8997558951377869)
+Text #18:  Costume (0.5634854435920715)
+Text #18:  Costume (0.5308669209480286)
+Text #18:  Costume (0.5230333805084229)
+Text #18:  costume (0.41156473755836487)
+Text #18:  searches (0.2471930831670761)
+Text #18:  Insect (0.16798046231269836)
+Text #18:  Dress (0.5525724291801453)
+Text #18:  Costume (0.37591269612312317)
+Text #19:  Costume (0.7790912985801697)
+Text #19:  shopping (0.5518096089363098)
+Text #19:  prices (0.2952854037284851)
+Text #19:  Walmart (1.0942970514297485)
+Text #19:  Sears (0.48071911931037903)
+Text #19:  Costume (0.4470193684101105)
+Text #19:  Costume (0.45933422446250916)
+Text #19:  Oriental (0.8997558951377869)
+Text #19:  Costume (0.5634854435920715)
+Text #19:  Costume (0.5308669209480286)
+Text #19:  Costume (0.5230333805084229)
+Text #19:  costume (0.41156473755836487)
+Text #19:  searches (0.2471930831670761)
+Text #19:  Insect (0.16798046231269836)
+Text #19:  Dress (0.5525724291801453)
+Text #19:  Costume (0.37591269612312317)
+Text #20: creen (1.3300946950912476)
+Text #20: uta (0.26483604311943054)
+Text #20: azon (0.8623267412185669)
+Text #20: paper (0.4811997711658478)
+Text #20:  mc (0.03214383125305176)
+Text #20:  wallpaper (1.6944971084594727)
+Text #20: creen (1.4151835441589355)
+
+=== Text #1 ===
+> We focus on bringing the[ PANASON]IC CGR-B/202A1B replacement[ Charg]er of high quality to UK customers and desire our customers can buy their satisfying[ PANASON]IC[ charg]ers, the Input: 100V-240V, Output: 12V, 0.00g, 106.50x69.00x37.00mm[ battery charger] on sales will be the perfect replacement to your original[ PANASON]IC CGR-B/202A1B.
+We guarantee the[ PANASON]IC CGR-B/202A1B[ Charg]er with a full one-year warranty from the date of purchase, 30 days money back, if the[ PANASON]IC CGR-B/202A1B[ Charg]er have any quality problem! If you have any question or suggestion, please Contact Us, We committed to providing the highest standard of excellent service for our clients.
+Buy[ PANASON]IC CGR-B/202A1B[ battery] and[ PANASON]IC CGR-B/202A1B[ charger] Together, Save UK £0.50!
+We focus on bringing the[ PANASON]IC CGR-B/202A1B replacement[ Charg]er of high quality to UK customers and desire our customers can buy their satisfying[ PANASON]IC[ charg]ers, the Input[ Voltage]: 5 V, Output[ Voltage]: 8.4 V, Output Current: 0.8 A, 49.20g, mm battery[ charger] on sales will be the perfect replacement to your original[ PANASON]IC CGR-B/202A1B.
+Sh[opping] from us is safe and secure. We do not sell, rent or share information of our customers with other parties. Exceldigital.org.uk guarantee your[ PANASON]IC CGR-B/202A1B[ battery charg]ers[ transaction] will be 100% safe.
+We are professional manufacturer and distributor of all types of replacement batteries and battery[ charg]ers. Full one year warranty for every replacement[ battery],[ adapter] and battery[ charger]; We assure that we use only high quality parts that equal to or better than the original so you can feel good about having a positive impact on our environment when you use our[ PANASON]IC CGR-B/202A1B[ charg]ers. In our store you will find a right products at very competitive prices so you will save lots of money.
+Sh[opping PANASON]IC CGR-B/202A1B Battery[ Charg]er On Exceldigital(UK) is great. all[ PANASON]IC CGR-B/
+
+=== Text #2 ===
+> Quartz is one of the most common and varied minerals on earth, and its abundant[ colors] produce many gemstone types. Amethyst and Citrine are the most popular and valuable gem varieties of[ Quartz], but other forms also make important gemstones. Chalcedony describes any form of[ Quartz] that is microcrystalline, in compact form without any visible crystals. Chalcedony also has several varieties used as gemstones, most notably Agate, Carnelian, Tiger's Eye, and Chrysoprase.
+Pure[ Quartz], which is also known as Rock Crystal, is[ color]less. Various impurities are responsible for the extensive range of[ colors]. The main crystalline[ Quartz] varieties used as gemstones are described below.
+Amethyst, the[ purple] variety, is the most popular and valuable[ Quartz] gemstone. Amethyst ranges from light to dark[ purple]. See the Am[ethyst] gemstone page for more details.
+Citrine is the yellow, orange, or reddish-[brown] variety of[ Quartz]. It is usually[ colored] by heat treatment of Am[ethyst] or Sm[oky Quartz]. Light yellow or lemon yellow Citrine is often called Lemon[ Quartz] in the gem trade. See the Citrine gemstone page for more details.
+Sm[oky Quartz] is the[ brown] "sm[oky]" variety of[ Quartz]. It ranges in[ color] from light[ brown] to black. Despite its dark[ color], it is rarely opaque. See the Sm[oky Quartz] gemstone page for more details.
+The rosy[ pink] variety of[ Quartz] is known as Rose[ Quartz], and its[ color] is usually soft, ranging from very light[ pink] to medium[ pink] in intensity. Rose[ Quartz] is often milky or ha[zy], and it may lack good transparency. See the Rose[ Quartz] gemstone page for more details.
+The[ color]less, transparent variety of[ Quartz], free of any impurities, is known as "Rock Crystal". Flawless and very large cuts may be cut from Rock Crystal.
+Milky[ Quartz] is the white,[ translucent] to opaque variety of[ Quartz]. Though very common in nature, it is not used as a gemstone.
+[Color]less[ Quartz] with golden yellow Rutile inclusions, as hairlike growths within the gemstone, are known as Rutilated[ Quartz]. See the Rutilated[ Quartz] gemstone page for more details.
+Ametrine is an interesting,[ color]-zoned combination of[ purple] Am[ethyst] and[ brown]ish-yellow Citrine. See the Ametrine gemstone page for more details.
+Prasiolite, or Green[ Quartz], describes a light green[ Quartz]
+
+=== Text #3 ===
+> As her favourite[ colour] is[ purple] I knew I had to use that colour. A month or so ago I found some[ purple] sugar and white sugar pearls. I wanted to do a[ kid] cake that was elegant given her age. That was as far as I got until the morning of the day everyone was coming.[ Talk] about a[ decor]ating block! I just[ couldn]’t think of[ anything].[ Fortunately] on the walk with the dogs I got an idea. And it had to be done quickly as I had an hour to do this. Yikes!
+Not only does she like[ purple], she[ likes butterflies] so I decided to go with that. I whipped up some buttercream[ icing] like I did for these cup[cakes]. Before I added the[ purple] I scooped some white into a decorating bag.
+Carefully place the top layer on and brush any loose crumbs off.
+Ice the whole cake smoothing as best you can. Isn’t this a great[ purple]?
+Next I used the white frosting to outline the[ flowers] and[ butterfly]. Finally I got the consistency right and it flowed like it should. In the past I was squeezing with all my might. Too much work. I used the white pearls for the centers and the[ purple] sugar for the petals and wings. I really need to problem solve getting the sugar where I want it to go. There was a bit of colouring outside the lines with this bit.
+To finish it off I added some[ icing] dots on the sides.
+This entry was posted in D[essert]s and tagged apples, baking, buttercream[ icing], chocolate cake. Bookmark the permalink.
+Wow! that’s one heck of a cake:) It’s beautiful!! I love the[ butterfly]:) She’s going to LOVE IT! Happy[ Birthday] to your[ daughter]….
+I can’t wait for those[ pics]…I just love[ everything] about your[ daughters] cake! It came out[ beautifully!!!!]!!
+[Thank] you.[ 🙂] His[ birthday] is in June so I have[ time] to[ plan]!
+can[’]t[ wait]! Have a Great[ weekend]:) and as always thanks for sharing….
+Thanks, I�[�]ll let her know.
+Happy[ Birthday] to your[ daughter]. That�[�]s certainly a[ cake] and a half. She must have be[ thrilled].
+She[ liked] it.[ 🙂] They[ appreciate] the effort for[ stuff] like this which is really[ nice].
+So fun!! A few years ago, my twin sister put together a[ cook]book of all the[ recipes] from
+
+=== Text #4 ===
+> Blac Chyna and Rob[ Kardashian] will certainly have their hands full on their new reality show when their[ baby girl] arrives. But they don[’]t quite have to[ worry] about dirty[ diapers] and[ sleepless nights] just yet. For now, they[’]re enjoying their[ time] together as expectant parents of the[ newest Kardashian gal]. Part of that is getting a first look at their[ little] one, and they[’]re[ letting] us in on the[ fun] as well — in fact, Rob and Chyna have shared the first sonogram of their[ baby girl]. How can a[ black] and white profile possibly be so[ cute]?!
+The first[ little babe] for 29-year-old Rob and second for 28-year-old Chyna (who is already[ mom] to[ little] King Cairo, who she had with ex and possible future brother-in-law, Tyga), the[ newest Kardashian] looks like she[’]ll be arriving very soon.
+Posting the[ pic] to[ Instagram], Rob added the caption, “Can’t wait to meet my[ beautiful baby girl !!] @blacchyna … looking forward to that bond more than anything.” Rob has recently spoken about the bond he shared with his own father and from the sounds of[ things], he’s already forming a similar love with his own child.
+We can’t wait to meet you, either,[ baby Kardashian]!
+How did you[ react] to seeing your (or your friend[’]s /[ family] member[’]s) first sonogram? Tweet us @[Brit]andCo!
+
+=== Text #5 ===
+> Everyone has their own secret[ destinations] to enjoy their emotional[ feelings] whether it may be adults or children or even old peoples. Taking rest with a[ peaceful] mind is a[ blessing].
+Some will get that and some will not,because of the[ mystery] of life. each and everyone wants a[ bed] space in their life. All[ creatures] in the universe rest. Family is one of the[ happiest] and most[ wonderful] place for work and rest.
+Family will have a shelter and most[ happiest moments] in life. Bedrooms are the most secure and safe place according to the family atmosphere. let it be children or adults.
+Every one will have an idea of how should be their[ happy sleepy comfort zone] with Doc[ mc]stuffins[ bedroom] set![ Adults] and grown ups create a[ romantic mood] while old[ ones] create a holy[ dwelling] place but apart from these two children create or they want a happy[ sleepy zone].
+It provides[ calm] and[ peaceful] atmosphere and healthy[ surroundings] to children and their by to their parents.In order to raise children happily and thereby their happy parents Doc McStuffins Bedroom sets and other[ bed] room sets will help the children to be happy, creative and energetic.
+Kids can also literally immerse themselves and they will grow[ intellig]ently.
+The[ adorable collections] of Doc[ mc]stuffins[ bedroom] sets generates fun and learning among children and create an jolly atmosphere in the family. Let the[ kids] enjoy with the[ charm] and[ lovely] affection of McStuffins[ bed]. Happy Tw[inkle Sleep]!
+Bedroom[ tv] stand[ dress]er – enjoy the added advantage!
+Icarly[ bedroom] – 12[ ways] to make your children[ happy]!
+
+=== Text #6 ===
+> [Awesome product....] makes me feel more[ comfortable] when I have to leave the room for a moment and Grandma is in the other room! Gives added security for Grandma and me.[ Thanks Lum]ex!
+Graham-Field[ Lum]ex - Fast[ Alert] Basic Patient Alarm is a chair[ pad alarm] system that sends an[ alert] to warn the staff or[ careg]iver when the user[ slips] out or gets out of their chair.
+This[ alarm pad works] well in a[ variety] of chair[ styles] including wheel[chairs]. The[ alarm] secures to the seat with a metal clip.[ Pad] Size: 10" x 15". Available as a system,[ alarm] only and[ sensor pad] only.
+The Fast[ Alert Basic] Alarm is a home health product that serves as a personal protection[ device] for both the patient and the[ careg]iver. Often seen in hospitals and[ nursing homes]. It is an ideal safety[ alarm] for the elderly and anyone who needs the security of a[ alert] system while sitting.
+The Fast[ Alert Basic] Patient Alarm is sold as a complete system. The Alarm and chair replacement[ sensor] are also sold as replacement parts and can be purchased separately - see[ options] above.
+Note:[ Protect] Fast-Alert[ sensor pad] with[ waterproof disposable pad] if there is risk of incontinence or liquid spills.
+
+=== Text #7 ===
+> Esther and Kenso fell in love with , and[ chose] , the[ stunning] Tuscany[ themed] backdrop of Central Florida’s[ Bella] Collina[ Wedding] Venue for their Central Florida April[ wedding] and what a[ wedding] it was! How can you possibly go wrong with a[ gorgeous] bride, a[ handsome] groom, and a[ beautiful] venue?? This[ beautiful] Haitian couple[ chose] a classic contemporary and[ elegant] theme for their Central Florida[ wedding]. We have such a history with Esther’s family ( We have already photographed 3 of her siblings[ weddings] with 2 to go[!)] that Stan and I were really excited as well as nervous about capturing Esther and Kenso’s[ Bella] Collina[ Wedding] just perfectly.[ Everything] went smoothly with the talented team of[ Lynn] Stuckas of Your[ Events] by L & L who was in[ charge] of[ coordinating Esther] and Kenso’s[ stunning] Central Florida[ Bella] Collina[ wedding].[ Esther]’s[ flowers] were just[ beautifully] done by Weddings by Carly Anes, and complimented her[ stunning] mermaid[ dress] from Demetrios Bridal. Her off white mermaid[ dress] was heavily beaded, with lots of sparkle to compliment the[ dress], while the form fitting[ skirt] enhanced and complimented Esther’s perfect curves. The finishing touches were hair and makeup and beautifully done by LeJeune Artistry . The reception ballroom at[ Bella] Collina was beautifully decorated with linens by[ Eli] of Linen Creations, and D.J Geordany Jean[ Baptist]e made sure that the[ music] was a crowd[ ple]aser, playing a well rounded selection of[ music] from[ soc]a to hip hop to R & B. Of course we must include that Esther and Kenso’s stunning[ Bella] Collina[ Wedding] was captured by S & S[ Photography] and their[ beautiful] video captured by[ Kelvin] Aultman .
+Brandy and Dave met working aboard the Disney Fantasy Cruise ship in 2013. Brandy worked with the cruise staff team while Dave worked on the ship wide tech team. After nearly 4 years of sailing the seven seas with Mickey Mouse, the two love[birds] decided it was time to start a life together on land, in far away New Zealand. For Brandy’s 28th birthday Dave surprised her with a[ fantastic trip] to the Bay of Islands and Cape Reinga, the northern most point of New Zealand. It was here, overlooking the ocean, on the last day of their[ trip], that Dave got down on one knee and popped the question. Brandy of course said “yes!” and the[ excitement] of planning their September 22 n
+
+=== Text #8 ===
+> The eagerly anticipated Out[ NYC Urban] Resort opened its doors to guests on March 1, 2012.
+This straight-friendly urban resort is poised to become a travel and[ entertainment destination] for New[ Yorkers] and visitors alike. The complex, situated on 42nd Street between 10th and 11th[ Aven]ues, encompasses a 105-room[ boutique] hotel, the 14,000 square foot XL Nightclub, Cabaret & Lounge by John Blair, Beto Sutter, and FV[ Events], a late-[night restaurant] called Kitchin, three courtyards, a business/conference center, function space, and a[ wellness] center.
+The first phase of the project was completed on January 26, 2012 with the opening of XL Nightclub, Cabaret &[ Lounge]. XL Nightclub, Cabaret &[ Lounge] is the newest project by noted gay nightlife impres[arios] John Blair and Beto Sutter, and the wunderkind party promoters Brandon Voss and Tony Fornabaio of FV[ Events]. Blair and Sutter, famous for the[ legendary] Saturday night party at The Roxy, helped create this new venue from the ground up. Open seven[ nights] a week, XL Nightclub, Cabaret &[ Lounge] is the first[ nightly] gay[ dance] club to open in New York City in 15 years. The space features an[ LED] wall, two[ dance floors], and a full stage.
+The[ boutique] hotel features 105 rooms with an[ upscale],[ chic dé]cor and a starting rate of approximately $250. The hotel’s[ restaurant], Kitchin is operated by the team behind the already-successful Hell’s Kitchen[ favorite],[ Eater]y[ Restaurant]. It offers the same style of[ upscale] comfort food for which[ Eater]y[ Restaurant] is known. THE OUT[ NYC] will host various[ types] of function space to accommodate[ everything] from intimate private[ dinners] to large events and[ weddings]. The building is centered on three courtyards and a 5,000 square foot[ wellness] center, creating an oasis from the city just outside its doors.
+[Pink] Choice would like to congratulate the Out[ NYC] on its recent opening, and looks forward to receiving reviews from its guests.
+Villa Venice Men’s Resort in Fort[ Lauderdale wishes] all its friends a very Happy New Year! It looks as though everyone enjoyed the party! The resort is one of several in Fort[ Lauderdale] that is highly rated on[ Pink] Choice. Its guest reviews tell the whole story.
+You are currently[ browsing] the archives for the Gay L[ifestyle category].
+
+=== Text #9 ===
+> Introdu[cing] one of our top 3[ nursing] tops for[ breastfeeding twins] with lift up[ nursing access] and[ gorgeous], gathered detailing across the bust and[ waist] that's so[ooo flattering].[ Looks fabulous] during[ pregnancy] for work or play.
+A[ flattering], modern[ nursing] tshirt with sweet[heart] neckline, gathered crossover bust and cap sleeves. Pull up[ nursing access] for easy and[ discreet breastfeeding]. Worn as a[ maternity] top, it fits & flatters most expectant mums through to full term[ pregnancy].[ Looks gorgeous] for work or play. Made from soft, supple Viscose[ jersey] with elastane to retain it's shape. Machine washable 30'.
+
+=== Text #10 ===
+> Starring Cast Rajesh Hamal, Sanchita Luitel,[ Dil]ip Rayamajhi, Deepak Chhetri, Simpal Khanal etc.
+Sanchita Luitel – One of the most[ beautiful] actress in Nepali film industry, Sanchita Luitel had married actor Nikhil Upreti. After giving[ birth] to two children, Sanchita is trying to get back into acting these days. Sanchita’s[ comeback movie] �[�]Nai[ Nab]hannu La 3’ was a super hit[ movie].
+Simpal Khanal – The model and actress Simpal Khanal debuted as a actress in this[ movie]. After this[ movie] Simpal didn�[�]t do any more[ movies] for almost a decade before being featured in leading role in �[�]Ad[hy]aya’. Simpal[ married] a businessman in UK in January 2016.
+This entry was posted in Nepali[ Movies] and tagged Bijaya Kerung, Deepak Chhetri,[ Dil]ip Rayamajhi, M film, Majhi Dai, Rajesh Hamal, Sanchita Luitel, Simpal Khanal, Simple Khanal. Bookmark the permalink.
+fantastic . Really reflects[ nep]ali culture . Fell like you get what your heart wants .
+agdam ramro[ movie] i like it-keep on send this type of[ movie] hai.
+Really very[ nice movie].keep on post like this[ fantastic movies].
+[Thank] you! I like this[ Maj]hi Dai[ Movie]. I[ appreciate] very much to Film maker. Please make more film in a realistic. I give[ grade] in 8/10. its a great!
+I[ dont] like this[ movie] its always push so[——]—–[ funny].
+[nice movie……].keep on posting other[ fantastic] and co[ooooooooooooooooooo]ool[ movies] hai[ ta]..
+
+=== Text #11 ===
+> Definitely my[ favorite restaurant] in Macau. If you want to experience the[ authentic Portuguese] Macanese[ dishes], with live one man band (sings with[ guitar]) and[ cozy amb]ience. This is it. For extra boost to add on to your one-in-a-lif[etime] experience, try order[ Cre]pe suzette! 3-michelin-stars Chef[ Antonio] himself will[ invite] you to join him[ cooking] at your table and be prepared for a fiery ride!
+One of many Signature dish – Seafood rice!
+It’s getting hot in here -Flaming Chouriço!
+Cooking crepe suzette! Be careful with the alcohols!
+Tadaaa! Proudly present Crepe suzette by Chef[ Antonio] and Me!
+Another popular local traditional Portuguese Macanese[ restaurant] with more mature[ settings] and environment.
+The famous[ african] chicken – this one’s a[ lil spicy]! But superb!
+Steamed clams! Make sure you dip the bread in the sauce! Yum!
+Ended with my[ favorite] traditional[ dessert] in Macau! Serradura!
+A[ cute romantic Portuguese]-Macanese[ restaurant] nearby the famous original Lord Stow’s egg tart[ bakery]!
+Portugal is also famous for their gl[azed tiles]. So[ lovely]!
+Sauteed[ shrimp] with garlic butter!
+Soaky wet Portuguese seafood rice! A must!
+Pork ribs!! Love the salty taste!
+The[ french fries] sure stole the spotlight from the pork[ steak]!
+This cherry whisky is STRONG!! be careful!
+Pine[apple], Mango, Peach[ juices]! Loving these rejuvenating refreshments! Just can’t get enough!
+Lovely[ meal] indeed! Bon[ app]étit!
+The famous Egg tart!! It’s shooo gooood u[ guy]z!!
+A regular Chinese[ restaurant], but what impressed me the most is the fact that they have a short tiny table where[ ladies] can put their bag on while eating![ Talk] about[ hospitality]! A major[ problem] for all[ ladies] who carry handbags, basically everyone! We always need to get extra chair, or hang it on the chair, or let the bag share half of our chair! So[ Bravo]! And obviously the food is Goo-Oood tooo![ HE]re i picked out my[ favorite dishes]!
+Crispy pork! Not[ oily] at all!
+Crispy Spring rolls stick filled with[ shrimp] and mangos!
+Website: http://www.[city]
+
+=== Text #12 ===
+> Check out the Italian[ Past]a[ Salad calories] and how many[ carbs] in Italian Pasta[ Salad]. Learn all the nutrition[ facts] about what you[ eat] at[ Gym]America.
+Tip: Click on the ingredient links to learn the nutritional information for all the Italian Pasta[ Salad] ingredients. The serving size for any ingredient in Italian Pasta[ Salad] may be adjusted using the nutrition facts serving size[ calculator]. Use it to help cut calories,[ carbs] and more from your[ recipes].
+Clean and chop all[ vegetables]. Cook pasta until tender.
+In a large bowl, combine all ingredients.[ Chill] before serving.
+Are you interested in seeing additional[ foods] like Italian Pasta[ Salad]? Then click here.[ Gym]America has detailed nutrition facts information for over 40,000[ foods] and[ recipes].
+
+=== Text #13 ===
+> Check out the Italian[ Past]a[ Salad calories] and how many[ carbs] in Italian Pasta[ Salad]. Learn all the nutrition[ facts] about what you[ eat] at[ Gym]America.
+Tip: Click on the ingredient links to learn the nutritional information for all the Italian Pasta[ Salad] ingredients. The serving size for any ingredient in Italian Pasta[ Salad] may be adjusted using the nutrition facts serving size[ calculator]. Use it to help cut calories,[ carbs] and more from your[ recipes].
+Clean and chop all[ vegetables]. Cook pasta until tender.
+In a large bowl, combine all ingredients.[ Chill] before serving.
+Are you interested in seeing additional[ foods] like Italian Pasta[ Salad]? Then click here.[ Gym]America has detailed nutrition facts information for over 40,000[ foods] and[ recipes].
+
+=== Text #14 ===
+> Check out the Italian[ Past]a[ Salad calories] and how many[ carbs] in Italian Pasta[ Salad]. Learn all the nutrition[ facts] about what you[ eat] at[ Gym]America.
+Tip: Click on the ingredient links to learn the nutritional information for all the Italian Pasta[ Salad] ingredients. The serving size for any ingredient in Italian Pasta[ Salad] may be adjusted using the nutrition facts serving size[ calculator]. Use it to help cut calories,[ carbs] and more from your[ recipes].
+Clean and chop all[ vegetables]. Cook pasta until tender.
+In a large bowl, combine all ingredients.[ Chill] before serving.
+Are you interested in seeing additional[ foods] like Italian Pasta[ Salad]? Then click here.[ Gym]America has detailed nutrition facts information for over 40,000[ foods] and[ recipes].
+
+=== Text #15 ===
+> Check out the Italian[ Past]a[ Salad calories] and how many[ carbs] in Italian Pasta[ Salad]. Learn all the nutrition[ facts] about what you[ eat] at[ Gym]America.
+Tip: Click on the ingredient links to learn the nutritional information for all the Italian Pasta[ Salad] ingredients. The serving size for any ingredient in Italian Pasta[ Salad] may be adjusted using the nutrition facts serving size[ calculator]. Use it to help cut calories,[ carbs] and more from your[ recipes].
+Clean and chop all[ vegetables]. Cook pasta until tender.
+In a large bowl, combine all ingredients.[ Chill] before serving.
+Are you interested in seeing additional[ foods] like Italian Pasta[ Salad]? Then click here.[ Gym]America has detailed nutrition facts information for over 40,000[ foods] and[ recipes].
+
+=== Text #16 ===
+> As much as teachers do all that they can to make their classrooms a place of comfort and security, for some students the school environment can be a[ stressful] one. For a whole gamut of[ reasons], at some stage during their time spent at school, most kids experience some[ kind] of school-related[ anxiety]. Whether it be separation[ anxiety] in the early years,[ anxiety] about testing and assessment or social[ anxiety], the[ reasons] are many but the negative effects often the same. Teaching[ mindfulness] is one way that[ educators] and parents alike can help to build the[ coping skills kids] need when they are faced with challenging[ situations] and environments.
+Mind[fulness] is the practice of paying attention, on purpose, to the present moment (Grossman, 2016). It’s something that came so naturally to us as small children, when we could easily spend[ time] silently mesmerised by a single ant wandering across the ground. Though it’s true that as we get older, as our understanding of the world grows wider and our minds subsequently busier, that time spent in silent wonderment doesn’t happen quite so easily.
+Teaching children the conscious skill of[ mindfulness] is an[ empowering] one. The ability to stop, to centre ourselves, to notice what is[ happening] in any given moment goes a long way towards self-regulation and self-awareness. For children who experience[ anxiety], whether[ situational] or prolonged, having simple and familiar[ thoughts] or[ actions] to call upon during[ times] of stress become important, lifelong[ skills].
+Mind[fulness] is a[ superpower] that everyone can have. To[ activate] this[ superpower] we only need two[ things], our mind and our breath. It is for this[ reason], and so many more, that teaching[ mindfulness] to children is something that should be on every teacher, parent and carers�[�] radar.
+With that in mind, here are some fun and simple[ ways] to introduce the concept of[ mindfulness] to young children.
+This simple[ activity] is a way to teach your child about “belly[ breathing]”. Centering our[ thoughts] and[ emotions] through our breath is a[ wonderful] self-regulation skill for everyone to learn.
+Lay down on the floor beside your child and place a small soft toy, like the[ little] wuppy®, or any other light-weight object such as a small bean bag or wooden block onto your belly[ buttons].
+With your child, lay still and watch the toy move up and down as you both[ breathe] in and out.
+Talk with your child about what you notice. About how quickly or slowly the toy moves.
+You can also count
+
+=== Text #17 ===
+> All[ black themes] are always well[ liked] by people. It is likely that you like it a lot too but if you find plain black[ themes] so[ boring], you will probably like this theme with its[ green streaks] similar to leaves being shined on with[ light]. The[ green colored icons] fit well with the theme.
+
+=== Text #18 ===
+> Find[ Costume] Contest Meme Halloween[ shopping] results from Amazon & compare[ prices] with other Halloween online stores: Ebay,[ Walmart], Target,[ Sears], Asos, Spitit Halloween,[ Costume] Express,[ Costume Craze], Party City,[ Oriental] Trading, Yandy, Halloween Express, Smiffys,[ Costume] Discounters, BuyCostumes,[ Costume] Kingdom, and other stores.
+Don't satisfied with[ Costume] Contest Meme results or need more Halloween[ costume] ideas? Try to exlore these related[ searches]: Costumes Holiday House, Ant[ Insect] Fancy[ Dress Costume], Batman Arkham City[ Costume] Cheat.
+
+=== Text #19 ===
+> Find[ Costume] Contest Meme Halloween[ shopping] results from Amazon & compare[ prices] with other Halloween online stores: Ebay,[ Walmart], Target,[ Sears], Asos, Spitit Halloween,[ Costume] Express,[ Costume Craze], Party City,[ Oriental] Trading, Yandy, Halloween Express, Smiffys,[ Costume] Discounters, BuyCostumes,[ Costume] Kingdom, and other stores.
+Don't satisfied with[ Costume] Contest Meme results or need more Halloween[ costume] ideas? Try to exlore these related[ searches]: Costumes Holiday House, Ant[ Insect] Fancy[ Dress Costume], Batman Arkham City[ Costume] Cheat.
+
+=== Text #20 ===
+> Rachel McAdams Wides[creen] karatasi la kupamba uk[uta]. Made from image found at: Bell[azon].com. HD Wall[paper] and background images in the Rachel McAdams club tagged: rachel[ mc]adams[ wallpaper] wides[creen] desktop.
+
+
+Description: 
+2025-05-10 18:00:09,991 - root - INFO - Products, product features, brands, colors, or entertainment
+
+2025-05-10 18:00:09,996 - root - INFO - Cluster #2 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.csv
+2025-05-10 18:00:11,668 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-05-10 18:00:11,669 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  color (1.3736668825149536)
+Text #1:  color (0.7961594462394714)
+Text #1:  colors (0.5794568657875061)
+Text #1:  color (0.7874494791030884)
+Text #1:  color (0.8340201377868652)
+Text #1:  RGB (0.19768497347831726)
+Text #1:  color (1.0057761669158936)
+Text #1:  color (0.8544943332672119)
+Text #1:  color (0.8231777548789978)
+Text #1:  color (0.9411939382553101)
+Text #1:  complementary (0.21176178753376007)
+Text #1:  complementary (0.09336698800325394)
+Text #1:  color (0.6314226984977722)
+Text #1:  Color (1.0157363414764404)
+Text #1:  color (0.8032980561256409)
+Text #1:  color (0.8533462285995483)
+Text #1:  colors (0.9614507555961609)
+Text #1:  brightness (0.6493960022926331)
+Text #1: ness (0.32344797253608704)
+Text #1:  shades (1.1074568033218384)
+Text #1:  vibr (1.3395590782165527)
+Text #1:  color (1.204647183418274)
+Text #1:  color (1.3731346130371094)
+Text #1:  Color (1.4220510721206665)
+Text #1: cale (0.37202250957489014)
+Text #1:  color (1.0992518663406372)
+Text #1:  color (1.1942774057388306)
+Text #1:  RGB (0.35329413414001465)
+Text #1:  calculation (0.0013433161657303572)
+Text #1:  color (0.9470003843307495)
+Text #1:  color (1.0142054557800293)
+Text #1:  color (1.0833148956298828)
+Text #1:  color (1.063635230064392)
+Text #1:  colored (0.8985337615013123)
+Text #1:  color (1.0216089487075806)
+Text #1:  colors (1.219537377357483)
+Text #1:  color (1.1064924001693726)
+Text #1:  color (1.065266489982605)
+Text #1:  color (1.12796151638031)
+Text #1:  RGB (0.2282094806432724)
+Text #1:  color (0.8899262547492981)
+Text #1:  Blue (0.13715676963329315)
+Text #1:  color (0.9312593936920166)
+Text #1:  color (1.1706613302230835)
+Text #1:  color (1.2750520706176758)
+Text #1:  ital (0.060472071170806885)
+Text #1:  color (1.2392606735229492)
+Text #1:  ital (0.027752399444580078)
+Text #2:  PAN (0.40808436274528503)
+Text #2:  Charg (0.758108913898468)
+Text #2:  PAN (0.2804439067840576)
+Text #2:  charg (1.2962483167648315)
+Text #2:  battery (0.1542811244726181)
+Text #2:  PAN (0.34220531582832336)
+Text #2:  PAN (0.30784088373184204)
+Text #2:  Charg (0.7927448153495789)
+Text #2:  PAN (0.3951259255409241)
+Text #2:  Charg (0.8535111546516418)
+Text #2:  PAN (0.35021236538887024)
+Text #2:  battery (0.21748663485050201)
+Text #2:  PAN (0.3890751302242279)
+Text #2:  charger (1.518768072128296)
+Text #2:  PAN (0.36636969447135925)
+Text #2:  Charg (0.8194097280502319)
+Text #2:  PAN (0.3399983048439026)
+Text #2:  charg (1.3461748361587524)
+Text #2:  Voltage (0.4932743012905121)
+Text #2:  Voltage (0.41880539059638977)
+Text #2:  charger (1.3692022562026978)
+Text #2:  PAN (0.3747422397136688)
+Text #2: opping (0.23607423901557922)
+Text #2:  PAN (0.3976522982120514)
+Text #2:  battery (0.17335806787014008)
+Text #2:  transaction (0.1517203450202942)
+Text #2:  charg (1.2456083297729492)
+Text #2:  battery (0.17505621910095215)
+Text #2:  adapter (0.6113819479942322)
+Text #2:  charger (1.4372000694274902)
+Text #2:  PAN (0.2966134250164032)
+Text #2:  charg (1.267447829246521)
+Text #2: opping (0.27920258045196533)
+Text #2:  Charg (0.8786787986755371)
+Text #2:  PAN (0.383199006319046)
+Text #3:  Podcast (0.3378857374191284)
+Text #3:  Aren (0.16172735393047333)
+Text #3:  someone (0.08865346014499664)
+Text #3:  glimpse (0.36203113198280334)
+Text #3:  life (0.04038942605257034)
+Text #3:  Suddenly (0.0735894963145256)
+Text #3:  feeling (0.03188234195113182)
+Text #3:  decisions (0.2703934907913208)
+Text #3:  way (0.08242427557706833)
+Text #3: Parent (0.048205435276031494)
+Text #3:  podcasts (0.9308435320854187)
+Text #3:  remind (0.302227646112442)
+Text #3:  whatever (0.1677250862121582)
+Text #3: � (0.13081766664981842)
+Text #3: � (0.07250295579433441)
+Text #3: ening (0.250267893075943)
+Text #3: � (0.043424200266599655)
+Text #3:  stories (0.6340250372886658)
+Text #3: � (0.08013051003217697)
+Text #3:  things (1.015532374382019)
+Text #3:  parenting (0.9818975925445557)
+Text #3:  universal (0.4721580445766449)
+Text #3:  things (1.2709569931030273)
+Text #3:  things (1.2165037393569946)
+Text #3:  fascinating (0.09404655545949936)
+Text #3:  conversation (1.9694634675979614)
+Text #3:  conversations (2.4610867500305176)
+Text #3:  things (1.4279158115386963)
+Text #3:  podcast (0.13956153392791748)
+Text #3:  conversation (1.730448603630066)
+Text #3:  experiences (0.08967844396829605)
+Text #3:  conversations (2.2541656494140625)
+Text #3:  choose (0.017654985189437866)
+Text #3:  podcast (0.2596726417541504)
+Text #3:  anytime (1.3881230354309082)
+Text #3:  laundry (1.3534220457077026)
+Text #3:  baby (1.5287600755691528)
+Text #3:  podcasts (0.7849942445755005)
+Text #3: � (0.029712948948144913)
+Text #3: � (0.02717849798500538)
+Text #3:  podcast (0.309851735830307)
+Text #3:  Spotify (0.7968119978904724)
+Text #3: coming (0.5579745769500732)
+Text #4:  Sometimes (0.3002479076385498)
+Text #4:  things (1.1224400997161865)
+Text #4:  tougher (0.5002812147140503)
+Text #4:  dial (0.1816505640745163)
+Text #4:  gadgets (0.5515480637550354)
+Text #4:  crazy (0.6953663229942322)
+Text #4:  watch (0.09428232908248901)
+Text #4:  couldn (0.5102164149284363)
+Text #4:  amazing (0.4599805176258087)
+Text #4:  sadly (0.08582986146211624)
+Text #4:  Shortly (0.14932385087013245)
+Text #4: asured (0.25458675622940063)
+Text #4:  stupid (0.1963484138250351)
+Text #4:  missed (0.06456387042999268)
+Text #4:  little (0.08430609107017517)
+Text #4:  whenever (0.1688384860754013)
+Text #4: � (0.04844467714428902)
+Text #4:  things (1.4068098068237305)
+Text #4:  prize (0.17546331882476807)
+Text #4:  nice (0.45397961139678955)
+Text #4:  gadgets (0.40357470512390137)
+Text #4:  phone (0.8244100213050842)
+Text #4:  appointments (1.3528774976730347)
+Text #4:  reminders (2.02616286277771)
+Text #4:  favorite (0.9530487656593323)
+Text #4:  days (0.12571831047534943)
+Text #4:  gadgets (0.5361126065254211)
+Text #4:  endless (0.687661349773407)
+Text #4:  iPads (0.351222962141037)
+Text #4:  TVs (0.3995649516582489)
+Text #4:  nice (0.3255373537540436)
+Text #4:  studies (0.13042327761650085)
+Text #4:  entertainment (0.31775739789009094)
+Text #4:  sometimes (0.1407914161682129)
+Text #4:  imagine (0.22387556731700897)
+Text #4:  things (1.387510895729065)
+Text #4:  withdrawal (0.1558901071548462)
+Text #4: � (0.05847387760877609)
+Text #4:  realize (0.21125127375125885)
+Text #4:  things (1.38185453414917)
+Text #4:  loved (0.10799843072891235)
+Text #4:  Sometimes (0.5710660219192505)
+Text #4:  forget (1.4349589347839355)
+Text #5:  Kodi (1.4236457347869873)
+Text #5: � (0.011082721874117851)
+Text #5:  content (0.1545368731021881)
+Text #5:  content (0.13304448127746582)
+Text #5:  entertaining (0.06748248636722565)
+Text #5:  time (0.09585002064704895)
+Text #5:  addon (0.44998154044151306)
+Text #5:  watch (0.20448818802833557)
+Text #5:  quick (0.10804811865091324)
+Text #5:  kill (0.1917290985584259)
+Text #5:  number (0.055931344628334045)
+Text #5:  addon (0.5217280983924866)
+Text #5:  Times (0.00730598671361804)
+Text #5:  addon (0.44560506939888)
+Text #5:  price (0.07395065575838089)
+Text #5:  addon (0.31372305750846863)
+Text #5:  Kodi (1.399111270904541)
+Text #5:  seconds (0.08961756527423859)
+Text #5:  Kodi (1.3690539598464966)
+Text #5:  Kodi (1.4500077962875366)
+Text #5:  simpler (0.07277527451515198)
+Text #5:  flip (0.5228117108345032)
+Text #5: � (0.02911030873656273)
+Text #5:  nice (0.27171072363853455)
+Text #5: � (0.04822840169072151)
+Text #5:  addon (0.40969720482826233)
+Text #5:  Choose (0.2704111635684967)
+Text #5:  Times (0.0022077008616179228)
+Text #5:  Kodi (1.4064843654632568)
+Text #5:  Times (0.01743374392390251)
+Text #5:  addon (0.49383115768432617)
+Text #5:  tab (0.15270763635635376)
+Text #5:  Choose (0.4334115982055664)
+Text #5:  browse (0.4157998859882355)
+Text #5: Thank (0.3472377359867096)
+Text #5:  addon (0.477130651473999)
+Text #5:  Kodi (1.410730242729187)
+Text #5:  access (0.30496466159820557)
+Text #5:  content (0.1869841068983078)
+Text #5:  Times (0.04401031881570816)
+Text #5:  mini (0.7480509281158447)
+Text #5:  topics (0.3532729148864746)
+Text #5:  enjoy (0.07346463203430176)
+Text #5:  Times (0.021293113008141518)
+Text #5:  addon (0.4994554817676544)
+Text #6: urb (0.4420483708381653)
+Text #6:  Clothing (0.16331960260868073)
+Text #6:  gift (0.04280538484454155)
+Text #6: urb (0.2199670970439911)
+Text #6:  Clothing (0.07362451404333115)
+Text #6:  gift (0.008224325254559517)
+Text #6: urb (0.12943045794963837)
+Text #6:  Clothing (0.059076473116874695)
+Text #6:  icon (1.0529696941375732)
+Text #6:  quint (0.21072331070899963)
+Text #6:  ethic (0.2561664879322052)
+Text #6:  discount (0.4542285203933716)
+Text #6:  coupon (0.8797483444213867)
+Text #6: urb (0.09856613725423813)
+Text #6:  coupon (0.8763397932052612)
+Text #6:  forget (1.0577267408370972)
+Text #6:  coupon (1.119192123413086)
+Text #6:  discounts (1.0008974075317383)
+Text #6:  prize (0.08334589749574661)
+Text #6:  emotions (0.5846750140190125)
+Text #7:  CU (0.05158085748553276)
+Text #7:  things (1.1302570104599)
+Text #7:  biking (0.9808087944984436)
+Text #7:  skiing (0.5439873337745667)
+Text #8: � (0.2868226170539856)
+Text #8: themed (0.0781092569231987)
+Text #8:  Nov (0.004015399143099785)
+Text #8:  fairy (0.25749194622039795)
+Text #8:  transportation (0.021992754191160202)
+Text #8:  surroundings (0.16993442177772522)
+Text #8:  ways (0.4400551915168762)
+Text #8:  noises (0.38432520627975464)
+Text #8:  visuals (0.13499219715595245)
+Text #8:  nuance (0.5756885409355164)
+Text #8:  relaxing (1.2911423444747925)
+Text #8:  layout (0.03757176175713539)
+Text #8:  icons (1.4327303171157837)
+Text #8: iffin (0.07143805176019669)
+Text #8:  blonde (0.3538457453250885)
+Text #8:  fairy (0.24095751345157623)
+Text #8:  unicorn (0.8563543558120728)
+Text #8:  icons (1.246336579322815)
+Text #8:  icons (1.1955288648605347)
+Text #8:  wonderfully (0.5468654036521912)
+Text #8:  icon (1.0278204679489136)
+Text #9:  song (0.2058398574590683)
+Text #9:  concert (0.6294112205505371)
+Text #9:  chapel (0.3030685484409332)
+Text #9:  music (1.0394737720489502)
+Text #10:  Wow (0.33278194069862366)
+Text #10:  stunning (0.12843097746372223)
+Text #10:  Beaut (0.5035080909729004)
+Text #10:  fabulous (1.497122049331665)
+Text #10:  bedroom (0.9502054452896118)
+Text #10:  furniture (1.3125439882278442)
+Text #10:  glam (0.5680963397026062)
+Text #10:  dining (0.2185724675655365)
+Text #10: boys (0.02206582948565483)
+Text #11:  beautiful (0.24980776011943817)
+Text #11:  closet (1.3465046882629395)
+Text #11:  wallet (0.05036607012152672)
+Text #11:  � (0.3609064519405365)
+Text #12:  pizza (0.4780280888080597)
+Text #12:  caul (0.5714960098266602)
+Text #12:  didn (0.27537479996681213)
+Text #12:  wouldn (0.44244295358657837)
+Text #13:  philosophical (0.3192554712295532)
+Text #13:  toys (0.1526137888431549)
+Text #13:  1957 (1.2183845043182373)
+Text #13:  Barb (0.4034383296966553)
+Text #14:  fanc (0.0958542451262474)
+Text #14:  Pin (0.06335658580064774)
+Text #14:  gift (0.1101529523730278)
+Text #14:  ways (0.812424898147583)
+Text #14:  Baz (0.5084860324859619)
+Text #14:  Pin (0.09614050388336182)
+Text #16:  star (0.04457128420472145)
+Text #16:  Reed (0.26927006244659424)
+Text #16:  song (0.6790629029273987)
+Text #16:  Schl (1.3636776208877563)
+Text #16:  induct (0.015056599862873554)
+Text #16:  Music (0.6159916520118713)
+Text #17:  gay (0.22053749859333038)
+Text #17: ega (0.08082213252782822)
+Text #17:  sorry (0.37804579734802246)
+Text #18:  fantastic (0.46038395166397095)
+Text #18:  bedrooms (0.3666595220565796)
+Text #18:  baths (0.384536474943161)
+Text #18:  kitchen (0.0558566115796566)
+Text #18:  quartz (0.6135655045509338)
+Text #18:  granite (0.10421144217252731)
+Text #18:  cozy (0.8648343682289124)
+Text #19:  histor (0.5302786231040955)
+Text #19:  android (0.7425500750541687)
+Text #20:  Feeling (0.4537462592124939)
+Text #20: Fe (0.012807599268853664)
+Text #20:  trip (0.8846133351325989)
+Text #20:  Arizona (0.14112752676010132)
+Text #20:  laundry (1.2229912281036377)
+Text #20:  everything (1.161677360534668)
+Text #20:  flight (0.763432502746582)
+Text #20:  hotel (0.10266201198101044)
+Text #20:  car (0.09226048737764359)
+Text #20:  city (0.06129750236868858)
+Text #20:  directions (0.7846896052360535)
+Text #20:  Prep (0.15922965109348297)
+Text #20:  things (1.2538212537765503)
+Text #20:  city (0.1609317511320114)
+Text #20:  realize (0.14918501675128937)
+Text #20:  Arizona (0.169485941529274)
+Text #20:  times (0.7681394815444946)
+Text #20:  relaxing (1.6128751039505005)
+Text #20:  havoc (0.46250513195991516)
+Text #20:  mildly (0.2600705921649933)
+Text #20:  sleeping (0.9255387783050537)
+Text #20:  doctor (0.4584219455718994)
+Text #20:  job (0.012721006758511066)
+Text #20:  stressful (0.3729804456233978)
+Text #20:  uber (0.31123998761177063)
+Text #20:  tomorrow (0.14127999544143677)
+Text #20:  uber (0.236161008477211)
+Text #20:  tomorrow (0.07156511396169662)
+Text #20:  tonight (0.18412043154239655)
+Text #20:  time (0.021254366263747215)
+Text #20:  praying (1.0901557207107544)
+Text #20:  time (0.06287416070699692)
+Text #20:  luck (0.006410279776901007)
+Text #20:  guys (0.4143470823764801)
+Text #20:  awesome (0.2423497587442398)
+
+=== Text #1 ===
+> This is a great online[ color] tester and designer. Unlike other hex code[ color] testers, this application can also test hex[ colors] on a selected background and guides you in[ color] mixing. Type the[ color](s) in 3 or 6 digit hex code format eg. #173086, #138 or[ RGB] numbers format eg. 23, 48, 134. Backgroud[ color] is optional. Default value FFFFFF (white) is selected when no value supplied for bg[ color]. (Note: no matter whether the symbol # is used in hex code or not.) The online[ color] tester also helps you to select the harmonic[ color combinations]. The[ complementary], triadic, analogous, split[ complementary], tetradic and square[ color] schemes in the[ Color] combining guide recommend you the best[ color] groups for the two, three or four[ color] design. You can also pick up the[ colors] from the gradient scale, best[ brightness] (light[ness]) level from tints or[ shades] scale and the best suitable[ vibr]ance level from the saturation scale. Moreover you can pick the[ color] you like from the random[ color palette] generator.[ Color] tester also shows you the negative and monochrome (grays[cale]) representation of selected[ color] and the closest websafe[ color]. You also find there the[ RGB] and CMYK representations[ calculation].
+Dummy text written in hex #173086[ color] on a background[ color]. Text in[ color] #173086 on the desired background[ color] will look just like this. You just see the hex #173086[ colored] text written on a hex #FFFFFF[ color] backgroud... Or you can't see, if you selected the wrong combination of[ colors] :). The background[ color] should be selected so that the intended #173086 text[ color] is well visible on it. Alternatively, you can choose text[ color] different than #173086 to achieve better text readability. It can be rounded to the 3 character hex code #138. The[ RGB] values of the #173086 hex[ color] are R: 23, G: 48, B: 134. In percentage it is Red: 9%, Green: 18.8%,[ Blue]: 52.5%. The CMYK values of the #173086 hex[ color] are C: 0.828, M: 0.642, Y: 0, K: 0.475. The nearest web safe[ color] is #003399. Test of bold text in selected[ color]. Test of[ ital]ic text in the[ color]. Finally the test of bold[ ital]ic.
+
+=== Text #2 ===
+> We focus on bringing the[ PANASON]IC CGR-B/202A1B replacement[ Charg]er of high quality to UK customers and desire our customers can buy their satisfying[ PANASON]IC[ charg]ers, the Input: 100V-240V, Output: 12V, 0.00g, 106.50x69.00x37.00mm[ battery charger] on sales will be the perfect replacement to your original[ PANASON]IC CGR-B/202A1B.
+We guarantee the[ PANASON]IC CGR-B/202A1B[ Charg]er with a full one-year warranty from the date of purchase, 30 days money back, if the[ PANASON]IC CGR-B/202A1B[ Charg]er have any quality problem! If you have any question or suggestion, please Contact Us, We committed to providing the highest standard of excellent service for our clients.
+Buy[ PANASON]IC CGR-B/202A1B[ battery] and[ PANASON]IC CGR-B/202A1B[ charger] Together, Save UK £0.50!
+We focus on bringing the[ PANASON]IC CGR-B/202A1B replacement[ Charg]er of high quality to UK customers and desire our customers can buy their satisfying[ PANASON]IC[ charg]ers, the Input[ Voltage]: 5 V, Output[ Voltage]: 8.4 V, Output Current: 0.8 A, 49.20g, mm battery[ charger] on sales will be the perfect replacement to your original[ PANASON]IC CGR-B/202A1B.
+Sh[opping] from us is safe and secure. We do not sell, rent or share information of our customers with other parties. Exceldigital.org.uk guarantee your[ PANASON]IC CGR-B/202A1B[ battery charg]ers[ transaction] will be 100% safe.
+We are professional manufacturer and distributor of all types of replacement batteries and battery[ charg]ers. Full one year warranty for every replacement[ battery],[ adapter] and battery[ charger]; We assure that we use only high quality parts that equal to or better than the original so you can feel good about having a positive impact on our environment when you use our[ PANASON]IC CGR-B/202A1B[ charg]ers. In our store you will find a right products at very competitive prices so you will save lots of money.
+Sh[opping PANASON]IC CGR-B/202A1B Battery[ Charg]er On Exceldigital(UK) is great. all[ PANASON]IC CGR-B/
+
+=== Text #3 ===
+> Parenting[ Podcast]s: You[ Aren’]t Alone!
+When you follow[ someone] online, you get a[ glimpse] into their[ life].[ Suddenly] instead of[ feeling] alone, you feel validated in your[ decisions], and heck you might even learn something along the[ way]!
+[Parent]ing[ podcasts] offer this, and can help[ remind] parents that[ whatever problem] they[’]re facing, they[’]re not alone.
+List[ening] into shows, or reading people[’]s[ stories] online, can feel like you[�]�re eavesdropping on their lives. However by being allowed to peak in, you suddenly realise that a lot[ things] about[ parenting] are[ universal].
+We all do a lot of the[ things] the same.
+We also do a lot of[ things differently], and it’s always[ fascinating] to hear how others live their lives, and parent their children.
+Whether you agree or disagree, it still makes for a great[ conversation].
+The Parenting View is one of these shows that has just started up, promising to get[ conversations] going about all[ things parenting].
+Maria Foy, creator and host of the[ podcast] The Parenting View, says “A lot of parents can get disillusioned by what they see online, but with a show like this, suddenly you’re exposed to a[ conversation] that is unfiltered.” She also goes on to say “No two people parent the same, and everybody’s life[ experiences] are different – which makes these kind of[ conversations] fascinating. When we stop and listen to others, we learn; and knowledge is power. We can[ choose] what to do with that information however we want“.
+As mentioned in our “Podcasts Are The New Black” post, you can listen to a[ podcast] anywhere,[ anytime]. You do not have to sit down in front of a computer to do it.
+So you could be doing your[ laundry], going for a walk, or feeding your[ baby] and still be able to tune in and feel less alone as a parent.
+So head on over to Soundcloud and start checking out the[ podcasts] available. If you[’]re interested, you can check out The Parenting View[�]�s own[ podcast] HERE.
+You can check it out, and subscribe to it, on iTunes or on[ Spotify] ([coming] soon).
+
+=== Text #4 ===
+> Mahatma Gandhi1 once said, “The world provides enough for every man’s need but not for every man’s greed.”[ Sometimes] it’s easy to agree with proclamations of world peace and say[ things] like, “The rich should really give to the poor and solve world hunger!” However, when the giving strikes closer to home, it can be[ tougher] than we think.
+I once had a watch that I thought was seriously cool. It was a boy’s watch, but I didn’t mind; it had all the[ dial]s and[ gadgets] you could want. I visited my family and my younger brother was[ crazy] about my[ watch] and asked if he could have it. I told him I[ couldn’]t possibly part with such[ amazingness] and[ sadly] left it at that.[ Shortly] after getting home, my tre[asured] watch met with an accident and broke. It was then that I realized how[ stupid] it was that I’d[ missed] the opportunity to give it to my[ little] brother, who was so much more important to me than that watch ever could be. It might not have lasted him forever either, but at least he would have been happy for a while. And more than the watch, the meaning behind my giving him something special would have stuck with him so much longer.
+I try to remember that incident[ whenever] I�[�]m tempted to be selfish with my[ things] or start to[ prize] them too highly. It’s great to have[ nice things] and groovy[ gadgets]. (Don’t tell anyone, but I’m fairly addicted to my[ phone], which contains all my[ appointments], mail,[ reminders], to-do lists, Facebook, Twitter, Messenger, Google, and[ favorite] games.) These[ days], the “must-have”[ gadgets] are[ endless]—from smartphones,[ iPads], laptops, and gaming equipment right down to 3D home[ TVs]! If you’re able to have some of these[ nice things] and enjoy them and they help you with your work and[ studies], or are also a fun source of[ entertainment], technology can be great. But it’s good to step back[ sometimes] and[ imagine] what it would be like if one day all those[ things instantly disappeared]. After your initial[ withdrawal symptoms], you[�]�d[ realize] that life goes on without material[ things]. What matters most are our[ loved ones]—our friends and family members.[ Sometimes] we can[ forget] this truth, and that’s when we tend to act selfishly
+
+=== Text #5 ===
+> The New York Times offers quite a bit of video content these days, so naturally someone went and made a[ Kodi addon] for it. They[’]re[ content] is mostly news related, but some of the[ content] is also[ entertaining], while being informative at the same[ time]. This is a good[ addon] for when you want to[ watch] something[ quick] and interesting, or looking to[ kill time] watching news coverage. It might not be the[ number] one[ addon], but the New York[ Times] Video[ addon] is certainly worth the[ price] is costs.
+The New York Times Video[ addon] for[ Kodi] can be installed in a matter of[ seconds], since the official[ Kodi] repository is already available on every[ Kodi device]. Installation is far[ simpler] than it would be to install unofficial addons, and basically requires the[ flip] of a switch. Since we�[�]re such[ nice] people, we�[�]re going to walk you through each step of the New York Times Video[ addon] installation process.
+Step 6:[ Choose] the New York[ Times] Video[ Kodi addon] from the listing.
+Step 9: Launch the New York[ Times] Video[ addon] from the Video add-ons[ tab].
+Step 10:[ Choose] the International section and[ browse]!
+[Thank] you to netw1z for developing this[ addon], giving the[ Kodi] world[ access] to all the video[ content] that the New York[ Times] has to offer. There are often interesting[ mini broadcasts] that cover a wide range of global[ topics]. We hope you[ enjoy] the New York[ Times] Video[ addon] as much as we do!
+
+=== Text #6 ===
+> Dist[urb]ia[ Clothing coupon] code[ gift] !
+Dist[urb]ia[ Clothing coupon] code[ gift] ! ! !
+Dist[urb]ia[ Clothing] is always bringing something different and out of the mainstream, focusing on the dark side of popular culture, subversive[ icon]ography, childhood nostalgia, and angry slogans, all made with a strong sense of independence, and a[ quint]essential British punk D.I.Y.[ ethic].
+If you are a fan on Facebook, you’ve already noticed they are running a 20%[ discount], with the[ coupon] code FACEBOOK20 until Monday the 18th.
+Dist[urb]ia Clothing[ coupon] code! Don’t[ forget] to use it until Monday the 18th ! ! !
+Just log into your Facebook account, get your[ coupon] and stay tune for our next special[ discounts] ! Keep your eyes on the[ prize] and, of course, on our Facebook page.
+Inspiring graphics of the day – intense[ emotions] graphics !
+
+=== Text #7 ===
+> This is my 19th year in teaching, the 8th at Fairview. My daughter is a junior this year at[ CU] Boulder. I enjoy all[ things] outdoors: climbing,[ biking],[ skiing......] .
+
+=== Text #8 ===
+> If you[’]re a fan of fantasy-[themed] games, you’ll no doubt be very much enchanted by the[ Nov]omatic release, ‘Secret Forest’. It’s full of[ fairy], elf and gnome magic, providing players with a[ transportation] to another world. It’s a little unfortunate that the interface is set up to include much of what would be considered a traditional slot machine cabinet, otherwise the developer could have had some fun with providing a foliage-based background and[ surroundings]. However, this is not the biggest mishap with this game. Instead, they still haven’t seen the error of their[ ways], and have seen fit to incorporate their tired old arcade[ noises] into this every time the reels spin. Audio should be concentrated on as well as the[ visuals], and it just seems like Novomatic haven’t really bothered thinking about it too much. However, with this[ nuance] put aside, Secret Forest offers up an easy and[ relaxing] game to play.
+There are a total of five reels in this game, and these are accompanied by three rows, which presents a standard[ layout] for frequent online video slots players. Upon these reels, various[ icons] relating to the game’s theme can be found, including a gr[iffin], a[ blonde]-haired[ fairy], a golden-horned[ unicorn], trees with faces, white-spotted toadstools, two gnomes and a regal castle. Furthermore, the addition of A, J, Q, K, 9 and 10[ icons] can also be seen. These[ icons] are[ wonderfully] animated and very intricately designed, providing a very visually appealing product.
+In addition to these reels and rows, Novomatic have added a total of nine separate pay lines. All of these are able to be easily altered, ranging from a single one up to three, five, seven and the maximum of nine. Furthermore, the value of a single credit in the game can be changed between $0.50 and up to $1 and finally, $2. Also, players are also able to change around the bet placed per line, which will range from its minimum of one and increase up to the maximum of 100. Overall, players are able to place a maximum wager per round of $900.
+A large amount of features are usually added in to the best games, and while Secret Forest does have a few, it’s not overwhelmed by them. Its specialities start off with its wild[ icon], and this is represented by the
+
+=== Text #9 ===
+> Vellamo is led by the performing and[ song]writing team of Pia Leinonen and Joni Tiala. Their eight visit to the US will include a Sunday morning[ concert] will be in our[ chapel]. Their[ music] features ethereal Finnish folk with … read more.
+
+=== Text #10 ===
+> or 4 interest-free payments of $330.50 with Learn more.
+Black Glass Furniture -[ Wow]! This is[ stunning]![ Beautifully crafted] and unique, this range will be[ fabulous] in the[ bedroom] or any other room. This range of[ furniture] adds[ glam]our to all decors so be sure to check out all the pieces in this range - chest, bedside tables,[ dining] table, tall[boys] and mirrors. Stunning grouped together or individually placed.
+The bedside table features three deep drawers and a subtle reflective finish.
+
+=== Text #11 ===
+> J Brand can do no wrong! They always have such[ beautiful] pieces that belong in every women[ closet]. I just wished my[ wallet] agreed with me[ 😋 Lol]!
+
+=== Text #12 ===
+> I made a[ pizza] with[ cauliflower] crust last night. I[ didn�]�t die. But I[ wouldn]’t want it to be my new normal.
+
+=== Text #13 ===
+> A[ philosophical meditation] on the meaning of Eames[ toys] from the July / August[ 1957] issue of Architectural Association Journal.
+Thanks to Catherine Ince of the[ Barb]ican for sharing this interesting article about Eames toys, including two illustrations from the Eames Giant House of Cards.
+You can read it large if you click on it.
+Elsewhere on this website you can read an Eames bibliography also published by the Architectural Association.
+
+=== Text #14 ===
+> A set of 12[ fanciful] and fun Shawl Pins. Each Shawl[ Pin] comes with an organdy[ gift] pouch. Direct your customers to our video, which features creative[ ways] to use the Shaune[ Baz]ner Shawl[ Pin]!
+
+=== Text #15 ===
+> We are always looking for applicants. We seek employees who are sincere in their desire to provide great food and service to all customers.
+Prior experience is helpful, but not required.
+
+=== Text #16 ===
+> Country[ star] Alan Jackson, actor-singer-guitarist Jerry[ Reed] and[ song]writer Don[ Schl]itz will be[ induct]ed into the Country[ Music] Hall of Fame later this year. Their selection was announced Wednesday (Apr. 5).
+
+=== Text #17 ===
+> Nothing[ gay] found in this area tagged with Ho[ega]arden,[ sorry] honey. Try a new search. Please add if you know otherwise.
+
+=== Text #18 ===
+> Model Home open daily 10am-4pm. Lot size 12,000 sq. ft. The 2245 plan offers[ fantastic] single level living with a huge open concept great room & kitchen, 4[ bedrooms] and 2.5[ baths]. The[ kitchen] includes slab[ quartz] or[ granite] counter-tops, under-mount sink, and shaker style cabinetry. The great room features a warm &[ cozy fireplace] w/ eat-in nook.
+
+=== Text #19 ===
+> Summary: An introduction to[ histor]iography and the theory of counterfactuals.
+Published: In w88[ android] (ed. Rasmus Dahlberg), q.v.
+
+=== Text #20 ===
+> joel mayward:[ Feeling] stressed, but looking good!
+[Feeling] stressed, but looking good!
+We're getting ready for our[ trip] to[ Arizona] today by doing lots of[ laundry] and thinking through[ everything] we need. We're checking our[ flight] information,[ hotel] information,[ car rental] information...lots of information! We have maps of the greater Phoenix area and the[ city] of Mesa. We have driving[ directions] to the hotel from the airport, the hotel to the church, and anywhere else we need to go.[ Prep]aring these[ things] ahead of time is a must: it's no fun to arrive in a new[ city] and[ realize] you have no idea how to get around! We also have a basic timeline for every day we're in[ Arizona]: who we're meeting, where we're going,[ times] for[ relaxing], etc. Preparation is key!
+I think the weightiness of this excursion is playing[ havoc] with my insides: I'm feeling[ mildly] ill and not[ sleeping] too well at night. This could be due to stress. I'm not a[ doctor], but that's my diagnosis. Finding out we might be getting a new[ job], a new home, and essentially a new life in less than a week is a[ stressful endeavor]!
+We're[ uber]-excited! We leave[ tomorrow]!
+we are dang[ uber]-excited too!! will call katie[ tomorrow]- wanted to[ tonight] but ran out of[ time]. have been thinking lots about her and[ praying] too in preparation! bring your running/hiking shoes in case we have[ time] to hit pinnacle.
+Good[ luck] you[ guys]. You will be[ awesome]!
+
+
+Description: 
+2025-05-10 18:00:11,672 - root - INFO - Color, battery chargers, podcasts, electronic devices, Kodi add-ons, coupons, outdoor activities, aesthetically pleasing items, travel preparations
+
+2025-05-10 18:00:11,677 - root - INFO - Cluster #3 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.csv
+2025-05-10 18:00:13,076 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-05-10 18:00:13,077 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  color (1.3736668825149536)
+Text #1:  color (0.7961594462394714)
+Text #1:  colors (0.5794568657875061)
+Text #1:  color (0.7874494791030884)
+Text #1:  color (0.8340201377868652)
+Text #1:  RGB (0.19768497347831726)
+Text #1:  color (1.0057761669158936)
+Text #1:  color (0.8544943332672119)
+Text #1:  color (0.8231777548789978)
+Text #1:  color (0.9411939382553101)
+Text #1:  complementary (0.21176178753376007)
+Text #1:  complementary (0.09336698800325394)
+Text #1:  color (0.6314226984977722)
+Text #1:  Color (1.0157363414764404)
+Text #1:  color (0.8032980561256409)
+Text #1:  color (0.8533462285995483)
+Text #1:  colors (0.9614507555961609)
+Text #1:  brightness (0.6493960022926331)
+Text #1: ness (0.32344797253608704)
+Text #1:  shades (1.1074568033218384)
+Text #1:  vibr (1.3395590782165527)
+Text #1:  color (1.204647183418274)
+Text #1:  color (1.3731346130371094)
+Text #1:  Color (1.4220510721206665)
+Text #1: cale (0.37202250957489014)
+Text #1:  color (1.0992518663406372)
+Text #1:  color (1.1942774057388306)
+Text #1:  RGB (0.35329413414001465)
+Text #1:  calculation (0.0013433161657303572)
+Text #1:  color (0.9470003843307495)
+Text #1:  color (1.0142054557800293)
+Text #1:  color (1.0833148956298828)
+Text #1:  color (1.063635230064392)
+Text #1:  colored (0.8985337615013123)
+Text #1:  color (1.0216089487075806)
+Text #1:  colors (1.219537377357483)
+Text #1:  color (1.1064924001693726)
+Text #1:  color (1.065266489982605)
+Text #1:  color (1.12796151638031)
+Text #1:  RGB (0.2282094806432724)
+Text #1:  color (0.8899262547492981)
+Text #1:  Blue (0.13715676963329315)
+Text #1:  color (0.9312593936920166)
+Text #1:  color (1.1706613302230835)
+Text #1:  color (1.2750520706176758)
+Text #1:  ital (0.060472071170806885)
+Text #1:  color (1.2392606735229492)
+Text #1:  ital (0.027752399444580078)
+Text #2:  folders (0.41065216064453125)
+Text #2:  folders (0.24346263706684113)
+Text #2:  customize (1.1954530477523804)
+Text #2:  options (0.8895410895347595)
+Text #2:  Pictures (0.08179785311222076)
+Text #2:  Music (0.48977130651474)
+Text #2:  buttons (1.319126844406128)
+Text #2:  activities (0.8916405439376831)
+Text #2:  Slide (0.49410727620124817)
+Text #2:  Pictures (0.2937910556793213)
+Text #2:  Music (1.0999395847320557)
+Text #2:  folder (0.008349888026714325)
+Text #2:  customize (1.3665056228637695)
+Text #2:  pictures (0.49183979630470276)
+Text #2:  music (1.3005542755126953)
+Text #2:  videos (0.43506428599357605)
+Text #2:  tasks (0.18161772191524506)
+Text #2:  options (0.6310569047927856)
+Text #2:  tasks (0.08243126422166824)
+Text #2:  options (0.48083046078681946)
+Text #2:  pictures (0.21743041276931763)
+Text #2:  music (0.7471407055854797)
+Text #2:  videos (0.11268819123506546)
+Text #2: ize (0.3899443447589874)
+Text #2:  Optim (0.16216184198856354)
+Text #2:  arrow (0.07134386152029037)
+Text #2:  Items (0.45074349641799927)
+Text #2:  Pictures (0.20865723490715027)
+Text #2:  Music (0.7506449222564697)
+Text #2:  option (0.5178055763244629)
+Text #2:  picture (0.4538445770740509)
+Text #2:  icon (1.2256361246109009)
+Text #2:  Choose (0.21627585589885712)
+Text #2:  restore (0.5288714170455933)
+Text #2:  picture (0.4521910548210144)
+Text #2:  Restore (0.5504212379455566)
+Text #2: izing (1.1729397773742676)
+Text #2: bar (0.2070140540599823)
+Text #2: bar (0.07554011791944504)
+Text #3:  Podcast (0.3378857374191284)
+Text #3:  Aren (0.16172735393047333)
+Text #3:  someone (0.08865346014499664)
+Text #3:  glimpse (0.36203113198280334)
+Text #3:  life (0.04038942605257034)
+Text #3:  Suddenly (0.0735894963145256)
+Text #3:  feeling (0.03188234195113182)
+Text #3:  decisions (0.2703934907913208)
+Text #3:  way (0.08242427557706833)
+Text #3: Parent (0.048205435276031494)
+Text #3:  podcasts (0.9308435320854187)
+Text #3:  remind (0.302227646112442)
+Text #3:  whatever (0.1677250862121582)
+Text #3: � (0.13081766664981842)
+Text #3: � (0.07250295579433441)
+Text #3: ening (0.250267893075943)
+Text #3: � (0.043424200266599655)
+Text #3:  stories (0.6340250372886658)
+Text #3: � (0.08013051003217697)
+Text #3:  things (1.015532374382019)
+Text #3:  parenting (0.9818975925445557)
+Text #3:  universal (0.4721580445766449)
+Text #3:  things (1.2709569931030273)
+Text #3:  things (1.2165037393569946)
+Text #3:  fascinating (0.09404655545949936)
+Text #3:  conversation (1.9694634675979614)
+Text #3:  conversations (2.4610867500305176)
+Text #3:  things (1.4279158115386963)
+Text #3:  podcast (0.13956153392791748)
+Text #3:  conversation (1.730448603630066)
+Text #3:  experiences (0.08967844396829605)
+Text #3:  conversations (2.2541656494140625)
+Text #3:  choose (0.017654985189437866)
+Text #3:  podcast (0.2596726417541504)
+Text #3:  anytime (1.3881230354309082)
+Text #3:  laundry (1.3534220457077026)
+Text #3:  baby (1.5287600755691528)
+Text #3:  podcasts (0.7849942445755005)
+Text #3: � (0.029712948948144913)
+Text #3: � (0.02717849798500538)
+Text #3:  podcast (0.309851735830307)
+Text #3:  Spotify (0.7968119978904724)
+Text #3: coming (0.5579745769500732)
+Text #4:  routine (0.8382976055145264)
+Text #4:  outdoors (0.18207496404647827)
+Text #4:  mornings (1.5715807676315308)
+Text #4:  shady (0.09186889976263046)
+Text #4:  amb (0.16104257106781006)
+Text #4:  lucky (0.4317978620529175)
+Text #4:  thing (0.1570926457643509)
+Text #4:  phone (0.4037606120109558)
+Text #4:  realizing (0.11204109340906143)
+Text #4: � (0.06816931813955307)
+Text #4:  contacts (0.1615288257598877)
+Text #4:  trip (0.8177462816238403)
+Text #4:  bathroom (0.9035121202468872)
+Text #4:  sun (0.14900630712509155)
+Text #4:  slight (0.10807818174362183)
+Text #4:  hike (0.7125722169876099)
+Text #4:  outfits (0.8817481398582458)
+Text #4:  gym (1.6928731203079224)
+Text #4:  problems (0.7990214228630066)
+Text #4: � (0.12584461271762848)
+Text #4:  sweat (0.1530030220746994)
+Text #4:  situations (1.9095739126205444)
+Text #4:  nightmares (2.445208787918091)
+Text #4:  sleep (1.2615243196487427)
+Text #4:  worry (1.0006829500198364)
+Text #4:  problems (0.999678909778595)
+Text #4: � (0.08149126172065735)
+Text #4:  fortunate (0.39415937662124634)
+Text #4:  loving (0.29513201117515564)
+Text #4:  someone (0.07665079087018967)
+Text #4:  worry (0.9394769072532654)
+Text #4:  worry (0.9866169095039368)
+Text #4:  injust (0.3151348829269409)
+Text #4:  intrigue (0.10193158686161041)
+Text #4:  uphill (0.0495600625872612)
+Text #4: icc (0.050524115562438965)
+Text #4:  pain (0.16806846857070923)
+Text #4:  cerebral (0.1050013080239296)
+Text #4:  realize (0.08512106537818909)
+Text #4:  worry (0.7185997366905212)
+Text #4:  anger (0.06391020119190216)
+Text #4:  frustration (0.6615164875984192)
+Text #4:  sorts (0.3755614459514618)
+Text #4:  stash (0.10134188830852509)
+Text #4:  things (0.793175458908081)
+Text #4:  boring (0.2384985238313675)
+Text #4:  stuff (0.49745842814445496)
+Text #5:  dancing (1.7925359010696411)
+Text #5:  thing (0.016440777108073235)
+Text #5:  slow (0.12653538584709167)
+Text #5:  thing (0.09583650529384613)
+Text #5:  ritual (0.09831087291240692)
+Text #5:  dance (1.421575665473938)
+Text #5:  forever (0.0023586349561810493)
+Text #5:  question (0.0048165456391870975)
+Text #6:  black (0.1846601516008377)
+Text #6:  liked (0.1702776998281479)
+Text #6:  themes (0.30809906125068665)
+Text #6:  boring (0.4877071976661682)
+Text #6:  green (0.3472987413406372)
+Text #6:  light (0.08404512703418732)
+Text #6:  green (0.18619154393672943)
+Text #7:  Wow (0.33278194069862366)
+Text #7:  stunning (0.12843097746372223)
+Text #7:  Beaut (0.5035080909729004)
+Text #7:  fabulous (1.497122049331665)
+Text #7:  bedroom (0.9502054452896118)
+Text #7:  furniture (1.3125439882278442)
+Text #7:  glam (0.5680963397026062)
+Text #7:  dining (0.2185724675655365)
+Text #7: boys (0.02206582948565483)
+Text #8:  ornament (0.11609592288732529)
+Text #8:  colorful (1.1625018119812012)
+Text #8:  cocktail (0.22349081933498383)
+Text #8: Dim (0.29585522413253784)
+Text #9:  colors (1.5403718948364258)
+Text #9:  patterns (0.01957109197974205)
+Text #9: !!!! (1.0573152303695679)
+Text #9:  UP (0.13787196576595306)
+Text #9: !!!! (0.8316395878791809)
+Text #9:  Wow (0.39896339178085327)
+Text #9: !!!! (0.9425589442253113)
+Text #9:  ultra (0.1159672737121582)
+Text #9: ategories (1.6403673887252808)
+Text #9: ish (0.09304621070623398)
+Text #9:  Away (0.3095363974571228)
+Text #9: ish (0.059072211384773254)
+Text #9:  clothes (0.6813032627105713)
+Text #9:  colors (1.7997618913650513)
+Text #9:  patterns (0.007824714295566082)
+Text #9:  Wow (0.3413369059562683)
+Text #9:  kind (0.13672582805156708)
+Text #9: rying (0.26154032349586487)
+Text #9: � (0.034996770322322845)
+Text #9: � (0.06939713656902313)
+Text #9: � (0.0007148474105633795)
+Text #9:  anymore (0.31520962715148926)
+Text #9: ategories (1.562320590019226)
+Text #9:  Away (0.3023912012577057)
+Text #9:  clothes (0.6430405378341675)
+Text #9:  cook (0.6311608552932739)
+Text #12:  jeans (0.6634109020233154)
+Text #13:  Thank (0.5493577718734741)
+Text #13:  VERY (0.5666822195053101)
+Text #13: 've (0.04355068877339363)
+Text #13:  ideas (0.2727871537208557)
+Text #13:  tired (0.0463547445833683)
+Text #14:  beautiful (0.12105894833803177)
+Text #14:  exciting (0.04264706373214722)
+Text #14:  resistant (0.12292327731847763)
+Text #14: washer (1.0640281438827515)
+Text #14: DAY (0.2614748179912567)
+Text #14:  colorful (1.5762689113616943)
+Text #14:  resistant (0.2033277451992035)
+Text #14: washer (1.0947437286376953)
+Text #14:  resistant (0.14584648609161377)
+Text #14: washer (1.0644139051437378)
+Text #14:  Perfect (0.06993870437145233)
+Text #14:  indoor (0.07143647223711014)
+Text #14:  beautiful (0.2609473466873169)
+Text #14:  colorful (1.5771617889404297)
+Text #14:  Dish (0.00482653034850955)
+Text #15: brace (0.17548364400863647)
+Text #15:  Bour (0.08210273832082748)
+Text #15:  Shim (0.17162562906742096)
+Text #15:  Bour (0.04735146090388298)
+Text #15:  Shim (0.0938134416937828)
+Text #15:  cuisine (0.8753810524940491)
+Text #15:  Bour (0.09982606768608093)
+Text #15:  Shim (0.08443409949541092)
+Text #16:  hor (0.4690735340118408)
+Text #16:  songs (1.1274715662002563)
+Text #16:  stories (0.34346649050712585)
+Text #16:  supervised (0.10217263549566269)
+Text #17:  poems (0.8102598786354065)
+Text #17:  bal (0.5578807592391968)
+Text #17:  poems (0.5103767514228821)
+Text #18:  scholarships (0.08151474595069885)
+Text #19:  Cotton (0.43668070435523987)
+Text #19:  cotton (0.013502752408385277)
+Text #19:  Cotton (0.24758674204349518)
+Text #19:  customized (0.023804616183042526)
+Text #19:  Cotton (0.25907838344573975)
+Text #19:  shopping (0.4585283696651459)
+Text #19:  Cotton (0.3523727059364319)
+Text #19:  cotton (0.030503343790769577)
+Text #19:  Cotton (0.28500306606292725)
+Text #20:  Language (0.01623702608048916)
+Text #20:  professors (0.5968648195266724)
+Text #20:  professors (0.7079400420188904)
+Text #20:  language (0.1672140508890152)
+Text #20:  language (0.09227203577756882)
+Text #20:  prepar (0.16908453404903412)
+Text #20:  language (0.09176234155893326)
+
+=== Text #1 ===
+> This is a great online[ color] tester and designer. Unlike other hex code[ color] testers, this application can also test hex[ colors] on a selected background and guides you in[ color] mixing. Type the[ color](s) in 3 or 6 digit hex code format eg. #173086, #138 or[ RGB] numbers format eg. 23, 48, 134. Backgroud[ color] is optional. Default value FFFFFF (white) is selected when no value supplied for bg[ color]. (Note: no matter whether the symbol # is used in hex code or not.) The online[ color] tester also helps you to select the harmonic[ color combinations]. The[ complementary], triadic, analogous, split[ complementary], tetradic and square[ color] schemes in the[ Color] combining guide recommend you the best[ color] groups for the two, three or four[ color] design. You can also pick up the[ colors] from the gradient scale, best[ brightness] (light[ness]) level from tints or[ shades] scale and the best suitable[ vibr]ance level from the saturation scale. Moreover you can pick the[ color] you like from the random[ color palette] generator.[ Color] tester also shows you the negative and monochrome (grays[cale]) representation of selected[ color] and the closest websafe[ color]. You also find there the[ RGB] and CMYK representations[ calculation].
+Dummy text written in hex #173086[ color] on a background[ color]. Text in[ color] #173086 on the desired background[ color] will look just like this. You just see the hex #173086[ colored] text written on a hex #FFFFFF[ color] backgroud... Or you can't see, if you selected the wrong combination of[ colors] :). The background[ color] should be selected so that the intended #173086 text[ color] is well visible on it. Alternatively, you can choose text[ color] different than #173086 to achieve better text readability. It can be rounded to the 3 character hex code #138. The[ RGB] values of the #173086 hex[ color] are R: 23, G: 48, B: 134. In percentage it is Red: 9%, Green: 18.8%,[ Blue]: 52.5%. The CMYK values of the #173086 hex[ color] are C: 0.828, M: 0.642, Y: 0, K: 0.475. The nearest web safe[ color] is #003399. Test of bold text in selected[ color]. Test of[ ital]ic text in the[ color]. Finally the test of bold[ ital]ic.
+
+=== Text #2 ===
+> In your personal[ folders], you can create your own[ folders] and[ customize] view[ options] based on the contents. In the toolbar of the[ Pictures] and[ Music folders], Windows provides[ buttons] with file management[ activities] specifically related to the contents of the folder, such as[ Slide] Show in the[ Pictures] folder, or Play All in the[ Music folders]. When you create a new[ folder], you can[ customize] it for documents,[ pictures],[ music], and[ videos] by applying a folder template, which is a collection of folder[ tasks] and viewing[ options]. When you apply a template to a folder, you apply specific features to the folder, such as specialized[ tasks] and viewing[ options] for working with documents,[ pictures],[ music], and[ videos].
+Click the Custom[ize tab] for a folder.
+Click the[ Optimize] this folder for list[ arrow], and then select the type of folder you want: General[ Items], Documents,[ Pictures], Videos, or[ Music].
+Select the Also apply this template to all subfolders check box to apply the[ option].
+To select a[ picture] for display on the folder[ icon], click[ Choose] File.
+To[ restore] the default[ picture] for the folder, click[ Restore] Default.
+See “Custom[izing] the Task[bar]” on page 118 for information on modifying the task[bar].
+
+=== Text #3 ===
+> Parenting[ Podcast]s: You[ Aren’]t Alone!
+When you follow[ someone] online, you get a[ glimpse] into their[ life].[ Suddenly] instead of[ feeling] alone, you feel validated in your[ decisions], and heck you might even learn something along the[ way]!
+[Parent]ing[ podcasts] offer this, and can help[ remind] parents that[ whatever problem] they[’]re facing, they[’]re not alone.
+List[ening] into shows, or reading people[’]s[ stories] online, can feel like you[�]�re eavesdropping on their lives. However by being allowed to peak in, you suddenly realise that a lot[ things] about[ parenting] are[ universal].
+We all do a lot of the[ things] the same.
+We also do a lot of[ things differently], and it’s always[ fascinating] to hear how others live their lives, and parent their children.
+Whether you agree or disagree, it still makes for a great[ conversation].
+The Parenting View is one of these shows that has just started up, promising to get[ conversations] going about all[ things parenting].
+Maria Foy, creator and host of the[ podcast] The Parenting View, says “A lot of parents can get disillusioned by what they see online, but with a show like this, suddenly you’re exposed to a[ conversation] that is unfiltered.” She also goes on to say “No two people parent the same, and everybody’s life[ experiences] are different – which makes these kind of[ conversations] fascinating. When we stop and listen to others, we learn; and knowledge is power. We can[ choose] what to do with that information however we want“.
+As mentioned in our “Podcasts Are The New Black” post, you can listen to a[ podcast] anywhere,[ anytime]. You do not have to sit down in front of a computer to do it.
+So you could be doing your[ laundry], going for a walk, or feeding your[ baby] and still be able to tune in and feel less alone as a parent.
+So head on over to Soundcloud and start checking out the[ podcasts] available. If you[’]re interested, you can check out The Parenting View[�]�s own[ podcast] HERE.
+You can check it out, and subscribe to it, on iTunes or on[ Spotify] ([coming] soon).
+
+=== Text #4 ===
+> My writing[ routine] begins with a walk[ outdoors]. Not a long walk or a fast one. Two miles up the street and back, early in the morning in summer before our California sun blisters the city, or before rain turns a winter walk into a slog. Most[ mornings] it’s a walk on the[ shady] side of the street, a familiar trek that doesn’t require me to think about where to turn or when to start[ amb]ling back home.
+I’m[ lucky] if I can get going without returning for one last[ thing], like replacing the house[ phone] for my cell,[ realizing] I[�]�m not wearing my[ contacts], trading stiff shoes for a more comfortable pair, one more[ trip] to[ bathroom], another smear of[ sun]block. Once I’m finally on my way, it’s a[ slight] uphill[ hike] and a reverse easy jaunt down.
+A walk is a great opportunity to get a bit of exercise, because I will never wear those dorky rubber band[ outfits] I’d have to don to go to a[ gym]. I work out[ problems], even if I don[’]t work up much of a[ sweat], like the chronic[ situations] that give me[ nightmares] if I[ sleep] in too late. I[ worry] about personal[ problems], because as much as I[’]m[ fortunate] to have[ loving family] and friends, there is always[ someone] to[ worry] about. I[ worry] about the[ injust]ices of my employment, politically inspired office[ intrigue] affecting even my paltry claim to the working world. The walk[ uphill] gives me a chance to excise those devils, though they’ll return like persistent h[icc]ups. I walk more and more determinedly, relinquishing the[ pain] in my calves for concentration on those[ cerebral irrit]ants. Most days I[ realize] there is little I can do except let go my[ worry],[ anger], and[ frustration], so I do, resolution of[ sorts].
+At the top of the rise my palm swings around the light post that signals my walk homeward, and I begin to write. I work in my head because I can’t walk with a laptop though I’ve considered it. Some of my effort will get lost on the way home, but I’ll retain the essence of my work.
+I hunt when I walk. I am a bird of prey. I seek words and pluck them before they scurry to safety. I[ stash] interesting words that say[ things] other than[ boring things] like thing, (could you be more specific?) or[ stuff], (could you
+
+=== Text #5 ===
+> 9 Oct Neil asks KZN if slow[ dancing] is a[ thing] of the past?
+Is[ slow dancing] a[ thing] of the past? Is the[ ritual] of asking for a[ dance] lost[ forever]? That was Neil's[ question] to the listeners of KZN this past Sunday.
+
+=== Text #6 ===
+> All[ black themes] are always well[ liked] by people. It is likely that you like it a lot too but if you find plain black[ themes] so[ boring], you will probably like this theme with its[ green streaks] similar to leaves being shined on with[ light]. The[ green colored icons] fit well with the theme.
+
+=== Text #7 ===
+> or 4 interest-free payments of $330.50 with Learn more.
+Black Glass Furniture -[ Wow]! This is[ stunning]![ Beautifully crafted] and unique, this range will be[ fabulous] in the[ bedroom] or any other room. This range of[ furniture] adds[ glam]our to all decors so be sure to check out all the pieces in this range - chest, bedside tables,[ dining] table, tall[boys] and mirrors. Stunning grouped together or individually placed.
+The bedside table features three deep drawers and a subtle reflective finish.
+
+=== Text #8 ===
+> The fruit coasters are[ ornament] and very[ colorful]. They are great for[ cocktail] parties.
+[Dim]ensions: 4.25" x 3.8" x 3.65"
+
+=== Text #9 ===
+> This statement is so true! How many[ colors],[ patterns] are you wearing today! That many! Great job[!!!!]
+LOOK[ UP] IN THE SKY[!!!!]
+Looking good Liz![ Wow]! Tattoo is great!
+Thanks Elisabeta[!!!! Wow]! Your fangs are[ ultra] white!
+C[ategories]: Aston[ish], Blogging Blogger, Bonkers[ Away] | Tags: 5/10/2018, Aston[ish], Astrid,[ clothes], different[ colors], Elisabeta, Elizabeth, fangs, Hiccup,[ patterns], Toothless,[ Wow]! | Permalink.
+I feel[ kind] of willy-nilly today. How about you?
+T[rying] to decide what to do? What to do? What to do?
+Let[’]s see what do I have to do?
+Feed Milo, Milo is a Domestic Short Hair Mix but he thinks he�[�]s true Egyptian cat related to Bast .
+Guess what – I�[�]m not willy-nilly[ anymore]. BLOGS it is!
+C[ategories]: Blogging Blogger, Bonkers[ Away], Daily Post comment, Willy-Nilly | Tags: 8/27/2017, blogs, Cat, Clean,[ clothes],[ cook], dust, Milo, what to do?, Willy-Nilly | Permalink.
+
+=== Text #10 ===
+> We are always looking for applicants. We seek employees who are sincere in their desire to provide great food and service to all customers.
+Prior experience is helpful, but not required.
+
+=== Text #11 ===
+> Renault workshop manual, M.R. 164, additive, R1178 Sedan, R1332 Station wagon.
+Renault automobile -- Maintenance and repair -- Handbooks, manuals, etc.
+
+=== Text #12 ===
+> The Loudmouth Jeans. These mid rise, loose fit, dusty black[ jeans] are a perfectly casual go-to. Features include all over distressing and an unfinished, frayed hem.
+
+=== Text #13 ===
+> Ok, now. Ohhh... There's whole new world to discover...[ Thank] you[ VERY] much!
+Comments later, I['ve] got a few[ ideas] but I feel too[ tired] to make halfway good comments.
+
+=== Text #14 ===
+> Stepping into a garden filled with[ beautiful flowers] creates an[ exciting] table setting. Break[ resistant] Melamine Plates by plateshoppe.com.Dish[washer] safe. Handmade in the USA.
+HAPPY BIRTH[DAY], GRAB A SLICE OF CAKE AND JOIN THE FUN.
+Have a party using these[ colorful] break[ resistant] Melamine Plates and Platters by plateshoppe.com. Dish[washer] safe. Handmade in the USA.
+Butterfly Dinner Plate made of break[ resistant] Melamine by plateshoppe.com. Dish[washer] safe,[ Perfect] for[ indoor] and outdoor entertaining all year round. Handmade in the USA.
+Set a[ beautiful] table with these[ colorful] Melamine Dinner Plates by plateshoppe.com.[ Dishwasher] safe. Handmade in the USA.
+
+=== Text #15 ===
+> Em[brace] world class facilities at East[ Bour]ne Resort & Spa[ Shim]la. Facilities at East[ Bour]ne Resort & Spa[ Shim]la comprise multi[ cuisine restaurant], tours and travel desk. Avail facilities of East[ Bour]ne Resort & Spa[ Shim]la.
+
+=== Text #16 ===
+> Since 1992, Discovery World Learning Center has offered an innovative, educational curriculum, encouraging each child to discover and explore new[ horizons]. We always provide a safe, clean, and nurturing environment for your children.
+From 6:30 a.m. to 6:30 p.m., children 6 weeks through 12 years old will learn fair play, moral values, and respect for one another through[ songs],[ stories], and[ supervised] play.
+
+=== Text #17 ===
+> Robyn Hood Black makes[ poems] and art in the[ bal]my South Carolina Lowcountry of the US. Her haiku appear in several journals and anthologies. A children’s book author, her published works include fiction, nonfiction, and many[ poems] in anthologies and magazines.
+
+=== Text #18 ===
+> Funding for[ scholarships] is in accordance with Georgia’s unclaimed property laws, O.C.G.A. § 44-12-236. For more information, please contact Stacey Fields, Director of Public Relations, at 706-253-5287.
+
+=== Text #19 ===
+> The[ Cotton] Bags, offered by us, are made from 100%[ cotton] fabric. Our[ Cotton] Bags are highly environmental products which can be availed from us in various[ customized options]. The[ Cotton] Bags, we offer, can be used as[ shopping] bags, promotional bags, shoulder bags and etc. as per the needs of the customers.
+We are engaged in offering[ Cotton] Sling Bag to our esteemed client.
+We deal in Jute[ cotton] bag.
+Matching up with the requirements of our clients, we are involved in offering[ Cotton] Laundry Bag.
+
+=== Text #20 ===
+> Program in Teaching French as a Foreign[ Language] was established in 1985 under the Department of Foreign Education. 2 full[ professors],3 assistant[ professors] and 3 research assistant are currently working in the department. The Program in Teaching French as a Foreign Language offers both undergraduate and post graduate programs. The students who are enrolled to these programs take a[ language] proficiency exam and if their[ language] level is below the required level, they follow the[ prepar]atory[ language] program for the first year.
+
+
+Description: 
+2025-05-10 18:00:13,079 - root - INFO - Attributes, descriptions, or discussions of colors, visual styles, or customization options
+
+2025-05-10 18:00:13,084 - root - INFO - Cluster #4 saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/random_gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.csv
+2025-05-10 18:00:13,085 - root - INFO - ================================================================================
+2025-05-10 18:00:13,086 - root - INFO - ANALYSIS COMPLETED
+2025-05-10 18:00:13,086 - root - INFO - ================================================================================
+2025-05-10 18:00:13,087 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.log
+2025-05-10 18:00:13,088 - root - INFO - CSV saved to: sanity_checks/random_sentences/descriptions/gemini-1-5-pro/gpt2-xl_layer-0_unit-6314_2025-05-10_15-47-33.csv

@@ -1,0 +1,734 @@
+2025-06-16 13:10:24,441 - root - INFO - ================================================================================
+2025-06-16 13:10:24,459 - root - INFO - CONFIGURATION PARAMETERS
+2025-06-16 13:10:24,459 - root - INFO - ================================================================================
+2025-06-16 13:10:24,460 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-06-16 13:10:24,461 - root - INFO - AGG_METHOD = mean
+2025-06-16 13:10:24,461 - root - INFO - BATCH_SIZE = 2
+2025-06-16 13:10:24,461 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-06-16 13:10:24,462 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-06-16 13:10:24,462 - root - INFO - CLUSTER_METHOD = KMeans
+2025-06-16 13:10:24,463 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-06-16 13:10:24,463 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-06-16 13:10:24,463 - root - INFO - CONTROL_DATA = cosmopedia
+2025-06-16 13:10:24,464 - root - INFO - CONTROL_DATA_FILES = None
+2025-06-16 13:10:24,464 - root - INFO - CONTROL_SPLIT = train
+2025-06-16 13:10:24,464 - root - INFO - DATA_FILES = None
+2025-06-16 13:10:24,465 - root - INFO - DEVICE = cuda
+2025-06-16 13:10:24,465 - root - INFO - END_INTERVAL = 0.75
+2025-06-16 13:10:24,466 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-06-16 13:10:24,466 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-06-16 13:10:24,466 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-06-16 13:10:24,467 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-06-16 13:10:24,467 - root - INFO - HOOK_ID = mlp.hook_post
+2025-06-16 13:10:24,467 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-06-16 13:10:24,468 - root - INFO - LAYER_ID = 20
+2025-06-16 13:10:24,468 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-06-16 13:10:24,469 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-06-16 13:10:24,469 - root - INFO - METHOD_NAME = GPT-explain
+2025-06-16 13:10:24,469 - root - INFO - MULTI_EVAL = True
+2025-06-16 13:10:24,470 - root - INFO - N_CLUSTERS = 5
+2025-06-16 13:10:24,470 - root - INFO - N_SAMPLES = 10
+2025-06-16 13:10:24,470 - root - INFO - PERCENTILE_STEP = 0.00025
+2025-06-16 13:10:24,471 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-06-16 13:10:24,471 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-06-16 13:10:24,472 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-06-16 13:10:24,472 - root - INFO - RANDOMIZE_SENTENCES = False
+2025-06-16 13:10:24,472 - root - INFO - SAVE_ACTIVATIONS = True
+2025-06-16 13:10:24,473 - root - INFO - SPLIT = train
+2025-06-16 13:10:24,473 - root - INFO - START_INTERVAL = 0.5
+2025-06-16 13:10:24,473 - root - INFO - STREAMING = True
+2025-06-16 13:10:24,474 - root - INFO - SUBSET_SIZE = 1000
+2025-06-16 13:10:24,474 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-06-16 13:10:24,474 - root - INFO - TARGET_DATA = c4
+2025-06-16 13:10:24,475 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-06-16 13:10:24,475 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-06-16 13:10:24,475 - root - INFO - UNIT_ID = 1424
+2025-06-16 13:10:24,476 - root - INFO - USE_API = True
+2025-06-16 13:10:24,476 - root - INFO - ================================================================================
+2025-06-16 13:10:24,476 - root - INFO - ANALYSIS RESULTS
+2025-06-16 13:10:24,477 - root - INFO - ================================================================================
+2025-06-16 13:10:24,477 - root - INFO - Analysis results will be saved to: logs/evaluation_gpt2-xl_2025-06-16_11-10-24.log
+2025-06-16 13:10:25,047 - root - INFO - Loading target model...
+2025-06-16 13:10:38,217 - root - INFO - Model loaded successfully
+2025-06-16 13:10:38,489 - root - INFO - Tokenizer loaded successfully
+2025-06-16 13:10:38,494 - root - INFO - Loaded 60 layer-unit pairs to process
+2025-06-16 13:10:38,497 - root - INFO - Loading text generator model...
+2025-06-16 13:10:39,225 - root - INFO - Text generator loaded successfully
+2025-06-16 13:10:39,451 - root - INFO - Processing layer 0, unit 6314 (1/60)
+2025-06-16 13:10:39,487 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:39,719 - root - INFO - Processed explanation 1/5 for layer 0, unit 6314
+2025-06-16 13:10:39,747 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:39,977 - root - INFO - Processed explanation 2/5 for layer 0, unit 6314
+2025-06-16 13:10:40,005 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:40,232 - root - INFO - Processed explanation 3/5 for layer 0, unit 6314
+2025-06-16 13:10:40,261 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:40,488 - root - INFO - Processed explanation 4/5 for layer 0, unit 6314
+2025-06-16 13:10:40,518 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:40,746 - root - INFO - Processed explanation 5/5 for layer 0, unit 6314
+2025-06-16 13:10:40,968 - root - INFO - Processing layer 0, unit 2725 (2/60)
+2025-06-16 13:10:41,001 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:41,228 - root - INFO - Processed explanation 1/5 for layer 0, unit 2725
+2025-06-16 13:10:41,257 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:41,484 - root - INFO - Processed explanation 2/5 for layer 0, unit 2725
+2025-06-16 13:10:41,513 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:41,744 - root - INFO - Processed explanation 3/5 for layer 0, unit 2725
+2025-06-16 13:10:41,775 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:42,003 - root - INFO - Processed explanation 4/5 for layer 0, unit 2725
+2025-06-16 13:10:42,032 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:42,259 - root - INFO - Processed explanation 5/5 for layer 0, unit 2725
+2025-06-16 13:10:42,481 - root - INFO - Processing layer 0, unit 4297 (3/60)
+2025-06-16 13:10:42,515 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:42,743 - root - INFO - Processed explanation 1/5 for layer 0, unit 4297
+2025-06-16 13:10:42,771 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:42,998 - root - INFO - Processed explanation 2/5 for layer 0, unit 4297
+2025-06-16 13:10:43,028 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:43,263 - root - INFO - Processed explanation 3/5 for layer 0, unit 4297
+2025-06-16 13:10:43,293 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:43,521 - root - INFO - Processed explanation 4/5 for layer 0, unit 4297
+2025-06-16 13:10:43,551 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:43,778 - root - INFO - Processed explanation 5/5 for layer 0, unit 4297
+2025-06-16 13:10:44,001 - root - INFO - Processing layer 0, unit 4842 (4/60)
+2025-06-16 13:10:44,035 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:44,262 - root - INFO - Processed explanation 1/5 for layer 0, unit 4842
+2025-06-16 13:10:44,292 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:44,519 - root - INFO - Processed explanation 2/5 for layer 0, unit 4842
+2025-06-16 13:10:44,548 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:44,778 - root - INFO - Processed explanation 3/5 for layer 0, unit 4842
+2025-06-16 13:10:44,807 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:45,034 - root - INFO - Processed explanation 4/5 for layer 0, unit 4842
+2025-06-16 13:10:45,064 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:45,292 - root - INFO - Processed explanation 5/5 for layer 0, unit 4842
+2025-06-16 13:10:45,513 - root - INFO - Processing layer 0, unit 5551 (5/60)
+2025-06-16 13:10:45,548 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:45,775 - root - INFO - Processed explanation 1/5 for layer 0, unit 5551
+2025-06-16 13:10:45,805 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:46,032 - root - INFO - Processed explanation 2/5 for layer 0, unit 5551
+2025-06-16 13:10:46,061 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:46,291 - root - INFO - Processed explanation 3/5 for layer 0, unit 5551
+2025-06-16 13:10:46,322 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:46,549 - root - INFO - Processed explanation 4/5 for layer 0, unit 5551
+2025-06-16 13:10:46,577 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:46,805 - root - INFO - Processed explanation 5/5 for layer 0, unit 5551
+2025-06-16 13:10:47,027 - root - INFO - Processing layer 0, unit 1749 (6/60)
+2025-06-16 13:10:47,062 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:47,289 - root - INFO - Processed explanation 1/5 for layer 0, unit 1749
+2025-06-16 13:10:47,320 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:47,546 - root - INFO - Processed explanation 2/5 for layer 0, unit 1749
+2025-06-16 13:10:47,575 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:47,805 - root - INFO - Processed explanation 3/5 for layer 0, unit 1749
+2025-06-16 13:10:47,835 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:48,062 - root - INFO - Processed explanation 4/5 for layer 0, unit 1749
+2025-06-16 13:10:48,091 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:48,319 - root - INFO - Processed explanation 5/5 for layer 0, unit 1749
+2025-06-16 13:10:48,540 - root - INFO - Processing layer 0, unit 3943 (7/60)
+2025-06-16 13:10:48,576 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:48,803 - root - INFO - Processed explanation 1/5 for layer 0, unit 3943
+2025-06-16 13:10:48,833 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:49,062 - root - INFO - Processed explanation 2/5 for layer 0, unit 3943
+2025-06-16 13:10:49,091 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:49,322 - root - INFO - Processed explanation 3/5 for layer 0, unit 3943
+2025-06-16 13:10:49,350 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:49,577 - root - INFO - Processed explanation 4/5 for layer 0, unit 3943
+2025-06-16 13:10:49,608 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:49,835 - root - INFO - Processed explanation 5/5 for layer 0, unit 3943
+2025-06-16 13:10:50,057 - root - INFO - Processing layer 0, unit 5960 (8/60)
+2025-06-16 13:10:50,088 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:50,316 - root - INFO - Processed explanation 1/5 for layer 0, unit 5960
+2025-06-16 13:10:50,345 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:50,573 - root - INFO - Processed explanation 2/5 for layer 0, unit 5960
+2025-06-16 13:10:50,602 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:50,833 - root - INFO - Processed explanation 3/5 for layer 0, unit 5960
+2025-06-16 13:10:50,863 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:51,089 - root - INFO - Processed explanation 4/5 for layer 0, unit 5960
+2025-06-16 13:10:51,118 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:51,344 - root - INFO - Processed explanation 5/5 for layer 0, unit 5960
+2025-06-16 13:10:51,566 - root - INFO - Processing layer 0, unit 3696 (9/60)
+2025-06-16 13:10:51,598 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:51,825 - root - INFO - Processed explanation 1/5 for layer 0, unit 3696
+2025-06-16 13:10:51,854 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:52,082 - root - INFO - Processed explanation 2/5 for layer 0, unit 3696
+2025-06-16 13:10:52,113 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:52,340 - root - INFO - Processed explanation 3/5 for layer 0, unit 3696
+2025-06-16 13:10:52,368 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:52,600 - root - INFO - Processed explanation 4/5 for layer 0, unit 3696
+2025-06-16 13:10:52,631 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:52,859 - root - INFO - Processed explanation 5/5 for layer 0, unit 3696
+2025-06-16 13:10:53,081 - root - INFO - Processing layer 0, unit 3533 (10/60)
+2025-06-16 13:10:53,116 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:53,344 - root - INFO - Processed explanation 1/5 for layer 0, unit 3533
+2025-06-16 13:10:53,373 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:53,600 - root - INFO - Processed explanation 2/5 for layer 0, unit 3533
+2025-06-16 13:10:53,629 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:53,855 - root - INFO - Processed explanation 3/5 for layer 0, unit 3533
+2025-06-16 13:10:53,884 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:54,115 - root - INFO - Processed explanation 4/5 for layer 0, unit 3533
+2025-06-16 13:10:54,145 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:54,372 - root - INFO - Processed explanation 5/5 for layer 0, unit 3533
+2025-06-16 13:10:54,593 - root - INFO - Processing layer 0, unit 3124 (11/60)
+2025-06-16 13:10:54,627 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:54,855 - root - INFO - Processed explanation 1/5 for layer 0, unit 3124
+2025-06-16 13:10:54,884 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:55,111 - root - INFO - Processed explanation 2/5 for layer 0, unit 3124
+2025-06-16 13:10:55,141 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:55,367 - root - INFO - Processed explanation 3/5 for layer 0, unit 3124
+2025-06-16 13:10:55,397 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:55,627 - root - INFO - Processed explanation 4/5 for layer 0, unit 3124
+2025-06-16 13:10:55,655 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:55,882 - root - INFO - Processed explanation 5/5 for layer 0, unit 3124
+2025-06-16 13:10:56,104 - root - INFO - Processing layer 0, unit 1149 (12/60)
+2025-06-16 13:10:56,138 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:56,365 - root - INFO - Processed explanation 1/5 for layer 0, unit 1149
+2025-06-16 13:10:56,393 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:56,619 - root - INFO - Processed explanation 2/5 for layer 0, unit 1149
+2025-06-16 13:10:56,649 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:56,876 - root - INFO - Processed explanation 3/5 for layer 0, unit 1149
+2025-06-16 13:10:56,906 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:57,136 - root - INFO - Processed explanation 4/5 for layer 0, unit 1149
+2025-06-16 13:10:57,166 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:57,395 - root - INFO - Processed explanation 5/5 for layer 0, unit 1149
+2025-06-16 13:10:57,617 - root - INFO - Processing layer 0, unit 6114 (13/60)
+2025-06-16 13:10:57,653 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:57,880 - root - INFO - Processed explanation 1/5 for layer 0, unit 6114
+2025-06-16 13:10:57,911 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:58,138 - root - INFO - Processed explanation 2/5 for layer 0, unit 6114
+2025-06-16 13:10:58,168 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:58,396 - root - INFO - Processed explanation 3/5 for layer 0, unit 6114
+2025-06-16 13:10:58,425 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:58,668 - root - INFO - Processed explanation 4/5 for layer 0, unit 6114
+2025-06-16 13:10:58,701 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:58,933 - root - INFO - Processed explanation 5/5 for layer 0, unit 6114
+2025-06-16 13:10:59,155 - root - INFO - Processing layer 0, unit 3279 (14/60)
+2025-06-16 13:10:59,189 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:59,416 - root - INFO - Processed explanation 1/5 for layer 0, unit 3279
+2025-06-16 13:10:59,446 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:59,673 - root - INFO - Processed explanation 2/5 for layer 0, unit 3279
+2025-06-16 13:10:59,706 - root - INFO - Activation shape valid: 10
+2025-06-16 13:10:59,932 - root - INFO - Processed explanation 3/5 for layer 0, unit 3279
+2025-06-16 13:10:59,962 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:00,202 - root - INFO - Processed explanation 4/5 for layer 0, unit 3279
+2025-06-16 13:11:00,230 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:00,462 - root - INFO - Processed explanation 5/5 for layer 0, unit 3279
+2025-06-16 13:11:00,683 - root - INFO - Processing layer 0, unit 440 (15/60)
+2025-06-16 13:11:00,718 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:00,945 - root - INFO - Processed explanation 1/5 for layer 0, unit 440
+2025-06-16 13:11:00,973 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:01,199 - root - INFO - Processed explanation 2/5 for layer 0, unit 440
+2025-06-16 13:11:01,229 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:01,455 - root - INFO - Processed explanation 3/5 for layer 0, unit 440
+2025-06-16 13:11:01,485 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:01,711 - root - INFO - Processed explanation 4/5 for layer 0, unit 440
+2025-06-16 13:11:01,742 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:01,969 - root - INFO - Processed explanation 5/5 for layer 0, unit 440
+2025-06-16 13:11:02,202 - root - INFO - Processing layer 0, unit 4405 (16/60)
+2025-06-16 13:11:02,235 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:02,471 - root - INFO - Processed explanation 1/5 for layer 0, unit 4405
+2025-06-16 13:11:02,497 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:02,725 - root - INFO - Processed explanation 2/5 for layer 0, unit 4405
+2025-06-16 13:11:02,758 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:02,985 - root - INFO - Processed explanation 3/5 for layer 0, unit 4405
+2025-06-16 13:11:03,015 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:03,242 - root - INFO - Processed explanation 4/5 for layer 0, unit 4405
+2025-06-16 13:11:03,274 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:03,501 - root - INFO - Processed explanation 5/5 for layer 0, unit 4405
+2025-06-16 13:11:03,723 - root - INFO - Processing layer 0, unit 5781 (17/60)
+2025-06-16 13:11:03,761 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:03,988 - root - INFO - Processed explanation 1/5 for layer 0, unit 5781
+2025-06-16 13:11:04,019 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:04,250 - root - INFO - Processed explanation 2/5 for layer 0, unit 5781
+2025-06-16 13:11:04,280 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:04,507 - root - INFO - Processed explanation 3/5 for layer 0, unit 5781
+2025-06-16 13:11:04,538 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:04,765 - root - INFO - Processed explanation 4/5 for layer 0, unit 5781
+2025-06-16 13:11:04,797 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:05,024 - root - INFO - Processed explanation 5/5 for layer 0, unit 5781
+2025-06-16 13:11:05,246 - root - INFO - Processing layer 0, unit 3057 (18/60)
+2025-06-16 13:11:05,279 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:05,506 - root - INFO - Processed explanation 1/5 for layer 0, unit 3057
+2025-06-16 13:11:05,536 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:05,763 - root - INFO - Processed explanation 2/5 for layer 0, unit 3057
+2025-06-16 13:11:05,790 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:06,017 - root - INFO - Processed explanation 3/5 for layer 0, unit 3057
+2025-06-16 13:11:06,046 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:06,276 - root - INFO - Processed explanation 4/5 for layer 0, unit 3057
+2025-06-16 13:11:06,309 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:06,536 - root - INFO - Processed explanation 5/5 for layer 0, unit 3057
+2025-06-16 13:11:06,758 - root - INFO - Processing layer 0, unit 5085 (19/60)
+2025-06-16 13:11:06,793 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:07,019 - root - INFO - Processed explanation 1/5 for layer 0, unit 5085
+2025-06-16 13:11:07,051 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:07,278 - root - INFO - Processed explanation 2/5 for layer 0, unit 5085
+2025-06-16 13:11:07,308 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:07,536 - root - INFO - Processed explanation 3/5 for layer 0, unit 5085
+2025-06-16 13:11:07,567 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:07,794 - root - INFO - Processed explanation 4/5 for layer 0, unit 5085
+2025-06-16 13:11:07,823 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:08,051 - root - INFO - Processed explanation 5/5 for layer 0, unit 5085
+2025-06-16 13:11:08,274 - root - INFO - Processing layer 0, unit 4679 (20/60)
+2025-06-16 13:11:08,312 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:08,539 - root - INFO - Processed explanation 1/5 for layer 0, unit 4679
+2025-06-16 13:11:08,569 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:08,796 - root - INFO - Processed explanation 2/5 for layer 0, unit 4679
+2025-06-16 13:11:08,826 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:09,052 - root - INFO - Processed explanation 3/5 for layer 0, unit 4679
+2025-06-16 13:11:09,082 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:09,309 - root - INFO - Processed explanation 4/5 for layer 0, unit 4679
+2025-06-16 13:11:09,341 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:09,569 - root - INFO - Processed explanation 5/5 for layer 0, unit 4679
+2025-06-16 13:11:09,797 - root - INFO - Processing layer 20, unit 328 (21/60)
+2025-06-16 13:11:09,831 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:10,058 - root - INFO - Processed explanation 1/5 for layer 20, unit 328
+2025-06-16 13:11:10,090 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:10,320 - root - INFO - Processed explanation 2/5 for layer 20, unit 328
+2025-06-16 13:11:10,352 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:10,578 - root - INFO - Processed explanation 3/5 for layer 20, unit 328
+2025-06-16 13:11:10,609 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:10,835 - root - INFO - Processed explanation 4/5 for layer 20, unit 328
+2025-06-16 13:11:10,866 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:11,092 - root - INFO - Processed explanation 5/5 for layer 20, unit 328
+2025-06-16 13:11:11,317 - root - INFO - Processing layer 20, unit 5789 (22/60)
+2025-06-16 13:11:11,353 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:11,584 - root - INFO - Processed explanation 1/5 for layer 20, unit 5789
+2025-06-16 13:11:11,614 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:11,841 - root - INFO - Processed explanation 2/5 for layer 20, unit 5789
+2025-06-16 13:11:11,871 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:12,099 - root - INFO - Processed explanation 3/5 for layer 20, unit 5789
+2025-06-16 13:11:12,130 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:12,358 - root - INFO - Processed explanation 4/5 for layer 20, unit 5789
+2025-06-16 13:11:12,389 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:12,615 - root - INFO - Processed explanation 5/5 for layer 20, unit 5789
+2025-06-16 13:11:12,837 - root - INFO - Processing layer 20, unit 4268 (23/60)
+2025-06-16 13:11:12,870 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:13,098 - root - INFO - Processed explanation 1/5 for layer 20, unit 4268
+2025-06-16 13:11:13,127 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:13,354 - root - INFO - Processed explanation 2/5 for layer 20, unit 4268
+2025-06-16 13:11:13,383 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:13,611 - root - INFO - Processed explanation 3/5 for layer 20, unit 4268
+2025-06-16 13:11:13,659 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:13,885 - root - INFO - Processed explanation 4/5 for layer 20, unit 4268
+2025-06-16 13:11:13,954 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:14,182 - root - INFO - Processed explanation 5/5 for layer 20, unit 4268
+2025-06-16 13:11:14,405 - root - INFO - Processing layer 20, unit 2988 (24/60)
+2025-06-16 13:11:14,459 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:14,686 - root - INFO - Processed explanation 1/5 for layer 20, unit 2988
+2025-06-16 13:11:14,754 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:14,983 - root - INFO - Processed explanation 2/5 for layer 20, unit 2988
+2025-06-16 13:11:15,050 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:15,278 - root - INFO - Processed explanation 3/5 for layer 20, unit 2988
+2025-06-16 13:11:15,312 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:15,540 - root - INFO - Processed explanation 4/5 for layer 20, unit 2988
+2025-06-16 13:11:15,575 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:15,804 - root - INFO - Processed explanation 5/5 for layer 20, unit 2988
+2025-06-16 13:11:16,026 - root - INFO - Processing layer 20, unit 4683 (25/60)
+2025-06-16 13:11:16,111 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:16,338 - root - INFO - Processed explanation 1/5 for layer 20, unit 4683
+2025-06-16 13:11:16,387 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:16,646 - root - INFO - Processed explanation 2/5 for layer 20, unit 4683
+2025-06-16 13:11:16,699 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:16,927 - root - INFO - Processed explanation 3/5 for layer 20, unit 4683
+2025-06-16 13:11:16,956 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:17,183 - root - INFO - Processed explanation 4/5 for layer 20, unit 4683
+2025-06-16 13:11:17,215 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:17,442 - root - INFO - Processed explanation 5/5 for layer 20, unit 4683
+2025-06-16 13:11:17,664 - root - INFO - Processing layer 20, unit 6045 (26/60)
+2025-06-16 13:11:17,759 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:17,988 - root - INFO - Processed explanation 1/5 for layer 20, unit 6045
+2025-06-16 13:11:18,016 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:18,242 - root - INFO - Processed explanation 2/5 for layer 20, unit 6045
+2025-06-16 13:11:18,287 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:18,515 - root - INFO - Processed explanation 3/5 for layer 20, unit 6045
+2025-06-16 13:11:18,544 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:18,784 - root - INFO - Processed explanation 4/5 for layer 20, unit 6045
+2025-06-16 13:11:18,817 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:19,047 - root - INFO - Processed explanation 5/5 for layer 20, unit 6045
+2025-06-16 13:11:19,269 - root - INFO - Processing layer 20, unit 5741 (27/60)
+2025-06-16 13:11:19,331 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:19,560 - root - INFO - Processed explanation 1/5 for layer 20, unit 5741
+2025-06-16 13:11:19,627 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:19,855 - root - INFO - Processed explanation 2/5 for layer 20, unit 5741
+2025-06-16 13:11:19,890 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:20,118 - root - INFO - Processed explanation 3/5 for layer 20, unit 5741
+2025-06-16 13:11:20,146 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:20,373 - root - INFO - Processed explanation 4/5 for layer 20, unit 5741
+2025-06-16 13:11:20,427 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:20,656 - root - INFO - Processed explanation 5/5 for layer 20, unit 5741
+2025-06-16 13:11:20,878 - root - INFO - Processing layer 20, unit 5662 (28/60)
+2025-06-16 13:11:20,967 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:21,196 - root - INFO - Processed explanation 1/5 for layer 20, unit 5662
+2025-06-16 13:11:21,225 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:21,470 - root - INFO - Processed explanation 2/5 for layer 20, unit 5662
+2025-06-16 13:11:21,517 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:21,746 - root - INFO - Processed explanation 3/5 for layer 20, unit 5662
+2025-06-16 13:11:21,777 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:22,003 - root - INFO - Processed explanation 4/5 for layer 20, unit 5662
+2025-06-16 13:11:22,034 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:22,261 - root - INFO - Processed explanation 5/5 for layer 20, unit 5662
+2025-06-16 13:11:22,483 - root - INFO - Processing layer 20, unit 2679 (29/60)
+2025-06-16 13:11:22,557 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:22,785 - root - INFO - Processed explanation 1/5 for layer 20, unit 2679
+2025-06-16 13:11:22,815 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:23,041 - root - INFO - Processed explanation 2/5 for layer 20, unit 2679
+2025-06-16 13:11:23,084 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:23,312 - root - INFO - Processed explanation 3/5 for layer 20, unit 2679
+2025-06-16 13:11:23,341 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:23,569 - root - INFO - Processed explanation 4/5 for layer 20, unit 2679
+2025-06-16 13:11:23,610 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:23,838 - root - INFO - Processed explanation 5/5 for layer 20, unit 2679
+2025-06-16 13:11:24,060 - root - INFO - Processing layer 20, unit 2869 (30/60)
+2025-06-16 13:11:24,128 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:24,355 - root - INFO - Processed explanation 1/5 for layer 20, unit 2869
+2025-06-16 13:11:24,384 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:24,610 - root - INFO - Processed explanation 2/5 for layer 20, unit 2869
+2025-06-16 13:11:24,660 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:24,888 - root - INFO - Processed explanation 3/5 for layer 20, unit 2869
+2025-06-16 13:11:24,928 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:25,156 - root - INFO - Processed explanation 4/5 for layer 20, unit 2869
+2025-06-16 13:11:25,185 - root - INFO - Activation shape valid: 10
+2025-06-16 13:11:25,413 - root - INFO - Processed explanation 5/5 for layer 20, unit 2869
+2025-06-16 13:11:25,635 - root - INFO - Processing layer 20, unit 1424 (31/60)
+2025-06-16 13:12:03,041 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Computer_hardware_or_software_components.txt
+2025-06-16 13:12:05,137 - root - INFO - Activation shape valid: 10
+2025-06-16 13:12:05,366 - root - INFO - Processed explanation 1/5 for layer 20, unit 1424
+2025-06-16 13:12:29,043 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Facilities_at_a_resort_or_vehicle_suspension_features_or_wine_pairing_suggestions.txt
+2025-06-16 13:12:30,979 - root - INFO - Activation shape valid: 10
+2025-06-16 13:12:31,211 - root - INFO - Processed explanation 2/5 for layer 20, unit 1424
+2025-06-16 13:13:03,412 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_indices_countries_artists_educational_technology_or_mobile_phones.txt
+2025-06-16 13:13:05,373 - root - INFO - Activation shape valid: 10
+2025-06-16 13:13:05,605 - root - INFO - Processed explanation 3/5 for layer 20, unit 1424
+2025-06-16 13:13:36,110 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_services_offered_or_community_life_and_safety_events.txt
+2025-06-16 13:13:38,119 - root - INFO - Activation shape valid: 10
+2025-06-16 13:13:38,350 - root - INFO - Processed explanation 4/5 for layer 20, unit 1424
+2025-06-16 13:14:08,630 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Recruitment_services_for_construction_trades_within_the_construction_social_housing_and_maintenance_.txt
+2025-06-16 13:14:10,561 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:10,790 - root - INFO - Processed explanation 5/5 for layer 20, unit 1424
+2025-06-16 13:14:11,013 - root - INFO - Processing layer 20, unit 5278 (32/60)
+2025-06-16 13:14:11,092 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:11,321 - root - INFO - Processed explanation 1/5 for layer 20, unit 5278
+2025-06-16 13:14:11,351 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:11,579 - root - INFO - Processed explanation 2/5 for layer 20, unit 5278
+2025-06-16 13:14:11,611 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:11,839 - root - INFO - Processed explanation 3/5 for layer 20, unit 5278
+2025-06-16 13:14:11,902 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:12,130 - root - INFO - Processed explanation 4/5 for layer 20, unit 5278
+2025-06-16 13:14:12,161 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:12,389 - root - INFO - Processed explanation 5/5 for layer 20, unit 5278
+2025-06-16 13:14:12,612 - root - INFO - Processing layer 20, unit 2325 (33/60)
+2025-06-16 13:14:12,665 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:12,893 - root - INFO - Processed explanation 1/5 for layer 20, unit 2325
+2025-06-16 13:14:12,959 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:13,189 - root - INFO - Processed explanation 2/5 for layer 20, unit 2325
+2025-06-16 13:14:13,255 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:13,486 - root - INFO - Processed explanation 3/5 for layer 20, unit 2325
+2025-06-16 13:14:13,533 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:13,762 - root - INFO - Processed explanation 4/5 for layer 20, unit 2325
+2025-06-16 13:14:13,801 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:14,032 - root - INFO - Processed explanation 5/5 for layer 20, unit 2325
+2025-06-16 13:14:14,254 - root - INFO - Processing layer 20, unit 2700 (34/60)
+2025-06-16 13:14:14,328 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:14,558 - root - INFO - Processed explanation 1/5 for layer 20, unit 2700
+2025-06-16 13:14:14,609 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:14,838 - root - INFO - Processed explanation 2/5 for layer 20, unit 2700
+2025-06-16 13:14:14,883 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:15,112 - root - INFO - Processed explanation 3/5 for layer 20, unit 2700
+2025-06-16 13:14:15,160 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:15,389 - root - INFO - Processed explanation 4/5 for layer 20, unit 2700
+2025-06-16 13:14:15,421 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:15,650 - root - INFO - Processed explanation 5/5 for layer 20, unit 2700
+2025-06-16 13:14:15,872 - root - INFO - Processing layer 20, unit 3313 (35/60)
+2025-06-16 13:14:15,922 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:16,150 - root - INFO - Processed explanation 1/5 for layer 20, unit 3313
+2025-06-16 13:14:16,190 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:16,419 - root - INFO - Processed explanation 2/5 for layer 20, unit 3313
+2025-06-16 13:14:16,450 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:16,679 - root - INFO - Processed explanation 3/5 for layer 20, unit 3313
+2025-06-16 13:14:16,709 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:16,937 - root - INFO - Processed explanation 4/5 for layer 20, unit 3313
+2025-06-16 13:14:16,978 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:17,207 - root - INFO - Processed explanation 5/5 for layer 20, unit 3313
+2025-06-16 13:14:17,431 - root - INFO - Processing layer 20, unit 1004 (36/60)
+2025-06-16 13:14:17,521 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:17,752 - root - INFO - Processed explanation 1/5 for layer 20, unit 1004
+2025-06-16 13:14:17,782 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:18,013 - root - INFO - Processed explanation 2/5 for layer 20, unit 1004
+2025-06-16 13:14:18,055 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:18,285 - root - INFO - Processed explanation 3/5 for layer 20, unit 1004
+2025-06-16 13:14:18,319 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:18,549 - root - INFO - Processed explanation 4/5 for layer 20, unit 1004
+2025-06-16 13:14:18,595 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:18,825 - root - INFO - Processed explanation 5/5 for layer 20, unit 1004
+2025-06-16 13:14:19,048 - root - INFO - Processing layer 20, unit 4447 (37/60)
+2025-06-16 13:14:19,094 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:19,325 - root - INFO - Processed explanation 1/5 for layer 20, unit 4447
+2025-06-16 13:14:19,356 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:19,588 - root - INFO - Processed explanation 2/5 for layer 20, unit 4447
+2025-06-16 13:14:19,643 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:19,875 - root - INFO - Processed explanation 3/5 for layer 20, unit 4447
+2025-06-16 13:14:19,909 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:20,142 - root - INFO - Processed explanation 4/5 for layer 20, unit 4447
+2025-06-16 13:14:20,173 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:20,404 - root - INFO - Processed explanation 5/5 for layer 20, unit 4447
+2025-06-16 13:14:20,627 - root - INFO - Processing layer 20, unit 1406 (38/60)
+2025-06-16 13:14:20,691 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:20,920 - root - INFO - Processed explanation 1/5 for layer 20, unit 1406
+2025-06-16 13:14:20,949 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:21,177 - root - INFO - Processed explanation 2/5 for layer 20, unit 1406
+2025-06-16 13:14:21,221 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:21,451 - root - INFO - Processed explanation 3/5 for layer 20, unit 1406
+2025-06-16 13:14:21,480 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:21,706 - root - INFO - Processed explanation 4/5 for layer 20, unit 1406
+2025-06-16 13:14:21,736 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:21,964 - root - INFO - Processed explanation 5/5 for layer 20, unit 1406
+2025-06-16 13:14:22,187 - root - INFO - Processing layer 20, unit 3885 (39/60)
+2025-06-16 13:14:22,241 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:22,471 - root - INFO - Processed explanation 1/5 for layer 20, unit 3885
+2025-06-16 13:14:22,537 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:22,766 - root - INFO - Processed explanation 2/5 for layer 20, unit 3885
+2025-06-16 13:14:22,795 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:23,023 - root - INFO - Processed explanation 3/5 for layer 20, unit 3885
+2025-06-16 13:14:23,053 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:23,282 - root - INFO - Processed explanation 4/5 for layer 20, unit 3885
+2025-06-16 13:14:23,313 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:23,542 - root - INFO - Processed explanation 5/5 for layer 20, unit 3885
+2025-06-16 13:14:23,764 - root - INFO - Processing layer 20, unit 1790 (40/60)
+2025-06-16 13:14:23,830 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:24,059 - root - INFO - Processed explanation 1/5 for layer 20, unit 1790
+2025-06-16 13:14:24,089 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:24,317 - root - INFO - Processed explanation 2/5 for layer 20, unit 1790
+2025-06-16 13:14:24,348 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:24,576 - root - INFO - Processed explanation 3/5 for layer 20, unit 1790
+2025-06-16 13:14:24,604 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:24,841 - root - INFO - Processed explanation 4/5 for layer 20, unit 1790
+2025-06-16 13:14:24,871 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:25,099 - root - INFO - Processed explanation 5/5 for layer 20, unit 1790
+2025-06-16 13:14:25,321 - root - INFO - Processing layer 40, unit 4965 (41/60)
+2025-06-16 13:14:25,389 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:25,619 - root - INFO - Processed explanation 1/5 for layer 40, unit 4965
+2025-06-16 13:14:25,648 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:25,878 - root - INFO - Processed explanation 2/5 for layer 40, unit 4965
+2025-06-16 13:14:25,925 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:26,154 - root - INFO - Processed explanation 3/5 for layer 40, unit 4965
+2025-06-16 13:14:26,184 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:26,411 - root - INFO - Processed explanation 4/5 for layer 40, unit 4965
+2025-06-16 13:14:26,488 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:26,733 - root - INFO - Processed explanation 5/5 for layer 40, unit 4965
+2025-06-16 13:14:26,973 - root - INFO - Processing layer 40, unit 3948 (42/60)
+2025-06-16 13:14:28,564 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:28,797 - root - INFO - Processed explanation 1/5 for layer 40, unit 3948
+2025-06-16 13:14:28,843 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:29,073 - root - INFO - Processed explanation 2/5 for layer 40, unit 3948
+2025-06-16 13:14:29,103 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:29,332 - root - INFO - Processed explanation 3/5 for layer 40, unit 3948
+2025-06-16 13:14:29,361 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:29,589 - root - INFO - Processed explanation 4/5 for layer 40, unit 3948
+2025-06-16 13:14:29,621 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:29,849 - root - INFO - Processed explanation 5/5 for layer 40, unit 3948
+2025-06-16 13:14:30,072 - root - INFO - Processing layer 40, unit 4055 (43/60)
+2025-06-16 13:14:30,153 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:30,382 - root - INFO - Processed explanation 1/5 for layer 40, unit 4055
+2025-06-16 13:14:30,430 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:30,659 - root - INFO - Processed explanation 2/5 for layer 40, unit 4055
+2025-06-16 13:14:30,692 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:30,924 - root - INFO - Processed explanation 3/5 for layer 40, unit 4055
+2025-06-16 13:14:30,956 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:31,190 - root - INFO - Processed explanation 4/5 for layer 40, unit 4055
+2025-06-16 13:14:31,221 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:31,450 - root - INFO - Processed explanation 5/5 for layer 40, unit 4055
+2025-06-16 13:14:31,672 - root - INFO - Processing layer 40, unit 824 (44/60)
+2025-06-16 13:14:31,741 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:31,970 - root - INFO - Processed explanation 1/5 for layer 40, unit 824
+2025-06-16 13:14:32,000 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:32,227 - root - INFO - Processed explanation 2/5 for layer 40, unit 824
+2025-06-16 13:14:32,262 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:32,490 - root - INFO - Processed explanation 3/5 for layer 40, unit 824
+2025-06-16 13:14:32,521 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:32,750 - root - INFO - Processed explanation 4/5 for layer 40, unit 824
+2025-06-16 13:14:32,782 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:33,011 - root - INFO - Processed explanation 5/5 for layer 40, unit 824
+2025-06-16 13:14:33,234 - root - INFO - Processing layer 40, unit 1823 (45/60)
+2025-06-16 13:14:33,269 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:33,497 - root - INFO - Processed explanation 1/5 for layer 40, unit 1823
+2025-06-16 13:14:33,533 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:33,763 - root - INFO - Processed explanation 2/5 for layer 40, unit 1823
+2025-06-16 13:14:33,800 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:34,030 - root - INFO - Processed explanation 3/5 for layer 40, unit 1823
+2025-06-16 13:14:34,091 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:34,320 - root - INFO - Processed explanation 4/5 for layer 40, unit 1823
+2025-06-16 13:14:34,351 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:34,581 - root - INFO - Processed explanation 5/5 for layer 40, unit 1823
+2025-06-16 13:14:34,807 - root - INFO - Processing layer 40, unit 5557 (46/60)
+2025-06-16 13:14:34,846 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:35,074 - root - INFO - Processed explanation 1/5 for layer 40, unit 5557
+2025-06-16 13:14:35,104 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:35,332 - root - INFO - Processed explanation 2/5 for layer 40, unit 5557
+2025-06-16 13:14:35,364 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:35,593 - root - INFO - Processed explanation 3/5 for layer 40, unit 5557
+2025-06-16 13:14:35,633 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:35,862 - root - INFO - Processed explanation 4/5 for layer 40, unit 5557
+2025-06-16 13:14:35,894 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:36,122 - root - INFO - Processed explanation 5/5 for layer 40, unit 5557
+2025-06-16 13:14:36,345 - root - INFO - Processing layer 40, unit 1516 (47/60)
+2025-06-16 13:14:36,386 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:36,615 - root - INFO - Processed explanation 1/5 for layer 40, unit 1516
+2025-06-16 13:14:36,645 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:36,876 - root - INFO - Processed explanation 2/5 for layer 40, unit 1516
+2025-06-16 13:14:36,924 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:37,157 - root - INFO - Processed explanation 3/5 for layer 40, unit 1516
+2025-06-16 13:14:37,190 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:37,418 - root - INFO - Processed explanation 4/5 for layer 40, unit 1516
+2025-06-16 13:14:37,448 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:37,697 - root - INFO - Processed explanation 5/5 for layer 40, unit 1516
+2025-06-16 13:14:37,920 - root - INFO - Processing layer 40, unit 364 (48/60)
+2025-06-16 13:14:37,997 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:38,225 - root - INFO - Processed explanation 1/5 for layer 40, unit 364
+2025-06-16 13:14:38,256 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:38,484 - root - INFO - Processed explanation 2/5 for layer 40, unit 364
+2025-06-16 13:14:38,528 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:38,758 - root - INFO - Processed explanation 3/5 for layer 40, unit 364
+2025-06-16 13:14:38,789 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:39,018 - root - INFO - Processed explanation 4/5 for layer 40, unit 364
+2025-06-16 13:14:39,060 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:39,290 - root - INFO - Processed explanation 5/5 for layer 40, unit 364
+2025-06-16 13:14:39,514 - root - INFO - Processing layer 40, unit 4808 (49/60)
+2025-06-16 13:14:39,554 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:39,787 - root - INFO - Processed explanation 1/5 for layer 40, unit 4808
+2025-06-16 13:14:39,820 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:40,048 - root - INFO - Processed explanation 2/5 for layer 40, unit 4808
+2025-06-16 13:14:40,079 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:40,306 - root - INFO - Processed explanation 3/5 for layer 40, unit 4808
+2025-06-16 13:14:40,337 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:40,564 - root - INFO - Processed explanation 4/5 for layer 40, unit 4808
+2025-06-16 13:14:40,594 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:40,823 - root - INFO - Processed explanation 5/5 for layer 40, unit 4808
+2025-06-16 13:14:41,046 - root - INFO - Processing layer 40, unit 3612 (50/60)
+2025-06-16 13:14:41,095 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:41,323 - root - INFO - Processed explanation 1/5 for layer 40, unit 3612
+2025-06-16 13:14:41,356 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:41,585 - root - INFO - Processed explanation 2/5 for layer 40, unit 3612
+2025-06-16 13:14:41,618 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:41,846 - root - INFO - Processed explanation 3/5 for layer 40, unit 3612
+2025-06-16 13:14:41,877 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:42,105 - root - INFO - Processed explanation 4/5 for layer 40, unit 3612
+2025-06-16 13:14:42,138 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:42,366 - root - INFO - Processed explanation 5/5 for layer 40, unit 3612
+2025-06-16 13:14:42,588 - root - INFO - Processing layer 40, unit 6364 (51/60)
+2025-06-16 13:14:42,625 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:42,852 - root - INFO - Processed explanation 1/5 for layer 40, unit 6364
+2025-06-16 13:14:42,896 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:43,126 - root - INFO - Processed explanation 2/5 for layer 40, unit 6364
+2025-06-16 13:14:43,158 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:43,386 - root - INFO - Processed explanation 3/5 for layer 40, unit 6364
+2025-06-16 13:14:43,425 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:43,654 - root - INFO - Processed explanation 4/5 for layer 40, unit 6364
+2025-06-16 13:14:43,691 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:43,920 - root - INFO - Processed explanation 5/5 for layer 40, unit 6364
+2025-06-16 13:14:44,144 - root - INFO - Processing layer 40, unit 3515 (52/60)
+2025-06-16 13:14:44,193 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:44,421 - root - INFO - Processed explanation 1/5 for layer 40, unit 3515
+2025-06-16 13:14:44,451 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:44,679 - root - INFO - Processed explanation 2/5 for layer 40, unit 3515
+2025-06-16 13:14:44,709 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:44,936 - root - INFO - Processed explanation 3/5 for layer 40, unit 3515
+2025-06-16 13:14:44,967 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:45,195 - root - INFO - Processed explanation 4/5 for layer 40, unit 3515
+2025-06-16 13:14:45,235 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:45,468 - root - INFO - Processed explanation 5/5 for layer 40, unit 3515
+2025-06-16 13:14:45,690 - root - INFO - Processing layer 40, unit 556 (53/60)
+2025-06-16 13:14:45,740 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:45,968 - root - INFO - Processed explanation 1/5 for layer 40, unit 556
+2025-06-16 13:14:45,997 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:46,227 - root - INFO - Processed explanation 2/5 for layer 40, unit 556
+2025-06-16 13:14:46,257 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:46,485 - root - INFO - Processed explanation 3/5 for layer 40, unit 556
+2025-06-16 13:14:46,515 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:46,742 - root - INFO - Processed explanation 4/5 for layer 40, unit 556
+2025-06-16 13:14:46,773 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:47,000 - root - INFO - Processed explanation 5/5 for layer 40, unit 556
+2025-06-16 13:14:47,223 - root - INFO - Processing layer 40, unit 183 (54/60)
+2025-06-16 13:14:47,296 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:47,525 - root - INFO - Processed explanation 1/5 for layer 40, unit 183
+2025-06-16 13:14:47,557 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:47,784 - root - INFO - Processed explanation 2/5 for layer 40, unit 183
+2025-06-16 13:14:47,815 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:48,042 - root - INFO - Processed explanation 3/5 for layer 40, unit 183
+2025-06-16 13:14:48,073 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:48,300 - root - INFO - Processed explanation 4/5 for layer 40, unit 183
+2025-06-16 13:14:48,332 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:48,561 - root - INFO - Processed explanation 5/5 for layer 40, unit 183
+2025-06-16 13:14:48,784 - root - INFO - Processing layer 40, unit 3254 (55/60)
+2025-06-16 13:14:48,821 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:49,050 - root - INFO - Processed explanation 1/5 for layer 40, unit 3254
+2025-06-16 13:14:49,088 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:49,316 - root - INFO - Processed explanation 2/5 for layer 40, unit 3254
+2025-06-16 13:14:49,362 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:49,590 - root - INFO - Processed explanation 3/5 for layer 40, unit 3254
+2025-06-16 13:14:49,623 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:49,852 - root - INFO - Processed explanation 4/5 for layer 40, unit 3254
+2025-06-16 13:14:49,883 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:50,110 - root - INFO - Processed explanation 5/5 for layer 40, unit 3254
+2025-06-16 13:14:50,335 - root - INFO - Processing layer 40, unit 6067 (56/60)
+2025-06-16 13:14:50,371 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:50,601 - root - INFO - Processed explanation 1/5 for layer 40, unit 6067
+2025-06-16 13:14:50,632 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:50,863 - root - INFO - Processed explanation 2/5 for layer 40, unit 6067
+2025-06-16 13:14:50,893 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:51,120 - root - INFO - Processed explanation 3/5 for layer 40, unit 6067
+2025-06-16 13:14:51,152 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:51,379 - root - INFO - Processed explanation 4/5 for layer 40, unit 6067
+2025-06-16 13:14:51,410 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:51,639 - root - INFO - Processed explanation 5/5 for layer 40, unit 6067
+2025-06-16 13:14:51,863 - root - INFO - Processing layer 40, unit 3636 (57/60)
+2025-06-16 13:14:51,900 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:52,127 - root - INFO - Processed explanation 1/5 for layer 40, unit 3636
+2025-06-16 13:14:52,162 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:52,392 - root - INFO - Processed explanation 2/5 for layer 40, unit 3636
+2025-06-16 13:14:52,423 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:52,652 - root - INFO - Processed explanation 3/5 for layer 40, unit 3636
+2025-06-16 13:14:52,697 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:52,927 - root - INFO - Processed explanation 4/5 for layer 40, unit 3636
+2025-06-16 13:14:52,959 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:53,188 - root - INFO - Processed explanation 5/5 for layer 40, unit 3636
+2025-06-16 13:14:53,410 - root - INFO - Processing layer 40, unit 1555 (58/60)
+2025-06-16 13:14:53,447 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:53,675 - root - INFO - Processed explanation 1/5 for layer 40, unit 1555
+2025-06-16 13:14:53,707 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:53,935 - root - INFO - Processed explanation 2/5 for layer 40, unit 1555
+2025-06-16 13:14:53,966 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:54,194 - root - INFO - Processed explanation 3/5 for layer 40, unit 1555
+2025-06-16 13:14:54,252 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:54,481 - root - INFO - Processed explanation 4/5 for layer 40, unit 1555
+2025-06-16 13:14:54,524 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:54,758 - root - INFO - Processed explanation 5/5 for layer 40, unit 1555
+2025-06-16 13:14:54,981 - root - INFO - Processing layer 40, unit 6106 (59/60)
+2025-06-16 13:14:55,043 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:55,271 - root - INFO - Processed explanation 1/5 for layer 40, unit 6106
+2025-06-16 13:14:55,315 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:55,545 - root - INFO - Processed explanation 2/5 for layer 40, unit 6106
+2025-06-16 13:14:55,578 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:55,806 - root - INFO - Processed explanation 3/5 for layer 40, unit 6106
+2025-06-16 13:14:55,863 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:56,091 - root - INFO - Processed explanation 4/5 for layer 40, unit 6106
+2025-06-16 13:14:56,121 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:56,349 - root - INFO - Processed explanation 5/5 for layer 40, unit 6106
+2025-06-16 13:14:56,572 - root - INFO - Processing layer 40, unit 4244 (60/60)
+2025-06-16 13:14:56,619 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:56,849 - root - INFO - Processed explanation 1/5 for layer 40, unit 4244
+2025-06-16 13:14:56,879 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:57,108 - root - INFO - Processed explanation 2/5 for layer 40, unit 4244
+2025-06-16 13:14:57,140 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:57,368 - root - INFO - Processed explanation 3/5 for layer 40, unit 4244
+2025-06-16 13:14:57,398 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:57,625 - root - INFO - Processed explanation 4/5 for layer 40, unit 4244
+2025-06-16 13:14:57,657 - root - INFO - Activation shape valid: 10
+2025-06-16 13:14:57,886 - root - INFO - Processed explanation 5/5 for layer 40, unit 4244
+2025-06-16 13:14:57,887 - root - INFO - All layer-unit pairs processed. Results saved to:
+ results/start_interval_0-5_cosy-evaluation_target-gpt2-xl_textgen-gemini-1-5-pro_mean_evalgen-gemini-1-5-pro_cosmopedia_1000.csv

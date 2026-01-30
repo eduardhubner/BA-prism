@@ -1,0 +1,994 @@
+2025-09-12 23:52:58,650 - root - INFO - ================================================================================
+2025-09-12 23:52:58,684 - root - INFO - CONFIGURATION PARAMETERS
+2025-09-12 23:52:58,685 - root - INFO - ================================================================================
+2025-09-12 23:52:58,689 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-09-12 23:52:58,690 - root - INFO - AGG_METHOD = mean
+2025-09-12 23:52:58,691 - root - INFO - BATCH_SIZE = 2
+2025-09-12 23:52:58,692 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-09-12 23:52:58,692 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-09-12 23:52:58,693 - root - INFO - CLUSTER_METHOD = KMeans
+2025-09-12 23:52:58,693 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-09-12 23:52:58,694 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-09-12 23:52:58,694 - root - INFO - CONTROL_DATA = cosmopedia
+2025-09-12 23:52:58,695 - root - INFO - CONTROL_DATA_FILES = None
+2025-09-12 23:52:58,696 - root - INFO - CONTROL_SPLIT = train
+2025-09-12 23:52:58,696 - root - INFO - DATA_FILES = None
+2025-09-12 23:52:58,697 - root - INFO - DEVICE = cuda
+2025-09-12 23:52:58,697 - root - INFO - END_INTERVAL = 1.0
+2025-09-12 23:52:58,698 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-09-12 23:52:58,698 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-09-12 23:52:58,699 - root - INFO - EXPLAIN_FILE = gpt2-small-sae-resid-post_layer0_layer5_layer10_59-samples.csv
+2025-09-12 23:52:58,700 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-09-12 23:52:58,700 - root - INFO - HOOK_ID = hook_resid_post
+2025-09-12 23:52:58,701 - root - INFO - HOOK_NAME = blocks.10.hook_resid_post
+2025-09-12 23:52:58,701 - root - INFO - LAYER_ID = 10
+2025-09-12 23:52:58,702 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-09-12 23:52:58,702 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-09-12 23:52:58,703 - root - INFO - METHOD_NAME = neuronpedia
+2025-09-12 23:52:58,703 - root - INFO - MULTI_EVAL = False
+2025-09-12 23:52:58,704 - root - INFO - N_CLUSTERS = 5
+2025-09-12 23:52:58,705 - root - INFO - N_SAMPLES = 10
+2025-09-12 23:52:58,705 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-09-12 23:52:58,706 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-09-12 23:52:58,707 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-09-12 23:52:58,707 - root - INFO - SAVE_ACTIVATIONS = True
+2025-09-12 23:52:58,708 - root - INFO - SPLIT = train
+2025-09-12 23:52:58,708 - root - INFO - START_INTERVAL = 0.99
+2025-09-12 23:52:58,709 - root - INFO - STREAMING = True
+2025-09-12 23:52:58,710 - root - INFO - SUBSET_SIZE = 1000
+2025-09-12 23:52:58,710 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-09-12 23:52:58,710 - root - INFO - TARGET_DATA = c4
+2025-09-12 23:52:58,711 - root - INFO - TARGET_MODEL_NAME = gpt2-small-sae
+2025-09-12 23:52:58,712 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-09-12 23:52:58,712 - root - INFO - UNIT_ID = 5239
+2025-09-12 23:52:58,713 - root - INFO - USE_API = True
+2025-09-12 23:52:58,714 - root - INFO - VERSION = v5_32k
+2025-09-12 23:52:58,714 - root - INFO - ================================================================================
+2025-09-12 23:52:58,715 - root - INFO - ANALYSIS RESULTS
+2025-09-12 23:52:58,715 - root - INFO - ================================================================================
+2025-09-12 23:52:58,716 - root - INFO - Analysis results will be saved to: logs/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.log
+2025-09-12 23:59:52,586 - root - INFO - Reached 1000 samples.
+2025-09-12 23:59:57,420 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-09-12 23:59:57,421 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-09-13 00:00:14,489 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-09-13 00:01:11,424 - root - INFO - Number of candidates: 1001
+2025-09-13 00:01:13,153 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-09-13 00:01:13,154 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  Mul (0.9305410981178284)
+Text #1:  Mul (0.9967892169952393)
+Text #2: ial (1.1050903797149658)
+Text #3: ical (0.823824405670166)
+Text #4: qual (0.6289858222007751)
+Text #5: qual (0.6289858222007751)
+
+=== Text #1 ===
+> John[ Mul]aney’s latest stand-up special, Kid Gorgeous at Radio City, came out on Netflix in the spring, and it remains one of the year’s best. (It also just picked up an Emmy for Outstanding Writing for a Variety Special.) On September 28, it’ll be released on vinyl courtesy of Drag City, which means you can now put it on your turntable and listen to[ Mul]aney yelling about street smarts and that time Mick Jagger told him he wasn’t funny. Since he’s responsible for some of the most outstanding comedy records of the last decade, Pitchfork asked Mulaney to talk about his five favorite comedy LPs.
+
+=== Text #2 ===
+> #BeautifulPainMovie (#Redha), is the first Malaysian film to tackle about the subject on autism. In her feature directing debut, Tunku Mona Riza delivers a quiet, compassionate look at the condition which afflicts 1 in 160 children, according to the World Health Organization.
+Upon learning that their only son Dan[ial], has autism, his mother, Alina and father, Razlan's world suddenly crumbles. Razlan was devastated by his son's condition and his inability to accept the truth about their son being different with the rest of the children, causes friction within the family, but Alina’s perseverance and maternal instinct help wade through the difficult times in raising Danial. With hardly any knowledge about this condition, they struggle to confront the harsh realities and the challenges of raising an autistic child. With Sasha, her sister and close friend by her side, they may have found a way to improve Danial’s quality of life until a tragic accident causes the family to re-think its strategy.
+Beautiful Pain was chosen by the National Film Development Corporation of Malaysia (Finas) as the official Malaysian entry for the Best Foreign Language Film at the 89th Academy Awards but unfortunately it was not nominated.
+Some of the major scenes in Redha were shot on location at the beautiful beach in Terengganu’s Redang Island. It is also worthwhile to mention that the parents of Danial in the movie namely Alina and Razlan, played by June Lojong and Namron, are husband and wife in real life.
+
+=== Text #3 ===
+> Trying to find a way to say "thank you" to someone special?
+Need a gift for someone who has everything?
+Want to celebrate a spe[ical] occassion but unsure what type of gift is best?
+Your gift to the Foundation is a great way to honor someone by giving to the fund of your choice in that person's name.
+
+=== Text #4 ===
+> E[qual] rights. The right to vote. The right to dress as we choose, stylish or not. The right to participate in whatever career we choose. Education. Higher education. Managing our own finances. Our own choices.
+Absolutely independent if we want to be. We love it.
+– lost our right to manage our own lives or voice our own opinions? Husbands, fathers, brothers, or other near or distant relations were the decision makers with no input from us. Financial decisions, housing decisions, schooling decisions.
+-were not considered intelligent enough or too delicate for politics, or to vote?
+-were a pawn to create an advantageous alliance and were not allowed to choose our own spouse?
+-were required to be silent, opinionless arm candy? The only opinions allowed to be voiced are those of our husbands/fathers.
+-were not allowed to purchase property on our own, or it reverted to a male relative if our spouse passed away?
+-had no right to opinions or decisions about our own healthcare?
+This was the reality for our grandmothers, our great grandmothers and their mothers and grandmothers.
+Until the 20th century (give or take) history paints a grim and difficult life for women. This was acceptable to many because they didn’t know any other way. The common opinion was that women did not know how to care for themselves or what was good for them, therefore the men in their generations made all decisions for them.
+Why wouldn’t we just love it that way? We would be safe and cared for, knowing that someone else is making decisions in your best interest, providing for you and your children financially. In case you missed it, that was sarcasm. Historically, we know that while it worked for some lucky ones, many were oppressed by this system, whether they realized it or not.
+I’m a person who pays my own way, and I work hard to do it. I make my own decisions, and even the thought of having no choices or being required to have another person oversee my life and make decisions for me with no right to an opinion is infuriating.
+You know those cartoons with a snorting, angry bull with red vision, pawing the dirt, ready to charge? That’s me and a lot of others, men and women, protecting my rights.
+We have rights, lots of them. The right to vote for who we want, for whatever position they want. The right to
+
+=== Text #5 ===
+> E[qual] rights. The right to vote. The right to dress as we choose, stylish or not. The right to participate in whatever career we choose. Education. Higher education. Managing our own finances. Our own choices.
+Absolutely independent if we want to be. We love it.
+– lost our right to manage our own lives or voice our own opinions? Husbands, fathers, brothers, or other near or distant relations were the decision makers with no input from us. Financial decisions, housing decisions, schooling decisions.
+-were not considered intelligent enough or too delicate for politics, or to vote?
+-were a pawn to create an advantageous alliance and were not allowed to choose our own spouse?
+-were required to be silent, opinionless arm candy? The only opinions allowed to be voiced are those of our husbands/fathers.
+-were not allowed to purchase property on our own, or it reverted to a male relative if our spouse passed away?
+-had no right to opinions or decisions about our own healthcare?
+This was the reality for our grandmothers, our great grandmothers and their mothers and grandmothers.
+Until the 20th century (give or take) history paints a grim and difficult life for women. This was acceptable to many because they didn’t know any other way. The common opinion was that women did not know how to care for themselves or what was good for them, therefore the men in their generations made all decisions for them.
+Why wouldn’t we just love it that way? We would be safe and cared for, knowing that someone else is making decisions in your best interest, providing for you and your children financially. In case you missed it, that was sarcasm. Historically, we know that while it worked for some lucky ones, many were oppressed by this system, whether they realized it or not.
+I’m a person who pays my own way, and I work hard to do it. I make my own decisions, and even the thought of having no choices or being required to have another person oversee my life and make decisions for me with no right to an opinion is infuriating.
+You know those cartoons with a snorting, angry bull with red vision, pawing the dirt, ready to charge? That’s me and a lot of others, men and women, protecting my rights.
+We have rights, lots of them. The right to vote for who we want, for whatever position they want. The right to
+
+=== Text #6 ===
+> I thought I was going to finish the 3rd season of the Wire tonight.
+But there was a commentary on episode 11, so I had to re-watch Middle Ground with the commentary. Hopefully I can finish the season next weekend.
+
+=== Text #7 ===
+> The rich get richer and the poor get poorer eh?
+Or is it the rich think different and play by a different set of rules?
+Do the rich take responsibility and action?
+Poor people believe 'Life happens to me.' Rich people are committed to be rich.
+Poor people WANT to be rich. Rich people think big.
+Poor people think small. Rich people focus on opportunities.
+Poor people focus on obstacles. Rich people are willing to promote themselves and their value.
+Poor people think negatively about selling and promotion.
+Poor people are closed to new ideas..
+Do You think rich or poor?
+
+=== Text #8 ===
+> Pencarian FILM Untuk "Peace Breaker 2017"
+yuk mampir ke channel say..
+Edges East provides the l..
+A corrupt cop makes one w..
+Peace Breaker 2017 ~ 破�..
+Náo Loạn - Peace Break..
+Please subscribe and hit ..
+uploaded in HD at http://..
+I cannot believe I manage..
+
+=== Text #9 ===
+> Below you'll find some great videos that will encourage you, train you and build you up in hearing from GOD and being able to let HIM fulfill HIS plan in your life.
+SOMETHING NEW THAT WILL HELP YOU HEAR GODS VOICE!
+How to Understand and Rightly Divide It & How It Applies to Life!
+In this important teaching Terry reveals the clear distinction between the Spirit & Soul and how critical it is that we learn how to operate in the Spirit and not be deceived. It's a serious matter that must be reviewed no matter what your level of faith and maturity.
+Marriage & How it Applies to the Spirit & The Soul!
+In this enlightening class Terry reveals a key insight that helps us to better discern the Spirit vs the Soul as it's reflected in the Marriage relationship from the intuitive nature, the emotional component of the woman and the power aspect of a male in submission to the LORD.
+In this eye-opening teaching Terry shares how the Tabernacle as it represents the body soul and spirit of man and how it applies to our spiritual walk.
+This complete deliverance packet helps to walk you through what you can do to free yourself from the hidden forced buried deep in your soul that is hindering you from walking in the fullness that GOD paid for you to walk in.
+In today's video, Terry defines salvation better and the things that get in the way of our soul's salvation and ways we can increase our spiritual maturity.
+
+=== Text #10 ===
+> Are film trailers spoiling movies?
+In April we asked if high ticket prices were ruining your visits to the cinema. Yes, you said overwhelmingly. But something else has put a strain on my relationship with the cinema – and it’s not the popcorn.
+Have you ever gone to your local cinema to watch a new film only to feel you’ve seen it before? I know I have. ‘Spoilerific’ film trailers are now often so detailed it seems hardly worth watching the movie itself.
+Imagine if the trailer for Casablanca told you whether Ingrid Bergman went off with Humphrey Bogart or Paul Henreid at the end. Or if the trailer for Citizen Kane revealed just what the dying man meant when he muttered the word ‘Rosebud’.
+And it seems that even some film directors agree. Colin Trevorrow, director of new film, Jurassic World, has said he think that trailers have shown far more of the film than he would have wanted.
+In the last couple of months, I’ve paid £17.50 a ticket to see two films I’ve been anticipating for some time. OK £17.50 sounds steep, but that was for iMAX 3D and I’d still have paid more than £10 for a ‘normal’ ticket.
+But I left the cinema unfulfilled, because I felt like I’d seen them both six months before.
+In both cases the trailer revealed the entire structure of the story, key plot twists and expensive action sequences. Throw in a few character deaths for good measure and you’ve got the basis of a significant chunk of what you’ve paid your money for.
+I really did feel cheated by what the studio had wanted me to see in advance.
+So is this just a modern trend? I checked out trailers for 1981’s Raiders of the Lost Ark, and 1964’s Goldfinger to get a bigger picture.
+Both revealed some well-known scenes (including Goldfinger’s iconic laser and dialogue), but the plot basics were instead explained by voiceover, rather than any especially huge visual giveaways.
+Besides, the chance of actually seeing these trailers was significantly lessened due to the technology available at the time of release. Which got me thinking further.
+‘If you don’t like it, don’t watch it’, I hear you cry. I wish it were that
+
+=== Text #11 ===
+> Hurrah! A cooperative worldwide effort to rescue Thailand children trapped in a flooded cave rescued them all in less than 3 weeks from the time they entered the cave to the time of their rescue.
+It should be much easier, shouldn’t even take a heroic effort, to rescue children trapped in separation from their families at the Mexican border. These things are possible, but this week, the administration did not even meet the first deadline to get all the children below 5 years old reunited with their families.
+It should even be logistically possible with a cooperative world wide effort to develop economic systems that could rescue all the hungry children everywhere living in poverty.
+In the U.S. alone, 1 in 5 children live in poverty, according to a recently released United Nations report.
+Such inequality and poverty is a direct result of economic policies that are chosen by elected leaders. The solution is to elect different leaders than the ones in power now. Please consider carefully when you vote this November.
+
+=== Text #12 ===
+> After the martyrdom of St. Boniface, Vergilius was made Bishop of Salzburg (766 or 767) and laboured successfully for the upbuilding of his diocese as well as for the spread of the Faith in neighbouring heathen countries, especially in Carinthia. He died at Salzburg, 27 November, 789. In 1233 he was canonized by Gregory IX. His doctrine that the earth is a sphere was derived from the teaching of ancient geographers, and his belief in the existence of the antipodes was probably influenced by the accounts which the ancient Irish voyagers gave of their journeys. This, at least, is the opinion of Rettberg ("Kirchengesch. Deutschlands", II, 236).
+
+=== Text #13 ===
+> Irish crime thriller at its best, Stuart Neville is a fantastic writer. Careful, this will grab you and not let go. The Ghosts of Belfast is the first in the Jack Lennon series but this is one of those series that is loosley connected so reading out of order is not a problem.
+Highly recommend any of his books!
+Fegan has been a "hard man," an IRA killer in northern Ireland. Now that peace has come, he is being haunted day and night by twelve ghosts: a mother and infant, a schoolboy, a butcher, an RUC constable, and seven other of his innocent victims. In order to appease them, he's going to have to kill the men who gave him orders.
+"Perfect for summer—especially if you want to be reminded of what a blessing it is to live in relatively peaceful times."
+"Stuart Neville is Ireland's answer to Henning Mankell."
+
+=== Text #14 ===
+> Grace. What is it? What does it mean? How do you get it and how do you KNOW you got it?
+Honestly, I don’t know the answers to these questions. I have no way of describing something I don’t understand BUT believe deeply in my soul that it exists. How do you get these graces? Sanctifying grace is IN your soul. It’s the free and underserved gift from God. Actual grace would come from our knowledge and belief of all things right and wrong – following the Ten Commandments, making sure we follow a path that is pure and justified. Justified means to be sinless, and to be sinless means you are in favor with God. When you are baptized you are sinless and therefore have favor with God. When you go to reconciliation, you are once again sinless and in favor with God. You are in a state of grace. Once sanctifying grace is in your soul, you can increase it by every good action you do – receiving Communion, saying prayers, performing corporal works of Mercy. The most important thing to think about is NOT what you are going to do or how you are going to do it but to recognize God’s love. The reason you can do any good work is because God LOVES YOU FIRST in Grace. You must continually seek God’s grace, continually respond to the actual graces God is working within you, inclining you to turn to Him and do good.
+Have I answered the question as to what Grace is? I’ve read through all the study guides provided to me and compiled all the information, but I don’t believe that I’ve properly explained what Grace is.
+To me Grace is a feeling. Sometimes it’s butterflies in the stomach, and it takes my breath away. I feel this way every time I think of my husband. We met and married 38 years ago. I see God’s grace in our meeting, getting married, and living our life together as husband and wife. Sometimes it’s a jolt, like an electric shock and then an overwhelming wave of love, like the enormous amount of love I felt when I held my first baby in my arms for the first time. This happened again with my 2nd and 3rd child, and then God blessed us with twins to make 4 and 5. Then sometimes it feels like a raging fight going on inside me, making hard decisions that breaks
+
+=== Text #15 ===
+> Originally, from Chicago, now living in Hong Kong, Jeanne studied improvisation in Chicago. She holds a B.S. in Anthropology from Loyola University of Chicago and an M.S. in Historic Preservation from the School of the Art Institute.
+She has performed, presented and conducted workshops in the US, Europe and Asia. Ms. Lambin’s workshops have been described as “amazing,” “powerful,” and “great fun.” Her work has been featured in the Hong Kong’s Top Notch Storytelling Festival, Liar’s League Hong Kong, Literary Death Match, the Art’s House World Voices Presents, the Moth Chicago, Story Lab and This Much is True. Ms. Lambin is a proud to be a founding member of Improv for Humanity and co-creator of The Quest: Improv for Transformation.
+
+=== Text #16 ===
+> Athlone Community Radio will be broadcasting live for 4 hours from Golden Island Shopping Centre in Athlone, the heart of Ireland, to Celebrate World Radio Day 2019. Our live broadcast will begin at 12pm and finish at 4pm. The Theme of World Radio Day is “Dialogue, Tolerance and Peace”.
+This hour will feature local Musicians from Athlone. We will discuss how music plays a key role in promoting Tolerance , Dialogue and Peace. This programme will be presented by presenter/Sound Engineer with the station and also a musician Cathal McCormack.
+Athlone Today is our daily current affairs programme. We will be delving into the World Radio Theme 2019 of tolerance, dialogue and peace in our community. We will feature an interview with renowned expert in Media Literacy Irena Djak Cvetkovic on access to media, creation of Media and the critical evaluation of media and how media can play a part in this theme. With over 20 years of experience in training, Deridre Hunt shares her unique perspective into the world of training and radio. Nikki Dube who presented radio in South Africa to over 1 million listeners gives us an insight into the importance of Radio as tool for Community Development. Presenter and Producer of the Arts Programme,Philomena Barry, chats about Radio in Gambia. Writer Aidan Shortall has written a special poem entitled "Dialogue, Tolerance and Peace” to mark the theme.
+
+=== Text #17 ===
+> Aman Ullah is with Ro Nay San Lwin and 93 others.
+The UN Security Council has issued a presidential statement on Myanmar complimenting and criticising the country over its stance on the Rohingya crisis and it also gave the government a month to “get its act together”. The 1,300- word statement was read out by the sitting President of UNSC Sebastiano Cardi, the Ambassador of Italy, at a formal UNSC session on Monday ( November 6, 2017) .
+A presidential statement is a statement made by the President of the Security Council on behalf of the Council, adopted at a formal meeting of the Council and issued as an official document of the Council.
+A Presidential Statement is often created when the United Nations Security Council cannot reach consensus or are prevented from passing a resolution by a permanent member’s veto, or threat thereof. Such statements are similar in content, format, and tone to resolutions, but are not legally binding. The adoption of a Presidential Statement requires consensus, although Security Council members may abstain. The Statement is signed by the sitting Security Council President.
+It was the first presidential statement in 10 years on Myanmar. The Security Council has adopted such statements against Myanmar only three times, with the last one coming a decade ago. Diplomats hailed the move as a unified international stand against a humanitarian crisis that has been called “ethnic cleansing” by the U.N., U.S., France and the U.K.
+It strongly condemned attacks against the Myanmar security forces carried out by the Arakan Rohingya Salvation Army (ARSA) on August 25, and then expressed “grave concern” over the government’s response, the alleged burning of villages and threats to villagers to flee, among others.
+It called for reform in Myanmar’s security and justice sectors and urged the government to work with Bangladesh and the UN to allow the voluntary return of refugees to their homes, on the basis of an October 24 memorandum of understanding between the two country.
+The panel welcomed a “union enterprise mechanism” for humanitarian assistance, resettlement and development in Rakhine.
+It recommended the government ensure the mechanism supported such return and allow UN agencies full access, urging governments and all humanitarian partners to pay special attention to the needs of women, particular survivors of sexual violence.
+The council said the government’s primary responsibility is the protection of Myanmar’s population, citizens or not. The statement reiterated concerns and demands previously laid out: an end
+
+=== Text #18 ===
+> Roser, M. （2017）。 The short history of global living conditions and why it matters that we know it. Published online at OurWorldInData. org.
+Levari, D. E., Gilbert, D. T., Wilson, T. D., Sievers, B., Amodio, D. M., & Wheatley, T. （2018）。 Prevalence-induced concept change in human judgment. Science, 360（6396）， 1465-1467.
+
+=== Text #19 ===
+> So you have your children writing every day. Great! Now, of course, you need to become their editor. Here is where some find a challenge in the natural approach to language arts. What if I don’t feel competent to edit my child’s writing? We’ll address the underlying problem with that argument further down, but for now — here are 10 ways to become a better editor of your child’s writing.
+1. Read A Strong Start in Language.
+This Ruth Beechick title for beginning grades is recommended widely — from The Well-Trained Mind to Sonlight. Typically packaged as part of The Three Rs, A Strong Start in Language helps you become the editor from the beginning — from the time your child traces his first letters, to copywork, and through dictation. Read our full review (scroll down).
+2. Read You Can Teach Your Child Successfully.
+Over 100 pages are devoted to writing in this followup to the Three Rs by Ruth Beechick mentioned above. The book speaks to you as your child’s tutor and therefore includes writing activities, writing lessons to get you started and that you can pattern your own lessons after, and suggestions for usage, grammar, mechanics, and spelling. Best of all it tells you what you can expect from your child at various levels on the writing scale. Very valuable reference to finding your way as you teach writing naturally to your children and we cannot recommend it highly enough. You can read our full review (scroll down).
+3. Use Learning Grammar Through Writing.
+This handy reference published by Educators Publishing Service is now out of print. But it is worth finding. When you find a mistake in your child’s writing, you can find the coordinating pithy rule with an example to have your child copy into a grammar notebook. A checklist at the back helps you keep track of the skills you have covered.
+The best way to improve your editing is to read good writing. While you work through the suggestions above, you can be building your foundation in good writing at the same time.
+5. Make use of a dictionary.
+Before the days of Kindle we had electronic dictionaries handy that included a grammar reference. Although somewhat pricey, the better models not only include the definitions, but also the etymology of the word. Most also come with a built-in thesaurus and other tools. If nothing else, a good dictionary can shed some light on how words are properly used
+
+=== Text #20 ===
+> It comes on again on her grandson’s christening day. A lost moment, a blank spot, one that Carole does not know how to measure. She is there one second, then she is not. She knows exactly where she is, then she does not. Her older church friends tell similar stories about their surgeries, how they count backward from ten with an oxygen mask over their faces, then wake up before reaching one, only to find that hours, and sometimes even days, have gone by. She feels as though she were experiencing the same thing.
+Decisions that affect others in bad ways cannot always be traced to one individual. This makes it easier for coporations, as a whole, to engage in unethical behavior.
+Indeed, some argue that whole purpose pf the coperation is to make the most money that it can for owners and investers.
+I do what I can for you.
+
+
+Description: 
+2025-09-13 00:01:13,156 - root - INFO - A person's name, often within the context of creative works or achievements
+
+2025-09-13 00:01:13,159 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.csv
+2025-09-13 00:01:14,280 - root - INFO - 
+---
+> CLUSTER #1 (Number of samples: 20)
+
+2025-09-13 00:01:14,281 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: inal (4.631632328033447)
+Text #2: inal (3.6611876487731934)
+Text #3: oidal (1.061266303062439)
+Text #4: atic (0.9014983773231506)
+Text #5: ally (0.896411657333374)
+Text #6: tal (0.7175412178039551)
+
+=== Text #1 ===
+> Time-saving detangling conditioner to nourish and replenish any moisture that your curls may be lacking to reduce the appearance of dryness, frizz, and breakage.
+After shampooing with our Natural Almond & Avocado Moisturizing & Detangling Sulfate Free Shampoo, apply Natural Almond & Avocado Moisturizing & Detangling Conditioner and comb through. Allow to sit for up to 3 minutes. Rinse thoroughly.
+Water (Aqua), Cetyl Alcohol, Behentrimonium Chloride, Adomethicone (and) Cetrimonium Chloride (and) Trideceth-12, Glycol Distearate, Glycol Stearate, Phenoxethanol (and) Benzoic Acid (and) Dehydroacetic Acid, Prunus Amygdalus Dulcis (Sweet Almond) Oil, Propylene Glycol (and) Water (and) Persea Gratissima (Avocado) Leaf Extract, Persea Gratissima Oil (and) Hydrogenated Vegetable Oil (Avocado Butter), Prunus Amygdalus Dulcis Oil (and) Hydrogenated Vegetable Oil (Almond Butter), Hydrolyzed Wheat Protein, Fragrance (Parfum), Sodium PCA, Tocopheryl acetate, Citric Acid, Benzyl Benzoate, Citral, Geraniol, Hydroxyisohexyl 3-cyclohexene carboxaldehyde, Limonene, L[inal]ool, Butylphenyl methylpropanal.
+
+=== Text #2 ===
+> I am guilty of being a nail extremist.
+If you have the same affliction as me, you will agree that hands and nails are nothing to joke about and need to be taken as seriously as hair is by the hair-obsessives in this world. I am not one of those, thankfully. If you do not have this condition you might find the following a little disconcerting.
+Since I was sixteen I have been doing my nails myself in all matter of ways, with my speciality back then being french mani. French mani is now not acceptable. I am sure we will see its resurrection at some point, but for the time being it means years in fashion jail, so let's not talk about it.
+I grew up being so OCD about how nails should be done that I could no longer face saying, "Ah - that's great!", to a lady at a nail salon that had practically had a seizure with the nail brush on my hand. Even worse; trying to explain what a 'half-moon' is and why I want one nail on each hand a different colour than the others. I became an annoyance to them and their vacuous expressions an annoyance to me. This had to end.
+As a result of these symptoms, I have taken to either doing my own nails, or sharing them with a very select circle of nail virtuosos, who can do their magic on them.
+The 'Lucky Stripe' started with Art Deco in my head and a 'V' shape up the nail, which then morphed into a straight stripe up the nail, to keep things more 2013/minimal. So anyways, if you guys want to join in with the stripes go on Instagram, follow --> mar[inal]ondon and #luckystripe. Hands show the first signs of ageing and are one of your expressive tools when talking, so let's keep them healthy and jazzy you guys.
+
+=== Text #3 ===
+> ointments for hemorrhoids » hemorrh[oidal] cream » piles surgery recovery » Embarrassed To Ask About Hemorrhoid Options? Find Helpful Hints Here!
+Haemoroids - Embarrassed To Ask About Hemorrhoid Options? Find Helpful Hints Here!
+A great tip for your painful hemorrhoids laser test pressing it back again where it belongs. This is a great thing to try because as long as it has not gotten to big, you can put it back inside where it belongs and lessen your chances of hurting it further.
+If alternative treatments arent working, try relieving the discomfort of hemorrhoids with herbal treatments. There are two types of herbs that have proven prosperous in offering treatment of thrombosed external hemorrhoids. The first is butchers broom, which usually contains ruscogenin, a plant compound referred to as a steroidal saponin. Ruscogenin helps to reduce the hemorrhoid miracle cure review by just rigid arteries. One other herb is horse chestnut, which contains aescin, a combination of saponins. Aescin is effective in building up the walls of blood vessels, which helps to prevent the development of hemorrhoids.
+Keep it as clean as possible. If your hemorrhoid miracle review scam open up as well as will lose blood, and then becomes filthy, it could get infected. You could eventually get an abscess in the tend to be, requiring medical attention or even surgery. Use a wet, clean material to be able to lightly clean the area when you wash, so as not to inflame it. Don't you find it wonderful that we can now access information about anything, including Hemorrhoid form the Internet without the hassle of dealing with publications and magazines for matter!
+If you are in a lot of discomfort from your piles, get into the freezer to make an ice pack to put on your skin. Ice can help to numbing the bothersome aspects of your hemorrhoids, and can provide temporary relief for your epidermis. Apply ice in order to your skin for a quick solution.
+Warm water can ease desales university and pain from hemroids. You can soak the location directly or take a soothing bath. Avoid using hot water because it can have a reverse effect than were being designed. If you dont require to use warm water, a chilly reduce can also be used to provide relief.
+
+=== Text #4 ===
+> Enjoy all day energy without the crash of stimulants. Pure Energy Extra Strength gives your body exuberant energy without the caffeine crash.
+Kelp (whole plant) (Laminaria species), Gotu Kola (whole herb) (Centella asi[atic]a), Ashwagandha (root) (Withania somnifera), Dandelion (root) (Taraxacum officinale), Licorice (root) (Glycyrrhiza glabra), Organic Peppermint (leaves) (Mentha x piperita).
+Take 12 sprays of Pure Energy Extra Strength twice daily for heightened support, or 6 sprays twice daily for health maintenance.
+Pregnant or nursing women should not take dietary supplements unless directed by a physician.
+
+=== Text #5 ===
+> Details: Siren and soulmate to the King of Night, C[ally]pso Lillis survived the clutches of Karnon, the mad king, and his twisted prison. But the nightmare isn’t over. Callie wears the physical reminders of her time as a captive, and mounting evidence suggests the Thief of Souls is still out there. When a fae celebration thrusts Callie and her mate, Desmond Flynn, into the Kingdom of Flora, they take their investigation with them. But under the bright lights and striking blooms of the realm, they find there are more immediate issues to deal with. No place is more uniquely savage than the great fae halls, and no amount of bargains can save Callie from royal intrigues. Fairies play dangerous games. Some want love, some want vengeance, some want flesh, and some want things too unspeakable to utter. One thing is for sure: no one is who they appear to be. Not even Des, who only grows more enigmatic with every passing secret. But the Kingdom of Flora has its own secrets, from bleeding trees to branded slaves and missing guards. Something is stirring in the land of all that grows, and if Callie isn’t careful, it will claim everything and everyone she loves—and her along with it.
+
+=== Text #6 ===
+> Routing: This flat and easy roundabout route has the selfsame starting point as the Magic Castle Run, it merely turns off at the entrance into the Giessenbach[tal] valley. On the trail along the edge of the Karwendel mountain massif are numerous romantic viewpoints. The indicated running time is a guideline and depends on personal fitness.
+
+=== Text #7 ===
+> Beginners BBQ Class Taking Place in Missoula!
+Do you want to get better at making delicious BBQ? You will have the opportunity, put this on your calendar now. Thursday, September 22nd join World Class BBQ Champion, Tony Balay from Lonestar Smoke Rangers. He will be teaching a beginner level class for everyone who wants to get better with their culinary skills.
+He will teach you everything you need to know to compete in a KCBS BBQ competition, including techniques, recipes, timelines, meat selection and trimming, plus smoker and fire information.
+The cost to be in the class is $35 per person, and for spectators it is free. Included in the cost will be either a t-shirt or apron and you will be tasting samples of each meat that is prepared.
+
+=== Text #8 ===
+> Embrace world class facilities at East Bourne Resort & Spa Shimla. Facilities at East Bourne Resort & Spa Shimla comprise multi cuisine restaurant, tours and travel desk. Avail facilities of East Bourne Resort & Spa Shimla.
+
+=== Text #9 ===
+> "Bake me a pie or go away," I've literally had my son say that to me a few times. So, what was I to do except fulfilling his demand? Baking (not only pies), is a cooking method where tools DO actually make the man, which means that it is very hard or nearly impossible to do it successfully without proper bakeware.
+With years of experience under my belt, I’ve learned about and discovered what truly matters when looking for bakeware to buy, and I am going to teach you later in the article.
+Also, I have reviewed what I believe to be the best five non-stick bakeware sets out there, so make sure to check them out if you are in search of one.
+The first and most obvious reason is – because food doesn’t stick to it! I do not want to sound overly simplistic, but any chef (or mom, as a matter of fact) knows that pans that stick will absolutely mess up the outcome.
+People normally solve this problem by oiling up, but I don’t like it since it makes the food greasy. Using non-stick bakeware is a healthier, more convenient, and more practical way of baking.
+The next thing that you might not have known is that non-stick bakeware is so much easier to clean than more conventional types. It is a no-brainer really – if nothing sticks to the surface then there won’t be anything to scrub, scrape or wash off.
+This trait right here will save you tons of time as well as frustration, and it might motivate you to bake more often because of the hassle-free cleaning process. Just make sure to maintain the bakeware.
+​Lastly, even heat distribution is another thing that you should look for, and this type of bakeware enables it.
+Here's the deal: heat distribution most likely won't affect the quality of the result, but it will make the bakeware heat up more quickly which will ultimately decrease the cooking time.
+Investing a little bit of time into research can save you a lot of money and trouble in the long run, and that is why you need to read this section carefully.
+Bakeware sets differ regarding materials, abilities, cost, and maintenance, so learning about some general features of these products will help you decide which type will fulfill your demands.
+Bakeware can be made from different kinds of materials including iron, glass, copper, steel, etc.
+
+
+=== Text #10 ===
+> Quartz is one of the most common and varied minerals on earth, and its abundant colors produce many gemstone types. Amethyst and Citrine are the most popular and valuable gem varieties of Quartz, but other forms also make important gemstones. Chalcedony describes any form of Quartz that is microcrystalline, in compact form without any visible crystals. Chalcedony also has several varieties used as gemstones, most notably Agate, Carnelian, Tiger's Eye, and Chrysoprase.
+Pure Quartz, which is also known as Rock Crystal, is colorless. Various impurities are responsible for the extensive range of colors. The main crystalline Quartz varieties used as gemstones are described below.
+Amethyst, the purple variety, is the most popular and valuable Quartz gemstone. Amethyst ranges from light to dark purple. See the Amethyst gemstone page for more details.
+Citrine is the yellow, orange, or reddish-brown variety of Quartz. It is usually colored by heat treatment of Amethyst or Smoky Quartz. Light yellow or lemon yellow Citrine is often called Lemon Quartz in the gem trade. See the Citrine gemstone page for more details.
+Smoky Quartz is the brown "smoky" variety of Quartz. It ranges in color from light brown to black. Despite its dark color, it is rarely opaque. See the Smoky Quartz gemstone page for more details.
+The rosy pink variety of Quartz is known as Rose Quartz, and its color is usually soft, ranging from very light pink to medium pink in intensity. Rose Quartz is often milky or hazy, and it may lack good transparency. See the Rose Quartz gemstone page for more details.
+The colorless, transparent variety of Quartz, free of any impurities, is known as "Rock Crystal". Flawless and very large cuts may be cut from Rock Crystal.
+Milky Quartz is the white, translucent to opaque variety of Quartz. Though very common in nature, it is not used as a gemstone.
+Colorless Quartz with golden yellow Rutile inclusions, as hairlike growths within the gemstone, are known as Rutilated Quartz. See the Rutilated Quartz gemstone page for more details.
+Ametrine is an interesting, color-zoned combination of purple Amethyst and brownish-yellow Citrine. See the Ametrine gemstone page for more details.
+Prasiolite, or Green Quartz, describes a light green Quartz
+
+=== Text #11 ===
+> A full time vegan, poet, artist and woman.
+Frontal and thorough when inspired.
+Our memories: childhood memories, the language we dearly speak and nature's colorful and tasteful palette are a constant and renewable source of wonder and inspiration.
+I am just getting through finishing two special orders of my Xocolate Bears new edition, which are going to Costa Rica. Both orders are reconnecting me with childhood friends and grade school teachers.
+I sell my projects on Etsy. In local shops and in our hometown San Jose, Costa Rica in La Tienda Eñé a shop supporting local indie and urban designers, artisans and artists.
+Handmade over mass production, and over all those other products largely available. Handmade by choice to keep our creative and critical side active, to balance and renovate while innovating ourselves every day. Handmade is more a legacy and tradition worth the while to take back and pass down, its techniques connected to our earlier days and years. The things we made, the stuff we broke. Handmade is the milestones we will all like to share. Going back and supporting handmade will keep creativity at edge and sharp.
+
+=== Text #12 ===
+> What do you do in your free time? Of course some of you ,watch TV or play video games . If it is too boring, would you like to do something more interesting? All of you have wild imagination ,so you can make your own games!
+Lisa Green ,who's 35 years old ,has been making her own games since she was 5 .I asked her How she started that hobby.She told me that she didn't like the games which other children play, so she started to make her own games. Then ,I asked her If it was difficult to make her own games. She told me that it wasn't difficult and,If you had imagination ,you would be a very good player too.
+Lisa yesterday invented a new game which is called table tennis with hand .You paint a court of table tennis , then you take the ball and throw it to the other. If you want to use a net make one! Isn't it a fantastic game ?
+With a bit practise, you'll be make your own games in no time !!
+Say hi to the future blogger of the school, Marinos!
+2013! Marinos is a "present" blogger now!! It is very thrilling, isn't it!!
+That sounds very interesting, Raffaela!! I think that you have really wild imagination!!!!
+Two missions before winter courses start!
+
+=== Text #13 ===
+> Check out these two awesome ladies!!
+They competed all weekend at the Heart of America CrossFit Competition. Three days of workouts and fun. They did GREAT!!! Very cool to see them compete. More to come on this, once I’ve rested a little.
+
+=== Text #14 ===
+> In a small bowl, combine fennel, capers, lemon juice, parsley and olive oil and set aside.
+Preheat oven to 400°F. Lay trout on a greased baking sheet. Stuff each fish with slices of red onion, lemon, whole sprigs of parsley and oregano. Drizzle with olive oil and season with salt and pepper.
+Bake 15 to 18 minutes or until fish is firm and flakey. Serve with fennel salad.
+
+=== Text #15 ===
+> Everyone seems to want a brighter smile, and teeth whitening is a great option for boosting your confidence. If food and drinks have stained your pearly whites, you may be tempted to rush to the drug store and pick up the first over-the-counter whitening product you find. However, while side effects from whitening products are rare, you should follow these tips before bleaching your teeth to ensure your safety.
+If your teeth appear stained, don’t assume you need to bleach them. It’s possible a good teeth cleaning will restore the sparkle to your smile. During an oral exam, your dentist will also check for cavities and gum issues, which should be treated before bleaching your teeth.
+At-home whiteners most often use carbamide peroxide in concentrations ranging from 10 to 20 percent. Carbamide peroxide is hydrogen peroxide with urea added. This product remains active for up to 10 hours at a low enough acidity level that enamel etching is not a concern.
+Start with a product containing 10 percent carbamide peroxide. If the whitener doesn’t bother your mouth, but you don’t see the results you want, try another over-the-counter product with a higher concentration.
+When you choose an at-home teeth bleaching kit, it’s your responsibility to follow the instructions on the package. Don’t leave the gel or strips on your teeth longer than advised or you could experience tooth sensitivity and sore gums. Also, avoid drinking soda, sports drinks or other sugary/acidic beverages for several hours after whitening to prevent etching your teeth.
+At-home whitening kits are inexpensive and widely available, but that doesn’t make them the best choice. Professional in-office teeth bleaching can lighten your smile up to eight shades in a single 45-minute visit. Combined with professional-grade take-home treatments, patients see an average improvement of 11 shades. In comparison, over-the-counter whitening requires daily 30-minute applications for more than two weeks to achieve a six-shade improvement.
+In-office whitening uses LED light-activated technology to maximize results in the shortest amount of time without causing tooth sensitivity. It’s effective both for people who simply want to lighten their smile and for patients with severely discolored teeth.
+Pregnant women and nursing mothers should postpone teeth bleaching.
+Translucent teeth don’
+
+=== Text #16 ===
+> Weekend fun isn’t just for humans. Dogs love to get out and enjoy some time away from the day-to-day grind. But where can you take your dogs on weekends?
+#3: Farmers Markets – Orlando boasts many dog friendly farmers markets every weekend. From Windermere’s Friday Farmers Market to the big Saturday markets in Winter Garden and Winter Park – you are hard pressed to find a locale without a marketplace of fresh produce. Dogs at these events have become so prominent that many vendors now cater exclusively to dogs selling homemade biscuits and treats just for your pooch.
+#2: The beach – Contrary to popular belief there ARE several dog friendly beaches within a short drive of Orlando. The closest is the Smyrna Dunes Park. Dogs can romp and play in the sun alongside your family.
+Be sure to take poop bags and keep the beach as nice as you found it!
+#1: The dog park – What better place to spend some time outdoors and close to home than in the dog park. Central Florida can boast one of the nations best dog friendly parks in Winter Park. Fleet Peeples Park alongside the shores of Lake Baldwin has to be the nicest, most popular and respected dog parks around. It’s huge trees supply lots of shade and dogs love to run in the surf of the lakes sandy shores. There’s even a bathing area for our dog once they’ve had enough fun in the sun.
+Well, there you have it. The things pet sitters in Orlando like to do with their dogs. Did we miss any? Tell us in the comments.
+
+=== Text #17 ===
+> I grew up with stove top mac and cheese. Luckily my mother often made her own from scratch, but I also had the commercial boxed mac and cheese as well. Personally I’ve always prefered stove top to baked. I know, it is controversial. There is something to that velvety sauce and soft texture. It is simple and concise.
+However, as I grew up, the idea of making it from scratch seemed more and more improbable. So I leaned toward the box. Now I am not saying that something is bad if it is in a box but powdered things often don’t feel super healthy in the food realm. Especially if all you are adding to them is butter and hot sauce and maybe tuna from a can. Wait. What?
+Yes. I would like to take a moment to address something that we call “Shame Food.” What is Shame Food? Shame Food is food that you only feel comfortable eating in private. Far from any witnesses. My big Shame Food experience was when I was doing social work. I would work all day in a pretty intense environment and then commute home and my wife worked another 5-6 hours. So I would get home, eat something, and then take a nap. That thing became my Shame Food. It was inspired by a natural food company’s spicy mac and cheese. (It has since been discontinued.) I would make mac and cheese and add a lot of cheap hot sauce (this was before we had a sauce business) and a can of tuna. I would not even plate it. I would eat the whole thing out of the pot and then take a nap. I mean the nap wasn’t a choice. That box of noodles is meant to feed a family of four. Plus the amount of hot sauce I added meant I wasn’t really enjoying the meal as much as surviving it. I had to recoup.
+This recipe isn’t that dish. It is tied to that spicy boxed macaroni and cheese, that my wife introduced me to, and we would eat it together at a time that we didn’t eat much. Also the roots are a stove top mac and cheese. The kind where the only powder involved it mustard powder and the spice comes from a complex sauce with a bright balsamic flavor and a nutty essence that pairs well with the gruyere and trust me if you finish it with toasted sesame, you will not regret it. Please enjoy and feel free
+
+=== Text #18 ===
+> Walked around Lake Merritt. Played two hours of the text adventure Firebird. Took BART into SF and went to dinner at Pane e Vino with my father's brother's ex-wife and her new boyfriend, a widower from a 55-year marriage.
+Said goodbye; she leaves for Vegas in the morning to visit some college friends.
+
+=== Text #19 ===
+> Melt margarine in skillet and lightly fry onion, pepper and celery until tender crisp. Add flour and blend in. Add other ingredients and heat through. Serve with rice and grated Parmesan/Romano.
+How Do You Cook Creole Skillet?
+If you know another way to cook Creole Skillet please make a comment in the form below to help other free recipe users make the best of this free recipie.
+
+=== Text #20 ===
+> Last night a few of us from The Bier Abbey had the opportunity to stop down the Capital Region’s newest brewery, Rare Form Brewing Company, meet owners Kevin Mullen and Jenny Kemp, check out the new space, and of course try some beers they had on tap. It was a breath of fresh air, for both the continuation of the improvement of Troy, but also for the craft beer scene in the Upstate New York.
+The taproom itself looks bigger than it really is, given that the brewery is directly behind the bar. The bar area holds about 40 people, with a small room off to the side available for private groups or holding tastings. Stools and standing room are available at the bar, while there are some tables and benches off to each side.
+The brew house is a Beast 5 BBL system from Psycho Brew that allows for brewing either a double batch or two beers at the same time, which will be nice to do some smaller experimental batches.
+The taps are split between the two sides of the bar, each side with its own glass rinser, which is good to see (nothing worse than putting good beer in a dirty glass). There will be a couple of nitro offerings, as well.
+While looking around I was a little confused exactly where their cooler was, not realizing there was a downstairs not readily visible from the bar. Kevin took me for a quick tour of the cooler they made themselves. It looks like they have plenty of Rare Form branded cooperage hiding out down there.
+Back at the bar, glass sizes vary depending on the beer and ABV, and as Todd pointed out last night it would be nice to see glass sizes listed on the chalkboard as well. There are still some folks who don’t “get” that not all beers are meant to be served in a 16 ounce glass, and it can be a shock when someone is served a beer in a glass half the size than what they were expecting.
+As for the beers themselves, I’ll be honest, whenever I walk into a new brewery opening up in the Capital Region, I have my reservations and things were no different yesterday at Rare Form. I’ve been burned more often than I would like to admit by local brewers who started as homebrewers, were encouraged by friends and family to start brewery, and never really upped their game. Kevin has been brewing in various stages for “more than half [his] life” at this point, and
+
+
+Description: 
+2025-09-13 00:01:14,282 - root - INFO - Ingredients, especially those found in beauty/health products, potentially with a focus on plant-based or natural ingredients
+
+2025-09-13 00:01:14,286 - root - INFO - Cluster #1 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.csv
+2025-09-13 00:01:15,460 - root - INFO - 
+---
+> CLUSTER #2 (Number of samples: 20)
+
+2025-09-13 00:01:15,461 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: eral (1.3723504543304443)
+Text #1: eral (1.6857566833496094)
+Text #2: ial (1.9660564661026)
+Text #3: ital (1.9294073581695557)
+Text #4: inal (1.9292985200881958)
+Text #5: eral (1.4942365884780884)
+Text #6: eral (1.4879498481750488)
+Text #7: otic (1.1295020580291748)
+Text #8: ial (1.0635086297988892)
+Text #9: oming (0.958396852016449)
+Text #10: kel (0.9466026425361633)
+
+=== Text #1 ===
+> Frances Carolyn Sedberry, 66 of Middleburg, FL passed away Thursday, May 17, 2018. Mrs. Sedberry was born in Baton Rouge, LA to the late Cleavern and Betty Grimball Broussard, Jr. She loved her family with a fiery passion.
+Mrs. Sedberry was preceded in death by her parents and brother, Cleavern Broussard, III. She is survived by her loving husband, Charles Sedberry, daughter, Betty Irene Sedberry, two grandsons, Charles and Aaron Sedberry, sister, Doris Broussard Michelli, brother, Donald Broussard, many cousins, nieces, nephews. She is also survived by several whom she saw as and claimed as daughters, sons, and grandchildren. She will be dearly missed.
+Fun[eral] Services will be held 11:00 AM Tuesday, May 22, 2018 in the Chapel of Russell Haven of Rest Fun[eral] Home with Rev. Ralph Estevez officiating. Burial will follow in Russell Haven of Rest Cemetery. Visitation with the family will be from 5-7:00 PM Monday at the funeral home.
+
+=== Text #2 ===
+> Considering last fall’s wet weather and the soggy fields this spring, farmers wonder about using inoculants on soybean seed in 2010. Should you use a rhizobium inoculant? Or, is there enough of the nitrogen-fixing bacteria, Bradyrhizobia japonicum, remaining in the soil?
+True, rhizob[ial] bacteria don’t survive wet conditions very well. But whether it will pay to use an inoculant depends largely on whether soybeans were grown in the field sometime during the last five years or if the field has been flooded for more than a week, says Aaron Saeugling, Iowa State University Extension field agronomist in southwest Iowa.
+The presence of rhizobia in the soil is necessary for a legume such as soybeans to be able to convert nitrogen from the atmosphere into a form usable by the plant, he says. This process, nitrogen fixation, is critical for producing high soybean yields. For nitrogen fixation to occur, the nitrogen-fixing bacteria need to be readily available in the soil or must be applied to the seed.
+When soybean seed germinates, the rhizobia bacteria invade the root hairs of the seedling and begin to multiply. Nodules, the structures that house the bacteria, form on the roots. Under field conditions, nodule formation can be seen shortly after emergence, but active nodule fixation of N from the air doesn’t begin until about the V2 to V3 growth stage of beans. After that point, the number of nodules formed and amount of nitrogen fixed increase with time until about midway between the R5 and R6 growth stages; then N fixation decreases sharply.
+Applying nitrogen fertilizer for soybeans isn’t recommended because it typically doesn’t increase bean yields in Iowa production systems. The total number of nodules that form decreases with increasing amounts of applied N.
+Today, most fields in the Midwest have had soybeans grown on them in the crop rotation, likely increasing population density of Bradyrhizobia bacteria in the soil, notes Saeugling. Improved inoculant technology, coupled with higher commodity prices, ease of application and relatively low-cost inoculant products, have many growers reconsidering the use of inoculants.
+Since 2003, ISU agronomists have conducted trials each year to assess new inoculants on the market. Overall, the ISU studies haven’t shown
+
+=== Text #3 ===
+> Yesterday [12 Nov], at the Shoreditch Town Hall, Dr. Macdonald, M.P., the coroner for the North- Eastern District of Middlesex, opened his inquiry relative to the death of Marie Jeanette Kelly, the woman whose body was discovered on Friday morning, terribly mutilated, in a room on the ground floor of 26, Dorset-street, entrance to which was by a side door in Miller's-court.
+Superintendent T. Arnold, H Division; Inspector Abberline, of the Criminal Investigation Department, and Inspector Nairn represented the police. The deputy coroner, Mr. Hodgkinson, was present during the proceedings.
+The Coroner (to the juror, severely): Do you think that we do not know what we are doing here, and that we do not know our own district? The jury are summoned in the ordinary way, and they have no business to object. If they persist in their objection I shall know how to deal with them. Does any juror persist in objecting ?
+The Juror: We are summoned for the Shoreditch district. This affair happened in Sp[ital]fields. The Coroner: It happened within my district.
+The jury having made no further objection, they were duly sworn, and were conducted by Inspector Abberline to view the body, which, decently coffined, was at the mortuary adjoining Shoreditch Church, and subsequently the jury inspected the room, in Miller's-court, Dorset- street, where the murder was committed. The apartment, a plan of which was given in yesterday's Daily Telegraph, is poorly furnished, and uncarpeted. The position of the two tables was not altered. One of them was placed near the bed, behind the door, and the other next to the largest of the two windows which look upon the yard in which the dustbin and water-tap are situated.
+Joseph Barnett deposed : I was a fish-porter, and I work as a labourer and fruit- porter. Until Saturday last I lived at 24, New-street, Bishopsgate, and have since stayed at my sister's, 21, Portpool-lane, Gray's Inn-road. I have lived with the deceased one year and eight months. Her name was Marie Jeanette Kelly with the French spelling as described to me. Kelly was her maiden name. I have seen the body, and I identify it by the ear and eyes, which are all that I can recognise
+
+=== Text #4 ===
+> A probation violation can occur in a number of different ways.
+Violations can come from positive ur[inal]ysis.
+They can come from being out after curfew.
+Violations come whenever a special condition or a standard condition of probation are breached.
+Special conditions are those conditions that are specifically laid out and are unique to that term of probation. Whereas, standard conditions are those conditions that are standard with every term of probation.
+An example of a standard term of probation is not to commit a new criminal offense.
+An example of a special term of probation is to complete a drug evaluation and treatment.
+What is the legal standard to a probation violation?
+In order to violate probation, a probationer must willfully and substantially violate the terms of their probation.
+In other words, you can’t accidentally have a probation violation. Also, you can’t violate probation because of an inability to complete an item of probation (despite your best efforts). For example, it’s not a violation of probation to not pay restitution, EVEN WHERE IT IS ORDERED, so long as you don’t have the money to pay it. Consider a guy working full time to support a family and every penny he makes goes to the absolute bare essentials (food, shelter, rent). if that guy didn’t have any money left over to pay restitution costs, then a judge could not find there to be a willful and substantial violation. However, if the same guy had $300 left over every month and he spent it on lottery tickets, then he would have violated because he willfully gambled over paying his restitution.
+The state must only prove a probation violation by a preponderance of the evidence.
+Probation Violation. Talk to a Probation Lawyer Today.
+
+=== Text #5 ===
+> Georgetown — Sally Long, a long-time resident of the Georgetown area, died Wednesday the 18th of June at Sun Bridge Healthcare Center.
+Born in 1928 in Madison, S.D., Sally received a Bachelor of Science in Nursing Education from South Dakota State College in 1951. She continued her education at the University of Minnesota, from which she received her M.Ed. in Nursing in 1955.
+Sally taught Nursing at the University of Massachusetts at Amherst in the mid-1960s and worked at various psychiatric nursing facilities throughout western Massachusetts in the 1970s. In a career shift, she took a position as a librarian assistant at Franklin County Technical School, Turners Falls, where she worked until her retirement.
+Sally loved good food and socializing, enjoyed going to movies and plays with friends, and had a wonderful smile that could light up a room.
+She is survived by her niece, Tabitha Winslow and several grandnieces, all of whom live in southern California, and brought great joy to her later years.
+Memorial gifts may be made to the Dakin Pioneer Valley Humane Society, PO Box 319, South Deerfield, MA 01373.
+The Douglass Fun[eral] Service, Amherst, has been entrusted with arrangements.
+
+=== Text #6 ===
+> WALDWICK, N.J. -- Thomas J. McLaughlin, of Waldwick, died Thursday, Nov. 17. He was 86.
+Born in the Bronx, in 1930, he was a longtime resident of Waldwick. He was a construction supervisor at AJ Contracting in Manhattan, before retiring. He served in the U.S. Army during peacetime.
+He is survived by his wife, Theresa F. McLaughlin; children, Thomas J. McLaughlin Jr. and his wife Jayne, Theresa Karole, Michael McLaughlin, Maureen McGinle and her husband Lawrence and Ellen M. McLaughlin; grandchildren, Katherine, Devin, Thomas, John, Michael and Ashley; and sister, Mary Kate Jensen.
+Visitation will from 2-5 p.m. Sunday at the Vander Plaat Fun[eral] Home, 257 Godwin Ave., Wyckoff. A funeral Mass will be celebrated at 11 a.m. Monday at Church of the Nativity, 315 Prospect St., Midland Park. Interment will follow at Ascension Cemetery in Monsey, N.Y.
+
+=== Text #7 ===
+> 3rd March 2015 - A new UN report on the global drug situation has highlighted the widening rift between countries on the issue of the death penalty for drug offences. These tensions are set to surface as Member States convene in Vienna next week at the annual meeting of the Commission on Narc[otic] Drugs, the UN policy making body on drug control issues.
+The Annual Report of the International Narcotics Control Board (INCB), released today, calls upon States that ‘continue to impose the death penalty for drug-related offences to consider abolishing the death penalty for such offences’.
+The statement comes just a week before the annual meeting of the Commission on Narcotic Drugs, the UN policy making body on drug control issues, and underscores an issue that has become increasingly volatile among members of the Commission on Narcotic Drugs in recent years. Indeed, attempts to craft a joint resolution on drugs at last year’s meeting nearly fell apart amidst heated debates between Member States on including language against the death penalty.
+The death penalty for drugs looks to again be a major point of contention at the 2015 Commission meeting next week. A recent spate of executions in Indonesia has turned the world’s attention to the practice, with the killings of Dutch and Brazilian nationals prompting those governments to recall their Ambassadors from Jakarta. It remains to be seen how these diplomatic tensions will influence the States’ relations during the Commission meeting.
+But it is not just Indonesia’s actions that are bringing these tensions to the fore. A number of other countries have demonstrated a renewed enthusiasm for executing drug offenders over the past year: Iran has escalated drug related hangings, Pakistan has resumed executions and Oman has proposed to introduce capital punishment for drug crimes. A protest to end the use of the death penalty for drugs will take place outside UN headquarters in Vienna during the Commission meeting.
+The statement from the INCB -- a body of independent experts that monitors the implementation of the international drug control treaties -- reinforces a similar call the group made one year ago, which added its voice to those of other UN authorities, including the Secretary-General, the High Commissioner for Human Rights and the UN Office on Drugs and Crime (UNODC), who have called for ending the death penalty for drug offences.
+Ironically, although the UNODC has publicly spoken out against the death penalty for drug offences, the agency has been linked to funding aggressive anti-trafficking operations in several death penalty States, and a number of donor governments have publicly acknowledged the link between UNODC counter-
+
+=== Text #8 ===
+> B. Braun Medical Inc. Recalls Dialog+ Hemod[ial]ysis Systems Due Defective Conductivity Sensors.
+Cook Medical Issues Global, Voluntary Recall of Catheters with Beacon® Tip Technology – the tip can fracture or separate resulting in loss of device function potentially leading to medical intervention, or complications resulting from a separated segment.
+FDA reminds health care professionals not to use drug products intended to be sterile from Medaus Inc. – Agency concerned that products may pose serious risks to patients.
+Nissan Recalls 108,503 Rogue Models for Rusting Tailgate Struts.
+Takata recalls at least 35 million more faulty airbags.
+GM recalls various vehicles with steering issue – The front upper control arms may have inadequate welds that can affect steering.
+Mercedes-Benz recalls model year 2016 SLK300s – There could be a loss of power from the main vehicle battery.
+BRP Recalls Side-by-Side Off-Road Vehicles Due to Loss of Steering Control and Crash Hazard – The steering coupling can strip on the rack and pinion assembly and result in a loss of steering control.
+Riverside recalls White Water Retro travel trailers – The tires may rub, causing tire failure.
+Pita Pal recalls salads with corn linked to Listeria outbreak.
+Frontera Foods recalls Original Taco Skillet Sauce – The product contains soy, an allergen not listed on the label.
+Giant Eagle recalls Walnut Delight and Pecan Tassie cookies – The products contain milk, an allergen not listed on the label.
+Vitalicious recalls Apple Crumb VitaTops – The products may contain milk, an allergen not listed on the label.
+CSM Bakery Solutions recalls Cinnabon Stix – The product may contain peanuts, an allergen not listed on the label.
+Federal court orders rice noodle company Kun Wo Food Products Inc. to stop selling products until it complies with food safety regulations.
+Brown & Haley of Tacoma, Washington is taking the precautionary measure of voluntarily recalling certain lots of Mountain Thins “Trail Mix” flavor that may be impacted by sunflower seeds contaminated with Listeria monocytogen.
+Giant Eagle supplier SunOpta has informed the company that sunflower seeds sold in the bulk section of its Carmel Market District have been voluntarily recalled due to possible Listeria monocytogenes (Listeria) contamination.
+CRF
+
+=== Text #9 ===
+> MANILA, Philippines — The state-run Land Bank of the Philippines (Landbank) has extended by one more month or until Jan. 31 next year its revised offer to buy out existing Philippine Dealing System Holdings Corp. (PDS) shareholders and gain control of the bond exchange.
+In a text message Friday, Landbank president Alex V. Buenaventura said the offer period was moved from the earlier deadline of end-December 2018 as there was “no response so far” from PDS shareholders.
+Last October, Landbank issued a new offer to buy shares at P215 per share, lower than P360 a share previously.
+The downgraded offer took into account the P600 million in dividends that PDS issued to shareholders in June, even as the share price remained a multiplier of 1.5 times adjusted net asset value or the same as the previous offer.
+The dividend payouts reduced PDS’s asset value, Buenaventura had noted.
+Buenaventura earlier expressed optimism that a majority or at least 66.67 percent of shareholders would give their acceptance letters to Landbank before yearend to seal the deal and sign share purchase agreements with them.
+During the previous offer, 43 percent of shareholders already submitted acceptance letters, such that they expect the Philippine Stock Exchange (PSE), banks and investment houses to accept the new offer as well, Buenaventura had said.
+Buenaventura’s plan to acquire a majority stake in PDS runs counter to the planned merger of the latter with the PSE.
+But Finance Secretary Carlos G. D[oming]uez III, who chairs Landbank, had lamented that the PSE was not being compliant with the conditions set for its merger with PDS.
+
+=== Text #10 ===
+> This is the naamyaa directory listing for Barclays in Skelmanthorpe. Below you can find address, contact details and opening times for this branch.
+We do not have any extra information about S[kel]manthorpe Barclays.
+We are a web directory listing all the main banks and their branches in the United Kingdom. The goal of this website is to quickly provide you with the details necessary to get in touch with any bank branch in the UK. This page has all the details for Barclays branch in Skelmanthorpe including address, telephone number, opening times and any extra information we have. if you see an error, please inform us via email.
+
+=== Text #11 ===
+> The Denver Board of Education opened the 2017-18 school year with an update on projects that include new construction, upgrades, heat mitigation and quality learning environments.
+We are excited that Denver students will be the beneficiaries of a four year, $572 million General Obligation Bond. Since the passage of the bond, our construction team has worked to schedule the projects over the four-year term of the bond.
+Denver voters on Tuesday approved bond and mill funding measures for students in Denver Public Schools, agreeing to invest $572 million in bond funding to build and improve schools and $56.6 million in operating dollars to support proven initiatives, such as early literacy.
+Denver voters say yes to bond and mill levy funding support for DPS students and schools. Click to learn more about the details of the voter-approved bond measure.
+Denver voters on Nov. 8 approved bond and mill funding measures for DPS students and schools. Learn more about what’s included in the mill levy measure.
+
+=== Text #12 ===
+> BANGALORE CY JUNCTION SBC to GONDIA JUNCTION G train timings, routes, stops, and complete info.
+As of now, 1 trains run between from BANGALORE CY JUNCTION (YPR) to GONDIA JUNCTION (G).
+The fastest train from BANGALORE CY JUNCTION (YPR) to GONDIA JUNCTION (G) is YPR KRBA WAINGANGA EXP (12251) that departs at 23:40 and arrives to at 21:15. It takes approximately 21:35 hours.
+
+=== Text #13 ===
+> Sysco Corp. has terminated its planned $3.5 billion takeover of US Foods, it announced Monday, after a federal judge blocked the combination. The company is opting instead to add $3 billion to its stock-buyback program.
+With the deal breaking up, Sysco will pay a $300 million termination fee to US Foods and a $12.5 million fee to Performance Food Group, which had agreed to buy some US Foods facilities. Sysco, based in Houston, plans to make the share repurchases over the next two years.
+Rosemont, Illinois-based US Foods operates a major distribution center in Fishers. Sysco has a large warehouse at 4000 W. 62nd St., in Indianapolis.
+Sysco had fought for more than a year to gain government approval for the transaction, which antitrust regulators said would hurt competition and lead to higher prices. Sysco and US Foods dominate a market known as broadline foodservice, which supplies school cafeterias, restaurants and hotels. Sysco had argued that the acquisition would bring $1 billion in savings, letting it offer lower prices to customers.
+Investors have responded with relief to the deal’s demise, reflecting concerns about the company undertaking an ambitious merger. Sysco shares rose 3.1 percent the day the transaction was halted by U.S. District Judge Amit Mehta, and the stock climbed again Monday morning after the merger was withdrawn.
+Mehta blocked the merger on June 23 when he granted a Federal Trade Commission request to delay the transaction. The FTC had sued the companies in February, saying the deal would give Sysco an oversized share of an industry where it’s already the biggest player.
+In arguments before Mehta in May, the two sides clashed over the scope of the market in which the companies compete. Sysco and US Foods argued that the commission was relying on a “tortured” analysis, ignoring the variety of distribution channels available to customers.
+Sysco said on Monday that it weighed embarking on an appeal but decided against it.
+Shares of Sysco rose as much as 1.6 percent to $39 in early trading. The stock had slid 3.3 percent this year through the end of last week.
+
+=== Text #14 ===
+> "Unemployment, Relative Price Dispersion and the Implicit Contract Model."
+"The Federal Reserve&apos;s Preferences for Inflation and Unemployment: An Analysis of Fed Chairmen."
+"Do Presidential Administrations Have Preferred Rates of Unemployment?"
+"The Baseball Writer and The National Baseball Hall of Fame: Are Election Outcomes Affected by Race or Ethnicity?," (with Cliff Reid).
+"Race, Ethnicity and The National Baseball Hall of Fame: Is There Discrimination in the Nomination Process?," (with Cliff Reid and John Santos).
+"Discrimination, Voting Behavior and the National Baseball Hall of Fame: The Case of Pitchers," (with Cliff Reid).
+"A Comparison of Two Models to Forecast Voting for Membership into the National Baseball Hall of Fame," (with Cliff Reid).
+"Jackie Robinson and The National Baseball Hall of Fame," (with Cliff Reid).
+"Race, Ethnicity and the Market(s) for Baseball Cards," (with Jim Meehan and Cliff Reid).
+"Further Analysis of the Determinants of Sovereign Credit Ratings," (with Shannon Landauer, &apos;99).
+"An Empirical Analysis of the Relationship between the Yield Spread and the Probability of Recessions," (with Sunil Thakor, &apos;99).
+
+=== Text #15 ===
+> ▲Students are shouting several slogans to guarantee the school's autonomy in front of Jogyesa Temple.
+On April 15th, 2016, the General Student Council and Student Council of Postgraduate held the 4.15 Jogye rally. The rally was also held in the last year with the same objectives. Goals of the rally are to criticize Jogye Order for its responsibility on Dongguk University’s present conflicts related to President Han Tae-sik (Bogwang) and to guarantee the school’s autonomy from the order.
+At 11:00 A.M., approximately 200 people, about 150 Donggukians and 50 people who are related to Dongguk University, gathered together in Manhae Hall. As soon as the march began, the marchers were obstructed by police officers because of a cow, which was prepared by the GSC, was not reported to participate in the rally. Scuffles broke out between the police and the GSC, and the cow was not able to go with the marchers. The parade was started from Chungmu-ro where Dongguk University is located, passed Myeong-dong and finally to Jogyesa Temple.
+After several speeches from students, the GSC and the gathered students tried to deliver request proposal to Jogye Order together, but police officers blocked the way. Therefore, only ten representatives were allowed to go to deliver the request proposal to the persons concerned of the Jogye Order at the temple gate. The request proposal involves following three demands: Jogye Order has to stop intervening in the school matters and should guarantee the school’s autonomy, every sunim who spoiled the school needs to apologize and resign, and board of directors should be reformed in a more democratic way.
+
+=== Text #16 ===
+> Earn monthly interest on our Citibank Time Deposits (also known as Fixed Deposits). What's more, you get to enjoy the flexibility of making partial withdrawals before maturity date of your Time Deposit.
+Partial withdrawals in multiples of RM5,000 before the maturity date.
+Option to pledge your Time Deposit for overdraft facility.
+Continue to earn the original interest rate with your remaining balance.
+View your Citibank® Time Deposit accounts across participating countries with a single login via Online Global View.
+Online account inquiries and banking transactions via Citibank® or Citigold® Online.
+Make banking inquiries anytime, anywhere via live e-Chat, 'Call Me' function and 20 seconds1 call pickup.
+Eligible for protection by PIDM**.
+* Monthly interest is only available for minimum deposit of RM50,000 and for a minimum tenure of 6 months.
+** Click here for more details on PIDM protection.
+1From the moment you press 0 to speak to a CitiPhone officer.
+For the Citibank Account Terms and Conditions, click here.
+
+=== Text #17 ===
+> Locksmith Westington – Putting in place the best of locking and keying services is just one part of the story. However the challenge lies in keeping the locking and keying systems in good condition at all points of time. Without proper maintenance it is quite obvious that the locks and keys would become damaged and replacing the same with new ones could be a big drain on resources and it would also take lot of time. It also could expose the entire home, office and other such places to unwanted risks. Further, you also might need to make some changes to your entire locking and keying systems or even a part of it. All these cannot be done by you on your own because of some obvious reasons.
+Hence you have no other option but to hire a good locksmith. While you could come across many such locksmiths in this city, you may have some good reasons to choose us over others. We are considered an experienced, reliable and well known service provider in Westington Gloucestershire, South West, United Kingdom with years of experience. Further we also would like to point out that we offer our services across the board covering automobile locksmith and commercial locksmiths. We also are considered one of the best when it comes to domestic locksmiths. It would be interesting to look at each one of the above in some detail for the benefits of our customers and readers.
+Are you stuck with your car, motorbike, SUV or even big sized vehicles in the road, home or office because you have lost your keys? If this is the case all you have to do is to get in touch with us. You can be sure that you will have a replacement key ready within a few minutes. This is because we have some of the finest molds to take care of almost all major brands and makes of automobiles in Westington Gloucestershire, South West, United Kingdom. Further we can make the keys right at the doorstep of our customers and also in the middle of the road if the need arises.
+
+=== Text #18 ===
+> Movers & Moving Companies in Randallsville, New York for every moving service .: Movers MAX :.
+Movers MAX Movers Directory is your one-stop source for moving resources. Research your move before making that all-important move. Inside, you will find helpful Randallsville, New York moving guides and moving tips on every type of moving services as well as free Randallsville, New York moving estimates from professional movers in Randallsville, New York .
+With information available on all Randallsville, New York move types you can certainly find out what you need to know about moving anywhere in Randallsville, New York . From local Randallsville, New York moving to long distance moving across the country or around the world to an international location, our Randallsville, New York moving services directory offers all the information you need to plan your next Randallsville, New York move.
+Our nationwide directory of residential movers and commercial moving companies can offer free Randallsville, New York moving and storage quotes to any state or country. From smaller residential and household local moves or long distance moving to office movers and corporate relocation Randallsville, New York Movers can help you with your Randallsville, New York move.
+Randallsville, New York Movers is a local moving companies directory with local Randallsville, New York movers ready to help you with your local move. Whether you are moving to Randallsville, New York or moving from Randallsville, New York our local Randallsville, New York moving companies can help with full service residential moving services and YOU-Pack they move or self service moves.
+Need to move your car? Randallsville, New York Movers offers Randallsville, New York auto shipping company quotes and reliable Randallsville, New York car shipping companies to move cars anywhere in Randallsville, New York or around the world.
+Let Randallsville, New York Movers help you with your next Randallsville, New York move and get a FREE Randallsville, New York Moving Company Quote now!
+
+=== Text #19 ===
+> I , , , , , 1 ” , , , :0 4 r , , Franka BrunsPost-Gazette CUPBOARD NEARLY BARE Jim Marton strolls through. and includes installation of turnaround lanes for large vehicles. WESTMORELAND COUNTY Man.
+He upholds his commitment to the health insurance industry through his understanding and fostering of relationships to support the business endeavors of top brokers across the country. ones you.
+Restaurants in Westmoreland TN (Tennessee), Places To Eat in Westmoreland TN (Tennessee) Menus, Specials & Envents are available for almost all the Restaurants and Places To Eat.
+Pittsburgh Post-Gazette from Pittsburgh, Pennsylvania · Page 23 Publication: Pittsburgh Post-Gazette i Location: Pittsburgh, Pennsylvania Issue Date: Sunday, March 22, 2015 Page: Page 23 Start Free.
+He was an avid golfer and lifelong member and past president of Highland Country Club in West View. David (Brenda) Moll, and Cathy Landry; sister of Theresa (Donald) Sheffler, and the late Jennie.
+She becomes one of four women on the 19-member board and one of seven women business deans of AACSB-accredited business schools in the country. Wayne Rollins. Hara-lenne, Cathy L. Hillyard, Lisa T.
+Sep FITTS, Mrs. Mildred Louise (Gran Carthage, Tn. Graveltown Community 2 p.m. tomorrow. Mrs. Creighton was a Member of the First Presbyterian Church, Belle Meade Country Club and the James K. Polk.
+Cathy’s Country Cupboard, Westmoreland TN Opening hours. Cathy’s Country Cupboard is listed as a local restaurant for the following areas. Westmoreland. Near places. More restaurants close to Westmoreland TN. Corner Cafe – Westmoreland. 5234 New Highway 31, Westmoreland, 37186.
+Dishwashers, they say, allow you to spend more time with the family andor guests; encourage even teenage boys tn stack away glasses instead of littering the kitchen with them; save space (you don’t.
+Hillsboro, Ohio, and Joseph Shaw of Wilmington, Ohio, have been duly appointed Executors of tn* Estate of James Shaw. evening with Mr. and Mrs. Joe Stroup and son. Jean Duke and Cathy
+
+=== Text #20 ===
+> Currently there are 3 websites listed for this state.
+We are committed to providing for the needs of homeless and owned dogs and cats in our community. Serving over 5,000 companion animals annually through direct intervention and many more through advocacy, we continue to promote the humane values of protection, care, and compassion for all living things.
+The Delaware SPCA is dedicated to the prevention of cruelty and the encouragement of humane treatment of all animals. Established in 1873, Delaware SPCA is the oldest animal welfare organization in the state and has provided continuous service to pets and their companions for more than 135 years.
+Faithful Friends Animal Society is a private animal welfare organization with a No Kill shelter. We are funded through private donations, grants, fees for services and special fundraisers held throughout the year. All cats and dogs in our care stay with us until homes are found.
+
+
+Description: 
+2025-09-13 00:01:15,463 - root - INFO - Suffixes related to medicine, death, or proper nouns related to locations
+
+2025-09-13 00:01:15,466 - root - INFO - Cluster #2 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.csv
+2025-09-13 00:01:16,525 - root - INFO - 
+---
+> CLUSTER #3 (Number of samples: 20)
+
+2025-09-13 00:01:16,526 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: ular (1.9483033418655396)
+Text #1: ular (0.9692830443382263)
+Text #2: ractive (0.8153303861618042)
+Text #3: ual (0.7336402535438538)
+
+=== Text #1 ===
+> Chronic Kidney Illness (CKD) is recognized by a decrease in Glomer[ular] Filtration Rate (GFR) because of a lower in functioning of nephrons throughout the kidney and/or proteinuria additional to break down of the glomer[ular] filtration buffer and incomplete tubular reabsorption. World-vast the prevalence of both CKD and finish degree kidney disease.
+Medical tourism is a growingly fashionable practice that includes worldwide travel among people who are in search of medical care. A rising number of North People go to Mexico or Costa Rica identical to a variety of Europeans travel to South East Asia for a variety of remedies comparable to Botox, plastic surgery, intensive dental care, knew replacements and even transplants. Through the years, international locations such as Brazil, Mexico, Costa Rica, Thailand and India have come to change into fashionable tourist destinations.
+Within the case of OAB, the muscle tissues of the bladder contract involuntarily although the bladder is probably not full. This causes a sudden urge to urinate in the particular person. Nevertheless, sometimes this urge is totally sensory and the bladder muscle mass should not really contracting. Still, the urge causes the particular person to must rush to the restroom, often resulting in accidents.
+The absence of a big difference in the fee of active ingredient pharmaceutical equivalents or pharmaceutical alternative at website of motion is relevant, is outlined as bioequivalence. Different knowledge could need to be submitted to fulfill regulatory requirements for bioequivalence, in addition to knowledge from bioequivalence research.
+One of the largest challenges any singer faces is studying the right way to breathe accurately. As if that’s not hard enough additionally they need to know how to control their respiratory so it is used to optimum effect when start our breathing is naturally appropriate. For example, a baby can scream, yell and breathe using their lungs with optimum impact as a result of they’re doing this with out a conscious thought. However, as we start to get older some individuals turn out to be lazy of their habits and solely use the higher part of their lungs – they take a shallow breath instead of a standard perceive how right breathing and breath control works, first you’ll want to understand the process that it makes use of to operate.
+
+=== Text #2 ===
+> If you are a member, please register to gain access to congress material, library bibliographies, videos and much more.
+Not a member? You can still register on the website and apply for membership within the members section, but won't have access to all the member benefits until your membership has been approved.
+Only available to registered members. Please log in to view documents.
+The Epstein Lecture is dedicated to the late Dr Edward Epstein, who was the South African pioneer in the development of pseudophakic correction in cataract surgery in the fifties. He was a founding member and honorary member of the SASCRS.
+The Kritzinger Safari Award Lecture is a prestigious named lecture in honour of the late Dr Michiel Kritzinger. He distinguished himself as a pioneer in modern ref[ractive] surgery and identified the need to promote the subspecialty.
+Please fill in the required input fields below to start your application process.
+Note: We do not share contact details with 3rd parties.
+Find an ophthalmologist who is also a member of SASCRS.
+SASCRS, do not guarantee the availability of services offered on this website ("the Services") or the accuracy of the information and/or images on this website. We make no representations or warranties, whether express or implied, and assume no liability or responsibility for the proper performance of this website and/or the Services and/or the information and/or images contained on this website, and the Services are thus used at your own risk. In particular we make no warrantee that the Services will meet your requirements, be uninterrupted, timely, and secure or error free.
+3.1 You may only use the Services for lawful purposes and you warrant that you shall not: 3.1.1 1 other than for your personal and non-commercial use, store on your computer, or print copies of extracts from this website, and you may not, other than for your personal and non-commercial use, "mirror" or cache information provided via this website on your own server, or copy, adapt, modify or re-use the text or graphics from this website without prior written permission from SASCRS.
+You acknowledge that we own the intellectual property rights in and to this website, and that the unauthorized use thereof is expressly prohibited. The word or mark "AllergySA", and "SASCRS", however represented, including stylized representation, all associated logos and symbols and combinations of any of the a foregoing
+
+=== Text #3 ===
+> 1,010,000 (2000). 600,000 monoling[ual]s. Total users in all countries: 1,016,650.
+Vigorous. All domains. All ages. Positive attitudes. Some also use Lingala [lin]. A few also use French [fra]. Used as L2 by Gilima [gix], Mbandja [zmz], Mono [mnh], Ngbundu [nuu].
+
+=== Text #4 ===
+> How many backlinks per day for new site?
+Discussion in 'Black Hat SEO' started by Omoplata, Dec 3, 2010.
+1) for a newly created site, what's the max # backlinks per day I should do to be safe?
+2) how long do I have to let my site age before I can start making more blinks?
+I did about 6000 forum profiles every 24 hours for 10 days for one of my sites which had a brand new domain.
+There is three backlinks for every of these forum profile so thats 18 000 backlinks every 24 hours and nothing happened in terms of being penalized or sandboxed. This is now maybe 3 months ago and the site is ranking on first page for a lot of my targeted keywords.
+build more you can in starting but do manual submission and not spammy type means manual + relevant to the post.. then after 1 month you can make a big blast..
+Wow, dude, you built 18k backlinks a day on a brand new site? How quickly did you rank up? What kind of competition/searches did those keywords have?
+
+=== Text #5 ===
+> I have existing web site brittlloyd.org. I opened a new domain sayrebuildersrockport.com however I don't have a way to start building this new web site online like I do the other one. Please list the steps to take.
+I see you deleted the domain. Did you no longer want to use it? You can see how to create a new site here, https://community.homestead.com/homestead/topics/how-do-i-create-a-new-site.
+
+=== Text #6 ===
+> UNStudio has joined forces with HPP Architects to create a consortium (UNS + HPP) to carry out the next phases of their winning project at the architectural design competition for FOUR Frankfurt. Take a look at the complete story after the jump.
+From the architects: The centrally located 16,000 square meter site was purchased by Groß & Partner real estate development company – who will be carrying out the development of the project – back in 2015. Situated in the very core of the city, the site has been completely inaccessible for the last 45 years. Now four new high-rise towers will change Frankfurt’s skyline from the air, while cultivating its liveliness on the ground. The development of these towers, reaching heights of 228 meters, will open up new streets to create a multi-use, vibrant inner-city quarter, bringing together a healthy mix of work, living, relaxation and recreation.
+The choice of programmes allows for a smooth transition from Frankfurt’s shopping district to the east of Roßmarkt, to the high-rise office towers clustered around Park Taunusanlage. With a development concept that is unique to Europe, the FOUR Frankfurt project brings together facilities that will establish a lively new neighbourhood for Frankfurt, its visitors, and its (future) residents.
+The new high-rise complex will be integrated into the expanding city structure by incorporating the heritage-listed facades of the Junghofstraße into the design and by making a multi-storey base building the connecting element of the entire site.
+According to the assessment by the competition jury, the unique quality of the quarter can be found in its public development and amenity value. The new development will therefore create connected spaces, accessible rooftops, pathways and passages. The existing block on the Junghofstraße will be opened up to strengthen the surrounding pathways and ensure a high level of accessibility. This will create a multi-use, diverse quarter comprising 50% office spaces, 30% living accommodation (including subsidized housing), in addition to retail spaces, restaurants and hotels.
+Four Frankfurt is expected to be completed in 2023.
+
+=== Text #7 ===
+> Learn the fundamentals of Flash as we guide you through this comprehensive introduction to the leading interactive-design program. We will show you how to draw and animate your own graphics. This is the perfect starting point for anyone interested in creating enhanced web output.
+After we give you a complete tour of the Flash environment, we will take you from a blank canvas to being able to produce your own graphics and animations. You will see how it easy it is to import your own audio and video, add simple interactivity, and then publish your projects in a variety of formats.
+This 2-day Introduction course helps you learn about the tools and features available in Adobe Flash CC. We will help you understand how this industry-leading program takes interactive design to a new level. We will guide you in learning the work area and the best practices for creating Flash content. Plus, you will get the hands-on experience you need to create your own projects.
+Our goal is for you to be able to create simple visual projects that are ready to use for the web.
+This course is intended for designers and developers who are new to Flash and who want to learn the interface and commonly used features.
+If you are considering this Flash CC Design Introduction 2 Days Course but would like further information simply send us your query quickly & easily with the form below. Whether you would like to check date availability, pricing, course suitability or just need further information about a course send us your query and we will get you a swift reply, usually within 2 business hours!
+Your course covered everything I needed to know and also gave really useful tips and advice making me feel more confident about using the program.
+
+=== Text #8 ===
+> Vashikaran Specialist Chandigarh is a black magic study of attraction, by which you can attract your partner, Girlfriend,Wife, Husband Anything that is living! From ages it’s going in India and everywhere in the world! It’s A Science for Welfare of Mankind. I need to recover its roots, it’s As Simple as Singing a Song and your Mate will love you for this! Kindly Don’t Use These Powers in Wrong Way on the other aspect if you done as such then these powers may hurt you!
+The usage of Online Vashikaran Specialist Chandigarh to win the individual love you need or treasured. It is advised that Online Vashikaran Specialist Pandit Chandigarhnot to be mishandle for imperfect or hurting other. We All understand that Love is God and shaitaan is for heartedness. operate some individual to do as you wish is want yet to make his/her identity to do likewise is not that much horrible. Use vashikaran mantra in Hindi not to lose. Regularly pick humanity and deal with your problems with the help of them.
+Online Vashikaran Specialist Pandit ji Chandigarh similarly oversee disturbed impact of the enemy identity so they may stay a long way from their country, nation, home, work and even from your relatives. Vashikaran Mantra in Hindi is used for well-defined purposes, some use it for in receipt of well off, some use it as love spells to recover their love one. The key thing to be recall is this real strategy and fitting duty are important for vashikaran mantra in Hindi to get fulfilment. One can start included vashikaran mantra in Hindi yet after bundles of put into practice and meeting to get most great benefits.
+In present time vashikaran mantra in Hindi is uncommonly overseeing way to deal with light up every one of the worry people refuse in their regular life. Accepting that you are looking the strong strategy to get comes about that serve to totally handle your friendship problems between problems like How to get love back, how to recover your ex, how to get sweetheart yet again with the use of Love Spells then vashikaran mantra in Hindi will be the result of all request that make your presence hellfire.
+There are two types of Vashikaran to be specific Pandit Vashikaran you have the full information to get the better results.
+
+=== Text #9 ===
+> membership fees and with many users renewing their accounts, although the overall share of Internet traffic using online dating services in the.S. Enhanced Performance Those who hv performance issues shall not be consuming soya products as it reduces performance Enhanced Performance Agree lucky. One report in China Daily suggests that dating for Chinese university women is "difficult" and "takes work" and steals time away from academic advancement, and places women in a precarious position of having to balance personal success against traditional Chinese relationships. Having said so, if ur objective is muscle building den u shall not hv * more dan once a week as it will reduce test levels in body and hence achieving goals will be difficult. Dating in North Africa is predominantly done under family supervision, usually in a public place. "Parents explore dating scene for choosy children". Dating in Korea is also considered a necessary activity supported by society. Moreover th3 Hon&apos;ble Supreme Court of India has also done a great job by discussing another important point about legalizing prostitution. Somebody is giving tip to them. I have to do it for sure as my * is little thick.
+21 While some of what happens on a date is guided by an understanding of basic, unspoken rules, there is considerable room to experiment, and there are numerous sources of advice available. In fact, the smarter you are, the more clueless you will be, and the more problems you&apos;re going to have in your dating life. According to a 2007 Centers of Disease Control (CDC) report, approximately 72 percent of 8th and 9th graders report that they are "dating." a b c Sharon Jayson. "Should I follow any rules?". "Can you be beautiful but not superficial?". 138 Iran has a large population of young people with sixty percent of the 70-million population being under the age of thirty.
+
+=== Text #10 ===
+> This topic contains 1 reply, has 2 voices. Last updated by Raam Dev 4 years, 11 months ago.
+I need a solution for a site I’m developing with S2 Members Pro, the issue is the clients run a chain of shops across the UK and a magazine that is subscribed from all over the world. The client wants its clients to be able to not only sign up online but also in store, the problem is my client will not accept the 0.01p charge on the checkout with a 100% discount code, this is because they feel there customers will not like having to pay online.
+I know you suggest 2 options on the plugin: 1 being a free registration form but this is open to abuse if the link gets leaked and will also require a lot of moderation on the admin side of things to make sure each sign up actually did join in store. 2 being a free trial, we can set the trial up to last a year but then the checkout will still require a form of payment to start running once the trial period has ended.
+Is there any solution to this problem? we need it to be as secure as it can without being open to abuse and easy to administrate.
+What is the best solution for this?
+Let us know if that answers your question.
+
+=== Text #11 ===
+> The ebook makes a speciality of geological historical past because the severe think about making a choice on the current biodiversity and landscapes of Amazonia. the various riding mechanisms for panorama evolution are explored through reviewing the historical past of the Amazonian Craton, the linked sedimentary basins, and the position of mountain uplift and weather swap.
+This e-book provdes an perception into the Meso- and Cenozoic list of Amazonia that used to be characterised by way of fluvial and long-lived lake platforms and a hugely varied wildlife. This fauna comprises giants akin to the ca. 12 m lengthy caiman Purussaurus, but additionally a diversified fish fauna and fragile molluscs, while fossil pollen and spores shape relics of ancestral swamps and rainforests.
+With exceptional wit, readability, and intelligence, Richard Dawkins, one of many world&apos;s most famed evolutionary biologists, has brought numerous readers to the wonders of technological know-how in works equivalent to The egocentric Gene. Now, within the Ancestor&apos;s story, Dawkins deals a masterwork: an exciting opposite journey via evolution, from present-day people again to the microbial beginnings of lifestyles 4 billion years in the past.
+Colonial dwelling is characterised through department of work and finely coordinated association; besides the fact that, many occasions inside of a colony are the results of conflicts among participants trying to maximize their very own pursuits. This interaction of cooperation and clash has raised many questions in evolutionary biology, in particular how cooperative habit is maintained within the absence of direct replica through staff.
+To this point, the dominant paradigms by which glossy scientists have seen nature were established essentially round Newtonian and Darwinian methods. As theoretical ecologist Robert E. Ulanowicz observes in his new paintings, a 3rd Window, neither of those types is enough for explaining how actual change—in the shape of inventive increase or emergence—takes position in nature.
+Ecology is in a hard kingdom as a systematic self-discipline. whereas a few theoretical ecologists try to construct a definition of ecology from first rules, many others are wondering even the feasibility of a normal and common thought. even as, it really is more and more vital that ecology is safely and functionally outlined for a iteration of researchers tackling escalating environmental difficulties within the face of doubt and war of words.
+See Chapter 15). , Chapter 16. (9) Middle Miocene Honda Group (La Venta
+
+=== Text #12 ===
+> * 2. How was the session?
+* 4. What would you like to hear?
+* 5. What's your overall feedback of the sessions/conference?
+
+=== Text #13 ===
+> One of the biggest games in the world is now available on smartphones around the world thanks to Tencent. The Chinese company’s official port of PlayerUnknown’s Battlegrounds (PUBG) is now available on iOS and Android worldwide.
+We tried PUBG on iPhone X when it released in China last month and came away very impressed. It successfully squeezed much of the PC and Xbox game down to a much smaller screen -- and in places looked even better than the Xbox One version of the game.
+It comes a week after rival Fortnite began inviting players to test its own mobile version. Unlike PUBG, Fortnite will allow players to play across platforms -- meaning iPhone players can kill or be killed by gamers on PC or PlayStation 4.
+Fortnite recently surpassed pioneer PUBG in popularity. Both games feature 100 players landing on a deserted island filled with weapons, with everyone fighting to be the last person left standing. While PUBG adopts a realistic setting, Fortnite has a more cartoon-like look -- and an emphasis on building structures sets it apart from its rival.
+But Tencent may find its main competition for PUBG on mobile could come from other Chinese companies. NetEase was quick to copy PUBG and released similar games for smartphone while the original was still on PC. NetEase says just one of its clones, Knives Out, has over 100 million registered players -- far more than the 40 million playing PUBG on PC and Xbox.
+
+=== Text #14 ===
+> Volunteers are vital to Thames Reach in our efforts to end street homelessness and support vulnerable and socially excluded people across London.
+As well as helping individuals to take steps forward in their lives, volunteering also offers opportunities to learn, meet new people and experience something different.
+Benefacto is a social enterprise helping to get people who work in a professional capacity to volunteer in their local communities. Since last June, they’ve been arranging for professional and corporate volunteers to dedicate some of their time to helping Thames Reach clients at iReach, a weekly digital skills workshop at our Employment Academy in Camberwell.
+iReach gives people with little or no computer skills the opportunity to learn at their own pace. Funded by the Worshipful Company of Information Technologists, the workshop teaches practical digital skills, so clients can access services and benefits online, and can also help to reduce social isolation.
+Benefacto volunteer Molly spent an afternoon volunteering at an iReach session earlier this month. “You take it for granted but lots of people can’t use a computer,” she said. “It’s so important for applying for jobs and staying in contact with friends and family.
+“You can see people’s progress throughout the session. As a volunteer you want to get to a stage where you’re almost in the way. There was a lot of people at the session, everyone was enjoying it, it was amazing to see,” she added.
+Stevie Back, volunteer coordinator at Benefacto, said: “Doing this gives volunteers a chance to touch down with perhaps an unfamiliar reality and realise the importance of digital inclusion.
+“We’ve spent a long time seeking out the right charities for our volunteers. People working in a professional or corporate environment will tend to have digital skills they can impart through sessions like iReach, which is a fantastic project.
+“We’ve really enjoyed working with Thames Reach and will continue to do so. We’ve had 23 volunteers helping out with iReach. They share their expertise and make contact with people in their communities they might otherwise never have met,” she said.
+Thames Reach digital support worker Chris Hamm, who runs the iReach sessions, said: “When our service users first arrive, some are apprehensive about using the equipment. Some have almost no previous experience of using computers.
+“After a while,
+
+=== Text #15 ===
+> How to unblock ABC Go UK outside US? Watch ABC in the UK on Apple TV, iPhone, iPad, Android, PC or Mac. ABC is geoblocked outside US. In order to bypass geographic restrictions and access ABC in UK, you have to spoof/change your online location. VPN and Smart DNS allows you to watch ABC in the UK.
+If you try to watch ABC shows online in the UK, you get the following error message: “You appear to be outside the United States or its territories. Due to International rights agreements, we only offer this video to viewers located within the US.” That basically means you cannot watch any of ABC’s shows in UK due to geo-restrictions. VPN enables you to trick ABC into thinking you are in USA by giving you an American IP address.
+VPN allows you to unblock all US channels in the UK. Watch ABC, NBC, CBS, Netflix, Vudu, Hulu, Showtime, or HBO Go.
+VPN apps can be installed on Android, iPhone, iPad, PC, or Mac.
+Thanks to VPN’s data encryption, your ISP will not be able to see what you are doing online.
+Your Internet speed will drop by around 10 to 15% when using VPN.
+I am currently using ExpressVPN to unblock WatchABC in the UK. You can use any of the three VPN providers in the table below to watch ABC outside US.
+There is an alternative way to watch ABC outside US. Smart DNS also allows you to remove geoblocks and access US channels in the UK. You do not get a new IP address when using Smart DNS. Therefore, you will still appear to be in the UK for all websites apart from the ones you are trying to unblock.
+Smart DNS can be setup on Apple TV, Mac, Smart TV, PS3, PS4, Xbox, Amazon Fire TV, Roku, Chromecast, Android, iPhone, iPad, or PC.
+No effect on Internet speed with Smart DNS. No traffic encryption either.
+You can still use all local UK apps and sites while unblocking US channels with Smart DNS. Your IP address is left unchanged.
+No need to install or download software. Smart DNS can be configured directly on your device. All you need is access to your device’s network settings.
+Some ISPs uses transparent proxies or DNS hijacking. Either method might prevent Smart DNS from functioning properly.
+There are quite a few Smart DNS services available
+
+=== Text #16 ===
+> Stitch can replicate data from all your sources (including Shippo) to a central warehouse. From there, it's easy to use Slemma to perform the in-depth analysis you need.
+Integrate Shippo and Slemma to turn your data into actionable insights.
+
+=== Text #17 ===
+> As I have been discussing the magic of wordpress themes before. WordPress has brough a revolution as it’s ideal for less tech savy people to manage their website. Now almost 20% of the websites over world wide web are built using wordpress. Lots of other cms are available offering ecommerce solutions.
+
+=== Text #18 ===
+> Building a successful software platform is done by building software with a purpose by solving a problem that people already have. The problem may not be obvious, and it may not even be a problem that people are aware of, but the problem exists. Using Instagram as a case study, I think there are four keys a platforms success.
+Most people aren't professional photographers. They don't have access to the tools professional photographers use nor the time or money to buy the tools and learn them. But they do want professional looking photos. Instagram built a platform that had intrinsic value on it's own by providing people the ability to easily create professional looking photographs.
+One of the keys that made Instagram successful was that they took something people were already doing and made it easier and better. They removed the need to download photos from a mobile device and then upload them from a desktop or laptop. They simplified the process and allowed users to share exiting photos right from their phones or take a new photo to share.
+They also simplified an otherwise complex photo editing process by providing a set of templates that people could apply without having to understand image editing. This enabled a regular person to have professional looking photos without any work.
+One thing that Instagram did very well is that it built it's software to work with exiting services like Facebook and Twitter. Services that already had a huge community of users. They didn't try to re-create Twitter or Facebook. Instead, they allowed Twitter and Facebook to get better by making their service interoperable.
+Instagram didn't force people to ONLY use their service. Instead, it allowed people to continue to use their existing social media services and augment a specific workflow to be better if they wanted to. Users don't want to be asked to chose between this OR that. They want to be able to use this AND that. Will your software provide additional choices or limit choices?
+
+=== Text #19 ===
+> The Center for the Study of Culture, Politics and Society (CECUPS) is devoted to the sociological analysis of cultural and political subjects, in particular subjects placed in the confluence of those two realms or dimensions of social reality. In this way, and mainly from a comparative perspective, we make research about cultural policy, the relationship between culture and territory, citizenship and the Welfare State, the cultural construction of Europe or the reflexive configuration of modernity.
+Arturo Rodríguez Morató. Mariano Martín Zamorano. 2018. Cultural Policy in Ibero-America – A Regional Perspective. Taylor & Francis.
+
+=== Text #20 ===
+> We made it through another Queensland summer – even though we are breaking records this March with a dry and hot Autumn on the horizon! I hope you are all keeping cool and making the most of it.
+As we roll into the final financial quarter, now is the time for businesses to really hit the ground running to make sure the foundations are strong, (vision, systems, processes, resource both people & financial) to ensure growth and financial goals are achieved for the year and beyond.
+There have been more legislative changes that affect all small businesses around the need to implement single touch payroll and for those who have a builders license, whereby the changes to the reporting rules have been increased. There is an article in this newsletter to explain more about what you need to do to make sure you are not in breach of the new rules.
+Our first event for the year will be next Tuesday 19th, 5:30 pm at the Ovolo Incholm Hotel, we encourage anyone in business to come along, we have a variety of experts in their field to answer all of your questions whether it be buying, selling a business, strategic marketing and even Estate Planning which is usually overlooked due to the morbid discussions it requires. There will be a marketing expert who can provide some tips on effective ways to promote your business giving you the best bang for your buck and also automation experts who will help you identify ways to save you time in your business.
+This is what we do at Advivo and business growth will be the subject of our May event. It is our motivation for helping people achieve their business goals and drive success. I will, of course, be in attendance at our “Speed Dating With The Business Experts” to talk about these workshops and much more, so register here, come along, say hi, have a glass of wine and see how we can help you!
+We understand businesses and our clients are confronted & challenged by an enormous range of issues and changes while also maintaining the day to day operations, not to mention the legislative changes and compliance that applies to different industries.
+Register here today to speak with a range of experts about the issues that are keeping you awake at night.
+Single Touch Payroll (STP) – The new GST!
+Everyone should be aware of the changes regarding Single Touch Payroll (STP) and the reporting requirements that come with it. This includes ensuring your business accounting software is ready.
+Click here to find out how this may affect you and if you have any queries contact your
+
+
+Description: 
+2025-09-13 00:01:16,528 - root - INFO - Medical or biological terminology appearing in informational texts
+
+2025-09-13 00:01:16,531 - root - INFO - Cluster #3 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.csv
+2025-09-13 00:01:17,588 - root - INFO - 
+---
+> CLUSTER #4 (Number of samples: 20)
+
+2025-09-13 00:01:17,589 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: ional (1.1902333498001099)
+Text #1: ular (2.4446628093719482)
+Text #2: uel (1.4787094593048096)
+Text #3: al (1.4656577110290527)
+Text #4: onal (0.8323661088943481)
+Text #5: atic (0.8002564311027527)
+Text #6: stant (0.6443219780921936)
+
+=== Text #1 ===
+> International Mobile Equipment Identity (Identifica231;227;o Internac[ional] de Equipamento M243;vel), mais conhecido por IMEI, 233; um n250;mero de identifica231;227;o global e 250;nico para cada telefone cel[ular]. I spent some time to search ways to get owners information and found people who sell information by IMEI. I received confirmation that seller didn't lie. Amazon. com: Unlocked Modem USB 4G LTE Huawei E397u-53 Worldwide Hotspot Service Required Only T-mobile in US: Computers amp; Accessories How to find Samsung Galaxy S3 IMEI Number. The IMEI or MEID number is useful if you want to find a lost or stolen device. Cell Device companies can use the information to figure out where your device was last used … You probably heard of the IMEI number but never found out what it is about. Here we will show you what you need to know about IMEI numbers. I am trying to order a SIM card from Verizon for my Lenovo X1 Carbon laptop, but they want to know the IMEI number first. I have not found the IMEI Locate and track your stolen Android mobile phone using Google Account, Gmail and IMEI number and filing a FIR complaint with the Police and service provider UMIDIGI Z1 Pro Android Phone - Helio P20 CPU, 6GB RAM, Android 7. 0, 1080p, 4000mAh, Dual-Rear Cam (Black) Guide To Unbrick Flash Stock Firmware Repair IMEI of DZ09 Smartwatch, Download DZ09 Stock Firmware flash tool IMEI Repair tool Battery Method. Look in the empty battery slot for a label with the IMEI. It should be 15 digits or more, maybe also including comma, dot … hello Dimas, Ive always inquired fastcardtech why there is still no 4G compatible phone, They said it will be release soon 1. 5 Ghz is an overclocked or turbo version of the 1. 2 ghz. there is definite illegal gambling new york when blackjack cigarettes and other uses, about 2K blackjack cigarettes in blackjack cigarettes benchmarks. however, if you just want a fast phone with good battery. Iridium Next is expected to be significantly more capable than the legacy system, which blackjack cigarettes originally designed by Motorola primarily for voice communications in the 1990s
+
+=== Text #2 ===
+> These Stunning and Innovative Collection of New Builds are located in the vibrant new area of Lomas de Cabo Roig in the city of Orih[uel]a Costa between Alicante, Murcia and Cartagena with access to two nearby airports.
+The plot where these villas are being built is high above the sea level so you can see the coastline and admire the horizon where the blue of the Mediterranean fuses with the blue of the sky.
+On the ground floor of the Villa you can have two bedrooms and one social bathroom or you can have one bedroom, one social bathroom and one bedroom with a bathroom en-suite. Which one adapts better to your family needs? Both options are included in the price of the Villa at no extra cost.
+When you climb the stairs you get to a magical space with one bedroom with a bathroom en-suite and a panoramic window, a walk-in closet, a solarium and three terraces.
+The ceiling of the first floor can be converted into a solarium from where the views are just mesmerizing.
+Panasonic Aerothermal A/C Climatization and Hot Water System gives you on average a 60% saving off your electric Bill, all easily controlled from your mobile phone or tablet.
+Outside the Swimming pool (5 x 3m) has its own Waterfall and underwater lights. There is one Porch and 4 Terraces and a car port.
+These Villas have been cleverly designed to benefit from the Mediterranean style of outside living but also enjoy the comforts of climate control indoors all the while enjoying views to your garden and Swimming Pool area and Sea Views.
+
+=== Text #3 ===
+> IT HAS BEEN USE VERY LITTLE IN IQC DEPT. SHOWS NO WEAR LIKE NEW. Starrett 656-109J Dial Indicator, 0.015, 0-3-0. THIS IS NO RESERVE LISTING. 00005 USA Dial Indicator" is in sale since Friday, May 12, 2017. This item is in the category "Business & Industrial\Manufacturing & Metalworking\Metalworking Tooling\Inspection & Measurement\Indicators". The seller is "ren[al]ips" and is located in Harwood Heights, Illinois.
+
+=== Text #4 ===
+> The location of the July 15, 2002 flare is shown at left. The other panels compare the scale of Earth to the eruptions. Red shows superheated gas held together by magnetic fields. The time sequence lasts only 80 seconds and yet reveals tremendous amounts of gas leaving the Sun.
+A detailed study of a huge solar eruption reveals that a series of smaller explosions combined in a domino effect to fuel the blast.
+The findings improve understanding of the Sun's most powerful events and could lead to better forecasting of the tempests, researchers said.
+Scientists studied data collected from a radiation flare on the Sun on July 15, 2002. The eruption, ranked as an X-7, was one of the most powerful in recent times. The flare was accompanied by a cor[onal] mass ejection, which is a colossal discharge of electrified gas called plasma. The event was 5,000 million times more powerful than an atomic bomb.
+Scientists don't know exactly what triggers such eruptions. They are associated with strong magnetic fields, however, and emanate from sunspots, which are cooler regions of the Sun that correspond to bottled-up magnetic energy.
+"Sunspots are at the surface of the Sun, and are essentially the footprints of the magnetic field," explained Louise Harra of the Mullard Space Science Laboratory at University College London. "The magnetic field reaches into the outer atmosphere in the same way as for example a bar magnet has a magnetic field around it."
+Researchers had thought the big eruptions are created when magnetic field lines from the core of a sunspot become tangled and reconnect high in solar atmosphere, or corona. The new study contradicts that assumption.
+X-7 flare started when plasma from below the Sun's surface broke suddenly through.
+"Below the surface of the Sun a dynamo process is working creating magnetic field," Harra explained in an email interview. "When this becomes buoyant it can rise to the surface of the Sun, and into the atmosphere."
+The plasma collided with a strong magnetic field at the surface, and the interaction triggered release of "phenomenal amounts of energy," the researchers concluded. There were three eruptions, each triggering the next.
+The gas was heated to 36 million degrees Fahrenheit (20 million Celsius) before being flung up into the solar atmosphere at 90,000 mph (40 kilometers per second).
+"We have observed the flows of hot gas for the first time, enabling us to see that several small flares combine to create a major explosion," Harra
+
+=== Text #5 ===
+> The Port of Neapolis is located in V[atic]a Bay, at the south-east of the Peloponnese. This port is one of the most ideal locations for provisioning, crew change, lubricants supplies, minor electronics repairs, etc., because it is on the crossroads of numerous international shipping lanes, including the Gibraltar Strait-Black Sea route, Adriatic Sea-Suez Canal or Black Sea route, and various other main sea lanes to/from the Adriatic Sea. The deviation required to reach Vatica Bay is can be as little as 3-5 nautical miles. The port offers safe anchorage (recommended anchorage position: 36º30'N /23º01'5''E) with good depths and no pilotage requirement for arrival or departure.
+
+=== Text #6 ===
+> Con[stant] development in Unmanned Aircraft System (UAS) technologies results in evolving aircraft, instrumentation, and control programs of these systems. An open source simulator was examined as a potential method of testing UAS platforms changes. The open source simulator was used to simulate flights flown by an actual platform. Existing flight data was used as a base line of comparison for the telemetry data of the simulated flight. Patterns in parameters such as vehicle attitude and throttle output were compared between the simulated and actual results to determine if the simulator produced an accurate representation of a physical flight. Analysis of the simulated vehicle exhibited similar behavior to that of the actual vehicle in most of the flight data collected. Simplification in the flight simulator model may be responsible for the deviations in magnitude observed between the two sets of data. Three points of interest in each of the three test cases were chosen as checks for the values in the data. These points in the flight were studied in the various graphs of the parameters graphed and the difference between the simulated and actual values was calculated. The values at these points stayed within an average of 0° and 30° for vehicle attitude and between 0% and 33.3% throttle difference over the three test cases. The average difference in attitude was 5.1° over 93 compared values and 8.1% in throttle over 18 compared values. On average the simulator showed good agreement to existing flight data and therefore will be a good tool to simulate flights prior to a mission. The accuracy of the results may be improved with further development of the simulation model.
+Ramirez Duarte, Jaime A. (2018) "Feasibility Study for the Application of Open Source UAS Autopilot Simulator," McNair Scholars Research Journal: Vol. 5 , Article 4.
+
+=== Text #7 ===
+> Discussion in 'Mac OS X Lion (10.7)' started by axboi87, Jan 20, 2012.
+I've got a 500gb internal drive and a 240gb SSD.
+When trying to restore using disk utility i'm given the error "Not enough space on disk ____ to restore"
+But I shouldn't have to do that!!!
+Any ideas or workarounds before resorting to the above?
+Use Carbon Copy Cloner to copy one drive to the other. I've done this several times going from larger HDD to smaller SSD and I wound up with a bootable SSD drive. One step you have to remember not to skip is to use Disk Utility to partition the SSD as GUID partition scheme HFS+ before doing the clone. If it came Apple Partition Scheme, even if you let CCC do the clone, the resulting drive won't be bootable. CCC usually works in "file mode" and it can easily copy a larger drive (that's mostly empty) onto a smaller drive. If you tell CCC to clone a drive you did NOT boot from, it can work in block copy mode where the destination drive must be the same size or larger than the drive you are cloning from (if I recall).
+I've actually done this somehow on Disk Utility several times (booting from a different drive (or even the dvd) so not running disk utility from the drive your cloning) and had it work just fine from larger to smaller bootable clone. Definitely format the drive cloning to first, as bootable Apple etc..
+Thanks for pointing this out. My only experience using DU to go larger to smaller was when I was trying to make a Lion install stick and I was unable to restore InstallESD.dmg to a 4 GB USB stick but of course the reason that wouldn't fit is there was slightly more than 4 GB of data.
+
+=== Text #8 ===
+> Foil plaid lycra and spandex shortall with metallic slinky insets. Attached metallic elastic belt with O-ring. Headband included. Great hip hop or jazz dance costume. Made in the USA.
+
+=== Text #9 ===
+> Biomedics 1 Day Extra are daily replacement disposable contact lenses by CooperVision Hydron. Buy one box of 90 lenses.
+Biomedics 1 Day Extra contacts give you all the convenience of a daily disposable lens with no need for solutions, cases or cleaning and are perfect for the occasional wear. These lenses have greater comfort handling with superior ease of insertion and removal.
+Biomedic 1 Day Extra are also marketed under various other brand names including Clear Choice 1-day, Ascend 1-day, easyvision CLARISION SPHERE, Clearsight 1 Day and ProView Daily Disposable.
+
+=== Text #10 ===
+> The blog deals with new theories and observations in relation to the composition and structure of the Cosmos.
+If you can find observations or experiments that confirms or rejects the theory, you may place them on the blog!
+Is anyone able to answer these questions!
+What is the length of the coordinates in the two inertial systems S and S' at the velocity v, according to relativity - if the length of the coordinates are identical at v = zero?
+1) Is the physical length of the coordinates greatest in S?
+2) Is the physical length of the coordinates greatest in S'?
+3) Is the physical length of the coordinates in S equal to the physical length of the coordinates in S'?
+If the physical lengths are identical, will it then be possible to have any physical length contractions according to relativity? Or, in other words, have you ever experienced a length contraction because of the movement of another coordinate system?
+If it isn't possible to have any length contractions according to relativity, how can relativity then explain the relativistic experiments where a Lorentz contraction occurs?
+In the quantum field theory, the Casimir effect is a physical force arising from the zero-point field, where the zero-point field is the quantum state with the lowest possible energy.
+The existence of the zero-point field, at the same time both confirms the theory about the structure and composition of the Cosmos, and overturns Einstein's principle of relativity.
+This can bee seen from the fact, that you cannot - as Einstein postulate - have that "the same laws of electrodynamics and optics will be valid for all frames of reference for which the equations of mechanics hold good" and at the same time have a stationary zero-point field.
+For instance will the velocity relative to the zero-point field be different for different frames of reference.
+
+=== Text #11 ===
+> It is possible to erase up to 4 HDD / SSD at the same time. IDE HDD connection is also possible with dedicated adapter.
+HDD / SSD is exchanged from the order in which erasing is completed, and asynchronous erase function which can erase newly is installed.Five types of erase algorithms are installed. The erasing method can be selected according to the application.
+HDD copy function installed. It is possible to copy one HDD data to up to three HDDs simultaneously.
+Data delete contents can be printed with the attached dedicated printer . It is also possible to output text data of work log to USB memory.
+Dedicated carrying case with waterproof / dustproof specification is included, which can contain the main body and all accessories.
+This product is compatible with SATA 6 Gbps HDD / SSD, but the internal transfer speed is up to 130 MB / sec.
+2.5 “HDD and 3.5” HDD can not be connected at the same time.
+
+=== Text #12 ===
+> Meaningful, reliable and valid mRNA expression analyses by real-time quantitative PCR (RT-qPCR) can only be achieved, if suitable reference genes are chosen for normalization and if appropriate RT-qPCR quality standards are met. Human periodontal ligament (hPDL) fibroblasts play a major mediating role in orthodontic tooth movement and periodontitis. Despite corresponding in-vitro gene expression studies being a focus of interest for many years, no information is available for hPDL fibroblasts on suitable reference genes, which are generally used in RT-qPCR experiments to normalize variability between samples. The aim of this study was to identify and validate suitable reference genes for normalization in untreated hPDL fibroblasts as well as experiments on orthodontic tooth movement or periodontitis (Aggregatibacter actinomycetemcomitans). We investigated the suitability of 13 candidate reference genes using four different algorithms (geNorm, NormFinder, comparative Delta C-q and BestKeeper) and ranked them according to their expression stability. Overall PPIB (peptidylprolyl isomerase A), TBP (TATA-box-binding protein) and RPL22 (ribosomal protein 22) were found to be most stably expressed with two genes in conjunction sufficient for reliable normalization. This study provides an accurate tool for quantitative gene expression analysis in hPDL fibroblasts according to the MIQE guidelines and shows that reference gene reliability is treatment-specific.
+
+=== Text #13 ===
+> On the 12th April 2017 Centrica Storage Ltd announced that injections at Rough, UK's biggest storage facility, will not take place until May 2018 at the earliest, following increasing concern about the condition of the majority of the wells. Should Rough continue to work intermittently over the next years, LNG players will want to reassess their regas position in NW Europe. They will be seeking winter access in the UK and summer access in continental Europe. Access to the IUK or BBL will also be an option, however Brexit adds uncertainties. Expect more volatility and trading opportunities as the market adjusts.
+This report highlights some of the key market developments in the European energy sector for April 2017.
+The rebalancing of LNG market will be driven by strong growth in Asia gas demand, especially in China.
+
+=== Text #14 ===
+> Pre-Owned, AWD Titanium 4dr Crossover, Ebony interior, Gas, 20(city)/27(highwa­y) mpg, Auto 6 speed, I4, 2.00L, All wheel drive. EPA 27 MPG Hwy/20 MPG City! Nav System, Heated Leather Seats, All Wheel Drive, Power Liftgate, iPod/MP3 Input, Premium Sound System AND MORE KEY FEATURES INCLUDE: All ... 4/19/2019 ~ Scottsbluff, Nebraska ~ 0.0 mi.
+Pre-Owned, AWD SEL 4dr Crossover, Gas, 18(city)/25(highwa­y) mpg, Auto 6 speed, V6, 3.50L, All wheel drive. ONLY 34,000 Miles! CD Player, iPod/MP3 Input, Dual Zone A/C, Onboard Communications System, Alloy Wheels, All Wheel Drive AND MORE KEY FEATURES INCLUDE: All Wheel Drive, Satellite Radio, iPod/MP3 ... 4/18/2019 ~ Scottsbluff, Nebraska ~ 0.0 mi.
+Pre-Owned, XLT 4dr SuperCab 4WD SB, GasAuto, V6, 4.00L, Four wheel drive. EPA 20 MPG Hwy/17 MPG City! Running Boards, iPod/MP3 Input, CD Player, CLOTH FRONT 60/40 SPLIT BENCH SEAT, Alloy Wheels CLICK NOW KEY FEATURES INCLUDE: 4x4, Running Boards, iPod/MP3 Input, CD Player, Aluminum ... 4/18/2019 ~ Scottsbluff, Nebraska ~ 0.0 mi.
+Pre-Owned, 4x4 LTZ 4dr Crew Cab SB, Ebony interior, DieselAuto 6 speed, V8, 6.60L. GREAT MILES 52,060! Heated Leather Seats, 4x4, Turbo, Alloy Wheels, Onboard Communications System, Satellite Radio, Tow Hitch CLICK ME KEY FEATURES INCLUDE: Leather Seats, 4x4, Heated Driver Seat, Premium Sound System, ... 4/17/2019 ~ Scottsbluff, Nebraska ~ 0.0 mi.
+Pre-Owned, 4x4 XLT 4dr SuperCrew 5.5 ft. SB, Medium Earth Gray interior, Flexible Fuel, 15(city)/21(highwa­y) mpg, Auto 6 speed, V
+
+=== Text #15 ===
+> Menara Taming Sari (Melaka Tower) is located at Bandar Hilir, beside Dataran Pahlawan Megamall. It is the first and only gyro tower in Malaysia so far. The tower revolves 360° to provide a panoramic view of Malacca town. From a height of 80 meters, the ride offers you a spectacular and panaromic view of Historical Melaka City and a far with a host of interesting sights such as St Paul’s Hill, Independence Memorial Building, Samudera Museum and the ship, Flor De La Mar, Melaka River, Dataran Pahlawan, Pulau Selat Mosque, Pulau Besar and the Straits of Malacca.
+That apart, you will also see the fast and rapid development taking place in the state.
+The air-conditioned circular observation deck can take 66 people at any one time. You'll stay up there for about seven minutes. Once it reaches the top, a breathtaking, sprawling view of Malacca as far as the eye can see, up to the Straits of Malacca, is clearly visible, especially in good weather, with the Melaka River running through the grand panorama below.
+In addition to the revolving tower for visitors to enjoy bird view of Melaka city, the ticketing building will also be fitted with 5 commercial outlets, which includes a cafe, restaurant, and souvenir shops.
+The admission charges for Menara Taming Sari are RM20 for an adult and RM10 for children below 12 years old. There is a huge car park next to the tower. For further information, please contact Melaka Taming Sari Berhad at +60-6-2881100 or +60-6-2813366.
+Menara Taming Sari opens at 10:00 am and continues till 10:00 pm, daily.
+
+=== Text #16 ===
+> Private equity group Penta and the company J 23 a.s. yesterday reached an agreement on the sale of the ADAST a.s., a manufacturer of printing presses based in Adamov, Czech Republic. J 23, a company with a significant interest in machinery manufacturing, is purchasing 100 % of the shares in ADAST. The value of the transaction has not been disclosed. The new owner plans to keep the polygraphic manufacturing activities at ADAST.
+Penta purchased ADAST out of bankruptcy in 2003. The company was in poor condition and it was having a hard time surviving in the highly competitive international market for printing equipment. In ADAST Penta invested primarily in the areas of production optimization, R&D and innovations. Although ADAST retained its existing production, it increasingly started to focus on cooperative arrangements. The company will continue these trends after its change of ownership.
+
+=== Text #17 ===
+> The High brightness is being compared to 350 Watts conventional xenon light source that can be utilized for critical illness like laparoscopy without any problem and with utmost ease.
+It has an extended service life, which means it can easily last for 60000 hours at a max, which is 120 times of xenon. This further emphasises that one doest not need to change the bulb for a number of years and can be used for a long time.
+We have an extensive range of power from 100 to 240 V / AC; 50 / 60 Hz.
+The perfect colour temperature ranges from 5000 K to 6500 K, and the colour rendering is over 70.
+It does not gives out light in the Ultra Violet or Infrared Rays.
+The customized connector, it accepts fibre light directs with dynamic and on the go areas varying from 3 mm to 10 mm in diameter or span.
+It helps saves half the energy i.e. it will be more than 50%.
+It is considered environment friendly.
+
+=== Text #18 ===
+> NC series toilets were installed in 26 patient bathrooms as part of the renovations performed at the Bielefeld hospital.
+The hospital's technical director and hygiene expert chose the TOTO toilets because they were proven to dramatically reduce bacterial loads required for a German Hygiene Certificate. The new Tornado Flush technology, special CeFiONtect glaze and easy-to-clean rimless bowl prevent dirt and bacteria from accumulating in the toilet. The flush is also far quieter than conventional toilets.
+
+=== Text #19 ===
+> OpenWRT that use -Os to make small binaries.
+OS X.  I don't know enough about the other platforms to say.
+Here's the Debian docs on the topic.
+
+=== Text #20 ===
+> Road map for PM Modi's complete road-show. Watch complete video for complete details.
+PM Modi's road show to be 7 km long. Watch complete video to know more.
+
+
+Description: 
+2025-09-13 00:01:17,591 - root - INFO - Relating to identification or descriptive properties of electronic devices
+
+2025-09-13 00:01:17,594 - root - INFO - Cluster #4 saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.csv
+2025-09-13 00:01:17,595 - root - INFO - ================================================================================
+2025-09-13 00:01:17,596 - root - INFO - ANALYSIS COMPLETED
+2025-09-13 00:01:17,596 - root - INFO - ================================================================================
+2025-09-13 00:01:17,597 - root - INFO - Logs saved to: logs/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.log
+2025-09-13 00:01:17,598 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-small-sae/gpt2-small-sae_layer-10_unit-5239_2025-09-12_21-52-58.csv

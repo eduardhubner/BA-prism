@@ -1,0 +1,729 @@
+2025-07-26 04:23:05,117 - root - INFO - ================================================================================
+2025-07-26 04:23:05,118 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-26 04:23:05,119 - root - INFO - ================================================================================
+2025-07-26 04:23:05,120 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-26 04:23:05,121 - root - INFO - AGG_METHOD = mean
+2025-07-26 04:23:05,121 - root - INFO - BATCH_SIZE = 2
+2025-07-26 04:23:05,122 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 04:23:05,123 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-26 04:23:05,124 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-26 04:23:05,124 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-26 04:23:05,125 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-26 04:23:05,126 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-26 04:23:05,126 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-26 04:23:05,127 - root - INFO - CONTROL_SPLIT = train
+2025-07-26 04:23:05,128 - root - INFO - DATA_FILES = None
+2025-07-26 04:23:05,128 - root - INFO - DEVICE = cuda
+2025-07-26 04:23:05,129 - root - INFO - END_INTERVAL = 1.0
+2025-07-26 04:23:05,130 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = microsoft/phi-4
+2025-07-26 04:23:05,131 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-26 04:23:05,131 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-26 04:23:05,132 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-26 04:23:05,132 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-26 04:23:05,133 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-26 04:23:05,134 - root - INFO - LAYER_ID = 0
+2025-07-26 04:23:05,134 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-26 04:23:05,135 - root - INFO - MAX_NEW_TOKENS = 32768
+2025-07-26 04:23:05,136 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-26 04:23:05,136 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-26 04:23:05,137 - root - INFO - MULTI_EVAL = True
+2025-07-26 04:23:05,138 - root - INFO - N_CLUSTERS = 5
+2025-07-26 04:23:05,138 - root - INFO - N_SAMPLES = 10
+2025-07-26 04:23:05,139 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-26 04:23:05,140 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-26 04:23:05,140 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-26 04:23:05,141 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-26 04:23:05,142 - root - INFO - SPLIT = train
+2025-07-26 04:23:05,142 - root - INFO - START_INTERVAL = 0.99
+2025-07-26 04:23:05,143 - root - INFO - STREAMING = True
+2025-07-26 04:23:05,144 - root - INFO - SUBSET_SIZE = 1000
+2025-07-26 04:23:05,145 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-26 04:23:05,145 - root - INFO - TARGET_DATA = c4
+2025-07-26 04:23:05,146 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-26 04:23:05,147 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 04:23:05,147 - root - INFO - UNIT_ID = 2725
+2025-07-26 04:23:05,148 - root - INFO - USE_API = False
+2025-07-26 04:23:05,149 - root - INFO - ================================================================================
+2025-07-26 04:23:05,150 - root - INFO - ANALYSIS RESULTS
+2025-07-26 04:23:05,150 - root - INFO - ================================================================================
+2025-07-26 04:23:05,151 - root - INFO - Analysis results will be saved to: logs/evaluation_gpt2-xl_layer-0_unit-2725_2025-07-26_02-23-05.log
+2025-07-26 04:23:05,277 - root - INFO - Loading target model...
+2025-07-26 04:23:19,074 - root - INFO - Model loaded successfully
+2025-07-26 04:23:19,411 - root - INFO - Tokenizer loaded successfully
+2025-07-26 04:23:19,417 - root - INFO - Loaded 60 layer-unit pairs to process
+2025-07-26 04:23:19,419 - root - INFO - Loading text generator model...
+2025-07-26 04:23:20,138 - accelerate.utils.modeling - INFO - We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+2025-07-26 04:24:06,138 - root - INFO - Text generator loaded successfully
+2025-07-26 04:24:06,332 - root - INFO - Processing layer 0, unit 6314 (1/60)
+2025-07-26 04:24:06,375 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:06,622 - root - INFO - Processed explanation 1/1 for layer 0, unit 6314
+2025-07-26 04:24:06,765 - root - INFO - Processing layer 0, unit 2725 (2/60)
+2025-07-26 04:24:06,803 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:06,961 - root - INFO - Processed explanation 1/1 for layer 0, unit 2725
+2025-07-26 04:24:07,104 - root - INFO - Processing layer 0, unit 4297 (3/60)
+2025-07-26 04:24:07,142 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:07,298 - root - INFO - Processed explanation 1/5 for layer 0, unit 4297
+2025-07-26 04:24:07,333 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:07,492 - root - INFO - Processed explanation 2/5 for layer 0, unit 4297
+2025-07-26 04:24:07,527 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:07,683 - root - INFO - Processed explanation 3/5 for layer 0, unit 4297
+2025-07-26 04:24:07,717 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:07,873 - root - INFO - Processed explanation 4/5 for layer 0, unit 4297
+2025-07-26 04:24:07,905 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:08,059 - root - INFO - Processed explanation 5/5 for layer 0, unit 4297
+2025-07-26 04:24:08,201 - root - INFO - Processing layer 0, unit 4842 (4/60)
+2025-07-26 04:24:08,242 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:08,404 - root - INFO - Processed explanation 1/5 for layer 0, unit 4842
+2025-07-26 04:24:08,437 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:08,591 - root - INFO - Processed explanation 2/5 for layer 0, unit 4842
+2025-07-26 04:24:08,627 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:08,783 - root - INFO - Processed explanation 3/5 for layer 0, unit 4842
+2025-07-26 04:24:08,817 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:08,973 - root - INFO - Processed explanation 4/5 for layer 0, unit 4842
+2025-07-26 04:24:09,008 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:09,165 - root - INFO - Processed explanation 5/5 for layer 0, unit 4842
+2025-07-26 04:24:09,307 - root - INFO - Processing layer 0, unit 5551 (5/60)
+2025-07-26 04:24:09,346 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:09,502 - root - INFO - Processed explanation 1/5 for layer 0, unit 5551
+2025-07-26 04:24:09,537 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:09,692 - root - INFO - Processed explanation 2/5 for layer 0, unit 5551
+2025-07-26 04:24:09,728 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:09,886 - root - INFO - Processed explanation 3/5 for layer 0, unit 5551
+2025-07-26 04:24:09,919 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:10,074 - root - INFO - Processed explanation 4/5 for layer 0, unit 5551
+2025-07-26 04:24:10,108 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:10,262 - root - INFO - Processed explanation 5/5 for layer 0, unit 5551
+2025-07-26 04:24:10,404 - root - INFO - Processing layer 0, unit 1749 (6/60)
+2025-07-26 04:24:10,445 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:10,603 - root - INFO - Processed explanation 1/5 for layer 0, unit 1749
+2025-07-26 04:24:10,636 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:10,793 - root - INFO - Processed explanation 2/5 for layer 0, unit 1749
+2025-07-26 04:24:10,828 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:10,983 - root - INFO - Processed explanation 3/5 for layer 0, unit 1749
+2025-07-26 04:24:11,018 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:11,178 - root - INFO - Processed explanation 4/5 for layer 0, unit 1749
+2025-07-26 04:24:11,211 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:11,368 - root - INFO - Processed explanation 5/5 for layer 0, unit 1749
+2025-07-26 04:24:11,520 - root - INFO - Processing layer 0, unit 3943 (7/60)
+2025-07-26 04:24:11,557 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:11,713 - root - INFO - Processed explanation 1/1 for layer 0, unit 3943
+2025-07-26 04:24:11,855 - root - INFO - Processing layer 0, unit 5960 (8/60)
+2025-07-26 04:24:11,895 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:12,052 - root - INFO - Processed explanation 1/1 for layer 0, unit 5960
+2025-07-26 04:24:12,197 - root - INFO - Processing layer 0, unit 3696 (9/60)
+2025-07-26 04:24:12,234 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:12,391 - root - INFO - Processed explanation 1/5 for layer 0, unit 3696
+2025-07-26 04:24:12,424 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:12,577 - root - INFO - Processed explanation 2/5 for layer 0, unit 3696
+2025-07-26 04:24:12,609 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:12,763 - root - INFO - Processed explanation 3/5 for layer 0, unit 3696
+2025-07-26 04:24:12,796 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:12,953 - root - INFO - Processed explanation 4/5 for layer 0, unit 3696
+2025-07-26 04:24:12,985 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:13,139 - root - INFO - Processed explanation 5/5 for layer 0, unit 3696
+2025-07-26 04:24:13,282 - root - INFO - Processing layer 0, unit 3533 (10/60)
+2025-07-26 04:24:13,318 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:13,473 - root - INFO - Processed explanation 1/5 for layer 0, unit 3533
+2025-07-26 04:24:13,505 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:13,673 - root - INFO - Processed explanation 2/5 for layer 0, unit 3533
+2025-07-26 04:24:13,705 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:13,859 - root - INFO - Processed explanation 3/5 for layer 0, unit 3533
+2025-07-26 04:24:13,894 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:14,048 - root - INFO - Processed explanation 4/5 for layer 0, unit 3533
+2025-07-26 04:24:14,083 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:14,240 - root - INFO - Processed explanation 5/5 for layer 0, unit 3533
+2025-07-26 04:24:14,385 - root - INFO - Processing layer 0, unit 3124 (11/60)
+2025-07-26 04:24:14,422 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:14,579 - root - INFO - Processed explanation 1/1 for layer 0, unit 3124
+2025-07-26 04:24:14,721 - root - INFO - Processing layer 0, unit 1149 (12/60)
+2025-07-26 04:24:14,758 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:14,913 - root - INFO - Processed explanation 1/1 for layer 0, unit 1149
+2025-07-26 04:24:15,058 - root - INFO - Processing layer 0, unit 6114 (13/60)
+2025-07-26 04:24:15,097 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:15,256 - root - INFO - Processed explanation 1/5 for layer 0, unit 6114
+2025-07-26 04:24:15,288 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:15,443 - root - INFO - Processed explanation 2/5 for layer 0, unit 6114
+2025-07-26 04:24:15,476 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:15,631 - root - INFO - Processed explanation 3/5 for layer 0, unit 6114
+2025-07-26 04:24:15,664 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:15,820 - root - INFO - Processed explanation 4/5 for layer 0, unit 6114
+2025-07-26 04:24:15,855 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:16,010 - root - INFO - Processed explanation 5/5 for layer 0, unit 6114
+2025-07-26 04:24:16,155 - root - INFO - Processing layer 0, unit 3279 (14/60)
+2025-07-26 04:24:16,194 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:16,351 - root - INFO - Processed explanation 1/1 for layer 0, unit 3279
+2025-07-26 04:24:16,494 - root - INFO - Processing layer 0, unit 440 (15/60)
+2025-07-26 04:24:16,532 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:16,688 - root - INFO - Processed explanation 1/1 for layer 0, unit 440
+2025-07-26 04:24:16,831 - root - INFO - Processing layer 0, unit 4405 (16/60)
+2025-07-26 04:24:16,869 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:17,025 - root - INFO - Processed explanation 1/1 for layer 0, unit 4405
+2025-07-26 04:24:17,168 - root - INFO - Processing layer 0, unit 5781 (17/60)
+2025-07-26 04:24:17,208 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:17,368 - root - INFO - Processed explanation 1/1 for layer 0, unit 5781
+2025-07-26 04:24:17,511 - root - INFO - Processing layer 0, unit 3057 (18/60)
+2025-07-26 04:24:17,549 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:17,704 - root - INFO - Processed explanation 1/1 for layer 0, unit 3057
+2025-07-26 04:24:17,846 - root - INFO - Processing layer 0, unit 5085 (19/60)
+2025-07-26 04:24:17,885 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:18,043 - root - INFO - Processed explanation 1/5 for layer 0, unit 5085
+2025-07-26 04:24:18,075 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:18,228 - root - INFO - Processed explanation 2/5 for layer 0, unit 5085
+2025-07-26 04:24:18,258 - root - INFO - File already exists, skipping generation: generated_text/phi-4/Rope_access_locations_in_Arkansas_educational_courses_probation_terms_Nigerian_aid_hospital_communic.txt
+2025-07-26 04:24:21,847 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:21,999 - root - INFO - Processed explanation 3/5 for layer 0, unit 5085
+2025-07-26 04:24:37,943 - root - INFO - Samples saved to: generated_text/phi-4/Methods_procedures_or_sequences_related_to_improvement_change_or_progression.txt
+2025-07-26 04:24:40,056 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:40,204 - root - INFO - Processed explanation 4/5 for layer 0, unit 5085
+2025-07-26 04:24:54,037 - root - INFO - Samples saved to: generated_text/phi-4/A_negative_sentiment_or_concern_regarding_a_specific_course_of_action_or_situation_often_related_to_.txt
+2025-07-26 04:24:56,103 - root - INFO - Activation shape valid: 10
+2025-07-26 04:24:56,256 - root - INFO - Processed explanation 5/5 for layer 0, unit 5085
+2025-07-26 04:24:56,394 - root - INFO - Processing layer 0, unit 4679 (20/60)
+2025-07-26 04:25:09,811 - root - INFO - Samples saved to: generated_text/phi-4/Locations_time_references_and_positive_feedback.txt
+2025-07-26 04:25:11,875 - root - INFO - Activation shape valid: 10
+2025-07-26 04:25:12,023 - root - INFO - Processed explanation 1/1 for layer 0, unit 4679
+2025-07-26 04:25:12,160 - root - INFO - Processing layer 20, unit 328 (21/60)
+2025-07-26 04:25:32,305 - root - INFO - Samples saved to: generated_text/phi-4/Locations_events_or_items_and_additional_information_about_them.txt
+2025-07-26 04:25:34,429 - root - INFO - Activation shape valid: 10
+2025-07-26 04:25:34,576 - root - INFO - Processed explanation 1/5 for layer 20, unit 328
+2025-07-26 04:25:50,664 - root - INFO - Samples saved to: generated_text/phi-4/Products_or_services_with_details_or_instructions.txt
+2025-07-26 04:25:52,748 - root - INFO - Activation shape valid: 10
+2025-07-26 04:25:52,896 - root - INFO - Processed explanation 2/5 for layer 20, unit 328
+2025-07-26 04:26:10,012 - root - INFO - Samples saved to: generated_text/phi-4/Communication_methods_and_services_including_mobile_applications_internet_access_telecommunications_.txt
+2025-07-26 04:26:12,098 - root - INFO - Activation shape valid: 10
+2025-07-26 04:26:12,246 - root - INFO - Processed explanation 3/5 for layer 20, unit 328
+2025-07-26 04:26:29,960 - root - INFO - Samples saved to: generated_text/phi-4/Titles_names_locations_and_dates_in_bibliographic_entries_or_citations.txt
+2025-07-26 04:26:32,081 - root - INFO - Activation shape valid: 10
+2025-07-26 04:26:32,225 - root - INFO - Processed explanation 4/5 for layer 20, unit 328
+2025-07-26 04:26:42,976 - root - INFO - Samples saved to: generated_text/phi-4/Expressions_of_enjoyment_opinions_or_commentary_often_related_to_entertainment_media_personal_experi.txt
+2025-07-26 04:26:45,166 - root - INFO - Activation shape valid: 10
+2025-07-26 04:26:45,326 - root - INFO - Processed explanation 5/5 for layer 20, unit 328
+2025-07-26 04:26:45,466 - root - INFO - Processing layer 20, unit 5789 (22/60)
+2025-07-26 04:27:03,545 - root - INFO - Samples saved to: generated_text/phi-4/Locations_dates_or_time_references.txt
+2025-07-26 04:27:05,671 - root - INFO - Activation shape valid: 10
+2025-07-26 04:27:05,830 - root - INFO - Processed explanation 1/1 for layer 20, unit 5789
+2025-07-26 04:27:05,967 - root - INFO - Processing layer 20, unit 4268 (23/60)
+2025-07-26 04:27:23,048 - root - INFO - Samples saved to: generated_text/phi-4/Conditions_terms_of_service_user_agreements_or_legal_documents_especially_concerning_user_actions_li.txt
+2025-07-26 04:27:25,141 - root - INFO - Activation shape valid: 10
+2025-07-26 04:27:25,287 - root - INFO - Processed explanation 1/1 for layer 20, unit 4268
+2025-07-26 04:27:25,450 - root - INFO - Processing layer 20, unit 2988 (24/60)
+2025-07-26 04:27:41,065 - root - INFO - Samples saved to: generated_text/phi-4/Pronoun_references_often_in_the_first_person_related_to_personal_background_experiences_inquiries_in.txt
+2025-07-26 04:27:43,218 - root - INFO - Activation shape valid: 10
+2025-07-26 04:27:43,367 - root - INFO - Processed explanation 1/1 for layer 20, unit 2988
+2025-07-26 04:27:43,507 - root - INFO - Processing layer 20, unit 4683 (25/60)
+2025-07-26 04:28:01,086 - root - INFO - Samples saved to: generated_text/phi-4/Mineral_varieties_of_Quartz_and_their_properties.txt
+2025-07-26 04:28:03,206 - root - INFO - Activation shape valid: 10
+2025-07-26 04:28:03,352 - root - INFO - Processed explanation 1/1 for layer 20, unit 4683
+2025-07-26 04:28:03,491 - root - INFO - Processing layer 20, unit 6045 (26/60)
+2025-07-26 04:28:21,604 - root - INFO - Samples saved to: generated_text/phi-4/Locations_and_events.txt
+2025-07-26 04:28:23,744 - root - INFO - Activation shape valid: 10
+2025-07-26 04:28:23,894 - root - INFO - Processed explanation 1/5 for layer 20, unit 6045
+2025-07-26 04:28:37,032 - root - INFO - Samples saved to: generated_text/phi-4/Events_services_or_products_offered_by_a_business_or_organization.txt
+2025-07-26 04:28:39,237 - root - INFO - Activation shape valid: 10
+2025-07-26 04:28:39,384 - root - INFO - Processed explanation 2/5 for layer 20, unit 6045
+2025-07-26 04:28:52,190 - root - INFO - Samples saved to: generated_text/phi-4/Software_scripts_coding_data_processes_and_websitesonline_platforms.txt
+2025-07-26 04:28:54,373 - root - INFO - Activation shape valid: 10
+2025-07-26 04:28:54,525 - root - INFO - Processed explanation 3/5 for layer 20, unit 6045
+2025-07-26 04:29:10,778 - root - INFO - Samples saved to: generated_text/phi-4/Consumption_creation_or_observation_of_food_writing_art_collectables_or_media_especially_when_descri.txt
+2025-07-26 04:29:12,923 - root - INFO - Activation shape valid: 10
+2025-07-26 04:29:13,070 - root - INFO - Processed explanation 4/5 for layer 20, unit 6045
+2025-07-26 04:29:34,245 - root - INFO - Samples saved to: generated_text/phi-4/Instructions_or_steps_in_a_process_often_related_to_cooking_baking_repairs_or_DIY_projects.txt
+2025-07-26 04:29:36,415 - root - INFO - Activation shape valid: 10
+2025-07-26 04:29:36,565 - root - INFO - Processed explanation 5/5 for layer 20, unit 6045
+2025-07-26 04:29:36,705 - root - INFO - Processing layer 20, unit 5741 (27/60)
+2025-07-26 04:29:51,529 - root - INFO - Samples saved to: generated_text/phi-4/Expressions_of_excitement_gratitude_or_emphasis.txt
+2025-07-26 04:29:53,652 - root - INFO - Activation shape valid: 10
+2025-07-26 04:29:53,800 - root - INFO - Processed explanation 1/1 for layer 20, unit 5741
+2025-07-26 04:29:53,940 - root - INFO - Processing layer 20, unit 5662 (28/60)
+2025-07-26 04:30:08,167 - root - INFO - Samples saved to: generated_text/phi-4/Ways_to_contact_share_or_find_information.txt
+2025-07-26 04:30:10,330 - root - INFO - Activation shape valid: 10
+2025-07-26 04:30:10,476 - root - INFO - Processed explanation 1/1 for layer 20, unit 5662
+2025-07-26 04:30:10,616 - root - INFO - Processing layer 20, unit 2679 (29/60)
+2025-07-26 04:30:24,026 - root - INFO - Samples saved to: generated_text/phi-4/Settings_assignments_or_actions_related_to_software_or_applications.txt
+2025-07-26 04:30:26,158 - root - INFO - Activation shape valid: 10
+2025-07-26 04:30:26,346 - root - INFO - Processed explanation 1/5 for layer 20, unit 2679
+2025-07-26 04:30:46,142 - root - INFO - Samples saved to: generated_text/phi-4/Initial_words_or_abbreviations_of_titles_topics_or_names_of_productscompanies.txt
+2025-07-26 04:30:48,291 - root - INFO - Activation shape valid: 10
+2025-07-26 04:30:48,438 - root - INFO - Processed explanation 2/5 for layer 20, unit 2679
+2025-07-26 04:31:11,038 - root - INFO - Samples saved to: generated_text/phi-4/Locations_timesdates_quantities_and_directivesquestions.txt
+2025-07-26 04:31:13,221 - root - INFO - Activation shape valid: 10
+2025-07-26 04:31:13,367 - root - INFO - Processed explanation 3/5 for layer 20, unit 2679
+2025-07-26 04:31:35,011 - root - INFO - Samples saved to: generated_text/phi-4/Products_or_services_with_descriptions_andor_characteristics.txt
+2025-07-26 04:31:37,224 - root - INFO - Activation shape valid: 10
+2025-07-26 04:31:37,369 - root - INFO - Processed explanation 4/5 for layer 20, unit 2679
+2025-07-26 04:31:54,025 - root - INFO - Samples saved to: generated_text/phi-4/Descriptions_of_or_information_related_to_events_items_or_locations.txt
+2025-07-26 04:31:56,164 - root - INFO - Activation shape valid: 10
+2025-07-26 04:31:56,314 - root - INFO - Processed explanation 5/5 for layer 20, unit 2679
+2025-07-26 04:31:56,455 - root - INFO - Processing layer 20, unit 2869 (30/60)
+2025-07-26 04:32:07,323 - root - INFO - Samples saved to: generated_text/phi-4/Seeking_assistance_information_or_expressing_a_need.txt
+2025-07-26 04:32:09,453 - root - INFO - Activation shape valid: 10
+2025-07-26 04:32:09,599 - root - INFO - Processed explanation 1/1 for layer 20, unit 2869
+2025-07-26 04:32:09,738 - root - INFO - Processing layer 20, unit 1424 (31/60)
+2025-07-26 04:32:32,083 - root - INFO - Samples saved to: generated_text/phi-4/Products_or_services_and_their_specifications.txt
+2025-07-26 04:32:34,239 - root - INFO - Activation shape valid: 10
+2025-07-26 04:32:34,385 - root - INFO - Processed explanation 1/5 for layer 20, unit 1424
+2025-07-26 04:32:47,630 - root - INFO - Samples saved to: generated_text/phi-4/Health_education_or_real_estate_discussions_involving_consultations_services_or_information.txt
+2025-07-26 04:32:49,776 - root - INFO - Activation shape valid: 10
+2025-07-26 04:32:49,922 - root - INFO - Processed explanation 2/5 for layer 20, unit 1424
+2025-07-26 04:33:05,021 - root - INFO - Samples saved to: generated_text/phi-4/Political_figures_organizations_or_events.txt
+2025-07-26 04:33:07,147 - root - INFO - Activation shape valid: 10
+2025-07-26 04:33:07,292 - root - INFO - Processed explanation 3/5 for layer 20, unit 1424
+2025-07-26 04:33:24,665 - root - INFO - Samples saved to: generated_text/phi-4/Locations_of_businesses_or_organizations.txt
+2025-07-26 04:33:26,802 - root - INFO - Activation shape valid: 10
+2025-07-26 04:33:26,966 - root - INFO - Processed explanation 4/5 for layer 20, unit 1424
+2025-07-26 04:33:43,057 - root - INFO - Samples saved to: generated_text/phi-4/Body_parts_personal_care_products_or_furniture.txt
+2025-07-26 04:33:45,221 - root - INFO - Activation shape valid: 10
+2025-07-26 04:33:45,367 - root - INFO - Processed explanation 5/5 for layer 20, unit 1424
+2025-07-26 04:33:45,504 - root - INFO - Processing layer 20, unit 5278 (32/60)
+2025-07-26 04:33:59,388 - root - INFO - Samples saved to: generated_text/phi-4/Beauty_skincare_DIY_remedies_overnight_treatments_durations_medical_procedures_historical_figures_da.txt
+2025-07-26 04:34:01,560 - root - INFO - Activation shape valid: 10
+2025-07-26 04:34:01,708 - root - INFO - Processed explanation 1/1 for layer 20, unit 5278
+2025-07-26 04:34:01,848 - root - INFO - Processing layer 20, unit 2325 (33/60)
+2025-07-26 04:34:28,541 - root - INFO - Samples saved to: generated_text/phi-4/Fashion_garments_clothing_accessories_food_home_decor_and_makeup.txt
+2025-07-26 04:34:30,698 - root - INFO - Activation shape valid: 10
+2025-07-26 04:34:30,844 - root - INFO - Processed explanation 1/5 for layer 20, unit 2325
+2025-07-26 04:34:45,814 - root - INFO - Samples saved to: generated_text/phi-4/Conditional_actions_or_situations_and_their_potential_outcomes_especially_relating_to_rules_regulati.txt
+2025-07-26 04:34:47,956 - root - INFO - Activation shape valid: 10
+2025-07-26 04:34:48,102 - root - INFO - Processed explanation 2/5 for layer 20, unit 2325
+2025-07-26 04:35:03,737 - root - INFO - Samples saved to: generated_text/phi-4/Events_shows_or_locations_often_with_a_time_or_date_and_sometimes_including_named_people.txt
+2025-07-26 04:35:05,915 - root - INFO - Activation shape valid: 10
+2025-07-26 04:35:06,062 - root - INFO - Processed explanation 3/5 for layer 20, unit 2325
+2025-07-26 04:35:18,618 - root - INFO - Samples saved to: generated_text/phi-4/Items_related_to_protective_or_enhancing_wearables.txt
+2025-07-26 04:35:20,747 - root - INFO - Activation shape valid: 10
+2025-07-26 04:35:20,893 - root - INFO - Processed explanation 4/5 for layer 20, unit 2325
+2025-07-26 04:35:34,780 - root - INFO - Samples saved to: generated_text/phi-4/Rights_and_usage_of_digital_information_services_or_products_often_with_respect_to_ownership_and_res.txt
+2025-07-26 04:35:36,954 - root - INFO - Activation shape valid: 10
+2025-07-26 04:35:37,104 - root - INFO - Processed explanation 5/5 for layer 20, unit 2325
+2025-07-26 04:35:37,242 - root - INFO - Processing layer 20, unit 2700 (34/60)
+2025-07-26 04:35:52,880 - root - INFO - Samples saved to: generated_text/phi-4/Titles_names_locations_dates_or_monetary_values.txt
+2025-07-26 04:35:55,055 - root - INFO - Activation shape valid: 10
+2025-07-26 04:35:55,202 - root - INFO - Processed explanation 1/5 for layer 20, unit 2700
+2025-07-26 04:36:14,511 - root - INFO - Samples saved to: generated_text/phi-4/Years_numeric_identifiers_or_other_measurements_relating_to_time_or_quantity.txt
+2025-07-26 04:36:16,645 - root - INFO - Activation shape valid: 10
+2025-07-26 04:36:16,791 - root - INFO - Processed explanation 2/5 for layer 20, unit 2700
+2025-07-26 04:36:27,540 - root - INFO - Samples saved to: generated_text/phi-4/Initial_words_or_phrases_indicating_a_question_statement_or_topic_related_to_business_technology_fin.txt
+2025-07-26 04:36:29,703 - root - INFO - Activation shape valid: 10
+2025-07-26 04:36:29,850 - root - INFO - Processed explanation 3/5 for layer 20, unit 2700
+2025-07-26 04:36:43,262 - root - INFO - Samples saved to: generated_text/phi-4/Expressions_of_opinions_thoughts_or_beliefs.txt
+2025-07-26 04:36:45,442 - root - INFO - Activation shape valid: 10
+2025-07-26 04:36:45,587 - root - INFO - Processed explanation 4/5 for layer 20, unit 2700
+2025-07-26 04:37:04,675 - root - INFO - Samples saved to: generated_text/phi-4/Products_or_items_and_their_descriptions.txt
+2025-07-26 04:37:06,840 - root - INFO - Activation shape valid: 10
+2025-07-26 04:37:06,991 - root - INFO - Processed explanation 5/5 for layer 20, unit 2700
+2025-07-26 04:37:07,131 - root - INFO - Processing layer 20, unit 3313 (35/60)
+2025-07-26 04:37:20,719 - root - INFO - Samples saved to: generated_text/phi-4/Receiving_a_prize_or_award_sometimes_involving_a_draw_or_selection.txt
+2025-07-26 04:37:22,903 - root - INFO - Activation shape valid: 10
+2025-07-26 04:37:23,049 - root - INFO - Processed explanation 1/1 for layer 20, unit 3313
+2025-07-26 04:37:23,187 - root - INFO - Processing layer 20, unit 1004 (36/60)
+2025-07-26 04:37:35,519 - root - INFO - Samples saved to: generated_text/phi-4/Times_periods_or_points_related_to_the_start_beginning_first_stage_onset_or_early_phases_of_events_t.txt
+2025-07-26 04:37:37,708 - root - INFO - Activation shape valid: 10
+2025-07-26 04:37:37,852 - root - INFO - Processed explanation 1/5 for layer 20, unit 1004
+2025-07-26 04:37:55,984 - root - INFO - Samples saved to: generated_text/phi-4/Times_or_dates_often_in_relation_to_a_specific_event_or_season.txt
+2025-07-26 04:37:58,153 - root - INFO - Activation shape valid: 10
+2025-07-26 04:37:58,297 - root - INFO - Processed explanation 2/5 for layer 20, unit 1004
+2025-07-26 04:38:12,003 - root - INFO - Samples saved to: generated_text/phi-4/Importance_influence_significance_effect_impact_especially_when_related_to_first_times_most_best_big.txt
+2025-07-26 04:38:14,157 - root - INFO - Activation shape valid: 10
+2025-07-26 04:38:14,304 - root - INFO - Processed explanation 3/5 for layer 20, unit 1004
+2025-07-26 04:38:28,176 - root - INFO - Samples saved to: generated_text/phi-4/Superlative_adjectives_related_to_size_quantity_or_quality_in_contexts_of_comparisons_or_rankings.txt
+2025-07-26 04:38:30,317 - root - INFO - Activation shape valid: 10
+2025-07-26 04:38:30,462 - root - INFO - Processed explanation 4/5 for layer 20, unit 1004
+2025-07-26 04:38:42,857 - root - INFO - Samples saved to: generated_text/phi-4/Ordinal_numbers_especially_in_contexts_of_rankings_lists_and_time_sequences.txt
+2025-07-26 04:38:45,048 - root - INFO - Activation shape valid: 10
+2025-07-26 04:38:45,194 - root - INFO - Processed explanation 5/5 for layer 20, unit 1004
+2025-07-26 04:38:45,332 - root - INFO - Processing layer 20, unit 4447 (37/60)
+2025-07-26 04:38:57,849 - root - INFO - Samples saved to: generated_text/phi-4/Years_or_specific_dates_related_to_events_organizations_or_legal_cases.txt
+2025-07-26 04:39:00,028 - root - INFO - Activation shape valid: 10
+2025-07-26 04:39:00,173 - root - INFO - Processed explanation 1/5 for layer 20, unit 4447
+2025-07-26 04:39:15,502 - root - INFO - Samples saved to: generated_text/phi-4/Possessive_pronouns_conjunctions_prepositions_or_the_word_all.txt
+2025-07-26 04:39:17,643 - root - INFO - Activation shape valid: 10
+2025-07-26 04:39:17,804 - root - INFO - Processed explanation 2/5 for layer 20, unit 4447
+2025-07-26 04:39:33,472 - root - INFO - Samples saved to: generated_text/phi-4/Totality_wholeness_completeness_or_entirety.txt
+2025-07-26 04:39:35,652 - root - INFO - Activation shape valid: 10
+2025-07-26 04:39:35,809 - root - INFO - Processed explanation 3/5 for layer 20, unit 4447
+2025-07-26 04:40:00,510 - root - INFO - Samples saved to: generated_text/phi-4/Quantifiers_negation_and_proper_nouns.txt
+2025-07-26 04:40:02,753 - root - INFO - Activation shape valid: 10
+2025-07-26 04:40:02,899 - root - INFO - Processed explanation 4/5 for layer 20, unit 4447
+2025-07-26 04:40:16,965 - root - INFO - Samples saved to: generated_text/phi-4/A_key_concept_or_a_negation_of_a_concept_within_a_specific_context_or_group.txt
+2025-07-26 04:40:19,091 - root - INFO - Activation shape valid: 10
+2025-07-26 04:40:19,238 - root - INFO - Processed explanation 5/5 for layer 20, unit 4447
+2025-07-26 04:40:19,378 - root - INFO - Processing layer 20, unit 1406 (38/60)
+2025-07-26 04:40:27,778 - root - INFO - Samples saved to: generated_text/phi-4/Prepositions_indicating_purpose_or_targetrecipient_in_relation_to_technical_fields_jobs_or_software_.txt
+2025-07-26 04:40:29,939 - root - INFO - Activation shape valid: 10
+2025-07-26 04:40:30,085 - root - INFO - Processed explanation 1/5 for layer 20, unit 1406
+2025-07-26 04:40:47,876 - root - INFO - Samples saved to: generated_text/phi-4/Actions_or_behaviors_related_to_promises_oaths_or_commitments_especially_in_the_context_of_support_e.txt
+2025-07-26 04:40:50,096 - root - INFO - Activation shape valid: 10
+2025-07-26 04:40:50,256 - root - INFO - Processed explanation 2/5 for layer 20, unit 1406
+2025-07-26 04:41:04,380 - root - INFO - Samples saved to: generated_text/phi-4/Membership_in_or_association_with_groups_lists_or_organizations.txt
+2025-07-26 04:41:06,561 - root - INFO - Activation shape valid: 10
+2025-07-26 04:41:06,707 - root - INFO - Processed explanation 3/5 for layer 20, unit 1406
+2025-07-26 04:41:27,458 - root - INFO - Samples saved to: generated_text/phi-4/Product_descriptions_containing_sizes_dimensions_or_other_product_specifications.txt
+2025-07-26 04:41:29,606 - root - INFO - Activation shape valid: 10
+2025-07-26 04:41:29,752 - root - INFO - Processed explanation 4/5 for layer 20, unit 1406
+2025-07-26 04:41:49,863 - root - INFO - Samples saved to: generated_text/phi-4/Locations_events_or_items_and_their_associated_descriptive_information.txt
+2025-07-26 04:41:52,042 - root - INFO - Activation shape valid: 10
+2025-07-26 04:41:52,187 - root - INFO - Processed explanation 5/5 for layer 20, unit 1406
+2025-07-26 04:41:52,325 - root - INFO - Processing layer 20, unit 3885 (39/60)
+2025-07-26 04:42:13,539 - root - INFO - Samples saved to: generated_text/phi-4/Numbers_abbreviations_and_alphanumeric_codes_related_to_product_specifications_model_numbers_dates_t.txt
+2025-07-26 04:42:15,686 - root - INFO - Activation shape valid: 10
+2025-07-26 04:42:15,835 - root - INFO - Processed explanation 1/5 for layer 20, unit 3885
+2025-07-26 04:42:39,156 - root - INFO - Samples saved to: generated_text/phi-4/Instances_of_first_times_including_first_experiences_first_time_events_and_first_time_occurrences.txt
+2025-07-26 04:42:41,388 - root - INFO - Activation shape valid: 10
+2025-07-26 04:42:41,535 - root - INFO - Processed explanation 2/5 for layer 20, unit 3885
+2025-07-26 04:42:55,112 - root - INFO - Samples saved to: generated_text/phi-4/Requests_or_commands_and_places_or_locations.txt
+2025-07-26 04:42:57,255 - root - INFO - Activation shape valid: 10
+2025-07-26 04:42:57,402 - root - INFO - Processed explanation 3/5 for layer 20, unit 3885
+2025-07-26 04:43:14,569 - root - INFO - Samples saved to: generated_text/phi-4/A_first_time_experience_often_with_an_element_of_surprise_or_anticipation.txt
+2025-07-26 04:43:16,716 - root - INFO - Activation shape valid: 10
+2025-07-26 04:43:16,864 - root - INFO - Processed explanation 4/5 for layer 20, unit 3885
+2025-07-26 04:43:26,059 - root - INFO - Samples saved to: generated_text/phi-4/Short_informal_text_excerpts_with_punctuation_marks_sometimes_expressing_excitement.txt
+2025-07-26 04:43:28,244 - root - INFO - Activation shape valid: 10
+2025-07-26 04:43:28,392 - root - INFO - Processed explanation 5/5 for layer 20, unit 3885
+2025-07-26 04:43:28,533 - root - INFO - Processing layer 20, unit 1790 (40/60)
+2025-07-26 04:43:42,309 - root - INFO - Samples saved to: generated_text/phi-4/Business_commerce_services_employment_or_rolespositions_in_organizations.txt
+2025-07-26 04:43:44,478 - root - INFO - Activation shape valid: 10
+2025-07-26 04:43:44,625 - root - INFO - Processed explanation 1/5 for layer 20, unit 1790
+2025-07-26 04:43:59,081 - root - INFO - Samples saved to: generated_text/phi-4/Titles_of_entertainment_groups_or_products.txt
+2025-07-26 04:44:01,243 - root - INFO - Activation shape valid: 10
+2025-07-26 04:44:01,389 - root - INFO - Processed explanation 2/5 for layer 20, unit 1790
+2025-07-26 04:44:12,771 - root - INFO - Samples saved to: generated_text/phi-4/Tools_methods_and_resources_related_to_specific_activities_or_interests.txt
+2025-07-26 04:44:14,938 - root - INFO - Activation shape valid: 10
+2025-07-26 04:44:15,088 - root - INFO - Processed explanation 3/5 for layer 20, unit 1790
+2025-07-26 04:44:28,006 - root - INFO - Samples saved to: generated_text/phi-4/Relating_to_commercial_products_or_services_often_with_a_focus_on_sales_promotions_installations_or_.txt
+2025-07-26 04:44:30,207 - root - INFO - Activation shape valid: 10
+2025-07-26 04:44:30,355 - root - INFO - Processed explanation 4/5 for layer 20, unit 1790
+2025-07-26 04:44:44,928 - root - INFO - Samples saved to: generated_text/phi-4/Commercialsales_information_especially_related_to_products_or_services.txt
+2025-07-26 04:44:47,115 - root - INFO - Activation shape valid: 10
+2025-07-26 04:44:47,262 - root - INFO - Processed explanation 5/5 for layer 20, unit 1790
+2025-07-26 04:44:47,400 - root - INFO - Processing layer 40, unit 4965 (41/60)
+2025-07-26 04:45:01,689 - root - INFO - Samples saved to: generated_text/phi-4/Temporal_expressions_of_durations_of_reigns_terms_or_events.txt
+2025-07-26 04:45:03,846 - root - INFO - Activation shape valid: 10
+2025-07-26 04:45:04,004 - root - INFO - Processed explanation 1/5 for layer 40, unit 4965
+2025-07-26 04:45:21,118 - root - INFO - Samples saved to: generated_text/phi-4/Products_and_brands_often_with_model_specifications_and_sometimes_dates.txt
+2025-07-26 04:45:23,264 - root - INFO - Activation shape valid: 10
+2025-07-26 04:45:23,413 - root - INFO - Processed explanation 2/5 for layer 40, unit 4965
+2025-07-26 04:45:37,304 - root - INFO - Samples saved to: generated_text/phi-4/Topics_issues_or_subjects_being_discussed_presented_provided_found_or_searched_sometimes_with_a_loca.txt
+2025-07-26 04:45:39,482 - root - INFO - Activation shape valid: 10
+2025-07-26 04:45:39,627 - root - INFO - Processed explanation 3/5 for layer 40, unit 4965
+2025-07-26 04:45:53,266 - root - INFO - Samples saved to: generated_text/phi-4/The_semantic_concept_that_activates_this_neuron_appears_to_be_forms_of_the_verb_to_be_particularly_i.txt
+2025-07-26 04:45:55,379 - root - INFO - Activation shape valid: 10
+2025-07-26 04:45:55,524 - root - INFO - Processed explanation 4/5 for layer 40, unit 4965
+2025-07-26 04:46:20,571 - root - INFO - Samples saved to: generated_text/phi-4/Ratings_quantities_and_names_of_places_people_or_things.txt
+2025-07-26 04:46:22,751 - root - INFO - Activation shape valid: 10
+2025-07-26 04:46:22,900 - root - INFO - Processed explanation 5/5 for layer 40, unit 4965
+2025-07-26 04:46:23,040 - root - INFO - Processing layer 40, unit 3948 (42/60)
+2025-07-26 04:46:38,610 - root - INFO - Samples saved to: generated_text/phi-4/Software_development_design_and_implementation_especially_web_and_application_development_including_.txt
+2025-07-26 04:46:40,798 - root - INFO - Activation shape valid: 10
+2025-07-26 04:46:40,947 - root - INFO - Processed explanation 1/5 for layer 40, unit 3948
+2025-07-26 04:46:55,158 - root - INFO - Samples saved to: generated_text/phi-4/Concepts_of_personal_growth_learning_and_selfdiscovery_often_in_the_context_of_acquiring_a_new_skill.txt
+2025-07-26 04:46:57,312 - root - INFO - Activation shape valid: 10
+2025-07-26 04:46:57,459 - root - INFO - Processed explanation 2/5 for layer 40, unit 3948
+2025-07-26 04:47:13,477 - root - INFO - Samples saved to: generated_text/phi-4/Culinary_experiences_fashion_and_beauty_services_often_with_a_focus_on_high_quality_unique_offerings.txt
+2025-07-26 04:47:15,625 - root - INFO - Activation shape valid: 10
+2025-07-26 04:47:15,773 - root - INFO - Processed explanation 3/5 for layer 40, unit 3948
+2025-07-26 04:47:31,834 - root - INFO - Samples saved to: generated_text/phi-4/French_language_learning_professional_certifications_and_qualifications_and_company_services_related.txt
+2025-07-26 04:47:34,040 - root - INFO - Activation shape valid: 10
+2025-07-26 04:47:34,188 - root - INFO - Processed explanation 4/5 for layer 40, unit 3948
+2025-07-26 04:47:50,440 - root - INFO - Samples saved to: generated_text/phi-4/Nightlife_restaurants_or_entertainment_venues.txt
+2025-07-26 04:47:52,690 - root - INFO - Activation shape valid: 10
+2025-07-26 04:47:52,851 - root - INFO - Processed explanation 5/5 for layer 40, unit 3948
+2025-07-26 04:47:52,989 - root - INFO - Processing layer 40, unit 4055 (43/60)
+2025-07-26 04:48:04,814 - root - INFO - Samples saved to: generated_text/phi-4/Criteria_for_high_status_especially_in_employment_and_education_in_relation_to_leadership_and_access.txt
+2025-07-26 04:48:07,012 - root - INFO - Activation shape valid: 10
+2025-07-26 04:48:07,160 - root - INFO - Processed explanation 1/5 for layer 40, unit 4055
+2025-07-26 04:48:23,188 - root - INFO - Samples saved to: generated_text/phi-4/Concepts_of_dolls_games_movies_TV_shows_music_and_software_in_a_context_of_a_personal_story_or_revie.txt
+2025-07-26 04:48:25,334 - root - INFO - Activation shape valid: 10
+2025-07-26 04:48:25,481 - root - INFO - Processed explanation 2/5 for layer 40, unit 4055
+2025-07-26 04:48:42,687 - root - INFO - Samples saved to: generated_text/phi-4/Concepts_related_to_input_devices_and_terminals_specifically_their_access_methods_ports_and_connecti.txt
+2025-07-26 04:48:44,898 - root - INFO - Activation shape valid: 10
+2025-07-26 04:48:45,044 - root - INFO - Processed explanation 3/5 for layer 40, unit 4055
+2025-07-26 04:49:03,612 - root - INFO - Samples saved to: generated_text/phi-4/Dates_and_locations_of_events_often_including_specific_times_and_ages_of_participants.txt
+2025-07-26 04:49:05,789 - root - INFO - Activation shape valid: 10
+2025-07-26 04:49:05,939 - root - INFO - Processed explanation 4/5 for layer 40, unit 4055
+2025-07-26 04:49:30,554 - root - INFO - Samples saved to: generated_text/phi-4/Computer_accessories_including_network_attached_storage_KVM_switches_loop_pedals_and_replacement_bat.txt
+2025-07-26 04:49:32,732 - root - INFO - Activation shape valid: 10
+2025-07-26 04:49:32,880 - root - INFO - Processed explanation 5/5 for layer 40, unit 4055
+2025-07-26 04:49:33,022 - root - INFO - Processing layer 40, unit 824 (44/60)
+2025-07-26 04:49:48,386 - root - INFO - Samples saved to: generated_text/phi-4/Data_privacy_security_and_protection.txt
+2025-07-26 04:49:50,530 - root - INFO - Activation shape valid: 10
+2025-07-26 04:49:50,678 - root - INFO - Processed explanation 1/5 for layer 40, unit 824
+2025-07-26 04:50:04,645 - root - INFO - Samples saved to: generated_text/phi-4/Discussions_about_difficult_personal_matters_especially_those_related_to_family_and_mental_health_an.txt
+2025-07-26 04:50:06,841 - root - INFO - Activation shape valid: 10
+2025-07-26 04:50:06,991 - root - INFO - Processed explanation 2/5 for layer 40, unit 824
+2025-07-26 04:50:34,580 - root - INFO - Samples saved to: generated_text/phi-4/Automotive_features_especially_revealed_for_Mercedes_and_other_brands_often_related_to_size_or_techn.txt
+2025-07-26 04:50:36,766 - root - INFO - Activation shape valid: 10
+2025-07-26 04:50:36,915 - root - INFO - Processed explanation 3/5 for layer 40, unit 824
+2025-07-26 04:50:51,421 - root - INFO - Samples saved to: generated_text/phi-4/Locations_often_neighborhoods_or_districts_and_named_entities_associated_with_those_locations.txt
+2025-07-26 04:50:53,553 - root - INFO - Activation shape valid: 10
+2025-07-26 04:50:53,700 - root - INFO - Processed explanation 4/5 for layer 40, unit 824
+2025-07-26 04:51:07,001 - root - INFO - Samples saved to: generated_text/phi-4/Governmentrelated_scandals_and_investigations_particularly_those_involving_leaks_coverups_or_accusat.txt
+2025-07-26 04:51:09,128 - root - INFO - Activation shape valid: 10
+2025-07-26 04:51:09,277 - root - INFO - Processed explanation 5/5 for layer 40, unit 824
+2025-07-26 04:51:09,418 - root - INFO - Processing layer 40, unit 1823 (45/60)
+2025-07-26 04:51:23,826 - root - INFO - Samples saved to: generated_text/phi-4/Promotional_products_or_gifts_relating_to_cuteness_and_popularity_with_customers.txt
+2025-07-26 04:51:25,964 - root - INFO - Activation shape valid: 10
+2025-07-26 04:51:26,112 - root - INFO - Processed explanation 1/5 for layer 40, unit 1823
+2025-07-26 04:51:37,646 - root - INFO - Samples saved to: generated_text/phi-4/Changes_in_a_propertys_levelamountintensity_over_time.txt
+2025-07-26 04:51:39,844 - root - INFO - Activation shape valid: 10
+2025-07-26 04:51:39,993 - root - INFO - Processed explanation 2/5 for layer 40, unit 1823
+2025-07-26 04:51:53,706 - root - INFO - Samples saved to: generated_text/phi-4/A_discussion_of_a_planned_or_executed_collaborative_effort_related_to_health_work_or_community_impro.txt
+2025-07-26 04:51:55,856 - root - INFO - Activation shape valid: 10
+2025-07-26 04:51:56,003 - root - INFO - Processed explanation 3/5 for layer 40, unit 1823
+2025-07-26 04:52:08,470 - root - INFO - Samples saved to: generated_text/phi-4/Positive_qualities_of_places_to_stay_or_accommodations_including_amenities_services_and_overall_atmo.txt
+2025-07-26 04:52:10,621 - root - INFO - Activation shape valid: 10
+2025-07-26 04:52:10,771 - root - INFO - Processed explanation 4/5 for layer 40, unit 1823
+2025-07-26 04:52:24,788 - root - INFO - Samples saved to: generated_text/phi-4/Past_events_especially_from_a_year_ago_or_more.txt
+2025-07-26 04:52:26,956 - root - INFO - Activation shape valid: 10
+2025-07-26 04:52:27,106 - root - INFO - Processed explanation 5/5 for layer 40, unit 1823
+2025-07-26 04:52:27,245 - root - INFO - Processing layer 40, unit 5557 (46/60)
+2025-07-26 04:52:42,143 - root - INFO - Samples saved to: generated_text/phi-4/Themes_of_family_holidays_and_special_occasions_often_involving_gifts_or_symbolic_gestures.txt
+2025-07-26 04:52:44,341 - root - INFO - Activation shape valid: 10
+2025-07-26 04:52:44,490 - root - INFO - Processed explanation 1/5 for layer 40, unit 5557
+2025-07-26 04:53:06,925 - root - INFO - Samples saved to: generated_text/phi-4/A_date_duration_negation_or_characteristics_of_something_possibly_a_geographic_feature_followed_by_a.txt
+2025-07-26 04:53:09,125 - root - INFO - Activation shape valid: 10
+2025-07-26 04:53:09,277 - root - INFO - Processed explanation 2/5 for layer 40, unit 5557
+2025-07-26 04:53:27,132 - root - INFO - Samples saved to: generated_text/phi-4/Medical_educational_or_childcare_programs_and_services.txt
+2025-07-26 04:53:29,278 - root - INFO - Activation shape valid: 10
+2025-07-26 04:53:29,426 - root - INFO - Processed explanation 3/5 for layer 40, unit 5557
+2025-07-26 04:53:54,945 - root - INFO - Samples saved to: generated_text/phi-4/Events_occasions_or_festivals_often_with_a_time_element.txt
+2025-07-26 04:53:57,146 - root - INFO - Activation shape valid: 10
+2025-07-26 04:53:57,294 - root - INFO - Processed explanation 4/5 for layer 40, unit 5557
+2025-07-26 04:54:10,851 - root - INFO - Samples saved to: generated_text/phi-4/Discussions_of_software_technology_features_USB_internet_andor_Android.txt
+2025-07-26 04:54:13,115 - root - INFO - Activation shape valid: 10
+2025-07-26 04:54:13,263 - root - INFO - Processed explanation 5/5 for layer 40, unit 5557
+2025-07-26 04:54:13,403 - root - INFO - Processing layer 40, unit 1516 (47/60)
+2025-07-26 04:54:31,174 - root - INFO - Samples saved to: generated_text/phi-4/Legal_cases_particularly_theft_and_court_proceedings_and_discussions_of_sports_teams_and_players.txt
+2025-07-26 04:54:33,337 - root - INFO - Activation shape valid: 10
+2025-07-26 04:54:33,484 - root - INFO - Processed explanation 1/5 for layer 40, unit 1516
+2025-07-26 04:54:50,682 - root - INFO - Samples saved to: generated_text/phi-4/Travel_events_relationships_personal_goals_and_rulesguidelines.txt
+2025-07-26 04:54:52,857 - root - INFO - Activation shape valid: 10
+2025-07-26 04:54:53,007 - root - INFO - Processed explanation 2/5 for layer 40, unit 1516
+2025-07-26 04:55:08,599 - root - INFO - Samples saved to: generated_text/phi-4/Journeys_and_excursions_often_with_a_specific_destination_or_purpose.txt
+2025-07-26 04:55:10,765 - root - INFO - Activation shape valid: 10
+2025-07-26 04:55:10,915 - root - INFO - Processed explanation 3/5 for layer 40, unit 1516
+2025-07-26 04:55:26,990 - root - INFO - Samples saved to: generated_text/phi-4/Medical_conditions_types_of_medical_treatment_or_medical_professionals_sometimes_involving_a_duratio.txt
+2025-07-26 04:55:29,170 - root - INFO - Activation shape valid: 10
+2025-07-26 04:55:29,322 - root - INFO - Processed explanation 4/5 for layer 40, unit 1516
+2025-07-26 04:55:49,328 - root - INFO - Samples saved to: generated_text/phi-4/Luxury_accommodations_often_hotels_or_resorts_and_their_amenities_along_with_special_events_like_wed.txt
+2025-07-26 04:55:51,564 - root - INFO - Activation shape valid: 10
+2025-07-26 04:55:51,716 - root - INFO - Processed explanation 5/5 for layer 40, unit 1516
+2025-07-26 04:55:51,858 - root - INFO - Processing layer 40, unit 364 (48/60)
+2025-07-26 04:56:04,295 - root - INFO - Samples saved to: generated_text/phi-4/Provision_of_resources_services_or_information.txt
+2025-07-26 04:56:06,464 - root - INFO - Activation shape valid: 10
+2025-07-26 04:56:06,612 - root - INFO - Processed explanation 1/5 for layer 40, unit 364
+2025-07-26 04:56:24,236 - root - INFO - Samples saved to: generated_text/phi-4/Quantities_monetary_amounts_times_dates_or_locations_relating_to_prices_deals_bargains_travel_or_eve.txt
+2025-07-26 04:56:26,358 - root - INFO - Activation shape valid: 10
+2025-07-26 04:56:26,507 - root - INFO - Processed explanation 2/5 for layer 40, unit 364
+2025-07-26 04:56:51,542 - root - INFO - Samples saved to: generated_text/phi-4/Product_specifications_features_or_descriptions_often_involving_numbers_or_measurements.txt
+2025-07-26 04:56:53,772 - root - INFO - Activation shape valid: 10
+2025-07-26 04:56:53,922 - root - INFO - Processed explanation 3/5 for layer 40, unit 364
+2025-07-26 04:57:16,255 - root - INFO - Samples saved to: generated_text/phi-4/Recipes_with_variations_additions_or_components_often_quick_and_easy_to_make.txt
+2025-07-26 04:57:18,389 - root - INFO - Activation shape valid: 10
+2025-07-26 04:57:18,539 - root - INFO - Processed explanation 4/5 for layer 40, unit 364
+2025-07-26 04:57:32,700 - root - INFO - Samples saved to: generated_text/phi-4/Communication_methods_software_functionalities_data_and_service_access_or_file_and_data_loss.txt
+2025-07-26 04:57:34,908 - root - INFO - Activation shape valid: 10
+2025-07-26 04:57:35,056 - root - INFO - Processed explanation 5/5 for layer 40, unit 364
+2025-07-26 04:57:35,197 - root - INFO - Processing layer 40, unit 4808 (49/60)
+2025-07-26 04:57:47,262 - root - INFO - Samples saved to: generated_text/phi-4/Real_estate_home_renovation_car_services_or_travel_and_leisure_offerings_especially_including_inform.txt
+2025-07-26 04:57:49,485 - root - INFO - Activation shape valid: 10
+2025-07-26 04:57:49,634 - root - INFO - Processed explanation 1/5 for layer 40, unit 4808
+2025-07-26 04:58:07,486 - root - INFO - Samples saved to: generated_text/phi-4/Themes_of_creative_work_products_or_brands_and_their_consumption_creation_or_marketing_especially_in.txt
+2025-07-26 04:58:09,628 - root - INFO - Activation shape valid: 10
+2025-07-26 04:58:09,778 - root - INFO - Processed explanation 2/5 for layer 40, unit 4808
+2025-07-26 04:58:30,180 - root - INFO - Samples saved to: generated_text/phi-4/Sports_team_performance_including_wins_losses_scores_player_injuries_and_upcoming_matches.txt
+2025-07-26 04:58:32,402 - root - INFO - Activation shape valid: 10
+2025-07-26 04:58:32,550 - root - INFO - Processed explanation 3/5 for layer 40, unit 4808
+2025-07-26 04:58:43,563 - root - INFO - Samples saved to: generated_text/phi-4/Marketing_advertising_branding_business_growth_and_customer_acquisition_often_in_relation_to_digital.txt
+2025-07-26 04:58:45,805 - root - INFO - Activation shape valid: 10
+2025-07-26 04:58:45,959 - root - INFO - Processed explanation 4/5 for layer 40, unit 4808
+2025-07-26 04:58:59,857 - root - INFO - Samples saved to: generated_text/phi-4/Products_or_items_related_to_online_retail_including_customer_experience_shipping_information_and_de.txt
+2025-07-26 04:59:02,010 - root - INFO - Activation shape valid: 10
+2025-07-26 04:59:02,158 - root - INFO - Processed explanation 5/5 for layer 40, unit 4808
+2025-07-26 04:59:02,300 - root - INFO - Processing layer 40, unit 3612 (50/60)
+2025-07-26 04:59:19,618 - root - INFO - Samples saved to: generated_text/phi-4/Professional_standards_requirements_and_practices_related_to_a_variety_of_fields_including_surveying.txt
+2025-07-26 04:59:21,802 - root - INFO - Activation shape valid: 10
+2025-07-26 04:59:21,951 - root - INFO - Processed explanation 1/5 for layer 40, unit 3612
+2025-07-26 04:59:36,216 - root - INFO - Samples saved to: generated_text/phi-4/Quantities_time_or_durations_related_to_food_events_or_other_items.txt
+2025-07-26 04:59:38,427 - root - INFO - Activation shape valid: 10
+2025-07-26 04:59:38,574 - root - INFO - Processed explanation 2/5 for layer 40, unit 3612
+2025-07-26 04:59:53,337 - root - INFO - Samples saved to: generated_text/phi-4/Health_benefits_of_avocado_color_testing_tools_gene_normalization_for_hPDL_fibroblasts_teriyaki_chic.txt
+2025-07-26 04:59:55,479 - root - INFO - Activation shape valid: 10
+2025-07-26 04:59:55,628 - root - INFO - Processed explanation 3/5 for layer 40, unit 3612
+2025-07-26 05:00:11,631 - root - INFO - Samples saved to: generated_text/phi-4/Ineffectiveness_of_interventions_questioning_of_evidence_supporting_interventions_negative_impacts_o.txt
+2025-07-26 05:00:13,816 - root - INFO - Activation shape valid: 10
+2025-07-26 05:00:13,965 - root - INFO - Processed explanation 4/5 for layer 40, unit 3612
+2025-07-26 05:00:32,574 - root - INFO - Samples saved to: generated_text/phi-4/Descriptions_specifications_instructions_or_analysis_of_data_or_information_often_involving_numbered.txt
+2025-07-26 05:00:34,760 - root - INFO - Activation shape valid: 10
+2025-07-26 05:00:34,907 - root - INFO - Processed explanation 5/5 for layer 40, unit 3612
+2025-07-26 05:00:35,047 - root - INFO - Processing layer 40, unit 6364 (51/60)
+2025-07-26 05:00:55,154 - root - INFO - Samples saved to: generated_text/phi-4/Events_gatherings_or_locations_often_related_to_religion_family_or_recreation_including_specific_det.txt
+2025-07-26 05:00:57,322 - root - INFO - Activation shape valid: 10
+2025-07-26 05:00:57,471 - root - INFO - Processed explanation 1/5 for layer 40, unit 6364
+2025-07-26 05:01:11,622 - root - INFO - Samples saved to: generated_text/phi-4/Firstperson_narratives_discussing_personal_experiences_often_including_specific_items_or_activities.txt
+2025-07-26 05:01:13,806 - root - INFO - Activation shape valid: 10
+2025-07-26 05:01:13,967 - root - INFO - Processed explanation 2/5 for layer 40, unit 6364
+2025-07-26 05:01:34,779 - root - INFO - Samples saved to: generated_text/phi-4/Descriptions_of_conflicts_competitions_or_challenging_situations_often_involving_proper_nouns_of_peo.txt
+2025-07-26 05:01:36,974 - root - INFO - Activation shape valid: 10
+2025-07-26 05:01:37,121 - root - INFO - Processed explanation 3/5 for layer 40, unit 6364
+2025-07-26 05:01:54,498 - root - INFO - Samples saved to: generated_text/phi-4/Attributes_of_vehicles_specifically_fuel_type_engine_size_mileage_transmission_drivetrain_and_additi.txt
+2025-07-26 05:01:56,689 - root - INFO - Activation shape valid: 10
+2025-07-26 05:01:56,839 - root - INFO - Processed explanation 4/5 for layer 40, unit 6364
+2025-07-26 05:02:11,210 - root - INFO - Samples saved to: generated_text/phi-4/Network_management_pediatric_neurology_airline_services_vehicular_accidents_tropical_cyclones_plant_.txt
+2025-07-26 05:02:13,418 - root - INFO - Activation shape valid: 10
+2025-07-26 05:02:13,567 - root - INFO - Processed explanation 5/5 for layer 40, unit 6364
+2025-07-26 05:02:13,708 - root - INFO - Processing layer 40, unit 3515 (52/60)
+2025-07-26 05:02:44,963 - root - INFO - Samples saved to: generated_text/phi-4/Educational_programs_sporting_events_locations_and_services_related_to_transportation_accommodation_.txt
+2025-07-26 05:02:47,147 - root - INFO - Activation shape valid: 10
+2025-07-26 05:02:47,296 - root - INFO - Processed explanation 1/5 for layer 40, unit 3515
+2025-07-26 05:03:01,501 - root - INFO - Samples saved to: generated_text/phi-4/Discussions_of_professional_certifications_or_licenses_often_in_the_context_of_career_development_or.txt
+2025-07-26 05:03:03,732 - root - INFO - Activation shape valid: 10
+2025-07-26 05:03:03,881 - root - INFO - Processed explanation 2/5 for layer 40, unit 3515
+2025-07-26 05:03:19,851 - root - INFO - Samples saved to: generated_text/phi-4/Sports_team_member_sports_event_or_sports_period.txt
+2025-07-26 05:03:22,036 - root - INFO - Activation shape valid: 10
+2025-07-26 05:03:22,184 - root - INFO - Processed explanation 3/5 for layer 40, unit 3515
+2025-07-26 05:03:36,418 - root - INFO - Samples saved to: generated_text/phi-4/Actions_related_to_enhancing_improving_or_fixing_the_appearance_of_something_often_focusing_on_quali.txt
+2025-07-26 05:03:38,572 - root - INFO - Activation shape valid: 10
+2025-07-26 05:03:38,719 - root - INFO - Processed explanation 4/5 for layer 40, unit 3515
+2025-07-26 05:03:51,119 - root - INFO - Samples saved to: generated_text/phi-4/Relating_to_professional_services_products_or_qualifications_often_involving_quality_standards_or_ce.txt
+2025-07-26 05:03:53,259 - root - INFO - Activation shape valid: 10
+2025-07-26 05:03:53,407 - root - INFO - Processed explanation 5/5 for layer 40, unit 3515
+2025-07-26 05:03:53,549 - root - INFO - Processing layer 40, unit 556 (53/60)
+2025-07-26 05:04:18,636 - root - INFO - Samples saved to: generated_text/phi-4/Plans_for_routes_or_facilities_involving_transportation_buildings_or_events.txt
+2025-07-26 05:04:20,835 - root - INFO - Activation shape valid: 10
+2025-07-26 05:04:20,986 - root - INFO - Processed explanation 1/5 for layer 40, unit 556
+2025-07-26 05:04:32,224 - root - INFO - Samples saved to: generated_text/phi-4/Business_plans_financial_planning_service_offers_business_platforms_or_a_projects_milestones.txt
+2025-07-26 05:04:34,433 - root - INFO - Activation shape valid: 10
+2025-07-26 05:04:34,581 - root - INFO - Processed explanation 2/5 for layer 40, unit 556
+2025-07-26 05:04:47,934 - root - INFO - Samples saved to: generated_text/phi-4/Prices_or_measurements_of_beauty_fashion_or_healthrelated_products.txt
+2025-07-26 05:04:50,155 - root - INFO - Activation shape valid: 10
+2025-07-26 05:04:50,304 - root - INFO - Processed explanation 3/5 for layer 40, unit 556
+2025-07-26 05:05:05,753 - root - INFO - Samples saved to: generated_text/phi-4/Funding_of_projects_and_initiatives_related_to_healthcare_social_issues_and_education.txt
+2025-07-26 05:05:07,949 - root - INFO - Activation shape valid: 10
+2025-07-26 05:05:08,099 - root - INFO - Processed explanation 4/5 for layer 40, unit 556
+2025-07-26 05:05:31,212 - root - INFO - Samples saved to: generated_text/phi-4/Religious_or_spiritual_themes_often_relating_to_specific_figures_or_groups_sometimes_involving_perso.txt
+2025-07-26 05:05:33,388 - root - INFO - Activation shape valid: 10
+2025-07-26 05:05:33,539 - root - INFO - Processed explanation 5/5 for layer 40, unit 556
+2025-07-26 05:05:33,685 - root - INFO - Processing layer 40, unit 183 (54/60)
+2025-07-26 05:05:46,473 - root - INFO - Samples saved to: generated_text/phi-4/Educationaltraining_programs_workshops_or_partnerships_related_to_specialized_industries_often_inclu.txt
+2025-07-26 05:05:48,689 - root - INFO - Activation shape valid: 10
+2025-07-26 05:05:48,835 - root - INFO - Processed explanation 1/5 for layer 40, unit 183
+2025-07-26 05:06:07,708 - root - INFO - Samples saved to: generated_text/phi-4/Tours_programs_workshops_and_other_planned_group_events.txt
+2025-07-26 05:06:09,851 - root - INFO - Activation shape valid: 10
+2025-07-26 05:06:10,002 - root - INFO - Processed explanation 2/5 for layer 40, unit 183
+2025-07-26 05:06:34,093 - root - INFO - Samples saved to: generated_text/phi-4/Travel_food_and_leisure_activities_especially_those_related_to_water_vehicles_or_bodies_of_water.txt
+2025-07-26 05:06:36,285 - root - INFO - Activation shape valid: 10
+2025-07-26 05:06:36,431 - root - INFO - Processed explanation 3/5 for layer 40, unit 183
+2025-07-26 05:06:48,389 - root - INFO - Samples saved to: generated_text/phi-4/Activities_related_to_hobbies_including_airplane_livery_design_scrapbooking_SMART_team_coordination_.txt
+2025-07-26 05:06:50,579 - root - INFO - Activation shape valid: 10
+2025-07-26 05:06:50,726 - root - INFO - Processed explanation 4/5 for layer 40, unit 183
+2025-07-26 05:07:03,011 - root - INFO - Samples saved to: generated_text/phi-4/Business_services_including_career_services_company_recruitment_tours_and_consulting_offered_by_orga.txt
+2025-07-26 05:07:05,124 - root - INFO - Activation shape valid: 10
+2025-07-26 05:07:05,272 - root - INFO - Processed explanation 5/5 for layer 40, unit 183
+2025-07-26 05:07:05,412 - root - INFO - Processing layer 40, unit 3254 (55/60)
+2025-07-26 05:07:14,848 - root - INFO - Samples saved to: generated_text/phi-4/Training_coaching_or_mentorship_programs_and_the_benefits_they_provide.txt
+2025-07-26 05:07:17,014 - root - INFO - Activation shape valid: 10
+2025-07-26 05:07:17,164 - root - INFO - Processed explanation 1/5 for layer 40, unit 3254
+2025-07-26 05:07:35,238 - root - INFO - Samples saved to: generated_text/phi-4/Topics_related_to_politics_sports_and_current_events_specifically_focusing_on_major_decisions_outcom.txt
+2025-07-26 05:07:37,465 - root - INFO - Activation shape valid: 10
+2025-07-26 05:07:37,611 - root - INFO - Processed explanation 2/5 for layer 40, unit 3254
+2025-07-26 05:08:00,678 - root - INFO - Samples saved to: generated_text/phi-4/Automotive_repair_home_improvement_and_3D_printing_services.txt
+2025-07-26 05:08:02,862 - root - INFO - Activation shape valid: 10
+2025-07-26 05:08:03,009 - root - INFO - Processed explanation 3/5 for layer 40, unit 3254
+2025-07-26 05:08:19,083 - root - INFO - Samples saved to: generated_text/phi-4/Experiences_related_to_entertainment_social_interactions_personal_anecdotes_or_productsbrands_often_.txt
+2025-07-26 05:08:21,257 - root - INFO - Activation shape valid: 10
+2025-07-26 05:08:21,406 - root - INFO - Processed explanation 4/5 for layer 40, unit 3254
+2025-07-26 05:08:34,483 - root - INFO - Samples saved to: generated_text/phi-4/Consumption_of_food_beverages_or_medications_sometimes_for_free_or_at_a_reduced_price.txt
+2025-07-26 05:08:36,671 - root - INFO - Activation shape valid: 10
+2025-07-26 05:08:36,818 - root - INFO - Processed explanation 5/5 for layer 40, unit 3254
+2025-07-26 05:08:36,958 - root - INFO - Processing layer 40, unit 6067 (56/60)
+2025-07-26 05:08:51,952 - root - INFO - Samples saved to: generated_text/phi-4/Recollection_usage_or_discussion_of_educational_resources_creative_works_personal_experiences_media_.txt
+2025-07-26 05:08:54,112 - root - INFO - Activation shape valid: 10
+2025-07-26 05:08:54,262 - root - INFO - Processed explanation 1/5 for layer 40, unit 6067
+2025-07-26 05:09:16,228 - root - INFO - Samples saved to: generated_text/phi-4/Descriptions_explanations_or_instructions_related_to_methods_or_processes.txt
+2025-07-26 05:09:18,427 - root - INFO - Activation shape valid: 10
+2025-07-26 05:09:18,576 - root - INFO - Processed explanation 2/5 for layer 40, unit 6067
+2025-07-26 05:09:33,885 - root - INFO - Samples saved to: generated_text/phi-4/Events_often_with_a_time_andor_a_date.txt
+2025-07-26 05:09:36,076 - root - INFO - Activation shape valid: 10
+2025-07-26 05:09:36,224 - root - INFO - Processed explanation 3/5 for layer 40, unit 6067
+2025-07-26 05:09:55,829 - root - INFO - Samples saved to: generated_text/phi-4/Holiday_or_special_occasion_accessoriesdecorations.txt
+2025-07-26 05:09:57,998 - root - INFO - Activation shape valid: 10
+2025-07-26 05:09:58,145 - root - INFO - Processed explanation 4/5 for layer 40, unit 6067
+2025-07-26 05:10:18,755 - root - INFO - Samples saved to: generated_text/phi-4/Discussions_of_formal_speeches_by_US_presidents.txt
+2025-07-26 05:10:20,925 - root - INFO - Activation shape valid: 10
+2025-07-26 05:10:21,075 - root - INFO - Processed explanation 5/5 for layer 40, unit 6067
+2025-07-26 05:10:21,217 - root - INFO - Processing layer 40, unit 3636 (57/60)
+2025-07-26 05:10:39,273 - root - INFO - Samples saved to: generated_text/phi-4/Division_of_assetsproperty_medical_procedurestreatments_legal_disputescourt_proceedings_and_organiza.txt
+2025-07-26 05:10:41,424 - root - INFO - Activation shape valid: 10
+2025-07-26 05:10:41,572 - root - INFO - Processed explanation 1/5 for layer 40, unit 3636
+2025-07-26 05:11:04,081 - root - INFO - Samples saved to: generated_text/phi-4/Food_preparation_especially_baking_and_cooking_with_details_of_ingredients_methods_and_sometimes_too.txt
+2025-07-26 05:11:06,223 - root - INFO - Activation shape valid: 10
+2025-07-26 05:11:06,370 - root - INFO - Processed explanation 2/5 for layer 40, unit 3636
+2025-07-26 05:11:19,713 - root - INFO - Samples saved to: generated_text/phi-4/Requirements_instructions_or_demands_related_to_services_actions_or_costs_often_within_the_context_o.txt
+2025-07-26 05:11:21,912 - root - INFO - Activation shape valid: 10
+2025-07-26 05:11:22,062 - root - INFO - Processed explanation 3/5 for layer 40, unit 3636
+2025-07-26 05:11:37,678 - root - INFO - Samples saved to: generated_text/phi-4/Events_particularly_those_related_to_conflict_competition_or_problematic_situations.txt
+2025-07-26 05:11:39,834 - root - INFO - Activation shape valid: 10
+2025-07-26 05:11:39,981 - root - INFO - Processed explanation 4/5 for layer 40, unit 3636
+2025-07-26 05:12:02,600 - root - INFO - Samples saved to: generated_text/phi-4/Camera_equipment_and_settings_including_lenses_zoom_frame_light_and_fstop.txt
+2025-07-26 05:12:04,764 - root - INFO - Activation shape valid: 10
+2025-07-26 05:12:04,912 - root - INFO - Processed explanation 5/5 for layer 40, unit 3636
+2025-07-26 05:12:05,052 - root - INFO - Processing layer 40, unit 1555 (58/60)
+2025-07-26 05:12:20,453 - root - INFO - Samples saved to: generated_text/phi-4/Financial_transactions_logistics_or_sports_betting.txt
+2025-07-26 05:12:22,607 - root - INFO - Activation shape valid: 10
+2025-07-26 05:12:22,758 - root - INFO - Processed explanation 1/5 for layer 40, unit 1555
+2025-07-26 05:12:34,962 - root - INFO - Samples saved to: generated_text/phi-4/Financial_transactions_particularly_those_involving_insurance_banking_or_investments_with_an_emphasi.txt
+2025-07-26 05:12:37,139 - root - INFO - Activation shape valid: 10
+2025-07-26 05:12:37,286 - root - INFO - Processed explanation 2/5 for layer 40, unit 1555
+2025-07-26 05:12:48,524 - root - INFO - Samples saved to: generated_text/phi-4/Requests_instructions_or_advice_relating_to_products_or_services.txt
+2025-07-26 05:12:50,674 - root - INFO - Activation shape valid: 10
+2025-07-26 05:12:50,823 - root - INFO - Processed explanation 3/5 for layer 40, unit 1555
+2025-07-26 05:13:02,872 - root - INFO - Samples saved to: generated_text/phi-4/Questions_about_weight_gainloss_and_businessmarketing_strategies_especially_those_related_to_online_.txt
+2025-07-26 05:13:05,006 - root - INFO - Activation shape valid: 10
+2025-07-26 05:13:05,154 - root - INFO - Processed explanation 4/5 for layer 40, unit 1555
+2025-07-26 05:13:18,650 - root - INFO - Samples saved to: generated_text/phi-4/Travel_transportation_routes_or_costs_related_to_cars_planes_or_other_travel_methods.txt
+2025-07-26 05:13:20,802 - root - INFO - Activation shape valid: 10
+2025-07-26 05:13:20,963 - root - INFO - Processed explanation 5/5 for layer 40, unit 1555
+2025-07-26 05:13:21,103 - root - INFO - Processing layer 40, unit 6106 (59/60)
+2025-07-26 05:13:59,474 - root - INFO - Samples saved to: generated_text/phi-4/Artistic_creation_its_process_and_its_commercial_aspects.txt
+2025-07-26 05:14:01,677 - root - INFO - Activation shape valid: 10
+2025-07-26 05:14:01,824 - root - INFO - Processed explanation 1/5 for layer 40, unit 6106
+2025-07-26 05:14:14,483 - root - INFO - Samples saved to: generated_text/phi-4/Negative_consequences_of_revealing_plot_details_in_movie_trailers_TV_shows_presentations_news_articl.txt
+2025-07-26 05:14:16,650 - root - INFO - Activation shape valid: 10
+2025-07-26 05:14:16,799 - root - INFO - Processed explanation 2/5 for layer 40, unit 6106
+2025-07-26 05:14:35,628 - root - INFO - Samples saved to: generated_text/phi-4/Conditions_of_sale_or_intended_use.txt
+2025-07-26 05:14:37,785 - root - INFO - Activation shape valid: 10
+2025-07-26 05:14:37,934 - root - INFO - Processed explanation 3/5 for layer 40, unit 6106
+2025-07-26 05:14:52,940 - root - INFO - Samples saved to: generated_text/phi-4/Camera_audio_equipment_or_video_game_features_and_functions.txt
+2025-07-26 05:14:55,141 - root - INFO - Activation shape valid: 10
+2025-07-26 05:14:55,290 - root - INFO - Processed explanation 4/5 for layer 40, unit 6106
+2025-07-26 05:15:12,378 - root - INFO - Samples saved to: generated_text/phi-4/Audiovisual_media_digital_platforms_and_services_related_to_legal_medical_or_financial_consultations.txt
+2025-07-26 05:15:14,565 - root - INFO - Activation shape valid: 10
+2025-07-26 05:15:14,715 - root - INFO - Processed explanation 5/5 for layer 40, unit 6106
+2025-07-26 05:15:14,855 - root - INFO - Processing layer 40, unit 4244 (60/60)
+2025-07-26 05:15:35,206 - root - INFO - Samples saved to: generated_text/phi-4/Beverages_food_medications_or_other_consumable_substances_sometimes_in_relation_to_specific_brands_p.txt
+2025-07-26 05:15:37,374 - root - INFO - Activation shape valid: 10
+2025-07-26 05:15:37,530 - root - INFO - Processed explanation 1/5 for layer 40, unit 4244
+2025-07-26 05:15:58,523 - root - INFO - Samples saved to: generated_text/phi-4/Discussions_of_religious_events_specifically_anniversaries_of_unions_or_councils_within_a_church_and.txt
+2025-07-26 05:16:00,758 - root - INFO - Activation shape valid: 10
+2025-07-26 05:16:00,906 - root - INFO - Processed explanation 2/5 for layer 40, unit 4244
+2025-07-26 05:16:14,201 - root - INFO - Samples saved to: generated_text/phi-4/Locations_buildings_events_or_services_and_the_ability_or_opportunity_to_use_access_or_engage_with_t.txt
+2025-07-26 05:16:16,397 - root - INFO - Activation shape valid: 10
+2025-07-26 05:16:16,546 - root - INFO - Processed explanation 3/5 for layer 40, unit 4244
+2025-07-26 05:16:33,973 - root - INFO - Samples saved to: generated_text/phi-4/Body_mind_or_emotions_especially_related_to_intentional_selfcare_or_activities.txt
+2025-07-26 05:16:36,133 - root - INFO - Activation shape valid: 10
+2025-07-26 05:16:36,283 - root - INFO - Processed explanation 4/5 for layer 40, unit 4244
+2025-07-26 05:16:47,037 - root - INFO - Samples saved to: generated_text/phi-4/Abilities_skills_or_qualifications_that_can_be_used_to_achieve_future_goals_or_outcomes.txt
+2025-07-26 05:16:49,239 - root - INFO - Activation shape valid: 10
+2025-07-26 05:16:49,389 - root - INFO - Processed explanation 5/5 for layer 40, unit 4244
+2025-07-26 05:16:49,390 - root - INFO - All layer-unit pairs processed. Results saved to:
+ results/cosy-evaluation_target-gpt2-xl_textgen-gemini-1-5-pro_mean_evalgen-phi-4_cosmopedia_1000.csv

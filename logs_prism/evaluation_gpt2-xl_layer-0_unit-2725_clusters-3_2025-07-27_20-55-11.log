@@ -1,0 +1,1028 @@
+2025-07-27 22:55:11,831 - root - INFO - ================================================================================
+2025-07-27 22:55:11,851 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-27 22:55:11,852 - root - INFO - ================================================================================
+2025-07-27 22:55:11,854 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-27 22:55:11,855 - root - INFO - AGG_METHOD = mean
+2025-07-27 22:55:11,856 - root - INFO - BATCH_SIZE = 2
+2025-07-27 22:55:11,857 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-27 22:55:11,858 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-27 22:55:11,859 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-27 22:55:11,860 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-27 22:55:11,862 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-27 22:55:11,863 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-27 22:55:11,864 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-27 22:55:11,865 - root - INFO - CONTROL_SPLIT = train
+2025-07-27 22:55:11,866 - root - INFO - DATA_FILES = None
+2025-07-27 22:55:11,867 - root - INFO - DEVICE = cuda
+2025-07-27 22:55:11,868 - root - INFO - END_INTERVAL = 1.0
+2025-07-27 22:55:11,870 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-27 22:55:11,870 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-27 22:55:11,871 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-27 22:55:11,873 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-27 22:55:11,874 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-27 22:55:11,875 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-27 22:55:11,876 - root - INFO - LAYER_ID = 0
+2025-07-27 22:55:11,877 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-27 22:55:11,878 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-27 22:55:11,879 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-27 22:55:11,880 - root - INFO - MULTI_EVAL = True
+2025-07-27 22:55:11,881 - root - INFO - N_CLUSTERS = 3
+2025-07-27 22:55:11,882 - root - INFO - N_SAMPLES = 10
+2025-07-27 22:55:11,883 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-27 22:55:11,884 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-27 22:55:11,885 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-27 22:55:11,887 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-27 22:55:11,888 - root - INFO - SPLIT = train
+2025-07-27 22:55:11,889 - root - INFO - START_INTERVAL = 0.99
+2025-07-27 22:55:11,890 - root - INFO - STREAMING = True
+2025-07-27 22:55:11,891 - root - INFO - SUBSET_SIZE = 1000
+2025-07-27 22:55:11,892 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-27 22:55:11,894 - root - INFO - TARGET_DATA = c4
+2025-07-27 22:55:11,895 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-27 22:55:11,896 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-27 22:55:11,897 - root - INFO - UNIT_ID = 2725
+2025-07-27 22:55:11,898 - root - INFO - USE_API = True
+2025-07-27 22:55:11,899 - root - INFO - ================================================================================
+2025-07-27 22:55:11,900 - root - INFO - ANALYSIS RESULTS
+2025-07-27 22:55:11,902 - root - INFO - ================================================================================
+2025-07-27 22:55:11,903 - root - INFO - Analysis results will be saved to: /home/lkopf/autointerp-llm/logs/evaluation_gpt2-xl_layer-0_unit-2725_clusters-3_2025-07-27_20-55-11.log
+2025-07-27 22:55:12,029 - root - INFO - Loading target model...
+2025-07-27 22:55:25,906 - root - INFO - Model loaded successfully
+2025-07-27 22:55:26,241 - root - INFO - Tokenizer loaded successfully
+2025-07-27 22:55:26,248 - root - INFO - Loaded 60 layer-unit pairs to process
+2025-07-27 22:55:26,254 - root - INFO - Loading text generator model...
+2025-07-27 22:55:26,745 - root - INFO - Text generator loaded successfully
+2025-07-27 22:55:26,913 - root - INFO - Processing layer 0, unit 6314 (1/60)
+2025-07-27 22:55:26,970 - root - INFO - Activation shape valid: 10
+2025-07-27 22:55:27,133 - root - INFO - Processed explanation 1/3 for layer 0, unit 6314
+2025-07-27 22:55:27,172 - root - INFO - Activation shape valid: 10
+2025-07-27 22:55:27,333 - root - INFO - Processed explanation 2/3 for layer 0, unit 6314
+2025-07-27 22:55:27,371 - root - INFO - Activation shape valid: 10
+2025-07-27 22:55:27,533 - root - INFO - Processed explanation 3/3 for layer 0, unit 6314
+2025-07-27 22:55:27,679 - root - INFO - Processing layer 0, unit 2725 (2/60)
+2025-07-27 22:55:27,723 - root - INFO - Activation shape valid: 10
+2025-07-27 22:55:27,884 - root - INFO - Processed explanation 1/3 for layer 0, unit 2725
+2025-07-27 22:55:27,923 - root - INFO - Activation shape valid: 10
+2025-07-27 22:55:28,084 - root - INFO - Processed explanation 2/3 for layer 0, unit 2725
+2025-07-27 22:56:06,210 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Receiving_getting_or_choosing_something.txt
+2025-07-27 22:56:08,518 - root - INFO - Activation shape valid: 10
+2025-07-27 22:56:08,693 - root - INFO - Processed explanation 3/3 for layer 0, unit 2725
+2025-07-27 22:56:08,860 - root - INFO - Processing layer 0, unit 4297 (3/60)
+2025-07-27 22:56:46,498 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Animal_breeding_beneficial_mineral_extraction_processes_and_product_descriptions.txt
+2025-07-27 22:56:48,716 - root - INFO - Activation shape valid: 10
+2025-07-27 22:56:48,873 - root - INFO - Processed explanation 1/3 for layer 0, unit 4297
+2025-07-27 22:57:14,816 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Financial_tax_and_legal_planning_and_their_implications_especially_regarding_employee_stock_options_.txt
+2025-07-27 22:57:17,052 - root - INFO - Activation shape valid: 10
+2025-07-27 22:57:17,228 - root - INFO - Processed explanation 2/3 for layer 0, unit 4297
+2025-07-27 22:57:43,743 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Financial_transactions_ownership_and_organizational_statuses.txt
+2025-07-27 22:57:45,920 - root - INFO - Activation shape valid: 10
+2025-07-27 22:57:46,077 - root - INFO - Processed explanation 3/3 for layer 0, unit 4297
+2025-07-27 22:57:46,226 - root - INFO - Processing layer 0, unit 4842 (4/60)
+2025-07-27 22:58:21,862 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Hair_styling_car_features_software_components_or_designer_clothing.txt
+2025-07-27 22:58:24,024 - root - INFO - Activation shape valid: 10
+2025-07-27 22:58:24,181 - root - INFO - Processed explanation 1/3 for layer 0, unit 4842
+2025-07-27 22:58:43,478 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Teams_products_or_services_related_to_clients_analyses_systems_studios_or_algorithms_and_sometimes_r.txt
+2025-07-27 22:58:45,642 - root - INFO - Activation shape valid: 10
+2025-07-27 22:58:45,797 - root - INFO - Processed explanation 2/3 for layer 0, unit 4842
+2025-07-27 22:59:18,638 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Fitness_math_essays_graphics_names_formats_internships_coaching_design_approaches_relationships_plat.txt
+2025-07-27 22:59:21,008 - root - INFO - Activation shape valid: 10
+2025-07-27 22:59:21,177 - root - INFO - Processed explanation 3/3 for layer 0, unit 4842
+2025-07-27 22:59:21,326 - root - INFO - Processing layer 0, unit 5551 (5/60)
+2025-07-27 22:59:49,774 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/International_trade_and_diplomacy_especially_relating_to_free_trade_agreements_between_Canada_and_Ko.txt
+2025-07-27 22:59:51,983 - root - INFO - Activation shape valid: 10
+2025-07-27 22:59:52,157 - root - INFO - Processed explanation 1/3 for layer 0, unit 5551
+2025-07-27 23:00:30,591 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/International_relations_especially_concerning_the_UN_Security_Council_and_its_actions_regarding_huma.txt
+2025-07-27 23:00:32,783 - root - INFO - Activation shape valid: 10
+2025-07-27 23:00:32,960 - root - INFO - Processed explanation 2/3 for layer 0, unit 5551
+2025-07-27 23:00:59,129 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/International_organizations_government_bodies_and_member_states_particularly_relating_to_agreements_.txt
+2025-07-27 23:01:01,310 - root - INFO - Activation shape valid: 10
+2025-07-27 23:01:01,469 - root - INFO - Processed explanation 3/3 for layer 0, unit 5551
+2025-07-27 23:01:01,627 - root - INFO - Processing layer 0, unit 1749 (6/60)
+2025-07-27 23:01:37,141 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Product_features_technical_specifications_or_capabilities_especially_in_the_context_of_reviews_compa.txt
+2025-07-27 23:01:39,303 - root - INFO - Activation shape valid: 10
+2025-07-27 23:01:39,459 - root - INFO - Processed explanation 1/3 for layer 0, unit 1749
+2025-07-27 23:02:07,839 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Legal_and_judicial_processes_software_or_technological_advancements_and_personal_growth_or_achieveme.txt
+2025-07-27 23:02:10,134 - root - INFO - Activation shape valid: 10
+2025-07-27 23:02:10,301 - root - INFO - Processed explanation 2/3 for layer 0, unit 1749
+2025-07-27 23:02:33,227 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Luxury_goods_or_experiences_especially_related_to_fashion_style_or_art_along_with_words_related_to_g.txt
+2025-07-27 23:02:35,395 - root - INFO - Activation shape valid: 10
+2025-07-27 23:02:35,552 - root - INFO - Processed explanation 3/3 for layer 0, unit 1749
+2025-07-27 23:02:35,701 - root - INFO - Processing layer 0, unit 3943 (7/60)
+2025-07-27 23:03:23,513 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Titles_of_creative_works_such_as_books_movies_TV_shows_podcasts_albums_songs_and_stage_plays.txt
+2025-07-27 23:03:25,702 - root - INFO - Activation shape valid: 10
+2025-07-27 23:03:25,862 - root - INFO - Processed explanation 1/3 for layer 0, unit 3943
+2025-07-27 23:03:57,288 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Types_of_shirtsclothing_and_types_of_fooddishes.txt
+2025-07-27 23:03:59,464 - root - INFO - Activation shape valid: 10
+2025-07-27 23:03:59,736 - root - INFO - Processed explanation 2/3 for layer 0, unit 3943
+2025-07-27 23:04:23,014 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Improvements_solutions_best_practices_benefits_and_optimal_approaches_often_in_competitive_contexts_.txt
+2025-07-27 23:04:25,176 - root - INFO - Activation shape valid: 10
+2025-07-27 23:04:25,346 - root - INFO - Processed explanation 3/3 for layer 0, unit 3943
+2025-07-27 23:04:25,502 - root - INFO - Processing layer 0, unit 5960 (8/60)
+2025-07-27 23:04:58,795 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Jewelry_accessories_clothing_furniture_vehicles_artwork_whales_and_legal_proceedings.txt
+2025-07-27 23:05:00,959 - root - INFO - Activation shape valid: 10
+2025-07-27 23:05:01,120 - root - INFO - Processed explanation 1/3 for layer 0, unit 5960
+2025-07-27 23:05:27,517 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Mechanical_fastening_joining_or_attaching_often_involving_cylindrical_components_or_processes.txt
+2025-07-27 23:05:29,790 - root - INFO - Activation shape valid: 10
+2025-07-27 23:05:29,959 - root - INFO - Processed explanation 2/3 for layer 0, unit 5960
+2025-07-27 23:06:15,473 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Religious_artistic_or_investigative_concepts_related_to_revealing_capturing_or_bringing_something_so.txt
+2025-07-27 23:06:17,681 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:17,854 - root - INFO - Processed explanation 3/3 for layer 0, unit 5960
+2025-07-27 23:06:18,010 - root - INFO - Processing layer 0, unit 3696 (9/60)
+2025-07-27 23:06:18,054 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:18,233 - root - INFO - Processed explanation 1/3 for layer 0, unit 3696
+2025-07-27 23:06:18,269 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:18,438 - root - INFO - Processed explanation 2/3 for layer 0, unit 3696
+2025-07-27 23:06:18,476 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:18,667 - root - INFO - Processed explanation 3/3 for layer 0, unit 3696
+2025-07-27 23:06:18,829 - root - INFO - Processing layer 0, unit 3533 (10/60)
+2025-07-27 23:06:18,879 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:19,053 - root - INFO - Processed explanation 1/3 for layer 0, unit 3533
+2025-07-27 23:06:19,093 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:19,268 - root - INFO - Processed explanation 2/3 for layer 0, unit 3533
+2025-07-27 23:06:19,308 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:19,474 - root - INFO - Processed explanation 3/3 for layer 0, unit 3533
+2025-07-27 23:06:19,636 - root - INFO - Processing layer 0, unit 3124 (11/60)
+2025-07-27 23:06:19,681 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:19,859 - root - INFO - Processed explanation 1/3 for layer 0, unit 3124
+2025-07-27 23:06:19,897 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:20,062 - root - INFO - Processed explanation 2/3 for layer 0, unit 3124
+2025-07-27 23:06:20,099 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:20,261 - root - INFO - Processed explanation 3/3 for layer 0, unit 3124
+2025-07-27 23:06:20,410 - root - INFO - Processing layer 0, unit 1149 (12/60)
+2025-07-27 23:06:20,457 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:20,621 - root - INFO - Processed explanation 1/3 for layer 0, unit 1149
+2025-07-27 23:06:20,657 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:20,819 - root - INFO - Processed explanation 2/3 for layer 0, unit 1149
+2025-07-27 23:06:20,858 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:21,019 - root - INFO - Processed explanation 3/3 for layer 0, unit 1149
+2025-07-27 23:06:21,168 - root - INFO - Processing layer 0, unit 6114 (13/60)
+2025-07-27 23:06:21,216 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:21,383 - root - INFO - Processed explanation 1/3 for layer 0, unit 6114
+2025-07-27 23:06:21,421 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:21,584 - root - INFO - Processed explanation 2/3 for layer 0, unit 6114
+2025-07-27 23:06:21,623 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:21,784 - root - INFO - Processed explanation 3/3 for layer 0, unit 6114
+2025-07-27 23:06:21,933 - root - INFO - Processing layer 0, unit 3279 (14/60)
+2025-07-27 23:06:21,982 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:22,149 - root - INFO - Processed explanation 1/3 for layer 0, unit 3279
+2025-07-27 23:06:22,190 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:22,352 - root - INFO - Processed explanation 2/3 for layer 0, unit 3279
+2025-07-27 23:06:22,391 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:22,555 - root - INFO - Processed explanation 3/3 for layer 0, unit 3279
+2025-07-27 23:06:22,705 - root - INFO - Processing layer 0, unit 440 (15/60)
+2025-07-27 23:06:22,755 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:22,922 - root - INFO - Processed explanation 1/3 for layer 0, unit 440
+2025-07-27 23:06:22,966 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:23,132 - root - INFO - Processed explanation 2/3 for layer 0, unit 440
+2025-07-27 23:06:23,173 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:23,336 - root - INFO - Processed explanation 3/3 for layer 0, unit 440
+2025-07-27 23:06:23,485 - root - INFO - Processing layer 0, unit 4405 (16/60)
+2025-07-27 23:06:23,534 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:23,701 - root - INFO - Processed explanation 1/3 for layer 0, unit 4405
+2025-07-27 23:06:23,740 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:23,902 - root - INFO - Processed explanation 2/3 for layer 0, unit 4405
+2025-07-27 23:06:23,942 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:24,105 - root - INFO - Processed explanation 3/3 for layer 0, unit 4405
+2025-07-27 23:06:24,254 - root - INFO - Processing layer 0, unit 5781 (17/60)
+2025-07-27 23:06:24,305 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:24,465 - root - INFO - Processed explanation 1/3 for layer 0, unit 5781
+2025-07-27 23:06:24,504 - root - INFO - Activation shape valid: 10
+2025-07-27 23:06:24,666 - root - INFO - Processed explanation 2/3 for layer 0, unit 5781
+2025-07-27 23:06:53,395 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:06:53,738 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:06:53,743 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:06:53,746 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:07:14,988 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:07:15,327 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:07:15,332 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:07:15,335 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:09:06,955 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:09:10,254 - root - WARNING - Wrong activation shape: 15. Removing this explanation.
+2025-07-27 23:09:10,258 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:09:10,261 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:09:31,302 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:09:31,641 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:09:31,646 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:09:31,648 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:10:33,701 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dmitri_Shostakovichs_musical_works_and_their_publication_details_Japanese_pancake_variations_and_ing.txt
+2025-07-27 23:10:35,914 - root - INFO - Activation shape valid: 10
+2025-07-27 23:10:36,081 - root - INFO - Processed explanation 3/3 for layer 0, unit 5781
+2025-07-27 23:10:36,230 - root - INFO - Processing layer 0, unit 3057 (18/60)
+2025-07-27 23:11:15,961 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Material_or_material_property_in_the_context_of_product_descriptions_especially_if_related_to_clothi.txt
+2025-07-27 23:11:18,130 - root - INFO - Activation shape valid: 10
+2025-07-27 23:11:18,287 - root - INFO - Processed explanation 1/3 for layer 0, unit 3057
+2025-07-27 23:12:14,864 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Medical_nuclear_and_mental_health_organizational_management_accreditation_HVAC_systems_computer_hard.txt
+2025-07-27 23:12:17,053 - root - INFO - Activation shape valid: 10
+2025-07-27 23:12:17,220 - root - INFO - Processed explanation 2/3 for layer 0, unit 3057
+2025-07-27 23:12:53,486 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_years_and_proper_nouns_related_to_historical_and_current_events_organizations_and_people.txt
+2025-07-27 23:12:55,652 - root - INFO - Activation shape valid: 10
+2025-07-27 23:12:55,809 - root - INFO - Processed explanation 3/3 for layer 0, unit 3057
+2025-07-27 23:12:55,957 - root - INFO - Processing layer 0, unit 5085 (19/60)
+2025-07-27 23:13:33,952 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Trips_routes_or_itineraries_often_involving_hiking_trekking_or_other_modes_of_travel_sometimes_with_.txt
+2025-07-27 23:13:36,118 - root - INFO - Activation shape valid: 10
+2025-07-27 23:13:36,273 - root - INFO - Processed explanation 1/3 for layer 0, unit 5085
+2025-07-27 23:13:55,850 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Air_travel_rope_access_training_and_certification_legal_terms_of_probation_travel_booking_services_n.txt
+2025-07-27 23:13:57,053 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-27 23:13:57,059 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Air_travel_rope_access_training_and_certification_legal_terms_of_probation_travel_booking_services_n.txt
+2025-07-27 23:13:57,062 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:14:29,097 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Air_travel_rope_access_training_and_certification_legal_terms_of_probation_travel_booking_services_n.txt
+2025-07-27 23:14:30,866 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-27 23:14:30,872 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Air_travel_rope_access_training_and_certification_legal_terms_of_probation_travel_booking_services_n.txt
+2025-07-27 23:14:30,875 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:14:58,429 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Air_travel_rope_access_training_and_certification_legal_terms_of_probation_travel_booking_services_n.txt
+2025-07-27 23:15:00,668 - root - INFO - Activation shape valid: 10
+2025-07-27 23:15:00,855 - root - INFO - Processed explanation 2/3 for layer 0, unit 5085
+2025-07-27 23:16:09,643 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Whirlpool_appliances_cooking_and_recipes_various_types_of_quartz_tarts_and_pies_laminate_flooring_th.txt
+2025-07-27 23:16:12,244 - root - WARNING - Wrong activation shape: 12. Removing this explanation.
+2025-07-27 23:16:12,249 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Whirlpool_appliances_cooking_and_recipes_various_types_of_quartz_tarts_and_pies_laminate_flooring_th.txt
+2025-07-27 23:16:12,252 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:17:28,730 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Whirlpool_appliances_cooking_and_recipes_various_types_of_quartz_tarts_and_pies_laminate_flooring_th.txt
+2025-07-27 23:17:31,026 - root - INFO - Activation shape valid: 10
+2025-07-27 23:17:31,208 - root - INFO - Processed explanation 3/3 for layer 0, unit 5085
+2025-07-27 23:17:31,381 - root - INFO - Processing layer 0, unit 4679 (20/60)
+2025-07-27 23:18:13,434 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Positive_named_entities.txt
+2025-07-27 23:18:15,668 - root - INFO - Activation shape valid: 10
+2025-07-27 23:18:15,837 - root - INFO - Processed explanation 1/3 for layer 0, unit 4679
+2025-07-27 23:18:50,210 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Beginnings_current_states_positive_qualities_and_requests_or_commands.txt
+2025-07-27 23:18:52,470 - root - INFO - Activation shape valid: 10
+2025-07-27 23:18:52,640 - root - INFO - Processed explanation 2/3 for layer 0, unit 4679
+2025-07-27 23:20:03,231 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Temporal_expressions_courtesythanks_demonstrative_determiners_and_words_expressing_positive_sentimen.txt
+2025-07-27 23:20:06,182 - root - WARNING - Wrong activation shape: 13. Removing this explanation.
+2025-07-27 23:20:06,188 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Temporal_expressions_courtesythanks_demonstrative_determiners_and_words_expressing_positive_sentimen.txt
+2025-07-27 23:20:06,190 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:20:35,651 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Temporal_expressions_courtesythanks_demonstrative_determiners_and_words_expressing_positive_sentimen.txt
+2025-07-27 23:20:37,974 - root - INFO - Activation shape valid: 10
+2025-07-27 23:20:38,170 - root - INFO - Processed explanation 3/3 for layer 0, unit 4679
+2025-07-27 23:20:38,327 - root - INFO - Processing layer 20, unit 328 (21/60)
+2025-07-27 23:20:38,375 - root - INFO - File already exists, skipping generation: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_events_or_items_and_additional_information_about_them.txt
+2025-07-27 23:20:40,669 - root - INFO - Activation shape valid: 10
+2025-07-27 23:20:40,838 - root - INFO - Processed explanation 1/3 for layer 20, unit 328
+2025-07-27 23:21:01,873 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Prepositions_especially_for_to_in_and_on_in_the_context_of_information_communication_or_services.txt
+2025-07-27 23:21:04,127 - root - INFO - Activation shape valid: 10
+2025-07-27 23:21:04,323 - root - INFO - Processed explanation 2/3 for layer 20, unit 328
+2025-07-27 23:21:36,451 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_directions_or_spatial_information.txt
+2025-07-27 23:21:38,259 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-27 23:21:38,264 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_directions_or_spatial_information.txt
+2025-07-27 23:21:38,266 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:22:22,322 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_directions_or_spatial_information.txt
+2025-07-27 23:22:24,494 - root - INFO - Activation shape valid: 10
+2025-07-27 23:22:24,664 - root - INFO - Processed explanation 3/3 for layer 20, unit 328
+2025-07-27 23:22:24,814 - root - INFO - Processing layer 20, unit 5789 (22/60)
+2025-07-27 23:22:56,188 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Actions_states_or_descriptions_related_to_the_current_state_progress_or_completion_of_processes_task.txt
+2025-07-27 23:22:58,357 - root - INFO - Activation shape valid: 10
+2025-07-27 23:22:58,514 - root - INFO - Processed explanation 1/3 for layer 20, unit 5789
+2025-07-27 23:23:29,256 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Auxiliary_verbsparticles_related_to_availability_creation_or_usage.txt
+2025-07-27 23:23:31,435 - root - INFO - Activation shape valid: 10
+2025-07-27 23:23:31,592 - root - INFO - Processed explanation 2/3 for layer 20, unit 5789
+2025-07-27 23:24:07,635 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Actionsevents_and_their_completion.txt
+2025-07-27 23:24:09,802 - root - INFO - Activation shape valid: 10
+2025-07-27 23:24:09,960 - root - INFO - Processed explanation 3/3 for layer 20, unit 5789
+2025-07-27 23:24:10,108 - root - INFO - Processing layer 20, unit 4268 (23/60)
+2025-07-27 23:24:36,448 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Second_person_pronouns_in_conditional_clauses_or_at_the_beginning_of_questions_often_related_to_choi.txt
+2025-07-27 23:24:38,609 - root - INFO - Activation shape valid: 10
+2025-07-27 23:24:38,766 - root - INFO - Processed explanation 1/3 for layer 20, unit 4268
+2025-07-27 23:25:12,170 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Conditions_terms_or_policies_of_use_generally_related_to_online_services_software_or_digital_content.txt
+2025-07-27 23:25:14,335 - root - INFO - Activation shape valid: 10
+2025-07-27 23:25:14,492 - root - INFO - Processed explanation 2/3 for layer 20, unit 4268
+2025-07-27 23:26:03,614 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Pronouns_especially_second_person_in_relation_to_choices_actions_or_instructions_sometimes_with_cond.txt
+2025-07-27 23:26:05,831 - root - INFO - Activation shape valid: 10
+2025-07-27 23:26:05,999 - root - INFO - Processed explanation 3/3 for layer 20, unit 4268
+2025-07-27 23:26:06,151 - root - INFO - Processing layer 20, unit 2988 (24/60)
+2025-07-27 23:26:30,023 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Personal_details_including_locations_relationships_roles_and_time_spans.txt
+2025-07-27 23:26:30,915 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:26:30,920 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Personal_details_including_locations_relationships_roles_and_time_spans.txt
+2025-07-27 23:26:30,922 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:26:52,848 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Personal_details_including_locations_relationships_roles_and_time_spans.txt
+2025-07-27 23:26:54,167 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-07-27 23:26:54,172 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Personal_details_including_locations_relationships_roles_and_time_spans.txt
+2025-07-27 23:26:54,174 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:27:36,753 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Personal_details_including_locations_relationships_roles_and_time_spans.txt
+2025-07-27 23:27:38,942 - root - INFO - Activation shape valid: 10
+2025-07-27 23:27:39,100 - root - INFO - Processed explanation 1/3 for layer 20, unit 2988
+2025-07-27 23:28:08,666 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Personal_attributes_actions_or_experiences_especially_those_related_to_selfperception_skills_or_back.txt
+2025-07-27 23:28:10,832 - root - INFO - Activation shape valid: 10
+2025-07-27 23:28:10,990 - root - INFO - Processed explanation 2/3 for layer 20, unit 2988
+2025-07-27 23:28:40,145 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Conditions_related_to_service_agreements_including_duration_fees_terms_of_service_and_customer_respo.txt
+2025-07-27 23:28:42,339 - root - INFO - Activation shape valid: 10
+2025-07-27 23:28:42,498 - root - INFO - Processed explanation 3/3 for layer 20, unit 2988
+2025-07-27 23:28:42,647 - root - INFO - Processing layer 20, unit 4683 (25/60)
+2025-07-27 23:29:10,774 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:29:11,578 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:29:11,582 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:29:11,584 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:29:40,158 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:29:41,368 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-27 23:29:41,373 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:29:41,375 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:31:19,097 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:31:21,664 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-07-27 23:31:21,669 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:31:21,671 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:31:38,688 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:31:39,039 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:31:39,044 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:31:39,046 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:31:53,589 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:31:53,933 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:31:53,937 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:31:53,940 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:32:18,260 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:32:19,059 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:32:19,063 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:32:19,065 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:33:46,851 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:33:48,953 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-07-27 23:33:48,958 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:33:48,961 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:34:12,777 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:34:13,107 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:34:13,111 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:34:13,114 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:35:40,773 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:35:42,831 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-07-27 23:35:42,836 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:35:42,839 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:36:37,522 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:36:38,450 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:36:38,455 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:36:38,458 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:37:11,203 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:37:12,091 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:37:12,096 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:37:12,098 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:37:53,719 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:37:54,609 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:37:54,614 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:37:54,616 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:38:12,745 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:38:13,079 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:38:13,084 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:38:13,086 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:39:27,650 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:39:28,847 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-27 23:39:28,852 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:39:28,854 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:39:54,625 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:39:55,510 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:39:55,514 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:39:55,516 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:41:34,910 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:41:36,392 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-07-27 23:41:36,397 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:41:36,400 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:41:51,461 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:41:51,792 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:41:51,796 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:41:51,799 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:42:09,363 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:42:09,693 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:42:09,697 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:42:09,700 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:42:33,031 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:42:33,811 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:42:33,817 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:42:33,819 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:42:58,853 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:42:59,627 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:42:59,631 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:42:59,633 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:43:25,648 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:43:26,410 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:43:26,415 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:43:26,418 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:43:48,394 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:43:49,166 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:43:49,171 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:43:49,174 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:44:18,017 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:44:18,914 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:44:18,919 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:44:18,921 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:44:44,740 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:44:45,515 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:44:45,520 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:44:45,522 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:45:03,194 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:45:03,532 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:45:03,537 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:45:03,540 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:45:33,181 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:45:33,956 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:45:33,961 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:45:33,964 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:45:49,660 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:45:52,111 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-07-27 23:45:52,116 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:45:52,119 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:46:16,630 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:46:17,400 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:46:17,404 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:46:17,406 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:46:38,926 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:46:39,699 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:46:39,704 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:46:39,715 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:47:02,882 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:47:03,654 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:47:03,659 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:47:03,662 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:47:18,807 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:47:19,158 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:47:19,163 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:47:19,166 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:47:39,997 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:47:40,769 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:47:40,774 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:47:40,776 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:48:03,190 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:48:03,977 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:48:03,981 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:48:03,983 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:48:22,901 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:48:23,242 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:48:23,248 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:48:23,250 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:48:52,005 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:48:52,779 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:48:52,784 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:48:52,787 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:49:17,942 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:49:18,715 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:49:18,720 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:49:18,722 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:49:33,822 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:49:34,160 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:49:34,165 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:49:34,168 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:49:57,983 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:49:58,757 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:49:58,761 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:49:58,764 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:50:15,719 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:50:16,061 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:50:16,065 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:50:16,068 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:50:56,022 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:50:56,958 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:50:56,963 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:50:56,966 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:51:27,097 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:51:27,922 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:51:27,927 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:51:27,930 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:51:44,360 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:51:44,725 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:51:44,729 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:51:44,732 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:51:59,736 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:52:00,197 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-27 23:52:00,202 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:52:00,205 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:52:18,842 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:52:19,251 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:52:19,257 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:52:19,260 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:52:34,090 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:52:34,957 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:52:34,962 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:52:34,965 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:53:18,034 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:53:18,813 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:53:18,818 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:53:18,820 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:54:04,268 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:54:05,150 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:54:05,155 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:54:05,158 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:54:19,486 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:54:19,824 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:54:19,830 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:54:19,832 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:54:49,479 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:54:50,377 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:54:50,382 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:54:50,385 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:55:09,631 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:55:09,971 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:55:09,976 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:55:09,979 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:55:25,607 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:55:25,965 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:55:25,970 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:55:25,972 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:55:42,760 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:55:43,136 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:55:43,141 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:55:43,144 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:56:09,256 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:56:10,037 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:56:10,042 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:56:10,059 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:56:36,831 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:56:37,609 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:56:37,614 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:56:37,617 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:57:08,201 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:57:09,099 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:57:09,103 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:57:09,106 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:57:34,755 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:57:35,545 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-27 23:57:35,550 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:57:35,553 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:58:32,344 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:58:33,614 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-27 23:58:33,621 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:58:33,623 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:58:58,321 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:58:58,669 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:58:58,674 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:58:58,677 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:59:15,205 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:59:15,543 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-27 23:59:15,547 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:59:15,569 - root - INFO - Regenerating explanation samples...
+2025-07-27 23:59:58,292 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:59:59,193 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-27 23:59:59,198 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-27 23:59:59,201 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:00:28,911 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:00:29,377 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:00:29,381 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:00:29,383 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:01:17,205 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:01:18,906 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-07-28 00:01:18,912 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:01:18,915 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:01:36,716 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:01:37,265 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:01:37,271 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:01:37,274 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:02:03,635 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:02:04,410 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:02:04,415 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:02:04,418 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:02:27,037 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:02:27,384 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:02:27,388 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:02:27,391 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:02:46,726 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:02:47,076 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:02:47,080 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:02:47,083 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:03:05,302 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:03:05,792 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:03:05,797 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:03:05,800 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:03:43,708 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:03:44,488 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:03:44,493 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:03:44,495 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:05:06,763 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:05:08,827 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-07-28 00:05:08,832 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:05:08,834 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:05:29,937 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:05:30,278 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:05:30,283 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:05:30,285 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:06:48,897 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:06:50,678 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 00:06:50,685 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:06:50,689 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:07:31,774 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:07:32,676 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 00:07:32,680 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:07:32,683 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:07:47,650 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:07:47,991 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:07:47,997 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:07:48,000 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:08:40,936 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:08:42,159 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-28 00:08:42,164 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:08:42,166 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:09:11,886 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:09:12,809 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 00:09:12,815 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:09:12,817 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:09:55,688 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:09:57,028 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-07-28 00:09:57,033 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:09:57,036 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:10:14,870 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:10:15,293 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:10:15,299 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:10:15,302 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:10:32,427 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:10:32,771 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:10:32,776 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:10:32,778 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:10:52,009 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:10:52,336 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:10:52,341 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:10:52,343 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:11:12,598 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:11:12,940 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:11:12,944 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:11:12,947 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:11:29,078 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:11:29,425 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:11:29,430 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:11:29,433 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:11:42,987 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:11:43,414 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:11:43,419 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:11:43,422 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:12:05,933 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:12:06,274 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:12:06,278 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:12:06,281 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:12:46,911 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:12:47,812 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 00:12:47,816 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:12:47,818 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:13:12,158 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:13:12,931 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:13:12,936 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:13:12,939 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:14:28,562 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:14:30,341 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 00:14:30,346 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:14:30,349 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:15:19,107 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:15:20,009 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 00:15:20,012 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:15:20,015 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:15:38,457 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:15:38,928 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:15:38,933 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:15:38,935 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:17:23,819 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:17:25,601 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 00:17:25,607 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:17:25,610 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:17:49,859 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:17:50,637 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:17:50,642 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:17:50,645 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:18:16,692 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:18:17,468 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:18:17,473 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:18:17,476 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:18:45,906 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:18:46,680 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:18:46,685 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:18:46,688 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:19:12,351 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:19:13,124 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:19:13,128 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:19:13,131 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:19:28,897 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:19:29,234 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:19:29,239 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:19:29,242 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:20:00,579 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:01,352 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:20:01,356 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:01,358 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:20:17,705 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:18,048 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:20:18,052 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:18,054 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:20:31,581 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:31,916 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:20:31,921 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:31,924 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:20:58,129 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:58,903 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:20:58,908 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:20:58,910 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:21:19,512 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:21:19,853 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:21:19,858 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:21:19,860 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:22:05,389 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:22:06,602 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-28 00:22:06,608 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:22:06,610 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:22:32,866 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:22:33,645 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:22:33,651 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:22:33,653 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:22:49,202 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:22:49,663 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:22:49,668 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:22:49,671 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:23:15,374 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:23:16,160 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:23:16,165 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:23:16,168 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:23:35,856 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:23:36,195 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:23:36,200 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:23:36,202 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:24:03,223 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:24:03,566 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:24:03,571 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:24:03,574 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:24:25,882 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:24:26,223 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:24:26,228 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:24:26,231 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:25:02,253 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:25:03,054 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:25:03,059 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:25:03,061 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:25:24,051 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:25:24,400 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:25:24,406 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:25:24,408 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:26:11,485 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:26:13,167 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-07-28 00:26:13,172 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:26:13,174 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:26:33,466 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:26:33,805 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:26:33,809 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:26:33,812 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:27:15,751 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:27:16,964 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-28 00:27:16,970 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:27:16,972 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:27:34,297 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:27:34,684 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:27:34,689 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:27:34,692 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:27:56,886 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:27:57,227 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:27:57,232 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:27:57,234 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:28:14,515 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:28:14,866 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:28:14,871 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:28:14,873 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:29:12,691 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:29:14,077 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-07-28 00:29:14,083 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:29:14,086 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:29:58,054 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:29:59,267 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-28 00:29:59,273 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:29:59,276 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:30:21,924 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:30:22,299 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:30:22,304 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:30:22,306 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:30:39,886 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:30:40,298 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:30:40,303 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:30:40,306 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:31:04,829 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:31:05,784 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:31:05,789 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:31:05,793 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:31:23,296 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:31:23,678 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:31:23,684 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:31:23,687 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:32:46,151 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:32:47,974 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-07-28 00:32:47,980 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:32:47,983 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:33:08,501 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:33:08,902 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:33:08,908 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:33:08,911 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:34:19,904 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:34:21,888 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 00:34:21,894 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:34:21,897 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:34:56,887 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:34:57,720 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:34:57,725 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:34:57,728 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:35:22,102 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:35:22,990 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:35:22,994 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:35:22,998 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:35:55,437 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:35:55,942 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:35:55,948 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:35:55,951 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:36:11,620 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:36:12,004 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:36:12,009 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:36:12,012 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:37:27,706 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:37:29,224 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-07-28 00:37:29,231 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:37:29,234 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:37:49,116 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:37:49,631 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:37:49,636 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:37:49,639 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:38:20,134 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:38:20,988 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:38:20,993 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:38:20,996 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:38:37,706 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:38:38,077 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:38:38,083 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:38:38,086 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:38:54,669 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:38:55,043 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:38:55,049 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:38:55,052 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:40:04,865 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:40:06,547 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-07-28 00:40:06,554 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:40:06,558 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:42:01,122 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:42:03,948 - root - WARNING - Wrong activation shape: 12. Removing this explanation.
+2025-07-28 00:42:03,954 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:42:03,956 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:42:17,125 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:42:17,646 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:42:17,651 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:42:17,655 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:43:27,938 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:43:30,112 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-07-28 00:43:30,118 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:43:30,121 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:43:42,886 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:43:43,257 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:43:43,262 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:43:43,265 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:44:01,531 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:44:01,935 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:44:01,940 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:44:01,944 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:44:27,112 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:44:28,052 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:44:28,057 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:44:28,060 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:45:36,499 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:45:38,506 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 00:45:38,511 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:45:38,514 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:46:11,758 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:46:12,829 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:46:12,837 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:46:12,840 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:46:31,487 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:46:31,895 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:46:31,901 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:46:31,904 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:46:58,762 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:46:59,737 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:46:59,742 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:46:59,745 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:47:25,296 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:47:26,354 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:47:26,361 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:47:26,364 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:47:41,638 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:47:42,065 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:47:42,070 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:47:42,072 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:48:02,202 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:48:02,536 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:48:02,540 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:48:02,543 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:49:18,629 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:49:20,396 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 00:49:20,402 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:49:20,405 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:49:48,936 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:49:49,715 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-07-28 00:49:49,720 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:49:49,723 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:50:04,595 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:50:05,050 - root - WARNING - Wrong activation shape: 2. Removing this explanation.
+2025-07-28 00:50:05,055 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:50:05,057 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:50:23,202 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:50:23,584 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:50:23,589 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:50:23,592 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:50:43,203 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:50:43,595 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 00:50:43,601 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:50:43,604 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:51:13,445 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:51:14,459 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 00:51:14,466 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:51:14,469 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:52:25,092 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quartz_varieties_and_their_properties_secondhand_copies_of_Descent_magazine_with_details_and_general.txt
+2025-07-28 00:52:27,468 - root - INFO - Activation shape valid: 10
+2025-07-28 00:52:27,672 - root - INFO - Processed explanation 1/3 for layer 20, unit 4683
+2025-07-28 00:52:56,700 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Geographic_locations_organizations_people_time_references_and_events_related_to_changing_political_c.txt
+2025-07-28 00:52:59,043 - root - INFO - Activation shape valid: 10
+2025-07-28 00:52:59,208 - root - INFO - Processed explanation 2/3 for layer 20, unit 4683
+2025-07-28 00:53:32,541 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dates_serial_numbers_and_the_concept_of_continuation_related_to_patents_and_patent_applications.txt
+2025-07-28 00:53:34,775 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-07-28 00:53:34,781 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dates_serial_numbers_and_the_concept_of_continuation_related_to_patents_and_patent_applications.txt
+2025-07-28 00:53:34,784 - root - INFO - Regenerating explanation samples...
+2025-07-28 00:54:02,594 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Dates_serial_numbers_and_the_concept_of_continuation_related_to_patents_and_patent_applications.txt
+2025-07-28 00:54:04,957 - root - INFO - Activation shape valid: 10
+2025-07-28 00:54:05,117 - root - INFO - Processed explanation 3/3 for layer 20, unit 4683
+2025-07-28 00:54:05,272 - root - INFO - Processing layer 20, unit 6045 (26/60)
+2025-07-28 00:54:36,404 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Situations_involving_potential_danger_assistance_or_noteworthy_events_often_including_specific_locat.txt
+2025-07-28 00:54:38,841 - root - INFO - Activation shape valid: 10
+2025-07-28 00:54:39,010 - root - INFO - Processed explanation 1/3 for layer 20, unit 6045
+2025-07-28 00:55:09,129 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Steps_in_a_process_often_involving_creation_or_modification_of_something_usually_food_or_software.txt
+2025-07-28 00:55:11,486 - root - INFO - Activation shape valid: 10
+2025-07-28 00:55:11,651 - root - INFO - Processed explanation 2/3 for layer 20, unit 6045
+2025-07-28 00:55:36,164 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Products_or_services_and_their_reviews_or_descriptions.txt
+2025-07-28 00:55:38,536 - root - INFO - Activation shape valid: 10
+2025-07-28 00:55:38,700 - root - INFO - Processed explanation 3/3 for layer 20, unit 6045
+2025-07-28 00:55:38,852 - root - INFO - Processing layer 20, unit 5741 (27/60)
+2025-07-28 00:56:33,624 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Giveaways_interviews_new_content_events_or_other_exciting_occurrences.txt
+2025-07-28 00:56:35,966 - root - INFO - Activation shape valid: 10
+2025-07-28 00:56:36,128 - root - INFO - Processed explanation 1/3 for layer 20, unit 5741
+2025-07-28 00:57:20,944 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Sharing_information_products_or_services.txt
+2025-07-28 00:57:23,294 - root - INFO - Activation shape valid: 10
+2025-07-28 00:57:23,459 - root - INFO - Processed explanation 2/3 for layer 20, unit 5741
+2025-07-28 00:58:09,067 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Requests_or_offers_to_do_something_for_someone.txt
+2025-07-28 00:58:11,467 - root - INFO - Activation shape valid: 10
+2025-07-28 00:58:11,640 - root - INFO - Processed explanation 3/3 for layer 20, unit 5741
+2025-07-28 00:58:11,796 - root - INFO - Processing layer 20, unit 5662 (28/60)
+2025-07-28 00:58:11,801 - root - WARNING - No matching file found for layer 20, unit 5662. Skipping.
+2025-07-28 00:58:11,954 - root - INFO - Processing layer 20, unit 2679 (29/60)
+2025-07-28 00:58:11,957 - root - WARNING - No matching file found for layer 20, unit 2679. Skipping.
+2025-07-28 00:58:12,110 - root - INFO - Processing layer 20, unit 2869 (30/60)
+2025-07-28 00:58:12,113 - root - WARNING - No matching file found for layer 20, unit 2869. Skipping.
+2025-07-28 00:58:12,268 - root - INFO - Processing layer 20, unit 1424 (31/60)
+2025-07-28 00:58:12,271 - root - WARNING - No matching file found for layer 20, unit 1424. Skipping.
+2025-07-28 00:58:12,426 - root - INFO - Processing layer 20, unit 5278 (32/60)
+2025-07-28 00:58:12,430 - root - WARNING - No matching file found for layer 20, unit 5278. Skipping.
+2025-07-28 00:58:12,586 - root - INFO - Processing layer 20, unit 2325 (33/60)
+2025-07-28 00:58:12,590 - root - WARNING - No matching file found for layer 20, unit 2325. Skipping.
+2025-07-28 00:58:12,742 - root - INFO - Processing layer 20, unit 2700 (34/60)
+2025-07-28 00:58:12,746 - root - WARNING - No matching file found for layer 20, unit 2700. Skipping.
+2025-07-28 00:58:12,898 - root - INFO - Processing layer 20, unit 3313 (35/60)
+2025-07-28 00:58:12,902 - root - WARNING - No matching file found for layer 20, unit 3313. Skipping.
+2025-07-28 00:58:13,059 - root - INFO - Processing layer 20, unit 1004 (36/60)
+2025-07-28 00:58:13,062 - root - WARNING - No matching file found for layer 20, unit 1004. Skipping.
+2025-07-28 00:58:13,218 - root - INFO - Processing layer 20, unit 4447 (37/60)
+2025-07-28 00:58:13,222 - root - WARNING - No matching file found for layer 20, unit 4447. Skipping.
+2025-07-28 00:58:13,378 - root - INFO - Processing layer 20, unit 1406 (38/60)
+2025-07-28 00:58:13,382 - root - WARNING - No matching file found for layer 20, unit 1406. Skipping.
+2025-07-28 00:58:13,537 - root - INFO - Processing layer 20, unit 3885 (39/60)
+2025-07-28 00:58:13,541 - root - WARNING - No matching file found for layer 20, unit 3885. Skipping.
+2025-07-28 00:58:13,695 - root - INFO - Processing layer 20, unit 1790 (40/60)
+2025-07-28 00:58:13,700 - root - WARNING - No matching file found for layer 20, unit 1790. Skipping.
+2025-07-28 00:58:13,855 - root - INFO - Processing layer 40, unit 4965 (41/60)
+2025-07-28 00:58:13,858 - root - WARNING - No matching file found for layer 40, unit 4965. Skipping.
+2025-07-28 00:58:14,013 - root - INFO - Processing layer 40, unit 3948 (42/60)
+2025-07-28 00:58:14,017 - root - WARNING - No matching file found for layer 40, unit 3948. Skipping.
+2025-07-28 00:58:14,172 - root - INFO - Processing layer 40, unit 4055 (43/60)
+2025-07-28 00:58:14,175 - root - WARNING - No matching file found for layer 40, unit 4055. Skipping.
+2025-07-28 00:58:14,330 - root - INFO - Processing layer 40, unit 824 (44/60)
+2025-07-28 00:58:14,333 - root - WARNING - No matching file found for layer 40, unit 824. Skipping.
+2025-07-28 00:58:14,490 - root - INFO - Processing layer 40, unit 1823 (45/60)
+2025-07-28 00:58:14,494 - root - WARNING - No matching file found for layer 40, unit 1823. Skipping.
+2025-07-28 00:58:14,658 - root - INFO - Processing layer 40, unit 5557 (46/60)
+2025-07-28 00:58:14,661 - root - WARNING - No matching file found for layer 40, unit 5557. Skipping.
+2025-07-28 00:58:14,817 - root - INFO - Processing layer 40, unit 1516 (47/60)
+2025-07-28 00:58:14,822 - root - WARNING - No matching file found for layer 40, unit 1516. Skipping.
+2025-07-28 00:58:14,976 - root - INFO - Processing layer 40, unit 364 (48/60)
+2025-07-28 00:58:14,979 - root - WARNING - No matching file found for layer 40, unit 364. Skipping.
+2025-07-28 00:58:15,135 - root - INFO - Processing layer 40, unit 4808 (49/60)
+2025-07-28 00:58:15,139 - root - WARNING - No matching file found for layer 40, unit 4808. Skipping.
+2025-07-28 00:58:15,294 - root - INFO - Processing layer 40, unit 3612 (50/60)
+2025-07-28 00:58:15,298 - root - WARNING - No matching file found for layer 40, unit 3612. Skipping.
+2025-07-28 00:58:15,451 - root - INFO - Processing layer 40, unit 6364 (51/60)
+2025-07-28 00:58:15,454 - root - WARNING - No matching file found for layer 40, unit 6364. Skipping.
+2025-07-28 00:58:15,609 - root - INFO - Processing layer 40, unit 3515 (52/60)
+2025-07-28 00:58:15,612 - root - WARNING - No matching file found for layer 40, unit 3515. Skipping.
+2025-07-28 00:58:15,768 - root - INFO - Processing layer 40, unit 556 (53/60)
+2025-07-28 00:58:15,772 - root - WARNING - No matching file found for layer 40, unit 556. Skipping.
+2025-07-28 00:58:15,929 - root - INFO - Processing layer 40, unit 183 (54/60)
+2025-07-28 00:58:15,932 - root - WARNING - No matching file found for layer 40, unit 183. Skipping.
+2025-07-28 00:58:16,086 - root - INFO - Processing layer 40, unit 3254 (55/60)
+2025-07-28 00:58:16,090 - root - WARNING - No matching file found for layer 40, unit 3254. Skipping.
+2025-07-28 00:58:16,245 - root - INFO - Processing layer 40, unit 6067 (56/60)
+2025-07-28 00:58:16,250 - root - WARNING - No matching file found for layer 40, unit 6067. Skipping.
+2025-07-28 00:58:16,407 - root - INFO - Processing layer 40, unit 3636 (57/60)
+2025-07-28 00:58:16,411 - root - WARNING - No matching file found for layer 40, unit 3636. Skipping.
+2025-07-28 00:58:16,564 - root - INFO - Processing layer 40, unit 1555 (58/60)
+2025-07-28 00:58:16,568 - root - WARNING - No matching file found for layer 40, unit 1555. Skipping.
+2025-07-28 00:58:16,721 - root - INFO - Processing layer 40, unit 6106 (59/60)
+2025-07-28 00:58:16,725 - root - WARNING - No matching file found for layer 40, unit 6106. Skipping.
+2025-07-28 00:58:16,878 - root - INFO - Processing layer 40, unit 4244 (60/60)
+2025-07-28 00:58:16,881 - root - WARNING - No matching file found for layer 40, unit 4244. Skipping.
+2025-07-28 00:58:16,882 - root - INFO - All layer-unit pairs processed. Results saved to:
+ /home/lkopf/autointerp-llm/results/cosy-evaluation_target-gpt2-xl_textgen-gemini-1-5-pro_mean_evalgen-gemini-1-5-pro_cosmopedia_1000_clusters-3.csv

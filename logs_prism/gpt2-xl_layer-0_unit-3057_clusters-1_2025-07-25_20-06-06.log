@@ -1,0 +1,966 @@
+2025-07-25 22:06:06,202 - root - INFO - ================================================================================
+2025-07-25 22:06:06,210 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 22:06:06,211 - root - INFO - ================================================================================
+2025-07-25 22:06:06,211 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 22:06:06,212 - root - INFO - AGG_METHOD = mean
+2025-07-25 22:06:06,212 - root - INFO - BATCH_SIZE = 2
+2025-07-25 22:06:06,213 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 22:06:06,213 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 22:06:06,214 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 22:06:06,214 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 22:06:06,215 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 22:06:06,215 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 22:06:06,216 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 22:06:06,216 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 22:06:06,217 - root - INFO - DATA_FILES = None
+2025-07-25 22:06:06,217 - root - INFO - DEVICE = cuda
+2025-07-25 22:06:06,218 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 22:06:06,218 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 22:06:06,219 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 22:06:06,219 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 22:06:06,219 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 22:06:06,220 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 22:06:06,220 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 22:06:06,221 - root - INFO - LAYER_ID = 0
+2025-07-25 22:06:06,221 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 22:06:06,222 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 22:06:06,222 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 22:06:06,222 - root - INFO - MULTI_EVAL = True
+2025-07-25 22:06:06,223 - root - INFO - N_CLUSTERS = 1
+2025-07-25 22:06:06,223 - root - INFO - N_SAMPLES = 10
+2025-07-25 22:06:06,224 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 22:06:06,224 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 22:06:06,225 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 22:06:06,225 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 22:06:06,226 - root - INFO - SPLIT = train
+2025-07-25 22:06:06,226 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 22:06:06,226 - root - INFO - STREAMING = True
+2025-07-25 22:06:06,227 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 22:06:06,227 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 22:06:06,228 - root - INFO - TARGET_DATA = c4
+2025-07-25 22:06:06,228 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 22:06:06,229 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 22:06:06,229 - root - INFO - UNIT_ID = 3057
+2025-07-25 22:06:06,229 - root - INFO - USE_API = True
+2025-07-25 22:06:06,230 - root - INFO - ================================================================================
+2025-07-25 22:06:06,230 - root - INFO - ANALYSIS RESULTS
+2025-07-25 22:06:06,231 - root - INFO - ================================================================================
+2025-07-25 22:06:06,231 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-3057_clusters-1_2025-07-25_20-06-06.log
+2025-07-25 22:14:42,710 - root - INFO - Reached 1000 samples.
+2025-07-25 22:14:44,293 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 22:14:44,294 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 22:14:56,049 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 22:15:33,212 - root - INFO - Number of candidates: 1001
+2025-07-25 22:15:36,862 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 22:15:36,863 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: � (1.0156116485595703)
+Text #1: � (0.4674471616744995)
+Text #1: � (0.28483396768569946)
+Text #1: � (1.198425531387329)
+Text #1: � (0.8828378319740295)
+Text #1: � (0.9495787620544434)
+Text #1: � (1.3269100189208984)
+Text #1: � (1.3159005641937256)
+Text #1: � (0.3987163007259369)
+Text #1: � (0.3973861336708069)
+Text #1: � (0.42580103874206543)
+Text #1: � (0.48946845531463623)
+Text #1: � (1.3046811819076538)
+Text #1: � (1.2874760627746582)
+Text #1: � (0.4609307646751404)
+Text #1: � (1.0046480894088745)
+Text #1: � (0.4065314829349518)
+Text #1: � (1.2763043642044067)
+Text #1: � (0.5571380853652954)
+Text #1: � (0.47503045201301575)
+Text #1: � (1.2498315572738647)
+Text #1: � (1.0648504495620728)
+Text #1: � (0.9942293763160706)
+Text #1: � (1.3260136842727661)
+Text #1: � (1.0325899124145508)
+Text #1: � (1.3112438917160034)
+Text #1: � (0.4739844501018524)
+Text #1: � (0.4741401970386505)
+Text #1: � (1.3425449132919312)
+Text #1: � (1.3123068809509277)
+Text #1: � (0.4784967303276062)
+Text #1: � (1.0714606046676636)
+Text #1: Free (0.24041369557380676)
+Text #1:  Synt (0.42674216628074646)
+Text #1:  Synt (0.27864113450050354)
+Text #1:  Synt (0.30541783571243286)
+Text #2: � (1.0156116485595703)
+Text #2: � (0.4674471616744995)
+Text #2: � (0.28483396768569946)
+Text #2: � (1.198425531387329)
+Text #2: � (0.8828378319740295)
+Text #2: � (0.9495787620544434)
+Text #2: � (1.3269100189208984)
+Text #2: � (1.3159005641937256)
+Text #2: � (0.3987163007259369)
+Text #2: � (0.3973861336708069)
+Text #2: � (0.42580103874206543)
+Text #2: � (0.48946845531463623)
+Text #2: � (1.3046811819076538)
+Text #2: � (1.2874760627746582)
+Text #2: � (0.4609307646751404)
+Text #2: � (1.0046480894088745)
+Text #2: � (0.4065314829349518)
+Text #2: � (1.2763043642044067)
+Text #2: � (0.5571380853652954)
+Text #2: � (0.47503045201301575)
+Text #2: � (1.2498315572738647)
+Text #2: � (1.0648504495620728)
+Text #2: � (0.9942293763160706)
+Text #2: � (1.3260136842727661)
+Text #2: � (1.0325899124145508)
+Text #2: � (1.3112438917160034)
+Text #2: � (0.4739844501018524)
+Text #2: � (0.4741401970386505)
+Text #2: � (1.3425449132919312)
+Text #2: � (1.3123068809509277)
+Text #2: � (0.4784967303276062)
+Text #2: � (1.0714606046676636)
+Text #2: Free (0.24041369557380676)
+Text #2:  Synt (0.42674216628074646)
+Text #2:  Synt (0.27864113450050354)
+Text #2:  Synt (0.30541783571243286)
+Text #3:  medical (0.3285958468914032)
+Text #3:  medical (0.12798547744750977)
+Text #3:  evolved (0.40078604221343994)
+Text #3:  NHS (0.322073757648468)
+Text #3:  invaluable (0.3628145456314087)
+Text #3:  NHS (0.23812492191791534)
+Text #3:  doctors (0.05948271602392197)
+Text #3:  medical (0.23363937437534332)
+Text #3:  medical (0.2395186424255371)
+Text #3:  Doctors (0.04776686429977417)
+Text #3:  Medical (0.8838294148445129)
+Text #3:  Medical (0.7235193252563477)
+Text #3:  Medical (0.7026497721672058)
+Text #3:  Medical (0.7294066548347473)
+Text #3:  Health (0.02196704037487507)
+Text #3:  Medical (1.138277292251587)
+Text #3: MS (0.04453299194574356)
+Text #3: MS (0.055223498493433)
+Text #3:  Clinical (0.15229807794094086)
+Text #3:  medical (0.21892070770263672)
+Text #3:  undergraduate (0.21167446672916412)
+Text #3:  doctors (0.012117796577513218)
+Text #3:  doctors (0.04930098354816437)
+Text #3:  Masters (0.5456910729408264)
+Text #3:  Medical (1.0334010124206543)
+Text #3:  Enh (0.4988413453102112)
+Text #3:  Medical (0.9765108823776245)
+Text #3:  NHS (0.3827839493751526)
+Text #3:  Innovation (0.18501611053943634)
+Text #3:  Medical (1.0343453884124756)
+Text #3:  Medical (1.129934310913086)
+Text #3:  Compet (0.4888190031051636)
+Text #3:  endorsed (0.016357960179448128)
+Text #3:  Medical (1.1372737884521484)
+Text #3:  undergraduate (0.198682963848114)
+Text #3:  modified (0.04225277900695801)
+Text #3:  Compet (0.39080923795700073)
+Text #3:  NHS (0.2575271725654602)
+Text #3:  Medical (1.1069961786270142)
+Text #3: ES (0.38354814052581787)
+Text #3:  medical (0.24342763423919678)
+Text #3:  doctors (0.26196104288101196)
+Text #3:  medical (0.344821035861969)
+Text #3:  Social (0.4174346923828125)
+Text #3:  Systems (0.12441704422235489)
+Text #3:  Sciences (0.44636982679367065)
+Text #3: MS (0.026495369151234627)
+Text #3:  Medical (1.072122573852539)
+Text #3:  Masters (0.45682838559150696)
+Text #3:  Medical (1.0119870901107788)
+Text #4: OM (0.8930521607398987)
+Text #4:  consulting (0.4943191707134247)
+Text #4:  1986 (0.17715610563755035)
+Text #4: OM (1.0442556142807007)
+Text #4:  institutions (0.1802438497543335)
+Text #4: OM (1.0695551633834839)
+Text #4: � (0.6526461839675903)
+Text #4:  Budget (0.38657769560813904)
+Text #4: � (0.504805326461792)
+Text #4:  inception (0.15622763335704803)
+Text #4:  Budget (0.27755916118621826)
+Text #4: OM (1.0291030406951904)
+Text #4: AS (0.15701347589492798)
+Text #4:  undertake (0.22553202509880066)
+Text #4:  amongst (0.14239901304244995)
+Text #4:  Improvement (0.1814516931772232)
+Text #4:  Technical (0.6382029056549072)
+Text #4: OM (0.9154069423675537)
+Text #4: AD (0.4792105257511139)
+Text #4:  Economic (0.9346432685852051)
+Text #4: AD (0.6484374403953552)
+Text #4:  EPA (0.28495097160339355)
+Text #4:  consortium (0.3793068528175354)
+Text #4: OM (0.9732221961021423)
+Text #4:  TA (1.5778272151947021)
+Text #4:  Support (0.18309549987316132)
+Text #4:  Sierra (1.8213756084442139)
+Text #4:  early (0.2230306714773178)
+Text #4: EC (1.405712604522705)
+Text #4: OM (0.9313430786132812)
+Text #4:  Reform (0.2726026773452759)
+Text #4: � (0.19138813018798828)
+Text #4:  Reform (0.3116797208786011)
+Text #4:  early (0.3590603768825531)
+Text #4:  consortium (0.43546658754348755)
+Text #4: OM (1.0269755125045776)
+Text #4:  technical (0.3954605460166931)
+Text #4:  Social (1.0004035234451294)
+Text #4: MIN (0.10586218535900116)
+Text #4:  Support (0.17099016904830933)
+Text #4:  early (0.17908316850662231)
+Text #4: OM (0.9542824029922485)
+Text #4: idia (0.36242666840553284)
+Text #4: OM (0.8858480453491211)
+Text #5:  popular (0.2825022339820862)
+Text #5: . (0.09378969669342041)
+Text #5:  fact (0.03484693542122841)
+Text #5: � (0.11575397104024887)
+Text #5:  drink (1.2126141786575317)
+Text #5:  alcohol (0.6654530167579651)
+Text #5:  taste (0.032874274998903275)
+Text #5:  liquor (0.4819435775279999)
+Text #5:  drinks (1.4269437789916992)
+Text #5:  drink (1.132197380065918)
+Text #5:  alcohol (0.5248672962188721)
+Text #5:  taste (0.03634396940469742)
+Text #5:  liquor (0.4446216821670532)
+Text #5:  drink (0.963677704334259)
+Text #5:  drink (1.1764311790466309)
+Text #5:  drink (1.0576246976852417)
+Text #5:  vodka (0.4779573976993561)
+Text #5:  ice (0.021137546747922897)
+Text #5:  drinks (1.3780509233474731)
+Text #5:  lib (0.021921537816524506)
+Text #5:  drink (1.4317926168441772)
+Text #5:  alcohol (0.6756070256233215)
+Text #5:  taste (0.0745500847697258)
+Text #5:  liquor (0.5025465488433838)
+Text #5:  drink (1.1017824411392212)
+Text #5:  cocktail (1.366709589958191)
+Text #5: Civil (0.0018583782948553562)
+Text #5:  substitution (0.11995790153741837)
+Text #5:  1912 (0.28194546699523926)
+Text #5:  candy (0.08357755094766617)
+Text #5:  drunk (0.9553697109222412)
+Text #5:  marg (0.43270185589790344)
+Text #5:  hour (0.07392337918281555)
+Text #5: asty (0.1018887609243393)
+Text #5:  cocktails (0.9769020080566406)
+Text #6: ritical (0.7935442328453064)
+Text #6:  Nuclear (1.2094773054122925)
+Text #6:  nuclear (0.46208831667900085)
+Text #6: ission (0.34509795904159546)
+Text #6:  nuclear (0.34518030285835266)
+Text #6:  Nuclear (0.9758610725402832)
+Text #6: ission (0.3525238633155823)
+Text #6:  radiation (0.6523081660270691)
+Text #6:  thermal (0.08165007829666138)
+Text #6:  nuclear (0.1865193396806717)
+Text #6:  thermal (0.08415348827838898)
+Text #6:  electric (1.115274429321289)
+Text #6:  nuclear (0.23259156942367554)
+Text #6:  Nuclear (0.9803868532180786)
+Text #6:  nuclear (0.30863749980926514)
+Text #6:  accident (0.10094035416841507)
+Text #6:  molten (0.1651536226272583)
+Text #6:  molten (0.14401119947433472)
+Text #6: ission (0.17634260654449463)
+Text #6: � (0.08250105381011963)
+Text #6: ritical (0.764174222946167)
+Text #6:  radiation (0.4544753134250641)
+Text #6:  radioactive (1.098186731338501)
+Text #6:  radioactive (1.0415899753570557)
+Text #6:  Nuclear (0.878284215927124)
+Text #6:  accident (0.04192238301038742)
+Text #6:  nuclear (0.20266078412532806)
+Text #6:  accident (0.010896140709519386)
+Text #6: Temperature (0.45719432830810547)
+Text #6: unct (0.07414752244949341)
+Text #6:  molten (0.13371171057224274)
+Text #6:  colder (0.11213689297437668)
+Text #6:  radioactive (0.9718546271324158)
+Text #6:  inject (0.07906926423311234)
+Text #6: oric (0.07441581040620804)
+Text #6:  nuclear (0.1382625550031662)
+Text #6: ission (0.21314764022827148)
+Text #6:  installed (0.02496252954006195)
+Text #7:  themselves (0.12283675372600555)
+Text #7: � (0.30177485942840576)
+Text #7: og (0.124794602394104)
+Text #7: � (0.24522797763347626)
+Text #7: � (0.4160297214984894)
+Text #7:  400 (0.271678626537323)
+Text #7: og (0.07926038652658463)
+Text #7:  nuclear (0.7990223169326782)
+Text #7:  Nevada (0.28037089109420776)
+Text #7:  1940 (0.33614417910575867)
+Text #7:  nuclear (0.9391448497772217)
+Text #7:  testing (0.4599774181842804)
+Text #7:  radioactive (1.80512535572052)
+Text #7:  radiation (1.1483789682388306)
+Text #7:  nuclear (0.5339196920394897)
+Text #7:  contamination (0.20149515569210052)
+Text #7:  Sacrifice (0.46080243587493896)
+Text #7:  permanently (0.09303896129131317)
+Text #7:  nuclear (0.7665408253669739)
+Text #7:  Yu (0.12544700503349304)
+Text #7:  Nevada (0.3272215723991394)
+Text #7:  rods (0.17603236436843872)
+Text #7:  waste (1.0372682809829712)
+Text #7: utonium (0.2953721582889557)
+Text #7:  substance (0.1060173436999321)
+Text #7:  radioactive (1.4149121046066284)
+Text #7:  unparalleled (0.3887558579444885)
+Text #7:  imb (2.027082920074463)
+Text #7:  1994 (0.21020939946174622)
+Text #7: � (0.10935429483652115)
+Text #7:  dedicated (0.10174912214279175)
+Text #7:  nuclear (0.3949921429157257)
+Text #7:  nuclear (0.7203210592269897)
+Text #7:  nuclear (0.7031133770942688)
+Text #7:  advocate (0.14030037820339203)
+Text #7:  nuclear (0.6296018362045288)
+Text #7:  nuclear (0.5597901940345764)
+Text #7:  spiritual (0.9468057155609131)
+Text #7: � (0.15300095081329346)
+Text #8:  mental (0.22851896286010742)
+Text #8:  licensed (0.3585391640663147)
+Text #8:  counselors (0.18977825343608856)
+Text #8:  Science (1.058214783668518)
+Text #8:  Mental (0.7900948524475098)
+Text #8:  semester (0.13715559244155884)
+Text #8: hour (0.03577231243252754)
+Text #8:  UT (0.36002254486083984)
+Text #8:  licensed (0.3685256242752075)
+Text #8:  counselors (0.1010863408446312)
+Text #8:  mental (0.3030129671096802)
+Text #8: � (0.1721067577600479)
+Text #8:  Mental (0.9401295781135559)
+Text #8:  Professional (0.2744763493537903)
+Text #8:  Mental (0.7885127663612366)
+Text #8:  Mental (0.7653794884681702)
+Text #8:  Science (0.780998170375824)
+Text #8:  Rehab (0.06332256644964218)
+Text #8:  Sciences (0.3258231282234192)
+Text #8:  UT (0.27505967020988464)
+Text #8:  Health (0.040698155760765076)
+Text #8:  semester (0.07699938863515854)
+Text #8:  semester (0.024917352944612503)
+Text #8:  occupational (0.17718170583248138)
+Text #8:  pathology (0.008281626738607883)
+Text #8:  undergraduate (0.20685112476348877)
+Text #8:  sciences (0.10285157710313797)
+Text #8:  foundational (0.03578288480639458)
+Text #8:  sciences (0.13005931675434113)
+Text #8:  occupational (0.15013569593429565)
+Text #8:  Rehab (0.15144528448581696)
+Text #8:  Sciences (0.4415299594402313)
+Text #8:  UT (0.2413957566022873)
+Text #8:  prerequisite (0.2631634473800659)
+Text #8:  sciences (0.2411922663450241)
+Text #8:  UT (0.2831581234931946)
+Text #8:  medical (0.16086451709270477)
+Text #8:  medical (0.17573511600494385)
+Text #8:  nursing (0.15930791199207306)
+Text #8: � (0.03855159133672714)
+Text #8:  UT (0.28699323534965515)
+Text #9:  University (0.04806850105524063)
+Text #9:  Certified (0.008894096128642559)
+Text #9: MA (0.34758153557777405)
+Text #9:  Professional (0.7589975595474243)
+Text #9:  Oper (0.07505190372467041)
+Text #9:  University (0.04784034565091133)
+Text #9: BS (0.4531310498714447)
+Text #9:  accredited (1.0406594276428223)
+Text #9:  Advance (0.06538626551628113)
+Text #9: AC (1.801771879196167)
+Text #9:  AAC (1.3443044424057007)
+Text #9: reditation (1.0519555807113647)
+Text #9:  academic (0.8953373432159424)
+Text #9: reditation (1.0282220840454102)
+Text #9:  AAC (1.4838638305664062)
+Text #9: BS (0.4384860098361969)
+Text #9: MA (0.09182307869195938)
+Text #9:  Professional (0.6933520436286926)
+Text #9:  Accounting (0.6730289459228516)
+Text #9:  International (0.13984797894954681)
+Text #9: AC (1.9250588417053223)
+Text #9:  dedicated (0.0975998118519783)
+Text #9: AC (1.9198472499847412)
+Text #9:  175 (0.40392646193504333)
+Text #9: MA (0.2530214488506317)
+Text #9: FA (1.2908107042312622)
+Text #9: CAP (0.8562400937080383)
+Text #9: MA (0.27749744057655334)
+Text #9:  experienced (0.03330090269446373)
+Text #9:  academics (0.925085186958313)
+Text #10: AC (1.8527545928955078)
+Text #10:  1946 (0.41826295852661133)
+Text #10:  tirelessly (0.14080706238746643)
+Text #10:  States (0.18770919740200043)
+Text #10: AC (2.135972261428833)
+Text #10: inction (0.5790331363677979)
+Text #10: AC (1.9267886877059937)
+Text #10:  induct (0.09212100505828857)
+Text #10: inction (0.5679336786270142)
+Text #10: AC (1.771984338760376)
+Text #10: � (0.20656749606132507)
+Text #10:  induct (0.10682621598243713)
+Text #10:  induct (0.04360819235444069)
+Text #10:  Conservation (0.030532527714967728)
+Text #10: IC (0.45627474784851074)
+Text #10:  Conservation (0.1342950016260147)
+Text #10: IAS (0.032857589423656464)
+Text #10: � (0.26042020320892334)
+Text #10: � (0.2694805860519409)
+Text #10:  Huntington (0.028834937140345573)
+Text #10:  Conservation (0.1587008386850357)
+Text #10: CD (0.07498249411582947)
+Text #10: CD (0.06852780282497406)
+Text #10:  SW (0.03314211964607239)
+Text #10: CD (0.1324327439069748)
+Text #10: CD (0.1063179299235344)
+Text #10:  SW (0.06349789351224899)
+Text #10:  SW (0.03915998339653015)
+Text #10: CD (0.1199573501944542)
+Text #10: � (0.4170072078704834)
+Text #10:  Conservation (0.27542415261268616)
+Text #10: � (0.3231395483016968)
+Text #10: AC (1.9848641157150269)
+Text #10:  Carm (0.8644224405288696)
+Text #10:  Organic (0.12041113525629044)
+Text #10:  Carm (0.805064857006073)
+Text #10: AC (2.0316128730773926)
+Text #10:  Conservation (0.18455015122890472)
+Text #10: � (0.3104130029678345)
+Text #10: AC (1.9014605283737183)
+Text #10: � (0.253033846616745)
+Text #10: AC (1.87688410282135)
+Text #10:  Specialist (0.6701594591140747)
+Text #10: � (0.3246106207370758)
+Text #10:  Evans (0.03650537505745888)
+Text #10: � (0.322997123003006)
+Text #10:  unique (0.06628650426864624)
+Text #10:  sessions (0.10138246417045593)
+Text #11:  Experts (0.2967403829097748)
+Text #11: � (0.09200026094913483)
+Text #11: � (0.06914863735437393)
+Text #11: AC (1.622253179550171)
+Text #11: � (0.05382148176431656)
+Text #11:  distraction (0.012502329424023628)
+Text #11:  hottest (0.18920110166072845)
+Text #11:  technicians (0.07139533758163452)
+Text #11: AC (1.4473402500152588)
+Text #11: � (0.0024777096696197987)
+Text #11:  Experts (0.17456555366516113)
+Text #11: AC (1.6021901369094849)
+Text #11:  intimidating (0.04685046151280403)
+Text #11: � (0.03835891932249069)
+Text #11: AC (1.5284714698791504)
+Text #11: � (0.002172259148210287)
+Text #11: AC (1.572823405265808)
+Text #11: � (0.03667544573545456)
+Text #11: 699 (0.027943629771471024)
+Text #11: � (0.07664591819047928)
+Text #12: OM (0.7215997576713562)
+Text #12: OM (0.5140928030014038)
+Text #12: OM (0.4754469096660614)
+Text #12: OM (0.44342556595802307)
+Text #12: OM (0.403985857963562)
+Text #12:  SP (1.4406846761703491)
+Text #12: OM (0.42615267634391785)
+Text #12:  Solar (0.015008896589279175)
+Text #12: mad (0.053156666457653046)
+Text #12: md (0.0032017938792705536)
+Text #12: OM (0.4151270389556885)
+Text #12: OM (0.5079018473625183)
+Text #12: mg (0.7196083664894104)
+Text #12:  Solar (0.05216759815812111)
+Text #12:  Solar (0.019496819004416466)
+Text #12:  SP (1.4632982015609741)
+Text #12: OM (0.48765233159065247)
+Text #12:  concurrently (0.0073355017229914665)
+Text #12:  ASCII (0.03183317929506302)
+Text #12:  laptop (0.1592613160610199)
+Text #12:  emulation (0.14510944485664368)
+Text #12: aking (0.2308613359928131)
+Text #12: mit (0.012374485842883587)
+Text #12:  adapters (1.1182947158813477)
+Text #12:  Ethernet (0.014438625425100327)
+Text #12:  DHCP (0.07927747815847397)
+Text #12: OM (0.5595960021018982)
+Text #12: OM (0.48370736837387085)
+Text #12:  SP (1.302996277809143)
+Text #12: OM (0.4954609274864197)
+Text #12: OM (0.4985029995441437)
+Text #12:  SP (1.5205974578857422)
+Text #12: OM (0.5035540461540222)
+Text #12: OM (0.5094040036201477)
+Text #12:  diagnostic (0.5122271776199341)
+Text #12: mad (0.07676494121551514)
+Text #12: mg (0.704349935054779)
+Text #13:  incentives (0.10282053798437119)
+Text #13:  obsess (0.4527580738067627)
+Text #13:  forever (0.005136186722666025)
+Text #13: � (0.06738690286874771)
+Text #13:  toxic (0.28256866335868835)
+Text #13:  addiction (1.1953063011169434)
+Text #13:  addiction (1.1541204452514648)
+Text #13:  Behavior (0.4671049416065216)
+Text #13: rive (0.5276117920875549)
+Text #13: ro (0.00510241836309433)
+Text #13:  addicts (0.8287156820297241)
+Text #13:  psychologist (1.4866008758544922)
+Text #13:  Triumph (0.21104058623313904)
+Text #13: olics (0.039774492383003235)
+Text #13: � (0.03510373830795288)
+Text #14: Focus (0.002262596972286701)
+Text #14:  aerobic (0.7375690340995789)
+Text #14:  cognitive (0.29847806692123413)
+Text #14:  graphics (0.4017603397369385)
+Text #14: Dr (0.1633254885673523)
+Text #14:  drinking (0.721479594707489)
+Text #15: oph (1.6447423696517944)
+Text #15:  breathing (0.008004690520465374)
+Text #15: GP (1.5990173816680908)
+Text #15: omy (0.47611215710639954)
+Text #15: omy (0.4537433683872223)
+Text #15: oph (1.3075751066207886)
+Text #15:  GP (0.9718897342681885)
+Text #15:  GP (0.9735212922096252)
+Text #15: ulp (0.023293953388929367)
+Text #15: oph (1.0709242820739746)
+Text #15:  GP (0.9045145511627197)
+Text #15: oid (0.0056917001493275166)
+Text #15: oph (1.0234586000442505)
+Text #15: apist (0.005420736037194729)
+Text #15: GP (1.1832598447799683)
+Text #15:  respir (0.5153036117553711)
+Text #16: eller (0.11970198899507523)
+Text #16: ox (0.7184274196624756)
+Text #16: irting (0.015516657382249832)
+Text #16: reth (0.05224653705954552)
+Text #16: UR (0.10374826937913895)
+Text #16: Style (0.0007925196550786495)
+Text #16: ORED (0.1810970902442932)
+Text #16: asy (0.0138785969465971)
+Text #16: AT (1.2628302574157715)
+Text #16: OSH (1.3754364252090454)
+Text #16: ioch (0.7614436745643616)
+Text #16: ox (0.807843029499054)
+Text #16: outhern (0.15847039222717285)
+Text #16: isa (0.04669241979718208)
+Text #16: AT (1.357153296470642)
+Text #16: OSH (1.3576219081878662)
+Text #16: lic (1.1514508724212646)
+Text #16: avid (0.043136000633239746)
+Text #16: Nic (0.03710608556866646)
+Text #16: Night (0.26492494344711304)
+Text #16: unny (0.10165800154209137)
+Text #16: ioch (0.7905704379081726)
+Text #16: Style (0.04959482699632645)
+Text #16: rian (0.00031582522206008434)
+Text #16: rating (0.7269393801689148)
+Text #16: oc (1.3677282333374023)
+Text #16: UR (0.17556513845920563)
+Text #16: AP (1.6849619150161743)
+Text #16: CE (0.0789153128862381)
+Text #16: ella (0.017880767583847046)
+Text #16: irting (0.06638599187135696)
+Text #16: avid (0.03232785314321518)
+Text #16: arius (0.01531838346272707)
+Text #16: UC (0.2119513303041458)
+Text #16: ast (0.017874067649245262)
+Text #16: XL (0.6355407238006592)
+Text #16: ORED (0.099187932908535)
+Text #16: V (0.07979651540517807)
+Text #16: fa (0.4450835883617401)
+Text #16: rating (0.5661059617996216)
+Text #16: ast (0.003009719541296363)
+Text #16: XL (0.6824420690536499)
+Text #16: ll (0.06473136693239212)
+Text #16: ober (0.350192129611969)
+Text #16: lic (1.168163537979126)
+Text #17: ES (0.33746081590652466)
+Text #17: eco (0.024396853521466255)
+Text #17: � (0.35896703600883484)
+Text #17: � (0.29549628496170044)
+Text #17:  ES (1.6808148622512817)
+Text #17:  ES (1.5444847345352173)
+Text #17: � (0.09669911861419678)
+Text #17:  ES (1.3645883798599243)
+Text #17:  Recommend (0.3398551642894745)
+Text #17: � (0.22441411018371582)
+Text #17:  Climate (0.1471373736858368)
+Text #17:  European (0.10775928944349289)
+Text #17: � (0.37592625617980957)
+Text #17:  Action (0.13455034792423248)
+Text #17:  guidance (0.036166734993457794)
+Text #17:  ES (1.5979063510894775)
+Text #17:  ES (1.615995168685913)
+Text #17:  ES (1.6421070098876953)
+Text #17:  ES (1.4845695495605469)
+Text #17:  ES (1.3773587942123413)
+Text #17:  ES (1.3510628938674927)
+Text #17: � (0.18185001611709595)
+Text #17:  ES (1.4731026887893677)
+Text #17:  ES (1.421543002128601)
+Text #17:  Investment (0.4009057283401489)
+Text #17:  ES (1.6111326217651367)
+Text #17:  ES (1.5735970735549927)
+Text #17:  ES (1.5011554956436157)
+Text #17: Gs (0.21658404171466827)
+Text #18:  deficiencies (0.02555656246840954)
+Text #18: olar (0.13006362318992615)
+Text #18: hetics (1.0123023986816406)
+Text #18: olar (0.08275283873081207)
+Text #18:  orth (0.09235671907663345)
+Text #18:  therapy (0.032975535839796066)
+Text #18:  combination (0.07351774722337723)
+Text #18:  vertical (0.19391079246997833)
+Text #18: olar (0.15186743438243866)
+Text #18: olar (0.17048010230064392)
+Text #18:  orth (0.019621383398771286)
+Text #18:  diagn (0.40696296095848083)
+Text #18:  vertical (0.08689180761575699)
+Text #18: Bio (0.48552098870277405)
+Text #18: od (1.19123113155365)
+Text #18: ics (0.013010872527956963)
+Text #18: hetic (0.9264395236968994)
+Text #18:  orth (0.06466697156429291)
+Text #18:  States (0.04013293236494064)
+Text #18:  Dr (0.04977662116289139)
+Text #18:  Diplom (0.019896771758794785)
+Text #18:  Orth (0.26114824414253235)
+Text #18:  textbook (0.09767461568117142)
+Text #18: � (0.09990701079368591)
+Text #18:  Opt (0.18542397022247314)
+Text #18:  orth (0.0053766327910125256)
+Text #18:  prestigious (0.11551940441131592)
+Text #18: hod (0.5664706826210022)
+Text #18: ics (0.003709319978952408)
+Text #18:  Academy (0.013310546055436134)
+Text #18: hetic (1.0665831565856934)
+Text #19:  Jazz (1.069762945175171)
+Text #19: � (0.4592269957065582)
+Text #19: azz (1.2642263174057007)
+Text #19:  Jazz (1.1027026176452637)
+Text #19:  guitar (0.4452783167362213)
+Text #19:  Stuart (0.1039053425192833)
+Text #19:  upstairs (0.7175149917602539)
+Text #19: � (0.33925408124923706)
+Text #19:  resembled (0.09235057979822159)
+Text #19:  guitar (0.2600916028022766)
+Text #19:  instrument (0.039205361157655716)
+Text #19:  acoustic (0.3263589143753052)
+Text #19: � (0.39383792877197266)
+Text #19:  vibe (0.013079081661999226)
+Text #19: � (0.1460321545600891)
+Text #19: azz (1.0637831687927246)
+Text #19: � (0.14517253637313843)
+Text #19:  Gibbs (0.2521108388900757)
+Text #19: ll (0.05413508787751198)
+Text #19:  Impossible (0.1434585452079773)
+Text #19: � (0.41152244806289673)
+Text #19: � (0.15732698142528534)
+Text #19:  guitar (0.060611724853515625)
+Text #19:  ret (0.04072420299053192)
+Text #19:  banter (0.25665444135665894)
+Text #19: � (0.1714341789484024)
+Text #19: � (0.1265929639339447)
+Text #19:  penchant (0.05337243154644966)
+Text #19:  improvis (0.674608051776886)
+Text #19: � (0.0989881306886673)
+Text #19:  foray (0.10513881593942642)
+Text #19:  invention (0.07139792293310165)
+Text #19: vet (0.028669793158769608)
+Text #19: � (0.07396549731492996)
+Text #19: � (0.10670506209135056)
+Text #19: � (0.06425410509109497)
+Text #19: mith (0.1794678270816803)
+Text #19: � (0.0290531013160944)
+Text #19: � (0.05941365659236908)
+Text #19:  hilarious (0.2185312956571579)
+Text #19: ophon (0.015177213586866856)
+Text #19: � (0.12601885199546814)
+Text #19: � (0.14462392032146454)
+Text #19:  obsession (0.33017203211784363)
+Text #19:  hour (0.011424892581999302)
+Text #19: � (0.11436770111322403)
+Text #19: ophon (0.12704163789749146)
+Text #19: � (0.11681689321994781)
+Text #20:  web (0.09753991663455963)
+Text #20: etric (1.547929286956787)
+Text #20:  video (0.0521681122481823)
+Text #20:  virtual (0.018131094053387642)
+Text #20: � (0.014561949297785759)
+Text #20:  goggles (0.6473273634910583)
+Text #20: � (0.008750655688345432)
+Text #20:  VR (0.031127184629440308)
+Text #20: etric (1.5413639545440674)
+Text #20:  VR (0.044777482748031616)
+Text #20: pres (0.10459866374731064)
+Text #20: � (0.1743597686290741)
+Text #20:  augmented (0.0999995693564415)
+Text #20: � (0.01580655574798584)
+Text #20:  Nvidia (0.1168496310710907)
+Text #20:  Ventures (0.35584935545921326)
+Text #20:  Founders (0.1718345731496811)
+Text #20:  Science (1.1506537199020386)
+Text #20:  Ventures (0.257945716381073)
+Text #20:  Ventures (0.3875322639942169)
+Text #20:  Ventures (0.42867809534072876)
+Text #20:  Venture (0.39860716462135315)
+Text #20:  Digital (0.011785521171987057)
+Text #20:  Ventures (0.3181779980659485)
+Text #20: itable (0.01795290596783161)
+Text #20:  Fre (0.35263389348983765)
+Text #20:  Adv (0.14631535112857819)
+Text #20: etric (1.6681410074234009)
+Text #20:  Oculus (0.39125049114227295)
+Text #20:  Oculus (0.35189056396484375)
+Text #20:  headsets (0.34347236156463623)
+Text #20:  computer (0.11680978536605835)
+
+=== Text #1 ===
+> Key Features Material- CottonHalf Sleeve Warranty 3 Days Replacement Policy 100..
+Free Home Delivery! Key Features Material- Cotton; GSM-160Half Sleeve Warranty 3 Da..
+Free Home Delivery! Key Features Material- Cotton; GSM-200Half Sleeve Warranty 3 Da..
+Free Home Delivery! Key Features জা�[��]��সি কা�[��]�[��]���[�] থাই ক[�]��[�]��ালিটি�[�], আ�[��]���[��]���[��]��টি�[�]া �[�]া�[��]��সি�[�] সাম�[��]�� বাম[�]�� ..
+Free Home Delivery! Key Features �[�]া�[��]��সি কা�[��]�[��]���[�] থাই ক[�]��[�]��ালিটি�[�], ব[�]���[�]া�[�]িল �[�]া�[��]��সি�[�] সাম�[��]�� বাম[�]�� থাকছ..
+[Free] Home Delivery! Key Features Material-[ Synthetic]Half Sleeve Warranty 3 Days Rep..
+Free Home Delivery! Key Features Material-[ Synthetic] Full Sleeve Warranty ..
+Free Home Delivery! Key Features Material-[ Synthetic]Full Sleeve Warranty 3 Days Rep..
+Key Features Material- Cotton; GSM-160 Half Sleeve Warranty 3 Days Replacement ..
+
+=== Text #2 ===
+> Key Features Material- CottonHalf Sleeve Warranty 3 Days Replacement Policy 100..
+Free Home Delivery! Key Features Material- Cotton; GSM-160Half Sleeve Warranty 3 Da..
+Free Home Delivery! Key Features Material- Cotton; GSM-200Half Sleeve Warranty 3 Da..
+Free Home Delivery! Key Features জা�[��]��সি কা�[��]�[��]���[�] থাই ক[�]��[�]��ালিটি�[�], আ�[��]���[��]���[��]��টি�[�]া �[�]া�[��]��সি�[�] সাম�[��]�� বাম[�]�� ..
+Free Home Delivery! Key Features �[�]া�[��]��সি কা�[��]�[��]���[�] থাই ক[�]��[�]��ালিটি�[�], ব[�]���[�]া�[�]িল �[�]া�[��]��সি�[�] সাম�[��]�� বাম[�]�� থাকছ..
+[Free] Home Delivery! Key Features Material-[ Synthetic]Half Sleeve Warranty 3 Days Rep..
+Free Home Delivery! Key Features Material-[ Synthetic] Full Sleeve Warranty ..
+Free Home Delivery! Key Features Material-[ Synthetic]Full Sleeve Warranty 3 Days Rep..
+Key Features Material- Cotton; GSM-160 Half Sleeve Warranty 3 Days Replacement ..
+
+=== Text #3 ===
+> This title is a comprehensive account of the key aspects of[ medical] leadership. A highly accessible, text book-style resource, it explores how the[ medical] profession has[ evolved] in tandem with administrative and structural aspects of the[ NHS]. Assuming leadership roles at all stages of their training and career is a progressively vital component of the definition of a good doctor. This book will provide[ invaluable] support and guidance to anyone engaged in leadership within the[ NHS], but particularly to junior[ doctors] in the primary and secondary care arenas taking on leadership roles for the first time.
+An introduction to[ medical] leadership and engagement: a perspective on this text. A historical perspective on[ medical] leadership.[ Doctors] and managers: differing perspectives. Roles and models of leadership.[ Medical] leadership competency approaches. Why does it matter?[ Medical] engagement and organisational performance.[ Medical] leadership and primary care. Appraisal and revalidation. Practical examples of initiatives to enhance leadership capacity.[ Medical] leadership and engagement: towards cultural acceptance and the future.
+Peter Spurgeon was Director of the[ Health] Services Management Centre at the University of Birmingham prior to joining Warwick[ Medical] School (W[MS]). At W[MS] he was originally based in the Institute of[ Clinical] Leadership, which ran programmes in[ medical] leadership for[ undergraduate] and postgraduate[ doctors]. The Institute also offered development programmes for newly qualified[ doctors] and developed a Certificate and[ Masters] programme in[ Medical] Leadership.Peter was Project Director for five years on the[ Enh]ancing Engagement in[ Medical] Leadership project, run jointly by the[ NHS] Institute for[ Innovation] and Improvement and the Academy of[ Medical] Royal Colleges. This project produced the[ Medical] Leadership[ Compet]ency Framework (MLCF), now[ endorsed] by the General[ Medical] Council as part of[ undergraduate] and postgraduate training. It also formed the basis of a[ modified Clinical] Leadership[ Compet]ency Framework for all clinical professionals and ultimately the Leadership Framework for all[ NHS] staff groups.The project also produced the[ Medical] Engagement Scale (M[ES]), which provides a metric of the level of engagement of the[ medical] workforce in the wider goals of the organisation. Peter has overseen the subsequent use of this measure to its current position of an international comparative database of some 7000[ doctors]. The sustained link between levels of[ medical] engagement and organisational performance has seen increasing attention given to both assessment and development of enhanced engagement.Peter is now a Recognised Researcher in the[ Social Science] and[ Systems] in Health Unit of the Division of Health[ Sciences] at W[MS].
+John Clark is is an Honorary Associate Professor within the University of Warwick[ Medical] School and was involved in the design and delivery of a new[ Masters] in[ Medical] Leadership. He is also an Ad
+
+=== Text #4 ===
+> PR[OM]AN is a leading international[ consulting] company specialised in development cooperation. Created in[ 1986], PR[OM]AN is providing services to international donor agencies, national governments, public[ institutions] and development partners world-wide.
+PR[OM]AN has been awarded the �[�]South Africa Sector[ Budget Support Technical] Assistance�[�] contract. The project will provide support to the Government of South Africa, notably the National Treasury and relevant national departments, in the[ inception] and the implementation phases of the Sector[ Budget Support] provided by the EU. The project will start in April 2019 for a period of two years.
+PR[OM]AN (lead) in partnership with NIR[AS] and Particip has been selected to[ undertake] a mapping of services for survivors of violence[ amongst] women and children in South Africa. The specific objective of the assignment is to contribute to the implementation of the[ Improvement] Plan by the Inter-Ministerial[ Technical] Task Team for Violence Against Women and Children. The project will start in April 2019 for a period of 16 months.
+PR[OM]AN has been awarded the contract for the Formulation of the Programme of Support to the S[AD]C-EU[ Economic] Partnership Agreement in South Africa. The overall objective of the assignment is to enhance South Africa's trade and business opportunities by promoting the full implementation of the EU-S[AD]C[ EPA] in South Africa while advancing regional integration.
+The[ consortium] led by PR[OM]AN has been successfully providing[ TA] in[ Support] of the Education Sector in[ Sierra] Leone since February 2017. The service contract has been extended with another 2 years. The contract is now scheduled to be completed[ early August] 2021.
+A[ECOM International] Europe in partnership with PR[OM]AN has been awarded the contract for the assessment of the 2018 specific performance indicators under the Sector[ Reform] Contract �[�Support] to Police[ Reform]”.
+Since[ early] 2015 the[ consortium] led by Louis Berger with PR[OM]AN as partner has been providing[ technical] assistance to the Ministry of[ Social] Assistance and Reinsertion ([MIN]ARS) in the framework of the[ Support] Project for Vulnerable Groups. The contract has been extended with another 18 months, with completion now scheduled[ early August] 2020.
+PR[OM]AN in partnership with B&S Europe has been awarded the contract for the final evaluation of the "Firk[idia] di skola" project and the identification and formulation of the 11th EDF education sector support programme.
+The past months have been very successful. A total of 5 new long-term contracts were awarded to PR[OM]AN as lead company (2) or partner (3) for a total value of €18.8
+
+=== Text #5 ===
+> The White Russian is among the most[ popular drinks] in the country[.] This likely has to do with the[ fact] that the ingredients are easy to obtain and it takes no special skills or tools to make. Beyond that, many find it the perfect libation for those who don�[�]t like to[ drink] much. While there is plenty of[ alcohol] involved, the[ taste] is smooth and almost makes you forget[ liquor] is even involved.
+The White Russian is among the most popular[ drinks] in the country. This likely has to do with the fact that the ingredients are easy to obtain and it takes no special skills or tools to make. Beyond that, many find it the perfect libation for those who don't like to[ drink] much. While there is plenty of[ alcohol] involved, the[ taste] is smooth and almost makes you forget[ liquor] is even included.
+Our recipe is fairly straightforward. The[ drink] is simple to make and best served layered. Pour the cream over the back of a barspoon to keep it floating on the top. The[ drink]er may choose to stir it all together if desired. While our recipe uses the ratio of 2:1:1, some prefer this[ drink] with a 1:1:1 ratio instead.
+1: Add[ vodka] to an old-fashioned glass filled with[ ice].
+2: Add coffee liqueur and stir.
+3: Pour cream over the back of a bar spoon.
+4: Top with a grating of fresh nutmeg, if desired.
+The White Russian is among the most popular[ drinks] in the country. Many find it the perfect[ lib]ation for those who don't like to[ drink] much. While there is plenty of[ alcohol] involved, the[ taste] is smooth and almost makes you forget[ liquor] is even included. Cream is poured over to finish the[ drink] and give it that milky, delicious taste.
+Often referred to as the oldest American[ cocktail], the Sazerac dates back to the pre-[Civil] War era. It has seen its share of changes, including the[ substitution] of anise-flavored spirits when absinthe was banned in the US in[ 1912]. Because of that, you may see some variation in recipes, but the basics remain.
+Give a favorite childhood[ candy] an adult twist by getting gummy worms[ drunk], then whipping up a tipsy worm's perfect match: a tasty, classic[ marg]arita.
+Spice up happy[ hour] with these unusual but oh-so-t[asty] beer[ cocktails].
+This candy-infused frozen treat puts a grown-up twist on a childhood favorite.
+
+=== Text #6 ===
+> Was there rec[ritical]ity at Fukushima Dai-ichi[ Nuclear] Plant?
+Criticality is a state in which[ nuclear] f[ission] reaction is occurring continuously in[ nuclear] fuel.[ Nuclear] f[ission] generates a large amount of[ radiation] and[ thermal] energy. By artificially generating and controlling critical condition,[ nuclear] power plants create[ thermal] energy to produce[ electric] power.
+In the course of the[ nuclear accident] at Fukushima Daiichi[ Nuclear Power] Plant,[ nuclear] fuels inside the reactors of Unit 1 to 3 melted down and the debris is scattered at the bottom or outside below the reactor pressure vessels. In the[ accident], intense heat of the[ molten] fuel melted the vessels and the fuel fell through the holes. Molten fuel solidified as abundant water was poured in and has been cooled by flowing water ever since.
+Is there any possibility that this[ molten] fuel (fuel debris) will become critical again?
+To judge this, measurement of “radioactive noble gas” such as Xenon plays a big role.
+Radioactive noble gas is an important indicator of the presence of criticality for it is created in f[ission] reaction.
+Gas discharged from the containment vessel which covers the pressure vessel is closely monitored by the �[�]gas management system.” The system analyses the kind and amount of each component in real time.
+Should there were any rec[ritical]ity,[ radiation] level of[ radioactive] noble gases would increase indicating the presence of the state of criticality. The radioactivity level of[ radioactive] noble gas at Fukushima Daiichi[ Nuclear] Power Plant so far has been maintained at a very low level that is incomparable to what was observed in the critical state of the[ accident].
+It has never increased as to show critical signs up until now. This signifies the[ nuclear] fuel once melted in the[ accident] is kept in stable condition (maintained in subcritical state).
+[Temperature] of the now-def[unct nuclear] reactor in which[ molten nuclear] fuel is cooled is also measured in real time. It is about the same as the outside temperature or a little[ colder] (around 15 to 30 degrees).
+This means heat accompanying criticality is not only generated but also the amount of heat emitted by the decay of[ radioactive] materials is very small.
+As a safety measure, equipments to[ inject] b[oric acid] water to halt the chain reaction of[ nuclear] f[ission] are[ installed] in case re-criticality occurs.
+
+=== Text #7 ===
+> The Western Shoshone call[ themselves] Newe, �[�]The People,” and they refer to their ancestral lands as Newe S[ogobia], �[�]The People�[�]s Land.” After living on these lands for thousands of years, the Newe have spent the last[ 400] defending them from invasion and environmental destruction. Today, the U.S. government occupies much of the Newe S[ogobia], using it as a domestic[ nuclear] war zone. The[ Nevada] Test Site was illegally seized from the tribe in the[ 1940]s to use for[ nuclear] weapons[ testing] and as a dump for highly[ radioactive nuclear waste]. Releases of[ radiation] from the detonation of over 1000[ nuclear] weapons above and below the ground have resulted in cancer clusters and[ contamination] in the communities downwind of the site – and beyond. Newe homelands have been turned into a National[ Sacrifice] Area, or[ permanently poisoned] lands. The latest threat to the Newe is the planned[ nuclear waste] dump at[ Yucca Mountain] located within the[ Nevada Test] Site. The repository will accept over 75,000 tons of fuel[ rods] and other high-level[ waste] across roads and rails from 39 states and place it in a giant hole in the earth found to be seismically unstable and in contact with ground water. Pl[utonium], the most deadly man-made[ substance] on earth, has a[ radioactive] half-life of 250,000 years, and its nearby storage portends an[ unparalleled toxic] peril for the next 12,000 generations living in the region.
+Wherever Corbin Harney raises his voice, be it in song, in prayer, or in speech, be it at his homeland, at the UN, or in faraway Kazakhstan, his message is informed with the calm authority[ imb]ued him by the earth. In[ 1994], Corbin Harney founded the Shundahai Network (Shundahai is the Newe word for �[�]peace and harmony with all creation”), a non-profit organization[ dedicated] to breaking the[ nuclear] chain by building alliances with indigenous communities and environmental, peace and human rights movements. They seek to abolish all[ nuclear] weapons and end all[ nuclear testing],[ advocate ph]asing out[ nuclear] energy and ending the transportation and dumping of[ nuclear waste], and promote the principles of Environmental Justice. Their campaigns and events incorporate the values of community building, education,[ spiritual] ceremonies and nonviolent direct action.
+I ask for moisture to fall upon us so the grass will start to grow.
+what we humans tramp down.
+we tramp it down so it�[�]s flat on the ground
+
+=== Text #8 ===
+> A new graduate degree in[ mental] health counseling at The University of Texas at El Paso will help prepare[ licensed] professional[ counselors] in Texas.
+The Master of[ Science] (M.S.) in[ Mental] Health Counseling was approved by the Texas Higher Education Coordinating Board to begin in the fall 2017[ semester].
+The 60-[hour] program is intended for graduate students in the[ UTEP] College of Education who plan to work as[ licensed] professional[ counselors] in community, agency and private practice settings that provide[ mental] health services.
+Approximately 40 students are expected to start the program this fall.
+Out of Texas�[�] 254 counties, 207 are designated as[ Mental] Health[ Professional] Shortage Areas.
+The M.S. in[ Mental] Health Counseling will replace the Master of Education in[ Mental] Health Counseling degree previously offered at the college.
+With the new Bachelor of[ Science] in[ Rehab]ilitation[ Sciences],[ UTEP] is the only university in the region to offer that particular degree, which will prepare students in the College of[ Health Sciences] for a career in the rehabilitation professions.
+Thirty students are expected to enroll in the program in the fall 2017[ semester].
+The program consists of 120[ semester] credit hours. It will provide students with the course knowledge, attitudes, values and skills to prepare them to meet the challenges of graduate or professional education in four preparation tracks: physical therapy,[ occupational] therapy, rehabilitation counseling and speech-language[ pathology].
+“The newly approved[ undergraduate] degree in rehabilitation[ sciences] will provide students the[ foundational] information in the rehabilitation[ sciences] and the clinical research skills that are necessary to be competitive for acceptance into graduate programs in[ occupational] therapy, physical therapy, rehabilitation counseling and communication sciences and disorders across the United States,” said Anthony P. Salvatore, Ph.D., chair of the Department of[ Rehab]ilitation[ Sciences] at[ UTEP].
+Students who complete the program will meet the[ prerequisite] coursework requirements to apply to graduate programs throughout the country, including the rehabilitation health[ sciences] graduate programs at[ UTEP].
+Employment opportunities for program graduates include support staff or[ medical] and health services managers in[ medical] settings, rehabilitation centers and skilled[ nursing] facilities, and entry- and mid-level management positions in the healthcare industry.
+The new programs bring the total number of master�[�]s degrees offered at[ UTEP] to 75.
+
+=== Text #9 ===
+> Deakin[ University] Melbourne Australia has recognised Institute of[ Certified] Management Accountants of Sri Lanka (C[MA] Sri Lanka)[ Professional] Program Foundation and[ Oper]ational Level for credit transfer to the second year of Deakin[ University] M300 Bachelor of Commerce Degree program.
+Deakin Business School (D[BS]) is[ accredited] by the Association to[ Advance Colleg]iate Schools of Business (A[ACSB]).[ AACSB] acc[reditation] is awarded to business schools that meet strict standards of quality,[ academic] and professional excellence, and is known worldwide as the longest standing, most recognised form of professional acc[reditation] which an institution and its business program can earn. Only 5% of business programs worldwide are[ AACSB accredited], and D[BS] is one of only three in Victoria.
+C[MA] Sri Lanka is the National[ Professional] Management[ Accounting] Body in Sri Lanka incorporated by the Parliament Act No. 23 of 2009 and a member of the[ International] Federation of Accountants (IF[AC]), the global organisation for the accountancy profession[ dedicated] to serving the public interest by strengthening the profession and contributing to the development of strong international economies.
+IF[AC] is comprised of over[ 175] members and associates in more than 130 countries and jurisdictions, representing almost 3 million accountants in public practice, education, government service, industry, and commerce. C[MA] Sri Lanka is also a member of the South Asian Federation of Accountants (SA[FA]) and the Confederation of Asian and Pacific Accountants ([CAP]A).
+C[MA] Sri Lanka will have a faculty of[ experienced] professionals and[ academics] to conduct a special full-time program for students who wish to transfer to the Deakin Bachelor of Business Degree Program commencing 17 January.
+
+=== Text #10 ===
+> N[AC]D was established over 70 years ago in[ 1946 by] a group of forward-thinking conservation district officials from across the country. These leaders recognized the need for a unified voice in natural resource conservation and worked[ tirelessly] to ensure that conservation remained at the forefront of United[ States] agricultural and environmental policy.
+N[AC]D is delighted to announce that its newly launched Hall of Dist[inction] will recognize and honor past and present district official leaders who have helped pave the way for N[AC]D's accomplishments. Your state or territory can[ induct] a former or current district official to the Hall of Dist[inction] every four years. Head to N[AC]D�[�]s website to access the online form used to make[ induct]ions, and keep an eye out for new[ induct]ees featured in eResource.
+Each fall, the Indiana[ Conservation] Partnership ([IC]P) – a coalition of eight Indiana agencies including the Indiana Association of Soil and Water[ Conservation] Districts ([IAS]WCD) – sponsors four District Showcase Awards throughout the state. The showcases allow Indiana�[�]s conservation districts the chance to share best practices for conservation project design and implementation.
+This year�[�]s four conservation district honorees were: the[ Huntington] County Soil and Water[ Conservation] District Group (including Wabash County SW[CD], Wells County SW[CD], Blackford County[ SWCD], and Grant County SW[CD]), the Jennings County SW[CD], the Washington County[ SWCD], and the Hamilton County[ SWCD].
+Last week, the Hamilton County SW[CD]�[�]s Urban[ Conservation]ist Claire Lane wrapped up the last of the four showcases with a detailed presentation on her district�[�]s activities and a tour of several conservation projects. Pictured are tour attendees – including N[AC]D North Central Representative Beth Mason – visiting the[ Carm]el Clay Schools Plots to Plates[ Organic] Gardens in[ Carm]el, Indiana. Hamilton County SWCD was also one of the 42 conservation districts awarded an N[AC]D Urban Agriculture[ Conservation] Grant in 2016.
+Over 200 representatives from Colorado�[�]s 76 conservation districts and partner organizations met in Loveland, Colorado, last week for C[AC]D�[�]s 72nd annual meeting. N[AC]D President Lee McDaniel and Western Issues[ Specialist] Jeff Burwell spoke at the event, as did Les Owen, director of conservation services for Colorado�[�]s Department of Agriculture, and Clint[ Evans], Colorado�[�]s NRCS state conservationist.
+The meeting featured six[ unique] breakout[ sessions] that covered topics like water usage and oversight, forestry stewardship tools, and district funding. Several Colorado conservation districts
+
+=== Text #11 ===
+> You rely heavily on your heating and air conditioning system, so what should you do if something happens and it involves maintenance or repair? If you are in the Marco area, why not listen to your friends and neighbors and call Service[ Experts] Heating & Air Conditioning to offer a hand. As you�[�]ll notice from our customer satisfaction ratings, you won�[�]t need to look much further to find a dependable, reliable and qualified company.
+When your HV[AC] system isn�[�]t working properly, it can be a large[ distraction] to your daily life. And when something happens on the coldest or[ hottest] day of the year, it makes you even more anxious to get it working correctly so you can rest easy in your home. Which is why our expert[ technicians] will work as quickly as possible to identify the problem and discuss options with you.
+One of the best ways you can keep your system working efficiently is to arrange regular maintenance. We’ll assess your HV[AC] system to make sure it�[�]s running properly and look for any indications of possible issues to help reduce the chance of a surprise breakdown. And you’ll have the option to ask us any questions about your system or your overall home comfort.
+Service[ Experts] Heating & Air Conditioning can also assist if you are in the market for a newer, more efficient HV[AC] system. It can be a little[ intimidating] looking at all the different sizes and features. Every home is unique, and your needs might not be same as your neighbors. We�[�]ll examine your home and chat with you about what you want to get out of your HV[AC] system. We can promise you’ll find a system that meets your needs and budget.
+Whether it�[�]s an emergency, a regular checkup or you have questions about a new HV[AC] system, we�[�]re happy to help you. You can call us at 239-908-[699]1 or if it�[�]s more convenient, you can arrange an appointment via our website or chat with us online. We think your home comfort should be a priority and we hope you do, too!
+
+=== Text #12 ===
+> Oracle IL[OM] CLI shell (default) – The Oracle IL[OM] shell provides access to Oracle IL[OM]'s features and functions through a CLI.
+Oracle IL[OM] web interface – The Oracle IL[OM] web interface supports the same set of features and functions as the shell.
+Note - Unless indicated otherwise, all examples of interaction with the[ SP] are depicted with Oracle IL[OM] shell commands.
+Note - The CLI includes a feature that enables you to access Oracle[ Solar]is fault manager commands, such as f[mad]m, f[md]ump, and fmstat, from within the Oracle IL[OM] shell. This feature is referred to as the Oracle IL[OM] fault[mg]mt shell. For more information about the Oracle[ Solar]is fault manager commands, refer to Server Administration and the Oracle[ Solar]is documentation.
+You can log into multiple[ SP] accounts simultaneously and have separate Oracle IL[OM] shell commands executing[ concurrently] under each account.
+SER MGT – Connect a terminal device (such as an[ ASCII] terminal or[ laptop] with terminal[ emulation]) to the serial management port.
+Set up your terminal device for 9600 baud, 8 bit, no parity, 1 stop bit and no handsh[aking]. Use a null-modem configuration (trans[mit] and receive signals crossed over to enable DTE-to-DTE communication). The crossover[ adapters] supplied with the server provide a null-modem configuration.
+NET MGT – Connect this port to an[ Ethernet] network. This port requires an IP address. By default, the port is configured for[ DHCP], or you can assign an IP address.
+Decide which interface to use, the Oracle IL[OM] CLI or the Oracle IL[OM] web interface.
+Open an SSH session and connect to the[ SP] by specifying its IP address.
+The Oracle IL[OM] default username is root, and the default password is changeme.
+Copyright (c) 2010 Oracle and/or its affiliates. All rights reserved.
+Note - To provide optimum server security, change the default server password.
+The Oracle IL[OM] prompt (->) indicates that you are accessing the[ SP] with the Oracle IL[OM] CLI.
+Perform Oracle IL[OM] commands that provide the[ diagnostic] information you need.
+show command – Displays information about individual FRUs. See Display FRU Information (show Command).
+show faulty command – Displays environmental, POST-detected, and PSH-detected faults. See Check for Faults (show faulty Command).
+Note - You can use f[mad]m faulty in the fault[mg]mt shell as an alternative to the
+
+=== Text #13 ===
+> Everyone likes to be liked. This is a simple, human truth: As mammals, we are driven by a desire to bond with others, feel accepted, and be acknowledged for a job well done. In fact, research from the University of Iowa shows that feeling accepted is more motivating than even financial[ incentives] and improves our productivity and performance. But there’s a difference between wanting and needing others’ approval.
+If, for example, you find yourself[ obsess]ing over the number of “likes” you get on social media or[ forever] waiting for your supervisor or coworkers to notice that you�[�]ve done something well, you might be caught in a[ toxic] cycle of approval[ addiction].
+Approval[ addiction] is a constant need for acceptance and approval that drives your daily actions to the detriment of your own needs, says Lynn Taylor, author of Tame Your Terrible Office Tyrant: How to Manage Childish Boss[ Behavior] & Th[rive] in Your Job.
+App[ro]val[ addicts] usually wind up worn out and disappointed, adds[ psychologist] Linda Sapadin, author of Master Your Fears: How to[ Triumph] Over Your Worries and Get On With Your Life. They spend so much energy seeking positive feedback that they have less energy to take care of themselves or work toward their meaningful goals. And, Taylor says, constantly seeking approval can cause people to become workah[olics], suffer health problems, and make choices that result in less-than-ideal consequences.
+The first step is to build awareness and adjust your priorities accordingly. To begin, ask yourself some tough questions. What are your primary goals? What do you want to do? Then evaluate how you spend your time: Are you neglecting your dreams by doing too much for others? With this awareness, you can deliberately choose activities that support your own needs, Taylor says, and step out of the people-pleasing cycle.
+Use the insights gleaned from your personal audit to establish some ground rules and boundaries for yourself. Spend more time on the things that leave you feeling positive and focused on your dreams, needs, and values. Say “yes” to the tasks and activities that align with those goals—and don’t be afraid to say, “No, but thanks for thinking of me,” to those that don�[�]t, Sapadin adds. These guidelines will help you manage your time and energy in a way that leaves plenty left over to help others if you choose.
+“If your objective is to set your own
+
+=== Text #14 ===
+> A powerful memory is all what we all are looking for these days. A better and powerful memory always helps you to be a step ahead in your jobs, schools, and more in your life. With a powerful memory you can learn new things very fast which can help you to make money as fast learners always in demand of every employer. You can consider few memory improvement tips in your daily life to enhance your memorizing capabilities. Although except all those tips to improve your memory the best way you can try out by yourself in remembering process which involves most of your memory and helps to pay a better attention, planning and organizing.
+Now, here I am with some memory improvement tips which can change your lifestyle and helps you to have a powerful memory. So, here are 10 such memory improvement tips.
+Clench your fist: According toresearch, clenching your right hand and squeezing it tightly can help you to memorize phone numbers or shopping lists.
+Say it loud: This is the easiest way to improve your memory. Saying the things you want to remember to yourself loudly can help you to recall.
+[Focus] your attention on materials you are studying: In order to memorize something deeply and converting that knowledge or information from short-term memory into long-term memory you need to be active and pay your full attention.
+Exercise more: It is also said that exercise helps to increase the number of brain cells, with the growth of new brain cells in the hippocampus (i.e. an area of the brain important in memory and learning). According to the several studies, it has been found that[ aerobic] exercise enhances memory and improves[ cognitive] functions.
+Utilization of mnemonic devices: You can use mnemonics for remembering things. This is the simple way to memorize something you want to keep in your mind for long-term memory. You can use mnemonics rhyme, song or a joke which is somehow related to the matter you want to memorize and those kinds of mnemonics are best which utilize positive imagery, humor and novelty.
+Visualizing concept: If you are studying something then it will be fruitful to you when that remains in your memory so for that pay an extra attentions to pictures, diagrams, charts or[ graphics]. You can also highlights the important things you need to remember with colorful pens draw charts or figures with your idea on your note books so that it will be easier for you to remember things.
+[Dr]ink Green Tea: Regularly[ drinking] green tea can improve your memory and
+
+=== Text #15 ===
+> Gloss[oph]aryngeal[ breathing] ([GP]B) is a technique useful in patients with a reduced vital capacity owing to respiratory muscle paralysis, for example following poli[omy]elitis or in tetraplegic. It is a trick movement that was first described by Dail (1951) when patients with poli[omy]elitis were observed to be gulping air into their lungs. It was this gulping action that gave the technique the name 'frog breathing'.
+Gloss[oph]aryngeal breathing is a form of positive pressure ventilation produced by the patient's voluntary muscles where boluses of air are forced into the lungs. Paralyzed patients dependent on a mechanical ventilator may be able to use[ GP]B continuously, other than during sleep, to substitute the mechanical ventilation. The most common use of[ GP]B is in patients who are able to breathe spontaneously but whose power to cough and clear secretions is inadequate. The technique may enable these patients to shout to attract attention and it may help to maintain or improve lung and chest wall compliance (Dail et al 1955).
+To breathe in, a series of pumping strokes is produced by action of the lips, tongue, soft palate, pharynx and larynx. Air is held in the chest by the larynx which acts as a valve as the mouth is opened for the next g[ulp]. Before starting to teach a patient gloss[oph]aryngeal breathing it is helpful for him to inflate his chest using an intermittent positive pressure ventilator with a mouthpiece. He can practice holding the breath while removing the mouthpiece and avoiding escape of air through the larynx or nose. The most important step in learning[ GP]B is the up and down movement of the cric[oid] cartilage while keeping the jaw still. The patient can practice by watching the movement in a mirror and feeling the cartilage with his fingers.
+This sequence should be practised slowly at first and then gradually speeded up until the movement flows. A leak of air may occur through the nose and, until it is prevented by the soft palate, a nose dip may be required.
+The next stage is to take a maximum breath in and, while holding this breath, to add several gloss[oph]aryngeal gulps, to augment the vital capacity. When correct, the patient will feel his chest filling with air, and the physiother[apist] can test the '[GP]B vital capacity' by putting a mouthpiece attached to the expiratory limb of a Wright's[ respir]ometer in the patient
+
+=== Text #16 ===
+> JessicaaDivine SarahK[eller] jasmin. AmyNicollete. LilyRay. DouglasC[ox].
+MoanSweetviking28MishaRayNr1GoodBoy .milksqu[irting]titLilyRaymilksquirtingtitday[reth] .J[UR]ISEX89RomeoHotFighterJoonMaliSamara[Style]21 .VictoriaKisJUSEFFM[OREDIV]Aext[asy]girl69 .MarySexxxAngelJessica28MENT[AT]O[OSH]OTXmar[ioch]ase33 .Ashley707DouglasC[ox]s[outhern]l[isa]LillyJ .MENT[AT]O[OSHOT]XmatureandyounggAlisacandyyLittleA[lic]a .d[avidmax]x[Nic]olee1x0[Night]Man0BigCumsAriana .davetest4126MillkyB[unny]TranSensualDollmar[ioch]ase33 .Samara[Style]21ScarletLove4uBigCumsA[rian]apenet[rating] .PrettyP[oc]ahontasSnowchaniJ[UR]ISEX89LillyJ .
+TatyStarTANY[AP]RIN[CE]BigeyesGreenMoanSweet .JoonMaliSnowchanilillyflower1990B[ella]BestBoobs .LillyJAshley707faberxxMoanSweet .CamChaseCuteLilBabemilksqu[irting]titd[avidmax]x .LolaAssU5CuteM[arius]For[UC]amChaseBigCumsAriana .TearMyClothesOffB[ast]et[XL]ionelWooddavetest4126 .TranSensualDollM[OREDIV]AReginaCuteVictoriaKis .MarisMuscleMoanSweetMilfKate4u[V]ioletNim[fa] .penet[rating]RomeoHotFighterB[ast]et[XL]ionelWood .AliceAustinLaMaliciosaantone[ll]ar[ober]tsLittleA[lic]a .RomeoHotFighterMarySexxxMELANYFOXHOT23MarySexxx .
+
+=== Text #17 ===
+> [ES]G integration is gaining more traction in private equity. Rob[eco]�[�]s latest Private Equity Engagement Report concludes that fund managers in the company�[�]s private equity[ ES]G Program have taken further steps to embrace[ ES]G factors and integrate them into their investment processes.
+�[�]If we look at the activities of PE fund managers in the last year, we can conclude that[ ES]G factors have become further integrated into their investment process.”, states the report in its introduction.[ Recommend]ations by the Financial Stability Board�[�]s Task Force on[ Climate] Related Financial Disclosures, the adoption of the[ European] Commission�[�]s[ Action] Plan on Financing Sustainable Growth and the publication of a[ guidance] document on[ ES]G Monitoring, Reporting and Dialogue in Private Equity by PRI suggest that this positive trend will continue.
+In the twelfth edition of the[ ES]G Engagement Report1 Robeco Private Equity documents the activities of PE managers that are part of its[ ES]G Engagement Program.
+2017 was a year in which General partners (GPs) continued to strengthen their[ ES]G integration in investment, monitoring and reporting practices which has translated into stable overall[ ES]G scores.
+The average[ ES]G score for the 63 fund managers that participated in last year�[�]s survey was 69%, compared to 66% in 2016 and 59% in 2015. Meanwhile, the median[ ES]G score stands at 69%, versus 69% in 2016 and 64% in 2015. These figures indicate that most fund managers now have functioning[ ES]G frameworks in place.
+The results are based on an annual assessment by Robeco Private Equity that uses a reporting and assessment tool developed by the UN Principles for Responsible[ Investment] (PRI). A growing number of investors in the private equity world are now signing up to the PRI and its goals.
+The reputational risk of private equity portfolio companies monitored by Robeco Private Equity remains relatively low. The analysis of[ ES]G-related news stories and alerts by RepRisk2 shows that the majority were not involved in any[ ES]G-related incidents. Those that received negative media attention experienced relatively low impact and coverage. To increase awareness of[ ES]G issues and encourage better communication, Robeco Private Equity continuously engages with fund managers whose portfolio companies have had to deal with incidents.
+In their role of active owner of portfolio companies and the extended control this entails (compared to public companies), the PE managers are in a good position to promote the UN Sustainable Development Goals (SD[Gs]3).
+In 2017 the number of PE fund managers
+
+=== Text #18 ===
+> Many complex interdisciplinary problems involve[ deficiencies] or discrepancies in the dentoalve[olar] complex that can prolong treatment time and compromise overall outcomes.
+Inter-arch and intra-arch space appropriation problems are most evident as poor est[hetics] or less than ideal occlusions. Inter-arch problems are caused by TM joint changes or growth and development issues. Intra-arch problems manifest themselves as poor arch forms, severely crowded dentitions, insufficient alve[olar] bone and traumatic or developmental ridge defects. Surgically facilitated[ orthod]ontic[ therapy] (SFOT) in[ combination] with skeletal anchorage can shorten treatment times, modify[ vertical] relationships and enhance the development of the arch form, alve[olar] bone and soft tissue to ideally address these issues involving the dentoalve[olar] complex. Special focus will be given to utilizing high-tech clear aligners instead of traditional[ orthod]ontic appliances to add a new and exciting dimension to SFOT while significantly increasing patient treatment acceptance.
+Interdisciplinary[ diagnostics] and treatment planning for the SFOT patient.
+Combining hard and soft tissue grafting with selective corticotomies.
+Utilizing skeletal anchorage with SFOT to modify[ vertical] relationships.
+High-tech clear aligners as an exciting new appliance option for SFOT.
+[Bio]: Dr. Roblee practiced general restorative dentistry in Dallas, Texas before going back to study graduate orth[od]ont[ics] at Baylor College of Dentistry. He is recognized worldwide for his work in est[hetic] dentistry,[ orthod]ontic techniques and interdisciplinary therapy. He has given more than 500 professional presentations in the United[ States], Canada, Europe, Australia and Japan.[ Dr]. Roblee is a[ Diplom]ate of the American Board of[ Orthod]ontics. He is the author of numerous publications and videos, including a[ textbook] entitled �[�]Interdisciplinary Dentofacial Therapy: A Comprehensive Approach to[ Opt]imal Patient Care” (Quintessence Publishing Co., Inc.). He is an associate clinical professor at Baylor College of Dentistry in both the restorative and the[ orthod]ontic departments and is an active member in numerous[ prestigious] dental organizations, including the American Academy of Fixed Prost[hod]ont[ics], the American Academy of Restorative Dentistry and the American[ Academy] of Est[hetic] Dentistry of which Dr. Roblee is the current President.
+
+=== Text #19 ===
+> The latest in[ Jazz] North East�[�]s series of Schm[azz gigs] at the[ Jazz] Café featured British[ guitar]ists Mike Walker and[ Stuart] McCallum. All seats in the[ upstairs] room were taken (two of the north east�[�]s finest six-stringers bagged prime seats) and the stage[ resembled] the[ guitar] section of your local musical[ instrument] store. The Greater Manchester-based duo settled down to play the first of two mainly[ acoustic] sets in a setting Walker later described as having �[�]a good[ vibe]�[�].
+The material consisted of original compositions (a Schm[azz prerequisite]) and one or two standards. The opening number had an Americana feel to it, so it came as no surprise to learn it was Bill Frisell�[�]s Where Do We Go? Walker, a man with an impressive cv – the big bands of Mike[ Gibbs] and Kenny Wheeler, stints with Julian Argue[ll]es and Nikki Iles, to his latest Anglo American project, the[ Impossible] Gentlemen – shuffled a set list at will, suggesting to McCallum they do �[�]Orpheus�[�]. A change of[ guitar], some[ ret]uning, a bit of[ banter] and into Luiz Bonfá�[�]s Black Orpheus. This and the following number – All the Things You Are – exemplified Stuart McCallum�[�]s[ penchant] for reharmonizing tunes. Dark tones, dense[ improvis]ations, Walker picking up on McCallum�[�]s initial[ foray], further solo[ invention], the seamless do[vetailing] of ideas.
+A Walker composition – Wallenda�[�]s Last Stand – inspired by the life story of a high wire walker�[�]s final, fatal, do or die journey and McCallum�[�]s The French Song illustrated their talents as tunes[mith]s. The second set heard McCallum�[�]s Beholden and Walker�[�]s Clock Maker. Walker introduced the latter number with a[ hilarious], true tale of his friend sax[ophon]ist Iain Dixon�[�]s father�[�]s clock making[ obsession]. Imagine a house full of clocks – He made one every four minutes, said Walker – all primed to chime on the[ hour]. It was Walker�[�]s mission in life when visiting Dixon Snr to leave before the cac[ophon]ous clock chorus struck up! A distinct folk strand ran through the second set, notably McCallum�[�]s tune inspired by a visit to the Shetlands and his authentic folk ballad Seasons. The one time student of Walker has
+
+=== Text #20 ===
+> 8i announced today it has launched a[ web] player, the 8i Portal, for its volum[etric] 3D[ video] of people in[ virtual] reality.
+Using 8i�[�]s technology and VR[ goggles], you�[�]ll be able to walk around a person inside a virtual environment to see their entire being. The Wellington, New Zealand-based startup said its[ VR] platform will allow you to view fully volum[etric] 3D video.
+Previously,[ VR] cameras could record a partial torso of a person, but the 8i Portal goes beyond that. It enables “complete freedom of movement,” and it gives you a sense of “[pres]ence,” or the feeling that you are there in the virtual space with the person. It creates a more “emotional connection with the person you are watching,” the company said in the video below.
+8i�[�]s platform will let you create, experience, and share immersive 3D video of real people — for virtual reality,[ augmented] reality, and the web. I�[�]m not sure how it can be used for games, but you can see how it could give you a unique perspective at a music concert or theatrical performance.
+Linc Gasking, who previously ran countingdown.com (which DreamWorks acquired), and Eugene d’Eon, formerly of Weta Digital and[ Nvidia], founded the startup in 2014.
+To date, 8i has raised $14.8 million in funding from investors including RRE[ Ventures],[ Founders] Fund[ Science], Horizons[ Ventures], Samsung[ Ventures], Dolby Family[ Ventures], Signia[ Venture] Partners, Bertelsmann[ Digital] Media Investments, Sound[ Ventures], Inev[itable Ventures],[ Fre]elands, and[ Adv]ancit Capital.
+The new 8i Portal is a volum[etric] VR player for[ Oculus] Rift and the HTC Vive VR platforms. If you use the[ Oculus] Rift or Vive[ headsets], you can view cool VR videos of people who look real, not[ computer]-generated, and move around them, make eye contact, and feel “true presence,” the company said.
+
+
+Description: 
+2025-07-25 22:15:36,866 - root - INFO - Material or substance, often related to specific industries or products
+
+2025-07-25 22:15:36,871 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3057_clusters-1_2025-07-25_20-06-06.csv
+2025-07-25 22:15:36,871 - root - INFO - ================================================================================
+2025-07-25 22:15:36,872 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 22:15:36,872 - root - INFO - ================================================================================
+2025-07-25 22:15:36,873 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-3057_clusters-1_2025-07-25_20-06-06.log
+2025-07-25 22:15:36,873 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3057_clusters-1_2025-07-25_20-06-06.csv

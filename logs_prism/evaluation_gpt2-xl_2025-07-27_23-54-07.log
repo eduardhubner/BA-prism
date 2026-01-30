@@ -1,0 +1,635 @@
+2025-07-28 01:54:07,748 - root - INFO - ================================================================================
+2025-07-28 01:54:07,783 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-28 01:54:07,785 - root - INFO - ================================================================================
+2025-07-28 01:54:07,786 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-28 01:54:07,788 - root - INFO - AGG_METHOD = mean
+2025-07-28 01:54:07,789 - root - INFO - BATCH_SIZE = 2
+2025-07-28 01:54:07,790 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-28 01:54:07,792 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-28 01:54:07,793 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-28 01:54:07,794 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-28 01:54:07,795 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-28 01:54:07,797 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-28 01:54:07,798 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-28 01:54:07,799 - root - INFO - CONTROL_SPLIT = train
+2025-07-28 01:54:07,801 - root - INFO - DATA_FILES = None
+2025-07-28 01:54:07,802 - root - INFO - DEVICE = cuda
+2025-07-28 01:54:07,803 - root - INFO - END_INTERVAL = 1.0
+2025-07-28 01:54:07,805 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-28 01:54:07,806 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-28 01:54:07,807 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-28 01:54:07,809 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-28 01:54:07,810 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-28 01:54:07,811 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-28 01:54:07,813 - root - INFO - LAYER_ID = 0
+2025-07-28 01:54:07,814 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-28 01:54:07,815 - root - INFO - MAX_NEW_TOKENS = 10000
+2025-07-28 01:54:07,817 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-28 01:54:07,818 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-28 01:54:07,819 - root - INFO - MULTI_EVAL = True
+2025-07-28 01:54:07,821 - root - INFO - N_CLUSTERS = 3
+2025-07-28 01:54:07,822 - root - INFO - N_SAMPLES = 10
+2025-07-28 01:54:07,823 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-28 01:54:07,825 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-28 01:54:07,826 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-28 01:54:07,827 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-28 01:54:07,829 - root - INFO - SPLIT = train
+2025-07-28 01:54:07,830 - root - INFO - START_INTERVAL = 0.99
+2025-07-28 01:54:07,831 - root - INFO - STREAMING = True
+2025-07-28 01:54:07,833 - root - INFO - SUBSET_SIZE = 1000
+2025-07-28 01:54:07,834 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-28 01:54:07,835 - root - INFO - TARGET_DATA = c4
+2025-07-28 01:54:07,837 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-28 01:54:07,838 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-28 01:54:07,839 - root - INFO - UNIT_ID = 6314
+2025-07-28 01:54:07,841 - root - INFO - USE_API = True
+2025-07-28 01:54:07,842 - root - INFO - ================================================================================
+2025-07-28 01:54:07,843 - root - INFO - ANALYSIS RESULTS
+2025-07-28 01:54:07,844 - root - INFO - ================================================================================
+2025-07-28 01:54:07,846 - root - INFO - Analysis results will be saved to: /home/lkopf/autointerp-llm/logs/evaluation_gpt2-xl_2025-07-27_23-54-07.log
+2025-07-28 01:54:07,856 - root - INFO - Loading target model...
+2025-07-28 01:54:23,164 - root - INFO - Model loaded successfully
+2025-07-28 01:54:23,542 - root - INFO - Tokenizer loaded successfully
+2025-07-28 01:54:23,550 - root - INFO - Loaded 60 layer-unit pairs to process
+2025-07-28 01:54:23,554 - root - INFO - Loading text generator model...
+2025-07-28 01:54:27,085 - root - INFO - Text generator loaded successfully
+2025-07-28 01:54:27,332 - root - INFO - Processing layer 0, unit 6314 (1/60)
+2025-07-28 01:54:27,453 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:27,694 - root - INFO - Processed explanation 1/3 for layer 0, unit 6314
+2025-07-28 01:54:27,774 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:27,985 - root - INFO - Processed explanation 2/3 for layer 0, unit 6314
+2025-07-28 01:54:28,057 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:28,258 - root - INFO - Processed explanation 3/3 for layer 0, unit 6314
+2025-07-28 01:54:28,433 - root - INFO - Processing layer 0, unit 2725 (2/60)
+2025-07-28 01:54:28,528 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:28,729 - root - INFO - Processed explanation 1/3 for layer 0, unit 2725
+2025-07-28 01:54:28,790 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:28,985 - root - INFO - Processed explanation 2/3 for layer 0, unit 2725
+2025-07-28 01:54:29,050 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:29,246 - root - INFO - Processed explanation 3/3 for layer 0, unit 2725
+2025-07-28 01:54:29,426 - root - INFO - Processing layer 0, unit 4297 (3/60)
+2025-07-28 01:54:29,498 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:29,712 - root - INFO - Processed explanation 1/3 for layer 0, unit 4297
+2025-07-28 01:54:29,774 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:29,993 - root - INFO - Processed explanation 2/3 for layer 0, unit 4297
+2025-07-28 01:54:30,039 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:30,234 - root - INFO - Processed explanation 3/3 for layer 0, unit 4297
+2025-07-28 01:54:30,409 - root - INFO - Processing layer 0, unit 4842 (4/60)
+2025-07-28 01:54:30,492 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:30,688 - root - INFO - Processed explanation 1/3 for layer 0, unit 4842
+2025-07-28 01:54:30,735 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:30,930 - root - INFO - Processed explanation 2/3 for layer 0, unit 4842
+2025-07-28 01:54:30,994 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:31,226 - root - INFO - Processed explanation 3/3 for layer 0, unit 4842
+2025-07-28 01:54:31,410 - root - INFO - Processing layer 0, unit 5551 (5/60)
+2025-07-28 01:54:31,463 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:31,659 - root - INFO - Processed explanation 1/3 for layer 0, unit 5551
+2025-07-28 01:54:31,705 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:31,902 - root - INFO - Processed explanation 2/3 for layer 0, unit 5551
+2025-07-28 01:54:31,946 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:32,137 - root - INFO - Processed explanation 3/3 for layer 0, unit 5551
+2025-07-28 01:54:32,311 - root - INFO - Processing layer 0, unit 1749 (6/60)
+2025-07-28 01:54:32,429 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:32,635 - root - INFO - Processed explanation 1/3 for layer 0, unit 1749
+2025-07-28 01:54:32,680 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:32,874 - root - INFO - Processed explanation 2/3 for layer 0, unit 1749
+2025-07-28 01:54:32,918 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:33,117 - root - INFO - Processed explanation 3/3 for layer 0, unit 1749
+2025-07-28 01:54:33,291 - root - INFO - Processing layer 0, unit 3943 (7/60)
+2025-07-28 01:54:33,345 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:33,543 - root - INFO - Processed explanation 1/3 for layer 0, unit 3943
+2025-07-28 01:54:33,592 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:33,792 - root - INFO - Processed explanation 2/3 for layer 0, unit 3943
+2025-07-28 01:54:33,839 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:34,034 - root - INFO - Processed explanation 3/3 for layer 0, unit 3943
+2025-07-28 01:54:34,209 - root - INFO - Processing layer 0, unit 5960 (8/60)
+2025-07-28 01:54:34,315 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:34,518 - root - INFO - Processed explanation 1/3 for layer 0, unit 5960
+2025-07-28 01:54:34,566 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:34,764 - root - INFO - Processed explanation 2/3 for layer 0, unit 5960
+2025-07-28 01:54:34,811 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:35,016 - root - INFO - Processed explanation 3/3 for layer 0, unit 5960
+2025-07-28 01:54:35,203 - root - INFO - Processing layer 0, unit 3696 (9/60)
+2025-07-28 01:54:35,268 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:35,469 - root - INFO - Processed explanation 1/3 for layer 0, unit 3696
+2025-07-28 01:54:35,555 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:35,754 - root - INFO - Processed explanation 2/3 for layer 0, unit 3696
+2025-07-28 01:54:35,838 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:36,040 - root - INFO - Processed explanation 3/3 for layer 0, unit 3696
+2025-07-28 01:54:36,214 - root - INFO - Processing layer 0, unit 3533 (10/60)
+2025-07-28 01:54:36,289 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:36,492 - root - INFO - Processed explanation 1/3 for layer 0, unit 3533
+2025-07-28 01:54:36,561 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:36,759 - root - INFO - Processed explanation 2/3 for layer 0, unit 3533
+2025-07-28 01:54:36,832 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:37,029 - root - INFO - Processed explanation 3/3 for layer 0, unit 3533
+2025-07-28 01:54:37,204 - root - INFO - Processing layer 0, unit 3124 (11/60)
+2025-07-28 01:54:37,262 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:37,463 - root - INFO - Processed explanation 1/3 for layer 0, unit 3124
+2025-07-28 01:54:37,514 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:37,713 - root - INFO - Processed explanation 2/3 for layer 0, unit 3124
+2025-07-28 01:54:37,771 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:37,972 - root - INFO - Processed explanation 3/3 for layer 0, unit 3124
+2025-07-28 01:54:38,147 - root - INFO - Processing layer 0, unit 1149 (12/60)
+2025-07-28 01:54:38,242 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:38,449 - root - INFO - Processed explanation 1/3 for layer 0, unit 1149
+2025-07-28 01:54:38,508 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:38,707 - root - INFO - Processed explanation 2/3 for layer 0, unit 1149
+2025-07-28 01:54:38,783 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:38,980 - root - INFO - Processed explanation 3/3 for layer 0, unit 1149
+2025-07-28 01:54:39,155 - root - INFO - Processing layer 0, unit 6114 (13/60)
+2025-07-28 01:54:39,250 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:39,457 - root - INFO - Processed explanation 1/3 for layer 0, unit 6114
+2025-07-28 01:54:39,526 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:39,731 - root - INFO - Processed explanation 2/3 for layer 0, unit 6114
+2025-07-28 01:54:39,777 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:39,971 - root - INFO - Processed explanation 3/3 for layer 0, unit 6114
+2025-07-28 01:54:40,145 - root - INFO - Processing layer 0, unit 3279 (14/60)
+2025-07-28 01:54:40,202 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:40,399 - root - INFO - Processed explanation 1/3 for layer 0, unit 3279
+2025-07-28 01:54:40,467 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:40,667 - root - INFO - Processed explanation 2/3 for layer 0, unit 3279
+2025-07-28 01:54:40,732 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:40,931 - root - INFO - Processed explanation 3/3 for layer 0, unit 3279
+2025-07-28 01:54:41,106 - root - INFO - Processing layer 0, unit 440 (15/60)
+2025-07-28 01:54:41,192 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:41,395 - root - INFO - Processed explanation 1/3 for layer 0, unit 440
+2025-07-28 01:54:41,445 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:41,642 - root - INFO - Processed explanation 2/3 for layer 0, unit 440
+2025-07-28 01:54:41,716 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:41,917 - root - INFO - Processed explanation 3/3 for layer 0, unit 440
+2025-07-28 01:54:42,092 - root - INFO - Processing layer 0, unit 4405 (16/60)
+2025-07-28 01:54:42,161 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:42,362 - root - INFO - Processed explanation 1/3 for layer 0, unit 4405
+2025-07-28 01:54:42,422 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:42,617 - root - INFO - Processed explanation 2/3 for layer 0, unit 4405
+2025-07-28 01:54:42,682 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:42,881 - root - INFO - Processed explanation 3/3 for layer 0, unit 4405
+2025-07-28 01:54:43,056 - root - INFO - Processing layer 0, unit 5781 (17/60)
+2025-07-28 01:54:43,150 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:43,355 - root - INFO - Processed explanation 1/3 for layer 0, unit 5781
+2025-07-28 01:54:43,400 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:43,594 - root - INFO - Processed explanation 2/3 for layer 0, unit 5781
+2025-07-28 01:54:43,656 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:43,852 - root - INFO - Processed explanation 3/3 for layer 0, unit 5781
+2025-07-28 01:54:44,027 - root - INFO - Processing layer 0, unit 3057 (18/60)
+2025-07-28 01:54:44,083 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:44,285 - root - INFO - Processed explanation 1/3 for layer 0, unit 3057
+2025-07-28 01:54:44,332 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:44,526 - root - INFO - Processed explanation 2/3 for layer 0, unit 3057
+2025-07-28 01:54:44,570 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:44,777 - root - INFO - Processed explanation 3/3 for layer 0, unit 3057
+2025-07-28 01:54:44,953 - root - INFO - Processing layer 0, unit 5085 (19/60)
+2025-07-28 01:54:45,030 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:45,236 - root - INFO - Processed explanation 1/3 for layer 0, unit 5085
+2025-07-28 01:54:45,283 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:45,480 - root - INFO - Processed explanation 2/3 for layer 0, unit 5085
+2025-07-28 01:54:45,526 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:45,724 - root - INFO - Processed explanation 3/3 for layer 0, unit 5085
+2025-07-28 01:54:45,899 - root - INFO - Processing layer 0, unit 4679 (20/60)
+2025-07-28 01:54:45,977 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:46,178 - root - INFO - Processed explanation 1/3 for layer 0, unit 4679
+2025-07-28 01:54:46,223 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:46,418 - root - INFO - Processed explanation 2/3 for layer 0, unit 4679
+2025-07-28 01:54:46,470 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:46,662 - root - INFO - Processed explanation 3/3 for layer 0, unit 4679
+2025-07-28 01:54:46,836 - root - INFO - Processing layer 20, unit 328 (21/60)
+2025-07-28 01:54:46,893 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:47,093 - root - INFO - Processed explanation 1/3 for layer 20, unit 328
+2025-07-28 01:54:47,140 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:47,337 - root - INFO - Processed explanation 2/3 for layer 20, unit 328
+2025-07-28 01:54:47,383 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:47,581 - root - INFO - Processed explanation 3/3 for layer 20, unit 328
+2025-07-28 01:54:47,756 - root - INFO - Processing layer 20, unit 5789 (22/60)
+2025-07-28 01:54:47,807 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:48,003 - root - INFO - Processed explanation 1/3 for layer 20, unit 5789
+2025-07-28 01:54:48,051 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:48,248 - root - INFO - Processed explanation 2/3 for layer 20, unit 5789
+2025-07-28 01:54:48,295 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:48,492 - root - INFO - Processed explanation 3/3 for layer 20, unit 5789
+2025-07-28 01:54:48,667 - root - INFO - Processing layer 20, unit 4268 (23/60)
+2025-07-28 01:54:48,741 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:48,945 - root - INFO - Processed explanation 1/3 for layer 20, unit 4268
+2025-07-28 01:54:48,991 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:49,185 - root - INFO - Processed explanation 2/3 for layer 20, unit 4268
+2025-07-28 01:54:49,230 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:49,422 - root - INFO - Processed explanation 3/3 for layer 20, unit 4268
+2025-07-28 01:54:49,597 - root - INFO - Processing layer 20, unit 2988 (24/60)
+2025-07-28 01:54:49,716 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:49,926 - root - INFO - Processed explanation 1/3 for layer 20, unit 2988
+2025-07-28 01:54:49,977 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:50,180 - root - INFO - Processed explanation 2/3 for layer 20, unit 2988
+2025-07-28 01:54:50,226 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:50,418 - root - INFO - Processed explanation 3/3 for layer 20, unit 2988
+2025-07-28 01:54:50,595 - root - INFO - Processing layer 20, unit 4683 (25/60)
+2025-07-28 01:54:50,681 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:50,883 - root - INFO - Processed explanation 1/3 for layer 20, unit 4683
+2025-07-28 01:54:50,927 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:51,121 - root - INFO - Processed explanation 2/3 for layer 20, unit 4683
+2025-07-28 01:54:51,168 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:51,365 - root - INFO - Processed explanation 3/3 for layer 20, unit 4683
+2025-07-28 01:54:51,540 - root - INFO - Processing layer 20, unit 6045 (26/60)
+2025-07-28 01:54:51,597 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:51,796 - root - INFO - Processed explanation 1/3 for layer 20, unit 6045
+2025-07-28 01:54:51,845 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:52,038 - root - INFO - Processed explanation 2/3 for layer 20, unit 6045
+2025-07-28 01:54:52,088 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:52,287 - root - INFO - Processed explanation 3/3 for layer 20, unit 6045
+2025-07-28 01:54:52,462 - root - INFO - Processing layer 20, unit 5741 (27/60)
+2025-07-28 01:54:52,518 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:52,716 - root - INFO - Processed explanation 1/3 for layer 20, unit 5741
+2025-07-28 01:54:52,763 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:52,964 - root - INFO - Processed explanation 2/3 for layer 20, unit 5741
+2025-07-28 01:54:53,010 - root - INFO - Activation shape valid: 10
+2025-07-28 01:54:53,204 - root - INFO - Processed explanation 3/3 for layer 20, unit 5741
+2025-07-28 01:54:53,378 - root - INFO - Processing layer 20, unit 5662 (28/60)
+2025-07-28 01:55:28,911 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/A_request_or_instruction_to_contact_or_notify_someone_often_involving_additional_information_or_deta.txt
+2025-07-28 01:55:31,523 - root - INFO - Activation shape valid: 10
+2025-07-28 01:55:31,689 - root - INFO - Processed explanation 1/3 for layer 20, unit 5662
+2025-07-28 01:56:14,370 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Instructions_recipes_or_howto_guides.txt
+2025-07-28 01:56:16,719 - root - INFO - Activation shape valid: 10
+2025-07-28 01:56:16,888 - root - INFO - Processed explanation 2/3 for layer 20, unit 5662
+2025-07-28 01:56:46,393 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Requests_for_information_or_to_take_an_action_often_related_to_contact_search_online_content_or_soci.txt
+2025-07-28 01:56:48,831 - root - INFO - Activation shape valid: 10
+2025-07-28 01:56:49,011 - root - INFO - Processed explanation 3/3 for layer 20, unit 5662
+2025-07-28 01:56:49,180 - root - INFO - Processing layer 20, unit 2679 (29/60)
+2025-07-28 01:57:28,143 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Situational_or_conditional_contexts_often_involving_time_or_purpose.txt
+2025-07-28 01:57:30,461 - root - INFO - Activation shape valid: 10
+2025-07-28 01:57:30,626 - root - INFO - Processed explanation 1/3 for layer 20, unit 2679
+2025-07-28 01:58:02,372 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Introductory_words_indicating_the_beginning_of_a_piece_of_information.txt
+2025-07-28 01:58:04,739 - root - INFO - Activation shape valid: 10
+2025-07-28 01:58:04,904 - root - INFO - Processed explanation 2/3 for layer 20, unit 2679
+2025-07-28 01:58:29,146 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Starts_with_a_single_word_or_a_very_short_phrase.txt
+2025-07-28 01:58:30,171 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 01:58:30,178 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Starts_with_a_single_word_or_a_very_short_phrase.txt
+2025-07-28 01:58:30,181 - root - INFO - Regenerating explanation samples...
+2025-07-28 01:59:12,135 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Starts_with_a_single_word_or_a_very_short_phrase.txt
+2025-07-28 01:59:14,388 - root - INFO - Activation shape valid: 10
+2025-07-28 01:59:14,574 - root - INFO - Processed explanation 3/3 for layer 20, unit 2679
+2025-07-28 01:59:14,758 - root - INFO - Processing layer 20, unit 2869 (30/60)
+2025-07-28 01:59:35,887 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Possession_covering_warmth_use_ordering_establishing_welcoming_enjoyment_opening_caring_for_babies_i.txt
+2025-07-28 01:59:36,875 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 01:59:36,880 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Possession_covering_warmth_use_ordering_establishing_welcoming_enjoyment_opening_caring_for_babies_i.txt
+2025-07-28 01:59:36,883 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:00:29,302 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Possession_covering_warmth_use_ordering_establishing_welcoming_enjoyment_opening_caring_for_babies_i.txt
+2025-07-28 02:00:31,680 - root - INFO - Activation shape valid: 10
+2025-07-28 02:00:31,859 - root - INFO - Processed explanation 1/3 for layer 20, unit 2869
+2025-07-28 02:00:57,405 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Requesting_or_providing_assistancehelpinformation_often_in_a_specific_context_like_healthcare_networ.txt
+2025-07-28 02:00:59,749 - root - INFO - Activation shape valid: 10
+2025-07-28 02:00:59,918 - root - INFO - Processed explanation 2/3 for layer 20, unit 2869
+2025-07-28 02:01:49,360 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Experiences_events_or_things_viewed.txt
+2025-07-28 02:01:51,731 - root - INFO - Activation shape valid: 10
+2025-07-28 02:01:51,900 - root - INFO - Processed explanation 3/3 for layer 20, unit 2869
+2025-07-28 02:01:52,057 - root - INFO - Processing layer 20, unit 1424 (31/60)
+2025-07-28 02:02:21,569 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_people_or_entities_related_to_medicine_education_or_technology.txt
+2025-07-28 02:02:23,884 - root - INFO - Activation shape valid: 10
+2025-07-28 02:02:24,061 - root - INFO - Processed explanation 1/3 for layer 20, unit 1424
+2025-07-28 02:03:04,106 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Products_or_services_related_to_locations_or_establishments.txt
+2025-07-28 02:03:06,497 - root - INFO - Activation shape valid: 10
+2025-07-28 02:03:06,674 - root - INFO - Processed explanation 2/3 for layer 20, unit 1424
+2025-07-28 02:03:54,661 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Proper_nouns_in_titles_or_headers.txt
+2025-07-28 02:03:57,058 - root - INFO - Activation shape valid: 10
+2025-07-28 02:03:57,236 - root - INFO - Processed explanation 3/3 for layer 20, unit 1424
+2025-07-28 02:03:57,393 - root - INFO - Processing layer 20, unit 5278 (32/60)
+2025-07-28 02:04:31,569 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Temporal_expressions_related_to_biographies_often_combined_with_locations_occupations_and_years.txt
+2025-07-28 02:04:33,902 - root - INFO - Activation shape valid: 10
+2025-07-28 02:04:34,067 - root - INFO - Processed explanation 1/3 for layer 20, unit 5278
+2025-07-28 02:05:08,065 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Beauty_skin_care_and_doityourself_remedies_or_descriptions_of_food_preparation_or_product_reviews_or.txt
+2025-07-28 02:05:10,441 - root - INFO - Activation shape valid: 10
+2025-07-28 02:05:10,611 - root - INFO - Processed explanation 2/3 for layer 20, unit 5278
+2025-07-28 02:05:36,282 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_time_expressions_related_to_the_past_learning_a_skill_and_improvementschanges.txt
+2025-07-28 02:05:38,652 - root - INFO - Activation shape valid: 10
+2025-07-28 02:05:38,821 - root - INFO - Processed explanation 3/3 for layer 20, unit 5278
+2025-07-28 02:05:38,977 - root - INFO - Processing layer 20, unit 2325 (33/60)
+2025-07-28 02:06:04,386 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Rights_ownership_and_usage_of_digital_and_physical_assets_including_intellectual_property_personal_i.txt
+2025-07-28 02:06:06,752 - root - INFO - Activation shape valid: 10
+2025-07-28 02:06:06,917 - root - INFO - Processed explanation 1/3 for layer 20, unit 2325
+2025-07-28 02:06:46,545 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Fashion_accessories_or_other_items_related_to_personal_style_often_within_the_context_of_online_shop.txt
+2025-07-28 02:06:48,977 - root - INFO - Activation shape valid: 10
+2025-07-28 02:06:49,148 - root - INFO - Processed explanation 2/3 for layer 20, unit 2325
+2025-07-28 02:07:26,334 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Items_or_devices_related_to_eyes_or_eyewear_holsters_electronic_devices_weapons_musical_instruments_.txt
+2025-07-28 02:07:28,784 - root - INFO - Activation shape valid: 10
+2025-07-28 02:07:28,964 - root - INFO - Processed explanation 3/3 for layer 20, unit 2325
+2025-07-28 02:07:29,121 - root - INFO - Processing layer 20, unit 2700 (34/60)
+2025-07-28 02:08:12,112 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Years_dates_or_times.txt
+2025-07-28 02:08:14,469 - root - INFO - Activation shape valid: 10
+2025-07-28 02:08:14,644 - root - INFO - Processed explanation 1/3 for layer 20, unit 2700
+2025-07-28 02:09:02,337 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Years_times_or_time_periods.txt
+2025-07-28 02:09:04,641 - root - INFO - Activation shape valid: 10
+2025-07-28 02:09:04,807 - root - INFO - Processed explanation 2/3 for layer 20, unit 2700
+2025-07-28 02:10:00,375 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Gratitude_enjoyment_informational_content_or_opinions_related_to_objects_products_or_experiences.txt
+2025-07-28 02:10:02,761 - root - INFO - Activation shape valid: 10
+2025-07-28 02:10:02,927 - root - INFO - Processed explanation 3/3 for layer 20, unit 2700
+2025-07-28 02:10:03,084 - root - INFO - Processing layer 20, unit 3313 (35/60)
+2025-07-28 02:10:49,738 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Selection_of_something_valuable_or_interesting.txt
+2025-07-28 02:10:52,069 - root - INFO - Activation shape valid: 10
+2025-07-28 02:10:52,235 - root - INFO - Processed explanation 1/3 for layer 20, unit 3313
+2025-07-28 02:11:18,801 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Winning_a_prize_or_award_often_by_random_selection_or_drawing.txt
+2025-07-28 02:11:21,104 - root - INFO - Activation shape valid: 10
+2025-07-28 02:11:21,270 - root - INFO - Processed explanation 2/3 for layer 20, unit 3313
+2025-07-28 02:11:40,541 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Awards_achievements_wins_or_other_forms_of_recognition_often_involving_a_specific_person_or_group.txt
+2025-07-28 02:11:41,522 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 02:11:41,528 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Awards_achievements_wins_or_other_forms_of_recognition_often_involving_a_specific_person_or_group.txt
+2025-07-28 02:11:41,531 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:12:10,072 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Awards_achievements_wins_or_other_forms_of_recognition_often_involving_a_specific_person_or_group.txt
+2025-07-28 02:12:12,478 - root - INFO - Activation shape valid: 10
+2025-07-28 02:12:12,656 - root - INFO - Processed explanation 3/3 for layer 20, unit 3313
+2025-07-28 02:12:12,812 - root - INFO - Processing layer 20, unit 1004 (36/60)
+2025-07-28 02:12:39,059 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Periods_of_time_often_related_to_seasons_or_personal_milestones_and_activities_or_events_that_occur_.txt
+2025-07-28 02:12:41,318 - root - INFO - Activation shape valid: 10
+2025-07-28 02:12:41,481 - root - INFO - Processed explanation 1/3 for layer 20, unit 1004
+2025-07-28 02:13:23,485 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Measurements_or_quantities_often_related_to_products_locations_or_ratings.txt
+2025-07-28 02:13:25,814 - root - INFO - Activation shape valid: 10
+2025-07-28 02:13:25,980 - root - INFO - Processed explanation 2/3 for layer 20, unit 1004
+2025-07-28 02:13:53,699 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Conditions_circumstances_situations_or_periods_related_to_when_something_occurs_starts_or_takes_plac.txt
+2025-07-28 02:13:56,006 - root - INFO - Activation shape valid: 10
+2025-07-28 02:13:56,171 - root - INFO - Processed explanation 3/3 for layer 20, unit 1004
+2025-07-28 02:13:56,327 - root - INFO - Processing layer 20, unit 4447 (37/60)
+2025-07-28 02:15:18,367 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_or_organizations.txt
+2025-07-28 02:15:21,071 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-07-28 02:15:21,077 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_or_organizations.txt
+2025-07-28 02:15:21,079 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:16:04,474 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_or_organizations.txt
+2025-07-28 02:16:06,854 - root - INFO - Activation shape valid: 10
+2025-07-28 02:16:07,032 - root - INFO - Processed explanation 1/3 for layer 20, unit 4447
+2025-07-28 02:17:04,818 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Quantifiers_or_similar_terms.txt
+2025-07-28 02:17:07,177 - root - INFO - Activation shape valid: 10
+2025-07-28 02:17:07,342 - root - INFO - Processed explanation 2/3 for layer 20, unit 4447
+2025-07-28 02:17:31,138 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Words_related_to_belonging_negation_quantity_totality_business_traversing_encompassing_and_accordanc.txt
+2025-07-28 02:17:33,479 - root - INFO - Activation shape valid: 10
+2025-07-28 02:17:33,647 - root - INFO - Processed explanation 3/3 for layer 20, unit 4447
+2025-07-28 02:17:33,805 - root - INFO - Processing layer 20, unit 1406 (38/60)
+2025-07-28 02:18:05,466 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Eligibility_or_suitability_for_a_role_or_task_often_in_the_context_of_applying_for_something.txt
+2025-07-28 02:18:07,888 - root - INFO - Activation shape valid: 10
+2025-07-28 02:18:08,065 - root - INFO - Processed explanation 1/3 for layer 20, unit 1406
+2025-07-28 02:18:38,884 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Presence_of_proper_nouns_related_to_locations_organizations_or_people.txt
+2025-07-28 02:18:41,242 - root - INFO - Activation shape valid: 10
+2025-07-28 02:18:41,409 - root - INFO - Processed explanation 2/3 for layer 20, unit 1406
+2025-07-28 02:19:25,711 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_products_or_ideas_related_to_rooms_homes_or_buildings.txt
+2025-07-28 02:19:28,063 - root - INFO - Activation shape valid: 10
+2025-07-28 02:19:28,230 - root - INFO - Processed explanation 3/3 for layer 20, unit 1406
+2025-07-28 02:19:28,387 - root - INFO - Processing layer 20, unit 3885 (39/60)
+2025-07-28 02:20:08,838 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Time_date_or_numerical_information.txt
+2025-07-28 02:20:11,160 - root - INFO - Activation shape valid: 10
+2025-07-28 02:20:11,328 - root - INFO - Processed explanation 1/3 for layer 20, unit 3885
+2025-07-28 02:20:48,344 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Expressing_positive_sentiment_often_related_to_celebrations_or_happy_occasions_sometimes_involving_c.txt
+2025-07-28 02:20:50,554 - root - INFO - Activation shape valid: 10
+2025-07-28 02:20:50,718 - root - INFO - Processed explanation 2/3 for layer 20, unit 3885
+2025-07-28 02:21:56,228 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Experiences_often_for_the_first_time.txt
+2025-07-28 02:21:58,901 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-07-28 02:21:58,906 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Experiences_often_for_the_first_time.txt
+2025-07-28 02:21:58,909 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:22:58,462 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Experiences_often_for_the_first_time.txt
+2025-07-28 02:23:00,807 - root - INFO - Activation shape valid: 10
+2025-07-28 02:23:00,986 - root - INFO - Processed explanation 3/3 for layer 20, unit 3885
+2025-07-28 02:23:01,143 - root - INFO - Processing layer 20, unit 1790 (40/60)
+2025-07-28 02:23:23,912 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Business_organization_or_company_descriptions.txt
+2025-07-28 02:23:26,267 - root - INFO - Activation shape valid: 10
+2025-07-28 02:23:26,435 - root - INFO - Processed explanation 1/3 for layer 20, unit 1790
+2025-07-28 02:24:23,620 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:24:26,321 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-07-28 02:24:26,327 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:24:26,330 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:24:50,102 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:24:51,085 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 02:24:51,090 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:24:51,093 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:25:23,072 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:25:24,433 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-07-28 02:25:24,440 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:25:24,443 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:26:03,584 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Commercial_offerings_or_advertisements.txt
+2025-07-28 02:26:06,028 - root - INFO - Activation shape valid: 10
+2025-07-28 02:26:06,204 - root - INFO - Processed explanation 2/3 for layer 20, unit 1790
+2025-07-28 02:26:48,022 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Locations_events_and_activities.txt
+2025-07-28 02:26:50,339 - root - INFO - Activation shape valid: 10
+2025-07-28 02:26:50,504 - root - INFO - Processed explanation 3/3 for layer 20, unit 1790
+2025-07-28 02:26:50,661 - root - INFO - Processing layer 40, unit 4965 (41/60)
+2025-07-28 02:27:30,261 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Discussions_of_media_films_TV_shows_music_books_magazines_news_reports_and_associated_events_release.txt
+2025-07-28 02:27:32,641 - root - INFO - Activation shape valid: 10
+2025-07-28 02:27:32,813 - root - INFO - Processed explanation 1/3 for layer 40, unit 4965
+2025-07-28 02:27:56,157 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Software_electronic_devices_or_computer_hardware.txt
+2025-07-28 02:27:57,133 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 02:27:57,140 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Software_electronic_devices_or_computer_hardware.txt
+2025-07-28 02:27:57,143 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:28:27,389 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Software_electronic_devices_or_computer_hardware.txt
+2025-07-28 02:28:29,669 - root - INFO - Activation shape valid: 10
+2025-07-28 02:28:29,835 - root - INFO - Processed explanation 2/3 for layer 40, unit 4965
+2025-07-28 02:28:58,322 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Temporal_expressions_related_to_durations_or_points_in_time.txt
+2025-07-28 02:29:00,830 - root - INFO - Activation shape valid: 10
+2025-07-28 02:29:01,009 - root - INFO - Processed explanation 3/3 for layer 40, unit 4965
+2025-07-28 02:29:01,167 - root - INFO - Processing layer 40, unit 3948 (42/60)
+2025-07-28 02:29:26,448 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Languages_particularly_dialects_and_creoles_and_their_features_including_grammar_vocabulary_and_acce.txt
+2025-07-28 02:29:28,730 - root - INFO - Activation shape valid: 10
+2025-07-28 02:29:28,903 - root - INFO - Processed explanation 1/3 for layer 40, unit 3948
+2025-07-28 02:30:07,197 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Nightlife_entertainment_food_service_and_brandscompanies.txt
+2025-07-28 02:30:09,590 - root - INFO - Activation shape valid: 10
+2025-07-28 02:30:09,785 - root - INFO - Processed explanation 2/3 for layer 40, unit 3948
+2025-07-28 02:30:39,746 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Luxury_goods_and_services_often_related_to_food_and_beverages_or_fashion_and_beauty.txt
+2025-07-28 02:30:42,095 - root - INFO - Activation shape valid: 10
+2025-07-28 02:30:42,261 - root - INFO - Processed explanation 3/3 for layer 40, unit 3948
+2025-07-28 02:30:42,418 - root - INFO - Processing layer 40, unit 4055 (43/60)
+2025-07-28 02:31:28,521 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Names_of_creative_works_particularly_film_music_and_theatre_productions.txt
+2025-07-28 02:31:30,882 - root - INFO - Activation shape valid: 10
+2025-07-28 02:31:31,048 - root - INFO - Processed explanation 1/3 for layer 40, unit 4055
+2025-07-28 02:32:05,611 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Accessories_or_devices_related_to_computer_hardware_electronics_or_vehicles.txt
+2025-07-28 02:32:07,994 - root - INFO - Activation shape valid: 10
+2025-07-28 02:32:08,160 - root - INFO - Processed explanation 2/3 for layer 40, unit 4055
+2025-07-28 02:32:43,257 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Accessing_features_often_through_terminals_ports_or_interfaces_with_mentions_of_USB_devices_and_impr.txt
+2025-07-28 02:32:45,257 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-07-28 02:32:45,264 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Accessing_features_often_through_terminals_ports_or_interfaces_with_mentions_of_USB_devices_and_impr.txt
+2025-07-28 02:32:45,267 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:33:14,935 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Accessing_features_often_through_terminals_ports_or_interfaces_with_mentions_of_USB_devices_and_impr.txt
+2025-07-28 02:33:17,347 - root - INFO - Activation shape valid: 10
+2025-07-28 02:33:17,513 - root - INFO - Processed explanation 3/3 for layer 40, unit 4055
+2025-07-28 02:33:17,670 - root - INFO - Processing layer 40, unit 824 (44/60)
+2025-07-28 02:33:49,915 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Political_scandals_and_investigations_often_involving_government_officials_andor_agencies.txt
+2025-07-28 02:33:52,256 - root - INFO - Activation shape valid: 10
+2025-07-28 02:33:52,421 - root - INFO - Processed explanation 1/3 for layer 40, unit 824
+2025-07-28 02:34:30,943 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Data_security_privacy_and_information_sharing_often_in_the_context_of_online_platforms_digital_commu.txt
+2025-07-28 02:34:33,305 - root - INFO - Activation shape valid: 10
+2025-07-28 02:34:33,477 - root - INFO - Processed explanation 2/3 for layer 40, unit 824
+2025-07-28 02:35:45,451 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Descriptions_of_vehicles_especially_cars_and_trucks.txt
+2025-07-28 02:35:47,897 - root - INFO - Activation shape valid: 10
+2025-07-28 02:35:48,089 - root - INFO - Processed explanation 3/3 for layer 40, unit 824
+2025-07-28 02:35:48,245 - root - INFO - Processing layer 40, unit 1823 (45/60)
+2025-07-28 02:36:10,311 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/A_time_period_in_the_past_typically_a_year_and_events_or_situations_associated_with_that_period.txt
+2025-07-28 02:36:12,657 - root - INFO - Activation shape valid: 10
+2025-07-28 02:36:12,822 - root - INFO - Processed explanation 1/3 for layer 40, unit 1823
+2025-07-28 02:36:58,624 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Short_texts_related_to_ideas_events_or_products_and_often_including_punctuation_such_as_periods_ques.txt
+2025-07-28 02:37:01,075 - root - INFO - Activation shape valid: 10
+2025-07-28 02:37:01,251 - root - INFO - Processed explanation 2/3 for layer 40, unit 1823
+2025-07-28 02:37:28,914 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Changes_results_or_consequences_of_an_event_or_action_often_involving_a_measurement_or_observation_o.txt
+2025-07-28 02:37:31,282 - root - INFO - Activation shape valid: 10
+2025-07-28 02:37:31,447 - root - INFO - Processed explanation 3/3 for layer 40, unit 1823
+2025-07-28 02:37:31,604 - root - INFO - Processing layer 40, unit 5557 (46/60)
+2025-07-28 02:37:53,466 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Software_features_biological_entities_academic_questions_physics_research_RNA_viruses_app_features_f.txt
+2025-07-28 02:37:54,562 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-07-28 02:37:54,569 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Software_features_biological_entities_academic_questions_physics_research_RNA_viruses_app_features_f.txt
+2025-07-28 02:37:54,572 - root - INFO - Regenerating explanation samples...
+2025-07-28 02:38:47,140 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Software_features_biological_entities_academic_questions_physics_research_RNA_viruses_app_features_f.txt
+2025-07-28 02:38:49,620 - root - INFO - Activation shape valid: 10
+2025-07-28 02:38:49,814 - root - INFO - Processed explanation 1/3 for layer 40, unit 5557
+2025-07-28 02:39:22,990 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Events_holidays_or_specific_dates_often_involving_travel_or_celebratory_gatherings.txt
+2025-07-28 02:39:25,363 - root - INFO - Activation shape valid: 10
+2025-07-28 02:39:25,529 - root - INFO - Processed explanation 2/3 for layer 40, unit 5557
+2025-07-28 02:40:06,286 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Affection_romantic_relationships_or_close_interpersonal_bonds_sometimes_in_difficult_or_complicated_.txt
+2025-07-28 02:40:08,610 - root - INFO - Activation shape valid: 10
+2025-07-28 02:40:08,775 - root - INFO - Processed explanation 3/3 for layer 40, unit 5557
+2025-07-28 02:40:08,933 - root - INFO - Processing layer 40, unit 1516 (47/60)
+2025-07-28 02:40:40,200 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Travel_transportation_specifically_car_rental_services_and_absolute_value_abs.txt
+2025-07-28 02:40:42,511 - root - INFO - Activation shape valid: 10
+2025-07-28 02:40:42,676 - root - INFO - Processed explanation 1/3 for layer 40, unit 1516
+2025-07-28 02:41:30,494 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Concepts_of_freedom_release_or_escape_in_relation_to_movement_particularly_outward_or_away_from_a_so.txt
+2025-07-28 02:41:32,883 - root - INFO - Activation shape valid: 10
+2025-07-28 02:41:33,050 - root - INFO - Processed explanation 2/3 for layer 40, unit 1516
+2025-07-28 02:42:16,357 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Luxury_accommodations_shipping_information_product_descriptions_and_personal_experiences.txt
+2025-07-28 02:42:18,687 - root - INFO - Activation shape valid: 10
+2025-07-28 02:42:18,855 - root - INFO - Processed explanation 3/3 for layer 40, unit 1516
+2025-07-28 02:42:19,012 - root - INFO - Processing layer 40, unit 364 (48/60)
+2025-07-28 02:42:46,291 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/German_and_English_descriptions_of_CTI_Computer_Telephony_Integration_and_its_two_main_types_First_P.txt
+2025-07-28 02:42:48,628 - root - INFO - Activation shape valid: 10
+2025-07-28 02:42:48,799 - root - INFO - Processed explanation 1/3 for layer 40, unit 364
+2025-07-28 02:42:48,920 - root - INFO - File already exists, skipping generation: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Food_items_with_added_ingredients.txt
+2025-07-28 02:42:51,099 - root - INFO - Activation shape valid: 10
+2025-07-28 02:42:51,265 - root - INFO - Processed explanation 2/3 for layer 40, unit 364
+2025-07-28 02:43:52,834 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Prices_costs_or_fees_sometimes_along_with_quantities_or_durations.txt
+2025-07-28 02:43:55,172 - root - INFO - Activation shape valid: 10
+2025-07-28 02:43:55,339 - root - INFO - Processed explanation 3/3 for layer 40, unit 364
+2025-07-28 02:43:55,497 - root - INFO - Processing layer 40, unit 4808 (49/60)
+2025-07-28 02:44:41,463 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Discussions_of_music_products_or_locations_and_trips_with_a_mention_of_a_specific_year.txt
+2025-07-28 02:44:43,829 - root - INFO - Activation shape valid: 10
+2025-07-28 02:44:43,996 - root - INFO - Processed explanation 1/3 for layer 40, unit 4808
+2025-07-28 02:45:08,630 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Sports_teamplayer_performance_including_wins_losses_scores_injuries_and_player_debuts_often_with_spe.txt
+2025-07-28 02:45:10,980 - root - INFO - Activation shape valid: 10
+2025-07-28 02:45:11,144 - root - INFO - Processed explanation 2/3 for layer 40, unit 4808
+2025-07-28 02:45:39,955 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Marketing_and_advertising_especially_through_online_platforms_like_social_media_and_search_engines.txt
+2025-07-28 02:45:42,314 - root - INFO - Activation shape valid: 10
+2025-07-28 02:45:42,478 - root - INFO - Processed explanation 3/3 for layer 40, unit 4808
+2025-07-28 02:45:42,635 - root - INFO - Processing layer 40, unit 3612 (50/60)
+2025-07-28 02:46:03,269 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Professional_standards_effectiveness_and_value_in_various_fields_including_healthcare_business_and_e.txt
+2025-07-28 02:46:05,608 - root - INFO - Activation shape valid: 10
+2025-07-28 02:46:05,773 - root - INFO - Processed explanation 1/3 for layer 40, unit 3612
+2025-07-28 02:46:36,209 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Health_and_beauty_benefits_of_avocado_cooking_a_shrimp_pasta_dish_descriptions_of_color_testing_tool.txt
+2025-07-28 02:46:38,560 - root - INFO - Activation shape valid: 10
+2025-07-28 02:46:38,735 - root - INFO - Processed explanation 2/3 for layer 40, unit 3612
+2025-07-28 02:47:11,631 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Emphasis_on_a_specific_attribute_or_characteristic.txt
+2025-07-28 02:47:14,024 - root - INFO - Activation shape valid: 10
+2025-07-28 02:47:14,201 - root - INFO - Processed explanation 3/3 for layer 40, unit 3612
+2025-07-28 02:47:14,358 - root - INFO - Processing layer 40, unit 6364 (51/60)
+2025-07-28 02:47:44,596 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Conflict_violence_and_negative_events_related_to_fighting_crime_or_accidents.txt
+2025-07-28 02:47:46,954 - root - INFO - Activation shape valid: 10
+2025-07-28 02:47:47,120 - root - INFO - Processed explanation 1/3 for layer 40, unit 6364
+2025-07-28 02:48:14,593 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Data_structures_management_systems_and_circuit_information_related_to_patents_and_applications.txt
+2025-07-28 02:48:16,990 - root - INFO - Activation shape valid: 10
+2025-07-28 02:48:17,168 - root - INFO - Processed explanation 2/3 for layer 40, unit 6364
+2025-07-28 02:48:48,102 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Automotive_features_often_within_car_descriptions_such_as_mileage_engine_type_drivetrain_or_addition.txt
+2025-07-28 02:48:50,454 - root - INFO - Activation shape valid: 10
+2025-07-28 02:48:50,620 - root - INFO - Processed explanation 3/3 for layer 40, unit 6364
+2025-07-28 02:48:50,776 - root - INFO - Processing layer 40, unit 3515 (52/60)
+2025-07-28 02:49:24,973 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Names_of_people_or_organizations_often_in_sports_contexts_especially_within_lists_or_within_a_larger.txt
+2025-07-28 02:49:27,320 - root - INFO - Activation shape valid: 10
+2025-07-28 02:49:27,493 - root - INFO - Processed explanation 1/3 for layer 40, unit 3515
+2025-07-28 02:49:55,988 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Educational_institutions_programs_and_organizations_with_a_focus_on_accreditation_rankings_partnersh.txt
+2025-07-28 02:49:58,441 - root - INFO - Activation shape valid: 10
+2025-07-28 02:49:58,618 - root - INFO - Processed explanation 2/3 for layer 40, unit 3515
+2025-07-28 02:50:21,085 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Products_or_services_related_to_metal_air_purification_car_parts_molecular_biology_electronics_weddi.txt
+2025-07-28 02:50:23,454 - root - INFO - Activation shape valid: 10
+2025-07-28 02:50:23,620 - root - INFO - Processed explanation 3/3 for layer 40, unit 3515
+2025-07-28 02:50:23,778 - root - INFO - Processing layer 40, unit 556 (53/60)
+2025-07-28 02:50:48,290 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Body_treatments_often_involving_needles_or_tools_with_a_focus_on_the_skin_and_sometimes_the_neck.txt
+2025-07-28 02:50:50,632 - root - INFO - Activation shape valid: 10
+2025-07-28 02:50:50,797 - root - INFO - Processed explanation 1/3 for layer 40, unit 556
+2025-07-28 02:51:45,401 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Legal_cases_rulings_and_court_proceedings.txt
+2025-07-28 02:51:47,747 - root - INFO - Activation shape valid: 10
+2025-07-28 02:51:47,915 - root - INFO - Processed explanation 2/3 for layer 40, unit 556
+2025-07-28 02:52:22,480 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Future_plans_actions_and_developments_related_to_organizations_initiatives_or_projects.txt
+2025-07-28 02:52:24,812 - root - INFO - Activation shape valid: 10
+2025-07-28 02:52:24,979 - root - INFO - Processed explanation 3/3 for layer 40, unit 556
+2025-07-28 02:52:25,137 - root - INFO - Processing layer 40, unit 183 (54/60)
+2025-07-28 02:52:59,758 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Transportation_logistics_and_infrastructure_projects.txt
+2025-07-28 02:53:02,091 - root - INFO - Activation shape valid: 10
+2025-07-28 02:53:02,258 - root - INFO - Processed explanation 1/3 for layer 40, unit 183
+2025-07-28 02:53:30,343 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Discussions_of_employment_organizations_locations_and_activities_related_to_work_and_careers_especia.txt
+2025-07-28 02:53:32,575 - root - INFO - Activation shape valid: 10
+2025-07-28 02:53:32,760 - root - INFO - Processed explanation 2/3 for layer 40, unit 183
+2025-07-28 02:54:04,321 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Travel_locations_and_events_often_including_specific_modes_of_transportation.txt
+2025-07-28 02:54:06,673 - root - INFO - Activation shape valid: 10
+2025-07-28 02:54:06,838 - root - INFO - Processed explanation 3/3 for layer 40, unit 183
+2025-07-28 02:54:06,995 - root - INFO - Processing layer 40, unit 3254 (55/60)
+2025-07-28 02:54:34,648 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Food_products_or_services_and_locations_where_they_can_be_obtained.txt
+2025-07-28 02:54:36,991 - root - INFO - Activation shape valid: 10
+2025-07-28 02:54:37,156 - root - INFO - Processed explanation 1/3 for layer 40, unit 3254
+2025-07-28 02:55:05,986 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Themes_of_competition_rivalry_andor_challenge_often_in_artistic_or_performance_contexts.txt
+2025-07-28 02:55:08,340 - root - INFO - Activation shape valid: 10
+2025-07-28 02:55:08,506 - root - INFO - Processed explanation 2/3 for layer 40, unit 3254
+2025-07-28 02:55:50,732 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Concepts_of_randomness_safety_and_danger_especially_related_to_being_assaulted_by_strangers_in_large.txt
+2025-07-28 02:55:53,031 - root - INFO - Activation shape valid: 10
+2025-07-28 02:55:53,199 - root - INFO - Processed explanation 3/3 for layer 40, unit 3254
+2025-07-28 02:55:53,374 - root - INFO - Processing layer 40, unit 6067 (56/60)
+2025-07-28 02:56:34,361 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Fashion_quotations_Christmas_The_Simpsons_security_questions_Queen_Elizabeth_II_lollipops_MMs_slang_.txt
+2025-07-28 02:56:36,687 - root - INFO - Activation shape valid: 10
+2025-07-28 02:56:36,854 - root - INFO - Processed explanation 1/3 for layer 40, unit 6067
+2025-07-28 02:57:02,650 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Manipulation_of_text_code_or_information.txt
+2025-07-28 02:57:05,122 - root - INFO - Activation shape valid: 10
+2025-07-28 02:57:05,301 - root - INFO - Processed explanation 2/3 for layer 40, unit 6067
+2025-07-28 02:57:43,615 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/US_government_and_politics_especially_the_State_of_the_Union_address_and_events_with_guest_speakers.txt
+2025-07-28 02:57:45,844 - root - INFO - Activation shape valid: 10
+2025-07-28 02:57:46,010 - root - INFO - Processed explanation 3/3 for layer 40, unit 6067
+2025-07-28 02:57:46,168 - root - INFO - Processing layer 40, unit 3636 (57/60)
+2025-07-28 02:58:10,464 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Political_affiliation_party_campaigning_and_election_results.txt
+2025-07-28 02:58:12,785 - root - INFO - Activation shape valid: 10
+2025-07-28 02:58:12,951 - root - INFO - Processed explanation 1/3 for layer 40, unit 3636
+2025-07-28 02:58:42,202 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Food_preparation_often_involving_layering_combining_ingredients_or_specific_cooking_techniques.txt
+2025-07-28 02:58:44,565 - root - INFO - Activation shape valid: 10
+2025-07-28 02:58:44,733 - root - INFO - Processed explanation 2/3 for layer 40, unit 3636
+2025-07-28 02:59:07,798 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Financial_transactions_services_legal_processes_and_requirements.txt
+2025-07-28 02:59:10,094 - root - INFO - Activation shape valid: 10
+2025-07-28 02:59:10,262 - root - INFO - Processed explanation 3/3 for layer 40, unit 3636
+2025-07-28 02:59:10,420 - root - INFO - Processing layer 40, unit 1555 (58/60)
+2025-07-28 02:59:54,713 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Financial_products_and_services_specifically_lowcost_options_often_involving_comparisons_and_researc.txt
+2025-07-28 02:59:57,046 - root - INFO - Activation shape valid: 10
+2025-07-28 02:59:57,213 - root - INFO - Processed explanation 1/3 for layer 40, unit 1555
+2025-07-28 03:00:34,236 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Travel_roads_and_transportation_incidents.txt
+2025-07-28 03:00:36,566 - root - INFO - Activation shape valid: 10
+2025-07-28 03:00:36,732 - root - INFO - Processed explanation 2/3 for layer 40, unit 1555
+2025-07-28 03:01:11,208 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Concepts_of_weight_weight_loss_dieting_and_body_image_especially_in_the_context_of_questions_or_stat.txt
+2025-07-28 03:01:13,512 - root - INFO - Activation shape valid: 10
+2025-07-28 03:01:13,678 - root - INFO - Processed explanation 3/3 for layer 40, unit 1555
+2025-07-28 03:01:13,835 - root - INFO - Processing layer 40, unit 6106 (59/60)
+2025-07-28 03:01:45,390 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Instructions_advice_or_descriptions_related_to_creative_work_or_hobbies.txt
+2025-07-28 03:01:47,734 - root - INFO - Activation shape valid: 10
+2025-07-28 03:01:47,901 - root - INFO - Processed explanation 1/3 for layer 40, unit 6106
+2025-07-28 03:02:04,382 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Descriptions_statements_summaries_announcements_and_information_regarding_television_shows_movies_do.txt
+2025-07-28 03:02:04,766 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-07-28 03:02:04,772 - root - INFO - Removing wrong generated file: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Descriptions_statements_summaries_announcements_and_information_regarding_television_shows_movies_do.txt
+2025-07-28 03:02:04,775 - root - INFO - Regenerating explanation samples...
+2025-07-28 03:02:27,091 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Descriptions_statements_summaries_announcements_and_information_regarding_television_shows_movies_do.txt
+2025-07-28 03:02:29,376 - root - INFO - Activation shape valid: 10
+2025-07-28 03:02:29,541 - root - INFO - Processed explanation 2/3 for layer 40, unit 6106
+2025-07-28 03:03:15,676 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Camera_features_karaoke_features_video_game_features_photo_editing_features_video_game_cheat_codes_m.txt
+2025-07-28 03:03:18,014 - root - INFO - Activation shape valid: 10
+2025-07-28 03:03:18,180 - root - INFO - Processed explanation 3/3 for layer 40, unit 6106
+2025-07-28 03:03:18,337 - root - INFO - Processing layer 40, unit 4244 (60/60)
+2025-07-28 03:03:48,702 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Medical_conditions_treatments_or_substances_and_their_effects_or_symptoms_often_mentioning_an_organ_.txt
+2025-07-28 03:03:51,060 - root - INFO - Activation shape valid: 10
+2025-07-28 03:03:51,226 - root - INFO - Processed explanation 1/3 for layer 40, unit 4244
+2025-07-28 03:04:42,433 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/Discussions_of_historical_events_often_religious_involving_a_specific_location_date_or_person.txt
+2025-07-28 03:04:44,826 - root - INFO - Activation shape valid: 10
+2025-07-28 03:04:44,995 - root - INFO - Processed explanation 2/3 for layer 40, unit 4244
+2025-07-28 03:06:02,583 - root - INFO - Samples saved to: /home/lkopf/autointerp-llm/generated_text/gemini-1-5-pro/The_highlighted_spans_relate_to_biological_entities_people_places_or_activitiesevents_that_can_be_en.txt
+2025-07-28 03:06:04,889 - root - INFO - Activation shape valid: 10
+2025-07-28 03:06:05,054 - root - INFO - Processed explanation 3/3 for layer 40, unit 4244
+2025-07-28 03:06:05,055 - root - INFO - All layer-unit pairs processed. Results saved to:
+ /home/lkopf/autointerp-llm/results/cosy-evaluation_target-gpt2-xl_textgen-gemini-1-5-pro_mean_evalgen-gemini-1-5-pro_cosmopedia_1000_clusters-3.csv

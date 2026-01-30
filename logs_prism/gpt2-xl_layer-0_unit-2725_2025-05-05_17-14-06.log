@@ -1,0 +1,815 @@
+2025-05-05 19:14:06,759 - root - INFO - ================================================================================
+2025-05-05 19:14:06,760 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-05 19:14:06,760 - root - INFO - ================================================================================
+2025-05-05 19:14:06,761 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-05 19:14:06,762 - root - INFO - AGG_METHOD = mean
+2025-05-05 19:14:06,762 - root - INFO - BATCH_SIZE = 2
+2025-05-05 19:14:06,763 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-05 19:14:06,763 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-05 19:14:06,764 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-05 19:14:06,765 - root - INFO - CLUSTER_N_SAMPLES = 100
+2025-05-05 19:14:06,765 - root - INFO - CONTROL_BATCH_SIZE = 2
+2025-05-05 19:14:06,765 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-05 19:14:06,766 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-05 19:14:06,767 - root - INFO - CONTROL_SPLIT = train
+2025-05-05 19:14:06,767 - root - INFO - DATA_FILES = None
+2025-05-05 19:14:06,767 - root - INFO - DEVICE = cuda
+2025-05-05 19:14:06,768 - root - INFO - END_INTERVAL = 1.0
+2025-05-05 19:14:06,768 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-05 19:14:06,769 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_150-samples.csv
+2025-05-05 19:14:06,769 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-05 19:14:06,770 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-05 19:14:06,770 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-05 19:14:06,771 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-05-05 19:14:06,771 - root - INFO - LAYER_ID = 0
+2025-05-05 19:14:06,771 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-05 19:14:06,772 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-05 19:14:06,772 - root - INFO - MULTI_EVAL = False
+2025-05-05 19:14:06,773 - root - INFO - N_CLUSTERS = 5
+2025-05-05 19:14:06,773 - root - INFO - N_SAMPLES = 10
+2025-05-05 19:14:06,774 - root - INFO - PERCENTILE_STEP = 0.0005
+2025-05-05 19:14:06,774 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern.Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-05 19:14:06,775 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-05 19:14:06,776 - root - INFO - RANDOMIZE_ALL = True
+2025-05-05 19:14:06,776 - root - INFO - RANDOMIZE_HIGHLIGHTS = False
+2025-05-05 19:14:06,777 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-05 19:14:06,777 - root - INFO - SPLIT = train
+2025-05-05 19:14:06,778 - root - INFO - START_INTERVAL = 0.95
+2025-05-05 19:14:06,778 - root - INFO - STREAMING = True
+2025-05-05 19:14:06,778 - root - INFO - SUBSET_SIZE = 1000
+2025-05-05 19:14:06,779 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-05 19:14:06,779 - root - INFO - TARGET_DATA = c4
+2025-05-05 19:14:06,780 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-05 19:14:06,780 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-05 19:14:06,781 - root - INFO - UNIT_ID = 2725
+2025-05-05 19:14:06,781 - root - INFO - USE_API = True
+2025-05-05 19:14:06,781 - root - INFO - ================================================================================
+2025-05-05 19:14:06,782 - root - INFO - ANALYSIS RESULTS
+2025-05-05 19:14:06,783 - root - INFO - ================================================================================
+2025-05-05 19:14:06,783 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-2725_2025-05-05_17-14-06.log
+2025-05-05 19:14:06,925 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-05-05 19:14:06,926 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-05 19:14:15,632 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-05-05 19:14:16,117 - root - INFO - 0, 70:
+ 0.5415296703577042 cosine similarity
+ 0.4833586484193802 cosine similarity random
+ 0.8643000000000001 max AUC
+ 0.8547306861097932 max MAD
+2025-05-05 19:14:16,257 - root - INFO - 0, 170:
+ 0.46034192144870756 cosine similarity
+ 0.41264788508415223 cosine similarity random
+ 0.411 max AUC
+ -0.3370660344684608 max MAD
+2025-05-05 19:14:16,396 - root - INFO - 0, 187:
+ 0.5359392583370208 cosine similarity
+ 0.4467171639204025 cosine similarity random
+ 0.0404 max AUC
+ -1.7772740494663102 max MAD
+2025-05-05 19:14:16,531 - root - INFO - 0, 336:
+ 0.47864281237125395 cosine similarity
+ 0.4088593631982803 cosine similarity random
+ 0.8382000000000001 max AUC
+ 0.9495750235549638 max MAD
+2025-05-05 19:14:16,667 - root - INFO - 0, 374:
+ 0.37757501304149627 cosine similarity
+ 0.4384965419769287 cosine similarity random
+ 0.8967999999999999 max AUC
+ 1.3492975893589272 max MAD
+2025-05-05 19:14:16,799 - root - INFO - 0, 440:
+ 0.41169763803482057 cosine similarity
+ 0.4072184592485428 cosine similarity random
+ 0.0222 max AUC
+ -2.3900856917034004 max MAD
+2025-05-05 19:14:16,946 - root - INFO - 0, 604:
+ 0.4939663618803024 cosine similarity
+ 0.47962830662727357 cosine similarity random
+ 0.6423999999999999 max AUC
+ 0.4417196309192774 max MAD
+2025-05-05 19:14:17,081 - root - INFO - 0, 615:
+ 0.47713595926761626 cosine similarity
+ 0.4343860328197479 cosine similarity random
+ 0.2275 max AUC
+ -0.8745949630491234 max MAD
+2025-05-05 19:14:17,238 - root - INFO - 0, 812:
+ 0.5069768369197846 cosine similarity
+ 0.4288474977016449 cosine similarity random
+ 0.1296 max AUC
+ -0.9703611292093458 max MAD
+2025-05-05 19:14:17,377 - root - INFO - 0, 984:
+ 0.43934866786003113 cosine similarity
+ 0.46712720990180967 cosine similarity random
+ 0.0413 max AUC
+ -1.8593845920946144 max MAD
+2025-05-05 19:14:17,517 - root - INFO - 0, 1149:
+ 0.492173433303833 cosine similarity
+ 0.4691061466932297 cosine similarity random
+ 0.5505 max AUC
+ 0.1867387446767607 max MAD
+2025-05-05 19:14:17,651 - root - INFO - 0, 1573:
+ 0.4566319972276688 cosine similarity
+ 0.4548952758312225 cosine similarity random
+ 0.4486 max AUC
+ -0.2510390606285034 max MAD
+2025-05-05 19:14:17,785 - root - INFO - 0, 1674:
+ 0.4282469838857651 cosine similarity
+ 0.40257800817489625 cosine similarity random
+ 0.995 max AUC
+ 8.747249691331744 max MAD
+2025-05-05 19:14:17,932 - root - INFO - 0, 1749:
+ 0.4164069056510925 cosine similarity
+ 0.44064629077911377 cosine similarity random
+ 0.0877 max AUC
+ -1.5768896247302686 max MAD
+2025-05-05 19:14:18,071 - root - INFO - 0, 2336:
+ 0.44133812189102173 cosine similarity
+ 0.4300737351179123 cosine similarity random
+ 0.9456 max AUC
+ 2.60519344588644 max MAD
+2025-05-05 19:14:18,230 - root - INFO - 0, 2354:
+ 0.4774230092763901 cosine similarity
+ 0.4912452071905136 cosine similarity random
+ 0.6557000000000001 max AUC
+ 0.2575211790322874 max MAD
+2025-05-05 19:14:18,365 - root - INFO - 0, 2696:
+ 0.4191035062074661 cosine similarity
+ 0.4458010196685791 cosine similarity random
+ 0.988 max AUC
+ 3.5716406918416395 max MAD
+2025-05-05 19:14:18,509 - root - INFO - 0, 2725:
+ 0.4733027458190918 cosine similarity
+ 0.43179974257946013 cosine similarity random
+ 0.9936 max AUC
+ 3.285439275279242 max MAD
+2025-05-05 19:14:18,643 - root - INFO - 0, 2751:
+ 0.47373811304569247 cosine similarity
+ 0.45016191601753236 cosine similarity random
+ 0.0144 max AUC
+ -3.0218566071020305 max MAD
+2025-05-05 19:14:18,779 - root - INFO - 0, 2844:
+ 0.5127319902181625 cosine similarity
+ 0.42710869312286376 cosine similarity random
+ 0.6068 max AUC
+ 0.1282302741029982 max MAD
+2025-05-05 19:14:18,917 - root - INFO - 0, 3057:
+ 0.3989290863275528 cosine similarity
+ 0.39425147473812105 cosine similarity random
+ 0.8608 max AUC
+ 1.0174380069618498 max MAD
+2025-05-05 19:14:19,052 - root - INFO - 0, 3124:
+ 0.46449120044708253 cosine similarity
+ 0.49370325207710264 cosine similarity random
+ 0.7746000000000001 max AUC
+ 2.3569755900549056 max MAD
+2025-05-05 19:14:19,189 - root - INFO - 0, 3279:
+ 0.41782398223876954 cosine similarity
+ 0.41830645203590394 cosine similarity random
+ 0.8953 max AUC
+ 1.3711982895597203 max MAD
+2025-05-05 19:14:19,325 - root - INFO - 0, 3454:
+ 0.43482080698013303 cosine similarity
+ 0.3997773200273514 cosine similarity random
+ 0.1674 max AUC
+ -1.002561643732939 max MAD
+2025-05-05 19:14:19,462 - root - INFO - 0, 3533:
+ 0.51907619535923 cosine similarity
+ 0.39342349469661714 cosine similarity random
+ 0.6757 max AUC
+ 0.2612757478083188 max MAD
+2025-05-05 19:14:19,595 - root - INFO - 0, 3548:
+ 0.4592244863510132 cosine similarity
+ 0.4312725871801376 cosine similarity random
+ 0.3705 max AUC
+ -0.4363214831535322 max MAD
+2025-05-05 19:14:19,737 - root - INFO - 0, 3582:
+ 0.5396455705165863 cosine similarity
+ 0.4488896608352661 cosine similarity random
+ 0.6697 max AUC
+ 1.3111109071226272 max MAD
+2025-05-05 19:14:19,892 - root - INFO - 0, 3696:
+ 0.533625391125679 cosine similarity
+ 0.3889579474925995 cosine similarity random
+ 0.0527 max AUC
+ -1.1140914944426754 max MAD
+2025-05-05 19:14:20,027 - root - INFO - 0, 3818:
+ 0.45001369416713716 cosine similarity
+ 0.48200535774230957 cosine similarity random
+ 0.8346999999999999 max AUC
+ 1.2859074236002273 max MAD
+2025-05-05 19:14:20,177 - root - INFO - 0, 3864:
+ 0.46132593750953677 cosine similarity
+ 0.44216921329498293 cosine similarity random
+ 0.9179 max AUC
+ 1.9096820669713628 max MAD
+2025-05-05 19:14:20,316 - root - INFO - 0, 3943:
+ 0.4453452408313751 cosine similarity
+ 0.42195776402950286 cosine similarity random
+ 0.9875 max AUC
+ 3.0437064503244646 max MAD
+2025-05-05 19:14:20,449 - root - INFO - 0, 4054:
+ 0.45865066945552824 cosine similarity
+ 0.4473086565732956 cosine similarity random
+ 0.3263 max AUC
+ -0.6448656871407621 max MAD
+2025-05-05 19:14:20,591 - root - INFO - 0, 4228:
+ 0.5221942722797394 cosine similarity
+ 0.449468070268631 cosine similarity random
+ 0.2385 max AUC
+ -1.0645766206608602 max MAD
+2025-05-05 19:14:20,729 - root - INFO - 0, 4297:
+ 0.4000516593456268 cosine similarity
+ 0.4892183542251587 cosine similarity random
+ 0.9959 max AUC
+ 7.169329382758705 max MAD
+2025-05-05 19:14:20,867 - root - INFO - 0, 4405:
+ 0.4536677271127701 cosine similarity
+ 0.4880872666835785 cosine similarity random
+ 0.0149 max AUC
+ -2.133308955918165 max MAD
+2025-05-05 19:14:21,019 - root - INFO - 0, 4679:
+ 0.5400964200496674 cosine similarity
+ 0.44513866007328035 cosine similarity random
+ 0.9946 max AUC
+ 5.621915837366208 max MAD
+2025-05-05 19:14:21,160 - root - INFO - 0, 4709:
+ 0.40343557894229887 cosine similarity
+ 0.44962978959083555 cosine similarity random
+ 0.8658000000000001 max AUC
+ 1.1608391500651325 max MAD
+2025-05-05 19:14:21,300 - root - INFO - 0, 4842:
+ 0.44516709446907043 cosine similarity
+ 0.5644926935434341 cosine similarity random
+ 0.8699 max AUC
+ 1.1365948101588867 max MAD
+2025-05-05 19:14:21,439 - root - INFO - 0, 4891:
+ 0.4283158928155899 cosine similarity
+ 0.44745790362358095 cosine similarity random
+ 0.0266 max AUC
+ -2.21756343886481 max MAD
+2025-05-05 19:14:21,583 - root - INFO - 0, 4986:
+ 0.5211349725723267 cosine similarity
+ 0.5059331446886063 cosine similarity random
+ 0.0164 max AUC
+ -2.167699917569388 max MAD
+2025-05-05 19:14:21,716 - root - INFO - 0, 5085:
+ 0.4178889006376266 cosine similarity
+ 0.4169024437665939 cosine similarity random
+ 0.4984 max AUC
+ -0.0631126425103273 max MAD
+2025-05-05 19:14:21,854 - root - INFO - 0, 5551:
+ 0.5309541672468185 cosine similarity
+ 0.4754520386457443 cosine similarity random
+ 0.8371000000000001 max AUC
+ 1.7731609671108055 max MAD
+2025-05-05 19:14:21,989 - root - INFO - 0, 5552:
+ 0.4218621402978897 cosine similarity
+ 0.4424488604068756 cosine similarity random
+ 0.8357000000000001 max AUC
+ 1.0712381062410106 max MAD
+2025-05-05 19:14:22,131 - root - INFO - 0, 5703:
+ 0.46543057560920714 cosine similarity
+ 0.4452138215303421 cosine similarity random
+ 0.6371 max AUC
+ 0.8471442965000471 max MAD
+2025-05-05 19:14:22,268 - root - INFO - 0, 5781:
+ 0.6683258056640625 cosine similarity
+ 0.3905210107564926 cosine similarity random
+ 0.8687 max AUC
+ 1.3163678432510968 max MAD
+2025-05-05 19:14:22,403 - root - INFO - 0, 5960:
+ 0.4923382043838501 cosine similarity
+ 0.4157192468643188 cosine similarity random
+ 0.9238 max AUC
+ 1.865450213609496 max MAD
+2025-05-05 19:14:22,551 - root - INFO - 0, 6114:
+ 0.4645867466926575 cosine similarity
+ 0.45236152708530425 cosine similarity random
+ 0.6003000000000001 max AUC
+ 0.16352139020395 max MAD
+2025-05-05 19:14:22,697 - root - INFO - 0, 6296:
+ 0.49344042539596555 cosine similarity
+ 0.4314697325229645 cosine similarity random
+ 0.9043 max AUC
+ 1.350712012733701 max MAD
+2025-05-05 19:14:22,828 - root - INFO - 0, 6314:
+ 0.45603716373443604 cosine similarity
+ 0.5589594364166259 cosine similarity random
+ 0.9385 max AUC
+ 1.786632217765322 max MAD
+2025-05-05 19:14:22,964 - root - INFO - 0, 6373:
+ 0.47380144596099855 cosine similarity
+ 0.46792047619819643 cosine similarity random
+ 0.0935 max AUC
+ -1.4176878289483326 max MAD
+2025-05-05 19:14:23,098 - root - INFO - 20, 76:
+ 0.47457875609397887 cosine similarity
+ 0.3753949701786041 cosine similarity random
+ 0.995 max AUC
+ 4.507196306975743 max MAD
+2025-05-05 19:14:23,236 - root - INFO - 20, 137:
+ 0.42722180485725403 cosine similarity
+ 0.4164866626262665 cosine similarity random
+ 0.9972 max AUC
+ 4.230437552635093 max MAD
+2025-05-05 19:14:23,373 - root - INFO - 20, 307:
+ 0.5003782361745834 cosine similarity
+ 0.38126753866672514 cosine similarity random
+ 0.8665 max AUC
+ 1.243251209431777 max MAD
+2025-05-05 19:14:23,512 - root - INFO - 20, 328:
+ 0.4556200474500656 cosine similarity
+ 0.4072989135980606 cosine similarity random
+ 0.9928 max AUC
+ 4.106977818602144 max MAD
+2025-05-05 19:14:23,649 - root - INFO - 20, 335:
+ 0.43959411382675173 cosine similarity
+ 0.4883354425430298 cosine similarity random
+ 0.7396 max AUC
+ 0.6226394578752114 max MAD
+2025-05-05 19:14:23,786 - root - INFO - 20, 995:
+ 0.5008274912834167 cosine similarity
+ 0.4454757392406464 cosine similarity random
+ 0.9936 max AUC
+ 3.676896759725834 max MAD
+2025-05-05 19:14:23,920 - root - INFO - 20, 1004:
+ 0.5821623206138611 cosine similarity
+ 0.41922372579574585 cosine similarity random
+ 0.7887 max AUC
+ 0.9527420679298738 max MAD
+2025-05-05 19:14:24,055 - root - INFO - 20, 1068:
+ 0.3490204900503159 cosine similarity
+ 0.453837913274765 cosine similarity random
+ 0.9883 max AUC
+ 3.147159138857869 max MAD
+2025-05-05 19:14:24,188 - root - INFO - 20, 1138:
+ 0.427878138422966 cosine similarity
+ 0.4604353100061417 cosine similarity random
+ 0.9918 max AUC
+ 2.846867907921956 max MAD
+2025-05-05 19:14:24,321 - root - INFO - 20, 1232:
+ 0.4856949865818024 cosine similarity
+ 0.3999455749988556 cosine similarity random
+ 0.9991 max AUC
+ 4.537947252497978 max MAD
+2025-05-05 19:14:24,457 - root - INFO - 20, 1406:
+ 0.46157352030277254 cosine similarity
+ 0.4084061086177826 cosine similarity random
+ 0.9911 max AUC
+ 4.103696572341133 max MAD
+2025-05-05 19:14:24,609 - root - INFO - 20, 1424:
+ 0.48744855523109437 cosine similarity
+ 0.4410306304693222 cosine similarity random
+ 0.9966 max AUC
+ 4.572131748967849 max MAD
+2025-05-05 19:14:24,748 - root - INFO - 20, 1633:
+ 0.40614984929561615 cosine similarity
+ 0.3650084584951401 cosine similarity random
+ 0.3455999999999999 max AUC
+ -0.4760563434490444 max MAD
+2025-05-05 19:14:24,884 - root - INFO - 20, 1790:
+ 0.4651855230331421 cosine similarity
+ 0.4739424973726273 cosine similarity random
+ 0.997 max AUC
+ 4.190265151263327 max MAD
+2025-05-05 19:14:25,021 - root - INFO - 20, 1935:
+ 0.45034050941467285 cosine similarity
+ 0.49372602105140684 cosine similarity random
+ 0.9988 max AUC
+ 4.984590554735328 max MAD
+2025-05-05 19:14:25,159 - root - INFO - 20, 2194:
+ 0.3755215287208557 cosine similarity
+ 0.4701258301734924 cosine similarity random
+ 0.6087 max AUC
+ 0.2498613880306756 max MAD
+2025-05-05 19:14:25,294 - root - INFO - 20, 2304:
+ 0.4749185532331467 cosine similarity
+ 0.5936580419540405 cosine similarity random
+ 0.9719 max AUC
+ 2.4439264746978533 max MAD
+2025-05-05 19:14:25,434 - root - INFO - 20, 2325:
+ 0.445441746711731 cosine similarity
+ 0.4174585998058319 cosine similarity random
+ 0.8379 max AUC
+ 1.1632441424571576 max MAD
+2025-05-05 19:14:25,577 - root - INFO - 20, 2328:
+ 0.49632355868816375 cosine similarity
+ 0.48282608687877654 cosine similarity random
+ 0.9601 max AUC
+ 2.3041311231276667 max MAD
+2025-05-05 19:14:25,716 - root - INFO - 20, 2398:
+ 0.4686735451221466 cosine similarity
+ 0.459663388133049 cosine similarity random
+ 0.5518000000000001 max AUC
+ 0.1091643907812818 max MAD
+2025-05-05 19:14:25,853 - root - INFO - 20, 2405:
+ 0.4816905319690704 cosine similarity
+ 0.44056239128112795 cosine similarity random
+ 0.8100999999999999 max AUC
+ 0.8689987601805133 max MAD
+2025-05-05 19:14:25,988 - root - INFO - 20, 2627:
+ 0.49010699689388276 cosine similarity
+ 0.4687016099691391 cosine similarity random
+ 0.1428 max AUC
+ -1.3697940001607314 max MAD
+2025-05-05 19:14:26,123 - root - INFO - 20, 2679:
+ 0.46644019782543183 cosine similarity
+ 0.38691731691360476 cosine similarity random
+ 0.9874 max AUC
+ 4.264134643145326 max MAD
+2025-05-05 19:14:26,261 - root - INFO - 20, 2700:
+ 0.5067284613847732 cosine similarity
+ 0.41438224613666536 cosine similarity random
+ 1.0 max AUC
+ 7.289029186704951 max MAD
+2025-05-05 19:14:26,403 - root - INFO - 20, 2869:
+ 0.4730774015188217 cosine similarity
+ 0.43575118482112885 cosine similarity random
+ 0.992 max AUC
+ 4.885476743253582 max MAD
+2025-05-05 19:14:26,542 - root - INFO - 20, 2911:
+ 0.40341879427433014 cosine similarity
+ 0.5608965933322907 cosine similarity random
+ 0.9978 max AUC
+ 6.442968978421599 max MAD
+2025-05-05 19:14:26,677 - root - INFO - 20, 2988:
+ 0.451444011926651 cosine similarity
+ 0.3682852268218994 cosine similarity random
+ 0.7375 max AUC
+ 0.5287425977097829 max MAD
+2025-05-05 19:14:26,810 - root - INFO - 20, 3274:
+ 0.5057706713676453 cosine similarity
+ 0.5026810318231583 cosine similarity random
+ 0.9949 max AUC
+ 5.707342012785015 max MAD
+2025-05-05 19:14:26,947 - root - INFO - 20, 3313:
+ 0.3980552703142166 cosine similarity
+ 0.46925964057445524 cosine similarity random
+ 0.9795 max AUC
+ 3.08169029253881 max MAD
+2025-05-05 19:14:27,084 - root - INFO - 20, 3375:
+ 0.46900402307510375 cosine similarity
+ 0.40449175238609314 cosine similarity random
+ 0.9946 max AUC
+ 3.889360813837376 max MAD
+2025-05-05 19:14:27,218 - root - INFO - 20, 3736:
+ 0.4962067246437073 cosine similarity
+ 0.43298878967761995 cosine similarity random
+ 0.9971 max AUC
+ 5.575504675517707 max MAD
+2025-05-05 19:14:27,357 - root - INFO - 20, 3754:
+ 0.4555348575115204 cosine similarity
+ 0.4101079285144806 cosine similarity random
+ 0.2752 max AUC
+ -0.7080651938105814 max MAD
+2025-05-05 19:14:27,515 - root - INFO - 20, 3885:
+ 0.4451802492141724 cosine similarity
+ 0.4656808853149414 cosine similarity random
+ 0.9397 max AUC
+ 1.926585847867608 max MAD
+2025-05-05 19:14:27,650 - root - INFO - 20, 3974:
+ 0.46493845582008364 cosine similarity
+ 0.5034530133008956 cosine similarity random
+ 0.9812 max AUC
+ 3.1515231645679167 max MAD
+2025-05-05 19:14:27,784 - root - INFO - 20, 4030:
+ 0.5049713283777237 cosine similarity
+ 0.45009679794311525 cosine similarity random
+ 1.0 max AUC
+ 6.922346274133533 max MAD
+2025-05-05 19:14:27,922 - root - INFO - 20, 4112:
+ 0.41951113343238833 cosine similarity
+ 0.4337910205125809 cosine similarity random
+ 0.7823 max AUC
+ 0.8259527827991893 max MAD
+2025-05-05 19:14:28,061 - root - INFO - 20, 4167:
+ 0.5851930648088455 cosine similarity
+ 0.4309544742107391 cosine similarity random
+ 0.9994 max AUC
+ 8.272807521288561 max MAD
+2025-05-05 19:14:28,201 - root - INFO - 20, 4268:
+ 0.4109971225261688 cosine similarity
+ 0.4531041353940964 cosine similarity random
+ 0.8733000000000001 max AUC
+ 1.214231138684288 max MAD
+2025-05-05 19:14:28,335 - root - INFO - 20, 4427:
+ 0.5288709849119186 cosine similarity
+ 0.4301518648862839 cosine similarity random
+ 0.9967 max AUC
+ 6.1190916031565 max MAD
+2025-05-05 19:14:28,470 - root - INFO - 20, 4447:
+ 0.4481131941080093 cosine similarity
+ 0.5009486585855484 cosine similarity random
+ 0.9998 max AUC
+ 7.110837471955891 max MAD
+2025-05-05 19:14:28,618 - root - INFO - 20, 4683:
+ 0.47936540842056274 cosine similarity
+ 0.4999213367700577 cosine similarity random
+ 0.4086 max AUC
+ -0.2839948872028568 max MAD
+2025-05-05 19:14:28,752 - root - INFO - 20, 4847:
+ 0.5363850206136703 cosine similarity
+ 0.4600614070892334 cosine similarity random
+ 0.9971 max AUC
+ 5.78932154111244 max MAD
+2025-05-05 19:14:28,894 - root - INFO - 20, 5118:
+ 0.4012135714292526 cosine similarity
+ 0.5058321267366409 cosine similarity random
+ 0.9643 max AUC
+ 2.421366126718456 max MAD
+2025-05-05 19:14:29,036 - root - INFO - 20, 5266:
+ 0.5259416729211808 cosine similarity
+ 0.4485285371541977 cosine similarity random
+ 0.9832 max AUC
+ 3.0529959654791967 max MAD
+2025-05-05 19:14:29,170 - root - INFO - 20, 5278:
+ 0.47495745718479154 cosine similarity
+ 0.45063110291957853 cosine similarity random
+ 0.9893 max AUC
+ 3.235857574725906 max MAD
+2025-05-05 19:14:29,312 - root - INFO - 20, 5662:
+ 0.4858496099710464 cosine similarity
+ 0.44770834743976595 cosine similarity random
+ 0.9899 max AUC
+ 3.88936890840912 max MAD
+2025-05-05 19:14:29,449 - root - INFO - 20, 5715:
+ 0.46654431968927385 cosine similarity
+ 0.45723537504673006 cosine similarity random
+ 0.9943 max AUC
+ 3.2277080471428827 max MAD
+2025-05-05 19:14:29,586 - root - INFO - 20, 5741:
+ 0.46511669754981994 cosine similarity
+ 0.4371918022632599 cosine similarity random
+ 0.9886 max AUC
+ 3.906766087355896 max MAD
+2025-05-05 19:14:29,724 - root - INFO - 20, 5789:
+ 0.557491558790207 cosine similarity
+ 0.43670021593570707 cosine similarity random
+ 0.9992 max AUC
+ 6.375774360842396 max MAD
+2025-05-05 19:14:29,864 - root - INFO - 20, 6045:
+ 0.4862914323806763 cosine similarity
+ 0.36959452331066134 cosine similarity random
+ 0.7556999999999999 max AUC
+ 0.5639503420705386 max MAD
+2025-05-05 19:14:29,999 - root - INFO - 40, 183:
+ 0.5174122273921966 cosine similarity
+ 0.48730977773666384 cosine similarity random
+ 0.4498 max AUC
+ -0.1643711841313237 max MAD
+2025-05-05 19:14:30,140 - root - INFO - 40, 237:
+ 0.37991343438625336 cosine similarity
+ 0.4852854758501053 cosine similarity random
+ 0.1087 max AUC
+ -1.0675731420766332 max MAD
+2025-05-05 19:14:30,277 - root - INFO - 40, 268:
+ 0.44978842735290525 cosine similarity
+ 0.41451487839221957 cosine similarity random
+ 0.1965 max AUC
+ -0.8613620656288871 max MAD
+2025-05-05 19:14:30,428 - root - INFO - 40, 320:
+ 0.499375182390213 cosine similarity
+ 0.36690159142017365 cosine similarity random
+ 0.7639 max AUC
+ 0.6961912738796843 max MAD
+2025-05-05 19:14:30,571 - root - INFO - 40, 364:
+ 0.39701735973358154 cosine similarity
+ 0.4432892918586731 cosine similarity random
+ 0.9127 max AUC
+ 1.415284638833308 max MAD
+2025-05-05 19:14:30,710 - root - INFO - 40, 376:
+ 0.46057438254356386 cosine similarity
+ 0.41444088220596315 cosine similarity random
+ 0.932 max AUC
+ 1.6914599923315377 max MAD
+2025-05-05 19:14:30,845 - root - INFO - 40, 411:
+ 0.5288083285093308 cosine similarity
+ 0.48269630074501035 cosine similarity random
+ 0.0152 max AUC
+ -1.9430444838090453 max MAD
+2025-05-05 19:14:31,003 - root - INFO - 40, 412:
+ 0.5518828094005584 cosine similarity
+ 0.43234802782535553 cosine similarity random
+ 0.4623 max AUC
+ 0.1931367652699511 max MAD
+2025-05-05 19:14:31,140 - root - INFO - 40, 463:
+ 0.511085394024849 cosine similarity
+ 0.37740985453128817 cosine similarity random
+ 0.1597 max AUC
+ -0.9645021469880616 max MAD
+2025-05-05 19:14:31,277 - root - INFO - 40, 556:
+ 0.43900702595710756 cosine similarity
+ 0.42600961625576017 cosine similarity random
+ 0.2997 max AUC
+ -0.3903274668049217 max MAD
+2025-05-05 19:14:31,438 - root - INFO - 40, 587:
+ 0.4682355523109436 cosine similarity
+ 0.4350282162427902 cosine similarity random
+ 0.8544 max AUC
+ 1.0449212443642748 max MAD
+2025-05-05 19:14:31,572 - root - INFO - 40, 614:
+ 0.42345185577869415 cosine similarity
+ 0.48948978185653685 cosine similarity random
+ 0.1703999999999999 max AUC
+ -0.6504564965799319 max MAD
+2025-05-05 19:14:31,708 - root - INFO - 40, 716:
+ 0.4980900377035141 cosine similarity
+ 0.4795949995517731 cosine similarity random
+ 0.3535 max AUC
+ -0.4842666737537591 max MAD
+2025-05-05 19:14:31,846 - root - INFO - 40, 753:
+ 0.5011185079813003 cosine similarity
+ 0.49012411534786227 cosine similarity random
+ 0.1091 max AUC
+ -1.0789619041536327 max MAD
+2025-05-05 19:14:31,978 - root - INFO - 40, 824:
+ 0.5510107755661011 cosine similarity
+ 0.48467219769954684 cosine similarity random
+ 0.2764 max AUC
+ -0.6757778690075726 max MAD
+2025-05-05 19:14:32,130 - root - INFO - 40, 834:
+ 0.44543837010860443 cosine similarity
+ 0.44757219851017 cosine similarity random
+ 0.6483000000000001 max AUC
+ 1.1085562356415797 max MAD
+2025-05-05 19:14:32,276 - root - INFO - 40, 1516:
+ 0.47796931862831116 cosine similarity
+ 0.42734872102737426 cosine similarity random
+ 0.1873 max AUC
+ -0.7304220429154284 max MAD
+2025-05-05 19:14:32,429 - root - INFO - 40, 1536:
+ 0.4199032038450241 cosine similarity
+ 0.41601324677467344 cosine similarity random
+ 0.1438 max AUC
+ -0.6023173805946489 max MAD
+2025-05-05 19:14:32,570 - root - INFO - 40, 1555:
+ 0.48590439558029175 cosine similarity
+ 0.4441422939300537 cosine similarity random
+ 0.6965 max AUC
+ 0.090579076118219 max MAD
+2025-05-05 19:14:32,727 - root - INFO - 40, 1807:
+ 0.484480020403862 cosine similarity
+ 0.5529695898294449 cosine similarity random
+ 0.3469 max AUC
+ -0.3542791729376725 max MAD
+2025-05-05 19:14:32,862 - root - INFO - 40, 1823:
+ 0.3515209868550301 cosine similarity
+ 0.4703613847494125 cosine similarity random
+ 0.5084 max AUC
+ -0.177947009163093 max MAD
+2025-05-05 19:14:33,014 - root - INFO - 40, 2628:
+ 0.41608714759349824 cosine similarity
+ 0.46259450614452363 cosine similarity random
+ 0.1159 max AUC
+ -1.0161033119769434 max MAD
+2025-05-05 19:14:33,148 - root - INFO - 40, 2686:
+ 0.5697194367647171 cosine similarity
+ 0.4874794751405716 cosine similarity random
+ 0.9418 max AUC
+ 1.8799045770798688 max MAD
+2025-05-05 19:14:33,284 - root - INFO - 40, 3152:
+ 0.4727869421243668 cosine similarity
+ 0.4517795264720917 cosine similarity random
+ 0.4623 max AUC
+ -0.2571200862817211 max MAD
+2025-05-05 19:14:33,423 - root - INFO - 40, 3254:
+ 0.3689482659101486 cosine similarity
+ 0.4170377790927887 cosine similarity random
+ 0.0766 max AUC
+ -2.103238179430183 max MAD
+2025-05-05 19:14:33,557 - root - INFO - 40, 3515:
+ 0.4493944704532623 cosine similarity
+ 0.43549549877643584 cosine similarity random
+ 0.0489999999999999 max AUC
+ -1.1458642843253588 max MAD
+2025-05-05 19:14:33,699 - root - INFO - 40, 3595:
+ 0.47791142761707306 cosine similarity
+ 0.5368367820978165 cosine similarity random
+ 0.2481 max AUC
+ -0.774514616419869 max MAD
+2025-05-05 19:14:33,836 - root - INFO - 40, 3612:
+ 0.50928213596344 cosine similarity
+ 0.4110025942325592 cosine similarity random
+ 0.6953 max AUC
+ 0.2709849849105038 max MAD
+2025-05-05 19:14:33,977 - root - INFO - 40, 3636:
+ 0.4007138073444366 cosine similarity
+ 0.36333886086940764 cosine similarity random
+ 0.6849 max AUC
+ 0.8569222335389349 max MAD
+2025-05-05 19:14:34,114 - root - INFO - 40, 3764:
+ 0.36645816564559935 cosine similarity
+ 0.4538090378046036 cosine similarity random
+ 0.0867 max AUC
+ -1.236840393314663 max MAD
+2025-05-05 19:14:34,282 - root - INFO - 40, 3948:
+ 0.4410095185041428 cosine similarity
+ 0.44411325752735137 cosine similarity random
+ 0.9311 max AUC
+ 2.086925529729869 max MAD
+2025-05-05 19:14:34,423 - root - INFO - 40, 4055:
+ 0.48567395508289335 cosine similarity
+ 0.43199835121631625 cosine similarity random
+ 0.3011 max AUC
+ -0.4728926605488442 max MAD
+2025-05-05 19:14:34,558 - root - INFO - 40, 4076:
+ 0.5015240788459778 cosine similarity
+ 0.49895578622817993 cosine similarity random
+ 0.3203999999999999 max AUC
+ -0.4305666452467735 max MAD
+2025-05-05 19:14:34,701 - root - INFO - 40, 4244:
+ 0.3687745988368988 cosine similarity
+ 0.42954647839069365 cosine similarity random
+ 0.8326 max AUC
+ 0.7370804991582195 max MAD
+2025-05-05 19:14:34,838 - root - INFO - 40, 4257:
+ 0.4507801324129105 cosine similarity
+ 0.4259366512298584 cosine similarity random
+ 0.9656 max AUC
+ 2.9181489062394714 max MAD
+2025-05-05 19:14:34,983 - root - INFO - 40, 4332:
+ 0.43211533427238463 cosine similarity
+ 0.45599384903907775 cosine similarity random
+ 0.7679 max AUC
+ 0.4526459277520586 max MAD
+2025-05-05 19:14:35,118 - root - INFO - 40, 4505:
+ 0.5629794657230377 cosine similarity
+ 0.4641232997179031 cosine similarity random
+ 0.0176 max AUC
+ -1.9635722537121856 max MAD
+2025-05-05 19:14:35,260 - root - INFO - 40, 4808:
+ 0.39107189476490023 cosine similarity
+ 0.4376301646232605 cosine similarity random
+ 0.2806 max AUC
+ -0.4271521355481666 max MAD
+2025-05-05 19:14:35,395 - root - INFO - 40, 4823:
+ 0.4892306238412857 cosine similarity
+ 0.4181036114692688 cosine similarity random
+ 0.356 max AUC
+ -0.4707907141853198 max MAD
+2025-05-05 19:14:35,532 - root - INFO - 40, 4965:
+ 0.45239433348178865 cosine similarity
+ 0.4176497608423233 cosine similarity random
+ 0.9763 max AUC
+ 2.70595149152652 max MAD
+2025-05-05 19:14:35,666 - root - INFO - 40, 5209:
+ 0.40682185590267184 cosine similarity
+ 0.4358029216527939 cosine similarity random
+ 0.6155 max AUC
+ 0.6211451237681428 max MAD
+2025-05-05 19:14:35,804 - root - INFO - 40, 5276:
+ 0.45303378999233246 cosine similarity
+ 0.4534741312265396 cosine similarity random
+ 0.0607 max AUC
+ -1.8287554144869809 max MAD
+2025-05-05 19:14:35,964 - root - INFO - 40, 5557:
+ 0.36851908564567565 cosine similarity
+ 0.5080562442541122 cosine similarity random
+ 0.914 max AUC
+ 1.3828807508802876 max MAD
+2025-05-05 19:14:36,102 - root - INFO - 40, 5992:
+ 0.4498521059751511 cosine similarity
+ 0.5371979087591171 cosine similarity random
+ 0.5109999999999999 max AUC
+ 0.024117008505251 max MAD
+2025-05-05 19:14:36,239 - root - INFO - 40, 6067:
+ 0.45211890935897825 cosine similarity
+ 0.4071538269519806 cosine similarity random
+ 0.9595 max AUC
+ 2.540506644817681 max MAD
+2025-05-05 19:14:36,377 - root - INFO - 40, 6106:
+ 0.4569676905870438 cosine similarity
+ 0.4479545623064041 cosine similarity random
+ 0.2301 max AUC
+ -0.5238147409346605 max MAD
+2025-05-05 19:14:36,514 - root - INFO - 40, 6145:
+ 0.42345185577869415 cosine similarity
+ 0.4494054287672043 cosine similarity random
+ 0.9944 max AUC
+ 4.737301486109006 max MAD
+2025-05-05 19:14:36,656 - root - INFO - 40, 6227:
+ 0.47921029627323153 cosine similarity
+ 0.4486573815345764 cosine similarity random
+ 0.8544 max AUC
+ 3.469147017865975 max MAD
+2025-05-05 19:14:36,795 - root - INFO - 40, 6364:
+ 0.40639626383781435 cosine similarity
+ 0.3711692303419113 cosine similarity random
+ 0.8988 max AUC
+ 4.761456024744327 max MAD
+2025-05-05 19:14:36,932 - root - INFO - 40, 6365:
+ 0.4637028157711029 cosine similarity
+ 0.433536759018898 cosine similarity random
+ 0.4213 max AUC
+ 0.1969855551254409 max MAD
+2025-05-05 19:14:36,934 - root - INFO - All layer-unit pairs processed. Results saved to:
+ results/meta-evaluation_cosine-similarity_target-gpt2-xl_textgen-gemini-1-5-pro_mean_cosmopedia_1000.csv

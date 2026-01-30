@@ -1,0 +1,924 @@
+2025-07-26 00:34:16,492 - root - INFO - ================================================================================
+2025-07-26 00:34:16,493 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-26 00:34:16,494 - root - INFO - ================================================================================
+2025-07-26 00:34:16,494 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-26 00:34:16,495 - root - INFO - AGG_METHOD = mean
+2025-07-26 00:34:16,495 - root - INFO - BATCH_SIZE = 2
+2025-07-26 00:34:16,496 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:34:16,496 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-26 00:34:16,497 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-26 00:34:16,497 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-26 00:34:16,498 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-26 00:34:16,498 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-26 00:34:16,498 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-26 00:34:16,499 - root - INFO - CONTROL_SPLIT = train
+2025-07-26 00:34:16,499 - root - INFO - DATA_FILES = None
+2025-07-26 00:34:16,500 - root - INFO - DEVICE = cuda
+2025-07-26 00:34:16,500 - root - INFO - END_INTERVAL = 1.0
+2025-07-26 00:34:16,501 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:34:16,501 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-26 00:34:16,501 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-26 00:34:16,502 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-26 00:34:16,502 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-26 00:34:16,502 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-07-26 00:34:16,503 - root - INFO - LAYER_ID = 20
+2025-07-26 00:34:16,503 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-26 00:34:16,504 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-26 00:34:16,504 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-26 00:34:16,505 - root - INFO - MULTI_EVAL = True
+2025-07-26 00:34:16,505 - root - INFO - N_CLUSTERS = 1
+2025-07-26 00:34:16,505 - root - INFO - N_SAMPLES = 10
+2025-07-26 00:34:16,506 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-26 00:34:16,506 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-26 00:34:16,507 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-26 00:34:16,507 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-26 00:34:16,508 - root - INFO - SPLIT = train
+2025-07-26 00:34:16,508 - root - INFO - START_INTERVAL = 0.99
+2025-07-26 00:34:16,509 - root - INFO - STREAMING = True
+2025-07-26 00:34:16,509 - root - INFO - SUBSET_SIZE = 1000
+2025-07-26 00:34:16,510 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-26 00:34:16,510 - root - INFO - TARGET_DATA = c4
+2025-07-26 00:34:16,511 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-26 00:34:16,511 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 00:34:16,512 - root - INFO - UNIT_ID = 2325
+2025-07-26 00:34:16,512 - root - INFO - USE_API = True
+2025-07-26 00:34:16,513 - root - INFO - ================================================================================
+2025-07-26 00:34:16,513 - root - INFO - ANALYSIS RESULTS
+2025-07-26 00:34:16,514 - root - INFO - ================================================================================
+2025-07-26 00:34:16,514 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-2325_clusters-1_2025-07-25_22-34-16.log
+2025-07-26 00:42:56,554 - root - INFO - Reached 1000 samples.
+2025-07-26 00:42:58,450 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-26 00:42:58,451 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 00:43:19,109 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-26 00:43:57,259 - root - INFO - Number of candidates: 1001
+2025-07-26 00:44:01,424 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-26 00:44:01,425 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  own (0.4144876003265381)
+Text #1: ear (3.038498878479004)
+Text #1: ear (1.1951686143875122)
+Text #1: ear (1.9522502422332764)
+Text #1: ear (2.2893242835998535)
+Text #1: ear (2.2693581581115723)
+Text #1:  can (0.4806891679763794)
+Text #1: ear (2.462578535079956)
+Text #1: ear (1.7227905988693237)
+Text #1: . (0.7051334381103516)
+Text #1:  person (1.2732620239257812)
+Text #1: ear (3.524616241455078)
+Text #1: ear (2.65828275680542)
+Text #1:  so (0.35562577843666077)
+Text #1: lass (1.1660948991775513)
+Text #1:  in (0.8907222151756287)
+Text #1:  that (0.4296897351741791)
+Text #1:  is (0.44790294766426086)
+Text #1:  lenses (1.0980054140090942)
+Text #1: . (0.3264613747596741)
+Text #1:  sunglasses (0.9275004863739014)
+Text #1: lass (0.5483802556991577)
+Text #1:  lens (0.931971549987793)
+Text #1: arers (1.699610948562622)
+Text #1: ically (0.2889428436756134)
+Text #1:  lenses (0.3975647985935211)
+Text #1: ear (2.5988059043884277)
+Text #1:  goggles (0.9473873972892761)
+Text #1: ggle (1.589334487915039)
+Text #1: met (1.2315623760223389)
+Text #1: lass (0.4107986390590668)
+Text #1: ggle (1.2956602573394775)
+Text #1:  sunglasses (0.5620015263557434)
+Text #1:  goggles (0.6491298675537109)
+Text #1: band (1.4028048515319824)
+Text #1:  comfortable (0.2877541482448578)
+Text #1: ggle (1.1145939826965332)
+Text #1: lass (1.1241166591644287)
+Text #1: ggle (1.095259428024292)
+Text #2: est (0.41996923089027405)
+Text #2: uns (0.506817638874054)
+Text #2: cakes (2.2378265857696533)
+Text #2: cream (1.2026280164718628)
+Text #2:  is (0.37136706709861755)
+Text #2:  cake (1.4767082929611206)
+Text #2: berries (0.4834277629852295)
+Text #2:  products (1.1312329769134521)
+Text #2:  puff (0.24688106775283813)
+Text #2: ier (0.22384437918663025)
+Text #2:  cake (1.167396903038025)
+Text #2: on (1.184309482574463)
+Text #2:  cake (1.4262888431549072)
+Text #2: cream (0.9533448815345764)
+Text #2:  tart (0.5848535895347595)
+Text #2:  favourite (0.4512319564819336)
+Text #2: ane (0.45209836959838867)
+Text #2: aze (0.5238356590270996)
+Text #2:  pastry (0.6000032424926758)
+Text #2: rh (0.2229783535003662)
+Text #2:  cre (0.4779148995876312)
+Text #2: aze (1.059766411781311)
+Text #2: el (1.3185343742370605)
+Text #2:  pastry (0.5637741088867188)
+Text #2:  cust (0.418140172958374)
+Text #2:  pastry (0.6981372833251953)
+Text #2:  wears (2.6221859455108643)
+Text #2:  dress (1.375954031944275)
+Text #2:  perfect (0.25814327597618103)
+Text #2:  is (0.27711087465286255)
+Text #2: ant (0.8039721846580505)
+Text #2: ade (1.529111623764038)
+Text #2: aze (0.7615818977355957)
+Text #2:  cre (0.5763532519340515)
+Text #2: ant (0.2716538608074188)
+Text #2:  cre (0.3642294108867645)
+Text #2:  pastry (0.642270565032959)
+Text #3: mate (0.17506234347820282)
+Text #3: p (0.05476589873433113)
+Text #3: ill (1.3090132474899292)
+Text #3: t (0.25184568762779236)
+Text #3: ie (0.47844481468200684)
+Text #3: , (0.5081893801689148)
+Text #3: a (0.2801104187965393)
+Text #3:  No (0.08881059288978577)
+Text #3:  than (0.34814566373825073)
+Text #3:  halls (1.5222793817520142)
+Text #3:  can (1.2610573768615723)
+Text #3:  from (0.3798830509185791)
+Text #3: . (0.3488410711288452)
+Text #3: . (0.28382012248039246)
+Text #3:  is (0.2909914553165436)
+Text #3:  no (0.4912688136100769)
+Text #3:  be (1.0287730693817139)
+Text #3:  Not (0.8929900527000427)
+Text #3:  with (0.8292108774185181)
+Text #3: a (0.07414774596691132)
+Text #3:  slaves (0.054329246282577515)
+Text #3:  Something (0.23098139464855194)
+Text #3:  land (0.06933365762233734)
+Text #3:  and (0.15816666185855865)
+Text #3: ie (0.0650704950094223)
+Text #3: � (0.18812057375907898)
+Text #3: t (0.8771379590034485)
+Text #3:  will (0.3569076359272003)
+Text #3:  she (0.15449635684490204)
+Text #4:  Society (0.52509605884552)
+Text #4: fields (0.4030836224555969)
+Text #4:  may (0.547048807144165)
+Text #4: www (1.1366909742355347)
+Text #4: org (0.4063066244125366)
+Text #4: uk (0.5642982721328735)
+Text #4:  is (0.49236899614334106)
+Text #4:  of (0.5805668830871582)
+Text #4:  property (0.8097716569900513)
+Text #4: , (0.40650835633277893)
+Text #4:  or (0.9318147301673889)
+Text #4:  content (1.929988145828247)
+Text #4:  or (0.7482526302337646)
+Text #4: ors (1.6479880809783936)
+Text #4: as (0.669907808303833)
+Text #4:  property (0.8389913439750671)
+Text #4:  design (0.8080487847328186)
+Text #4:  property (0.391069620847702)
+Text #4:  whether (0.7475979924201965)
+Text #4:  not (0.42240577936172485)
+Text #4: where (1.3254714012145996)
+Text #4: blems (0.6316871643066406)
+Text #4:  without (0.9552733898162842)
+Text #4: isation (0.6459954977035522)
+Text #4:  owner (0.9298161268234253)
+Text #4:  the (0.36478903889656067)
+Text #4:  registration (1.0917624235153198)
+Text #4:  goods (0.5569150447845459)
+Text #4:  services (0.44813618063926697)
+Text #4:  goods (0.38882431387901306)
+Text #4:  any (0.637013852596283)
+Text #4:  services (0.7413737177848816)
+Text #4: ". (0.49272578954696655)
+Text #4:  that (0.56102055311203)
+Text #4:  will (0.6196402907371521)
+Text #4:  suitable (1.3831050395965576)
+Text #4:  Content (0.49822762608528137)
+Text #4:  general (0.4409102499485016)
+Text #4:  be (0.3978620171546936)
+Text #4:  not (0.7186524868011475)
+Text #5: : (0.12574060261249542)
+Text #5: . (0.014571188017725945)
+Text #5:  someone (0.443762868642807)
+Text #5: . (0.2742108702659607)
+Text #5:  someone (0.5942768454551697)
+Text #5:  love (0.16158528625965118)
+Text #5:  It (0.2600986063480377)
+Text #5:  though (0.05732164531946182)
+Text #5: ness (0.025898559018969536)
+Text #5: . (0.07982264459133148)
+Text #5:  lover (0.02477390505373478)
+Text #5:  has (0.09403996914625168)
+Text #5:  something (0.25874975323677063)
+Text #5:  lover (0.06917455792427063)
+Text #5:  do (0.11453109234571457)
+Text #5:  be (1.231089472770691)
+Text #5:  years (0.6462176442146301)
+Text #5:  What (0.5422186255455017)
+Text #5:  does (0.5077540278434753)
+Text #5: ? (1.3006445169448853)
+Text #5:  no (0.0035395429003983736)
+Text #5:  do (0.0105055570602417)
+Text #5:  lover (0.03949757665395737)
+Text #5: . (0.12575894594192505)
+Text #5:  could (0.05215710774064064)
+Text #5:  if (0.963381826877594)
+Text #6: s (0.3543815016746521)
+Text #6: . (0.2544748783111572)
+Text #6: � (0.3466935157775879)
+Text #6: s (0.29947876930236816)
+Text #6:  can (0.3077073097229004)
+Text #6:  watch (0.39287152886390686)
+Text #6: . (0.33715325593948364)
+Text #6:  watch (0.6855029463768005)
+Text #6:  could (0.6517521142959595)
+Text #6:  watch (1.3030688762664795)
+Text #6:  if (0.4397544264793396)
+Text #6:  it (0.6605957746505737)
+Text #6:  watch (1.137294888496399)
+Text #6: . (0.25262361764907837)
+Text #6:  was (0.5299558639526367)
+Text #6:  watch (0.672810971736908)
+Text #6:  might (0.3951320946216583)
+Text #6:  at (0.5032014846801758)
+Text #6:  would (0.48884114623069763)
+Text #6:  watch (0.24223604798316956)
+Text #6:  something (0.4481014311313629)
+Text #6:  would (0.4474546015262604)
+Text #6:  things (0.909772515296936)
+Text #6:  It (0.3356565833091736)
+Text #6: . (0.5321259498596191)
+Text #6:  favorite (0.7651506066322327)
+Text #6:  equipment (1.5636560916900635)
+Text #6:  If (0.31376805901527405)
+Text #6:  can (0.628532886505127)
+Text #6:  it (0.297846257686615)
+Text #6:  would (0.7566115856170654)
+Text #6: � (0.3143395483493805)
+Text #6:  things (0.6285257339477539)
+Text #6:  What (0.4420909881591797)
+Text #6:  ones (0.6372528076171875)
+Text #6:  members (1.4871494770050049)
+Text #7:  at (0.04874575138092041)
+Text #7: er (0.035966336727142334)
+Text #7:  stuff (0.03948252648115158)
+Text #7:  event (0.00469749141484499)
+Text #7:  will (0.3038634657859802)
+Text #7: , (0.12434345483779907)
+Text #7:  items (0.392334908246994)
+Text #7: … (0.16153450310230255)
+Text #7: . (0.21981868147850037)
+Text #7:  can (0.7087162137031555)
+Text #7:  items (1.1789401769638062)
+Text #7:  characters (1.423008680343628)
+Text #7:  ones (0.09023402631282806)
+Text #7:  not (0.0780734121799469)
+Text #7: . (0.4128156006336212)
+Text #7:  must (0.42750516533851624)
+Text #7:  be (0.6862634420394897)
+Text #7:  must (1.012047290802002)
+Text #7:  character (0.6220600605010986)
+Text #7: ; (0.7265962958335876)
+Text #7:  will (0.014742204919457436)
+Text #7:  items (1.987431526184082)
+Text #7:  character (0.5214523673057556)
+Text #7: s (0.4713446795940399)
+Text #7:  during (0.5436491370201111)
+Text #7: . (0.04890679940581322)
+Text #7:  a (0.028913725167512894)
+Text #7:  items (0.2560299336910248)
+Text #7: � (0.15129217505455017)
+Text #7:  something (0.7068155407905579)
+Text #8:  on (0.19378457963466644)
+Text #8:  life (0.13625431060791016)
+Text #8:  might (0.37931379675865173)
+Text #8:  you (0.41459783911705017)
+Text #8:  at (0.13410206139087677)
+Text #8: . (0.17117157578468323)
+Text #8:  options (0.17699837684631348)
+Text #8:  Employees (1.115844488143921)
+Text #8: Opt (0.7116469144821167)
+Text #8:  employees (0.3234204649925232)
+Text #8:  earnings (0.9285072684288025)
+Text #8: s (0.35846880078315735)
+Text #8:  earnings (0.6602267026901245)
+Text #8:  employee (0.09085585922002792)
+Text #8:  employees (0.10463166236877441)
+Text #8:  Agency (0.5346758961677551)
+Text #8: qualified (0.09336069226264954)
+Text #8:  employer (0.26568543910980225)
+Text #8: Opt (0.3469043970108032)
+Text #8: � (0.15767471492290497)
+Text #8:  your (0.190977543592453)
+Text #8:  is (0.277042031288147)
+Text #8:  in (0.8938685059547424)
+Text #8:  employee (0.34448111057281494)
+Text #8:  they (0.08385678380727768)
+Text #8: . (0.09984671324491501)
+Text #8:  employee (0.3156484067440033)
+Text #8:  how (0.5069724321365356)
+Text #8:  will (0.8304003477096558)
+Text #8: . (0.34866803884506226)
+Text #8:  so (0.31754758954048157)
+Text #9:  use (0.4387129545211792)
+Text #9:  acknowledgement (0.520149827003479)
+Text #9:  the (0.47312813997268677)
+Text #9:  at (0.3153035044670105)
+Text #9:  prior (0.5668013691902161)
+Text #9:  artwork (0.7328919768333435)
+Text #9:  pictures (0.5383678674697876)
+Text #9: " (0.4439528286457062)
+Text #9:  on (0.3932640850543976)
+Text #9:  any (0.27501967549324036)
+Text #9:  provided (0.683513343334198)
+Text #9:  personal (0.6024926900863647)
+Text #9:  use (0.33730506896972656)
+Text #9:  not (1.5902260541915894)
+Text #9:  without (1.1473166942596436)
+Text #9:  written (0.43724098801612854)
+Text #9:  not (1.4778497219085693)
+Text #9:  or (0.918345034122467)
+Text #9:  any (0.516571581363678)
+Text #9: . (0.3045482635498047)
+Text #9:  may (0.2710378170013428)
+Text #9:  content (0.27970173954963684)
+Text #9:  must (0.2324916571378708)
+Text #9:  software (1.4956462383270264)
+Text #9:  otherwise (0.3339657783508301)
+Text #9:  is (0.24441105127334595)
+Text #9:  agreement (1.0612581968307495)
+Text #9:  may (0.32481473684310913)
+Text #9:  exhibit (0.9388036131858826)
+Text #9:  or (0.4854719340801239)
+Text #9:  any (0.4243166446685791)
+Text #9:  without (0.9173114895820618)
+Text #9:  not (1.2190457582473755)
+Text #9:  content (0.693323016166687)
+Text #9:  work (0.9757581353187561)
+Text #9:  on (0.40483179688453674)
+Text #9:  have (0.23914098739624023)
+Text #9:  is (0.24563127756118774)
+Text #9:  descriptions (1.5530555248260498)
+Text #9:  upon (0.3365592062473297)
+Text #9:  at (0.6379373669624329)
+Text #9:  will (0.7415853142738342)
+Text #10: ! (0.36973053216934204)
+Text #10: 3 (0.05848422646522522)
+Text #10: lip (0.41356757283210754)
+Text #10: sters (0.20205217599868774)
+Text #10:  Conce (0.22433660924434662)
+Text #10: ment (0.007471127901226282)
+Text #10: ster (0.6639260649681091)
+Text #10: ster (0.15836624801158905)
+Text #10: Unless (0.7467032074928284)
+Text #10:  receipt (0.1825118064880371)
+Text #10:  order (0.3209448456764221)
+Text #10: ster (0.6804571151733398)
+Text #10: . (0.02373531274497509)
+Text #10:  holster (0.7274255752563477)
+Text #10:  it (0.2514802813529968)
+Text #10:  carry (0.8869138360023499)
+Text #10: . (0.13732649385929108)
+Text #10:  holster (1.126082420349121)
+Text #10: able (0.22226880490779877)
+Text #10: � (0.07104005664587021)
+Text #11: s (0.3905485272407532)
+Text #11:  not (0.6690744757652283)
+Text #11:  for (0.26509758830070496)
+Text #11: , (0.4475671947002411)
+Text #11:  be (0.6838458776473999)
+Text #11: ider (0.6871691346168518)
+Text #11:  need (0.1825573444366455)
+Text #11: ask (1.495470643043518)
+Text #11: ider (0.22785119712352753)
+Text #11:  the (0.2780427932739258)
+Text #11: ider (0.19250550866127014)
+Text #11: mist (0.3284777104854584)
+Text #11:  are (0.46694228053092957)
+Text #11:  mount (1.2615739107131958)
+Text #11:  mount (0.5141034722328186)
+Text #11: . (0.5593896508216858)
+Text #11:  are (0.5543428659439087)
+Text #11:  to (0.4074912369251251)
+Text #11:  How (0.2735568583011627)
+Text #11:  mount (0.15764670073986053)
+Text #11:  mount (0.5552353262901306)
+Text #11:  can (0.9096859693527222)
+Text #11:  work (0.3284987807273865)
+Text #11: . (0.18192531168460846)
+Text #11:  is (0.9833013415336609)
+Text #11:  eyed (0.3710807263851166)
+Text #11:  Has (0.5964959859848022)
+Text #11:  not (0.43749505281448364)
+Text #11: ider (0.3053588271141052)
+Text #11:  mount (1.0949251651763916)
+Text #11:  It (0.17289850115776062)
+Text #11:  mount (0.24329249560832977)
+Text #11:  If (0.31551045179367065)
+Text #12:  in (0.5486774444580078)
+Text #12:  are (0.9159892797470093)
+Text #12:  from (0.2865076959133148)
+Text #12:  saying (0.8164456486701965)
+Text #12:  president (0.7792316675186157)
+Text #12: . (0.2591567933559418)
+Text #12:  have (0.18483354151248932)
+Text #12:  if (0.9538799524307251)
+Text #12: . (0.33584392070770264)
+Text #12:  will (0.14633344113826752)
+Text #12:  at (0.11325256526470184)
+Text #12: . (0.3303423225879669)
+Text #12:  it (0.07322537153959274)
+Text #12:  not (0.4198974668979645)
+Text #12: � (0.11438381671905518)
+Text #12:  affairs (0.8665117025375366)
+Text #12:  threw (0.35956165194511414)
+Text #12:  on (0.3129802942276001)
+Text #12: . (0.08962973952293396)
+Text #12:  journalists (0.13599787652492523)
+Text #12:  on (0.2545612156391144)
+Text #12:  that (0.360569030046463)
+Text #12:  preparations (0.13310877978801727)
+Text #12:  there (0.11265376210212708)
+Text #12:  could (0.4358743727207184)
+Text #12:  in (0.6645987033843994)
+Text #12:  attend (0.31039348244667053)
+Text #12: makers (0.630480170249939)
+Text #12:  have (0.4263589382171631)
+Text #12:  approach (0.21192488074302673)
+Text #12:  leader (0.20466989278793335)
+Text #12:  press (0.1216348186135292)
+Text #12:  since (0.08543463796377182)
+Text #12:  better (1.7321444749832153)
+Text #13:  individual (0.13585838675498962)
+Text #13:  homes (0.3435019552707672)
+Text #13:  people (0.5301975607872009)
+Text #13:  users (0.672858476638794)
+Text #13:  comfortable (0.740835964679718)
+Text #13:  they (0.8374170064926147)
+Text #13:  care (0.04662774130702019)
+Text #13:  you (0.012766145169734955)
+Text #13:  users (0.0036072684451937675)
+Text #13:  they (0.09968133270740509)
+Text #13:  safe (0.019150620326399803)
+Text #13:  happy (0.030777599662542343)
+Text #13:  that (0.05265939608216286)
+Text #13:  depending (0.4644055664539337)
+Text #13:  user (1.6511362791061401)
+Text #14: week (0.8143371939659119)
+Text #14: media (0.11507019400596619)
+Text #14:  like (1.810369610786438)
+Text #14:  company (0.1831752508878708)
+Text #14: ? (0.5367379784584045)
+Text #14: zone (0.13253739476203918)
+Text #14:  at (0.10131624341011047)
+Text #14:  People (0.2217477411031723)
+Text #14:  else (0.33871036767959595)
+Text #14: . (0.24345150589942932)
+Text #14: s (0.6919147968292236)
+Text #14:  if (0.6157217025756836)
+Text #14: : (0.21376003324985504)
+Text #14: ? (0.10408692806959152)
+Text #14:  Think (0.1810317486524582)
+Text #14:  shows (0.39752328395843506)
+Text #14:  people (0.8259153962135315)
+Text #14: t (2.9730093479156494)
+Text #14:  platforms (0.19650255143642426)
+Text #14: . (0.5764474272727966)
+Text #14:  wat (0.1104992926120758)
+Text #14:  With (0.16128365695476532)
+Text #14: � (0.10183174908161163)
+Text #14:  is (1.5018236637115479)
+Text #14: wa (0.21533732116222382)
+Text #14: ? (0.31355714797973633)
+Text #14:  when (0.17145805060863495)
+Text #14: . (0.5846056342124939)
+Text #14: . (0.31096065044403076)
+Text #14:  set (0.5423880219459534)
+Text #14:  centers (0.559136688709259)
+Text #14: ? (0.7139564156532288)
+Text #14:  Well (0.1642780900001526)
+Text #14: � (0.21953992545604706)
+Text #14: . (0.11234182864427567)
+Text #14:  artists (1.2564040422439575)
+Text #14: . (0.5506046414375305)
+Text #14:  Are (0.5261113047599792)
+Text #14: . (0.12528593838214874)
+Text #15:  military (0.188944011926651)
+Text #15: force (1.2045438289642334)
+Text #15:  community (0.7325291633605957)
+Text #15: . (0.2886582314968109)
+Text #15: � (0.29127490520477295)
+Text #15: � (0.1508876234292984)
+Text #15:  children (0.9071070551872253)
+Text #15:  as (0.19143334031105042)
+Text #15:  chief (0.8105828166007996)
+Text #15:  man (0.4901553690433502)
+Text #15: . (0.5431845784187317)
+Text #15:  director (1.267978310585022)
+Text #15: ana (1.0305336713790894)
+Text #15: � (0.4342052936553955)
+Text #15:  not (0.7721725702285767)
+Text #15: iously (0.3706279695034027)
+Text #15: ana (0.37147215008735657)
+Text #15: bite (0.287639319896698)
+Text #15: cat (1.0969339609146118)
+Text #15: . (0.40153777599334717)
+Text #15:  with (0.15970756113529205)
+Text #15:  acting (0.33003705739974976)
+Text #15: 's (0.7505349516868591)
+Text #15: keeper (0.5519518256187439)
+Text #15:  group (0.32101529836654663)
+Text #15: ana (0.8152133226394653)
+Text #15:  was (1.0359115600585938)
+Text #15:  items (0.5846887826919556)
+Text #15:  could (0.391902893781662)
+Text #15:  hands (0.4739360511302948)
+Text #15:  characters (0.301665335893631)
+Text #15:  seemed (0.24693915247917175)
+Text #15: iable (0.266070693731308)
+Text #15:  an (0.37703755497932434)
+Text #15: istic (0.3675113022327423)
+Text #15:  teens (0.24089643359184265)
+Text #15:  members (0.5686580538749695)
+Text #15: ata (0.6497195363044739)
+Text #15:  character (0.19203931093215942)
+Text #15: like (0.2244674414396286)
+Text #16: lette (0.8207775354385376)
+Text #16:  a (0.8095797300338745)
+Text #16:  like (0.6583064198493958)
+Text #16:  look (0.6934823393821716)
+Text #16:  and (0.28551119565963745)
+Text #16:  Hair (0.22208766639232635)
+Text #16: up (2.1146481037139893)
+Text #16: rait (0.33588090538978577)
+Text #16:  Hotel (0.40075623989105225)
+Text #16:  makeup (0.3169407248497009)
+Text #16:  nature (0.2130483090877533)
+Text #16:  Hair (0.27186882495880127)
+Text #16: ory (1.2235504388809204)
+Text #16:  Hair (0.6124771237373352)
+Text #16: ory (0.6445959806442261)
+Text #16:  pieces (0.1569238007068634)
+Text #16: ides (0.33564022183418274)
+Text #16:  style (0.7890288233757019)
+Text #16:  adore (0.13616636395454407)
+Text #16: up (1.9970778226852417)
+Text #16:  Fashion (0.6912798285484314)
+Text #16:  so (0.31353291869163513)
+Text #16:  is (0.36524882912635803)
+Text #16:  fab (0.25079500675201416)
+Text #16:  nothing (0.451377272605896)
+Text #16:  feel (0.2213258296251297)
+Text #16:  whether (0.7635766267776489)
+Text #16:  up (1.4582691192626953)
+Text #16: ! (0.7443665862083435)
+Text #16:  is (0.3367479145526886)
+Text #16:  life (0.9887439608573914)
+Text #16:  makeup (0.33378952741622925)
+Text #16:  makeup (0.4072365164756775)
+Text #16: up (1.3524842262268066)
+Text #16: ! (0.3403560221195221)
+Text #16:  nothing (0.6033225059509277)
+Text #16:  than (0.18601402640342712)
+Text #16:  feel (0.6250246167182922)
+Text #16:  on (0.3553951680660248)
+Text #16: up (2.121230125427246)
+Text #17:  a (0.6224006414413452)
+Text #17:  time (0.4905424416065216)
+Text #17:  of (0.20258335769176483)
+Text #17:  feel (0.7381914258003235)
+Text #17:  may (0.07595683634281158)
+Text #17:  it (0.1388295590877533)
+Text #17: At (0.797757089138031)
+Text #17:  values (0.19498386979103088)
+Text #17:  personality (0.49812906980514526)
+Text #17:  when (0.13911791145801544)
+Text #17:  being (0.47092729806900024)
+Text #17:  do (0.22549231350421906)
+Text #17: They (0.25994136929512024)
+Text #17:  whether (0.24851082265377045)
+Text #17: t (0.4041178524494171)
+Text #17:  if (0.18721188604831696)
+Text #17:  to (0.14307647943496704)
+Text #17:  be (0.2390138804912567)
+Text #17:  someone (0.2821122705936432)
+Text #17:  who (0.8206101655960083)
+Text #17: � (0.10813868790864944)
+Text #17: t (0.7982264757156372)
+Text #17:  something (0.6093607544898987)
+Text #17:  But (0.10350479185581207)
+Text #17: re (0.07934725284576416)
+Text #17:  something (0.33029091358184814)
+Text #17: � (0.4222387373447418)
+Text #17:  best (0.2564609944820404)
+Text #17:  be (0.30538398027420044)
+Text #17: If (0.39271771907806396)
+Text #17: t (1.3831374645233154)
+Text #17: � (0.23742663860321045)
+Text #17:  are (0.13012051582336426)
+Text #17:  be (0.5506744980812073)
+Text #17:  Women (0.24862515926361084)
+Text #17:  On (0.3132239282131195)
+Text #18:  system (0.9286688566207886)
+Text #18:  is (0.4325626492500305)
+Text #18:  institution (0.8108185529708862)
+Text #18:  residents (0.770254373550415)
+Text #18: If (0.5465393662452698)
+Text #18:  it (0.9113479256629944)
+Text #18:  some (0.22354595363140106)
+Text #18:  resident (0.4531857669353485)
+Text #18:  chances (0.26777204871177673)
+Text #18:  in (0.8076380491256714)
+Text #18:  If (0.4322676956653595)
+Text #18:  to (0.1941588819026947)
+Text #18:  may (0.3533734679222107)
+Text #18:  at (0.18023250997066498)
+Text #18:  is (0.4250825345516205)
+Text #18:  If (0.30403441190719604)
+Text #18:  it (0.3478889465332031)
+Text #18: . (0.2522802948951721)
+Text #18:  if (0.17004074156284332)
+Text #18: 't (0.16754187643527985)
+Text #18:  can (0.2572794556617737)
+Text #18: . (0.338635116815567)
+Text #18: . (0.15540358424186707)
+Text #18: 're (0.3469669222831726)
+Text #18: , (0.656237781047821)
+Text #18: . (0.3899480700492859)
+Text #18:  will (0.7395921349525452)
+Text #18:  as (0.3226591646671295)
+Text #18:  system (0.2426421195268631)
+Text #18:  have (0.4627757668495178)
+Text #18:  unless (1.208054780960083)
+Text #18: 's (0.19503940641880035)
+Text #18:  in (0.7524634003639221)
+Text #18:  if (0.7115698456764221)
+Text #18:  in (0.41743627190589905)
+Text #19: re (0.15555860102176666)
+Text #19: : (0.343239426612854)
+Text #19:  At (0.17082862555980682)
+Text #19: s (0.20765721797943115)
+Text #19:  place (0.3148101568222046)
+Text #19:  have (0.20926423370838165)
+Text #19:  what (0.16954945027828217)
+Text #19: re (0.36413493752479553)
+Text #19: What (0.558161735534668)
+Text #19:  you (0.3619288504123688)
+Text #19:  at (0.5436916351318359)
+Text #19:  it (1.2469992637634277)
+Text #19:  at (1.1866868734359741)
+Text #19:  itself (0.9076967835426331)
+Text #19:  Protection (1.9725886583328247)
+Text #19:  in (0.15846608579158783)
+Text #19:  do (0.19050128757953644)
+Text #19:  have (0.8248084783554077)
+Text #19:  in (0.15868201851844788)
+Text #19:  is (0.49837231636047363)
+Text #19:  actions (0.6383675932884216)
+Text #19:  are (0.7794610261917114)
+Text #19:  people (0.2551480829715729)
+Text #19: . (0.2784472107887268)
+Text #19:  are (0.4750012159347534)
+Text #19:  be (1.2771626710891724)
+Text #19:  on (0.14744412899017334)
+Text #19:  driver (0.39099574089050293)
+Text #19:  If (0.9754256010055542)
+Text #19:  in (0.2680683434009552)
+Text #19: being (0.2713986933231354)
+Text #19:  will (0.25478819012641907)
+Text #19: . (0.1861836463212967)
+Text #19:  has (1.267336130142212)
+Text #19:  place (0.3639405369758606)
+Text #19:  is (0.19246675074100494)
+Text #19:  be (1.0553128719329834)
+Text #20:  module (0.09734422713518143)
+Text #20:  system (1.1116130352020264)
+Text #20:  that (0.01325767021626234)
+Text #20:  in (0.554308295249939)
+Text #20:  identifiers (0.24252623319625854)
+Text #20:  has (0.14771145582199097)
+Text #20:  having (0.19903217256069183)
+Text #20:  application (0.4217816889286041)
+Text #20:  No (0.21413828432559967)
+Text #20: . (0.551473081111908)
+Text #20:  application (0.11623658984899521)
+Text #20: . (0.2175387442111969)
+Text #20: . (0.24633800983428955)
+Text #20:  application (0.10182493180036545)
+Text #20: . (0.24014924466609955)
+Text #20: 7 (0.31286266446113586)
+Text #20:  application (0.08674358576536179)
+Text #20: . (0.21125634014606476)
+Text #20:  application (0.03255702927708626)
+Text #20: . (0.4230489730834961)
+Text #20:  application (0.04644159600138664)
+Text #20: . (0.3589490056037903)
+Text #20:  application (0.4539312422275543)
+Text #20:  No (0.20627956092357635)
+Text #20:  application (0.2820422649383545)
+
+=== Text #1 ===
+> Every sport brings its[ own] requirements for eyew[ear], including winter sports. Simon Briggs from Extreme-Eyew[ear], a specialist sports eyew[ear] company, explains what the main issues are when choosing the right eyew[ear] for your sport.
+“Sports eyew[ear] requirements[ can] be broken down into two main areas, eyew[ear fit] and eyew[ear] lenses[.]
+“A sports[ person's ey]ew[ear needs to] fit securely and comfortably, ensuring optimal performance in any situation. Each sport has its own requirements for sport sunglasses/eyew[ear.] Many sports are played all year round[ so its] important to have a sung[lass] lens[ in] your sport sunglasses[ that] will cope with a wide variety of sunlight conditions (from low light to heavy sunshine) or to have interchangeable lenses.
+“Some sports are played on reflective surfaces such as water or snow where it[ is] beneficial to have polarised[ lenses in] your sport sunglasses to reduce the sun glare.
+"The most popular correction comes in the form of an optical insert which is fitted with your prescription[.] The insert clips onto the back of the sport[ sunglasses] enabling you to still interchange the ‘main sung[lass]’ lenses for different colours. As the insert can be removed this concept is also great for contact[ lens] we[arers]."
+"Cosmet[ically] you can often tell there is an insert behind the sunglasses which makes them less than perfect for fashion prescription sunglasses but their functionality makes them idea for sport."
+"The second form of correction is 'direct glazed'[ lenses], where your prescription is fitted into the eyew[ear] frame. Two brands that excel are Oakley and Maui Jim, both manufacturing wrap-around lenses tailored to your prescription.
+"Getting your ski[ goggles] right is essential, when skiing or snowboarding a go[ggle has to be able] to deliver good peripheral view, air circulation (to combat fogging), comfort and due to the popularity of helmets now be ‘hel[met] compatible’.
+"There are a number of different sung[lass] and go[ggle] hybrids available. These clever pieces of kit mean that you can buy your[ sunglasses] and[ goggles at] once. You simply buy a pair of sunglasses with sides that can be clicked off of the frame and replaced with a head[band] for a more secure fit.
+"Some of these models include a padding system, which gives a more[ comfortable] fit when worn as a go[ggle]. The padding simply clicks into place on the back of the sung[lass], and turns the sunglass into a full go[ggle]."
+"The prescription
+
+=== Text #2 ===
+> Sydney's best[est] Hot Cross B[uns] are coming back soon.
+Vegan friendly chocolate cup[cakes] with not-butter[cream] rosettas on top. Available all stores.
+Perfect for morning or afternoon tea, this playful cake[ is] a crowd-pleaser when visiting or for work parties. A dense but soft and fudgy chocolate[ cake], glazed with cocoa syrup and then decorated with caramelised salted popcorn and freeze-dried rasp[berries]. This cake is vegan – it contains no animal[ products].
+Hundreds of layers of buttery[ puff pastry], coated in cinnamon sugar and baked until crisp and caramelised. The palm[ier] is traditionally shaped as a palm leaf or an elephant’s ear, we like to think ours is like the Lorenz Butterfly typically used to explain chaos theory.
+Inspired by native Australian lemon myrtle and angel[ cake], the BlackStar chiff[on cake] is a light and fluffy sponge[ cake] scented with lemon myrtle, fresh lemon and coated in a light butter[cream icing] and toasted coconut.
+Our frangipane[ tart] has become a picnic and lunch party[ favourite]. A sweet base with a crust of crushed pistachios filled with frangip[ane], seasonal fruit of plum, apricots or pear, with a sweet gl[aze].
+A BlackStar classic. Choux[ pastry] filled with Val[rh]ona chocolate[ creme] and coated in shiny chocolate gl[aze].
+Our flans pay to homage from the Portuguese past[el] de nata. A flat[ pastry cup] filled with vanilla[ custard] and baked at a high temperature to caramelise the top.
+The staple of any sensible diet, our croissants are made with locally made cultured butter from Pepe Saya.
+A spiral of flaky[ pastry], cinnamon, chocolate and frangipane paste.
+Gingerbread men trained in the ancient art of ninjutsu. They sometimes[ wears a costume] of dark chocolate. They like to[ dress up] for special occasions like Halloween and Mardi Gras.
+The[ perfect] winter warmer, our bread and butter pudding[ is] made from croiss[ant] pieces, studded with rum-soaked raisins with a marmal[ade] gl[aze]. Rich, buttery, and served with a vanilla bean[ creme] anglaise.
+Pepe Saya croiss[ant pastry] filled with vanilla[ creme patissiere] and seasonal fillings such as mixed berries, rhubarb, apricot, apple, peach and mangoes.
+Buttery[ pastry] twisted into
+
+=== Text #3 ===
+> Details: Siren and soul[mate] to the King of Night, Cally[pso] L[illis] survived the clutches of Karnon, the mad king, and his twisted prison. But the nightmare isn’[t] over. Call[ie wears] the physical reminders of her time as a captive, and mounting evidence suggests the Thief of Souls is still out there. When a fae celebration thrusts Callie and her mate, Desmond Flynn[,] into the Kingdom of Flor[a], they take their investigation with them. But under the bright lights and striking blooms of the realm, they find there are more immediate issues to deal with.[ No place is more uniquely] savage[ than] the great fae[ halls, and no amount] of bargains[ can] save Callie[ from] royal intrigues. Fairies play dangerous games[. Some] want love, some want vengeance, some want flesh, and some want things too unspeakable to utter[.] One thing[ is] for sure:[ no one is who they appear] to[ be].[ Not] even Des, who only grows more enigmatic[ with every] passing secret. But the Kingdom of Flor[a has its] own secrets, from bleeding trees to branded[ slaves] and missing guards.[ Something is] stirring in the[ land] of all that grows,[ and if] Call[ie] isn[�]�[t] careful, it[ will] claim everything and everyone[ she loves]—and her along with it.
+
+=== Text #4 ===
+> This website is provided and operated by The British Red Cross[ Society], incorporated by Royal Charter 1908; registered as a charity in England and Wales (220949), Scotland (SC037738) and the Isle of Man (0752) whose national headquarters is at 44 Moor[fields], London, EC2Y 9AL ; and Britcross Ltd, registered as a company in England and Wales (00932598) (collectively ‘British Red Cross’) having its registered address at 44 Moorfields, London, EC2Y 9AL. VAT number is 706 9262 27.
+These terms and conditions (the 'Terms') explain how you[ may] use this website ([www].redcross.[org].[uk], the 'Site') which[ is] provided to you free[ of] charge.
+This Site and all intellectual[ property rights] in it, including but not limited to any text, images, video[,] audio[ or other] multimedia[ content], or other information[ or material on] the Site ('Content'), are owned by us, our licens[ors or] both ([as] applicable). Intellectual[ property rights] means rights such as copyright, trade marks, domain names,[ design] rights, patents and other intellectual[ property] rights of any kind[ whether] or[ not] they are registered or unregistered (any[where] in the world).
+The Red Cross and Red Crescent em[blems] are protected trade marks under international and national laws. Use of these trade marks is strictly prohibited[ without] prior author[isation] from us or the relevant trade mark[ owner].
+Images from Reuters Alertnet courtesy of AlertNet - humanitarian aid and disasters news. Other than as set out at section c. above, use of these images is strictly prohibited without prior authorisation from the copyright owner.
+We reserve[ the] right to vary any event[ registration fees] and the prices of any[ goods] or[ services] listed without notice. All event registrations and orders for[ goods] and services are subject to availability. We reserve the right to refuse to accept any registration and to refuse to supply[ any goods] or[ services] to any individual.
+The Site is provided "as is[".] We do not promise[ that] the Site[ will be] fit or[ suitable] for any purpose. The Site and the[ Content are] provided for your[ general information purposes] only and to inform you about us and our activities, news, services and other websites that may[ be] of interest. The Content does[ not] constitute technical, financial or legal advice or any other type of advice and neither the Site nor the Content should be relied upon for any purposes.
+Although the Site uses encryption security software in areas where online payment details are accepted, the
+
+=== Text #5 ===
+> There's so much to recommend your current amour[:] kindness, generosity of spirit, integrity, honesty[.] You may have been hearing from loved ones that you really made a catch this time: Here is[ someone] who can go the distance with you[.] Here is[ someone] who deserves your[ love].
+So why do you find yourself restive and bored?[ It feels] as[ though] the very qualities that first attracted you to your mate are turning you off, pushing you away. You see arrogance where you once saw confidence, hardheaded[ness] where you once saw drive[.] Pity your poor[ lover: It's you] who[ has] changed and is demanding[ something] your[ lover can't give]. You gotta figure out your priorities. Where[ do you want] to[ be in] ten[ years]?[ What are] the steps you have to take in order to get there? And where[ does your mate fit into the] picture[? If] there's[ no future] between you,[ do] the kind thing and cut your[ lover] loose. But if there is, let your lover in on your dreams and ambitions[.] You[ could] build so much together[ if you're] just willing to work a little harder.
+
+=== Text #6 ===
+> Mahatma Gandhi1 once said, “The world provides enough for every man’[s] need but not for every man’s greed[.]” Sometimes it[�]�[s] easy to agree with proclamations of world peace and say things like, “The rich should really give to the poor and solve world hunger!” However, when the giving strikes closer to home, it[ can] be tougher than we think.
+I once had a[ watch that] I thought was seriously cool[.] It was a boy’s[ watch], but I didn’t mind; it had all the dials and gadgets you[ could want]. I visited my family and my younger brother was crazy about my[ watch] and asked[ if] he could have[ it]. I told him I couldn’t possibly part with such amazingness and sadly left it at that. Shortly after getting home, my treasured[ watch] met with an accident and broke[.] It[ was] then that I realized how stupid it was that I’d missed the opportunity to give it to my little brother, who was so much more important to me than that[ watch ever could be]. It[ might not have] lasted him forever either, but[ at] least he[ would have] been happy for a while. And more than the[ watch], the meaning behind my giving him[ something] special[ would have] stuck with him so much longer.
+I try to remember that incident whenever I’m tempted to be selfish with my[ things] or start to prize them too highly.[ It’]s great to have nice things and groovy gadgets[.] (Don’t tell anyone, but I’m fairly addicted to my phone, which contains all my appointments, mail, reminders, to-do lists, Facebook, Twitter, Messenger, Google, and[ favorite] games.) These days, the “must-have” gadgets are endless—from smartphones, iPads, laptops, and gaming[ equipment right] down to 3D home TVs![ If] you’re able to have some of these nice things and enjoy them and they help you with your work and studies, or are also a fun source of entertainment, technology[ can be] great. But[ it]’s good to step back sometimes and imagine what it[ would be like] if one day all those things instantly disappeared. After your initial withdrawal symptoms, you[�]�d realize that life goes on without material[ things].[ What] matters most are our loved[ ones]—our friends and family[ members.] Sometimes we can forget this truth, and that’s when we tend to act selfishly
+
+=== Text #7 ===
+> Perfect World International has been running for eight years now, which is a pretty impressive milestone. The somewhat eponymous team[ at] Perfect World Entertainment intends to celebrate appropriately, and the first celebration event takes advantage of players with eight years of no-long[er-]wanted[ stuff] kicking around with a brand-new barter[ event.] Threads[ will be] started in the official forum[, and you will] bid on the[ items] contained[…] through barter[.]
+Players[ can] barter with any[ items on] their[ characters,] even[ ones that] normally could[ not] be traded[.] All bids[ must meet] a minimum value to[ be] accepted and[ must be] accompanied by a[ character name] and server[;] winning bids[ will have the] bid[ items] removed from the[ character]’[s inventory] and replaced with the prize[ during] server maintenance[. If you]’ve got[ a] whole bunch of rare[ items] that you don[�]�t want, here’s a chance for you to turn those items into[ something] far more desirable.
+
+=== Text #8 ===
+> Depending[ on where you are] in your[ life], you[ might be] thinking about where[ you will be at the] end of the day or[ at] the end of your career[.] When planning your retirement[ options], we want to make sure we offer a variety of plans.
+We are part of the California Public[ Employees'] Retirement System (CalPERS). Instead of participating in Social Security, Cal[Opt]ima[ employees] contribute a percentage of their pre-tax[ earnings] to their CalPERS account. CalOptima contributes the same percentage of the employee’[s] regular[ earnings] into this account. This is a defined benefit retirement plan in which the retirement benefit is based on the[ employee's] years of service, final/highest compensation, and age at retirement. Regular, full-time[ employees] become vested in the plan after five years of service.
+We also offer a Defined Contribution Supplemental Retirement Plan through the Public[ Agency Retirement System] (PARS), a 401(a) tax-[qualified] multiple[ employer] trust. Cal[Opt]ima contributes to this on each employee�[�]s behalf. All contributions are automatically invested in a life-cycle mutual fund based on[ your current] age and[ is] managed by John Hancock Retirement Services. These life-cycle funds are professionally managed investments that automatically adjust to become more conservative over time as you approach your retirement date. If you wish to manage your own investments, you have the ability to select among 20 different mutual funds representing different investment sectors.
+A voluntary 457 Deferred Compensation Plan is also offered. Section 457 plans are available to public agencies and are similar to 401(k) plans[ in the] private sector. The[ employee determines the] amount of pay[ they] wish to contribute, via payroll deductions, on a pre-tax basis[.] The[ employee determines] from a selection of options[ how] their money[ will be] invested[.] The plan is portable,[ so it may be] “rolled over” to most other retirement plans.
+
+=== Text #9 ===
+> Your[ use] of this Internet Site in any manner, including browsing, logging in, creating an account, sending a request or making a purchase, constitutes your[ acknowledgement that] you have read all the Terms and Conditions and that you agree to follow and be bound by them. Cruising2Tahiti.com reserves[ the right] to modify or change the Terms and Conditions[ at] any time without[ prior] notice to you, therefore, we urge you to read them carefully each time you use this Internet Site.
+The information,[ artwork], text, or[ pictures] (collectively the "Content["] C) contained[ on] the Website are protected by copyright laws. You may access and use[ any] of the Web pages from this Internet Site[ provided that] such use is for your[ personal] non-commercial and lawful[ use]. You may[ not] modify or use the content for any other purpose[ without] Cruising2Tahiti.com's express[ written] consent. You may[ not] reproduce, republish, post, transmit[ or] distribute[ any content on] the Website[.] You[ may] print[ content] from the Website for personal or educational purposes only, and such copies[ must] clearly include any original copyright notices. Any computer[ software downloadable] or[ otherwise] available from the Website[ is] licensed subject to the terms of the applicable license[ agreement]. You[ may not], under any circumstances, reproduce, record, publish, publicly[ exhibit],[ or] distribute[ any content on] the Website[ without] Cruising2Tahiti.com's express written consent. You may[ not] link directly to any file located on a Cruising2Tahiti.com server, and you should not attempt to "pass-off" any of Cruising2Tahiti.com's[ content] as your own[ work].
+The content included[ on] the Website[ have] been compiled by Cruising2Tahiti.com from a variety of manual and automated sources, and are subject to change without notice. While Cruising2Tahiti.com makes every effort to ensure complete and accurate information, it is not a complete live online system. Rather, the content[ is] collected periodically for display, and as such is subject to change at any time. Supplier[ descriptions] of hotel names, room categories, and meal plans, are translated from data downloads, and may be vague in description, and can contain errors in pricing. Ultimately, the data presented does not constitute an offer of sale, and is only guaranteed[ upon] verification by our staff[ at] the time of booking.
+Cruising2Tahiti.com does not guarantee that the information contained on this Internet Site[ will not] contain errors, inaccuracies or omissions
+
+=== Text #10 ===
+> We are an authorized dealer for the UltiClip[!]
+We stock the original UltiClip and the UltiClip[3]!
+The Ultic[lip]3 features three mounting points that allow it to fit a multitude of hol[sters] including our Mini[ Conce]al[ment] Hol[ster] and Full Cover IWB Hol[ster].
+[Unless otherwise] noted, these are IN STOCK and shipping within one to two business days from[ receipt] of[ order].
+Hol[ster] retention is a primary concern when carrying a firearm[. If] a[ holster] fails to stay fastened to where[ it is placed] adverse results will take place. The following videos demonstrate the tremendous level of retention that Ulticlip provides and what can happen if you use other holster clips. Ulticlip’s unprecedented level of retention makes it more versatile. Read more about its versatility below.
+When it comes to concealed[ carry] , not seeing is believing[.] A[ holster is only as] conceal[able as its holster clip. Whether] you prefer to carry concealed because it[’]s discreet or for its tactical advantage Ulticlip is the right choice.
+
+=== Text #11 ===
+> Just took a “Trophy of a Lifetime” What’[s] Next?
+You have just harvested a trophy of a lifetime maybe it will even make the Boone and Crocket or Pope and Young record books, now what? This experience may[ not be] encountered again for many years[ for] most hunters[, so] you need to[ be] made aware of the questions a tax[idermist] will ask you and what you[ need] to Mounted Whitetail Deer[ask] them before contacting a tax[ider]mist. You also know that you will have[ the] animal mounted by a reputable tax[idermist.] Selecting a taxider[mist can] be almost as challenging as harvesting your new trophy.
+What Room will Display the Mounted Animal?
+Where[ are you going to hang] your new trophy[ mount?] The room in which the[ mount will hang] is a contributing factor on the pose you will select for the mount[.] There are so many poses available! If your ceilings are around 8′ high or a basement den, the ceilings[ are not] likely[ to be] vaulted.[ How] tall are the antlers? A full upright taxidermy pose might require the[ mount] to hang low on the wall. There are three basic form poses – upright, semi-sneak, and full sneak. With an upright form, the neck is in a vertical position almost parallel to the wall. The semi sneak form has the neck and head down at approximate 40 degree angle off the wall. The full sneak pose has the neck at almost 85 degrees from the wall. For a low ceiling, a semi sneak or full sneak may be the better choice for your new trophy[ mount].
+Time to Interview The Taxidermist!
+Where[ can] I see some of your work? You need to look at their[ work] very close[.] Look at the eyes,[ is it] a natural look or does it look like the animal is bug[ eyed]? Feel the back of the head between the antlers and slide your hand down the back of the neck. Do you feel the Stitches they used to sew the hide together?[ Has] the hide shrunk? You will[ not] notice this with true tanned hides.
+Found your Tax[idermist] ”Enjoy” your Trophy!
+The return time of your trophy[ mount] is not as important as the above questions if you feel you have found the right taxidermist to do the mount for you.[ It] should still be around 1 year, but 1 1/2 years is not uncommon! The Last this is the cost of the[ mount. How] much is it worth to you?[ If]
+
+=== Text #12 ===
+> Washington – The Republican leaders[ in] Congress[ are dist]ancing themselves[ from President] Donald Trump’s invitation for Vladimir Putin to visit Washington in the fall,[ saying] the Russian[ president is not welcome on] Capitol Hill[.]
+Ryan and Senate Majority Leader Mitch McConnell[ have shown no] interest in holding meetings with Putin[ if he] accepts Trump’s invitation to the White House to follow up on last week’s summit in Helsinki[.]
+“The speaker and I have made it clear that Putin[ will not be welcome up] here[ at] the Capitol,” McConnell told reporters Tuesday[.]
+But[ it] may[ not] matter anyway. Putin[�]�s foreign[ affairs adviser] Yuri Ushakov[ threw] cold water[ on] the prospect of Putin accepting Trump’s invitation to visit the White House[.]
+Ushakov told[ journalists in] Moscow[ on] Tuesday[ that] no[ preparations] were underway for a meeting in Washington and[ there] were “other options that our leaders[ could] consider,” such as the late November meeting of the Group of 20[ in] Argentina or another international event that both would[ attend].
+Law[makers] from both parties[ have] raised concerns about Trump’s[ approach] to the Russian[ leader.] They strongly rebuked Trump’s comments during a joint[ press conference] in Helsinki when he stood beside Putin and denied U.S. intelligence findings that Russia interfered in the 2016 election. Trump has[ since] clarified his remarks to side with the intelligence community.
+“The Russians[ better quit] messing around in our elections,” McConnell said.
+
+=== Text #13 ===
+> The purpose of this role is to provide[ individualized] support to enable people to remain independent and continue to live within their own[ homes]. We are looking for caring and compassionate[ people] to become day makers ensuring our service[ users are] happy and[ comfortable] with the service[ they receive].
+As a home[ care assistant],[ you will] spend your time out in the community visiting our service[ users] and ensuring[ they are well looked after],[ safe] and[ happy]. The type of care and support[ that] we offer varies[ depending on each] service[ user’s individual needs.]
+
+=== Text #14 ===
+> Ad[week]: So what’s a digital-[media] tyro[ like] you doing at a fusty old-media[ company] like CBS[?]
+Jim Lan[zone]: I don’t really think of it that way[ at] all.[ People think] the Internet will supercede TV, but it’s really been more additive than anything[ else], largely because it’s so portable[.] It’[s not taking anything] away from linear television;[ if] anything, it’s encouraged people to spend even more time watching video.
+AW: The fact that we can watch TV on a telephone[: is] this doing something insidious to the parts of our brain that process narrative[?]
+JL:[ Think] about the very early days of TV—the first shows were structured just like radio broadcasts or Broadway[ shows]. You start with the familiar and you expand from there. Creative[ people haven]’[t taken advantage] of the new media[ platforms;] we’re still in this brackish time between two eras[.]
+AW: You still watch TV?
+JL: I’m a binge[ wat]cher. I have DirecTV, so I have a ton of shows on the DVR: The Daily Show, [Real Time[ With]] Bill Maher, SNL. I’ve been watching How I Met Your Mother for six years. There are definitely more shows out there that I want to watch that I don[�]�t have time to watch, which I suppose is a great sign of where programming[ is headed].
+AW: Why did CBS issue a fat[wa] against Hulu[?]
+AW: Can you write code?
+JL: I never got into programming[ when] I was a kid[.] I was too busy playing Pitfall and Kaboom! on Atari to write code[. But] then again, I don’t think Les Moonves knows how to make a television[ set] either.
+AW: So there’s no disconnect between the old media[ centers]—New York, L.A.—and Silicon Valley[?]
+JL:[ Well], you[’]re looking at it from a geographic standpoint and that really isn’t relevant any longer[.] I think Silicon Valley is the third leg of the media stool; I mean, there’s a reason why all the animated features are made in Silicon Valley now. Engineers are the new[ artists of] this generation of media[.]
+AW:[ Are] you from Silicon Valley?
+JL: I grew up in San Carlos, where Oracle now stands[.] In fact,
+
+=== Text #15 ===
+> History: The Deviants (or DV8) are descendants of Team 7, the covert[ military] strike[force] who were exposed to mutational chemical compounds by the intelligence[ community in] order to make them superhuman[.] The Gen-Factor[�]� of superhumanity was passed on to Team 7[�]�s[ children.] Those children therefore become International Operations targets,[ as] Team 7 had gone into hiding. Some of this children -- now in their mid-to-late teens -- were rescued by rogue I.O.[ chief] and Team 7[ man] John Lynch, and became the group Gen-13.
+DV8 were not[.] They are fully the creatures of crazed I.O. Science[ director] Iv[ana] Baiul. Therefore, what we[�]�re looking at here is the antithesis of nice clean Gen-13. They stayed with IO. And they are[ not pleasant people].
+Brought together by the delic[iously] amoral Iv[ana] Baiul, the group consisted of the heat-sucker Frost[bite], the animalistic Evo, the multiple-personality possessor Copy[cat], the brawny Powerhaus, the density-altering Sublime, and the pain/pleasure controller Bliss[.] This motley group of disruptive teens was led by the arrogant psionic Threshold,[ with] the utterly insane Sideways Bob[ acting] as the team['s] "[keeper".] The[ group was] formed and funded by Iv[ana once] she[ was] excised from International Operations to act as a "spoiler force", snatching up various technology and[ items] before other intelligence agencies[ could] get their[ hands] on it, and then auctioning it to the highest bidder.
+Warren Ellis' opening run on the title was relentlessly nihilistic. The[ characters at] no point[ seemed] an am[iable bunch], and with nary[ an] altru[istic] gene among them. But Ellis' sharp writing and strong characterization made me interested to see if they'd discover a hint of humanity, a glimpse of promise, within themselves. For example, in the second issue Ivana sends them to investigate and possibly recruit a cult-like group of gen-active[ teens.] When the DV8[ members] realize these people (with names like Virginia Dent[ata]) are even more degenerate and twisted than themselves, they kill the lot of them - which of course was precisely what Ivana wanted in the first place.
+The members slowly realize they exist to be manipulated. As one[ character puts it], they're "[like] mushrooms, kept in the dark and fed crap." But it was fascinating to see how they each cop
+
+=== Text #16 ===
+> Co[lette] has extensive experience in the beauty industry and her passion and dedication ensure an exceptional service to each and every customer. Colette has the expertise to skillfully create a truly stunning look for you for your big day, prom or any special event where you really want to look a million dollars!
+Colette recognises that every bride has[ a] vision of how they would[ like] to[ look on] their big day,[ and] so offers a bespoke service to really understand and create that look with each and every bride.
+Available for: Bridal[ Hair] and Make[up] throughout the UK and overseas.
+From then on getting up close and personal photographing some of the biggest bands in the world; followed on by a three year study of Photography in College and 12 years on the road with a “Travelling Family Port[rait] Studio extending the width and breadth of Canada to finally moving to the UK and becoming a celebrity photographer including shooting Spandau Ballet’s Tony Hadley’s wedding and marriage to Alison Evers at Cliveden House[ Hotel].
+Toni is one of our[ makeup artists] and hair stylists and is loved for her approachability and caring[ nature]. Toni is also one of our Blow Dry specialists within the team, and our Bridal[ Hair] Access[ory Designer]!
+Toni comes from a fashion background which is demonstrated with her incredible creativity and attention to detail, and makes her in high demand for photoshoots.
+As the Bridal[ Hair] Access[ory Designer] for the Pro Team, Toni can create hair accessories and floral hair[ pieces] with our br[ides]-to-be to fit around their theme, and hair[ style].
+"I absolutely[ adore being] creative and I have a massive passion for all things Make[up] and[ Fashion],[ so] being able to combine them both[ is] just[ fab]! Finally...my Dream Job! There is[ nothing better] than making someone[ feel] amazing,[ whether] its for a Special Occasion or for a Photoshoot"
+Salinla has vast experience working with all skin tones and is loved for her creative eye make[ up].
+Salinla is available for weddings, hen parties, photoshoots and other special occasions.
+"I'm incredibly excited to be a part of the Pro Team[!] This[ is] my chance to live my dream[ life as] a[ makeup artist!]
+I love[ makeup!] Make[up is] my passion[!] and[ nothing makes] me happier[ than] to make a bride[ feel] beautiful[ on] their big day"
+Lilly joined us after completing 2 years training at the Brushstroke Make[up] and
+
+=== Text #17 ===
+> Over time, she revealed the depth of her guilt and sadness and I realized that it was going to take her[ a] long[ time to] heal.One night, we sat down with a bottle[ of] wine and I naively said, "Please, don't[ feel] guilty".Having social references in common[ may] sound like a small thing but[ it can be] surprisingly important.[At] e Harmony, we know that shared[ values] and[ personality traits are] the things that really matter[ when] it comes to[ being] compatible long-term but interests[ do play] a part.[They] were looking for the words or phrases that could best predict, for example,[ whether someone was] male or female, which explains why many of the results are pretty stereotypical (i.e.
+Health and ageing won’[t be] a pressing concern for many younger men dating older women but,[ if] you’re looking for a long-term relationship, they’re good[ to be] aware of.She may[ be] just looking for a fling with[ someone] carefree[ who] isn[�]�[t looking] for[ something] serious.[ But if] you’[re] looking for[ something] a little more serious, make this clear from the outset.It[’]s[ best] to[ be] honest and avoid heartbreak further down the line.[If] your intentions for dating older women are genuine, you won’[t have a] problem.
+She�[�ll] appreciate you for who you really[ are] and[ be] honest with you.
+The Different Ways Men And[ Women] Talk[ On] Facebook Popular.
+
+=== Text #18 ===
+> The court[ system in] Sheridan, Arkansas[ is] a government[ institution] of Arkansas to settle disagreements involving[ residents] of, or events that occurred in, Sheridan.
+[If] you are involved in a lawsuit, or any legal dispute, in Sheridan, Arkansas,[ it's very] likely that you will have[ some] contact with the court system.
+Jury Duty: If you a U.S. citizen, and an adult[ resident] of Sheridan,[ chances] are you've interacted with the courts[ in] Sheridan by being called to jury duty, at least once in your life.[ If] you receive a letter informing you that you have jury duty, you have[ to] show up at the court on the appointed date, where you will sit in a "juror pool," waiting to be called into court for an upcoming trial. During the jury selection procedure, you[ may be] eliminated as a possible juror,[ at] which point, your service[ is] complete.[ If] you end up on the jury, you must show up every day for the trial, or risk being held in contempt of court.
+Filing a Lawsuit: When you decide that you need to sue someone in Sheridan, Arkansas civil court,[ it] goes without saying that you're going to spend a lot of time dealing with the judicial system[.] Even[ if] your case doesn't go to trial (and, statistically, it probably won['t]), the proceedings[ can] drag on for months[.] Settlement conferences, disagreements over discovery, and many other issues not directly related to the merits of your lawsuit are going to be overseen by the Sheridan, Arkansas court[.]
+Being Sued: Likewise, if you['re] the defendant in a lawsuit[, you're going to have a] lot of work to do in Sheridan, Arkansas's courts[. You] and your attorney[ will have to] draft and file an answer to the lawsuit, and plenty of other documents,[ as] well. Furthermore, there are many hearings that usually occur before a trial, to resolve procedural and evidentiary issues.
+Divorce: Most divorces in Sheridan, Arkansas are fairly quick, and don't require a lot of involvement from the courts. Some, however, can get combative, and the local court[ system may be] obligated to resolve disputes between the parties.
+Most people don't[ have] to go to court in Sheridan, Arkansas[ unless they're] dealing with some perplexing legal issues.
+Thus, it['s] prudent to consult with an experienced civil attorney[ in] Sheridan, Arkansas[ if] you feel that you will be encountering the court system[ in] the near future.
+
+=== Text #19 ===
+> Where you’[re] from: I live in a place called Regensburg, one of the most beautiful towns in Bavaria (if I do say so myself)! The city is both old and new[:] its history goes all the way back to the 9th century and it was named a UNESCO World Heritage Site in 2006 for its uniquely well-preserved medieval Old Town.[ At] the same time, the universities make it feel very young! It’[s] a great[ place] to[ have] grown up.
+Where and[ what you]’[re] studying: I am in the final stages of gaining my Bachelor’s degree in political science and British Studies, having studied in Regensburg and Hong Kong.
+[What is] one project or activity[ you] enjoyed[ at] the Embassy?
+Being an intern in the economics department at the embassy, the tariffs on steel and aluminium introduced by the United States during my time in DC had a great impact on my work:[ it was] fascinating watching the political process[ at] such proximity! I also really appreciated the department[ itself because it] covers such a wide range of topics. For example, I was able to gain insights into farming and agricultural exports, the implications of the General Data[ Protection] Regulation (GDPR) in the US, but also the challenges of migration and developmental work by visiting various events around the city and aiding colleagues[ in] their research.
+What[ do you think] is one of Germany’s main foreign policy challenges and what should Germany do about it?
+I can only echo what my fellow interns[ have] mentioned[ in] this section: finding and preserving unity – both domestically and within the EU –, strengthening the transatlantic relationship and tackling the rise of populism around the world are issues that must be taken seriously. Likewise, making sure the art of diplomacy and skilled conversation[ is not] lost in a world where a Tweet travels faster than[ actions].
+What[ are] some cultural impressions you gained of the United States?
+I love how open and communicative[ people are in] the US compared to Germany[.] Every conversation here starts with a “How[ are you?]” –[ be] it a random person[ on] the street or your Uber[ driver].[ If] you ask cashiers[ in] Germany about their well-[being] I can guarantee all you[ will] get are strange looks[.]
+What[ has been your] biggest surprise with regard to living in Washington?
+I have never been to a[ place] that[ is more] political than DC! This city lives and breathes politics,[ be] it all the government agencies and organizations that are based here, the think tanks and the events they host,
+
+=== Text #20 ===
+> An example method involves providing, with a network management[ module] of a network management[ system], current reroute statistics in a data structure based on the rerouting of the data from a logical circuit[ that] has failed to a logical failover circuit in the network. The current reroute statistics include a committed information rate corresponding to the logical circuit[ in] the network. The logical circuit is identified by a first logical circuit identifier. The logical failover circuit is identified by a second logical circuit identifier. The first and second logical circuit[ identifiers] are renamed until the logical circuit[ has] been restored from failure. Updated reroute statistics are provided, with the network management module, based on a change in a status of the logical circuit resulting from the committed information rate[ having] been exceeded.
+This patent arises from a continuation of U.S. patent[ application] Ser.[ No.] 14/537,019, filed on Nov. 10, 2014, now U.S. Pat[. No. 9],148,365, which is a continuation of U.S. patent[ application] Ser. No[.] 14/286,396, filed on May 23, 2014, now U.S. Pat[. No. 8],953,435, which is a continuation of U.S. patent[ application] Ser. No. 14/040,054, filed on Sep. 27, 2013, now U.S. Pat[. No.] 8,[7]37,196, which is a continuation of U.S. patent[ application] Ser. No. 13/690,839, filed on Nov. 30, 2012, now U.S. Pat[. No.] 8,565,074, which is a continuation of U.S. patent[ application] Ser. No. 12/254,233, filed on Oct. 20, 2008, now U.S. Pat[. No. 8],339,938, which is a continuation of U.S. patent[ application] Ser. No. 10/829,584, filed Apr. 22, 2004, now U.S. Pat[. No. 7],460,468, all of which are hereby incorporated herein by reference in their entireties.
+This patent is related to U.S. patent[ application] Ser.[ No.] 10/348,077, entitled “Method and System for Obtaining Logical Performance Data for a Circuit in a Data Network,” filed Jan. 21, 2003, and U.S. patent[ application] Ser. No. 10/348,592, entitled “Method and System for Provision
+
+
+Description: 
+2025-07-26 00:44:01,429 - root - INFO - Body parts, clothing, accessories, or tools and the concept of possession or ownership
+
+2025-07-26 00:44:01,433 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-2325_clusters-1_2025-07-25_22-34-16.csv
+2025-07-26 00:44:01,434 - root - INFO - ================================================================================
+2025-07-26 00:44:01,434 - root - INFO - ANALYSIS COMPLETED
+2025-07-26 00:44:01,435 - root - INFO - ================================================================================
+2025-07-26 00:44:01,436 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-2325_clusters-1_2025-07-25_22-34-16.log
+2025-07-26 00:44:01,436 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-2325_clusters-1_2025-07-25_22-34-16.csv

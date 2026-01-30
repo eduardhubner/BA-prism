@@ -1,0 +1,1275 @@
+2025-05-12 00:10:36,105 - root - INFO - ================================================================================
+2025-05-12 00:10:36,106 - root - INFO - CONFIGURATION PARAMETERS
+2025-05-12 00:10:36,107 - root - INFO - ================================================================================
+2025-05-12 00:10:36,107 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-05-12 00:10:36,108 - root - INFO - AGG_METHOD = mean
+2025-05-12 00:10:36,108 - root - INFO - BATCH_SIZE = 2
+2025-05-12 00:10:36,108 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-05-12 00:10:36,109 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-05-12 00:10:36,109 - root - INFO - CLUSTER_METHOD = KMeans
+2025-05-12 00:10:36,110 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-05-12 00:10:36,110 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-05-12 00:10:36,110 - root - INFO - CONTROL_DATA = cosmopedia
+2025-05-12 00:10:36,111 - root - INFO - CONTROL_DATA_FILES = None
+2025-05-12 00:10:36,111 - root - INFO - CONTROL_SPLIT = train
+2025-05-12 00:10:36,112 - root - INFO - DATA_FILES = None
+2025-05-12 00:10:36,112 - root - INFO - DEVICE = cuda
+2025-05-12 00:10:36,112 - root - INFO - END_INTERVAL = 1.0
+2025-05-12 00:10:36,113 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-12 00:10:36,113 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-05-12 00:10:36,114 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-05-12 00:10:36,114 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-05-12 00:10:36,114 - root - INFO - HIDE_HIGHLIGHTS = False
+2025-05-12 00:10:36,115 - root - INFO - HOOK_ID = mlp.hook_post
+2025-05-12 00:10:36,115 - root - INFO - HOOK_NAME = blocks.40.mlp.hook_post
+2025-05-12 00:10:36,116 - root - INFO - LAYER_ID = 40
+2025-05-12 00:10:36,116 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-05-12 00:10:36,116 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-05-12 00:10:36,117 - root - INFO - METHOD_NAME = GPT-explain
+2025-05-12 00:10:36,117 - root - INFO - MULTI_EVAL = True
+2025-05-12 00:10:36,118 - root - INFO - N_CLUSTERS = 5
+2025-05-12 00:10:36,118 - root - INFO - N_SAMPLES = 10
+2025-05-12 00:10:36,118 - root - INFO - PERCENTILE_STEP = 1e-05
+2025-05-12 00:10:36,119 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-05-12 00:10:36,119 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-05-12 00:10:36,119 - root - INFO - RANDOMIZE_DESCRIPTIONS = False
+2025-05-12 00:10:36,120 - root - INFO - RANDOMIZE_HIGHLIGHTS = True
+2025-05-12 00:10:36,120 - root - INFO - RANDOMIZE_SENTENCES = False
+2025-05-12 00:10:36,121 - root - INFO - SAVE_ACTIVATIONS = True
+2025-05-12 00:10:36,121 - root - INFO - SIMEVAL_BATCH_SIZE = 64
+2025-05-12 00:10:36,121 - root - INFO - SIMEVAL_DATA = c4
+2025-05-12 00:10:36,122 - root - INFO - SIMEVAL_DATA_FILES = {"validation": "en/c4-validation.00000-of-00008.json.gz"}
+2025-05-12 00:10:36,122 - root - INFO - SIMEVAL_MAX_TEXT_LENGTH = 64
+2025-05-12 00:10:36,123 - root - INFO - SIMEVAL_SPLIT = validation
+2025-05-12 00:10:36,123 - root - INFO - SIMEVAL_SUBSET_SIZE = 10000
+2025-05-12 00:10:36,123 - root - INFO - SPLIT = train
+2025-05-12 00:10:36,124 - root - INFO - START_INTERVAL = 0.99
+2025-05-12 00:10:36,124 - root - INFO - STREAMING = True
+2025-05-12 00:10:36,125 - root - INFO - SUBSET_SIZE = 1000
+2025-05-12 00:10:36,125 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-05-12 00:10:36,125 - root - INFO - TARGET_DATA = c4
+2025-05-12 00:10:36,126 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-05-12 00:10:36,126 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-05-12 00:10:36,127 - root - INFO - UNIT_ID = 3636
+2025-05-12 00:10:36,127 - root - INFO - USE_API = True
+2025-05-12 00:10:36,127 - root - INFO - ================================================================================
+2025-05-12 00:10:36,128 - root - INFO - ANALYSIS RESULTS
+2025-05-12 00:10:36,128 - root - INFO - ================================================================================
+2025-05-12 00:10:36,129 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-40_unit-3636_2025-05-11_22-10-36.log
+2025-05-12 00:10:36,258 - root - INFO - Loading target model...
+2025-05-12 00:10:49,249 - root - INFO - Model loaded successfully
+2025-05-12 00:10:49,520 - root - INFO - Tokenizer loaded successfully
+2025-05-12 00:10:49,527 - root - INFO - Loaded 60 layer-unit pairs to process
+2025-05-12 00:10:51,387 - root - INFO - Loading text generator model...
+2025-05-12 00:10:52,864 - root - INFO - Text generator loaded successfully
+2025-05-12 00:10:53,084 - root - INFO - Processing layer 0, unit 6314 (1/60)
+2025-05-12 00:11:19,428 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Geographic_restrictions_online_video_content_and_devices_or_software_used_to_bypass_these_restrictio.txt
+2025-05-12 00:11:22,628 - root - INFO - Activation shape valid: 10
+2025-05-12 00:11:22,959 - root - INFO - Processed explanation 1/5 for layer 0, unit 6314
+2025-05-12 00:12:04,288 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_and_entertainment.txt
+2025-05-12 00:12:06,788 - root - INFO - Activation shape valid: 10
+2025-05-12 00:12:07,014 - root - INFO - Processed explanation 2/5 for layer 0, unit 6314
+2025-05-12 00:12:27,669 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Therapeutic_practices_educational_programs_or_skill_development_particularly_related_to_personal_gro.txt
+2025-05-12 00:12:30,100 - root - INFO - Activation shape valid: 10
+2025-05-12 00:12:30,323 - root - INFO - Processed explanation 3/5 for layer 0, unit 6314
+2025-05-12 00:13:14,881 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_or_items_with_different_varieties_or_models_including_descriptions_of_their_features_and_us.txt
+2025-05-12 00:13:17,332 - root - INFO - Activation shape valid: 10
+2025-05-12 00:13:17,561 - root - INFO - Processed explanation 4/5 for layer 0, unit 6314
+2025-05-12 00:13:46,494 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Positive_descriptions_of_diverse_collections_of_items_or_experiences.txt
+2025-05-12 00:13:48,972 - root - INFO - Activation shape valid: 10
+2025-05-12 00:13:49,202 - root - INFO - Processed explanation 5/5 for layer 0, unit 6314
+2025-05-12 00:13:49,418 - root - INFO - Processing layer 0, unit 2725 (2/60)
+2025-05-12 00:14:24,435 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Contests_awards_services_medical_information_or_software_features_especially_when_the_excerpt_provid.txt
+2025-05-12 00:14:26,898 - root - INFO - Activation shape valid: 10
+2025-05-12 00:14:27,124 - root - INFO - Processed explanation 1/5 for layer 0, unit 2725
+2025-05-12 00:15:32,578 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_creative_works_movies_plays_books_TV_shows_musicals.txt
+2025-05-12 00:15:35,019 - root - INFO - Activation shape valid: 10
+2025-05-12 00:15:35,244 - root - INFO - Processed explanation 2/5 for layer 0, unit 2725
+2025-05-12 00:16:28,443 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Product_descriptions_with_size_material_and_features_often_related_to_clothing_home_goods_or_electro.txt
+2025-05-12 00:16:30,880 - root - INFO - Activation shape valid: 10
+2025-05-12 00:16:31,105 - root - INFO - Processed explanation 3/5 for layer 0, unit 2725
+2025-05-12 00:17:15,302 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_people_or_events_and_a_time_or_date_associated_with_them.txt
+2025-05-12 00:17:17,752 - root - INFO - Activation shape valid: 10
+2025-05-12 00:17:17,979 - root - INFO - Processed explanation 4/5 for layer 0, unit 2725
+2025-05-12 00:17:51,578 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_food_quantities_and_first_person_pronouns.txt
+2025-05-12 00:17:54,002 - root - INFO - Activation shape valid: 10
+2025-05-12 00:17:54,228 - root - INFO - Processed explanation 5/5 for layer 0, unit 2725
+2025-05-12 00:17:54,444 - root - INFO - Processing layer 0, unit 4297 (3/60)
+2025-05-12 00:18:18,560 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Instances_of_enumeration_including_examples_of_items_or_actions_often_followed_by_a_superlative_or_e.txt
+2025-05-12 00:18:21,046 - root - INFO - Activation shape valid: 10
+2025-05-12 00:18:21,271 - root - INFO - Processed explanation 1/5 for layer 0, unit 4297
+2025-05-12 00:18:48,443 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Real_estate_property_ownership_or_website_placeholders_for_people_not_currently_on_a_particular_webs.txt
+2025-05-12 00:18:50,883 - root - INFO - Activation shape valid: 10
+2025-05-12 00:18:51,110 - root - INFO - Processed explanation 2/5 for layer 0, unit 4297
+2025-05-12 00:19:32,966 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Employee_stock_options_and_tax_implicationsregulations.txt
+2025-05-12 00:19:35,402 - root - INFO - Activation shape valid: 10
+2025-05-12 00:19:35,627 - root - INFO - Processed explanation 3/5 for layer 0, unit 4297
+2025-05-12 00:20:04,350 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Commercial_agreements_andor_legal_arrangements_involving_financial_transactions_or_real_estate.txt
+2025-05-12 00:20:06,781 - root - INFO - Activation shape valid: 10
+2025-05-12 00:20:07,007 - root - INFO - Processed explanation 4/5 for layer 0, unit 4297
+2025-05-12 00:20:33,404 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Beneficiation_plant_or_scheme_often_related_to_ore_or_metal_production.txt
+2025-05-12 00:20:35,837 - root - INFO - Activation shape valid: 10
+2025-05-12 00:20:36,063 - root - INFO - Processed explanation 5/5 for layer 0, unit 4297
+2025-05-12 00:20:36,280 - root - INFO - Processing layer 0, unit 4842 (4/60)
+2025-05-12 00:21:05,833 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Software_hardware_and_product_updates_and_releases.txt
+2025-05-12 00:21:08,291 - root - INFO - Activation shape valid: 10
+2025-05-12 00:21:08,519 - root - INFO - Processed explanation 1/5 for layer 0, unit 4842
+2025-05-12 00:21:25,750 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Elite_status_high_achievement_within_organizations_related_to_finance_publishing_energy_efficiency_e.txt
+2025-05-12 00:21:28,235 - root - INFO - Activation shape valid: 10
+2025-05-12 00:21:28,461 - root - INFO - Processed explanation 2/5 for layer 0, unit 4842
+2025-05-12 00:22:02,661 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Hair_beauty_fashion_clothing_or_styling_products_or_routines.txt
+2025-05-12 00:22:05,118 - root - INFO - Activation shape valid: 10
+2025-05-12 00:22:05,360 - root - INFO - Processed explanation 3/5 for layer 0, unit 4842
+2025-05-12 00:22:24,526 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Fitness_exercise_training_coaching_digital_marketing_reputation_management_software_development_tool.txt
+2025-05-12 00:22:26,968 - root - INFO - Activation shape valid: 10
+2025-05-12 00:22:27,193 - root - INFO - Processed explanation 4/5 for layer 0, unit 4842
+2025-05-12 00:23:10,829 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Days_of_the_week_dates_and_times_often_related_to_events_shows_or_schedules_sometimes_with_pricing_o.txt
+2025-05-12 00:23:13,275 - root - INFO - Activation shape valid: 10
+2025-05-12 00:23:13,501 - root - INFO - Processed explanation 5/5 for layer 0, unit 4842
+2025-05-12 00:23:13,721 - root - INFO - Processing layer 0, unit 5551 (5/60)
+2025-05-12 00:23:54,039 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Cookingfood_preparation_often_with_a_focus_on_baking_and_specific_ingredientstools.txt
+2025-05-12 00:23:56,484 - root - INFO - Activation shape valid: 10
+2025-05-12 00:23:56,711 - root - INFO - Processed explanation 1/5 for layer 0, unit 5551
+2025-05-12 00:24:32,024 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Selfimprovement_through_learning_and_community.txt
+2025-05-12 00:24:34,460 - root - INFO - Activation shape valid: 10
+2025-05-12 00:24:34,687 - root - INFO - Processed explanation 2/5 for layer 0, unit 5551
+2025-05-12 00:25:08,304 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_searching_and_finding.txt
+2025-05-12 00:25:12,906 - root - INFO - Activation shape valid: 10
+2025-05-12 00:25:13,134 - root - INFO - Processed explanation 3/5 for layer 0, unit 5551
+2025-05-12 00:25:32,673 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Condemnation_criticism_or_negative_commentary_on_a_government_or_its_actionspolicies.txt
+2025-05-12 00:25:35,103 - root - INFO - Activation shape valid: 10
+2025-05-12 00:25:35,329 - root - INFO - Processed explanation 4/5 for layer 0, unit 5551
+2025-05-12 00:26:17,391 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/European_organizations_related_to_diversity_heritage_andor_seed_artisanship.txt
+2025-05-12 00:26:19,853 - root - INFO - Activation shape valid: 10
+2025-05-12 00:26:20,082 - root - INFO - Processed explanation 5/5 for layer 0, unit 5551
+2025-05-12 00:26:20,300 - root - INFO - Processing layer 0, unit 1749 (6/60)
+2025-05-12 00:26:57,439 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Legal_cases_and_processes_related_to_property_finance_healthcare_and_personal_matters.txt
+2025-05-12 00:26:59,880 - root - INFO - Activation shape valid: 10
+2025-05-12 00:27:00,106 - root - INFO - Processed explanation 1/5 for layer 0, unit 1749
+2025-05-12 00:27:53,615 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Personal_experiences_life_events_or_situations_that_had_a_significant_impact_such_as_successes_failu.txt
+2025-05-12 00:27:56,077 - root - INFO - Activation shape valid: 10
+2025-05-12 00:27:56,304 - root - INFO - Processed explanation 2/5 for layer 0, unit 1749
+2025-05-12 00:28:18,433 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Recipes_food_and_cooking_especially_for_salads_desserts_and_main_courses_often_with_an_emphasis_on_i.txt
+2025-05-12 00:28:18,805 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-05-12 00:28:18,807 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Recipes_food_and_cooking_especially_for_salads_desserts_and_main_courses_often_with_an_emphasis_on_i.txt
+2025-05-12 00:28:18,808 - root - INFO - Regenerating explanation samples...
+2025-05-12 00:28:55,875 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Recipes_food_and_cooking_especially_for_salads_desserts_and_main_courses_often_with_an_emphasis_on_i.txt
+2025-05-12 00:28:58,309 - root - INFO - Activation shape valid: 10
+2025-05-12 00:28:58,559 - root - INFO - Processed explanation 3/5 for layer 0, unit 1749
+2025-05-12 00:29:19,494 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Financial_topics_including_corporate_finances_stock_information_market_conditions_and_banking.txt
+2025-05-12 00:29:21,939 - root - INFO - Activation shape valid: 10
+2025-05-12 00:29:22,166 - root - INFO - Processed explanation 4/5 for layer 0, unit 1749
+2025-05-12 00:30:05,349 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_a_specific_past_sporting_event_or_competition_and_its_aftermath.txt
+2025-05-12 00:30:07,790 - root - INFO - Activation shape valid: 10
+2025-05-12 00:30:08,016 - root - INFO - Processed explanation 5/5 for layer 0, unit 1749
+2025-05-12 00:30:08,235 - root - INFO - Processing layer 0, unit 3943 (7/60)
+2025-05-12 00:30:48,451 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_products_services_and_awards_especially_those_related_to_European_publications_or_media_com.txt
+2025-05-12 00:30:50,956 - root - INFO - Activation shape valid: 10
+2025-05-12 00:30:51,184 - root - INFO - Processed explanation 1/5 for layer 0, unit 3943
+2025-05-12 00:31:43,736 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_creative_works_with_a_focus_on_those_related_to_film_and_television.txt
+2025-05-12 00:31:46,295 - root - INFO - Activation shape valid: 10
+2025-05-12 00:31:46,523 - root - INFO - Processed explanation 2/5 for layer 0, unit 3943
+2025-05-12 00:32:34,934 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_business_health_or_education_especially_in_the_context_of_finance_or_community.txt
+2025-05-12 00:32:37,376 - root - INFO - Activation shape valid: 10
+2025-05-12 00:32:37,603 - root - INFO - Processed explanation 3/5 for layer 0, unit 3943
+2025-05-12 00:33:27,758 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Items_or_products_with_properties_or_features_especially_size_or_dimensions.txt
+2025-05-12 00:33:30,236 - root - INFO - Activation shape valid: 10
+2025-05-12 00:33:30,472 - root - INFO - Processed explanation 4/5 for layer 0, unit 3943
+2025-05-12 00:34:06,683 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trombone_designs_sayings_colors_style_organic_player_funny_awesome_life_flat.txt
+2025-05-12 00:34:09,123 - root - INFO - Activation shape valid: 10
+2025-05-12 00:34:09,350 - root - INFO - Processed explanation 5/5 for layer 0, unit 3943
+2025-05-12 00:34:09,570 - root - INFO - Processing layer 0, unit 5960 (8/60)
+2025-05-12 00:34:32,386 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Augers_bits_software_and_other_productscomponents_and_their_propertiescharacteristicsdevelopment.txt
+2025-05-12 00:34:34,910 - root - INFO - Activation shape valid: 10
+2025-05-12 00:34:35,137 - root - INFO - Processed explanation 1/5 for layer 0, unit 5960
+2025-05-12 00:35:14,181 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Sensory_experiences_enhancements_or_changes_related_to_personal_care_health_or_lifestyle_and_often_i.txt
+2025-05-12 00:35:16,617 - root - INFO - Activation shape valid: 10
+2025-05-12 00:35:16,842 - root - INFO - Processed explanation 2/5 for layer 0, unit 5960
+2025-05-12 00:35:36,969 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Luxury_goods_specifically_jewelry_or_clothing_described_with_elegant_features_andor_craftsmanship.txt
+2025-05-12 00:35:39,398 - root - INFO - Activation shape valid: 10
+2025-05-12 00:35:39,623 - root - INFO - Processed explanation 3/5 for layer 0, unit 5960
+2025-05-12 00:36:07,508 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Real_estate_transactions_construction_legal_proceedings_dentistry_transportation_projects_environmen.txt
+2025-05-12 00:36:09,936 - root - INFO - Activation shape valid: 10
+2025-05-12 00:36:10,176 - root - INFO - Processed explanation 4/5 for layer 0, unit 5960
+2025-05-12 00:36:29,793 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Whaling_mythical_creatures_comic_books_or_criminals.txt
+2025-05-12 00:36:30,655 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-05-12 00:36:30,658 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Whaling_mythical_creatures_comic_books_or_criminals.txt
+2025-05-12 00:36:30,660 - root - INFO - Regenerating explanation samples...
+2025-05-12 00:37:10,943 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Whaling_mythical_creatures_comic_books_or_criminals.txt
+2025-05-12 00:37:13,464 - root - INFO - Activation shape valid: 10
+2025-05-12 00:37:13,703 - root - INFO - Processed explanation 5/5 for layer 0, unit 5960
+2025-05-12 00:37:13,921 - root - INFO - Processing layer 0, unit 3696 (9/60)
+2025-05-12 00:37:44,246 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Specifications_features_or_characteristics_of_electronic_devices_often_with_numerical_values.txt
+2025-05-12 00:37:46,675 - root - INFO - Activation shape valid: 10
+2025-05-12 00:37:46,902 - root - INFO - Processed explanation 1/5 for layer 0, unit 3696
+2025-05-12 00:38:26,186 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Conditions_circumstances_or_situations.txt
+2025-05-12 00:38:29,779 - root - INFO - Activation shape valid: 10
+2025-05-12 00:38:30,010 - root - INFO - Processed explanation 2/5 for layer 0, unit 3696
+2025-05-12 00:38:49,030 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Dates_times_and_actions_related_to_data_updates_and_website_information_particularly_concerning_data.txt
+2025-05-12 00:38:51,488 - root - INFO - Activation shape valid: 10
+2025-05-12 00:38:51,714 - root - INFO - Processed explanation 3/5 for layer 0, unit 3696
+2025-05-12 00:39:15,583 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Time_management_opportunitiesoptions_constructionbuilding_and_US_Citizenship_and_Immigration_Service.txt
+2025-05-12 00:39:18,050 - root - INFO - Activation shape valid: 10
+2025-05-12 00:39:18,277 - root - INFO - Processed explanation 4/5 for layer 0, unit 3696
+2025-05-12 00:39:47,217 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Recipes_food_and_drinks_especially_alcoholic_beverages.txt
+2025-05-12 00:39:49,669 - root - INFO - Activation shape valid: 10
+2025-05-12 00:39:49,895 - root - INFO - Processed explanation 5/5 for layer 0, unit 3696
+2025-05-12 00:39:50,113 - root - INFO - Processing layer 0, unit 3533 (10/60)
+2025-05-12 00:40:27,157 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_dates_and_times_of_events.txt
+2025-05-12 00:40:29,771 - root - INFO - Activation shape valid: 10
+2025-05-12 00:40:30,005 - root - INFO - Processed explanation 1/5 for layer 0, unit 3533
+2025-05-12 00:41:04,239 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Commercial_legal_and_financial_agreements_and_documents_often_involving_services_and_sometimes_speci.txt
+2025-05-12 00:41:06,671 - root - INFO - Activation shape valid: 10
+2025-05-12 00:41:06,898 - root - INFO - Processed explanation 2/5 for layer 0, unit 3533
+2025-05-12 00:41:42,598 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_prepping_or_survivalism_often_involving_food_storage_and_organization.txt
+2025-05-12 00:41:45,181 - root - INFO - Activation shape valid: 10
+2025-05-12 00:41:45,408 - root - INFO - Processed explanation 3/5 for layer 0, unit 3533
+2025-05-12 00:42:10,902 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Decorative_bookshaped_containers_often_in_sets_of_two_or_three_sometimes_with_themes_like_paisley_na.txt
+2025-05-12 00:42:13,235 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-05-12 00:42:13,238 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Decorative_bookshaped_containers_often_in_sets_of_two_or_three_sometimes_with_themes_like_paisley_na.txt
+2025-05-12 00:42:13,240 - root - INFO - Regenerating explanation samples...
+2025-05-12 00:42:30,273 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Decorative_bookshaped_containers_often_in_sets_of_two_or_three_sometimes_with_themes_like_paisley_na.txt
+2025-05-12 00:42:31,473 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 00:42:31,476 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Decorative_bookshaped_containers_often_in_sets_of_two_or_three_sometimes_with_themes_like_paisley_na.txt
+2025-05-12 00:42:31,580 - root - INFO - Regenerating explanation samples...
+2025-05-12 00:43:00,040 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Decorative_bookshaped_containers_often_in_sets_of_two_or_three_sometimes_with_themes_like_paisley_na.txt
+2025-05-12 00:43:02,479 - root - INFO - Activation shape valid: 10
+2025-05-12 00:43:02,722 - root - INFO - Processed explanation 4/5 for layer 0, unit 3533
+2025-05-12 00:43:34,160 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Changes_in_regulations_or_guidelines_related_to_equipment_or_devices_often_involving_numerical_value.txt
+2025-05-12 00:43:36,650 - root - INFO - Activation shape valid: 10
+2025-05-12 00:43:36,876 - root - INFO - Processed explanation 5/5 for layer 0, unit 3533
+2025-05-12 00:43:37,095 - root - INFO - Processing layer 0, unit 3124 (11/60)
+2025-05-12 00:44:17,838 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_about_H5N1_influenza_its_genetic_and_antigenic_properties_transmissibility_drug_resistan.txt
+2025-05-12 00:44:20,304 - root - INFO - Activation shape valid: 10
+2025-05-12 00:44:20,534 - root - INFO - Processed explanation 1/5 for layer 0, unit 3124
+2025-05-12 00:44:43,569 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Biological_data_gene_expression_profiles_across_different_tissues_cells_and_developmental_stages_gen.txt
+2025-05-12 00:44:46,090 - root - INFO - Activation shape valid: 10
+2025-05-12 00:44:46,317 - root - INFO - Processed explanation 2/5 for layer 0, unit 3124
+2025-05-12 00:45:20,789 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_people_or_events_often_related_to_historical_fictional_or_personal_narratives.txt
+2025-05-12 00:45:23,224 - root - INFO - Activation shape valid: 10
+2025-05-12 00:45:23,452 - root - INFO - Processed explanation 3/5 for layer 0, unit 3124
+2025-05-12 00:46:08,704 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Loss_specifically_weight_loss_and_personal_experiences_especially_surrounding_family_and_significant.txt
+2025-05-12 00:46:11,245 - root - INFO - Activation shape valid: 10
+2025-05-12 00:46:11,476 - root - INFO - Processed explanation 4/5 for layer 0, unit 3124
+2025-05-12 00:46:30,220 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Small_cute_items_or_animals_sometimes_described_as_fluffy_and_sometimes_qualified_with_words_like_th.txt
+2025-05-12 00:46:32,657 - root - INFO - Activation shape valid: 10
+2025-05-12 00:46:32,884 - root - INFO - Processed explanation 5/5 for layer 0, unit 3124
+2025-05-12 00:46:33,105 - root - INFO - Processing layer 0, unit 1149 (12/60)
+2025-05-12 00:46:33,107 - root - WARNING - No matching file found for layer 0, unit 1149. Skipping.
+2025-05-12 00:46:33,327 - root - INFO - Processing layer 0, unit 6114 (13/60)
+2025-05-12 00:47:03,876 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_specifically_desserts_dishes_and_ingredients_often_within_the_context_of_personal_anecdotes_or_.txt
+2025-05-12 00:47:06,444 - root - INFO - Activation shape valid: 10
+2025-05-12 00:47:06,684 - root - INFO - Processed explanation 1/5 for layer 0, unit 6114
+2025-05-12 00:47:41,813 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Legal_or_medical_conditions_anomalies_or_procedures.txt
+2025-05-12 00:47:44,297 - root - INFO - Activation shape valid: 10
+2025-05-12 00:47:44,523 - root - INFO - Processed explanation 2/5 for layer 0, unit 6114
+2025-05-12 00:48:20,142 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Dates_log_events_media_pages_users_and_Wikidata_items.txt
+2025-05-12 00:48:22,708 - root - INFO - Activation shape valid: 10
+2025-05-12 00:48:22,935 - root - INFO - Processed explanation 3/5 for layer 0, unit 6114
+2025-05-12 00:49:08,275 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_creative_works_and_the_proper_names_of_people_involved_in_their_creation.txt
+2025-05-12 00:49:10,841 - root - INFO - Activation shape valid: 10
+2025-05-12 00:49:11,070 - root - INFO - Processed explanation 4/5 for layer 0, unit 6114
+2025-05-12 00:50:15,209 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Names_of_mountains_peaks_or_other_geographic_features.txt
+2025-05-12 00:50:18,125 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 00:50:18,128 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Names_of_mountains_peaks_or_other_geographic_features.txt
+2025-05-12 00:50:18,130 - root - INFO - Regenerating explanation samples...
+2025-05-12 00:50:50,239 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Names_of_mountains_peaks_or_other_geographic_features.txt
+2025-05-12 00:50:53,024 - root - INFO - Activation shape valid: 10
+2025-05-12 00:50:53,254 - root - INFO - Processed explanation 5/5 for layer 0, unit 6114
+2025-05-12 00:50:53,474 - root - INFO - Processing layer 0, unit 3279 (14/60)
+2025-05-12 00:51:43,635 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Medical_devices_or_procedures.txt
+2025-05-12 00:51:46,201 - root - INFO - Activation shape valid: 10
+2025-05-12 00:51:46,439 - root - INFO - Processed explanation 1/5 for layer 0, unit 3279
+2025-05-12 00:52:24,354 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Medical_services_locations_numbers_or_time_periods.txt
+2025-05-12 00:52:26,866 - root - INFO - Activation shape valid: 10
+2025-05-12 00:52:27,093 - root - INFO - Processed explanation 2/5 for layer 0, unit 3279
+2025-05-12 00:53:18,654 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Experiences_related_to_strong_emotions_or_sensations_such_as_love_fear_discomfort_or_excitement.txt
+2025-05-12 00:53:21,092 - root - INFO - Activation shape valid: 10
+2025-05-12 00:53:21,321 - root - INFO - Processed explanation 3/5 for layer 0, unit 3279
+2025-05-12 00:54:26,427 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_or_items_with_descriptions_sometimes_with_brand_names_and_prices.txt
+2025-05-12 00:54:28,958 - root - INFO - Activation shape valid: 10
+2025-05-12 00:54:29,184 - root - INFO - Processed explanation 4/5 for layer 0, unit 3279
+2025-05-12 00:55:09,333 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Confusion_about_familial_relationships_in_TV_shows.txt
+2025-05-12 00:55:11,786 - root - INFO - Activation shape valid: 10
+2025-05-12 00:55:12,012 - root - INFO - Processed explanation 5/5 for layer 0, unit 3279
+2025-05-12 00:55:12,233 - root - INFO - Processing layer 0, unit 440 (15/60)
+2025-05-12 00:55:42,978 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_related_to_heavy_duty_footwear_steel_and_home_improvement_or_decor.txt
+2025-05-12 00:55:45,423 - root - INFO - Activation shape valid: 10
+2025-05-12 00:55:45,649 - root - INFO - Processed explanation 1/5 for layer 0, unit 440
+2025-05-12 00:56:12,553 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Financial_transactions_digital_services_and_customer_interaction.txt
+2025-05-12 00:56:14,996 - root - INFO - Activation shape valid: 10
+2025-05-12 00:56:15,224 - root - INFO - Processed explanation 2/5 for layer 0, unit 440
+2025-05-12 00:57:12,307 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_belief_rituals_and_figures_often_in_relation_to_Christianity_and_the_New_Testament.txt
+2025-05-12 00:57:15,120 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 00:57:15,123 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Religious_belief_rituals_and_figures_often_in_relation_to_Christianity_and_the_New_Testament.txt
+2025-05-12 00:57:15,125 - root - INFO - Regenerating explanation samples...
+2025-05-12 00:57:55,504 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_belief_rituals_and_figures_often_in_relation_to_Christianity_and_the_New_Testament.txt
+2025-05-12 00:57:57,994 - root - INFO - Activation shape valid: 10
+2025-05-12 00:57:58,223 - root - INFO - Processed explanation 3/5 for layer 0, unit 440
+2025-05-12 00:58:28,486 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Themes_of_entertainment_specifically_musicals_plays_and_concerts_including_details_like_venues_dates.txt
+2025-05-12 00:58:30,925 - root - INFO - Activation shape valid: 10
+2025-05-12 00:58:31,150 - root - INFO - Processed explanation 4/5 for layer 0, unit 440
+2025-05-12 00:58:59,756 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Professional_certifications_licenses_qualifications_or_requirements_for_educators_surveyors_and_othe.txt
+2025-05-12 00:59:03,985 - root - INFO - Activation shape valid: 10
+2025-05-12 00:59:04,215 - root - INFO - Processed explanation 5/5 for layer 0, unit 440
+2025-05-12 00:59:04,435 - root - INFO - Processing layer 0, unit 4405 (16/60)
+2025-05-12 00:59:27,954 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Investments_government_technological_advancements_legal_cases_international_affairs_software_and_org.txt
+2025-05-12 00:59:30,505 - root - INFO - Activation shape valid: 10
+2025-05-12 00:59:30,732 - root - INFO - Processed explanation 1/5 for layer 0, unit 4405
+2025-05-12 01:00:14,276 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/References_to_books_months_or_biblical_figures_often_within_the_context_of_groups_or_religions.txt
+2025-05-12 01:00:16,752 - root - INFO - Activation shape valid: 10
+2025-05-12 01:00:16,983 - root - INFO - Processed explanation 2/5 for layer 0, unit 4405
+2025-05-12 01:00:42,826 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Requests_for_information_related_to_complaints_products_services_or_processes_often_with_a_focus_on_.txt
+2025-05-12 01:00:45,327 - root - INFO - Activation shape valid: 10
+2025-05-12 01:00:45,555 - root - INFO - Processed explanation 3/5 for layer 0, unit 4405
+2025-05-12 01:01:18,761 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Features_of_construction_or_design_often_related_to_housing_furniture_or_accessories.txt
+2025-05-12 01:01:21,304 - root - INFO - Activation shape valid: 10
+2025-05-12 01:01:21,581 - root - INFO - Processed explanation 4/5 for layer 0, unit 4405
+2025-05-12 01:02:45,856 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Ordinal_numbers_followed_by_closing_parentheses_often_in_numbered_lists_related_to_selfimprovement_p.txt
+2025-05-12 01:02:48,412 - root - INFO - Activation shape valid: 10
+2025-05-12 01:02:48,661 - root - INFO - Processed explanation 5/5 for layer 0, unit 4405
+2025-05-12 01:02:48,880 - root - INFO - Processing layer 0, unit 5781 (17/60)
+2025-05-12 01:03:15,831 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Healthcare_legal_systems_leadership_training_accessibility_improvements_for_disabled_people_judicial.txt
+2025-05-12 01:03:18,294 - root - INFO - Activation shape valid: 10
+2025-05-12 01:03:18,526 - root - INFO - Processed explanation 1/5 for layer 0, unit 5781
+2025-05-12 01:04:27,794 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Biblical_stories_personal_anecdotes_about_life_changes_and_discussions_of_career_paths.txt
+2025-05-12 01:04:30,708 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 01:04:30,712 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Biblical_stories_personal_anecdotes_about_life_changes_and_discussions_of_career_paths.txt
+2025-05-12 01:04:30,714 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:05:09,270 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Biblical_stories_personal_anecdotes_about_life_changes_and_discussions_of_career_paths.txt
+2025-05-12 01:05:11,845 - root - INFO - Activation shape valid: 10
+2025-05-12 01:05:12,096 - root - INFO - Processed explanation 2/5 for layer 0, unit 5781
+2025-05-12 01:06:03,460 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_performances_and_appearances_especially_those_related_to_music_and_entertainment_along_with_i.txt
+2025-05-12 01:06:05,961 - root - INFO - Activation shape valid: 10
+2025-05-12 01:06:06,190 - root - INFO - Processed explanation 3/5 for layer 0, unit 5781
+2025-05-12 01:06:29,248 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Concepts_of_location_product_or_service_and_characteristic_related_to_positive_attributes_primarily_.txt
+2025-05-12 01:06:31,777 - root - INFO - Activation shape valid: 10
+2025-05-12 01:06:32,005 - root - INFO - Processed explanation 4/5 for layer 0, unit 5781
+2025-05-12 01:07:24,414 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Musical_scores_books_and_compositions_by_Dmitri_Shostakovich.txt
+2025-05-12 01:07:28,068 - root - INFO - Activation shape valid: 10
+2025-05-12 01:07:28,307 - root - INFO - Processed explanation 5/5 for layer 0, unit 5781
+2025-05-12 01:07:28,525 - root - INFO - Processing layer 0, unit 3057 (18/60)
+2025-05-12 01:08:27,711 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:08:30,554 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 01:08:30,557 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:08:30,559 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:09:07,999 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:09:09,878 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-05-12 01:09:09,881 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:09:09,883 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:10:13,624 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:10:16,492 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 01:10:16,495 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:10:16,497 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:11:08,395 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_and_local_businessesservices.txt
+2025-05-12 01:11:10,856 - root - INFO - Activation shape valid: 10
+2025-05-12 01:11:11,107 - root - INFO - Processed explanation 1/5 for layer 0, unit 3057
+2025-05-12 01:11:46,698 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_events_or_entities_related_to_music_sports_or_entertainment.txt
+2025-05-12 01:11:49,279 - root - INFO - Activation shape valid: 10
+2025-05-12 01:11:49,507 - root - INFO - Processed explanation 2/5 for layer 0, unit 3057
+2025-05-12 01:12:23,893 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_and_drink_or_beauty_and_health_treatments.txt
+2025-05-12 01:12:26,365 - root - INFO - Activation shape valid: 10
+2025-05-12 01:12:26,593 - root - INFO - Processed explanation 3/5 for layer 0, unit 3057
+2025-05-12 01:12:59,877 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Financial_rewards_social_media_approval_physical_and_mental_health_academic_assignments_and_performa.txt
+2025-05-12 01:13:02,388 - root - INFO - Activation shape valid: 10
+2025-05-12 01:13:02,617 - root - INFO - Processed explanation 4/5 for layer 0, unit 3057
+2025-05-12 01:13:34,766 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Product_or_service_descriptions_sometimes_mentioning_product_specifications_or_features_particularly.txt
+2025-05-12 01:13:37,208 - root - INFO - Activation shape valid: 10
+2025-05-12 01:13:37,437 - root - INFO - Processed explanation 5/5 for layer 0, unit 3057
+2025-05-12 01:13:37,657 - root - INFO - Processing layer 0, unit 5085 (19/60)
+2025-05-12 01:14:06,385 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Professional_training_certification_and_career_advancement_particularly_in_specialized_industries_su.txt
+2025-05-12 01:14:08,828 - root - INFO - Activation shape valid: 10
+2025-05-12 01:14:09,054 - root - INFO - Processed explanation 1/5 for layer 0, unit 5085
+2025-05-12 01:14:35,900 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Time_of_year_and_geographic_location_of_outdoor_activity_or_travel.txt
+2025-05-12 01:14:38,344 - root - INFO - Activation shape valid: 10
+2025-05-12 01:14:38,572 - root - INFO - Processed explanation 2/5 for layer 0, unit 5085
+2025-05-12 01:14:58,230 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Whirlpool_dishwasher_rinse_aid_dispenser_specifically_the_cap_or_detergent_dispenser.txt
+2025-05-12 01:14:59,580 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-05-12 01:14:59,582 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Whirlpool_dishwasher_rinse_aid_dispenser_specifically_the_cap_or_detergent_dispenser.txt
+2025-05-12 01:14:59,584 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:15:26,292 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Whirlpool_dishwasher_rinse_aid_dispenser_specifically_the_cap_or_detergent_dispenser.txt
+2025-05-12 01:15:28,729 - root - INFO - Activation shape valid: 10
+2025-05-12 01:15:28,957 - root - INFO - Processed explanation 3/5 for layer 0, unit 5085
+2025-05-12 01:16:01,354 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_preparation_consumption_and_recipes_especially_those_that_are_unusual_culturally_diverse_or_inv.txt
+2025-05-12 01:16:03,795 - root - INFO - Activation shape valid: 10
+2025-05-12 01:16:04,024 - root - INFO - Processed explanation 4/5 for layer 0, unit 5085
+2025-05-12 01:16:28,787 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Experiences_often_negative_or_challenging_related_to_locations_or_people_particularly_during_transit.txt
+2025-05-12 01:16:31,230 - root - INFO - Activation shape valid: 10
+2025-05-12 01:16:31,459 - root - INFO - Processed explanation 5/5 for layer 0, unit 5085
+2025-05-12 01:16:31,679 - root - INFO - Processing layer 0, unit 4679 (20/60)
+2025-05-12 01:17:03,973 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Commercial_or_promotional_texts_sometimes_about_clothing_or_home_decor_sometimes_about_products_rela.txt
+2025-05-12 01:17:06,409 - root - INFO - Activation shape valid: 10
+2025-05-12 01:17:06,635 - root - INFO - Processed explanation 1/5 for layer 0, unit 4679
+2025-05-12 01:17:55,238 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Requests_questions_or_commands_including_a_condition_or_disease_location_product_service_or_a_proper.txt
+2025-05-12 01:17:57,681 - root - INFO - Activation shape valid: 10
+2025-05-12 01:17:57,907 - root - INFO - Processed explanation 2/5 for layer 0, unit 4679
+2025-05-12 01:19:02,903 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_including_those_specified_by_points_of_interest_addresses_or_proximity_to_other_locations.txt
+2025-05-12 01:19:05,355 - root - INFO - Activation shape valid: 10
+2025-05-12 01:19:05,583 - root - INFO - Processed explanation 3/5 for layer 0, unit 4679
+2025-05-12 01:20:20,745 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_proper_nouns_or_specific_phrases.txt
+2025-05-12 01:20:23,199 - root - INFO - Activation shape valid: 10
+2025-05-12 01:20:23,427 - root - INFO - Processed explanation 4/5 for layer 0, unit 4679
+2025-05-12 01:20:41,277 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Seeking_information_related_to_software_services_or_cybersecurity.txt
+2025-05-12 01:20:43,714 - root - INFO - Activation shape valid: 10
+2025-05-12 01:20:43,943 - root - INFO - Processed explanation 5/5 for layer 0, unit 4679
+2025-05-12 01:20:44,162 - root - INFO - Processing layer 20, unit 328 (21/60)
+2025-05-12 01:21:20,337 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expression_of_positive_emotions.txt
+2025-05-12 01:21:22,816 - root - INFO - Activation shape valid: 10
+2025-05-12 01:21:23,051 - root - INFO - Processed explanation 1/5 for layer 20, unit 328
+2025-05-12 01:22:35,658 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_user_asking_or_being_offered_help_or_information.txt
+2025-05-12 01:22:38,632 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 01:22:38,635 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/A_user_asking_or_being_offered_help_or_information.txt
+2025-05-12 01:22:38,637 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:23:21,132 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_user_asking_or_being_offered_help_or_information.txt
+2025-05-12 01:23:23,578 - root - INFO - Activation shape valid: 10
+2025-05-12 01:23:23,812 - root - INFO - Processed explanation 2/5 for layer 20, unit 328
+2025-05-12 01:24:01,325 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_encouragement_requests_for_help_invitations_or_opportunities_to_participate.txt
+2025-05-12 01:24:03,773 - root - INFO - Activation shape valid: 10
+2025-05-12 01:24:04,001 - root - INFO - Processed explanation 3/5 for layer 20, unit 328
+2025-05-12 01:24:47,484 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/DIY_projects_baby_products_industrial_equipment_and_tools_fashion_items_electric_motors_software_int.txt
+2025-05-12 01:24:49,966 - root - INFO - Activation shape valid: 10
+2025-05-12 01:24:50,196 - root - INFO - Processed explanation 4/5 for layer 20, unit 328
+2025-05-12 01:25:18,160 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_societal_issues_government_policies_and_political_figures.txt
+2025-05-12 01:25:20,601 - root - INFO - Activation shape valid: 10
+2025-05-12 01:25:20,828 - root - INFO - Processed explanation 5/5 for layer 20, unit 328
+2025-05-12 01:25:21,048 - root - INFO - Processing layer 20, unit 5789 (22/60)
+2025-05-12 01:25:56,056 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_or_services_and_their_descriptions_sometimes_including_locations_and_shippinginstallation_d.txt
+2025-05-12 01:25:58,504 - root - INFO - Activation shape valid: 10
+2025-05-12 01:25:58,732 - root - INFO - Processed explanation 1/5 for layer 20, unit 5789
+2025-05-12 01:26:34,779 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_articles_scholarly_works_programs_or_organizations_often_followed_by_a_date_or_time_of_pub.txt
+2025-05-12 01:26:37,220 - root - INFO - Activation shape valid: 10
+2025-05-12 01:26:37,448 - root - INFO - Processed explanation 2/5 for layer 20, unit 5789
+2025-05-12 01:27:00,148 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Seeking_providing_using_leveraging_or_combining_services_tools_technologies_strategies_solutions_or_.txt
+2025-05-12 01:27:02,589 - root - INFO - Activation shape valid: 10
+2025-05-12 01:27:02,817 - root - INFO - Processed explanation 3/5 for layer 20, unit 5789
+2025-05-12 01:27:29,790 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_names_locations_or_other_important_terms_relevant_to_the_texts_theme.txt
+2025-05-12 01:27:32,233 - root - INFO - Activation shape valid: 10
+2025-05-12 01:27:32,462 - root - INFO - Processed explanation 4/5 for layer 20, unit 5789
+2025-05-12 01:28:13,545 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_dates_and_names_of_creative_works_people_or_places.txt
+2025-05-12 01:28:15,991 - root - INFO - Activation shape valid: 10
+2025-05-12 01:28:16,218 - root - INFO - Processed explanation 5/5 for layer 20, unit 5789
+2025-05-12 01:28:16,439 - root - INFO - Processing layer 20, unit 4268 (23/60)
+2025-05-12 01:28:51,398 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_shows_or_competitions.txt
+2025-05-12 01:28:53,869 - root - INFO - Activation shape valid: 10
+2025-05-12 01:28:54,097 - root - INFO - Processed explanation 1/5 for layer 20, unit 4268
+2025-05-12 01:29:31,232 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Instructions_related_to_hair_or_cooking_sometimes_with_product_names_or_brands.txt
+2025-05-12 01:29:33,842 - root - INFO - Activation shape valid: 10
+2025-05-12 01:29:34,072 - root - INFO - Processed explanation 2/5 for layer 20, unit 4268
+2025-05-12 01:30:09,918 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Conditions_circumstances_or_events_that_are_unpleasant_or_undesirable.txt
+2025-05-12 01:30:12,367 - root - INFO - Activation shape valid: 10
+2025-05-12 01:30:12,595 - root - INFO - Processed explanation 3/5 for layer 20, unit 4268
+2025-05-12 01:31:06,160 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Terms_and_conditions_agreements_legal_information_related_to_websites_software_personal_information_.txt
+2025-05-12 01:31:08,655 - root - INFO - Activation shape valid: 10
+2025-05-12 01:31:08,883 - root - INFO - Processed explanation 4/5 for layer 20, unit 4268
+2025-05-12 01:31:41,708 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Shipping_delivery_or_pickup_information_andor_additional_services.txt
+2025-05-12 01:31:44,317 - root - INFO - Activation shape valid: 10
+2025-05-12 01:31:44,571 - root - INFO - Processed explanation 5/5 for layer 20, unit 4268
+2025-05-12 01:31:44,796 - root - INFO - Processing layer 20, unit 2988 (24/60)
+2025-05-12 01:32:23,307 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Qualifying_criteria_processes_and_requirements_for_opportunities_like_jobs_franchises_and_membership.txt
+2025-05-12 01:32:25,808 - root - INFO - Activation shape valid: 10
+2025-05-12 01:32:26,036 - root - INFO - Processed explanation 1/5 for layer 20, unit 2988
+2025-05-12 01:32:46,258 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_preparation_instructions_specifically_involving_grinding_peppercorns.txt
+2025-05-12 01:32:47,729 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-05-12 01:32:47,733 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Food_preparation_instructions_specifically_involving_grinding_peppercorns.txt
+2025-05-12 01:32:47,735 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:33:22,729 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_preparation_instructions_specifically_involving_grinding_peppercorns.txt
+2025-05-12 01:33:25,178 - root - INFO - Activation shape valid: 10
+2025-05-12 01:33:25,423 - root - INFO - Processed explanation 2/5 for layer 20, unit 2988
+2025-05-12 01:34:15,764 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Rules_and_guidelines_relating_to_transportation_and_accessibility_often_specifying_permitted_and_pro.txt
+2025-05-12 01:34:18,749 - root - INFO - Activation shape valid: 10
+2025-05-12 01:34:19,037 - root - INFO - Processed explanation 3/5 for layer 20, unit 2988
+2025-05-12 01:34:48,584 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_figures_legal_professionals_musicians_artists_writers_tour_guides_and_boxers_who_are_menti.txt
+2025-05-12 01:34:50,074 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-05-12 01:34:50,077 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Religious_figures_legal_professionals_musicians_artists_writers_tour_guides_and_boxers_who_are_menti.txt
+2025-05-12 01:34:50,079 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:35:29,748 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_figures_legal_professionals_musicians_artists_writers_tour_guides_and_boxers_who_are_menti.txt
+2025-05-12 01:35:32,241 - root - INFO - Activation shape valid: 10
+2025-05-12 01:35:32,486 - root - INFO - Processed explanation 4/5 for layer 20, unit 2988
+2025-05-12 01:36:16,517 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Real_estate_sales_rentals_or_services.txt
+2025-05-12 01:36:19,092 - root - INFO - Activation shape valid: 10
+2025-05-12 01:36:19,329 - root - INFO - Processed explanation 5/5 for layer 20, unit 2988
+2025-05-12 01:36:19,549 - root - INFO - Processing layer 20, unit 4683 (25/60)
+2025-05-12 01:36:37,955 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_discussion_of_past_events_influencing_subsequent_decisionsactionsoutcomes.txt
+2025-05-12 01:36:40,395 - root - INFO - Activation shape valid: 10
+2025-05-12 01:36:40,621 - root - INFO - Processed explanation 1/5 for layer 20, unit 4683
+2025-05-12 01:37:10,593 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Networkcircuit_management_involving_logical_circuits_and_data_routing.txt
+2025-05-12 01:37:13,065 - root - INFO - Activation shape valid: 10
+2025-05-12 01:37:13,296 - root - INFO - Processed explanation 2/5 for layer 20, unit 4683
+2025-05-12 01:37:51,118 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Recurrences_of_Chevy_Blazer_PlayerUnknowns_Battlegrounds_PUBG_Lena_Waithes_TV_show_The_Chi_and_Cheap.txt
+2025-05-12 01:37:53,651 - root - INFO - Activation shape valid: 10
+2025-05-12 01:37:53,880 - root - INFO - Processed explanation 3/5 for layer 20, unit 4683
+2025-05-12 01:39:04,122 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_specifically_caves_or_mountains_and_proper_nouns_related_to_locations.txt
+2025-05-12 01:39:06,615 - root - INFO - Activation shape valid: 10
+2025-05-12 01:39:06,845 - root - INFO - Processed explanation 4/5 for layer 20, unit 4683
+2025-05-12 01:40:09,560 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:40:12,449 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-05-12 01:40:12,452 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:40:12,455 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:40:29,284 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:40:29,657 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-05-12 01:40:29,659 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:40:29,661 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:41:20,752 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:41:22,602 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-05-12 01:41:22,605 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:41:22,607 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:42:23,938 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Types_of_quartz_and_their_properties_caulking_sealant_for_boats_corsets_smartwatches_sports_eyewear_.txt
+2025-05-12 01:42:26,533 - root - INFO - Activation shape valid: 10
+2025-05-12 01:42:26,780 - root - INFO - Processed explanation 5/5 for layer 20, unit 4683
+2025-05-12 01:42:27,002 - root - INFO - Processing layer 20, unit 6045 (26/60)
+2025-05-12 01:43:16,829 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Procedures_steps_or_instructions_sometimes_specifically_related_to_food_preparation_or_beautyskincar.txt
+2025-05-12 01:43:19,413 - root - INFO - Activation shape valid: 10
+2025-05-12 01:43:19,642 - root - INFO - Processed explanation 1/5 for layer 20, unit 6045
+2025-05-12 01:44:43,550 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Instructions_on_how_to_use_a_specific_software_or_application.txt
+2025-05-12 01:44:46,018 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-05-12 01:44:46,022 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Instructions_on_how_to_use_a_specific_software_or_application.txt
+2025-05-12 01:44:46,025 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:46:05,868 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Instructions_on_how_to_use_a_specific_software_or_application.txt
+2025-05-12 01:46:08,412 - root - INFO - Activation shape valid: 10
+2025-05-12 01:46:08,661 - root - INFO - Processed explanation 2/5 for layer 20, unit 6045
+2025-05-12 01:46:34,723 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Acts_of_kindness_generosity_or_assistance_often_involving_unexpected_events_or_difficult_circumstanc.txt
+2025-05-12 01:46:37,161 - root - INFO - Activation shape valid: 10
+2025-05-12 01:46:37,388 - root - INFO - Processed explanation 3/5 for layer 20, unit 6045
+2025-05-12 01:47:03,896 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_services_procedures_processes_or_products_especially_when_related_to_customers_or_clients.txt
+2025-05-12 01:47:06,354 - root - INFO - Activation shape valid: 10
+2025-05-12 01:47:06,583 - root - INFO - Processed explanation 4/5 for layer 20, unit 6045
+2025-05-12 01:48:15,397 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Instructions_or_descriptions_of_how_to_make_or_do_something.txt
+2025-05-12 01:48:17,863 - root - INFO - Activation shape valid: 10
+2025-05-12 01:48:18,093 - root - INFO - Processed explanation 5/5 for layer 20, unit 6045
+2025-05-12 01:48:18,315 - root - INFO - Processing layer 20, unit 5741 (27/60)
+2025-05-12 01:49:03,904 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Academic_citations_or_references.txt
+2025-05-12 01:49:06,430 - root - INFO - Activation shape valid: 10
+2025-05-12 01:49:06,664 - root - INFO - Processed explanation 1/5 for layer 20, unit 5741
+2025-05-12 01:49:31,397 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_excitement_appreciation_or_congratulations_often_related_to_new_items_experiences_or_.txt
+2025-05-12 01:49:33,860 - root - INFO - Activation shape valid: 10
+2025-05-12 01:49:34,086 - root - INFO - Processed explanation 2/5 for layer 20, unit 5741
+2025-05-12 01:50:04,547 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Location_product_specifications_or_services_offered.txt
+2025-05-12 01:50:06,984 - root - INFO - Activation shape valid: 10
+2025-05-12 01:50:07,211 - root - INFO - Processed explanation 3/5 for layer 20, unit 5741
+2025-05-12 01:50:45,699 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_dates_and_organizations_related_to_publications_events_or_media.txt
+2025-05-12 01:50:48,207 - root - INFO - Activation shape valid: 10
+2025-05-12 01:50:48,439 - root - INFO - Processed explanation 4/5 for layer 20, unit 5741
+2025-05-12 01:51:11,838 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:51:12,825 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 01:51:12,828 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:51:12,829 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:51:36,584 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:51:37,451 - root - WARNING - Wrong activation shape: 3. Removing this explanation.
+2025-05-12 01:51:37,453 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:51:37,455 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:52:24,830 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:52:26,803 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-05-12 01:52:26,807 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:52:26,809 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:53:19,269 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:53:22,110 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 01:53:22,113 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:53:22,115 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:53:38,780 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:53:39,766 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 01:53:39,769 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:53:39,771 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:54:04,022 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:54:05,016 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 01:54:05,019 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:54:05,020 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:54:24,028 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:54:25,011 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 01:54:25,014 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:54:25,016 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:54:58,828 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:55:00,350 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-05-12 01:55:00,353 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:55:00,354 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:55:25,737 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:55:26,725 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 01:55:26,727 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:55:26,729 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:55:50,274 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_strategy_advice_web_development_educational_meetups_career_certifications_joining_activist_.txt
+2025-05-12 01:55:52,738 - root - INFO - Activation shape valid: 10
+2025-05-12 01:55:52,988 - root - INFO - Processed explanation 5/5 for layer 20, unit 5741
+2025-05-12 01:55:53,210 - root - INFO - Processing layer 20, unit 5662 (28/60)
+2025-05-12 01:56:37,713 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_products_or_services_offered_by_businesses.txt
+2025-05-12 01:56:40,227 - root - INFO - Activation shape valid: 10
+2025-05-12 01:56:40,461 - root - INFO - Processed explanation 1/5 for layer 20, unit 5662
+2025-05-12 01:57:02,375 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_sentiment_approval_or_preference.txt
+2025-05-12 01:57:03,359 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 01:57:03,362 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Expressions_of_sentiment_approval_or_preference.txt
+2025-05-12 01:57:03,364 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:58:06,385 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_sentiment_approval_or_preference.txt
+2025-05-12 01:58:08,852 - root - INFO - Activation shape valid: 10
+2025-05-12 01:58:09,101 - root - INFO - Processed explanation 2/5 for layer 20, unit 5662
+2025-05-12 01:59:03,586 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 01:59:06,497 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 01:59:06,501 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 01:59:06,503 - root - INFO - Regenerating explanation samples...
+2025-05-12 01:59:59,878 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 02:00:02,698 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 02:00:02,701 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 02:00:02,703 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:01:09,852 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 02:01:12,679 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 02:01:12,682 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 02:01:12,683 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:01:57,403 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/New_experiences_including_software_programs_health_awareness_religion_hobbies_dialogue_formats_child.txt
+2025-05-12 02:01:59,856 - root - INFO - Activation shape valid: 10
+2025-05-12 02:02:00,085 - root - INFO - Processed explanation 3/5 for layer 20, unit 5662
+2025-05-12 02:02:26,895 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Ways_to_contact_support_or_a_specific_person_including_contact_forms_email_phone_whats_app_or_in_per.txt
+2025-05-12 02:02:29,344 - root - INFO - Activation shape valid: 10
+2025-05-12 02:02:29,574 - root - INFO - Processed explanation 4/5 for layer 20, unit 5662
+2025-05-12 02:03:13,724 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_short_summary_of_an_event_TV_show_book_article_or_online_post.txt
+2025-05-12 02:03:16,175 - root - INFO - Activation shape valid: 10
+2025-05-12 02:03:16,405 - root - INFO - Processed explanation 5/5 for layer 20, unit 5662
+2025-05-12 02:03:16,627 - root - INFO - Processing layer 20, unit 2679 (29/60)
+2025-05-12 02:03:55,915 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Specifications_instructions_or_descriptions_of_products_or_services.txt
+2025-05-12 02:03:58,358 - root - INFO - Activation shape valid: 10
+2025-05-12 02:03:58,586 - root - INFO - Processed explanation 1/5 for layer 20, unit 2679
+2025-05-12 02:04:32,284 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Seeking_or_providing_information_related_to_services_enrollment_in_educational_programs_or_participa.txt
+2025-05-12 02:04:34,743 - root - INFO - Activation shape valid: 10
+2025-05-12 02:04:34,972 - root - INFO - Processed explanation 2/5 for layer 20, unit 2679
+2025-05-12 02:05:21,460 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Product_descriptions.txt
+2025-05-12 02:05:23,916 - root - INFO - Activation shape valid: 10
+2025-05-12 02:05:24,145 - root - INFO - Processed explanation 3/5 for layer 20, unit 2679
+2025-05-12 02:06:07,969 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Schedules_or_listings_of_events_especially_related_to_sports_shows_or_exhibitions.txt
+2025-05-12 02:06:10,542 - root - INFO - Activation shape valid: 10
+2025-05-12 02:06:10,816 - root - INFO - Processed explanation 4/5 for layer 20, unit 2679
+2025-05-12 02:06:30,027 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_excitement_gratitude_or_enjoyment.txt
+2025-05-12 02:06:31,014 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 02:06:31,016 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Expressions_of_excitement_gratitude_or_enjoyment.txt
+2025-05-12 02:06:31,017 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:07:02,207 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_excitement_gratitude_or_enjoyment.txt
+2025-05-12 02:07:04,664 - root - INFO - Activation shape valid: 10
+2025-05-12 02:07:04,930 - root - INFO - Processed explanation 5/5 for layer 20, unit 2679
+2025-05-12 02:07:05,150 - root - INFO - Processing layer 20, unit 2869 (30/60)
+2025-05-12 02:07:32,483 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_recipes_product_reviews_or_descriptions_of_activities_and_hobbies.txt
+2025-05-12 02:07:34,374 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-05-12 02:07:34,377 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Culinary_recipes_product_reviews_or_descriptions_of_activities_and_hobbies.txt
+2025-05-12 02:07:34,379 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:08:16,989 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_recipes_product_reviews_or_descriptions_of_activities_and_hobbies.txt
+2025-05-12 02:08:19,439 - root - INFO - Activation shape valid: 10
+2025-05-12 02:08:19,670 - root - INFO - Processed explanation 1/5 for layer 20, unit 2869
+2025-05-12 02:09:02,650 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Educational_resources_services_or_programs_sometimes_specifically_about_Facebook_marketing_or_Canadi.txt
+2025-05-12 02:09:05,117 - root - INFO - Activation shape valid: 10
+2025-05-12 02:09:05,345 - root - INFO - Processed explanation 2/5 for layer 20, unit 2869
+2025-05-12 02:10:05,299 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Someones_experience_with_or_reflection_on_various_topics_including_coldness_warnings_inaction_excite.txt
+2025-05-12 02:10:07,751 - root - INFO - Activation shape valid: 10
+2025-05-12 02:10:07,991 - root - INFO - Processed explanation 3/5 for layer 20, unit 2869
+2025-05-12 02:10:40,412 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Visiting_or_participating_in_planned_events_activities_or_gatherings.txt
+2025-05-12 02:10:42,876 - root - INFO - Activation shape valid: 10
+2025-05-12 02:10:43,107 - root - INFO - Processed explanation 4/5 for layer 20, unit 2869
+2025-05-12 02:11:34,292 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Online_product_reviews_specifications_or_descriptions.txt
+2025-05-12 02:11:36,752 - root - INFO - Activation shape valid: 10
+2025-05-12 02:11:36,981 - root - INFO - Processed explanation 5/5 for layer 20, unit 2869
+2025-05-12 02:11:37,203 - root - INFO - Processing layer 20, unit 1424 (31/60)
+2025-05-12 02:12:21,945 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Legal_or_educational_information_related_to_children_testing_accommodations_or_web_development.txt
+2025-05-12 02:12:24,415 - root - INFO - Activation shape valid: 10
+2025-05-12 02:12:24,645 - root - INFO - Processed explanation 1/5 for layer 20, unit 1424
+2025-05-12 02:14:34,439 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_or_services_offered_by_businesses_including_details_like_sizes_or_models.txt
+2025-05-12 02:14:37,416 - root - WARNING - Wrong activation shape: 12. Removing this explanation.
+2025-05-12 02:14:37,419 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Products_or_services_offered_by_businesses_including_details_like_sizes_or_models.txt
+2025-05-12 02:14:37,421 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:15:04,973 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_or_services_offered_by_businesses_including_details_like_sizes_or_models.txt
+2025-05-12 02:15:07,481 - root - INFO - Activation shape valid: 10
+2025-05-12 02:15:07,729 - root - INFO - Processed explanation 2/5 for layer 20, unit 1424
+2025-05-12 02:16:05,457 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_names_questions_short_descriptions_of_products_website_links_or_bookmovie_reviews.txt
+2025-05-12 02:16:07,916 - root - INFO - Activation shape valid: 10
+2025-05-12 02:16:08,146 - root - INFO - Processed explanation 3/5 for layer 20, unit 1424
+2025-05-12 02:16:37,497 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Question_and_answer_related_to_politics_business_or_entertainment.txt
+2025-05-12 02:16:39,949 - root - INFO - Activation shape valid: 10
+2025-05-12 02:16:40,189 - root - INFO - Processed explanation 4/5 for layer 20, unit 1424
+2025-05-12 02:17:22,892 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Medical_treatments_health_wellness_relationships_and_lifestyle.txt
+2025-05-12 02:17:25,378 - root - INFO - Activation shape valid: 10
+2025-05-12 02:17:25,616 - root - INFO - Processed explanation 5/5 for layer 20, unit 1424
+2025-05-12 02:17:25,841 - root - INFO - Processing layer 20, unit 5278 (32/60)
+2025-05-12 02:17:57,195 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Software_version_numbers_software_support_software_release_dates_or_software_features.txt
+2025-05-12 02:17:59,716 - root - INFO - Activation shape valid: 10
+2025-05-12 02:17:59,947 - root - INFO - Processed explanation 1/5 for layer 20, unit 5278
+2025-05-12 02:18:45,686 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Home_improvement_cooking_or_musical_instruments.txt
+2025-05-12 02:18:48,159 - root - INFO - Activation shape valid: 10
+2025-05-12 02:18:48,388 - root - INFO - Processed explanation 2/5 for layer 20, unit 5278
+2025-05-12 02:19:19,280 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_dates_times_and_events.txt
+2025-05-12 02:19:21,765 - root - INFO - Activation shape valid: 10
+2025-05-12 02:19:21,996 - root - INFO - Processed explanation 3/5 for layer 20, unit 5278
+2025-05-12 02:19:47,905 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Medical_professionals_lawyers_business_executives_educators_or_those_involved_in_training_and_their_.txt
+2025-05-12 02:19:50,352 - root - INFO - Activation shape valid: 10
+2025-05-12 02:19:50,582 - root - INFO - Processed explanation 4/5 for layer 20, unit 5278
+2025-05-12 02:20:45,702 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Beauty_health_or_cooking_related_tips_or_remedies_especially_for_teenagers.txt
+2025-05-12 02:20:48,159 - root - INFO - Activation shape valid: 10
+2025-05-12 02:20:48,389 - root - INFO - Processed explanation 5/5 for layer 20, unit 5278
+2025-05-12 02:20:48,612 - root - INFO - Processing layer 20, unit 2325 (33/60)
+2025-05-12 02:21:38,439 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Eyewearglassesgoggles_for_sports_tactical_uses_or_fashion_as_well_as_clothing_and_appliances.txt
+2025-05-12 02:21:40,906 - root - INFO - Activation shape valid: 10
+2025-05-12 02:21:41,137 - root - INFO - Processed explanation 1/5 for layer 20, unit 2325
+2025-05-12 02:22:09,403 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_items_fashion_items_or_accessories_or_furniture_related_to_holidays_special_events_or_seasons.txt
+2025-05-12 02:22:11,898 - root - INFO - Activation shape valid: 10
+2025-05-12 02:22:12,128 - root - INFO - Processed explanation 2/5 for layer 20, unit 2325
+2025-05-12 02:22:38,945 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Someones_current_or_former_romantic_partner.txt
+2025-05-12 02:22:40,434 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-05-12 02:22:40,437 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Someones_current_or_former_romantic_partner.txt
+2025-05-12 02:22:40,439 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:23:10,821 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Someones_current_or_former_romantic_partner.txt
+2025-05-12 02:23:11,809 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 02:23:11,811 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Someones_current_or_former_romantic_partner.txt
+2025-05-12 02:23:11,813 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:23:53,851 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Someones_current_or_former_romantic_partner.txt
+2025-05-12 02:23:56,308 - root - INFO - Activation shape valid: 10
+2025-05-12 02:23:56,537 - root - INFO - Processed explanation 3/5 for layer 20, unit 2325
+2025-05-12 02:24:48,482 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Location_time_life_stage_retirement_plan_legal_terms_user_agreement_and_copyright_home_care_services.txt
+2025-05-12 02:24:50,994 - root - INFO - Activation shape valid: 10
+2025-05-12 02:24:51,226 - root - INFO - Processed explanation 4/5 for layer 20, unit 2325
+2025-05-12 02:25:25,009 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Facilitating_decisionmaking_processes_digital_platforms_and_marketplaces_often_involving_timelines_l.txt
+2025-05-12 02:25:26,371 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-05-12 02:25:26,375 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Facilitating_decisionmaking_processes_digital_platforms_and_marketplaces_often_involving_timelines_l.txt
+2025-05-12 02:25:26,376 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:26:06,423 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Facilitating_decisionmaking_processes_digital_platforms_and_marketplaces_often_involving_timelines_l.txt
+2025-05-12 02:26:08,876 - root - INFO - Activation shape valid: 10
+2025-05-12 02:26:09,105 - root - INFO - Processed explanation 5/5 for layer 20, unit 2325
+2025-05-12 02:26:09,328 - root - INFO - Processing layer 20, unit 2700 (34/60)
+2025-05-12 02:26:09,413 - root - INFO - File already exists, skipping generation: generated_text/gemini-1-5-pro/Locations_dates_times_and_events.txt
+2025-05-12 02:26:11,870 - root - INFO - Activation shape valid: 10
+2025-05-12 02:26:12,098 - root - INFO - Processed explanation 1/5 for layer 20, unit 2700
+2025-05-12 02:26:50,679 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Technical_specifications_or_descriptions_of_products_or_services.txt
+2025-05-12 02:26:53,131 - root - INFO - Activation shape valid: 10
+2025-05-12 02:26:53,360 - root - INFO - Processed explanation 2/5 for layer 20, unit 2700
+2025-05-12 02:28:08,981 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Descriptions_of_or_information_about_a_religious_figure_group_party_location_event_or_media.txt
+2025-05-12 02:28:11,463 - root - INFO - Activation shape valid: 10
+2025-05-12 02:28:11,692 - root - INFO - Processed explanation 3/5 for layer 20, unit 2700
+2025-05-12 02:28:38,914 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Positive_feedback_relating_to_various_topics.txt
+2025-05-12 02:28:41,493 - root - INFO - Activation shape valid: 10
+2025-05-12 02:28:41,725 - root - INFO - Processed explanation 4/5 for layer 20, unit 2700
+2025-05-12 02:29:42,445 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Personal_introduction_frequently_containing_information_about_occupation_hobbies_or_personal_qualiti.txt
+2025-05-12 02:29:44,936 - root - INFO - Activation shape valid: 10
+2025-05-12 02:29:45,181 - root - INFO - Processed explanation 5/5 for layer 20, unit 2700
+2025-05-12 02:29:45,406 - root - INFO - Processing layer 20, unit 3313 (35/60)
+2025-05-12 02:30:12,782 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Contests_events_or_promotions_with_a_deadline_and_information_about_how_to_participate_or_win.txt
+2025-05-12 02:30:15,263 - root - INFO - Activation shape valid: 10
+2025-05-12 02:30:15,496 - root - INFO - Processed explanation 1/5 for layer 20, unit 3313
+2025-05-12 02:30:50,349 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_recap_of_a_raid_encounter_followed_by_an_announcement_of_a_quest_completion_and_an_item_drop_and_f.txt
+2025-05-12 02:30:52,802 - root - INFO - Activation shape valid: 10
+2025-05-12 02:30:53,030 - root - INFO - Processed explanation 2/5 for layer 20, unit 3313
+2025-05-12 02:31:50,237 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Commercial_or_promotional_content_containing_prices_quantities_product_types_or_deals.txt
+2025-05-12 02:31:52,699 - root - INFO - Activation shape valid: 10
+2025-05-12 02:31:52,929 - root - INFO - Processed explanation 3/5 for layer 20, unit 3313
+2025-05-12 02:33:07,243 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Types_of_activities_including_festive_gatherings_software_projects_competitions_educational_resource.txt
+2025-05-12 02:33:09,720 - root - INFO - Activation shape valid: 10
+2025-05-12 02:33:09,951 - root - INFO - Processed explanation 4/5 for layer 20, unit 3313
+2025-05-12 02:33:37,243 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Competition_or_award_winners.txt
+2025-05-12 02:33:39,708 - root - INFO - Activation shape valid: 10
+2025-05-12 02:33:39,939 - root - INFO - Processed explanation 5/5 for layer 20, unit 3313
+2025-05-12 02:33:40,162 - root - INFO - Processing layer 20, unit 1004 (36/60)
+2025-05-12 02:34:25,492 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Times_and_dates_especially_years.txt
+2025-05-12 02:34:27,945 - root - INFO - Activation shape valid: 10
+2025-05-12 02:34:28,173 - root - INFO - Processed explanation 1/5 for layer 20, unit 1004
+2025-05-12 02:35:00,286 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Items_related_to_food_drinks_or_dishes_and_their_characteristics_sometimes_with_measurements_or_quan.txt
+2025-05-12 02:35:02,820 - root - INFO - Activation shape valid: 10
+2025-05-12 02:35:03,052 - root - INFO - Processed explanation 2/5 for layer 20, unit 1004
+2025-05-12 02:35:32,526 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Transportation_products_locations_or_people_related_to_cars_vehicles_or_boats.txt
+2025-05-12 02:35:34,980 - root - INFO - Activation shape valid: 10
+2025-05-12 02:35:35,210 - root - INFO - Processed explanation 3/5 for layer 20, unit 1004
+2025-05-12 02:35:55,862 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Business_planning_setup_strategy_and_finances.txt
+2025-05-12 02:35:58,314 - root - INFO - Activation shape valid: 10
+2025-05-12 02:35:58,544 - root - INFO - Processed explanation 4/5 for layer 20, unit 1004
+2025-05-12 02:36:27,652 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_and_temporal_information_often_associated_with_events_journeys_or_situations_involving_wea.txt
+2025-05-12 02:36:30,104 - root - INFO - Activation shape valid: 10
+2025-05-12 02:36:30,332 - root - INFO - Processed explanation 5/5 for layer 20, unit 1004
+2025-05-12 02:36:30,554 - root - INFO - Processing layer 20, unit 4447 (37/60)
+2025-05-12 02:37:04,479 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_dishes_often_with_a_specific_type_of_food_mentioned.txt
+2025-05-12 02:37:06,931 - root - INFO - Activation shape valid: 10
+2025-05-12 02:37:07,160 - root - INFO - Processed explanation 1/5 for layer 20, unit 4447
+2025-05-12 02:37:33,578 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_strong_emotions_or_opinions_often_related_to_personal_experiences.txt
+2025-05-12 02:37:35,059 - root - WARNING - Wrong activation shape: 6. Removing this explanation.
+2025-05-12 02:37:35,061 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Expressions_of_strong_emotions_or_opinions_often_related_to_personal_experiences.txt
+2025-05-12 02:37:35,063 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:38:07,863 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressions_of_strong_emotions_or_opinions_often_related_to_personal_experiences.txt
+2025-05-12 02:38:10,360 - root - INFO - Activation shape valid: 10
+2025-05-12 02:38:10,589 - root - INFO - Processed explanation 2/5 for layer 20, unit 4447
+2025-05-12 02:39:09,362 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_activities_or_gatherings_sports_parades_classes_exhibitions_speed_dating_tasting.txt
+2025-05-12 02:39:11,833 - root - INFO - Activation shape valid: 10
+2025-05-12 02:39:12,063 - root - INFO - Processed explanation 3/5 for layer 20, unit 4447
+2025-05-12 02:39:43,237 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_sizes_or_other_specifications.txt
+2025-05-12 02:39:45,708 - root - INFO - Activation shape valid: 10
+2025-05-12 02:39:45,939 - root - INFO - Processed explanation 4/5 for layer 20, unit 4447
+2025-05-12 02:40:05,173 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questions_about_communication_methods_education_levels_and_curriculum_business_strategies_software_c.txt
+2025-05-12 02:40:06,158 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 02:40:06,161 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Questions_about_communication_methods_education_levels_and_curriculum_business_strategies_software_c.txt
+2025-05-12 02:40:06,162 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:40:32,579 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questions_about_communication_methods_education_levels_and_curriculum_business_strategies_software_c.txt
+2025-05-12 02:40:33,065 - root - WARNING - Wrong activation shape: 1. Removing this explanation.
+2025-05-12 02:40:33,068 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Questions_about_communication_methods_education_levels_and_curriculum_business_strategies_software_c.txt
+2025-05-12 02:40:33,070 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:41:11,274 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questions_about_communication_methods_education_levels_and_curriculum_business_strategies_software_c.txt
+2025-05-12 02:41:13,745 - root - INFO - Activation shape valid: 10
+2025-05-12 02:41:13,987 - root - INFO - Processed explanation 5/5 for layer 20, unit 4447
+2025-05-12 02:41:14,210 - root - INFO - Processing layer 20, unit 1406 (38/60)
+2025-05-12 02:41:56,288 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_about_media_books_TV_shows_films_music_video_games_often_mentioning_specific_titlesartis.txt
+2025-05-12 02:41:58,753 - root - INFO - Activation shape valid: 10
+2025-05-12 02:41:58,983 - root - INFO - Processed explanation 1/5 for layer 20, unit 1406
+2025-05-12 02:42:26,220 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Access_information_for_events_venues_businesses_services_or_alumni_directories.txt
+2025-05-12 02:42:28,678 - root - INFO - Activation shape valid: 10
+2025-05-12 02:42:28,907 - root - INFO - Processed explanation 2/5 for layer 20, unit 1406
+2025-05-12 02:42:55,735 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questions_about_software_usage_features_or_jobsopportunities_especially_for_specific_groups_or_field.txt
+2025-05-12 02:42:58,193 - root - INFO - Activation shape valid: 10
+2025-05-12 02:42:58,423 - root - INFO - Processed explanation 3/5 for layer 20, unit 1406
+2025-05-12 02:43:59,934 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Clothing_furniture_or_household_items_often_with_a_brand_size_or_color.txt
+2025-05-12 02:44:02,476 - root - INFO - Activation shape valid: 10
+2025-05-12 02:44:02,728 - root - INFO - Processed explanation 4/5 for layer 20, unit 1406
+2025-05-12 02:44:26,989 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Requests_or_questions_related_to_joining_subscribing_registering_donating_or_participating_often_rel.txt
+2025-05-12 02:44:29,446 - root - INFO - Activation shape valid: 10
+2025-05-12 02:44:29,676 - root - INFO - Processed explanation 5/5 for layer 20, unit 1406
+2025-05-12 02:44:29,906 - root - INFO - Processing layer 20, unit 3885 (39/60)
+2025-05-12 02:44:49,851 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trips_new_arrivals_babies_or_people_returning_from_trips_accomplishments_sports_events_or_entertainm.txt
+2025-05-12 02:44:52,301 - root - INFO - Activation shape valid: 10
+2025-05-12 02:44:52,530 - root - INFO - Processed explanation 1/5 for layer 20, unit 3885
+2025-05-12 02:45:34,003 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Product_descriptions_including_clothing_items_electronics_and_accessories.txt
+2025-05-12 02:45:36,464 - root - INFO - Activation shape valid: 10
+2025-05-12 02:45:36,696 - root - INFO - Processed explanation 2/5 for layer 20, unit 3885
+2025-05-12 02:46:16,658 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Government_legal_and_organizational_structures_processes_and_publications.txt
+2025-05-12 02:46:19,113 - root - INFO - Activation shape valid: 10
+2025-05-12 02:46:19,342 - root - INFO - Processed explanation 3/5 for layer 20, unit 3885
+2025-05-12 02:47:00,033 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_companyorganization_names_productservice_names_and_project_names.txt
+2025-05-12 02:47:02,495 - root - INFO - Activation shape valid: 10
+2025-05-12 02:47:02,726 - root - INFO - Processed explanation 4/5 for layer 20, unit 3885
+2025-05-12 02:48:12,061 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Unexpected_surprising_or_unplanned_events.txt
+2025-05-12 02:48:14,557 - root - INFO - Activation shape valid: 10
+2025-05-12 02:48:14,790 - root - INFO - Processed explanation 5/5 for layer 20, unit 3885
+2025-05-12 02:48:15,013 - root - INFO - Processing layer 20, unit 1790 (40/60)
+2025-05-12 02:48:53,849 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Government_services_job_postings_medical_information_academic_programs_and_event_details.txt
+2025-05-12 02:48:56,385 - root - INFO - Activation shape valid: 10
+2025-05-12 02:48:56,630 - root - INFO - Processed explanation 1/5 for layer 20, unit 1790
+2025-05-12 02:49:35,145 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_descriptions_and_other_short_summaries_of_creative_works_including_books_music_art_websites_t.txt
+2025-05-12 02:49:37,632 - root - INFO - Activation shape valid: 10
+2025-05-12 02:49:37,864 - root - INFO - Processed explanation 2/5 for layer 20, unit 1790
+2025-05-12 02:50:06,537 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Real_estate_automotive_or_home_improvement_services_or_products.txt
+2025-05-12 02:50:09,019 - root - INFO - Activation shape valid: 10
+2025-05-12 02:50:09,253 - root - INFO - Processed explanation 3/5 for layer 20, unit 1790
+2025-05-12 02:50:32,835 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Internet_technology_business_models_computer_programs_and_learning_materials_related_to_ecommerce_bu.txt
+2025-05-12 02:50:35,291 - root - INFO - Activation shape valid: 10
+2025-05-12 02:50:35,521 - root - INFO - Processed explanation 4/5 for layer 20, unit 1790
+2025-05-12 02:51:45,835 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:51:48,799 - root - WARNING - Wrong activation shape: 12. Removing this explanation.
+2025-05-12 02:51:48,802 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:51:48,804 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:52:38,089 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:52:40,927 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 02:52:40,930 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:52:40,932 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:54:19,387 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:54:22,736 - root - WARNING - Wrong activation shape: 13. Removing this explanation.
+2025-05-12 02:54:22,740 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:54:22,742 - root - INFO - Regenerating explanation samples...
+2025-05-12 02:55:30,417 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Short_descriptions_of_products_activities_or_personal_interests.txt
+2025-05-12 02:55:32,903 - root - INFO - Activation shape valid: 10
+2025-05-12 02:55:33,160 - root - INFO - Processed explanation 5/5 for layer 20, unit 1790
+2025-05-12 02:55:33,384 - root - INFO - Processing layer 40, unit 4965 (41/60)
+2025-05-12 02:56:29,149 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Product_mentions_in_commercial_contexts.txt
+2025-05-12 02:56:31,609 - root - INFO - Activation shape valid: 10
+2025-05-12 02:56:31,838 - root - INFO - Processed explanation 1/5 for layer 40, unit 4965
+2025-05-12 02:57:05,116 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Temporal_expressions_indicating_recency_followed_by_descriptions_of_media_movies_music_TV_shows_or_e.txt
+2025-05-12 02:57:07,577 - root - INFO - Activation shape valid: 10
+2025-05-12 02:57:07,808 - root - INFO - Processed explanation 2/5 for layer 40, unit 4965
+2025-05-12 02:57:45,541 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_politics_law_or_policy_especially_those_related_to_politicians_actions_or_legal_cases.txt
+2025-05-12 02:57:47,996 - root - INFO - Activation shape valid: 10
+2025-05-12 02:57:48,225 - root - INFO - Processed explanation 3/5 for layer 40, unit 4965
+2025-05-12 02:58:09,141 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questioning_the_value_relevance_or_prevalence_of_various_cultural_trends_and_societal_issues.txt
+2025-05-12 02:58:11,598 - root - INFO - Activation shape valid: 10
+2025-05-12 02:58:11,830 - root - INFO - Processed explanation 4/5 for layer 40, unit 4965
+2025-05-12 02:59:01,367 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titlesroles_in_companies_related_to_technology_marketing_andor_finance.txt
+2025-05-12 02:59:03,832 - root - INFO - Activation shape valid: 10
+2025-05-12 02:59:04,065 - root - INFO - Processed explanation 5/5 for layer 40, unit 4965
+2025-05-12 02:59:04,287 - root - INFO - Processing layer 40, unit 3948 (42/60)
+2025-05-12 02:59:38,863 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Descriptions_of_product_features_and_specifications.txt
+2025-05-12 02:59:41,317 - root - INFO - Activation shape valid: 10
+2025-05-12 02:59:41,595 - root - INFO - Processed explanation 1/5 for layer 40, unit 3948
+2025-05-12 03:00:24,190 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_celebrations_and_opportunities_related_to_entertainment_leisure_activities_or_gatherings_espe.txt
+2025-05-12 03:00:26,658 - root - INFO - Activation shape valid: 10
+2025-05-12 03:00:26,888 - root - INFO - Processed explanation 2/5 for layer 40, unit 3948
+2025-05-12 03:01:05,496 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Experiences_related_to_trying_new_establishments_or_products_often_accompanied_by_comments_about_qua.txt
+2025-05-12 03:01:07,999 - root - INFO - Activation shape valid: 10
+2025-05-12 03:01:08,246 - root - INFO - Processed explanation 3/5 for layer 40, unit 3948
+2025-05-12 03:01:34,266 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_services_and_products_related_to_accommodation_food_and_transportation.txt
+2025-05-12 03:01:36,726 - root - INFO - Activation shape valid: 10
+2025-05-12 03:01:36,956 - root - INFO - Processed explanation 4/5 for layer 40, unit 3948
+2025-05-12 03:02:50,050 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Jamaican_Patois_features_and_difficulties.txt
+2025-05-12 03:02:52,517 - root - INFO - Activation shape valid: 10
+2025-05-12 03:02:52,749 - root - INFO - Processed explanation 5/5 for layer 40, unit 3948
+2025-05-12 03:02:52,973 - root - INFO - Processing layer 40, unit 4055 (43/60)
+2025-05-12 03:03:58,886 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Themes_of_entertainment_business_and_personal_life_events_with_a_focus_on_specific_named_entities_li.txt
+2025-05-12 03:04:01,464 - root - INFO - Activation shape valid: 10
+2025-05-12 03:04:01,696 - root - INFO - Processed explanation 1/5 for layer 40, unit 4055
+2025-05-12 03:04:34,913 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Changes_and_upgrades_related_to_automobiles_electronics_and_programming_languages.txt
+2025-05-12 03:04:37,372 - root - INFO - Activation shape valid: 10
+2025-05-12 03:04:37,603 - root - INFO - Processed explanation 2/5 for layer 40, unit 4055
+2025-05-12 03:05:07,358 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Items_often_food_or_dolls_and_their_descriptions_including_names_brands_prices_and_characteristics.txt
+2025-05-12 03:05:09,814 - root - INFO - Activation shape valid: 10
+2025-05-12 03:05:10,046 - root - INFO - Processed explanation 3/5 for layer 40, unit 4055
+2025-05-12 03:05:37,862 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Airline_education_or_business_operations_and_leadership.txt
+2025-05-12 03:05:40,320 - root - INFO - Activation shape valid: 10
+2025-05-12 03:05:40,551 - root - INFO - Processed explanation 4/5 for layer 40, unit 4055
+2025-05-12 03:06:04,315 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/The_positive_impact_of_education_on_women_their_families_and_society_including_examples_of_inspiring.txt
+2025-05-12 03:06:06,782 - root - INFO - Activation shape valid: 10
+2025-05-12 03:06:07,015 - root - INFO - Processed explanation 5/5 for layer 40, unit 4055
+2025-05-12 03:06:07,239 - root - INFO - Processing layer 40, unit 824 (44/60)
+2025-05-12 03:06:50,600 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_question_followed_by_an_answer_related_to_personal_experiences_often_involving_past_events_and_som.txt
+2025-05-12 03:06:53,062 - root - INFO - Activation shape valid: 10
+2025-05-12 03:06:53,293 - root - INFO - Processed explanation 1/5 for layer 40, unit 824
+2025-05-12 03:07:31,737 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Data_privacy_security_and_usage_especially_related_to_online_services_applications_and_software.txt
+2025-05-12 03:07:34,199 - root - INFO - Activation shape valid: 10
+2025-05-12 03:07:34,430 - root - INFO - Processed explanation 2/5 for layer 40, unit 824
+2025-05-12 03:08:01,530 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Automotive_features_design_and_engineering_especially_of_Mercedes_XClass_and_BMW_328.txt
+2025-05-12 03:08:04,017 - root - INFO - Activation shape valid: 10
+2025-05-12 03:08:04,249 - root - INFO - Processed explanation 3/5 for layer 40, unit 824
+2025-05-12 03:08:26,287 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Legal_personal_information_client_data_management_and_relevant_regulations.txt
+2025-05-12 03:08:28,747 - root - INFO - Activation shape valid: 10
+2025-05-12 03:08:28,977 - root - INFO - Processed explanation 4/5 for layer 40, unit 824
+2025-05-12 03:09:01,022 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_scandal_often_of_a_political_nature.txt
+2025-05-12 03:09:03,480 - root - INFO - Activation shape valid: 10
+2025-05-12 03:09:03,748 - root - INFO - Processed explanation 5/5 for layer 40, unit 824
+2025-05-12 03:09:03,985 - root - INFO - Processing layer 40, unit 1823 (45/60)
+2025-05-12 03:09:37,501 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Heavy_duty_work_boots_home_ideas_mobile_power_supplies_LED_pole_lights_xenon_lights_aspheric_lenses_.txt
+2025-05-12 03:09:39,976 - root - INFO - Activation shape valid: 10
+2025-05-12 03:09:40,210 - root - INFO - Processed explanation 1/5 for layer 40, unit 1823
+2025-05-12 03:10:37,540 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:10:40,392 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:10:40,395 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:10:40,396 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:11:41,396 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:11:44,263 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:11:44,266 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:11:44,268 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:12:34,419 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:12:37,254 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:12:37,257 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:12:37,259 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:13:06,345 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trips_and_journeys_especially_those_related_to_weddings_and_ceremonies.txt
+2025-05-12 03:13:08,808 - root - INFO - Activation shape valid: 10
+2025-05-12 03:13:09,041 - root - INFO - Processed explanation 2/5 for layer 40, unit 1823
+2025-05-12 03:13:30,683 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Cosmetics_food_and_crafts_descriptions_with_time_references.txt
+2025-05-12 03:13:32,087 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-05-12 03:13:32,091 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Cosmetics_food_and_crafts_descriptions_with_time_references.txt
+2025-05-12 03:13:32,093 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:14:33,233 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Cosmetics_food_and_crafts_descriptions_with_time_references.txt
+2025-05-12 03:14:35,713 - root - INFO - Activation shape valid: 10
+2025-05-12 03:14:35,945 - root - INFO - Processed explanation 3/5 for layer 40, unit 1823
+2025-05-12 03:15:07,915 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Remembrance_and_reflection_on_important_life_events.txt
+2025-05-12 03:15:10,433 - root - INFO - Activation shape valid: 10
+2025-05-12 03:15:10,666 - root - INFO - Processed explanation 4/5 for layer 40, unit 1823
+2025-05-12 03:15:46,364 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Nuclear_incidents_solar_flares_medical_conditions_special_economic_zones_and_computer_software_updat.txt
+2025-05-12 03:15:48,818 - root - INFO - Activation shape valid: 10
+2025-05-12 03:15:49,048 - root - INFO - Processed explanation 5/5 for layer 40, unit 1823
+2025-05-12 03:15:49,272 - root - INFO - Processing layer 40, unit 5557 (46/60)
+2025-05-12 03:16:16,797 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/New_features_and_functionalities_in_the_latest_Android_version_Android_M_particularly_focusing_on_to.txt
+2025-05-12 03:16:19,289 - root - INFO - Activation shape valid: 10
+2025-05-12 03:16:19,521 - root - INFO - Processed explanation 1/5 for layer 40, unit 5557
+2025-05-12 03:16:50,774 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Trips_exams_and_events_and_festivals.txt
+2025-05-12 03:16:53,237 - root - INFO - Activation shape valid: 10
+2025-05-12 03:16:53,470 - root - INFO - Processed explanation 2/5 for layer 40, unit 5557
+2025-05-12 03:17:25,044 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Concepts_of_relationships_love_and_methods_of_influencing_or_improving_them_sometimes_involving_ritu.txt
+2025-05-12 03:17:27,542 - root - INFO - Activation shape valid: 10
+2025-05-12 03:17:27,776 - root - INFO - Processed explanation 3/5 for layer 40, unit 5557
+2025-05-12 03:18:05,103 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questions_about_job_opportunities_in_the_Indian_Railways_specifically_for_BTech_CSE_graduates_includ.txt
+2025-05-12 03:18:07,569 - root - INFO - Activation shape valid: 10
+2025-05-12 03:18:07,800 - root - INFO - Processed explanation 4/5 for layer 40, unit 5557
+2025-05-12 03:18:47,099 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Product_descriptions_including_product_specifications.txt
+2025-05-12 03:18:49,555 - root - INFO - Activation shape valid: 10
+2025-05-12 03:18:49,786 - root - INFO - Processed explanation 5/5 for layer 40, unit 5557
+2025-05-12 03:18:50,010 - root - INFO - Processing layer 40, unit 1516 (47/60)
+2025-05-12 03:19:25,690 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_sites_specifically_temples_and_their_historical_significance_including_pilgrimages_and_rec.txt
+2025-05-12 03:19:28,290 - root - INFO - Activation shape valid: 10
+2025-05-12 03:19:28,522 - root - INFO - Processed explanation 1/5 for layer 40, unit 1516
+2025-05-12 03:20:00,929 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Travel_transportation_or_accommodation_services.txt
+2025-05-12 03:20:01,939 - root - WARNING - Wrong activation shape: 4. Removing this explanation.
+2025-05-12 03:20:01,942 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Travel_transportation_or_accommodation_services.txt
+2025-05-12 03:20:01,944 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:20:48,794 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Travel_transportation_or_accommodation_services.txt
+2025-05-12 03:20:51,307 - root - INFO - Activation shape valid: 10
+2025-05-12 03:20:51,541 - root - INFO - Processed explanation 2/5 for layer 40, unit 1516
+2025-05-12 03:21:28,382 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Medical_conditions_often_related_to_inflammation_or_immune_response.txt
+2025-05-12 03:21:30,851 - root - INFO - Activation shape valid: 10
+2025-05-12 03:21:31,081 - root - INFO - Processed explanation 3/5 for layer 40, unit 1516
+2025-05-12 03:22:10,495 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Intention_experience_state_of_mind.txt
+2025-05-12 03:22:12,956 - root - INFO - Activation shape valid: 10
+2025-05-12 03:22:13,187 - root - INFO - Processed explanation 4/5 for layer 40, unit 1516
+2025-05-12 03:22:42,275 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Items_or_products_with_delicate_intricate_details.txt
+2025-05-12 03:22:44,741 - root - INFO - Activation shape valid: 10
+2025-05-12 03:22:44,976 - root - INFO - Processed explanation 5/5 for layer 40, unit 1516
+2025-05-12 03:22:45,202 - root - INFO - Processing layer 40, unit 364 (48/60)
+2025-05-12 03:23:12,981 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Food_items_especially_desserts_and_meals_with_some_recipe_details.txt
+2025-05-12 03:23:15,446 - root - INFO - Activation shape valid: 10
+2025-05-12 03:23:15,678 - root - INFO - Processed explanation 1/5 for layer 40, unit 364
+2025-05-12 03:23:43,989 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Regulations_terms_and_conditions_especially_related_to_legal_agreements_licenses_or_usage_policies.txt
+2025-05-12 03:23:46,457 - root - INFO - Activation shape valid: 10
+2025-05-12 03:23:46,689 - root - INFO - Processed explanation 2/5 for layer 40, unit 364
+2025-05-12 03:24:27,784 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Recipes_for_dog_cupcakestreats_with_descriptions_of_various_other_food_items_containing_fruit.txt
+2025-05-12 03:24:30,404 - root - INFO - Activation shape valid: 10
+2025-05-12 03:24:30,639 - root - INFO - Processed explanation 3/5 for layer 40, unit 364
+2025-05-12 03:25:41,651 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_monthly_update_regarding_software_a_websites_terms_and_conditions_a_companys_data_usage_policy_the.txt
+2025-05-12 03:25:43,639 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-05-12 03:25:43,643 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/A_monthly_update_regarding_software_a_websites_terms_and_conditions_a_companys_data_usage_policy_the.txt
+2025-05-12 03:25:43,644 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:26:18,661 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_monthly_update_regarding_software_a_websites_terms_and_conditions_a_companys_data_usage_policy_the.txt
+2025-05-12 03:26:21,127 - root - INFO - Activation shape valid: 10
+2025-05-12 03:26:21,358 - root - INFO - Processed explanation 4/5 for layer 40, unit 364
+2025-05-12 03:27:32,561 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Travel_food_and_weather.txt
+2025-05-12 03:27:35,395 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:27:35,399 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Travel_food_and_weather.txt
+2025-05-12 03:27:35,400 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:28:35,400 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Travel_food_and_weather.txt
+2025-05-12 03:28:37,878 - root - INFO - Activation shape valid: 10
+2025-05-12 03:28:38,112 - root - INFO - Processed explanation 5/5 for layer 40, unit 364
+2025-05-12 03:28:38,336 - root - INFO - Processing layer 40, unit 4808 (49/60)
+2025-05-12 03:29:09,377 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Financialeconomic_topics_organizations_related_to_financeeconomy_company_decisions_finances_and_gove.txt
+2025-05-12 03:29:11,836 - root - INFO - Activation shape valid: 10
+2025-05-12 03:29:12,069 - root - INFO - Processed explanation 1/5 for layer 40, unit 4808
+2025-05-12 03:29:46,518 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Sports_games_and_competitions_especially_wins_scores_and_player_performances.txt
+2025-05-12 03:29:49,018 - root - INFO - Activation shape valid: 10
+2025-05-12 03:29:49,250 - root - INFO - Processed explanation 2/5 for layer 40, unit 4808
+2025-05-12 03:30:19,974 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_about_marketing_strategies_especially_digital_marketing_and_advertising_with_a_focus_on_.txt
+2025-05-12 03:30:22,448 - root - INFO - Activation shape valid: 10
+2025-05-12 03:30:22,693 - root - INFO - Processed explanation 3/5 for layer 40, unit 4808
+2025-05-12 03:30:53,194 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Themes_of_sentimental_value_appreciation_and_positive_emotions_related_to_gifts_and_cherished_items_.txt
+2025-05-12 03:30:55,676 - root - INFO - Activation shape valid: 10
+2025-05-12 03:30:55,908 - root - INFO - Processed explanation 4/5 for layer 40, unit 4808
+2025-05-12 03:31:28,895 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Home_fixtures_car_parts_shipping_financial_products_presidents_cars_camping_car_maintenance_batterie.txt
+2025-05-12 03:31:30,749 - root - WARNING - Wrong activation shape: 7. Removing this explanation.
+2025-05-12 03:31:30,752 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Home_fixtures_car_parts_shipping_financial_products_presidents_cars_camping_car_maintenance_batterie.txt
+2025-05-12 03:31:30,754 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:32:11,995 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Home_fixtures_car_parts_shipping_financial_products_presidents_cars_camping_car_maintenance_batterie.txt
+2025-05-12 03:32:14,456 - root - INFO - Activation shape valid: 10
+2025-05-12 03:32:14,691 - root - INFO - Processed explanation 5/5 for layer 40, unit 4808
+2025-05-12 03:32:14,920 - root - INFO - Processing layer 40, unit 3612 (50/60)
+2025-05-12 03:32:52,223 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Questions_about_a_subject_especially_in_business_or_formal_writing_and_questions_about_feedback_for_.txt
+2025-05-12 03:32:54,683 - root - INFO - Activation shape valid: 10
+2025-05-12 03:32:54,914 - root - INFO - Processed explanation 1/5 for layer 40, unit 3612
+2025-05-12 03:33:22,331 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Alcohol_consumption_during_pregnancy_and_its_effects.txt
+2025-05-12 03:33:24,796 - root - INFO - Activation shape valid: 10
+2025-05-12 03:33:25,028 - root - INFO - Processed explanation 2/5 for layer 40, unit 3612
+2025-05-12 03:33:58,674 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Benefits_of_avocado.txt
+2025-05-12 03:34:01,143 - root - INFO - Activation shape valid: 10
+2025-05-12 03:34:01,375 - root - INFO - Processed explanation 3/5 for layer 40, unit 3612
+2025-05-12 03:34:44,313 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_events_and_services.txt
+2025-05-12 03:34:46,795 - root - INFO - Activation shape valid: 10
+2025-05-12 03:34:47,028 - root - INFO - Processed explanation 4/5 for layer 40, unit 3612
+2025-05-12 03:35:23,953 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Color_mixing_color_testing_color_combinations_color_schemes_color_scales_color_representation_color_.txt
+2025-05-12 03:35:26,424 - root - INFO - Activation shape valid: 10
+2025-05-12 03:35:26,658 - root - INFO - Processed explanation 5/5 for layer 40, unit 3612
+2025-05-12 03:35:26,882 - root - INFO - Processing layer 40, unit 6364 (51/60)
+2025-05-12 03:36:00,415 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Brewing_beer_styles_ingredients_and_brewing_processes.txt
+2025-05-12 03:36:02,901 - root - INFO - Activation shape valid: 10
+2025-05-12 03:36:03,134 - root - INFO - Processed explanation 1/5 for layer 40, unit 6364
+2025-05-12 03:36:39,526 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_faith_family_life_and_travel_experiences_especially_difficult_travel_situations.txt
+2025-05-12 03:36:41,984 - root - INFO - Activation shape valid: 10
+2025-05-12 03:36:42,216 - root - INFO - Processed explanation 2/5 for layer 40, unit 6364
+2025-05-12 03:37:17,493 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Automotive_features_fuel_efficiency_mileage_and_model_year_often_related_to_preowned_vehicles.txt
+2025-05-12 03:37:19,959 - root - INFO - Activation shape valid: 10
+2025-05-12 03:37:20,192 - root - INFO - Processed explanation 3/5 for layer 40, unit 6364
+2025-05-12 03:37:51,022 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Data_structures_data_transfer_data_networks_data_routing_network_management_patents_information_tech.txt
+2025-05-12 03:37:53,483 - root - INFO - Activation shape valid: 10
+2025-05-12 03:37:53,715 - root - INFO - Processed explanation 4/5 for layer 40, unit 6364
+2025-05-12 03:38:19,877 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_in_geographic_regions_and_attacks_related_to_armed_conflicts.txt
+2025-05-12 03:38:22,382 - root - INFO - Activation shape valid: 10
+2025-05-12 03:38:22,613 - root - INFO - Processed explanation 5/5 for layer 40, unit 6364
+2025-05-12 03:38:22,837 - root - INFO - Processing layer 40, unit 3515 (52/60)
+2025-05-12 03:38:57,335 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Products_or_services_related_to_automotive_allergies_health_beauty_gardening_and_home_improvement.txt
+2025-05-12 03:38:59,819 - root - INFO - Activation shape valid: 10
+2025-05-12 03:39:00,054 - root - INFO - Processed explanation 1/5 for layer 40, unit 3515
+2025-05-12 03:39:32,964 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Locations_often_cities_and_events_or_festivals_especially_related_to_shoes_or_footwear.txt
+2025-05-12 03:39:35,450 - root - INFO - Activation shape valid: 10
+2025-05-12 03:39:35,683 - root - INFO - Processed explanation 2/5 for layer 40, unit 3515
+2025-05-12 03:40:03,730 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_persons_accomplishments_specifically_their_first_achievements_in_sports_politics_or_academics.txt
+2025-05-12 03:40:06,190 - root - INFO - Activation shape valid: 10
+2025-05-12 03:40:06,422 - root - INFO - Processed explanation 3/5 for layer 40, unit 3515
+2025-05-12 03:40:34,285 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Philippine_economy_and_trade_education_programs_and_accreditation_home_improvement_double_glazing_so.txt
+2025-05-12 03:40:36,750 - root - INFO - Activation shape valid: 10
+2025-05-12 03:40:36,983 - root - INFO - Processed explanation 4/5 for layer 40, unit 3515
+2025-05-12 03:41:02,757 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_or_spiritual_figures_starting_new_movements_programs_or_organizations_often_involving_educ.txt
+2025-05-12 03:41:05,221 - root - INFO - Activation shape valid: 10
+2025-05-12 03:41:05,453 - root - INFO - Processed explanation 5/5 for layer 40, unit 3515
+2025-05-12 03:41:05,679 - root - INFO - Processing layer 40, unit 556 (53/60)
+2025-05-12 03:41:39,734 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Religious_organizations_providing_financial_aid_for_medical_procedures_education_or_other_charitable.txt
+2025-05-12 03:41:42,203 - root - INFO - Activation shape valid: 10
+2025-05-12 03:41:42,436 - root - INFO - Processed explanation 1/5 for layer 40, unit 556
+2025-05-12 03:42:20,680 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Sentencing_bail_court_cases_legal_processes_crimes_or_accusations.txt
+2025-05-12 03:42:23,154 - root - INFO - Activation shape valid: 10
+2025-05-12 03:42:23,387 - root - INFO - Processed explanation 2/5 for layer 40, unit 556
+2025-05-12 03:43:02,868 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Travel_vacation_leisure_activities_beautyfashion_locations_and_productsservices.txt
+2025-05-12 03:43:05,332 - root - INFO - Activation shape valid: 10
+2025-05-12 03:43:05,564 - root - INFO - Processed explanation 3/5 for layer 40, unit 556
+2025-05-12 03:43:36,634 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_date_in_April_between_2015_and_2017_associated_with_a_product_or_service_and_a_location_Austria_So.txt
+2025-05-12 03:43:39,093 - root - INFO - Activation shape valid: 10
+2025-05-12 03:43:39,324 - root - INFO - Processed explanation 4/5 for layer 40, unit 556
+2025-05-12 03:44:04,874 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Fitness_or_training_programsplans_and_services_especially_new_innovative_strengthbased_and_functiona.txt
+2025-05-12 03:44:07,355 - root - INFO - Activation shape valid: 10
+2025-05-12 03:44:07,590 - root - INFO - Processed explanation 5/5 for layer 40, unit 556
+2025-05-12 03:44:07,816 - root - INFO - Processing layer 40, unit 183 (54/60)
+2025-05-12 03:44:46,548 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_discussion_of_personal_experiences_related_to_career_changes_andor_life_transitions_often_involvin.txt
+2025-05-12 03:44:49,011 - root - INFO - Activation shape valid: 10
+2025-05-12 03:44:49,244 - root - INFO - Processed explanation 1/5 for layer 40, unit 183
+2025-05-12 03:45:19,632 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Luxury_goods_or_experiences_especially_relating_to_travel_relaxation_and_leisure.txt
+2025-05-12 03:45:22,100 - root - INFO - Activation shape valid: 10
+2025-05-12 03:45:22,333 - root - INFO - Processed explanation 2/5 for layer 40, unit 183
+2025-05-12 03:46:30,694 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Discussions_of_low_wages_in_the_fast_food_industry_career_changes_to_medical_fields_tours_of_the_Fuk.txt
+2025-05-12 03:46:33,180 - root - INFO - Activation shape valid: 10
+2025-05-12 03:46:33,411 - root - INFO - Processed explanation 3/5 for layer 40, unit 183
+2025-05-12 03:46:55,956 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Educational_programs_andor_training_related_to_manufacturing_or_metal_solutions_metal_fabrication_or.txt
+2025-05-12 03:46:58,463 - root - INFO - Activation shape valid: 10
+2025-05-12 03:46:58,696 - root - INFO - Processed explanation 4/5 for layer 40, unit 183
+2025-05-12 03:47:22,395 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Concepts_of_career_services_and_testing_often_involving_interactions_with_students_and_organizations.txt
+2025-05-12 03:47:24,869 - root - INFO - Activation shape valid: 10
+2025-05-12 03:47:25,100 - root - INFO - Processed explanation 5/5 for layer 40, unit 183
+2025-05-12 03:47:25,324 - root - INFO - Processing layer 40, unit 3254 (55/60)
+2025-05-12 03:47:59,087 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Promotions_and_deals_on_various_products_including_food_cosmetics_and_clothing_from_stores_like_Targ.txt
+2025-05-12 03:48:01,585 - root - INFO - Activation shape valid: 10
+2025-05-12 03:48:01,820 - root - INFO - Processed explanation 1/5 for layer 40, unit 3254
+2025-05-12 03:49:03,543 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Short_narratives_or_dialogs_about_commonplace_situations_or_events_often_involving_family_members_fr.txt
+2025-05-12 03:49:06,032 - root - INFO - Activation shape valid: 10
+2025-05-12 03:49:06,266 - root - INFO - Processed explanation 2/5 for layer 40, unit 3254
+2025-05-12 03:49:32,121 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Roofing_maintenance_contractors.txt
+2025-05-12 03:49:34,590 - root - INFO - Activation shape valid: 10
+2025-05-12 03:49:34,824 - root - INFO - Processed explanation 3/5 for layer 40, unit 3254
+2025-05-12 03:50:05,198 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Rules_regulations_or_laws_especially_related_to_certain_activities_or_organizations.txt
+2025-05-12 03:50:07,670 - root - INFO - Activation shape valid: 10
+2025-05-12 03:50:07,904 - root - INFO - Processed explanation 4/5 for layer 40, unit 3254
+2025-05-12 03:51:17,318 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:51:20,176 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:51:20,179 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:51:20,180 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:53:25,838 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:53:29,191 - root - WARNING - Wrong activation shape: 13. Removing this explanation.
+2025-05-12 03:53:29,195 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:53:29,196 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:54:31,735 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:54:34,586 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:54:34,589 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:54:34,591 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:55:27,000 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:55:29,842 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 03:55:29,845 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:55:29,847 - root - INFO - Regenerating explanation samples...
+2025-05-12 03:56:27,137 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Titles_of_media_like_TV_shows_movies_music_albums_publications_and_songs.txt
+2025-05-12 03:56:29,610 - root - INFO - Activation shape valid: 10
+2025-05-12 03:56:29,845 - root - INFO - Processed explanation 5/5 for layer 40, unit 3254
+2025-05-12 03:56:30,071 - root - INFO - Processing layer 40, unit 6067 (56/60)
+2025-05-12 03:57:07,115 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Decorative_or_ornamental_items_often_for_celebrations_like_Christmas_or_weddings_or_fashion_accessor.txt
+2025-05-12 03:57:09,594 - root - INFO - Activation shape valid: 10
+2025-05-12 03:57:09,830 - root - INFO - Processed explanation 1/5 for layer 40, unit 6067
+2025-05-12 03:57:54,828 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Ordinal_numbers_particularly_related_to_books_or_book_series.txt
+2025-05-12 03:57:57,300 - root - INFO - Activation shape valid: 10
+2025-05-12 03:57:57,532 - root - INFO - Processed explanation 2/5 for layer 40, unit 6067
+2025-05-12 03:59:04,049 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Programming_language_features_their_effects_on_language_semantics_and_comparisons_in_terms_of_expres.txt
+2025-05-12 03:59:06,534 - root - INFO - Activation shape valid: 10
+2025-05-12 03:59:06,767 - root - INFO - Processed explanation 3/5 for layer 40, unit 6067
+2025-05-12 03:59:31,776 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_persons_name_appearing_in_the_context_of_events_exhibitions_businesses_or_organizations.txt
+2025-05-12 03:59:34,286 - root - INFO - Activation shape valid: 10
+2025-05-12 03:59:34,531 - root - INFO - Processed explanation 4/5 for layer 40, unit 6067
+2025-05-12 04:00:07,394 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Government_shutdowns_and_the_State_of_the_Union_address_or_speeches_and_events_about_books_movies_pl.txt
+2025-05-12 04:00:09,883 - root - INFO - Activation shape valid: 10
+2025-05-12 04:00:10,116 - root - INFO - Processed explanation 5/5 for layer 40, unit 6067
+2025-05-12 04:00:10,343 - root - INFO - Processing layer 40, unit 3636 (57/60)
+2025-05-12 04:00:30,481 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Real_estate_legal_processes_home_maintenance_and_appliances.txt
+2025-05-12 04:00:32,948 - root - INFO - Activation shape valid: 10
+2025-05-12 04:00:33,183 - root - INFO - Processed explanation 1/5 for layer 40, unit 3636
+2025-05-12 04:01:32,505 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:01:35,347 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 04:01:35,350 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:01:35,351 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:02:18,291 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:02:20,652 - root - WARNING - Wrong activation shape: 9. Removing this explanation.
+2025-05-12 04:02:20,655 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:02:20,657 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:03:22,323 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:03:25,170 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 04:03:25,174 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:03:25,175 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:04:06,308 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Culinary_preparations_artistic_inspirations_celebratory_events_personal_care_routines_technology_exp.txt
+2025-05-12 04:04:08,810 - root - INFO - Activation shape valid: 10
+2025-05-12 04:04:09,064 - root - INFO - Processed explanation 2/5 for layer 40, unit 3636
+2025-05-12 04:04:34,478 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Events_establishments_or_individuals_experiencing_a_significant_change_in_circumstance_particularly_.txt
+2025-05-12 04:04:36,942 - root - INFO - Activation shape valid: 10
+2025-05-12 04:04:37,174 - root - INFO - Processed explanation 3/5 for layer 40, unit 3636
+2025-05-12 04:04:58,795 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Tax_legal_and_financial_planning_and_advice_particularly_in_regards_to_wills_healthcare_access_busin.txt
+2025-05-12 04:05:01,263 - root - INFO - Activation shape valid: 10
+2025-05-12 04:05:01,497 - root - INFO - Processed explanation 4/5 for layer 40, unit 3636
+2025-05-12 04:05:26,956 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Pastries_desserts_or_baked_goods_often_with_fillings_such_as_frangipane_custard_or_cream_toppings_gl.txt
+2025-05-12 04:05:28,320 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-05-12 04:05:28,323 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Pastries_desserts_or_baked_goods_often_with_fillings_such_as_frangipane_custard_or_cream_toppings_gl.txt
+2025-05-12 04:05:28,325 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:06:04,065 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Pastries_desserts_or_baked_goods_often_with_fillings_such_as_frangipane_custard_or_cream_toppings_gl.txt
+2025-05-12 04:06:06,532 - root - INFO - Activation shape valid: 10
+2025-05-12 04:06:06,766 - root - INFO - Processed explanation 5/5 for layer 40, unit 3636
+2025-05-12 04:06:06,992 - root - INFO - Processing layer 40, unit 1555 (58/60)
+2025-05-12 04:07:04,724 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Travel_road_closures_and_safety_concerns_due_to_flooding.txt
+2025-05-12 04:07:07,209 - root - INFO - Activation shape valid: 10
+2025-05-12 04:07:07,442 - root - INFO - Processed explanation 1/5 for layer 40, unit 1555
+2025-05-12 04:07:37,545 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Cryptocurrency_blockchain_technology_investment_opportunities_and_financial_markets.txt
+2025-05-12 04:07:40,018 - root - INFO - Activation shape valid: 10
+2025-05-12 04:07:40,250 - root - INFO - Processed explanation 2/5 for layer 40, unit 1555
+2025-05-12 04:08:03,009 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Car_insurance_banking_growth_financial_product_risk_opportunities_costs_consumer_behavior_services_m.txt
+2025-05-12 04:08:05,484 - root - INFO - Activation shape valid: 10
+2025-05-12 04:08:05,719 - root - INFO - Processed explanation 3/5 for layer 40, unit 1555
+2025-05-12 04:08:35,564 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Expressing_opinions_or_sharing_information_about_various_topics_including_personal_experiences_news_.txt
+2025-05-12 04:08:38,087 - root - INFO - Activation shape valid: 10
+2025-05-12 04:08:38,322 - root - INFO - Processed explanation 4/5 for layer 40, unit 1555
+2025-05-12 04:09:26,804 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Fashion_and_home_accessories.txt
+2025-05-12 04:09:29,345 - root - INFO - Activation shape valid: 10
+2025-05-12 04:09:29,600 - root - INFO - Processed explanation 5/5 for layer 40, unit 1555
+2025-05-12 04:09:29,831 - root - INFO - Processing layer 40, unit 6106 (59/60)
+2025-05-12 04:10:08,642 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Speleological_topics_or_locations_relevant_to_speleology_sometimes_with_cave_exploration_or_spelunki.txt
+2025-05-12 04:10:11,151 - root - INFO - Activation shape valid: 10
+2025-05-12 04:10:11,383 - root - INFO - Processed explanation 1/5 for layer 40, unit 6106
+2025-05-12 04:10:41,025 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Themes_related_to_entertainment_such_as_movies_TV_shows_video_games_and_books_and_how_they_are_consu.txt
+2025-05-12 04:10:43,489 - root - INFO - Activation shape valid: 10
+2025-05-12 04:10:43,722 - root - INFO - Processed explanation 2/5 for layer 40, unit 6106
+2025-05-12 04:11:13,731 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Healthcare_legal_design_and_real_estate_services.txt
+2025-05-12 04:11:16,198 - root - INFO - Activation shape valid: 10
+2025-05-12 04:11:16,430 - root - INFO - Processed explanation 3/5 for layer 40, unit 6106
+2025-05-12 04:11:49,828 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_monetary_transaction_for_digital_products_or_services.txt
+2025-05-12 04:11:52,328 - root - INFO - Activation shape valid: 10
+2025-05-12 04:11:52,562 - root - INFO - Processed explanation 4/5 for layer 40, unit 6106
+2025-05-12 04:13:02,296 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:13:05,324 - root - WARNING - Wrong activation shape: 11. Removing this explanation.
+2025-05-12 04:13:05,327 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:13:05,329 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:14:27,141 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:14:28,531 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-05-12 04:14:28,535 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:14:28,537 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:16:24,707 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:16:26,730 - root - WARNING - Wrong activation shape: 8. Removing this explanation.
+2025-05-12 04:16:26,733 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:16:26,735 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:17:28,832 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:17:30,219 - root - WARNING - Wrong activation shape: 5. Removing this explanation.
+2025-05-12 04:17:30,222 - root - INFO - Removing wrong generated file: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:17:30,224 - root - INFO - Regenerating explanation samples...
+2025-05-12 04:18:47,054 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Camera_specifications_karaoke_machine_specifications_video_game_cheats_guitar_pedal_features_laptop_.txt
+2025-05-12 04:18:49,535 - root - INFO - Activation shape valid: 10
+2025-05-12 04:18:49,815 - root - INFO - Processed explanation 5/5 for layer 40, unit 6106
+2025-05-12 04:18:50,039 - root - INFO - Processing layer 40, unit 4244 (60/60)
+2025-05-12 04:19:26,227 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/A_future_event_where_a_church_or_other_group_will_celebrate_an_anniversary_of_a_union_or_other_histo.txt
+2025-05-12 04:19:28,722 - root - INFO - Activation shape valid: 10
+2025-05-12 04:19:28,957 - root - INFO - Processed explanation 1/5 for layer 40, unit 4244
+2025-05-12 04:20:04,553 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Dosages_of_substances_routes_of_administrationexposure_effects_on_test_subjects_animal_or_human_and_.txt
+2025-05-12 04:20:07,121 - root - INFO - Activation shape valid: 10
+2025-05-12 04:20:07,369 - root - INFO - Processed explanation 2/5 for layer 40, unit 4244
+2025-05-12 04:20:28,871 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Payments_financial_services_or_transactions.txt
+2025-05-12 04:20:31,348 - root - INFO - Activation shape valid: 10
+2025-05-12 04:20:31,583 - root - INFO - Processed explanation 3/5 for layer 40, unit 4244
+2025-05-12 04:21:12,641 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Medical_conditions_caused_by_pituitary_adenoma_and_their_respective_treatments.txt
+2025-05-12 04:21:15,257 - root - INFO - Activation shape valid: 10
+2025-05-12 04:21:15,493 - root - INFO - Processed explanation 4/5 for layer 40, unit 4244
+2025-05-12 04:21:42,167 - root - INFO - Samples saved to: generated_text/gemini-1-5-pro/Requests_specifically_for_alcoholic_beverage_exchanges_including_mead_beer_wine_and_whisky.txt
+2025-05-12 04:21:44,691 - root - INFO - Activation shape valid: 10
+2025-05-12 04:21:44,933 - root - INFO - Processed explanation 5/5 for layer 40, unit 4244
+2025-05-12 04:21:44,934 - root - INFO - All layer-unit pairs processed. Results saved to:
+ results/random_highlights_cosy-evaluation_target-gpt2-xl_textgen-gemini-1-5-pro_mean_evalgen-gemini-1-5-pro_cosmopedia_1000.csv

@@ -1,0 +1,975 @@
+2025-07-25 20:17:31,026 - root - INFO - ================================================================================
+2025-07-25 20:17:31,039 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-25 20:17:31,040 - root - INFO - ================================================================================
+2025-07-25 20:17:31,041 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-25 20:17:31,042 - root - INFO - AGG_METHOD = mean
+2025-07-25 20:17:31,042 - root - INFO - BATCH_SIZE = 2
+2025-07-25 20:17:31,043 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:17:31,044 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-25 20:17:31,044 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-25 20:17:31,045 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-25 20:17:31,045 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-25 20:17:31,046 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-25 20:17:31,046 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-25 20:17:31,047 - root - INFO - CONTROL_SPLIT = train
+2025-07-25 20:17:31,047 - root - INFO - DATA_FILES = None
+2025-07-25 20:17:31,048 - root - INFO - DEVICE = cuda
+2025-07-25 20:17:31,048 - root - INFO - END_INTERVAL = 1.0
+2025-07-25 20:17:31,049 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:17:31,050 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-25 20:17:31,050 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-25 20:17:31,051 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-25 20:17:31,051 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-25 20:17:31,051 - root - INFO - HOOK_NAME = blocks.0.mlp.hook_post
+2025-07-25 20:17:31,052 - root - INFO - LAYER_ID = 0
+2025-07-25 20:17:31,053 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-25 20:17:31,053 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-25 20:17:31,053 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-25 20:17:31,054 - root - INFO - MULTI_EVAL = True
+2025-07-25 20:17:31,055 - root - INFO - N_CLUSTERS = 1
+2025-07-25 20:17:31,055 - root - INFO - N_SAMPLES = 10
+2025-07-25 20:17:31,056 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-25 20:17:31,056 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-25 20:17:31,057 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-25 20:17:31,057 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-25 20:17:31,058 - root - INFO - SPLIT = train
+2025-07-25 20:17:31,058 - root - INFO - START_INTERVAL = 0.99
+2025-07-25 20:17:31,059 - root - INFO - STREAMING = True
+2025-07-25 20:17:31,059 - root - INFO - SUBSET_SIZE = 1000
+2025-07-25 20:17:31,060 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-25 20:17:31,061 - root - INFO - TARGET_DATA = c4
+2025-07-25 20:17:31,061 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-25 20:17:31,062 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-25 20:17:31,063 - root - INFO - UNIT_ID = 3943
+2025-07-25 20:17:31,063 - root - INFO - USE_API = True
+2025-07-25 20:17:31,064 - root - INFO - ================================================================================
+2025-07-25 20:17:31,064 - root - INFO - ANALYSIS RESULTS
+2025-07-25 20:17:31,065 - root - INFO - ================================================================================
+2025-07-25 20:17:31,065 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-0_unit-3943_clusters-1_2025-07-25_18-17-30.log
+2025-07-25 20:26:06,659 - root - INFO - Reached 1000 samples.
+2025-07-25 20:26:08,713 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-25 20:26:08,714 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-25 20:26:21,446 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-25 20:27:00,447 - root - INFO - Number of candidates: 1001
+2025-07-25 20:27:03,906 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-25 20:27:03,907 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1:  shirts (0.43477192521095276)
+Text #1:  flat (0.2714400589466095)
+Text #1:  shirts (0.259876549243927)
+Text #1:  t (0.12793901562690735)
+Text #1:  shirts (0.1545681655406952)
+Text #1:  shirt (0.12717635929584503)
+Text #1:  shirts (0.2261146903038025)
+Text #1:  tee (0.9247493147850037)
+Text #1:  shirts (0.19640123844146729)
+Text #1:  shirts (0.23810946941375732)
+Text #1:  shirt (0.1590077131986618)
+Text #1:  shirts (0.21058395504951477)
+Text #1:  shirt (0.12975411117076874)
+Text #1:  lap (0.13344039022922516)
+Text #1:  funny (0.6713392734527588)
+Text #1:  shirts (0.19617174565792084)
+Text #1:  shirt (0.1166994497179985)
+Text #1:  shirts (0.18346691131591797)
+Text #1:  calm (0.4557344913482666)
+Text #1:  funny (0.7023927569389343)
+Text #1:  shirt (0.15594740211963654)
+Text #1:  shirts (0.2255052775144577)
+Text #1:  funny (0.6741253733634949)
+Text #1:  cuff (0.30701830983161926)
+Text #1:  shirts (0.2229304015636444)
+Text #1:  shirt (0.15211206674575806)
+Text #1:  tee (0.8605777025222778)
+Text #1:  shirts (0.24465443193912506)
+Text #1:  shirt (0.1368744820356369)
+Text #1:  shirts (0.2387780398130417)
+Text #1:  funny (0.7526804804801941)
+Text #1:  shirts (0.22837838530540466)
+Text #1:  am (0.2218122035264969)
+Text #1:  shirts (0.23210285604000092)
+Text #1:  shirt (0.16685593128204346)
+Text #1:  shirts (0.2705022394657135)
+Text #1:  tee (0.8513625264167786)
+Text #1:  mom (0.116106316447258)
+Text #1:  shirts (0.28225821256637573)
+Text #1:  am (0.17660200595855713)
+Text #1:  shirt (0.17558130621910095)
+Text #1:  tee (0.8632509708404541)
+Text #2:  shirts (0.43477192521095276)
+Text #2:  flat (0.2714400589466095)
+Text #2:  shirts (0.259876549243927)
+Text #2:  t (0.12793901562690735)
+Text #2:  shirts (0.1545681655406952)
+Text #2:  shirt (0.12717635929584503)
+Text #2:  shirts (0.2261146903038025)
+Text #2:  tee (0.9247493147850037)
+Text #2:  shirts (0.19640123844146729)
+Text #2:  shirts (0.23810946941375732)
+Text #2:  shirt (0.1590077131986618)
+Text #2:  shirts (0.21058395504951477)
+Text #2:  shirt (0.12975411117076874)
+Text #2:  lap (0.13344039022922516)
+Text #2:  funny (0.6713392734527588)
+Text #2:  shirts (0.19617174565792084)
+Text #2:  shirt (0.1166994497179985)
+Text #2:  shirts (0.18346691131591797)
+Text #2:  calm (0.4557344913482666)
+Text #2:  funny (0.7023927569389343)
+Text #2:  shirt (0.15594740211963654)
+Text #2:  shirts (0.2255052775144577)
+Text #2:  funny (0.6741253733634949)
+Text #2:  cuff (0.30701830983161926)
+Text #2:  shirts (0.2229304015636444)
+Text #2:  shirt (0.15211206674575806)
+Text #2:  tee (0.8605777025222778)
+Text #2:  shirts (0.24465443193912506)
+Text #2:  shirt (0.1368744820356369)
+Text #2:  shirts (0.2387780398130417)
+Text #2:  funny (0.7526804804801941)
+Text #2:  shirts (0.22837838530540466)
+Text #2:  am (0.2218122035264969)
+Text #2:  shirts (0.23210285604000092)
+Text #2:  shirt (0.16685593128204346)
+Text #2:  shirts (0.2705022394657135)
+Text #2:  tee (0.8513625264167786)
+Text #2:  mom (0.116106316447258)
+Text #2:  shirts (0.28225821256637573)
+Text #2:  am (0.17660200595855713)
+Text #2:  shirt (0.17558130621910095)
+Text #2:  tee (0.8632509708404541)
+Text #3: � (0.7363736629486084)
+Text #3: � (1.0657711029052734)
+Text #3:  right (0.3255690932273865)
+Text #3:  � (1.5145251750946045)
+Text #3: � (0.9591503739356995)
+Text #3: right (0.2243632674217224)
+Text #3:  � (1.3998956680297852)
+Text #3:  Top (0.17946721613407135)
+Text #3:  � (1.4510523080825806)
+Text #3: � (1.0012644529342651)
+Text #3: right (0.2172243297100067)
+Text #3:  � (1.3705167770385742)
+Text #3: � (0.8825082182884216)
+Text #3:  � (1.4397408962249756)
+Text #3: � (0.9530712366104126)
+Text #3: right (0.17396563291549683)
+Text #3:  � (1.4555245637893677)
+Text #3: � (0.9517576098442078)
+Text #3:  right (0.15297359228134155)
+Text #3:  � (1.3335716724395752)
+Text #3: � (0.9081498384475708)
+Text #3:  � (1.4025517702102661)
+Text #3: � (0.8777655363082886)
+Text #3:  � (1.3618712425231934)
+Text #3: agle (0.23587395250797272)
+Text #3: � (0.8574343919754028)
+Text #3: � (0.8901039958000183)
+Text #3: � (0.8720270395278931)
+Text #3:  � (1.4110625982284546)
+Text #3: � (0.9371334314346313)
+Text #3:  � (1.2814055681228638)
+Text #3: � (0.8006828427314758)
+Text #3:  Wol (0.1447148621082306)
+Text #3:  � (1.325778841972351)
+Text #3: � (0.8858435153961182)
+Text #3:  � (1.3784584999084473)
+Text #3: � (0.8667526841163635)
+Text #3:  � (1.4145007133483887)
+Text #3: � (0.9237551689147949)
+Text #3:  via (0.18427523970603943)
+Text #3:  � (1.312757968902588)
+Text #3: � (0.8283804655075073)
+Text #3: � (0.8920440077781677)
+Text #3: � (0.8309268355369568)
+Text #3: � (0.8358023762702942)
+Text #3:  � (1.3553720712661743)
+Text #3: � (0.7818337082862854)
+Text #3:  � (1.363554835319519)
+Text #3: � (0.8419448137283325)
+Text #4:  Trump (1.718416690826416)
+Text #4:  Twitter (1.3243440389633179)
+Text #4:  counsel (0.8443506956100464)
+Text #4:  tweets (0.46343371272087097)
+Text #4:  upbeat (0.23708507418632507)
+Text #4: !" (0.8640782833099365)
+Text #4:  tweet (0.7340672612190247)
+Text #4:  AGA (0.30194854736328125)
+Text #4: !" (0.9548574686050415)
+Text #4: Trump (0.6707051992416382)
+Text #4:  morning (0.5433903932571411)
+Text #4:  Florida (0.17683899402618408)
+Text #4: Lago (0.7800764441490173)
+Text #4:  Melania (2.092994213104248)
+Text #4:  Barron (0.9242514967918396)
+Text #4: � (1.074773907661438)
+Text #4: � (1.0196315050125122)
+Text #4:  � (1.5664364099502563)
+Text #4: � (1.0433197021484375)
+Text #4:  � (1.5204861164093018)
+Text #4: � (1.0291225910186768)
+Text #4:  Trump (1.2670971155166626)
+Text #4:  � (1.4140201807022095)
+Text #4: � (0.9922387599945068)
+Text #4:  2016 (0.16662245988845825)
+Text #4:  tweets (0.5171798467636108)
+Text #4:  morning (0.45094695687294006)
+Text #4:  Twitter (1.221722960472107)
+Text #4:  counsel (0.8970552086830139)
+Text #4: � (1.045383095741272)
+Text #4:  Trump (1.0976547002792358)
+Text #4: Lago (0.8590847849845886)
+Text #4:  Lindsey (0.517056941986084)
+Text #4:  golf (0.45062750577926636)
+Text #4: Trump (0.530103862285614)
+Text #4:  Trump (1.1590125560760498)
+Text #4:  Kremlin (0.1798679381608963)
+Text #4:  counsel (0.7648144364356995)
+Text #4:  � (1.4616984128952026)
+Text #4: pr (0.3127434551715851)
+Text #4: � (0.9948764443397522)
+Text #4:  led (0.13702979683876038)
+Text #4:  Trump (1.1523088216781616)
+Text #4:  Trump (1.1972098350524902)
+Text #5:  China (0.04007664695382118)
+Text #5:  the (0.31638234853744507)
+Text #5:  among (0.1586715579032898)
+Text #5:  nearly (0.09875330328941345)
+Text #5:  percent (0.07513370364904404)
+Text #5:  2005 (0.05674703046679497)
+Text #5:  2015 (0.12081027030944824)
+Text #5:  hygiene (0.16321486234664917)
+Text #5:  brushing (0.7166909575462341)
+Text #5:  twice (0.15953198075294495)
+Text #5:  suggest (0.3951738476753235)
+Text #5:  timely (1.0387372970581055)
+Text #5:  meals (0.07989932596683502)
+Text #5: rig (0.04242810606956482)
+Text #5: � (0.9127762317657471)
+Text #5:  inspire (0.10537277162075043)
+Text #5:  encourage (0.931800127029419)
+Text #5:  chew (0.12779274582862854)
+Text #5:  gum (0.392201691865921)
+Text #5:  meals (0.18201011419296265)
+Text #5:  improve (0.4868963360786438)
+Text #5:  tapped (0.6581953167915344)
+Text #5: � (1.0404616594314575)
+Text #5:  daily (0.07696748524904251)
+Text #5:  lunch (0.5347973704338074)
+Text #5:  encourages (0.7924354672431946)
+Text #5:  hygiene (0.15026620030403137)
+Text #5:  meals (0.18345116078853607)
+Text #5: � (0.954361617565155)
+Text #5:  encourages (0.8000090718269348)
+Text #5:  chew (0.10573697090148926)
+Text #5:  gum (0.3393316864967346)
+Text #5:  meals (0.06659156084060669)
+Text #5:  improve (0.31150445342063904)
+Text #5:  hygiene (0.06821665167808533)
+Text #5:  interrupt (0.4039718508720398)
+Text #5: <|endoftext|> (0.03348527476191521)
+Text #5: <|endoftext|> (0.021412797272205353)
+Text #5: <|endoftext|> (0.01697414554655552)
+Text #5: <|endoftext|> (0.017138071358203888)
+Text #5: <|endoftext|> (0.019808057695627213)
+Text #5: <|endoftext|> (0.017959481105208397)
+Text #5: <|endoftext|> (0.03069908358156681)
+Text #5: <|endoftext|> (0.024638641625642776)
+Text #5: <|endoftext|> (0.017885470762848854)
+Text #6:  my (0.1460370421409607)
+Text #6:  they (0.169878751039505)
+Text #6:  � (1.6238049268722534)
+Text #6: � (1.097467064857483)
+Text #6:  � (1.5828174352645874)
+Text #6: � (1.0954054594039917)
+Text #6:  along (0.322861909866333)
+Text #6:  � (1.5237568616867065)
+Text #6: � (1.0442880392074585)
+Text #6:  top (0.2527482807636261)
+Text #6:  � (1.553585410118103)
+Text #6: � (1.036960244178772)
+Text #6:  back (0.585970938205719)
+Text #6:  � (1.4932303428649902)
+Text #6: � (1.0521663427352905)
+Text #6: � (1.0203183889389038)
+Text #6:  � (1.5065951347351074)
+Text #6: � (1.0034805536270142)
+Text #6: � (1.003677487373352)
+Text #6: � (1.0029672384262085)
+Text #6:  so (0.24303260445594788)
+Text #6: � (0.9755435585975647)
+Text #6: — (1.4502726793289185)
+Text #6: � (0.9901297688484192)
+Text #6: � (1.0369938611984253)
+Text #6: � (1.0344141721725464)
+Text #6:  tension (0.42739108204841614)
+Text #6: — (1.4792044162750244)
+Text #6: — (1.482470989227295)
+Text #6: � (0.9939888119697571)
+Text #6: � (0.9609296917915344)
+Text #6:  along (0.30230554938316345)
+Text #6: � (0.9664868116378784)
+Text #6:  � (1.409258484840393)
+Text #6: � (1.0157099962234497)
+Text #6: — (1.4593570232391357)
+Text #6: � (0.9867716431617737)
+Text #6: � (0.9809033274650574)
+Text #6: � (1.0894049406051636)
+Text #6: � (1.0254026651382446)
+Text #6: � (0.9719943404197693)
+Text #6: � (0.9959888458251953)
+Text #6:  better (0.6058314442634583)
+Text #6:  � (1.4592162370681763)
+Text #7:  Trump (1.2834748029708862)
+Text #7:  Trump (1.0593112707138062)
+Text #7: CNN (0.19499701261520386)
+Text #7:  Donald (0.843505322933197)
+Text #7:  Trump (1.1004048585891724)
+Text #7:  likened (0.2696596384048462)
+Text #7:  Ronald (0.4449971914291382)
+Text #7: � (1.1299883127212524)
+Text #7:  because (0.14813582599163055)
+Text #7:  — (1.5718530416488647)
+Text #7:  — (1.584577202796936)
+Text #7: � (1.0323350429534912)
+Text #7:  Trump (1.5200945138931274)
+Text #7: � (1.074391484260559)
+Text #7:  percent (0.14854909479618073)
+Text #7: � (1.040159821510315)
+Text #7:  Donald (1.1443389654159546)
+Text #7:  percent (0.15579935908317566)
+Text #7: � (0.993462085723877)
+Text #7: � (1.0985965728759766)
+Text #7:  correct (1.8892347812652588)
+Text #7:  Trump (1.375798225402832)
+Text #7:  segments (0.396618515253067)
+Text #7: � (1.1036256551742554)
+Text #7:  Trump (1.170875072479248)
+Text #7:  garner (0.5958169102668762)
+Text #7:  percent (0.11171454191207886)
+Text #7:  percent (0.17849993705749512)
+Text #7:  Mitt (0.45344114303588867)
+Text #7:  during (0.2235386222600937)
+Text #7:  Trump (1.240730881690979)
+Text #7: � (1.112260341644287)
+Text #7:  impressed (0.10925080627202988)
+Text #7: � (1.0325020551681519)
+Text #7:  Trump (1.3743451833724976)
+Text #7:  modest (0.17114196717739105)
+Text #7:  � (1.4823895692825317)
+Text #7: � (0.9840619564056396)
+Text #7:  � (1.381839394569397)
+Text #7: � (1.027284860610962)
+Text #7:  Trump (1.198819637298584)
+Text #7:  right (0.16310419142246246)
+Text #8:  hon (0.2603333294391632)
+Text #8:  the (0.2808949053287506)
+Text #8: � (1.2017863988876343)
+Text #8:  markets (0.21744562685489655)
+Text #8:  demonstrate (0.08123506605625153)
+Text #8:  themselves (0.15598736703395844)
+Text #8:  competitors (0.01747208833694458)
+Text #8:  as (0.03268210589885712)
+Text #8:  as (0.021540625020861626)
+Text #8:  solutions (0.6055124998092651)
+Text #8:  that (0.03263892978429794)
+Text #8:  during (0.3776155710220337)
+Text #8:  2019 (0.06419605761766434)
+Text #8:  2019 (0.1006152555346489)
+Text #8: � (1.0506627559661865)
+Text #8:  best (0.2891657054424286)
+Text #8:  such (0.011243876069784164)
+Text #8:  � (1.545495867729187)
+Text #8: � (1.10886549949646)
+Text #8:  � (1.5599004030227661)
+Text #8: � (1.0904126167297363)
+Text #8:  � (1.5541329383850098)
+Text #8: � (1.1347541809082031)
+Text #8:  � (1.6148207187652588)
+Text #8:  the (0.11483530700206757)
+Text #8: � (1.1346274614334106)
+Text #8:  � (1.5664396286010742)
+Text #8:  the (0.0820842906832695)
+Text #8: � (1.1679526567459106)
+Text #8:  Apply (0.037475623190402985)
+Text #8: � (1.0987321138381958)
+Text #8:  marketing (0.05630984529852867)
+Text #8:  targeting (0.12634380161762238)
+Text #8:  analytics (0.19665995240211487)
+Text #8: � (1.0942566394805908)
+Text #8:  � (1.5261094570159912)
+Text #8:  the (0.04362781345844269)
+Text #8: � (1.0784984827041626)
+Text #8:  � (1.5281543731689453)
+Text #8: � (1.0405315160751343)
+Text #8: ü (0.12786316871643066)
+Text #8:  promotes (0.6098010540008545)
+Text #8:  2019 (0.10668198764324188)
+Text #8: <|endoftext|> (0.015912184491753578)
+Text #8: <|endoftext|> (0.011161970905959606)
+Text #8: <|endoftext|> (0.01696809008717537)
+Text #8: <|endoftext|> (0.015424471348524094)
+Text #9:  Prop (0.06570399552583694)
+Text #9: head (0.05222393572330475)
+Text #9: � (0.8067296147346497)
+Text #9:  angles (0.07381708174943924)
+Text #9: � (0.8227770924568176)
+Text #9: � (0.9426833987236023)
+Text #9: � (0.9286714792251587)
+Text #9:  grate (0.31102287769317627)
+Text #9:  � (1.3981972932815552)
+Text #9: � (0.928329586982727)
+Text #9: � (0.8764112591743469)
+Text #9: � (0.9169374704360962)
+Text #9:  surface (0.26673200726509094)
+Text #9:  prop (0.027644827961921692)
+Text #9: � (0.8410954475402832)
+Text #9: � (0.8492796421051025)
+Text #9: � (0.8551874160766602)
+Text #9: � (0.8638684153556824)
+Text #9: � (0.8479213118553162)
+Text #9: � (0.8651725649833679)
+Text #9:  grate (0.20435094833374023)
+Text #9: � (0.7521758079528809)
+Text #9: � (0.7912285327911377)
+Text #9: � (0.739330530166626)
+Text #9: � (0.792553186416626)
+Text #9:  � (1.2335904836654663)
+Text #9: � (0.7881861329078674)
+Text #9:  top (0.005577737465500832)
+Text #9:  top (0.011570614762604237)
+Text #9: <|endoftext|> (0.0068474747240543365)
+Text #9: <|endoftext|> (0.006854676175862551)
+Text #9: <|endoftext|> (0.006389042362570763)
+Text #9: <|endoftext|> (0.0025910898111760616)
+Text #9: <|endoftext|> (0.005889448337256908)
+Text #9: <|endoftext|> (0.0071664368733763695)
+Text #9: <|endoftext|> (0.004647725261747837)
+Text #10: � (1.1595169305801392)
+Text #10:  wrong (1.0132148265838623)
+Text #10:  this (0.047152601182460785)
+Text #10: � (1.02532160282135)
+Text #10:  properly (0.013333285227417946)
+Text #10: � (1.0074406862258911)
+Text #10: � (1.0018160343170166)
+Text #10:  mean (0.02598729357123375)
+Text #10:  relate (0.04905914142727852)
+Text #10:  matter (0.11979728192090988)
+Text #10:  � (1.4469536542892456)
+Text #10: � (0.9991426467895508)
+Text #10: � (0.959339439868927)
+Text #10: � (0.9844428896903992)
+Text #10:  clar (0.12686623632907867)
+Text #10: � (0.9890572428703308)
+Text #10:  � (1.3964866399765015)
+Text #10: � (0.9521769881248474)
+Text #10: <|endoftext|> (0.0032102838158607483)
+Text #10: <|endoftext|> (0.002312548691406846)
+Text #10: <|endoftext|> (0.0033597052097320557)
+Text #10: <|endoftext|> (0.015817532315850258)
+Text #10: <|endoftext|> (0.004922265186905861)
+Text #10: <|endoftext|> (0.0007505444227717817)
+Text #10: <|endoftext|> (0.007237088866531849)
+Text #10: <|endoftext|> (0.0018154371064156294)
+Text #11: Philipp (0.28550437092781067)
+Text #11:  goat (0.3088150918483734)
+Text #11:  rubber (0.29883673787117004)
+Text #11:  sneakers (0.17550432682037354)
+Text #11:  round (0.3947582542896271)
+Text #11:  flat (0.22653712332248688)
+Text #11:  fast (1.2458441257476807)
+Text #11:  embell (0.12264227122068405)
+Text #11:  tongue (0.29915687441825867)
+Text #11: Philipp (0.10741624981164932)
+Text #11:  AW (0.05108795315027237)
+Text #11:  sneakers (0.23173125088214874)
+Text #11:  rubber (0.39518436789512634)
+Text #11:  round (0.4335346221923828)
+Text #11:  fast (1.2804954051971436)
+Text #11: le (0.13551482558250427)
+Text #11:  sneakers (0.16990919411182404)
+Text #11:  Philipp (0.26255759596824646)
+Text #11:  round (0.403963565826416)
+Text #11:  fast (1.2255730628967285)
+Text #11:  branded (0.22063101828098297)
+Text #11: sole (0.02493349090218544)
+Text #11:  flat (0.1794835329055786)
+Text #11: Philipp (0.14236117899417877)
+Text #11:  AW (0.037881411612033844)
+Text #11:  sneakers (0.19001778960227966)
+Text #11:  rubber (0.33925187587738037)
+Text #11:  round (0.3647494614124298)
+Text #11:  fast (1.1843597888946533)
+Text #11: <|endoftext|> (0.024649973958730698)
+Text #11: <|endoftext|> (0.013257344253361225)
+Text #11: <|endoftext|> (0.009801809675991535)
+Text #11: <|endoftext|> (0.01293796394020319)
+Text #11: <|endoftext|> (0.011499390937387943)
+Text #11: <|endoftext|> (0.010613399557769299)
+Text #11: <|endoftext|> (0.024475403130054474)
+Text #11: <|endoftext|> (0.009783316403627396)
+Text #11: <|endoftext|> (0.01901692897081375)
+Text #11: <|endoftext|> (0.01202369574457407)
+Text #11: <|endoftext|> (0.0127233462408185)
+Text #11: <|endoftext|> (0.011071219108998775)
+Text #11: <|endoftext|> (0.011539392173290253)
+Text #12:  Ms (0.15739412605762482)
+Text #12:  Lamb (0.07486362755298615)
+Text #12: � (1.066617488861084)
+Text #12:  � (1.5698671340942383)
+Text #12: � (1.028852105140686)
+Text #12: � (1.045366644859314)
+Text #12:  � (1.5786093473434448)
+Text #12: � (1.0482414960861206)
+Text #12: � (1.079824686050415)
+Text #12:  Top (0.2589302957057953)
+Text #12: � (1.0348559617996216)
+Text #12: � (1.0210859775543213)
+Text #12:  Ms (0.1378701627254486)
+Text #12:  Lamb (0.04199130833148956)
+Text #12:  Impro (0.6317800283432007)
+Text #12:  co (0.23621071875095367)
+Text #12:  Impro (0.6891683340072632)
+Text #12: <|endoftext|> (0.00621165381744504)
+Text #12: <|endoftext|> (0.0011770399287343025)
+Text #12: <|endoftext|> (0.0037629820872098207)
+Text #12: <|endoftext|> (0.009535678662359715)
+Text #12: <|endoftext|> (0.00424749031662941)
+Text #12: <|endoftext|> (0.012228555977344513)
+Text #12: <|endoftext|> (0.006172182038426399)
+Text #12: <|endoftext|> (0.0031612294260412455)
+Text #12: <|endoftext|> (0.007534858770668507)
+Text #12: <|endoftext|> (0.004993430804461241)
+Text #12: <|endoftext|> (0.0030191668774932623)
+Text #12: <|endoftext|> (0.016090191900730133)
+Text #12: <|endoftext|> (0.0013944105012342334)
+Text #12: <|endoftext|> (0.010121532715857029)
+Text #12: <|endoftext|> (0.001809951732866466)
+Text #12: <|endoftext|> (0.002569696633145213)
+Text #12: <|endoftext|> (2.1294483303790912e-05)
+Text #12: <|endoftext|> (0.0010431729024276137)
+Text #13:  Hassan (0.10258598625659943)
+Text #13:  trouble (0.003612919943407178)
+Text #13:  counseling (0.8089412450790405)
+Text #13:  � (1.3317264318466187)
+Text #13: � (0.8047658801078796)
+Text #13:  Blasio (0.30137085914611816)
+Text #13:  � (1.377769112586975)
+Text #13: ophobic (1.5303281545639038)
+Text #13:  away (0.06731972098350525)
+Text #13:  � (1.4908055067062378)
+Text #13: � (0.988377571105957)
+Text #13:  continues (0.0720510482788086)
+Text #13:  Tommy (0.27911245822906494)
+Text #13: � (0.9664627313613892)
+Text #13: <|endoftext|> (0.0020618331618607044)
+Text #13: <|endoftext|> (0.0022706713061779737)
+Text #13: <|endoftext|> (0.008351217955350876)
+Text #13: <|endoftext|> (0.0027644222136586905)
+Text #13: <|endoftext|> (0.0010227808961644769)
+Text #13: <|endoftext|> (0.0004079908540006727)
+Text #13: <|endoftext|> (0.00010533910972299054)
+Text #13: <|endoftext|> (0.000591268646530807)
+Text #13: <|endoftext|> (0.0060258423909544945)
+Text #13: <|endoftext|> (0.0017627911875024438)
+Text #13: <|endoftext|> (0.006528641562908888)
+Text #13: <|endoftext|> (0.0010507679544389248)
+Text #13: <|endoftext|> (0.008507122285664082)
+Text #13: <|endoftext|> (0.001964040333405137)
+Text #13: <|endoftext|> (0.0012751133181154728)
+Text #13: <|endoftext|> (0.0025143721140921116)
+Text #13: <|endoftext|> (0.00987355038523674)
+Text #13: <|endoftext|> (0.004448074847459793)
+Text #14:  to (0.023972945287823677)
+Text #14:  the (0.02519332431256771)
+Text #14:  about (0.05181510001420975)
+Text #14:  tennis (0.11206908524036407)
+Text #14: atti (0.08489272743463516)
+Text #14:  comedic (0.02001633681356907)
+Text #14: � (1.0701485872268677)
+Text #14: � (1.1206005811691284)
+Text #14:  � (1.700864315032959)
+Text #14:  over (0.23458290100097656)
+Text #14: � (1.1983578205108643)
+Text #14:  comes (0.1679704338312149)
+Text #14: � (1.139818787574768)
+Text #14:  Jonathan (0.0340428426861763)
+Text #14:  Steve (0.044381752610206604)
+Text #14:  � (1.5685805082321167)
+Text #14: � (1.0486029386520386)
+Text #14:  reportedly (0.5304824113845825)
+Text #14:  recently (0.11652134358882904)
+Text #14: � (0.9203807711601257)
+Text #14:  certain (0.05029284209012985)
+Text #14:  reverse (0.3117343485355377)
+Text #14:  trick (0.5934751033782959)
+Text #14:  bad (0.20969024300575256)
+Text #14: � (1.0087908506393433)
+Text #14: � (1.017351746559143)
+Text #14: <|endoftext|> (0.017953645437955856)
+Text #14: <|endoftext|> (0.015557712875306606)
+Text #14: <|endoftext|> (0.01672082394361496)
+Text #14: <|endoftext|> (0.0194102730602026)
+Text #14: <|endoftext|> (0.021684112027287483)
+Text #14: <|endoftext|> (0.026578349992632866)
+Text #14: <|endoftext|> (0.02841063402593136)
+Text #14: <|endoftext|> (0.019401459023356438)
+Text #14: <|endoftext|> (0.027516385540366173)
+Text #14: <|endoftext|> (0.01788921467959881)
+Text #14: <|endoftext|> (0.018323970958590508)
+Text #14: <|endoftext|> (0.022948676720261574)
+Text #14: <|endoftext|> (0.01713923178613186)
+Text #14: <|endoftext|> (0.014946680516004562)
+Text #14: <|endoftext|> (0.015424159355461597)
+Text #14: <|endoftext|> (0.01935868337750435)
+Text #15:  Ms (0.08268196135759354)
+Text #15: � (0.800321638584137)
+Text #15:  Instagram (0.36764660477638245)
+Text #15:  Instagram (0.33705759048461914)
+Text #15:  � (1.3172286748886108)
+Text #15:  quickly (1.4238474369049072)
+Text #15:  responsibly (0.1387762874364853)
+Text #15:  Instagram (0.40233033895492554)
+Text #15:  Instagram (0.4568611979484558)
+Text #15:  promote (0.6058586835861206)
+Text #15:  healed (0.18359866738319397)
+Text #15:  hasht (0.30450841784477234)
+Text #15: � (1.0068018436431885)
+Text #15:  � (1.3944604396820068)
+Text #15: igmat (0.4471815526485443)
+Text #15:  distress (0.7228342890739441)
+Text #15: � (0.9857024550437927)
+Text #15:  buoy (2.3483450412750244)
+Text #15:  Instagram (0.4480206072330475)
+Text #15: <|endoftext|> (0.0002416856586933136)
+Text #15: <|endoftext|> (0.014330023899674416)
+Text #15: <|endoftext|> (0.003996068146079779)
+Text #15: <|endoftext|> (0.0008328271214850247)
+Text #15: <|endoftext|> (0.010693646036088467)
+Text #15: <|endoftext|> (0.005482474807649851)
+Text #16:  is (0.033873364329338074)
+Text #16:  podcast (0.11024842411279678)
+Text #16:  is (0.010951809585094452)
+Text #16:  it (0.04341192543506622)
+Text #16:  hosts (0.21985189616680145)
+Text #16:  Brian (0.2317022830247879)
+Text #16:  both (0.24477988481521606)
+Text #16:  af (0.017908072099089622)
+Text #16:  to (3.710608871188015e-05)
+Text #16:  tackle (0.11468502134084702)
+Text #16:  highlighting (0.551245927810669)
+Text #16: — (1.6905803680419922)
+Text #16:  Twitter (1.5463613271713257)
+Text #16:  that (0.1645095944404602)
+Text #16:  reflections (0.20663870871067047)
+Text #16:  per (0.15347225964069366)
+Text #16:  the (0.0796075239777565)
+Text #16:  Athe (0.05076129734516144)
+Text #16:  Gamer (0.19507600367069244)
+Text #16:  Millennials (0.9026547074317932)
+Text #16:  avocado (0.12576539814472198)
+Text #16:  all (0.09426358342170715)
+Text #16: <|endoftext|> (0.001615690067410469)
+Text #16: <|endoftext|> (0.0005537387332879007)
+Text #16: <|endoftext|> (0.012488162145018578)
+Text #16: <|endoftext|> (0.0022621764801442623)
+Text #16: <|endoftext|> (0.004579735454171896)
+Text #17:  is (0.033873364329338074)
+Text #17:  podcast (0.11024842411279678)
+Text #17:  is (0.010951809585094452)
+Text #17:  it (0.04341192543506622)
+Text #17:  hosts (0.21985189616680145)
+Text #17:  Brian (0.2317022830247879)
+Text #17:  both (0.24477988481521606)
+Text #17:  af (0.017908072099089622)
+Text #17:  to (3.710608871188015e-05)
+Text #17:  tackle (0.11468502134084702)
+Text #17:  highlighting (0.551245927810669)
+Text #17: — (1.6905803680419922)
+Text #17:  Twitter (1.5463613271713257)
+Text #17:  that (0.1645095944404602)
+Text #17:  reflections (0.20663870871067047)
+Text #17:  per (0.15347225964069366)
+Text #17:  the (0.0796075239777565)
+Text #17:  Athe (0.05076129734516144)
+Text #17:  Gamer (0.19507600367069244)
+Text #17:  Millennials (0.9026547074317932)
+Text #17:  avocado (0.12576539814472198)
+Text #17:  all (0.09426358342170715)
+Text #17: <|endoftext|> (0.001615690067410469)
+Text #17: <|endoftext|> (0.0005537387332879007)
+Text #17: <|endoftext|> (0.012488162145018578)
+Text #17: <|endoftext|> (0.0022621764801442623)
+Text #17: <|endoftext|> (0.004579735454171896)
+Text #18: Polit (0.03841452673077583)
+Text #18:  � (1.6289976835250854)
+Text #18:  reporters (0.06881304830312729)
+Text #18:  Monday (0.036874014884233475)
+Text #18:  discouraged (0.02506645768880844)
+Text #18:  � (1.3096083402633667)
+Text #18: � (0.9020035862922668)
+Text #18:  further (0.8178077936172485)
+Text #18: � (0.8549216389656067)
+Text #18: � (0.8873186111450195)
+Text #18: � (0.9062157273292542)
+Text #18:  Planned (0.20219473540782928)
+Text #18: � (0.944591224193573)
+Text #18:  Mitch (0.03319878503680229)
+Text #18:  Planned (0.1083579882979393)
+Text #18:  taxpayers (0.026915397495031357)
+Text #18:  responded (0.18510286509990692)
+Text #18:  � (1.3473621606826782)
+Text #18: � (0.9174787402153015)
+Text #18:  they (0.026469947770237923)
+Text #18:  right (0.300686776638031)
+Text #18: � (0.9955862760543823)
+Text #18: � (0.9439690709114075)
+Text #18:  matter (0.0644863024353981)
+Text #18: � (0.9588617086410522)
+Text #18:  — (1.5319408178329468)
+Text #18:  justify (0.19653166830539703)
+Text #18: <|endoftext|> (0.01825980469584465)
+Text #18: <|endoftext|> (0.005992892198264599)
+Text #18: <|endoftext|> (0.016105933114886284)
+Text #18: <|endoftext|> (0.01084378082305193)
+Text #18: <|endoftext|> (0.005207929294556379)
+Text #18: <|endoftext|> (0.013639862649142742)
+Text #18: <|endoftext|> (0.008175592869520187)
+Text #18: <|endoftext|> (0.007279370911419392)
+Text #18: <|endoftext|> (0.007710660807788372)
+Text #18: <|endoftext|> (0.008242730982601643)
+Text #18: <|endoftext|> (0.011412344872951508)
+Text #18: <|endoftext|> (0.01268126629292965)
+Text #18: <|endoftext|> (0.003512526396661997)
+Text #18: <|endoftext|> (0.009647983126342297)
+Text #18: <|endoftext|> (0.0030494218226522207)
+Text #19:  2016 (0.25635868310928345)
+Text #19:  they (0.02730146236717701)
+Text #19: ," (1.8664355278015137)
+Text #19:  ACS (0.055844832211732864)
+Text #19:  that (0.05042686313390732)
+Text #19: ." (2.0551655292510986)
+Text #19:  so (0.22507299482822418)
+Text #19: ," (1.771655797958374)
+Text #19:  spreading (0.03562300279736519)
+Text #19:  our (0.021978290751576424)
+Text #19:  directly (0.054208025336265564)
+Text #19:  ahead (0.7199158072471619)
+Text #19:  HS (0.022312985733151436)
+Text #19: ," (1.7212586402893066)
+Text #19:  Partners (0.0657033771276474)
+Text #19:  all (0.026211798191070557)
+Text #19:  best (0.3193731904029846)
+Text #19: ," (1.7366437911987305)
+Text #19:  the (0.04615479335188866)
+Text #19:  too (0.05415917560458183)
+Text #19: ." (1.5150775909423828)
+Text #19: 677 (0.1388736069202423)
+Text #19: <|endoftext|> (0.030167534947395325)
+Text #19: <|endoftext|> (0.027605315670371056)
+Text #19: <|endoftext|> (0.027332870289683342)
+Text #19: <|endoftext|> (0.029450170695781708)
+Text #19: <|endoftext|> (0.031050046905875206)
+Text #19: <|endoftext|> (0.03575867787003517)
+Text #19: <|endoftext|> (0.02217852883040905)
+Text #19: <|endoftext|> (0.035825375467538834)
+Text #19: <|endoftext|> (0.025373540818691254)
+Text #19: <|endoftext|> (0.02572970651090145)
+Text #19: <|endoftext|> (0.030380796641111374)
+Text #19: <|endoftext|> (0.021558918058872223)
+Text #19: <|endoftext|> (0.023430747911334038)
+Text #19: <|endoftext|> (0.021795418113470078)
+Text #19: <|endoftext|> (0.021527545526623726)
+Text #19: <|endoftext|> (0.025141136720776558)
+Text #20:  MTV (0.36819615960121155)
+Text #20: ottest (0.25454217195510864)
+Text #20: � (0.933975100517273)
+Text #20:  Drake (0.09870437532663345)
+Text #20:  kicked (0.04986617714166641)
+Text #20:  � (1.2139919996261597)
+Text #20: � (0.8124470710754395)
+Text #20:  � (1.2757315635681152)
+Text #20: � (0.8617227077484131)
+Text #20:  � (1.3481087684631348)
+Text #20: � (0.8815775513648987)
+Text #20:  � (1.3780382871627808)
+Text #20: � (0.9426395297050476)
+Text #20:  � (1.393412709236145)
+Text #20: � (0.9313629269599915)
+Text #20: � (0.8586700558662415)
+
+=== Text #1 ===
+> trombone[ shirts shirt without] the life would be[ flat] t designs online shopping from sayings.
+trombone[ shirts] john prestige[ t shirt] lightweight vintage style shorty.
+trombone[ shirts] live love play the dark colors t[ shirt] by mom.
+trombone[ shirts] shorty[ tee shirt].
+trombone[ shirts] 2 shorty t.
+trombone[ shirts] organic t[ shirt cool].
+trombone[ shirts] player[ shirt] baby[ lap shoulder] t[ funny].
+trombone[ shirts] t[ shirt funny].
+trombone[ shirts] custom t cheap city keep[ calm] and play music lover adult short[ funny] crew neck[ shirt] for men in from clothing mom.
+trombone[ shirts] player[ funny] gift roll[ cuff] t.
+trombone[ shirts funny] t[ shirt] front shorty[ tee].
+trombone[ shirts funny] for trombonist premium t[ shirt] sayings.
+trombone[ shirts] cotton for o neck graphic short sleeve t[ funny].
+trombone[ shirts] i[ am] a player sweatshirt mom.
+trombone[ shirts] love premium t[ shirt funny].
+trombone[ shirts] awesome[ tee] pop art tees[ mom].
+trombone[ shirts] player i[ am] a t[ shirt] shorty[ tee].
+
+=== Text #2 ===
+> trombone[ shirts shirt without] the life would be[ flat] t designs online shopping from sayings.
+trombone[ shirts] john prestige[ t shirt] lightweight vintage style shorty.
+trombone[ shirts] live love play the dark colors t[ shirt] by mom.
+trombone[ shirts] shorty[ tee shirt].
+trombone[ shirts] 2 shorty t.
+trombone[ shirts] organic t[ shirt cool].
+trombone[ shirts] player[ shirt] baby[ lap shoulder] t[ funny].
+trombone[ shirts] t[ shirt funny].
+trombone[ shirts] custom t cheap city keep[ calm] and play music lover adult short[ funny] crew neck[ shirt] for men in from clothing mom.
+trombone[ shirts] player[ funny] gift roll[ cuff] t.
+trombone[ shirts funny] t[ shirt] front shorty[ tee].
+trombone[ shirts funny] for trombonist premium t[ shirt] sayings.
+trombone[ shirts] cotton for o neck graphic short sleeve t[ funny].
+trombone[ shirts] i[ am] a player sweatshirt mom.
+trombone[ shirts] love premium t[ shirt funny].
+trombone[ shirts] awesome[ tee] pop art tees[ mom].
+trombone[ shirts] player i[ am] a t[ shirt] shorty[ tee].
+
+=== Text #3 ===
+> [�]�Frankie Peak[”] (far[ right]; 2375m) and[ “]Larry Mountain[�]� ([right] of centre; 2375m) from the summit of[ �]�Table[ Top�]�. Both peaks were unofficially named by Andrew Nugara in honour of his mother and step-father.
+Another view of[ �]�Frankie Peak[�]� ([right] of centre) this time from Lys Ridge. We ascended using the ridge that begins in the foreground centre. Our original plan was to make a loop that included[ �]�Frankie[�]�,[ �]�Larry[�]� ([right] of[ �]�Frankie[�]�), and North Castle (far[ right] – summit not shown). Instead, icy conditions thwarted our trip from[ �]�Frankie[�]� to[ �]�Larry[�]� and we ended up tagging[ �]�E[agle] Peak[�]� (centre left) and Whistler Mountain (far left) as an alternate loop.
+[�]�Frankie Peak[�]� and its twin,[ �]�Larry Mountain[�]� are prominent peaks that are located south of Table Mountain in the Castle Wilderness. I had my first good look at them in May 2014 while hiking what I call,[ �]�The Whistler Loop[�]�, a collection of unnamed peaks on the connecting ridge between Table Mountain and Whistler Mountain. Later, I learned that my friend, Brad[ Wol]cott, had ascended them as part of an enjoyable trip from Whistler Mountain to Mount Gladstone. In September 2016, my curiosity was renewed while hiking Lys Ridge with Andrew Nugara and Jollin Charest. Andrew told me that he had unofficially named them,[ �]�Frankie Peak[�]� and[ �]�Larry Mountain[�]� in honour of his mother and step-father. He had first ascended[ �]�Frankie[�]� in May 2009[ via] Whistler Mountain, and then returned one month later using the same approach to summit[ �]�Larry[�]� and then North Castle.
+Therefore, with Andrew[�]�s trip reports as my guide, I began to plan my own trip. The major variation that I wanted to make from both Andrew[�]�s trips and Brad[�]�s trip, was to save distance by avoiding Whistler Mountain on my approach. Like Andrew, I wanted to summit[ �]�Frankie[�]�,[ �]�Larry[�]�, and then North Castle, but I thought that I could make a more compact loop by ascending a ridge that led up from the South Castle Road on the western side of the
+
+=== Text #4 ===
+> President[ Trump broke] his silence on[ Twitter] on Sunday after special[ counsel] Robert Mueller submitted his report to the Justice Department.
+In a pair of[ tweets] -- his first in more than a day and half -- the president put out an[ upbeat] message without mentioning the Russia investigation.
+"Good Morning, Have A Great Day[!"] he said in one[ tweet].
+"MAKE AMERICA GREAT[ AGA]IN[!"] he said in the other.
+[Trump] left Washington, D.C., on Friday[ morning] for[ Florida], where he is spending the weekend at his Palm Beach property, the Mar-a-[Lago], with first lady[ Melania Trump] and their son[ Barron], who just turned 13 last week.
+The president hadn[�]�t said anything publicly about the end of Mueller[�]�s investigation, which he has called a[ “]witch hunt[”] run by[ “]angry Democrats,[”] but he has been updated about any Russia investigation developments by his lawyers. Before leaving the White House,[ Trump] repeated his assertion to reporters that there was[ �]�no collusion[�]� between his[ 2016] presidential campaign and Russia.
+Before his[ tweets] Sunday[ morning] the president had been quiet on[ Twitter], his primary forum for attacking the special[ counsel�]�s investigation, since news that Mueller[�]�s investigation concluded broke Friday evening.
+While in Florida,[ Trump] stepped into a Mar-a-[Lago] fundraiser Friday evening where Sen.[ Lindsey] Graham delivered a speech and played[ golf] with singer Kid Rock.
+[Trump] has no public events on his schedule for Sunday and is expected to return to the White House in the evening.
+Mueller delivered his report to Attorney General William Barr on Friday, concluding his 22-month-long investigation into Russian interference in the 2016 election and possible collusion between the[ Trump] campaign and the[ Kremlin]. Barr told congressional leaders in a letter he may be able to provide them with the special[ counsel�]�s[ �]�[pr]incipal conclusions[�]� as early as this weekend.
+The investigation[ led] to the indictments of 34 people and three Russian companies, including six individuals close to[ Trump] like former[ Trump] campaign chairman Paul Manafort, but none relate to collusion with Russia. Mueller is not expected to not recommend any new indictments.
+
+=== Text #5 ===
+> In[ China],[ the] prevalence of tooth decay[ among 12]-year-olds increased[ nearly] 35[ percent] from[ 2005] to[ 2015]. While most parents still believe that good dental[ hygiene] means[ brushing] teeth[ twice] a day, dental professionals[ suggest] that neglecting[ timely] oral care after[ meals] contributes to the problem. W[rig]ley[�]�s Extra Sugar-Free Gum wanted to[ inspire] Chinese parents to[ encourage] their children to[ chew] sugar-free[ gum] after[ meals], which can help prevent tooth decay and[ improve] oral health.
+We[ tapped] into Chinese school children[�]�s[ daily lunch] routines and created the first interactive[ lunch]box that[ encourages] children to practice oral[ hygiene] after[ meals —] Extra Care Box. The care box used artwork that playfully changes with heat and reveals cartoon characters who work together to clean their teeth. This fun activation captures children[�]�s attention and[ encourages] them to open a built-in compartment and[ chew] the sugar-free[ gum] inside it after[ meals], a simple reminder that helps[ improve] their daily oral[ hygiene —] without[ interrupt]ing their playtime.[][][][][][][][][]
+
+=== Text #6 ===
+> When people ask me what[ my] favorite horror film is, I guess[ they] would expect me to say[ “]Halloween[�]� or[ “]The Exorcist.[�]� And while I do love those movies and they,[ along] with[ “]Psycho[”] for instance, would be in my[ top]-five of the genre, I say that my favorite in the genre is definitely[ �]�The Haunting.[�]� And the trouble is, I always have to[ back] up that title by labeling it[ �]�the Robert Wise haunted-house film from the 1960s[�]� because I know that they[�]�re thinking of the other[ “]The Haunting[�]� (the 1999 Jan De Bont remake of the 1963 film with Liam Neeson and Catherine Zeta-Jones). I[�]�ll have something to say about the remake later and why it definitely doesn[�]�t work in comparison to its predecessor, but I truly love the original film. In fact, I love it[ so] much to admit that it[�]�s just my favorite scary film[—]it[�]�s one of my all-time favorite movies.
+[“]The Haunting[�]� is a superb, gorgeously-shot, very well thought-out chiller that uses psychological[ tension] and character development in the same concepts of mystery and atmosphere. It takes place in a haunted house[—]Hill House, to be exact[—]and it[�]�s about a group of characters who would like to investigate the supernatural occurrences of such a place but get much more than they expected. That premise sounds pretty simple, but Wise[�]�s direction,[ along] with great cinematography as well as great acting, makes it far more than what it could have been. Even if you don[�]�t really find it very scary (it depends on whether or not you accept the[ �]�less is more[�]� aspect[—]I[�]�ll explain later in this review), it[�]�s still a gripping psychological thriller, Gothic story, and character study.
+[“]The Haunting[”] begins with an opening narration over a shot of an ominous-looking mansion in the night, and right away, the narration sets up the premise in a most interesting way. I don[�]�t think I[�]�ve ever heard a depiction of a haunted house, or rather just exploring a haunted house, has ever been put in a[ better] way.[ �]�An evil old house, the kind some people call haunted, is like an undiscovered country waiting to be explored. Hill House has
+
+=== Text #7 ===
+> Far Left Van Jones Admits that[ Trump] Can Win and Gives Major Warning to Democrats - Video - Stumpin' For[ Trump]!
+[CNN] contributor and former Obama aide Van Jones put out a warning to his fellow Democrats on Friday:[ Donald Trump] is probably going to win the White House.
+In the Facebook video, Jones credited[ Trump�]�s ability to understand and use social media and reality television as well as his appeal to black voters as reasons he will likely win the White House in November.
+Jones[ likened Trump] to Franklin Roosevelt, John Kennedy,[ Ronald] Reagan, and Barack Obama in the sense that they all excelled in a new medium that no other politician could easily master.
+[�]�Just like FDR changed the rules of the game[ because] he mastered radio, he was able to take radio and just completely master that[ —] then you had JFK and JFK was able to master television[ —] new medium, new master, new president,[”] Jones said.
+He continued to detail how[ Trump] has been able to use his celebrity to appeal to parts of the Democratic base, especially black voters.
+[“]If only 70[ percent] don[�]�t like[ Donald Trump], that means 30[ percent] are open to his argument, if he gets half of those, he[�]�s president,[”] Jones said.
+A Public Policy Polling report released on Monday showed Jones might be[ correct] in his opinion that[ Trump] is winning over large[ segments] of the Democratic Party[�]�s most loyal voting bloc. The poll showed that in the swing state of Ohio,[ Trump] would[ garner] 15[ percent] of the African American vote against Clinton, with another 11[ percent] undecided.
+That is huge increase from the 4 percent of the black vote[ Mitt Romney] received in Ohio[ during] the last presidential election.
+Well, well, well, even the ex-Obama-Czar-self-proclaimed communist understands and sees how[ Trump] can win and be our next President! Wow! I[�]�m a bit[ impressed], but I wouldn[�]�t trust Van Jones with a lollipop either![ Trump] is pulling in some of the more[ modest] democrats over to vote for him, and with the help of these two infamous Internet sensations, Diamond and Silk, created a place for them to do just that, called[ �]�Ditch and Switch[”], for anyone who either voted democrat all these horrible years and now sees the[ “]light[�]� in voting[ Trump], or whom never voted before and wants to sign up as soon as possible to exercise their constitutional[ right] to vote, they can go
+
+=== Text #8 ===
+> The European Publishing Awards[ hon]ours[ the best] digital products, magazines and newspapers of Europe[�]�s various media[ markets]. We[ demonstrate] which products set[ themselves] apart from[ competitors] through high-quality design and concepts,[ as] well[ as] which tools, models and[ solutions] make successful publishing possible. We welcome media companies[ that] create and market content-driven products, as well as their suppliers, service partners and service providers.
+The awards ceremony will take place in Vienna[ during] the European Newspaper Congress from 12 to 14 May[ 2019].
+Submissions must be received by 8 February[ 2019].
+We[�]�re looking for the[ best] magazines in Europe, with categories[ such] as[ �]�cover[�]�,[ �]�design[�]�,[ �]�storytelling[�]�,[ �]�European Magazine of[ the] Year[�]� and[ �]�European Newcomer of[ the] Year[�]�.[ Apply now] in 18 categories and show your advertising clients and readers what your product[�]�s capable of!
+From products, business models,[ marketing] and user dialogue to[ targeting], payment systems and[ analytics]: Rise above the competition in one or more of 17 categories! We[�]�re also looking for the[ �]�European Digital Platform of[ the] Year[”] and[ �]�Start-up of the Year[”].
+The European Newspaper Award, organised by the German Newspaper Designer Norbert K[ü]pper, will also be presented at the European Newspaper Congress. This prize honours European newspapers for their concepts and design and thus[ promotes] dialogue between publishers.
+The European Newspaper Congress will take place from May 12th to 14th,[ 2019] in Vienna.
+Meet extraordinary publishers from Europe and their print and online projects![][][][]
+
+=== Text #9 ===
+> Class A Burn[ Prop] - Stove Simulator With Over[head] Burn Hood - Fire Facilities, Inc.
+The stove simulator assembly consists of 1/4[” thick] prime painted[ angles] and 12 gage stainless steel panels bolted together with 3/8[” diameter] bolts through pre-punched holes for ease of assembly. The prime painted 19W4 x 1 1/2[”] x 3/16[”] bar[ grate] is designed to hold class[ “]A[”] materials 1[�]�-4[”] above the floor[ surface]. Dimensions for this[ prop] shall be approximately 4[�]�-5 1/2[”] x 4[�]�-5 1/2[”] x 6[�]�-7[”] tall and shall resemble a commercial grade stove. The overhead bar[ grate] hood of this unit is 2[�]�-11[”] x 4[�]�-5 1/2[”] and provides another area to hold class[ “]A[”] materials for a secondary fire. A sliding/removable stainless steel range[ top] with large ventilation holes shall also be provided. The range[ top] helps to limit the number of pallets trainees can place in the unit by covering approximately half of the unit.[][][][][][][]
+
+=== Text #10 ===
+> What[�]�s[ wrong] with[ this] sentence? It[�]�s active, complete, and[ properly punctuated]…What could it be?
+[�]�In terms of[�]� is one of the worst stock phrases in formal business writing. Its horror lies within its utter ambiguity. What does it[ mean], exactly? How does it[ relate] to the[ matter] at hand? In the above example, what does it imply: that the meeting can be translated into[ �]�terms[�]�? What terms? How would these terms make the meaning of the sentence any clearer?
+[�]�In terms of[�]� confuses, rather than[ clar]ifies, your sentences and their meaning.
+So, we don[�]�t want to hear any more of these[ �]�in terms of the meeting[�]� type sentences.[][][][][][][][]
+
+=== Text #11 ===
+> [Philipp Ple]in's collection exudes hard-edged decadence with an intricate focus upon detailing. Crafted in Italy from aqua blue leather,[ goat] skin and[ rubber], these[ sneakers] feature a[ round toe], a[ flat] sole, a lace[ fast]ening, a mix of stone[ embell]ishments and a logo patch at the[ tongue].
+[Philipp] Plein's[ AW]18 collection exudes hard-edged decadence with an intricate focus upon detailing. These[ sneakers] feature a[ rubber] sole, a[ round toe] and a lace-up front[ fast]ening.
+Crafted in Italy from a supp[le calf] leather, these white low-top[ sneakers] from[ Philipp] Plein feature a[ round toe], a lace-up front[ fast]ening, a[ branded] in[sole], a logo to the side and a contrasting[ flat rubber] sole.
+[Philipp] Plein's[ AW]18 collection exudes hard-edged decadence with an intricate focus upon detailing. These[ sneakers] feature a[ rubber] sole, a[ round toe], a lace-up front[ fast]ening and a panelled design.[][][][][][][][][][][][][]
+
+=== Text #12 ===
+> Originally, from Chicago, now living in Hong Kong, Jeanne studied improvisation in Chicago. She holds a B.S. in Anthropology from Loyola University of Chicago and an M.S. in Historic Preservation from the School of the Art Institute.
+She has performed, presented and conducted workshops in the US, Europe and Asia.[ Ms].[ Lamb]in[�]�s workshops have been described as[ “]amazing,[” “]powerful,[”] and[ “]great fun.[”] Her work has been featured in the Hong Kong[�]�s[ Top] Notch Storytelling Festival, Liar[�]�s League Hong Kong, Literary Death Match, the Art[�]�s House World Voices Presents, the Moth Chicago, Story Lab and This Much is True.[ Ms].[ Lamb]in is a proud to be a founding member of[ Impro]v for Humanity and[ co]-creator of The Quest:[ Impro]v for Transformation.[][][][][][][][][][][][][][][][][][]
+
+=== Text #13 ===
+> If Raheem[ Hassan] had been a non-Muslim who threatened to kill his Muslim colleagues, do you think criminal charges against him would have been dropped if he agreed to stay out of[ trouble] and go into[ counseling]? Neither do I. And now the city is paying him $224,000 because he was allegedly harassed, although[ “]neither the city nor Hughes admitted any wrongdoing.[�]� Clearly Bill de[ Blasio�]�s New York just wanted this case, with its allegedly[ “]Islam[ophobic”] firefighters, to go[ away]:[ “]Hassan[�]�s lawsuit[ continues] against two other defendants, firefighters Joe Lankford and[ Tommy Donovan], who, like Hughes, did not receive legal representation by the city.[”] They were on their own.[][][][][][][][][][][][][][][][][][]
+
+=== Text #14 ===
+> According[ to] Variety, one of[ the] movies[ about the] 1973[ tennis] match between Billie Jean King and Bobby Riggs is recasting one of its leads. No, not the serious one that HBO is doing with Elizabeth Banks and Paul Giam[atti], and not the overtly[ comedic] one that Will Ferrell is set to star in. It[�]�s Battle Of The Sexes, the middle one that[�]�s supposed to be a comedy with[ “]dramatic and political[ over]tones[”—]as we said in an earlier report. Battle Of The Sexes[ comes] from Little Miss Sunshine[�]�s[ Jonathan] Dayton and Valerie Faris, and it was set to star Emma Stone and[ Steve] Carell as the eponymous sexes. Now, Stone has backed out due to[ “]a scheduling conflict,[”] and the studio is[ reportedly] in talks with Brie Larson to replace her.
+Larson[ recently] appeared in Room, a film that is not only making some waves in the film festival circuit but also has a name that[�]�s very similar to a[ certain] other movie, which could end up causing a[ reverse]-Asylum by[ trick]ing people who want to see a[ bad] movie into seeing a good movie. She[�]�s also set to be in Kong: Skull Island and possibly the eventual Godzilla fight movie that it[�]�s going to set up.[][][][][][][][][][][][][][][][]
+
+=== Text #15 ===
+> Instagram decided on the change after a public outcry following[ Ms] Russell[�]�s suicide.[ Instagram] chief Adam Mosseri said the company has not done enough to keep people safe.
+Mr Mosseri said[ Instagram] would be removing the images,[ “]as[ quickly] as we can,[ responsibly”].[ Instagram] currently relies on users to report graphic images of self-harm.
+In addition to banning images of self-harm,[ Instagram] said it will not[ promote] non-graphic self-harm-related content like[ healed] scars or through[ hashtags] or the explore tab, though they[�]�re not removing the content entirely as not to[ “]st[igmat]ise or isolate people who may be in[ distress] and posting self-harm-related content as a cry for help[”].
+Mr Russell was[ buoy]ed by[ Instagram�]�s commitment, and in an interview with the BBC called on other social media to follow suit.[][][][][][]
+
+=== Text #16 ===
+> Weird Religion[ is] a[ podcast] for people who think religion[ is] weird but love[ it] anyway. Your[ hosts], Leah Payne and[ Brian] Doak, are[ both] professors, authors, and pop culture[ aficion]ados, whose interests range from archaeology and history and linguistics[ to] LARPing and The Walking Dead. Episodes[ tackle some] piece of media[ highlighting the] wonderful weirdness of religious experience[—]a documentary, a television show, a[ Twitter scandal—]and use[ that as] a "thread" on which to hang[ reflections] on a wide variety of topics. Cults. The[ per]ils of fame within[ the] evangelical world. Church attendance.[ Athe]ism.[ Gamer] communities.[ Millennials] and[ avocado toast]. It's[ all] here.[][][][][]
+
+=== Text #17 ===
+> Weird Religion[ is] a[ podcast] for people who think religion[ is] weird but love[ it] anyway. Your[ hosts], Leah Payne and[ Brian] Doak, are[ both] professors, authors, and pop culture[ aficion]ados, whose interests range from archaeology and history and linguistics[ to] LARPing and The Walking Dead. Episodes[ tackle some] piece of media[ highlighting the] wonderful weirdness of religious experience[—]a documentary, a television show, a[ Twitter scandal—]and use[ that as] a "thread" on which to hang[ reflections] on a wide variety of topics. Cults. The[ per]ils of fame within[ the] evangelical world. Church attendance.[ Athe]ism.[ Gamer] communities.[ Millennials] and[ avocado toast]. It's[ all] here.[][][][][]
+
+=== Text #18 ===
+> [Politico], which broke the PR story, reports,[ “]The group circulated a memo to[ reporters] and producers late[ Monday] that[ discouraged] them from airing the undercover videos, arguing that they were obtained under false identification and violated patient privacy.[ �]�Those patients[�]� privacy should not be[ further] violated by having this footage shared by the media,[�]� the memo reads.[”] Patients[�]� privacy? What about the victims whose body parts are sold?[ Planned] Parenthood technicians may find that kind of depravity chuckle worthy, but congressional Republicans don[�]�t, which is why Senate Majority Leader[ Mitch] McConnell will hold a vote before August recess to end the more than $500 million[ Planned] Parenthood extracts annually from[ taxpayers]. Amazingly, Minority Leader Harry Reid[ responded],[ “]Good luck with that. We[�]�re dealing with the health of American women, and[ they�]�re dealing with some[ right]-wing crazy.[”] With even more videos set to be released, it[�]�s only a[ matter] of time before the story goes mainstream. Let[�]�s see who the public will think is crazy[ —] those who want to protect the sanctity of life, or those who try to[ justify] the trafficking of human organs.[][][][][][][][][][][][][][][]
+
+=== Text #19 ===
+> Farmington, CT, August 30,[ 2016] -- Many Americans realize[ they] need long-term care insurance, but balk at the premiums. "Now there's an easy way to pay[,"] says Larry Golfin, who represents[ ACS]IA Partners LLC in CT. "Just use some of the money[ that]'s already in your Health Savings Account[."]
+"It's a shame[ so] few people know about this[," says] Golfin. "We're[ spreading] the word through[ our] business partners and to the public[ directly."]
+"In the years[ ahead],[ HS]As promise to be an increasingly important tool for the health and wellbeing of our longer-living population[," says] Golfin.
+ACSIA[ Partners] has agents in[ all] parts of the country who are glad to answer questions. "Depending on your circumstances, long-term care insurance may or may not be the[ best solution] for you[," says] Golfin. "And[ the] possible role of an HSA depends on your circumstances[ too]. For example, some people may choose to pay some of their care costs directly from their HSA, and the balance from an LTC policy paid for with HSA dollars[."]
+For information, contact Golfin at larry.golfin@acsiapartners.com, http://www.larrygolfin.com or 860-[677]-4075.[][][][][][][][][][][][][][][][]
+
+=== Text #20 ===
+> Landing the #5 spot on[ MTV�]�s H[ottest] MCs In The Game list is Toronto[�]�s superstar[ Drake despite] him not releasing a project all year. He[ kicked] the year off with an incredible verse on[ �]�Stay Schemin[�]� and then grabbed an all-star cast for his Club Paradise tour. He also made appearances on the hit singles[ “]F***in Problems[�]�,[ “]No Lie[“],[ “]Pop That[”] and[ “]Poetic Justice[“]. Later in the year, he shut down Toronto with his annual OVO Fest and performed at Jay-Z[�]�s Made In America festival. Do you think he deserves to be #5?
+
+
+Description: 
+2025-07-25 20:27:03,911 - root - INFO - Types of shirts, peaks, Trump's activity, oral hygiene, discussions of movies, descriptions of sneakers, workshops, legal disputes, marketing awards and podcasts
+
+2025-07-25 20:27:03,915 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3943_clusters-1_2025-07-25_18-17-30.csv
+2025-07-25 20:27:03,916 - root - INFO - ================================================================================
+2025-07-25 20:27:03,917 - root - INFO - ANALYSIS COMPLETED
+2025-07-25 20:27:03,917 - root - INFO - ================================================================================
+2025-07-25 20:27:03,918 - root - INFO - Logs saved to: logs/gpt2-xl_layer-0_unit-3943_clusters-1_2025-07-25_18-17-30.log
+2025-07-25 20:27:03,918 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-0_unit-3943_clusters-1_2025-07-25_18-17-30.csv

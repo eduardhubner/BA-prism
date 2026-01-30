@@ -1,0 +1,740 @@
+2025-07-26 01:04:23,060 - root - INFO - ================================================================================
+2025-07-26 01:04:23,061 - root - INFO - CONFIGURATION PARAMETERS
+2025-07-26 01:04:23,061 - root - INFO - ================================================================================
+2025-07-26 01:04:23,062 - root - INFO - ACTIVATION_PERCENTILE = 90
+2025-07-26 01:04:23,062 - root - INFO - AGG_METHOD = mean
+2025-07-26 01:04:23,063 - root - INFO - BATCH_SIZE = 2
+2025-07-26 01:04:23,063 - root - INFO - CLUSTER_EMBEDDING_MODEL_NAME = Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 01:04:23,064 - root - INFO - CLUSTER_MAX_SEQ_LEN = 8192
+2025-07-26 01:04:23,064 - root - INFO - CLUSTER_METHOD = KMeans
+2025-07-26 01:04:23,064 - root - INFO - CLUSTER_N_SAMPLES = 1000
+2025-07-26 01:04:23,065 - root - INFO - CONTROL_BATCH_SIZE = 64
+2025-07-26 01:04:23,065 - root - INFO - CONTROL_DATA = cosmopedia
+2025-07-26 01:04:23,066 - root - INFO - CONTROL_DATA_FILES = None
+2025-07-26 01:04:23,066 - root - INFO - CONTROL_SPLIT = train
+2025-07-26 01:04:23,067 - root - INFO - DATA_FILES = None
+2025-07-26 01:04:23,067 - root - INFO - DEVICE = cuda
+2025-07-26 01:04:23,068 - root - INFO - END_INTERVAL = 1.0
+2025-07-26 01:04:23,068 - root - INFO - EVALUATION_TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 01:04:23,069 - root - INFO - EXPLAIN_BATCH_SIZE = 2
+2025-07-26 01:04:23,069 - root - INFO - EXPLAIN_FILE = gpt2-xl_layer0_layer20_layer40_60-samples.csv
+2025-07-26 01:04:23,069 - root - INFO - FILTER_FOR_POSITIVE_ACTIVATIONS = True
+2025-07-26 01:04:23,070 - root - INFO - HOOK_ID = mlp.hook_post
+2025-07-26 01:04:23,070 - root - INFO - HOOK_NAME = blocks.20.mlp.hook_post
+2025-07-26 01:04:23,071 - root - INFO - LAYER_ID = 20
+2025-07-26 01:04:23,071 - root - INFO - MAX_CLUSTER_SIZE = 20
+2025-07-26 01:04:23,072 - root - INFO - MAX_TEXT_LENGTH = 512
+2025-07-26 01:04:23,072 - root - INFO - METHOD_NAME = GPT-explain
+2025-07-26 01:04:23,073 - root - INFO - MULTI_EVAL = True
+2025-07-26 01:04:23,073 - root - INFO - N_CLUSTERS = 1
+2025-07-26 01:04:23,074 - root - INFO - N_SAMPLES = 10
+2025-07-26 01:04:23,074 - root - INFO - PERCENTILE_STEP = 1.000000000000001e-05
+2025-07-26 01:04:23,075 - root - INFO - PROMPT_INSTRUCTION = You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+2025-07-26 01:04:23,076 - root - INFO - PROMPT_SAMPLE_INSTRUCTION = Generate 10 sentences with a length of 512 words, one per line, with no additional formatting, introduction, or explanation. Each sentence should be a complete, standalone text sample that can be saved as an individual row in a text file. The sentences should include:
+
+2025-07-26 01:04:23,076 - root - INFO - SAVE_ACTIVATIONS = True
+2025-07-26 01:04:23,076 - root - INFO - SPLIT = train
+2025-07-26 01:04:23,077 - root - INFO - START_INTERVAL = 0.99
+2025-07-26 01:04:23,077 - root - INFO - STREAMING = True
+2025-07-26 01:04:23,078 - root - INFO - SUBSET_SIZE = 1000
+2025-07-26 01:04:23,078 - root - INFO - SYSTEM_INSTRUCTION = assistant
+2025-07-26 01:04:23,079 - root - INFO - TARGET_DATA = c4
+2025-07-26 01:04:23,079 - root - INFO - TARGET_MODEL_NAME = gpt2-xl
+2025-07-26 01:04:23,080 - root - INFO - TEXT_GENERATOR_NAME = gemini-1.5-pro
+2025-07-26 01:04:23,080 - root - INFO - UNIT_ID = 1004
+2025-07-26 01:04:23,081 - root - INFO - USE_API = True
+2025-07-26 01:04:23,081 - root - INFO - ================================================================================
+2025-07-26 01:04:23,081 - root - INFO - ANALYSIS RESULTS
+2025-07-26 01:04:23,082 - root - INFO - ================================================================================
+2025-07-26 01:04:23,082 - root - INFO - Analysis results will be saved to: logs/gpt2-xl_layer-20_unit-1004_clusters-1_2025-07-25_23-04-23.log
+2025-07-26 01:13:07,871 - root - INFO - Reached 1000 samples.
+2025-07-26 01:13:09,326 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda
+2025-07-26 01:13:09,327 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: Alibaba-NLP/gte-Qwen2-1.5B-instruct
+2025-07-26 01:13:21,327 - sentence_transformers.SentenceTransformer - INFO - 1 prompts are loaded, with the keys: ['query']
+2025-07-26 01:13:57,861 - root - INFO - Number of candidates: 1001
+2025-07-26 01:14:00,834 - root - INFO - 
+---
+> CLUSTER #0 (Number of samples: 20)
+
+2025-07-26 01:14:00,835 - root - INFO - You are a meticulous AI researcher conducting an important investigation into a specific neuron inside a language model that activates in response to text excerpts. Each text starts with ">" and has a header indicated by === Text #1234 ===, where #1234 can be any number and is the identifier of the text.
+Neurons activate on a word-by-word basis. Also, neuron activations can only depend on words before the word it activates on, so the description cannot depend on words that come after, and should only depend on words that come before the activation.
+Your task is to describe what the common pattern is within the following texts. From the provided list of text excerpts, identify the concepts that trigger the activation of a particular feature. If a recurring pattern or theme emerges where these concepts appear consistently, describe this pattern. Focus especially on the spans and tokens in each example that are inside a set of [delimiters] and consider the contexts they are in. The highlighted spans correspond to very important patterns.
+At the beginning, before the list of texts, there will be a list of the highlighted tokens with their activation values. At the end, following 'Description: ', your task is to write the description that fits the above criteria the best.
+Do NOT just list the highlighted words!
+Do NOT cite any words from the texts using quotation marks, but try to find overarching concepts instead!
+Do NOT write an entire sentence!
+Do NOT finish the description with a full stop!
+Do NOT mention the [delimiters] in the description!
+Do NOT include phrases like 'highlighted spans', 'Concepts of', or 'Concepts related to', and instead only state the actual semantics!
+Do NOT start with 'Description:' and instead only state the description itself!
+
+=== Summary of highlights ===
+Text #1: N (0.1499677300453186)
+Text #1:  to (0.1215541735291481)
+Text #1:  season (0.9215494394302368)
+Text #1:  to (0.18766023218631744)
+Text #1:  season (0.44248777627944946)
+Text #1:  to (0.694568932056427)
+Text #1:  January (1.0493007898330688)
+Text #1: y (0.3687766194343567)
+Text #1:  time (1.2888466119766235)
+Text #1:  can (0.18839341402053833)
+Text #1:  days (0.640982985496521)
+Text #1:  The (0.1657802015542984)
+Text #1: est (2.4399020671844482)
+Text #1:  are (1.275181531906128)
+Text #1:  August (0.14488109946250916)
+Text #1: est (1.5255061388015747)
+Text #1:  January (0.5910504460334778)
+Text #2:  joy (0.8019244074821472)
+Text #2:  depending (0.21835479140281677)
+Text #2:  and (0.3200340270996094)
+Text #2:  During (0.22378376126289368)
+Text #2: , (0.6612500548362732)
+Text #2: , (0.2257898896932602)
+Text #2:  the (0.3388233780860901)
+Text #2:  at (0.1970684826374054)
+Text #2:  of (0.5244407653808594)
+Text #2:  at (1.1514618396759033)
+Text #2:  to (0.6418411731719971)
+Text #2:  and (0.5870746374130249)
+Text #2: . (1.1505955457687378)
+Text #2:  can (0.5757046341896057)
+Text #2:  If (0.9497494697570801)
+Text #2:  before (0.8167932033538818)
+Text #2:  season (0.914745569229126)
+Text #2:  those (0.86799556016922)
+Text #2: ) (0.2235882580280304)
+Text #2:  largest (0.6172583103179932)
+Text #2: VE (0.30014869570732117)
+Text #2:  can (0.25962916016578674)
+Text #2:  if (0.25988471508026123)
+Text #2:  under (0.34881648421287537)
+Text #2:  over (1.037262201309204)
+Text #2:  longer (0.2206776738166809)
+Text #2:  below (0.6600316166877747)
+Text #2: - (0.4200519025325775)
+Text #2:  If (0.20403696596622467)
+Text #2: 're (0.5773437023162842)
+Text #3:  significant (0.24996615946292877)
+Text #3:  significant (0.7118058800697327)
+Text #3: , (0.3338993489742279)
+Text #3:  of (0.34071287512779236)
+Text #3:  first (0.2606101334095001)
+Text #3:  most (0.9840662479400635)
+Text #3:  that (0.736124575138092)
+Text #3:  that (1.3704328536987305)
+Text #3:  to (1.9186807870864868)
+Text #3:  for (0.8853772282600403)
+Text #3:  ( (0.8545836210250854)
+Text #3:  if (0.24941328167915344)
+Text #3:  are (0.643548846244812)
+Text #3:  most (1.6619327068328857)
+Text #3:  When (2.1064717769622803)
+Text #3:  increases (1.8948614597320557)
+Text #3:  on (0.6618513464927673)
+Text #3:  considerably (1.152814507484436)
+Text #3:  most (2.2013561725616455)
+Text #3:  when (1.5257457494735718)
+Text #3:  are (1.1466734409332275)
+Text #3:  in (0.27553805708885193)
+Text #3:  to (0.29186588525772095)
+Text #3:  for (0.8569942712783813)
+Text #3:  most (1.8765368461608887)
+Text #3:  the (0.5027061104774475)
+Text #3:  impact (0.31461095809936523)
+Text #3:  to (0.7173411250114441)
+Text #4: � (1.0099331140518188)
+Text #4: re (0.2975253164768219)
+Text #4: nant (0.5349928736686707)
+Text #4: � (0.32930758595466614)
+Text #4:  can (0.446967750787735)
+Text #4:  especially (1.4410418272018433)
+Text #4:  pregnancy (0.46083974838256836)
+Text #4:  pregnancy (0.6762529015541077)
+Text #4:  to (0.6004314422607422)
+Text #4:  time (2.5956175327301025)
+Text #4:  big (0.558513879776001)
+Text #4:  deal (0.8513813614845276)
+Text #4: s (0.2531047761440277)
+Text #4:  is (0.24002638459205627)
+Text #4:  the (1.4145361185073853)
+Text #4:  pregnancy (0.3587804138660431)
+Text #4:  time (2.180041551589966)
+Text #4:  to (0.647373616695404)
+Text #4:  pregnancy (0.49624329805374146)
+Text #4:  begin (0.6536870002746582)
+Text #4:  third (0.3248661458492279)
+Text #4:  pregnancy (0.7643896341323853)
+Text #4:  begin (0.459258109331131)
+Text #4:  first (0.9243997931480408)
+Text #4:  pregnant (0.7133228182792664)
+Text #4: imester (1.2468156814575195)
+Text #4: re (0.46082016825675964)
+Text #4:  performing (0.5721186995506287)
+Text #4:  until (0.741951048374176)
+Text #4: re (0.803851842880249)
+Text #4:  along (1.1457284688949585)
+Text #4:  pregnancy (1.5766888856887817)
+Text #4:  pregnancy (0.5256139636039734)
+Text #4:  earlier (1.6576921939849854)
+Text #4: re (0.47312280535697937)
+Text #4:  the (0.2790209949016571)
+Text #5: Do (0.15951284766197205)
+Text #5:  start (0.6527746915817261)
+Text #5:  so (0.7609024047851562)
+Text #5:  first (0.38906002044677734)
+Text #5:  what (0.8779001235961914)
+Text #5:  after (0.1447238177061081)
+Text #5:  that (2.8189055919647217)
+Text #5:  seriously (1.4013116359710693)
+Text #5:  entering (0.440752238035202)
+Text #5:  the (0.16804568469524384)
+Text #5:  too (0.7629346251487732)
+Text #5:  are (0.5610740780830383)
+Text #5:  the (0.21150974929332733)
+Text #5:  if (0.5396461486816406)
+Text #5:  are (1.2155652046203613)
+Text #5:  at (0.42587414383888245)
+Text #5:  actually (0.21785292029380798)
+Text #5:  you (0.17643631994724274)
+Text #5:  you (0.6173583269119263)
+Text #5:  hit (1.1419740915298462)
+Text #5:  when (0.6437298059463501)
+Text #5:  do (2.376967668533325)
+Text #5:  even (0.4824734926223755)
+Text #5: Once (1.760620355606079)
+Text #5:  can (0.1404711902141571)
+Text #5:  onto (0.25134700536727905)
+Text #5:  start (0.8243288397789001)
+Text #5:  how (0.13690117001533508)
+Text #5:  once (0.380348265171051)
+Text #5:  best (0.5375686883926392)
+Text #5:  the (0.5192579627037048)
+Text #5:  make (0.22715803980827332)
+Text #5:  next (0.45560911297798157)
+Text #5:  when (0.6614570617675781)
+Text #6: F (0.1488807052373886)
+Text #6:  to (0.14221112430095673)
+Text #6:  top (0.40244415402412415)
+Text #6:  spikes (0.5627449154853821)
+Text #6:  approach (0.31667694449424744)
+Text #6:  for (0.45911896228790283)
+Text #6:  where (0.643389880657196)
+Text #6:  point (0.9963149428367615)
+Text #6:  start (2.023228168487549)
+Text #6: . (1.0812392234802246)
+Text #6:  is (0.5716975927352905)
+Text #6:  spot (0.852568507194519)
+Text #6:  those (0.16301468014717102)
+Text #6:  approach (0.6613344550132751)
+Text #6:  main (0.44336745142936707)
+Text #6:  after (0.5765692591667175)
+Text #6:  there (0.4974200427532196)
+Text #6:  to (0.5996066331863403)
+Text #6:  where (0.6709851622581482)
+Text #6:  se (0.18097297847270966)
+Text #6:  the (0.35096725821495056)
+Text #6: . (0.5005697011947632)
+Text #6:  becomes (0.6321665644645691)
+Text #6:  after (0.5214326977729797)
+Text #6: The (0.2911396324634552)
+Text #6:  its (0.2733919024467468)
+Text #6: The (0.3639410138130188)
+Text #6: ), (0.1449987143278122)
+Text #6:  core (0.16826976835727692)
+Text #7:  time (0.6872339248657227)
+Text #7:  if (0.2876676619052887)
+Text #7:  that (0.4772135019302368)
+Text #7:  far (0.6570209264755249)
+Text #7:  during (1.5601087808609009)
+Text #7:  something (0.260423868894577)
+Text #7:  well (0.3131936192512512)
+Text #7:  time (1.508149266242981)
+Text #7:  are (0.6853801012039185)
+Text #7:  for (0.16603916883468628)
+Text #7:  initially (0.22668921947479248)
+Text #7:  who (1.4679985046386719)
+Text #7:  the (0.402629017829895)
+Text #7:  start (0.5287129878997803)
+Text #7: Saturday (0.6734858751296997)
+Text #7:  February (0.2897821068763733)
+Text #7: Wednesday (0.6436842679977417)
+Text #7:  becoming (0.267853707075119)
+Text #7:  day (0.4581344723701477)
+Text #7:  starting (1.9869085550308228)
+Text #7:  Saturday (0.5598296523094177)
+Text #7:  before (0.18063083291053772)
+Text #7:  started (0.49324852228164673)
+Text #7:  hit (0.33897268772125244)
+Text #7:  major (0.9861901998519897)
+Text #7:  person (0.16852016746997833)
+Text #7:  started (0.30736100673675537)
+Text #7:  start (0.44381946325302124)
+Text #7:  Once (1.2968610525131226)
+Text #7:  time (2.398859977722168)
+Text #7:  when (0.27899643778800964)
+Text #8:  most (0.3994356393814087)
+Text #8:  place (0.29140588641166687)
+Text #8:  50 (0.2461346536874771)
+Text #8:  countries (0.654310405254364)
+Text #8:  most (0.6158051490783691)
+Text #8:  driver (0.26989907026290894)
+Text #8:  10 (0.6388928890228271)
+Text #8:  and (0.5177988409996033)
+Text #8:  out (0.2630826532840729)
+Text #8:  top (0.62161785364151)
+Text #8:  countries (0.7709885835647583)
+Text #8:  primary (0.9748071432113647)
+Text #8:  highest (0.294384628534317)
+Text #8:  top (0.9194818735122681)
+Text #8:  first (0.3067083954811096)
+Text #8:  dramatically (0.45206430554389954)
+Text #8:  those (0.639115571975708)
+Text #8:  top (1.0271251201629639)
+Text #8:  the (0.16136154532432556)
+Text #8:  first (0.5107916593551636)
+Text #8:  greatest (1.280640721321106)
+Text #8:  of (0.23667198419570923)
+Text #8:  of (0.37028443813323975)
+Text #8:  frontline (0.49590978026390076)
+Text #8:  topped (0.45538243651390076)
+Text #8:  so (0.24300354719161987)
+Text #8:  the (0.1587238609790802)
+Text #8: s (0.7734816670417786)
+Text #8:  20 (1.1248300075531006)
+Text #8:  place (0.5836130380630493)
+Text #9:  most (0.7549185156822205)
+Text #9:  to (0.402282178401947)
+Text #9:  place (0.48162683844566345)
+Text #9:  definitely (0.6723300814628601)
+Text #9:  is (0.38014277815818787)
+Text #9:  most (0.8576838374137878)
+Text #9:  thing (0.3685339093208313)
+Text #9: When (0.39810290932655334)
+Text #9:  most (1.2348511219024658)
+Text #9:  ingredient (0.3857788145542145)
+Text #9:  actually (0.5029480457305908)
+Text #9:  towards (0.5734358429908752)
+Text #9:  quickly (0.41555026173591614)
+Text #9:  do (0.31415778398513794)
+Text #9:  quickly (1.2808476686477661)
+Text #9:  will (1.407533884048462)
+Text #9:  first (0.5330132246017456)
+Text #9:  higher (0.7444385290145874)
+Text #9:  means (0.9492067694664001)
+Text #9:  to (0.4194258153438568)
+Text #9:  an (0.6380921006202698)
+Text #9:  to (0.4995715618133545)
+Text #9:  to (0.6386494636535645)
+Text #9:  largest (0.37259069085121155)
+Text #9:  If (0.2965245544910431)
+Text #9:  which (0.44977080821990967)
+Text #9:  times (0.8146777749061584)
+Text #9:  that (0.5637908577919006)
+Text #9:  even (0.6868860125541687)
+Text #9:  efficient (0.4461285471916199)
+Text #9:  at (0.6362289786338806)
+Text #9:  as (0.34052976965904236)
+Text #9:  highest (1.9819023609161377)
+Text #9:  here (0.4154965877532959)
+Text #9:  units (0.5777154564857483)
+Text #9:  If (0.3019210994243622)
+Text #9:  sizes (0.480813205242157)
+Text #9:  where (2.23158597946167)
+Text #9:  most (1.944527268409729)
+Text #10: My (0.14435045421123505)
+Text #10:  the (0.2942516505718231)
+Text #10:  season (2.5327863693237305)
+Text #10:  to (0.9256706237792969)
+Text #10:  January (0.6406774520874023)
+Text #10:  the (0.34837332367897034)
+Text #10:  deeper (0.5546761155128479)
+Text #10: mm (1.0525926351547241)
+Text #10:  and (0.20302794873714447)
+Text #10:  problem (0.949939489364624)
+Text #10:  deeper (0.3523302674293518)
+Text #10:  the (0.7350954413414001)
+Text #10:  to (0.45696765184402466)
+Text #10:  before (1.6046370267868042)
+Text #10:  does (2.171653985977173)
+Text #10:  more (0.20147478580474854)
+Text #10:  really (0.8733488321304321)
+Text #10:  when (1.9448965787887573)
+Text #10:  how (0.38851818442344666)
+Text #10:  do (2.639826536178589)
+Text #10:  region (0.7621265649795532)
+Text #10:  January (0.2929898202419281)
+Text #10:  bit (0.31591829657554626)
+Text #10:  especially (0.23308084905147552)
+Text #10:  seconds (0.5651554465293884)
+Text #10:  can (0.5160589814186096)
+Text #10:  to (0.5158823728561401)
+Text #10:  the (0.19348612427711487)
+Text #10:  good (1.1167620420455933)
+Text #10:  was (0.25406691431999207)
+Text #10:  did (0.4424345791339874)
+Text #11: When (0.17490564286708832)
+Text #11:  first (1.523296594619751)
+Text #11:  first (0.49800974130630493)
+Text #11:  since (0.13517718017101288)
+Text #11:  is (0.053039826452732086)
+Text #11:  most (0.971121609210968)
+Text #11:  most (0.9020406007766724)
+Text #11:  say (0.042159270495176315)
+Text #11:  really (0.5155194401741028)
+Text #11:  Finally (0.28044211864471436)
+Text #11:  the (0.04389588162302971)
+Text #11:  started (0.8631988167762756)
+Text #11:  more (0.2264660894870758)
+Text #11:  finally (0.4045870304107666)
+Text #11:  that (1.0155436992645264)
+Text #11:  great (0.28299444913864136)
+Text #11:  first (0.4745265245437622)
+Text #11:  that (0.9647580981254578)
+Text #11:  definitely (0.2779930531978607)
+Text #11:  am (0.5068123936653137)
+Text #11:  most (0.9062623977661133)
+Text #11:  have (0.07539396733045578)
+Text #11:  above (0.0019031097181141376)
+Text #11: � (0.07069428265094757)
+Text #11: s (0.053255774080753326)
+Text #11:  to (0.0002854424237739295)
+Text #11:  the (0.14331412315368652)
+Text #12: Just (0.1314380168914795)
+Text #12:  enough (0.624535322189331)
+Text #12:  do (0.21047618985176086)
+Text #12:  really (0.97507643699646)
+Text #12:  & (0.15459558367729187)
+Text #12:  really (1.583712100982666)
+Text #12:  to (0.8982800841331482)
+Text #12:  really (0.8586147427558899)
+Text #12:  very (0.2190992683172226)
+Text #12:  too (0.1843050718307495)
+Text #12:  right (0.24267908930778503)
+Text #12:  good (1.364859700202942)
+Text #12:  weight (0.5133361220359802)
+Text #12:  items (0.32164451479911804)
+Text #12:  too (0.8490990400314331)
+Text #12:  would (0.2924421727657318)
+Text #12:  the (0.157369464635849)
+Text #12:  " (0.1916135847568512)
+Text #12:  of (0.36845770478248596)
+Text #12:  which (0.14655786752700806)
+Text #12:  & (0.18631866574287415)
+Text #12:  do (1.1273558139801025)
+Text #12:  it (0.35471615195274353)
+Text #12:  can (0.14062650501728058)
+Text #12:  if (0.2160002440214157)
+Text #12: Yes (0.4800589084625244)
+Text #12:  can (0.21045568585395813)
+Text #12: 's (0.9951980113983154)
+Text #12: 're (0.16260141134262085)
+Text #12: , (0.18034540116786957)
+Text #12:  is (0.5439778566360474)
+Text #12:  _ (1.9181941747665405)
+Text #12:  time (2.709479331970215)
+Text #12: , (0.22854089736938477)
+Text #12:  when (0.509436309337616)
+Text #12: . (0.16664010286331177)
+Text #13: item (0.14304150640964508)
+Text #13: <|endoftext|> (0.043618280440568924)
+Text #14: Welcome (0.1350228488445282)
+Text #14:  Sunday (0.29075878858566284)
+Text #14: . (0.050210464745759964)
+Text #14: <|endoftext|> (0.05035446211695671)
+Text #15: I (0.14497460424900055)
+Text #15:  gets (0.05370631068944931)
+Text #15:  yet (0.2975122332572937)
+Text #15:  doesn (0.1488596647977829)
+Text #15:  yet (0.18876472115516663)
+Text #15:  god (0.26097530126571655)
+Text #15:  to (0.7701377272605896)
+Text #15:  to (0.4442804455757141)
+Text #15:  of (0.39680108428001404)
+Text #15: , (0.009249686263501644)
+Text #15:  have (0.1753241866827011)
+Text #15:  see (0.01969371922314167)
+Text #15:  before (0.5560665130615234)
+Text #15:  plants (0.05542859807610512)
+Text #15:  for (0.10005845129489899)
+Text #15:  produces (0.11233604699373245)
+Text #15:  when (0.04076044261455536)
+Text #15:  see (1.0369694232940674)
+Text #15:  then (0.22312892973423004)
+Text #15:  gets (0.5167062282562256)
+Text #15:  when (0.7322564721107483)
+Text #15:  bad (1.711586833000183)
+Text #15: . (0.08155453205108643)
+Text #16: Over (0.13768479228019714)
+Text #16:  long (0.3640444576740265)
+Text #16:  na (0.03878149762749672)
+Text #16:  can (0.07033240050077438)
+Text #16:  the (0.18700431287288666)
+Text #16:  to (0.45564132928848267)
+Text #16: - (0.4951818585395813)
+Text #16:  do (0.04893379658460617)
+Text #16:  that (0.01123097911477089)
+Text #16:  best (0.38358479738235474)
+Text #16:  for (0.7129001021385193)
+Text #16:  pressing (1.392060399055481)
+Text #16:  if (0.8444608449935913)
+Text #16: � (0.2918473780155182)
+Text #16: re (0.2441411167383194)
+Text #16:  long (0.15681475400924683)
+Text #16: � (0.0880582258105278)
+Text #16:  good (0.14286795258522034)
+Text #16:  if (0.474054753780365)
+Text #16: re (0.9494527578353882)
+Text #16:  problem (0.9565587639808655)
+Text #16: <|endoftext|> (0.0334557481110096)
+Text #17: Well (0.1776181310415268)
+Text #17: If (0.19535133242607117)
+Text #17:  before (0.557275116443634)
+Text #17:  to (1.1503777503967285)
+Text #17:  last (0.03945612162351608)
+Text #17:  the (0.09179728478193283)
+Text #17:  you (0.06581243872642517)
+Text #17:  can (0.8615268468856812)
+Text #17: � (0.08332029730081558)
+Text #17: s (0.06279461830854416)
+Text #17:  once (0.6412424445152283)
+Text #17:  are (0.8201625943183899)
+Text #17:  where (1.7044893503189087)
+Text #17:  really (2.7404963970184326)
+Text #17:  is (0.006093376781791449)
+Text #17:  when (1.1627320051193237)
+Text #17:  can (1.9962939023971558)
+Text #17:  is (0.14789979159832)
+Text #17:  moving (0.48590052127838135)
+Text #17: When (0.7791711091995239)
+Text #17:  taking (0.041448671370744705)
+Text #17: <|endoftext|> (0.02492869645357132)
+Text #18: The (0.1567389965057373)
+Text #18: <|endoftext|> (0.054224733263254166)
+Text #19: Need (0.12910357117652893)
+Text #19: <|endoftext|> (0.04083114489912987)
+Text #19: <|endoftext|> (0.03036457858979702)
+Text #20: Often (0.15889301896095276)
+Text #20:  if (0.454623281955719)
+Text #20:  of (0.0022815531119704247)
+Text #20:  exercises (0.16755732893943787)
+Text #20:  hits (0.7195696830749512)
+Text #20:  looking (0.0983140766620636)
+Text #20:  the (0.04794742539525032)
+Text #20:  weight (0.11733552813529968)
+Text #20: When (0.6819719672203064)
+Text #20:  areas (0.31456148624420166)
+Text #20: As (0.08977615833282471)
+Text #20:  start (1.8735038042068481)
+Text #20: , (0.16359707713127136)
+Text #20:  start (2.0737907886505127)
+Text #20:  good (0.2229670137166977)
+Text #20:  cause (0.3156336843967438)
+Text #20:  as (0.8666801452636719)
+Text #20:  isol (0.03176918253302574)
+Text #20:  starts (0.08391495794057846)
+Text #20:  until (0.3521231412887573)
+Text #20:  reaches (0.7239938974380493)
+Text #20: th (0.08962705731391907)
+Text #20:  this (0.07573939859867096)
+Text #20:  The (0.06925097852945328)
+Text #20:  to (0.8318071961402893)
+Text #20:  reason (0.10937993228435516)
+Text #20:  great (0.3565611243247986)
+
+=== Text #1 ===
+> [N]ortheast Vietnam has a cool[ to] cold[ season (]courtesy of the northeast monsoon from November[ to March) and a warm to] hot wet[ season (]from April[ to October).] December and[ January in particular can get quite] frost[y in the] far north of Vietnam - pack accordingly. This[ time of the year can also see heavy] mists that[ can run] for[ days] - these can reduce visibility in places like Sapa and Ha Long Bay to frustratingly short distances.[ The] wett[est months of the year in] Hanoi[ are July] and[ August, the] dri[est,] December and[ January.]
+
+=== Text #2 ===
+> ABOVE: A vintage cabriolet on a corniche road in Luxembourg. INSET BELOW: Minicars in Montmarte, Parisian parking.
+Car travel in Europe can be a[ joy] or a nightmare,[ depending] on where[ and when] you drive.[ During] August[, when] countless millions of Europeans pack up their family cars and drive to the beaches or mountains[,] traffic jams can rob even[ the most] scenic European touring routes of their charm. And[ at] any time[ of year,] driving in a major city like London, Paris, or Rome can be nerve-wracking (or[ at least] unpleasant)[ to] the foreign tourist.
+Spring[ and fall are the best times for a] motoring vacation in Northern and Central Europe[.] In Southern Europe, winter[ can also be pleasant if] you avoid the Christmas break.[ If] your vacation is tied to the school calendar, try visiting in June,[ before] the summer[ season reaches its peak].
+Many tourists, especially[ those] from North America, make the mistake of planning car itineraries built around Europe's largest cities. They end up having to cope with nerve-wracking traffic, scarce parking, and unfamiliar regulations--all while trying to catch a glimpse of the sights through a mass of cars, motorscooters, bikes, and tour buses.
+Take the train between major cities. Rent cars for local or regional excursions, or for legs of your trip (e.g., Paris to the Riviera[)] where you want to stop and enjoy sights along the way.
+Visit a country like Denmark, Norway, or Sweden where even the[ largest] cities are relatively car-friendly and you can leave town for driving excursions with a minimum of hassle.
+ABO[VE]: The Peugeot Traveller van on a European highway. Residents of countries outside the U.S.[ can] save money with short-term tourist leases from Peugeot.
+Comparison shop. Check prices at European brokers that specialize in leisure rentals and short-term leasing programs. Check each company's age restrictions[ if] you're[ under 25] or[ over] 65, and see "Lease for[ longer] trips"[ below].
+Plan carefully. Rent a car for only as long as you'll need it, to avoid early[-]return penalties.[ If] you['re on] a budget, avoid drop-off charges by planning a circular itinerary.
+Book ahead. If you live outside Europe, you're likely to get a better deal by making arrangements from abroad.
+Lease for longer trips. A short-term car lease can save money on rentals of
+
+=== Text #3 ===
+> Residential buildings account for a[ significant] amount of the national energy consumption of all OECD countries and consequently the EU and the Netherlands. Therefore, the national targets for CO2 reduction should include provisions for a more energy efficient building stock for all EU member states.
+National and European level policies the past decades have improved the quality of the building stock by setting stricter standards on the external envelope of newly made buildings, the efficiency of the mechanical and heating components, the renovation practices and by establishing an energy labelling system. Energy related occupancy behavior is a[ significant] part[, and relatively] unchartered,[ of] buildings’ energy consumption. This thesis tried to contribute to the understanding of the role of the occupant related to the energy consumption of residential buildings by means of simulations and experimental data obtained by an extensive measurement campaign.
+The[ first] part of this thesis was based on dynamic building simulations in combination with a Monte Carlo statistical analysis, which tried to shed light to the[ most influential parameters], including occupancy related ones,[ that affect the] energy consumption and comfort (a factor[ that is] believed to be integral[ to the] energy related behavior of people in buildings). The reference building that was used[ for the] simulations was the TU Delft Concept House that was built for the purposes of the European project SusLab NWE. The concept house was simulated as an A energy label (very efficient) and F label[ (very] inefficient) dwelling and with three different heating systems.
+The analysis revealed that[ if] behavioral parameters[ are] not taken into account, the[ most critical parameters affecting] heating consumption are the window U value, window g value, and wall conductivity.[ When the] uncertainty of these parameters[ increases, the] impact of the wall conductivity[ on] heating consumption increases[ considerably]. The[ most important] finding was that[ when] behavioral parameters like thermostat use and ventilation flow rate[ are added to the] analysis, they dwarf the importance of the building parameters[ in] relation[ to] the energy consumption. For the thermal comfort (the PMV index was used as the established model[ for measuring] indoor thermal comfort) the[ most influential parameters] were found to be metabolic activity and clothing, while[ the] thermostat had a secondary[ impact].
+The simulations were followed by an extensive measurement campaign where an in-situ, non-intrusive, wireless sensor system was installed in 32, social housing, residential dwellings in the area of Den Haag. This sensor system was transmitting quantitative data such as temperature, humidity, CO2 levels, and motion every five minutes for a period of six months (the heating period between November[ to April]) and from every room of the 32
+
+=== Text #4 ===
+> Why is it Important to See a Dentist in Weatherford While You[�]�[re] Preg[nant]?
+Congratulations! You[�]�re having a baby! This time in your life[ can be exciting] and overwhelming all at once. It’s important to take good care of yourself during your pregnancy and regularly visit all of your healthcare practitioners. Believe it or not, it’s[ especially] important to visit your dentist in Weatherford throughout your[ pregnancy]. Here are the reasons why.
+Because of the many hormone changes that take place throughout[ pregnancy], you are more susceptible[ to] periodontal disease, or gum disease during this[ time]. This may not seem like too[ big] a[ deal], however periodontal disease can lead to tooth, tissue, and bone loss if it’[s] not properly managed. A condition known as pregnancy gingivitis can occur, and this[ is] actually[ the first stage of] gum disease.
+If you notice that your gums are red and swollen, or bleed when you brush your dentist may recommend extra cleaning appointments during your[ pregnancy] to help you control the gingivitis. Excellent home care, with daily brushing and flossing is also crucial during this[ time]. If you suffer from morning sickness and vomiting, your dentist can recommend a mouth rinse to help protect your teeth from harmful stomach acids.
+As you know, your nutrition is very important[ to] you and your baby during[ pregnancy], did you know however, that your nutrition could affect your baby’s developing teeth? It’s true! Your baby’s teeth will[ begin to] develop around the[ third to sixth month] of your[ pregnancy] and you need lots of vitamin A, C, and D as well as protein and calcium to help your child’s teeth develop properly. You will need to[ begin] oral care for your child as well as soon as their[ first] teeth erupt.
+Let your dentist know that you’re[ pregnant] and exactly what tr[imester you]’[re] in. your dentist may want to wait on taking x-rays or[ performing] dental treatment[ until] you’[re] further[ along in] your[ pregnancy].
+If you experience dental pain or an emergency contact your dentist right away. There are a lot of things that can be done for dental pain during your[ pregnancy] even if you don’t have treatment done immediately. Remember, the[ earlier you contact] us if you’[re] experiencing dental pain,[ the faster we can] diagnose your situation and get you feeling comfortable again.
+Dr. Deborah Romack and Dr. Garrett Mulkey are your premiere
+
+=== Text #5 ===
+> [Do] you want to know how to[ start] a PT business? If[ so] then thereâs a few things you need to take into consideration. Obviously the[ first step] you will need to move forward is gaining your certificate 3 and 4 in personal training, but itâs[ what] happens both before and[ after] you finish your certification[ that is most important].
+Most RTOs simply donât teach you how to set up a personal training business. They teach you about movement, nutrition, muscle groups and how to train clients, but business systems, marketing, sales and even people skills is[ seriously] lacking in their training of PTs[ entering] into[ the] business world.
+Itâs not[ too diss]imilar to a conveyor belt, churning out personal trainers with no real knowledge on how they are going to succeed once they[ are] out in[ the] market place.
+In actual fact,[ if] you[ are] looking[ at] how to set up a pt business for success, the planning stages should[ actually start well] before[ you have] finished your qualifications. At least a month out[ you] want to be prepared and ready to[ hit] the ground running so[ when] you[ do] finish, you are ready to go.
+Some of the things you need to look at before[ even] finishing your qualifications should be setting up things such as your business name and company registration, your business logo and what type of training model you are planning to implement into your business.
+[Once you have these] things set up, you[ can then] move[ onto the] next stage which would be to set up your online presence. Even if you plan on working out of a gym to[ start] with, you should always be looking at branding yourself and your business, rather than relying on a gym. If you want to know[ how] to set up a PT studio[ once] you leave a gym, the[ best] advice would be to build your brand first so you have an asset you can rebrand into a PT studio.
+One of[ the biggest] mistakes a PT can[ make when] learning how to set up a PT business is not branding themselves and their business from day 1. So setting up your social media sites such as a Facebook page, an Instagram account, Youtube channel and website are all essential in branding yourself online and giving people a chance to find and follow you.
+The[ next thing] you will need to consider is how to set up PT business systems. The vast majority of PTs[ when they start] training clients, start out by using and tracking their clients with software such as an excel spreadsheet and
+
+=== Text #6 ===
+> [F]ULL-SCREEN MODEMODE: Click PLAY, then pass your mouse over the bottom right corner of the video screen. The outline of a square will appear. Clicking on it will toggle Full Screen Mode. Press ESC[ to] return to the original format.
+Note: Google Earth software reads the actual[ top]ography and ignores roads, cuttings, tunnels, bridges and excavations. The Google Earth vertical-profile animation generates a number of parallax errors, so the profile is only a general guide of what to expect in terms of gradients, distance and elevation. The graph may present some impossible and improbably sharp[ spikes], which should be ignored.
+Getting there: To[ approach] from the northern side, the pass can be accessed off the R407 about 4 km south of Prince Albert. It is clearly signposted and easy to locate. Head south on the R328[ for] 2,3 km[ where the] road crosses the Dorpsarivier via a concrete bridge. This[ point marks the] northern[ start of the] Swartberg Pass[.] This[ is the direction in which we filmed the] pass.
+Eerste Water in the northern sector of the pass makes for a perfect[ spot] / Photo: Trygve RobertsFor[ those] wanting to[ approach] from the south, there are a number of options, but we will describe here the obvious[ main] route. Drive north from Oudsthoorn on the tarred R328 via Schoemanskloof. Just[ after the] Wilgewandel Guest Farm (with the camels)[ there] is a fork in the road. The right hand fork heads directly[ to the] Cango Caves. Turn left here (GPS S33.402020 E22.216309) The road (still tarred) heads east for a further 13 km[ where] another guest farm is reached called 'Cobus[ se] Gat'. This marks[ the southern start of the] pass[.] The road[ becomes] gravel[ after] a further 2 km.
+[The] nearest town is Prince Albert - just 4 km from the northern end of the pass. There is plenty see, from flora to fauna, and some mind boggling geology. The fynbos is at[ its best in winter and spring] with proteas, ericas, restios and pin-cushions in profusion.
+[The] pass is a national monument and, like its sister pass (Montagu Pass[),] stands in proud defiance of modern technology. It would be a shame if these roads were ever tarred as their[ core] charm would be lost forever. A
+
+=== Text #7 ===
+> It all started 3 months back when two of us, me and Saquib were chatting over our late night coffee destination about going somewhere far from Bangalore. And, this[ time the] plan was to push our bikes to a 10 days plan and explore a state,[ if] possible. Probable destinations[ that came] to our mind were Rajasthan, Maharashtra and Gujarat. Argument started over coffee and we felt Rajasthan would be too[ far for] us to ride from Bangalore and Maharashtra looks best[ during] monsoon and hence we were left with Gujarat. This was[ something which] each one of us wanted to do, especially visit the Rann of Kutch and I very[ well] knew that this[ time] we[ are] going there[ for] sure as the planning started in full swing. Although it was[ initially] me and Saquib[ who kicked off] with[ the] planning and research, we decided to pull in some close pals of ours who might be interested for this long road trip. Sunil, Tapabrata, Ashish and Eshwari (who would be joining us from Gandhinagar) showed immense interest in our plan and we were more than happy with the group which formed now. We decided to[ start] for the trip on 31st January, 2014 ([Saturday)] and come back to Bangalore by 11th[ February], 2014 ([Wednesday]).
+The days crossed by and our excitement meter was[ becoming] unstable[ day] by day. We were meeting at times, just to check if everything was on track, ran through the route map again and again so that everyone knows the route very well. Unfortunately, Sunil could only be[ starting by the second half] of[ Saturday] and hence he targeted to join us directly at Gandhinagar.
+Few days[ before the] ride[ started] and we[ hit] a[ major] setback: Saquib had a situation in his office and his could not get the leaves approved. This came as a big blow to get us because he was the[ person who was the] mastermind behind this mega plan and all of us wanted him to be part of our group.
+Day 1[ started] with me, Tapabrata and Ashish riding from Bangalore and our target was to halt at Pune. We decided to[ start] around 4 am in the morning to avoid all the early morning traffic.[ Once you are on the] road, you hardly get to know what[ time it is], and it always surprises you. This stretch being arrow straight road, you tend to fall asleep, especially[ when] your tummy is full. With couple of breaks including breakfast, lunch, tea and most importantly, photo breaks, when we
+
+=== Text #8 ===
+> PERSECUTION of Christians is increasing and for millions of its faithful around the world, 2015 has been a “year of fear”, says Open Doors, which once again has placed North Korea as the[ most] dangerous[ place to be] a Christian.
+Open Doors, has supported the persecuted church since its founding by Brother Andrews 50 years ago, and each year publishes its World Watch list of the top[ 50 most] dangerous[ countries to be] a Christian.
+“Islamic extremism remains by far the[ most] common[ driver] of persecution: in eight out of the top[ 10],[ and] 35[ out] of the[ top] 50[ countries], it is the[ primary cause],” says the 2016 Open Doors World Watch List.
+“A rise in Islamic extremism sees Pakistan at its[ highest position] ever, and Libya entering the[ top ten for] the[ first] time,” says the Open Doors reported.
+It says research shows that persecution against Christians has increased so[ dramatically] that persecution has risen even in[ those countries that have] dropped out of its[ top 50].
+Open Doors rates the level of persecution as “extreme” in nine countries. For the 14th year in a row, North Korea is top of the list; followed by Iraq, Eritrea, Afghanistan, Syria, Pakistan, Somalia, Sudan and Iran.
+The north east African reclusive State of Eritrea has entered[ the top five for] the[ first time].
+“Religious extremism – Islamic, Hindu and Buddhist – is the[ greatest source] of persecution[ of] Christians,” says Open Doors, while noting that “gender violence is a weapon[ of] persecution: women and girls are on the[ frontline].”.
+Open Doors records show that worldwide there were over 7,000 Christians killed for faith-related reasons in the year – almost 3,000 more than the previous year.
+It says its estimates exclude North Korea, Syria and Iraq, where accurate records do not exist.
+Around 2,400 churches were attacked or damaged – over double the number for last year. In terms of violence against Christians and Christian property, Nigeria and Central African Republic[ topped the list].
+One of its key findings is that never before have[ so] many Christians been on[ the] move.
+The entry of India, often referred to as the world’[s] biggest democracy, into the top[ 20 most] dangerous[ place at]17 is a first.
+Open Doors says, “Persecution in India is extremely violence – and the violence is increasing.
+“More than 350 Christians were physically attacked, at least nine Christians were killed for
+
+=== Text #9 ===
+> So, you suffer from Hay Fever or Allergic Rhinitis and are trying to decide which air purifier is[ most] likely[ to] help you, well you have come to the right[ place], we have great first hand experience of Hay fever in this office (unfortunately!) , and think we can[ definitely] help to point you in the right direction, read on for our guide on choosing the best air purifier for relief from Hay Fever.
+What[ is] the[ most] important[ thing to] consider?
+[When it] comes to removing tree , grass and shrub pollens the[ most] important[ ingredient] your air purifier must have is a good level of suction. Yup, that's right, the air purifier you choose will almost certainly have a filter capable of trapping those allergens, but if it doesn't have enough suction to[ actually] draw them[ towards] it[ quickly] enough then it will not be of much use.
+How[ do] you work out how[ quickly an] air purifier[ will] gobble up those offending allergens then?
+The[ first thing] is to compare the CADR ( Clean Air Delivery Rate ) of the machines you are interested in. Generally speaking a[ higher] CADR rating[ means quicker] removal of the offending allergens in your room.
+In order[ to be truly effective in] gobbling up pollens[ an] air purifier needs to be powerful enough[ to] recirculate all of the air in YOUR room size through its filter as frequently as possible. As a guide, try to choose a machine which has enough air volume[ to] process all the air in your[ largest] room at least 3 times an hour.[ If] you can get one[ which] provides around 4 or 5[ times] an hour[ that] would be[ even better].
+The CADR rating on a box tells a consumer how[ efficient] an air purifier is[ at actually] removing the three main indoor pollutants, namely Pollen, Smoke and Dust. In this case,[ as] a Hay Fever sufferer you should try to choose one where the pollen figure is[ highest]. Clean Air Delivery Rate testing is carried out by an impartial and independent organisation called AHAM - a word of caution[ here] though - not all manufacturers submit their[ units for] certified testing to AHAM and may instead just list their own 'in house' test results on the box.[ If] you want to be certain of what you are buying always choose a machine which has the genuine 'AHAM Certified' Seal on the box.
+BEWARE of the manufacturers over inflated 'recommended room[ sizes]'.
+This is[ where we] believe[ most] consumers get misled into spending good money on something which is
+
+=== Text #10 ===
+> [My] husband is being posted to Darwin for work and we have decided to drive there. We are going in January and I know this is[ the] wet[ season.] My question is, do you think it will be safe travelling the Stuart Hwy[ to] Darwin in a Holden Sedan at the start of[ January]?
+We plan on stopping at all the main towns for[ the] night. I just worry about flooding on the Hwy and we are travelling with a child and want to make sure we are doing the right thing.
+Just use common sense. As long as you don't drive into any water[ deeper than] 200[mm],[ and] you stick to the road and sealed parking bays (i.e. don't pull off the road into any soft shoulders), there is no[ problem at all]. It's a normal highway.
+Of course there is always a chance of major flooding with the highway being cut by water[ deeper than that], which means you would have to wait for[ the] water[ to go] down[ before you can] continue your journey.
+It[ does happen] nearly every year, sometimes[ more than once], but I[ really can]'t predict[ when and where or] for[ how long]. Only Petrus can tell you :-).
+Keep an eye on the weather forecast. Big rains[ do not come] out of nowhere, they come out of big, monsoonal depressions. If one of those is heading for the[ region], then you may have to reconsider your driving plans.
+And of course, always check the road reports.
+How did the travel go?
+That must have been a long journey. I am thinking of traveling around Australia one day. How did the travel go?
+In my opinion traveling from Melbourne to Darwin in[ January] might be a[ bit] uneasy,[ especially when] you are planning to do it without any rescue baggage. There can be flash floods, and within just a matter of[ seconds the] entire highway[ can] become dangerous[ to] travel on. Furthermore, while stopping at major cities for[ the] night is a[ good] idea, it doesn't take you out from the risk of facing floods. And of course, you are not going to like the idea of being stranded on the terrace of a roadside motel till rescue workers pull you guys out. Think over it. I guess you can come up with a better alternative than this.
+Editor's note: I removed your totally unrelated spam link, mate. If your comment wasn't a dead give away that you have never been anywhere near the north, the link certainly[ was].
+Well, we[ did] it and thankfully had not
+
+=== Text #11 ===
+> [When and why did] you[ first] join SMART?
+I went to the[ first] SMART Summit in 2005 in Marlborough. I was very interested in what they had to say so I joined right then and there. I was always interested in helping animals in any way I can and thought this was a perfect way. I have been volunteering ever[ since] — with just about all the teams in SMART.
+I am a Certified Veterinary Technician and also the Veterinary Services Coordinator (in simple terms hospital manager) in the vet hospital at Zoo New England, based at the Franklin Park Zoo.
+What[ is] your[ most heartwarming] memory about deploying with SMART?
+I have many great memories of my deployments with SMART but I would probably say the[ most] heartwarming was Munson, MA after the tornado in 2011. We were brought a baby rabbit (I would[ say] just a week or so old) and it was very cold and lethargic. We[ really] didn’t think it would survive but I still got up every couple of hours to change the hot water bottles and see how it was doing.[ Finally] in[ the] middle of the night it[ started to come around] and became[ more] aware. I offered it a small amount of formula and it[ finally] ate. The next morning it was taken to a rabbit rehab place and she nursed it back until it could be released. It is the “little” things[ that make] this job[ great]. If you go to the SMART website the[ first] picture[ that pops] up is me holding the bunny the morning after we received it just before it went to the rabbit rehab.
+Is there anything unusual that you keep in your Go Kit???
+I don’t think there is anything unusual, but some important things that I have found out about by being deployed are[ definitely] kept in there. One item is a set of kneepads for kneeling on the cement floors while cleaning cages. Another is a pair of shoe inserts that give extra comfort for my feet when I[ am] standing 12 hours or more on a cement floor. The third[ most helpful thing that] I[ have] is my Leatherman (pocket tool kit) — it has come in handy many times. And[ above] all — I do not go anywhere with out my Aleve and several snacks!!
+What[�]�[s the first thing you do after] a deployment[ to] take care of yourself?
+I guess[ the first thing I do] is go home and take a long hot shower. Then I play with my cats that are usually unhappy that I have not been home.
+
+=== Text #12 ===
+> [Just] what we do. It's powerful[ enough to do the] job & a 3 week holiday hardly made a dent in the charge on a 5 AH battery. I suspect that other makes of cordless 18V tools will also[ do] a small vacuum cleaner for a similar price.
+We have a Challenger 530 - having moved on from a smaller 2 berth. The side diner is[ really] useful[ &] the extra acres of space around the kitchen makes it[ really] comfortable[ to] live in. Most importantly, SWMBO is[ really] happy with it. We've spent a calendar month away in it, & any worries we might have had about choosing this layout vanished[ very quickly].
+Chances of someone, who tows a boat on a trailer, reading a forum called "Caravan Talk"? Not[ too high].
+On re-reading, I think you're[ right] about that. Low down in the middle of the car is a[ good place to] stow[ weight]y[ items], even though I'm not[ too] sure what[ would] happen to it in[ the event] of a crash.
+If the van's spare wheel lives in the[ "]empty spare footwell of the car" Where does the car's spare wheel live?
+Toddler! Date[ of] Birth: 1st April 1900.
+Thanks for that. There's a list of questions[ which _]must_ be answered,[ &] I[ do] dislike being forced to hand over personal details - especially when[ it] looks like it's marketing who want to know everything about you.
+We've put down a deposit on a new Challenger & I thought it would be a good idea to join Swift Talk. I wanted to read what owners of Swift vans liked and disliked about their vans, where snags[ can be] found &[ if] there are any common defects or problems. ([Yes] I[ can & do] read what['s] posted here, but a dedicated forum might also be useful) Only, I can't. If you try to join Swift Talk there's a question you must answer before you['re] allowed to open an account. Caravan VIN - I don't have one & probably won't for a couple of months. I would like to raise this as a question on Swift Talk - but, obviously, I can't do that because. .. Can anyone on here[,] who[ is] also in Swift Talk, take this up with them?
+The OP didn't say they[ _]had_ to find a new insurer. The only[ time you will find out] how good your insurance is[,] is[ when] you need to make a claim[.] Clearly they made a claim & were
+
+=== Text #13 ===
+> [item] #PCextensionCordNo1. New. No box. Condition 10.[]
+
+=== Text #14 ===
+> [Welcome] to S&F Electronics! It's 05:00[ Sunday] 21 April 2019[.] There are 71 clients connected.[]
+
+=== Text #15 ===
+> [I]'ve been intending to get out there and paint what I see as it[ gets warmer], but there just isn't much out there[ yet]. Wet, brown grass, the old lavender stalks we never trimmed in fall, pine trees, and bittersweet. I don't care if it's pretty, I'm not painting bittersweet, because I'm convinced it wants to eat my yard and my house and me alive and I just don't like that.
+So that[ doesn]'t leave much[ yet], but thank[ god it's] Skunk Cabbage[ to] the rescue! And what better plant[ to start] off with than something that literally heats itself out of the snow?
+Skunk cabbage is one[ of the first plants you'll see in Spring here] in New England[, especially if] you[ have] any moist, boggy areas near you. You'll[ see the] liverish-colored protective buds shooting up through the snow[ before most] other[ plants], because it won't take no[ for] an answer--it[ produces] it's own heat (60 degrees!) and melts its way through that white crap. Who needs Spring[ when] you can make it yourself? Eventually you'll[ see the] yellow clump of complex flowers and[ then] all the cabbagey leaves.
+Of course, it[ gets] its name because it smells like skunk. Or decaying flesh. Or both. I guess[ when you] smell that[ bad it] hardly matters[.]
+
+=== Text #16 ===
+> [Over time,] she revealed the depth of her guilt and sadness and I realized that it was going to take her a[ long time to] heal.One night, we sat down with a bottle of wine and I[ na]ively said, "Please, don't feel guilty".Having social references in common may sound like a small thing but it[ can be surprisingly] important.At e Harmony, we know that shared values and personality traits are[ the things that really matter when it] comes[ to] being compatible long[-term] but interests[ do play] a part.They were looking for the words or phrases[ that] could[ best] predict,[ for] example, whether someone was male or female, which explains why many of the results are pretty stereotypical (i.e.
+Health and ageing won’t be a[ pressing concern for] many younger men dating older women but,[ if] you[�]�[re] looking for a[ long-]term relationship, they[�]�re[ good to be] aware of.She may be just looking for a fling with someone carefree who isn’t looking for something serious. But[ if] you’[re] looking for something a little more serious, make this clear from the outset.It’s best to be honest and avoid heartbreak further down the line.If your intentions for dating older women are genuine, you won’t have a[ problem].
+She’ll appreciate you for who you really are and be honest with you.
+The Different Ways Men And Women Talk On Facebook Popular.[]
+
+=== Text #17 ===
+> [Well] handled finances ensures both parties are satisfied with the bill.
+You will need to reconcile your final account with the builder. Any additional entries should be able to be reconciled back to signed variations.
+[If] there are not sufficient funds left in your construction loan account, then you must arrange to pay your builder the shortfall before you take possession. So give yourself a week[ before] handover[ to] review the final invoice, and don’t allow this to be left to the[ last] minute!
+With NewBuild,[ the] solution is to use some of your contingency reserve funds as a bank retention so your builder can be paid, and you can move in on time. But you will still need to meet the loan conditions once[ you move in] before you[ can] fix your interest rates.
+You need to be sure that by taking possession your builder does not negate their responsibility of completing any outstanding items and providing a Code of Compliance Certificate. Sometimes it[�]�[s] hard to get your builder back out[ once] they[ are] paid, so this is[ where] a[ really good] relationship with your builder[ is] helpful.
+There is often a lot of uncertainty around[ when home] owners[ can take possession] of their new home.
+Learn how to minimize conflicts with your builder in regards to final payment.
+It[ is] crucial that you obtain your code of compliance before[ moving in].
+[When is it Okay to Take] Possession?
+You must do three things before[ taking] possession of your new home.[]
+
+=== Text #18 ===
+> [The] fruit coasters are ornament and very colorful. They are great for cocktail parties.
+Dimensions: 4.25" x 3.8" x 3.65"[]
+
+=== Text #19 ===
+> [Need]s a rebuild. Hard to find. $100 USD. Located in Ottawa, Canada. Will ship.[][]
+
+=== Text #20 ===
+> [Often] confused with the Stiff Leg Deadlift or Straight Leg Deadlift, the Romanian Deadlift (RDL) is a variation of the deadlift that is used mainly to strengthen hamstrings, back, and forearms (grip).
+Hopefully, you regularly have deadlifts in your training program,[ if] not, learn how to do so properly.
+Deadlifts are the king[ of] leg[ exercises for] a reason. They are a compound movement that[ hits] almost every muscle in the body. Those[ looking to] increase[ the] amount of[ weight] they lift off the ground should look to different variations of the movement to help strengthen weak points.
+[When lifting heavy, there] are two common[ areas] of difficulty; grip strength and lat strength.
+[As] you[ start to move towards the] ground[, the] bar should stay close to the body, by using the lats. If the lats are not strong enough, the upper back can[ start to] round, leading to rounding of the lower back(not[ good]). The bar should travel in a straight line at all times to minimize the distance the bar moves.
+Grip strength is also necessary to control the bar on the way up and back down towards the ground. Lack of grip strength can[ cause] compensations in your lower back, especially[ as the weight gets heavy].
+Along with doing work that[ isol]ates the lats and grip, you should also do movements that mimic the deadlift but allow you to build strength on weak points. In a RDL, the bar[ starts] at the top and you lower the bar but only[ until] just below the knee. During the entire lift, you need to maintain proper control and since the bar never[ reaches the] ground, it challenges your grip and lat strength in a great way.
+Position the bar at about mid-[th]igh height.
+Walk up and place your hands on the bar just outside of your thigs.
+Position your feet around hip width apart with your toes pointed forward.
+Squeeze your shoulder blades together and load your hips as you bring the bar down to just below your knees.
+You should feel tension in the hamstrings and glutes at[ this point].
+Raise the bar back up to starting position.
+Note:[ The] bar never travels[ to the] floor, the[ reason] is that you want to keep max tension on the hamstrings. Your back is also neutral for the entire lift.
+This is[ great movement to] add into your workoutsto help work on weak points in your deadlift. It can be done after your regular deadlifts
+
+
+Description: 
+2025-07-26 01:14:00,838 - root - INFO - Time-related words, often indicating the beginning or peak of events, particularly related to seasons or calendar periods
+
+2025-07-26 01:14:00,842 - root - INFO - Cluster #0 saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-1004_clusters-1_2025-07-25_23-04-23.csv
+2025-07-26 01:14:00,843 - root - INFO - ================================================================================
+2025-07-26 01:14:00,843 - root - INFO - ANALYSIS COMPLETED
+2025-07-26 01:14:00,844 - root - INFO - ================================================================================
+2025-07-26 01:14:00,844 - root - INFO - Logs saved to: logs/gpt2-xl_layer-20_unit-1004_clusters-1_2025-07-25_23-04-23.log
+2025-07-26 01:14:00,845 - root - INFO - CSV saved to: descriptions/gemini-1-5-pro/gpt2-xl/gpt2-xl_layer-20_unit-1004_clusters-1_2025-07-25_23-04-23.csv
