@@ -12,7 +12,7 @@ import json
 import numpy as np
 from pathlib import Path
 from datetime import datetime
-from utils import cache, clustering, clusterability, cluster_cache, config
+from utils import clustering, clusterability, cluster_cache, config
 from sklearn.metrics import silhouette_score, davies_bouldin_score
 from scipy.cluster.hierarchy import linkage, fcluster
 from scipy.spatial.distance import pdist
@@ -50,9 +50,10 @@ NEURONS = [
     (40, 6364),(40, 824)
 ]
 
-# Output directories - relative to project root
-# Go up from src/ to project root, then to clustering_analysis_cosine
-OUTPUT_DIR = Path(__file__).parent.parent / "clustering_analysis_cosine"
+# Directories
+EMBEDDINGS_DIR = Path(__file__).parent.parent / "embeddings_qwen2"  # Load from Qwen2 embeddings
+DATA_DIR = Path(__file__).parent.parent / "data" / "candidate_inputs_decoded"
+OUTPUT_DIR = Path(__file__).parent.parent / "clustering_analysis_qwen2"  # Save to separate directory
 VIZ_DIR = OUTPUT_DIR / "visualizations"
 VIZ_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -72,14 +73,22 @@ def analyze_neuron(layer, unit):
     print(f"Analyzing Layer {layer}, Unit {unit}")
     print(f"{'='*60}")
 
-    # Load cached embeddings
+    # Load Qwen2 embeddings from file
     print("Loading embeddings...")
-    cached_data = cache.load_cached_embeddings(layer, unit)
-    if cached_data is None:
-        print(f"  ERROR: No cached embeddings found!")
+    embedding_file = EMBEDDINGS_DIR / f"gpt2-xl_layer-{layer}_unit-{unit}.npy"
+    text_file = DATA_DIR / f"layer{layer}_{unit}.json"
+
+    if not embedding_file.exists():
+        print(f"  ERROR: Embedding file not found: {embedding_file}")
+        return None
+    if not text_file.exists():
+        print(f"  ERROR: Text file not found: {text_file}")
         return None
 
-    embeddings, texts = cached_data
+    embeddings = np.load(embedding_file)
+    with open(text_file, 'r') as f:
+        texts = json.load(f)
+
     print(f"  Loaded {len(embeddings)} embeddings (dim={embeddings.shape[1]})")
 
     # Normalize for cosine similarity (guard against zero vectors)
@@ -117,35 +126,113 @@ def analyze_neuron(layer, unit):
     else:
         umap_stats = {}
 
-    # 3. K-Means Clustering (3 adaptive-k methods + fixed_k(=5))
-    print("\nK-Means Clustering (Spherical + Cosine):")
+    # 3. K-Means Clustering - BOTH Euclidean and Cosine
     kmeans_results = {}
 
-    # Run k-means once for each k, store all results
-    print("  Running k-means for k=2 to k=10...")
-    all_kmeans_results = {}
+    # === EUCLIDEAN K-MEANS ===
+    print("\n" + "="*60)
+    print("K-Means Clustering (EUCLIDEAN distance)")
+    print("="*60)
+    print("  Running Euclidean k-means for k=2 to k=10...")
+
+    from sklearn.cluster import KMeans
+    all_kmeans_euclidean = {}
     for k in range(2, 11):
-        if config.SPHERICAL and SPHERICAL_KMEANS_AVAILABLE:
-            kmeans = SphericalKMeans(n_clusters=k, random_state=42, n_init=10)
-        else:
-            from sklearn.cluster import KMeans
-            kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
-
-        labels = kmeans.fit_predict(normalized)
-
-        all_kmeans_results[k] = {
+        kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+        labels = kmeans.fit_predict(embeddings)
+        all_kmeans_euclidean[k] = {
             'labels': labels,
             'inertia': kmeans.inertia_
         }
 
-    # Compute all 3 metrics from stored results
+    # === COSINE K-MEANS (Spherical) ===
+    print("\n" + "="*60)
+    print("K-Means Clustering (COSINE distance - Spherical)")
+    print("="*60)
+    print("  Running Spherical k-means for k=2 to k=10...")
+
+    all_kmeans_cosine = {}
+    for k in range(2, 11):
+        if SPHERICAL_KMEANS_AVAILABLE:
+            kmeans = SphericalKMeans(n_clusters=k, random_state=42, n_init=10)
+        else:
+            kmeans = KMeans(n_clusters=k, random_state=42, n_init=10)
+
+        labels = kmeans.fit_predict(normalized)
+        all_kmeans_cosine[k] = {
+            'labels': labels,
+            'inertia': kmeans.inertia_
+        }
+
+    # Compute metrics for EUCLIDEAN K-Means
     for method in ['silhouette', 'bic', 'davies_bouldin']:
         print(f"  Computing {method} scores...")
         scores = {}
 
         for k in range(2, 11):
-            labels = all_kmeans_results[k]['labels']
-            inertia = all_kmeans_results[k]['inertia']
+            labels = all_kmeans_euclidean[k]['labels']
+            inertia = all_kmeans_euclidean[k]['inertia']
+
+            if method == "silhouette":
+                scores[k] = silhouette_score(embeddings, labels, metric='euclidean')
+            elif method == "davies_bouldin":
+                scores[k] = davies_bouldin_score(embeddings, labels)
+            elif method == "bic":
+                n_parameters = k * embeddings.shape[1]
+                variance = inertia / (len(embeddings) - k)
+                log_likelihood = -len(embeddings) * np.log(max(variance, 1e-10)) - inertia / (2 * variance)
+                bic = -2 * log_likelihood + n_parameters * np.log(len(embeddings))
+                scores[k] = bic
+
+        # Select optimal k
+        if method == "silhouette":
+            optimal_k = max(scores, key=scores.get)
+        else:  # bic or davies_bouldin
+            optimal_k = min(scores, key=scores.get)
+
+        labels = all_kmeans_euclidean[optimal_k]['labels']
+
+        # Compute all metrics for this clustering
+        sil_score = silhouette_score(embeddings, labels, metric='euclidean')
+        db_score = davies_bouldin_score(embeddings, labels)
+
+        print(f"    {method}: selected k={optimal_k}, Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
+
+        # Save cluster assignments
+        cluster_cache.save_clusters(layer, unit, f'euclidean_{method}', labels, texts)
+
+        kmeans_results[f'euclidean_{method}'] = {
+            'selected_k': int(optimal_k),
+            'silhouette_score': float(sil_score),
+            'davies_bouldin_score': float(db_score),
+            'all_k_scores': {int(k): float(v) for k, v in scores.items()},
+            'metric': 'euclidean'
+        }
+
+    # Fixed k=5 Euclidean k-means (baseline)
+    print("\n  Fixed k=5 (baseline):")
+    labels = all_kmeans_euclidean[5]['labels']
+    sil_score = silhouette_score(embeddings, labels, metric='euclidean')
+    db_score = davies_bouldin_score(embeddings, labels)
+    print(f"    k=5 (fixed): Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
+    cluster_cache.save_clusters(layer, unit, 'euclidean_fixed-k5', labels, texts)
+
+    kmeans_results['euclidean_fixed-k5'] = {
+        'selected_k': 5,
+        'silhouette_score': float(sil_score),
+        'davies_bouldin_score': float(db_score),
+        'all_k_scores': {},
+        'metric': 'euclidean'
+    }
+
+    # Compute metrics for COSINE K-Means
+    for method in ['silhouette', 'bic', 'davies_bouldin']:
+        print(f"  Computing {method} scores...")
+        scores = {}
+
+        for k in range(2, 11):
+            labels = all_kmeans_cosine[k]['labels']
+            inertia = all_kmeans_cosine[k]['inertia']
 
             if method == "silhouette":
                 scores[k] = silhouette_score(normalized, labels, metric='cosine')
@@ -164,7 +251,7 @@ def analyze_neuron(layer, unit):
         else:  # bic or davies_bouldin
             optimal_k = min(scores, key=scores.get)
 
-        labels = all_kmeans_results[optimal_k]['labels']
+        labels = all_kmeans_cosine[optimal_k]['labels']
 
         # Compute all metrics for this clustering
         sil_score = silhouette_score(normalized, labels, metric='cosine')
@@ -173,51 +260,50 @@ def analyze_neuron(layer, unit):
         print(f"    {method}: selected k={optimal_k}, Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
 
         # Save cluster assignments
-        cluster_cache.save_clusters(layer, unit, method, labels, texts)
+        cluster_cache.save_clusters(layer, unit, f'cosine_{method}', labels, texts)
 
-        kmeans_results[method] = {
+        kmeans_results[f'cosine_{method}'] = {
             'selected_k': int(optimal_k),
             'silhouette_score': float(sil_score),
             'davies_bouldin_score': float(db_score),
-            'all_k_scores': {int(k): float(v) for k, v in scores.items()}
+            'all_k_scores': {int(k): float(v) for k, v in scores.items()},
+            'metric': 'cosine'
         }
 
-    # Fixed k=5 k-means (baseline) - reuse k=5 from above
-    print("\nFixed k=5 k-means (baseline):")
-    labels = all_kmeans_results[5]['labels']
-
-    # Compute metrics
+    # Fixed k=5 Cosine k-means (baseline)
+    print("\n  Fixed k=5 (baseline):")
+    labels = all_kmeans_cosine[5]['labels']
     sil_score = silhouette_score(normalized, labels, metric='cosine')
     db_score = davies_bouldin_score(normalized, labels)
+    print(f"    k=5 (fixed): Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
+    cluster_cache.save_clusters(layer, unit, 'cosine_fixed-k5', labels, texts)
 
-    print(f"  k=5 (fixed): Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
-
-    # Save cluster assignments
-    cluster_cache.save_clusters(layer, unit, 'fixed-k5', labels, texts)
-
-    kmeans_results['fixed-k5'] = {
+    kmeans_results['cosine_fixed-k5'] = {
         'selected_k': 5,
         'silhouette_score': float(sil_score),
         'davies_bouldin_score': float(db_score),
-        'all_k_scores': {}  # Empty since we didn't test multiple k values
+        'all_k_scores': {},
+        'metric': 'cosine'
     }
 
-    # 4. Agglomerative Clustering
-    print("\nAgglomerative Clustering (cosine):")
+    # 4. Agglomerative Clustering - BOTH Euclidean and Cosine
     agglomerative_results = {}
 
-    # Build dendrogram once and compute all metrics from it
+    # === EUCLIDEAN AGGLOMERATIVE ===
+    print("\n" + "="*60)
+    print("Agglomerative Clustering (EUCLIDEAN distance)")
+    print("="*60)
     print("  Building dendrogram...")
 
     # Compute distance matrix and build dendrogram
-    distances = pdist(normalized, metric='cosine')
-    Z = linkage(distances, method='average')
+    distances_euc = pdist(embeddings, metric='euclidean')
+    Z_euc = linkage(distances_euc, method='average')
 
     # Get labels for all k values
-    all_agg_labels = {}
+    all_agg_euclidean = {}
     for k in range(2, 11):
-        labels = fcluster(Z, k, criterion='maxclust') - 1  # 0-indexed
-        all_agg_labels[k] = labels
+        labels = fcluster(Z_euc, k, criterion='maxclust') - 1  # 0-indexed
+        all_agg_euclidean[k] = labels
 
     # Compute both metrics from the same clustering results
     for method in ['silhouette', 'davies_bouldin']:
@@ -225,7 +311,61 @@ def analyze_neuron(layer, unit):
         scores = {}
 
         for k in range(2, 11):
-            labels = all_agg_labels[k]
+            labels = all_agg_euclidean[k]
+
+            if method == "silhouette":
+                scores[k] = silhouette_score(embeddings, labels, metric='euclidean')
+            elif method == "davies_bouldin":
+                scores[k] = davies_bouldin_score(embeddings, labels)
+
+        # Select optimal k
+        if method == "silhouette":
+            optimal_k = max(scores, key=scores.get)
+        else:  # davies_bouldin
+            optimal_k = min(scores, key=scores.get)
+
+        labels = all_agg_euclidean[optimal_k]
+
+        # Compute all metrics for this clustering
+        sil_score = silhouette_score(embeddings, labels, metric='euclidean')
+        db_score = davies_bouldin_score(embeddings, labels)
+
+        print(f"    {method}: selected k={optimal_k}, Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
+
+        # Save cluster assignments
+        cluster_cache.save_clusters(layer, unit, f'euclidean_agglomerative_{method}', labels, texts)
+
+        agglomerative_results[f'euclidean_{method}'] = {
+            'selected_k': int(optimal_k),
+            'silhouette_score': float(sil_score),
+            'davies_bouldin_score': float(db_score),
+            'all_k_scores': {int(k): float(v) for k, v in scores.items()},
+            'metric': 'euclidean'
+        }
+
+    # === COSINE AGGLOMERATIVE ===
+    print("\n" + "="*60)
+    print("Agglomerative Clustering (COSINE distance)")
+    print("="*60)
+    print("  Building dendrogram...")
+
+    # Compute distance matrix and build dendrogram
+    distances_cos = pdist(normalized, metric='cosine')
+    Z_cos = linkage(distances_cos, method='average')
+
+    # Get labels for all k values
+    all_agg_cosine = {}
+    for k in range(2, 11):
+        labels = fcluster(Z_cos, k, criterion='maxclust') - 1  # 0-indexed
+        all_agg_cosine[k] = labels
+
+    # Compute both metrics from the same clustering results
+    for method in ['silhouette', 'davies_bouldin']:
+        print(f"  Computing {method} scores...")
+        scores = {}
+
+        for k in range(2, 11):
+            labels = all_agg_cosine[k]
 
             if method == "silhouette":
                 scores[k] = silhouette_score(normalized, labels, metric='cosine')
@@ -238,7 +378,7 @@ def analyze_neuron(layer, unit):
         else:  # davies_bouldin
             optimal_k = min(scores, key=scores.get)
 
-        labels = all_agg_labels[optimal_k]
+        labels = all_agg_cosine[optimal_k]
 
         # Compute all metrics for this clustering
         sil_score = silhouette_score(normalized, labels, metric='cosine')
@@ -247,60 +387,106 @@ def analyze_neuron(layer, unit):
         print(f"    {method}: selected k={optimal_k}, Silhouette: {sil_score:.4f}, DB: {db_score:.4f}")
 
         # Save cluster assignments
-        cluster_cache.save_clusters(layer, unit, f'agglomerative_{method}', labels, texts)
+        cluster_cache.save_clusters(layer, unit, f'cosine_agglomerative_{method}', labels, texts)
 
-        agglomerative_results[method] = {
+        agglomerative_results[f'cosine_{method}'] = {
             'selected_k': int(optimal_k),
             'silhouette_score': float(sil_score),
             'davies_bouldin_score': float(db_score),
-            'all_k_scores': {int(k): float(v) for k, v in scores.items()}
+            'all_k_scores': {int(k): float(v) for k, v in scores.items()},
+            'metric': 'cosine'
         }
 
-    # 5. HDBSCAN Clustering
-    print("\nHDBSCAN Clustering (Cosine):")
-    hdbscan_labels, n_clusters, n_noise = clustering.run_hdbscan_clustering(
-        normalized, metric='cosine', min_cluster_size=5
+    # 5. HDBSCAN Clustering - BOTH Euclidean and Cosine
+    hdbscan_results = {}
+
+    # === EUCLIDEAN HDBSCAN ===
+    print("\n" + "="*60)
+    print("HDBSCAN Clustering (EUCLIDEAN distance)")
+    print("="*60)
+    hdbscan_labels_euc, n_clusters_euc, n_noise_euc = clustering.run_hdbscan_clustering(
+        embeddings, metric='euclidean', min_cluster_size=5
     )
 
-    print(f"  Found {n_clusters} clusters, {n_noise} noise points")
+    print(f"  Found {n_clusters_euc} clusters, {n_noise_euc} noise points")
 
     # Compute metrics for HDBSCAN (excluding noise points)
-    if n_clusters > 1 and n_noise < len(hdbscan_labels):
-        non_noise_mask = hdbscan_labels != -1
-        hdbscan_sil = silhouette_score(
-            normalized[non_noise_mask],
-            hdbscan_labels[non_noise_mask],
-            metric='cosine'
+    if n_clusters_euc > 1 and n_noise_euc < len(hdbscan_labels_euc):
+        non_noise_mask = hdbscan_labels_euc != -1
+        hdbscan_sil_euc = silhouette_score(
+            embeddings[non_noise_mask],
+            hdbscan_labels_euc[non_noise_mask],
+            metric='euclidean'
         )
-        hdbscan_db = davies_bouldin_score(
-            normalized[non_noise_mask],
-            hdbscan_labels[non_noise_mask]
+        hdbscan_db_euc = davies_bouldin_score(
+            embeddings[non_noise_mask],
+            hdbscan_labels_euc[non_noise_mask]
         )
-        print(f"  Silhouette: {hdbscan_sil:.4f}, Davies-Bouldin: {hdbscan_db:.4f}")
+        print(f"  Silhouette: {hdbscan_sil_euc:.4f}, Davies-Bouldin: {hdbscan_db_euc:.4f}")
     else:
-        hdbscan_sil = None
-        hdbscan_db = None
+        hdbscan_sil_euc = None
+        hdbscan_db_euc = None
         print(f"  Not enough clusters for quality metrics")
 
     # Save HDBSCAN clusters
-    cluster_cache.save_clusters(layer, unit, 'hdbscan', hdbscan_labels, texts)
+    cluster_cache.save_clusters(layer, unit, 'euclidean_hdbscan', hdbscan_labels_euc, texts)
 
-    # Create cluster-colored UMAP for HDBSCAN
+    hdbscan_results['euclidean'] = {
+        'n_clusters_found': int(n_clusters_euc),
+        'n_noise_points': int(n_noise_euc),
+        'silhouette_score': float(hdbscan_sil_euc) if hdbscan_sil_euc is not None else None,
+        'davies_bouldin_score': float(hdbscan_db_euc) if hdbscan_db_euc is not None else None,
+        'metric': 'euclidean'
+    }
+
+    # === COSINE HDBSCAN ===
+    print("\n" + "="*60)
+    print("HDBSCAN Clustering (COSINE distance)")
+    print("="*60)
+    hdbscan_labels_cos, n_clusters_cos, n_noise_cos = clustering.run_hdbscan_clustering(
+        normalized, metric='cosine', min_cluster_size=5
+    )
+
+    print(f"  Found {n_clusters_cos} clusters, {n_noise_cos} noise points")
+
+    # Compute metrics for HDBSCAN (excluding noise points)
+    if n_clusters_cos > 1 and n_noise_cos < len(hdbscan_labels_cos):
+        non_noise_mask = hdbscan_labels_cos != -1
+        hdbscan_sil_cos = silhouette_score(
+            normalized[non_noise_mask],
+            hdbscan_labels_cos[non_noise_mask],
+            metric='cosine'
+        )
+        hdbscan_db_cos = davies_bouldin_score(
+            normalized[non_noise_mask],
+            hdbscan_labels_cos[non_noise_mask]
+        )
+        print(f"  Silhouette: {hdbscan_sil_cos:.4f}, Davies-Bouldin: {hdbscan_db_cos:.4f}")
+    else:
+        hdbscan_sil_cos = None
+        hdbscan_db_cos = None
+        print(f"  Not enough clusters for quality metrics")
+
+    # Save HDBSCAN clusters
+    cluster_cache.save_clusters(layer, unit, 'cosine_hdbscan', hdbscan_labels_cos, texts)
+
+    # Create cluster-colored UMAP for HDBSCAN (cosine version)
     if UMAP_AVAILABLE:
         print("  Creating cluster-colored UMAP...")
         clusterability.create_umap_plot(
             normalized,
-            labels=hdbscan_labels,
+            labels=hdbscan_labels_cos,
             metric='cosine',
             save_path=VIZ_DIR / f"{neuron_id}_umap_hdbscan.png",
             title=f"UMAP + HDBSCAN: Layer {layer}, Unit {unit}"
         )
 
-    hdbscan_results = {
-        'n_clusters_found': int(n_clusters),
-        'n_noise_points': int(n_noise),
-        'silhouette_score': float(hdbscan_sil) if hdbscan_sil is not None else None,
-        'davies_bouldin_score': float(hdbscan_db) if hdbscan_db is not None else None
+    hdbscan_results['cosine'] = {
+        'n_clusters_found': int(n_clusters_cos),
+        'n_noise_points': int(n_noise_cos),
+        'silhouette_score': float(hdbscan_sil_cos) if hdbscan_sil_cos is not None else None,
+        'davies_bouldin_score': float(hdbscan_db_cos) if hdbscan_db_cos is not None else None,
+        'metric': 'cosine'
     }
 
     # 6. Compile all results
@@ -338,15 +524,19 @@ def interpret_hopkins(h):
 
 def main():
     """Run clustering analysis on all neurons."""
+    # Override cluster cache directory for this analysis
+    cluster_cache.CLUSTER_CACHE_DIR = OUTPUT_DIR / "clusters"
+    cluster_cache.CLUSTER_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
     # Set SPHERICAL mode for this analysis
     original_spherical = config.SPHERICAL
     config.SPHERICAL = True
 
     try:
         print("\n" + "="*60)
-        print("CLUSTERING ANALYSIS PIPELINE")
+        print("CLUSTERING ANALYSIS PIPELINE - DUAL METRIC")
         print("="*60)
-        print(f"Mode: SPHERICAL = {config.SPHERICAL} (Cosine similarity)")
+        print(f"Distance metrics: Euclidean + Cosine")
         print(f"Total neurons: {len(NEURONS)}")
         print(f"Output directory: {OUTPUT_DIR}")
         print("="*60)
@@ -355,8 +545,9 @@ def main():
             'metadata': {
                 'created_at': datetime.now().isoformat(),
                 'spherical': config.SPHERICAL,
-                'embedding_model': config.CLUSTER_EMBEDDING_MODEL_NAME,
-                'distance_metric': 'cosine',
+                'embedding_model': 'Alibaba-NLP/gte-Qwen2-1.5B-instruct',  # Original PRISM model
+                'embedding_source': 'embeddings_qwen2/',
+                'distance_metrics': ['euclidean', 'cosine'],
                 'total_neurons': len(NEURONS)
             },
             'neurons': []
@@ -386,17 +577,25 @@ def main():
 
         # Print summary statistics
         print("\nSummary Statistics:")
-        hopkins_cosine_scores = [n['clusterability']['hopkins_cosine']
-                                 for n in all_results['neurons']]
-        print(f"  Mean Hopkins (Cosine): {np.mean(hopkins_cosine_scores):.4f}")
-        print(f"  Neurons with good clusterability (>0.7): "
-              f"{sum(1 for h in hopkins_cosine_scores if h > 0.7)}/{len(hopkins_cosine_scores)}")
 
-        sil_scores = [n['kmeans_results']['silhouette']['silhouette_score']
-                      for n in all_results['neurons']]
-        print(f"  Mean Silhouette (K-Means, best k): {np.mean(sil_scores):.4f}")
-        print(f"  Neurons with good clustering (>0.1): "
-              f"{sum(1 for s in sil_scores if s > 0.1)}/{len(sil_scores)}")
+        # Hopkins statistics
+        hopkins_euc_scores = [n['clusterability']['hopkins_euclidean']
+                              for n in all_results['neurons']]
+        hopkins_cos_scores = [n['clusterability']['hopkins_cosine']
+                              for n in all_results['neurons']]
+        print(f"  Mean Hopkins (Euclidean): {np.mean(hopkins_euc_scores):.4f}")
+        print(f"  Mean Hopkins (Cosine): {np.mean(hopkins_cos_scores):.4f}")
+
+        # K-Means comparison
+        euc_sil = [n['kmeans_results']['euclidean_silhouette']['silhouette_score']
+                   for n in all_results['neurons']]
+        cos_sil = [n['kmeans_results']['cosine_silhouette']['silhouette_score']
+                   for n in all_results['neurons']]
+
+        print(f"\n  K-Means Clustering Quality:")
+        print(f"    Euclidean - Mean Silhouette: {np.mean(euc_sil):.4f}")
+        print(f"    Cosine - Mean Silhouette: {np.mean(cos_sil):.4f}")
+        print(f"    Improvement: {(np.mean(cos_sil) - np.mean(euc_sil)) / np.mean(euc_sil) * 100:+.1f}%")
 
     finally:
         # Restore original config

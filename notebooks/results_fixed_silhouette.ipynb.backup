@@ -1,0 +1,178 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "4d46432a",
+   "metadata": {},
+   "source": [
+    "# Fixed-k5 vs Silhouette Evaluation\n",
+    "This notebook loads the filtered evaluation results and compares mean/max AUC and MAD metrics between fixed-k5 and silhouette methods."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "24e66c1c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "import scipy.stats\n",
+    "\n",
+    "plt.rcParams['figure.figsize'] = (10, 4)\n",
+    "plt.rcParams['font.size'] = 12\n",
+    "\n",
+    "RESULTS_PATH = '../results/cosy-evaluation_GPT-explain_fixed-silhouette.csv'\n",
+    "df = pd.read_csv(RESULTS_PATH)\n",
+    "print(f'Loaded {len(df)} rows from {RESULTS_PATH}')\n",
+    "\n",
+    "df_fixed = df[df['method'] == 'fixed-k5'].copy()\n",
+    "df_silhouette = df[df['method'] == 'silhouette'].copy()\n",
+    "print(f'Fixed rows: {len(df_fixed)}')\n",
+    "print(f'Silhouette rows: {len(df_silhouette)}')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "551c512a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "def process_groups(groups):\n",
+    "    all_max_auc = []\n",
+    "    all_max_mad = []\n",
+    "    for (_, _), group in groups:\n",
+    "        all_max_auc.append(group['AUC'].max())\n",
+    "        all_max_mad.append(group['MAD'].max())\n",
+    "    return np.array(all_max_auc), np.array(all_max_mad)\n",
+    "\n",
+    "def get_confidence_interval(data, confidence=0.95):\n",
+    "    a = np.array(data)\n",
+    "    if len(a) <= 1:\n",
+    "        return np.mean(a), np.mean(a)\n",
+    "    m, se = np.mean(a), scipy.stats.sem(a)\n",
+    "    h = se * scipy.stats.t.ppf((1 + confidence) / 2.0, len(a) - 1)\n",
+    "    return m - h, m + h\n",
+    "\n",
+    "def summarize(df, metric='mean'):\n",
+    "    if metric == 'mean':\n",
+    "        auc_mean = df['AUC'].mean()\n",
+    "        auc_lower, auc_upper = get_confidence_interval(df['AUC'])\n",
+    "        mad_mean = df['MAD'].mean()\n",
+    "        mad_std = df['MAD'].std()\n",
+    "    elif metric == 'max':\n",
+    "        groups = df.groupby(['layer','unit'])\n",
+    "        auc_vals, mad_vals = process_groups(groups)\n",
+    "        auc_mean = auc_vals.mean()\n",
+    "        auc_lower, auc_upper = get_confidence_interval(auc_vals)\n",
+    "        mad_mean = mad_vals.mean()\n",
+    "        mad_std = mad_vals.std()\n",
+    "    return auc_mean, auc_lower, auc_upper, mad_mean, mad_std"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "775a1473",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "rows = []\n",
+    "for label, subset in [('fixed-k5', df_fixed), ('silhouette', df_silhouette)]:\n",
+    "    mean_auc, mean_low, mean_up, mean_mad, std_mad = summarize(subset, 'mean')\n",
+    "    max_auc, max_low, max_up, max_mad, std_max_mad = summarize(subset, 'max')\n",
+    "    rows.append({\n",
+    "        'method': label,\n",
+    "        'mean_auc (CI)': f\"{mean_auc:.2f} ({mean_low:.2f}-{mean_up:.2f})\",\n",
+    "        'mean_mad (±std)': f\"{mean_mad:.2f} ± {std_mad:.2f}\",\n",
+    "        'max_auc (CI)': f\"{max_auc:.2f} ({max_low:.2f}-{max_up:.2f})\",\n",
+    "        'max_mad (±std)': f\"{max_mad:.2f} ± {std_max_mad:.2f}\",\n",
+    "        'num_rows': len(subset)\n",
+    "    })\n",
+    "comparison_df = pd.DataFrame(rows)\n",
+    "comparison_df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fc7cce9d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plt.figure(figsize=(8,4))\n",
+    "plt.bar(comparison_df['method'], [df_fixed['AUC'].mean(), df_silhouette['AUC'].mean()])\n",
+    "plt.ylabel('Mean AUC')\n",
+    "plt.title('Mean AUC by Method')\n",
+    "plt.show()\n",
+    "\n",
+    "plt.figure(figsize=(8,4))\n",
+    "plt.bar(comparison_df['method'], [df_fixed['MAD'].mean(), df_silhouette['MAD'].mean()])\n",
+    "plt.ylabel('Mean MAD')\n",
+    "plt.title('Mean MAD by Method')\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "b46cb157",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plt.figure(figsize=(8,5))\n",
+    "plt.hist(df_fixed['AUC'], bins=30, alpha=0.5, label='fixed-k5')\n",
+    "plt.hist(df_silhouette['AUC'], bins=30, alpha=0.5, label='silhouette')\n",
+    "plt.legend()\n",
+    "plt.xlabel('AUC')\n",
+    "plt.ylabel('Count')\n",
+    "plt.title('AUC Distribution by Method')\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8fcff5e5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "grouped = df.groupby(['layer','unit','method'])['AUC'].mean().reset_index()\n",
+    "plt.figure(figsize=(10,5))\n",
+    "for method, marker in [('fixed-k5','o'),('silhouette','s')]:\n",
+    "    subset = grouped[grouped['method']==method]\n",
+    "    plt.scatter(subset['layer'] + subset['unit']/10000, subset['AUC'], label=method, alpha=0.6, marker=marker)\n",
+    "plt.legend()\n",
+    "plt.xlabel('Layer + unit/1e4')\n",
+    "plt.ylabel('Mean AUC per neuron')\n",
+    "plt.title('Per-neuron AUC Comparison')\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3cc7ccee",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "plt.figure(figsize=(8,5))\n",
+    "colors = {'fixed-k5':'tab:blue','silhouette':'tab:orange'}\n",
+    "for method in ['fixed-k5','silhouette']:\n",
+    "    subset = df[df['method']==method]\n",
+    "    plt.scatter(subset['MAD'], subset['AUC'], alpha=0.4, label=method, c=colors[method])\n",
+    "plt.legend()\n",
+    "plt.xlabel('MAD')\n",
+    "plt.ylabel('AUC')\n",
+    "plt.title('AUC vs MAD by Method')\n",
+    "plt.show()"
+   ]
+  }
+ ],
+ "metadata": {},
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
