@@ -1,0 +1,41 @@
+{
+  "original_prism_score": {
+    "n_neurons": 8,
+    "spearman_r": 0.8264,
+    "spearman_p": 0.0114,
+    "pearson_r": 0.9098,
+    "pearson_p": 0.0017
+  },
+  "filtered_metrics_standard_tau_0_70": {
+    "sim_threshold": 0.7,
+    "n_valid": 4,
+    "n_excluded": 4,
+    "mean_similarity_post": {
+      "spearman_r": 1.0,
+      "spearman_p": 0.0
+    },
+    "weighted_mean_similarity": {
+      "spearman_r": 1.0,
+      "spearman_p": 0.0
+    }
+  },
+  "filtered_metrics_robustness_tau_0_72": {
+    "sim_threshold": 0.72,
+    "n_valid": 5,
+    "n_excluded": 3,
+    "mean_similarity_post": {
+      "spearman_r": 0.9,
+      "spearman_p": 0.0374
+    },
+    "weighted_mean_similarity": {
+      "spearman_r": 0.9,
+      "spearman_p": 0.0374
+    }
+  },
+  "robustness_note": "tau=0.72 is a sensitivity check, not a threshold search -- tau=0.70 is the reported result. The perturbation flips gemma-scope-2b L10/U603 (boundary case, sim(desc1,desc2)=0.7097 vs tau=0.70) AND gemma-scope-2b L0/U10531 (2->3 survivors) -- a genuine multi-neuron perturbation, not an isolated single-point change. Correlation moves from rho=1.00 (n=4) to rho=0.90 (n=5, p=0.037): the result is not an artifact of the borderline neuron's exact classification.",
+  "n_annotators_per_neuron": 7,
+  "provenance": "PRISM paper's own human study (Sec. 4 / Appendix A.8): 7 participants (PhD/working students, no co-authors), 8 instances, 5 clusters each. Verified against paper-cited example values (see module docstring).",
+  "human_score_scale": "11-point, 0.0-1.0 (paper's pairwise-similarity rating average); stored locally as integer 0-10, divided by 10 here. HIGH = monosemantic/coherent, LOW = polysemantic/diverse.",
+  "prism_score_used": "prism_score = mean_similarity (plain mean pairwise cosine similarity, pre-filter) from pairwise_similarities_dataset.csv -- same direction as the human score (HIGH = monosemantic). NOT diversity_score.",
+  "interpretation": "Do NOT lead with 'rho improved from 0.826 to 1.00' -- with n=4 surviving neurons the filtered correlation is close to statistically content-free (huge CI). The supportable claim: on neurons where the filtered metric is defined, it tracks human judgment at least as well as the unfiltered PRISM score, AND the framework's exclusions are principled (0 or 1 survivors), not arbitrary -- gpt2-small-sae L5/U30319 is the all-fail/uncharacterized case, the other 3 exclusions are single-survivor neurons. The flagging behavior is the result; the near-perfect correlation is a too-small-n curiosity reported without leaning on it."
+}
