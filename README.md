@@ -14,7 +14,7 @@ This fork extends PRISM with adaptive k-selection methods and cosine similarity-
 
 **Added functionality:**
 - Adaptive k-selection using Silhouette Score, BIC, and Davies-Bouldin Index
-- Cosine similarity support via Spherical K-Means for 768-dimensional embeddings
+- Cosine similarity support via Spherical K-Means for high-dimensional embeddings (768-dim Qwen3-0.6B preliminary; 1536-dim gte-Qwen2-1.5B in the cited run)
 - HDBSCAN-based noise filtering to improve cluster quality
 - Agglomerative clustering with cosine linkage
 - Hopkins statistic for clustering tendency analysis
@@ -111,7 +111,9 @@ python src/evaluation.py
 
 Generated concept samples can be found in [generated_text](https://github.com/lkopf/prism/tree/main/generated_text) folder.
 
-Evaluate all feature descriptions per feature with polysemanticity score (cosine similarity), max AUC, and max MAD.
+Evaluate all feature descriptions per feature with polysemanticity score (cosine similarity), max AUROC, and max MAD.
+
+> **Terminology:** "AUROC" and "AUC" are the same metric and used interchangeably here; code and CSV columns keep the legacy lowercase `auc` spelling. See the terminology note in [RESULTS_INDEX.md](RESULTS_INDEX.md).
 
 ```bash
 python src/meta_evaluation.py
