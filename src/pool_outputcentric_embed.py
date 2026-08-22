@@ -21,7 +21,7 @@ RUN IN venv_qwen2:
     venv_qwen2/bin/python src/pool_outputcentric_embed.py
 
 Outputs (results/pooled_outputcentric/):
-    descriptions.csv   model, layer, unit, method, generator, desc_idx, description, auc
+    descriptions.csv   model, layer, unit, method, generator, desc_idx, description, auroc
     embeddings.npy     float32 [N, 1536], row-aligned to descriptions.csv
     provenance.json
 """
@@ -43,7 +43,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 EMBEDDING_MODEL = "Alibaba-NLP/gte-Qwen2-1.5B-instruct"
 _E = "_mean_evalgen-gemini-1-5-pro_cosmopedia_1000.csv"
 MODELS = ["Llama-3.1-8B-Instruct", "gemma-scope-2b", "gpt2-small-sae"]
-COLS = ["model", "layer", "unit", "method", "generator", "desc_idx", "description", "auc"]
+COLS = ["model", "layer", "unit", "method", "generator", "desc_idx", "description", "auroc"]
 EVAL_REGIME = "gemini-1-5-pro"   # CoSy evaluation-sample generator shared by all pooled AUROCs
 # Third external method, gpt2-small-sae only. Descriptions are imported as published;
 # the textgen field in the upstream filename is a placeholder, so the source is
@@ -69,7 +69,7 @@ def main():
         ic = man[man["model"] == model]
         for r in ic.itertuples():
             records.append((model, int(r.layer), int(r.unit), "input-centric", "gemini-1.5-pro",
-                            int(r.desc_idx) - 1, str(r.description), float(r.auc)))
+                            int(r.desc_idx) - 1, str(r.description), float(r.auroc)))
             vecs.append(cache_emb[id2row[r.desc_id]])
         prov_inputs.append({"model": model, "source": "input-centric", "generator": "gemini-1.5-pro",
                             "eval_regime": EVAL_REGIME, "from": "cache", "n_desc": int(len(ic))})
@@ -81,7 +81,7 @@ def main():
         d = pd.read_csv(f).sort_values(["layer", "unit"]).reset_index(drop=True)
         for row in d.itertuples():
             new_meta.append((model, int(row.layer), int(row.unit), "output-centric", "gemini-1.5-pro",
-                             0, str(row.explanation), float(row.AUC)))
+                             0, str(row.explanation), float(row.AUROC)))
             new_text.append(str(row.explanation))
         prov_inputs.append({"model": model, "source": "output-centric", "generator": "gemini-1.5-pro",
                             "eval_regime": EVAL_REGIME, "from": "embedded_fresh",
@@ -92,7 +92,7 @@ def main():
     d = pd.read_csv(f).sort_values(["layer", "unit"]).reset_index(drop=True)
     for row in d.itertuples():
         new_meta.append((NEURONPEDIA_MODEL, int(row.layer), int(row.unit), "neuronpedia", "neuronpedia",
-                         0, str(row.explanation), float(row.AUC)))
+                         0, str(row.explanation), float(row.AUROC)))
         new_text.append(str(row.explanation))
     prov_inputs.append({"model": NEURONPEDIA_MODEL, "source": "neuronpedia", "generator": "neuronpedia",
                         "eval_regime": EVAL_REGIME, "from": "embedded_fresh",

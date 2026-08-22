@@ -59,19 +59,19 @@ BUDGET = {"PRISM": 5, "output-centric": 1, "Neuronpedia": 1, "GPT-explain": 1,
           "Transluce": 1, "max-act": 1}
 TARGET_SHORT = {"Llama-3.1-8B-Instruct": "Llama", "gemma-scope-2b": "Gemma",
                 "gpt2-small-sae": "GPT-2 SAE", "gpt2-xl": "GPT-2 XL"}
-AUC_THR = 0.50
+AUROC_THR = 0.50
 
 
 def _add_source(char, desc, method_masks):
     """char[(target,layer,unit)][method] = bool. Groups by (_target, layer, unit) so
     identical coordinates across models do not collide."""
-    a = desc["auc"].to_numpy()
+    a = desc["auroc"].to_numpy()
     for (target, layer, unit), g in desc.groupby(["_target", "layer", "unit"]):
         feat = char.setdefault((target, int(layer), int(unit)), {})
         for method, mask in method_masks.items():
             idx = g.index[mask(g)].to_numpy()
             if len(idx):
-                feat[method] = bool((a[idx] > AUC_THR).any())
+                feat[method] = bool((a[idx] > AUROC_THR).any())
 
 
 def gather_characterization():

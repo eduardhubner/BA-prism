@@ -74,7 +74,7 @@ def _representatives(a, emb, idx):
 
 
 def _add_source(char, desc, emb, method_masks):
-    a = desc["auc"].to_numpy()
+    a = desc["auroc"].to_numpy()
     for (target, layer, unit), g in desc.groupby(["_target", "layer", "unit"]):
         feat = char.setdefault((target, int(layer), int(unit)), {})
         for method, mask in method_masks.items():

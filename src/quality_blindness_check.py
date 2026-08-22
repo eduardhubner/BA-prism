@@ -12,11 +12,11 @@ measure rather than a description-quality artifact.
 
 Computed directly from pairwise_similarities_dataset.csv (self-contained --
 does not depend on filtered_evaluation.csv): prism_score = mean_similarity
-(pre-filter, pre-collapse); mean_auc_pre = mean of auc_1..auc_5 for the
+(pre-filter, pre-collapse); mean_auroc_pre = mean of auroc_1..auroc_5 for the
 same neuron. All 239 neurons across all 4 models.
 
 Outputs:
-  results/quality_blindness_check.csv   -- per-neuron (prism_score, mean_auc_pre)
+  results/quality_blindness_check.csv   -- per-neuron (prism_score, mean_auroc_pre)
   results/quality_blindness_check.json  -- correlation summary
 
 Run with: python src/quality_blindness_check.py
@@ -33,24 +33,24 @@ PAIRWISE_PATH = ROOT / "results" / "pairwise_similarities_dataset.csv"
 OUT_CSV = ROOT / "results" / "quality_blindness_check.csv"
 OUT_JSON = ROOT / "results" / "quality_blindness_check.json"
 
-AUC_COLS = ["auc_1", "auc_2", "auc_3", "auc_4", "auc_5"]
+AUROC_COLS = ["auroc_1", "auroc_2", "auroc_3", "auroc_4", "auroc_5"]
 
 
 def main():
     df = pd.read_csv(PAIRWISE_PATH)
     out = df[["model", "layer", "unit"]].copy()
     out["prism_score"] = df["mean_similarity"]
-    out["mean_auc_pre"] = df[AUC_COLS].mean(axis=1)
+    out["mean_auroc_pre"] = df[AUROC_COLS].mean(axis=1)
 
     out.to_csv(OUT_CSV, index=False)
     print(f"Saved per-neuron table to {OUT_CSV}  (n={len(out)})")
 
-    spear = spearmanr(out["prism_score"], out["mean_auc_pre"])
-    pear = pearsonr(out["prism_score"], out["mean_auc_pre"])
+    spear = spearmanr(out["prism_score"], out["mean_auroc_pre"])
+    pear = pearsonr(out["prism_score"], out["mean_auroc_pre"])
 
     by_model = {}
     for model, grp in out.groupby("model"):
-        s = spearmanr(grp["prism_score"], grp["mean_auc_pre"])
+        s = spearmanr(grp["prism_score"], grp["mean_auroc_pre"])
         by_model[model] = {"n": len(grp), "spearman_r": round(float(s.statistic), 4),
                             "spearman_p": round(float(s.pvalue), 4)}
 

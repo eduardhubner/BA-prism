@@ -21,7 +21,7 @@ Pipeline (per neuron):
   output: one profile row per neuron.
 
 Input contract (CSV; one row per neuron): columns `model, layer, unit`,
-`auc_1..auc_k`, and pairwise `sim_ij` (e.g. `sim_12`). Defaults to the PRISM
+`auroc_1..auroc_k`, and pairwise `sim_ij` (e.g. `sim_12`). Defaults to the PRISM
 master table `results/pairwise_similarities_dataset.csv`.
 
 Usage:
@@ -30,7 +30,7 @@ Usage:
         --output results/reliability_profile.csv --sim-threshold 0.70 --auroc-threshold 0.50
 
 Note: "AUROC" and "AUC" denote the same metric; the input columns keep the
-legacy `auc_` spelling (see the terminology note in RESULTS_INDEX.md).
+legacy `auroc_` spelling (see the terminology note in RESULTS_INDEX.md).
 """
 
 import sys
@@ -64,32 +64,32 @@ def render_mds(df, specs):
         if sub.empty:
             print(f"  (--mds: neuron not found: {spec})"); continue
         row = sub.iloc[0]
-        aucs = np.array([row[f"auc_{i}"] for i in range(1, cs.N_DESC + 1)], dtype=float)
+        aurocs = np.array([row[f"auroc_{i}"] for i in range(1, cs.N_DESC + 1)], dtype=float)
         descs = [row[f"description_{i}"] for i in range(1, cs.N_DESC + 1)]
         sm = cs.get_sim_matrix(row)
-        dec = cs.filter_decisions(aucs, sm)
-        met = cs.compute_metrics(aucs, sm, dec)
-        cs.make_mds_plot(aucs, sm, dec, descs, met, model, layer, unit)
+        dec = cs.filter_decisions(aurocs, sm)
+        met = cs.compute_metrics(aurocs, sm, dec)
+        cs.make_mds_plot(aurocs, sm, dec, descs, met, model, layer, unit)
         print(f"  MDS plot rendered → {cs.OUTPUT_DIR}/  ({model} L{layer}/U{unit})")
 
 
 def profile_neuron(row):
     """Run the two-stage filter + metrics on one neuron; return a profile dict."""
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, cs.N_DESC + 1)], dtype=float)
+    aurocs = np.array([row[f"auroc_{i}"] for i in range(1, cs.N_DESC + 1)], dtype=float)
     sm = cs.get_sim_matrix(row)
-    dec = cs.filter_decisions(aucs, sm)
-    met = cs.compute_metrics(aucs, sm, dec)
+    dec = cs.filter_decisions(aurocs, sm)
+    met = cs.compute_metrics(aurocs, sm, dec)
 
     n_s = met["n_surviving"]
     n_coll = dec.count("collapsed")
-    n_filt = dec.count("removed (low AUC)")
+    n_filt = dec.count("removed (low AUROC)")
     # diversity only where a spread among ≥2 survivors is defined (σ̃=1 at n_s=1 is
     # a convention, not a measured spread — see RESULTS_INDEX terminology/σ̃ note).
     div = (1.0 - met["weighted_mean_sim"]) if n_s >= 2 else np.nan
 
     return {
         "model": row["model"], "layer": int(row["layer"]), "unit": int(row["unit"]),
-        "n_descriptions": int(np.sum(~np.isnan(aucs))),
+        "n_descriptions": int(np.sum(~np.isnan(aurocs))),
         "n_filtered": n_filt, "n_collapsed": n_coll, "n_surviving": n_s,
         "status": status_of(n_s),
         "prism_score": round(met["prism_score"], 4),
@@ -107,14 +107,14 @@ def main():
     ap.add_argument("--input", default=str(cs.PRISM_PATH), help="PRISM output CSV (one row per neuron).")
     ap.add_argument("--output", default=str(RESULTS / "reliability_profile.csv"), help="Profile CSV to write.")
     ap.add_argument("--sim-threshold", type=float, default=cs.SIM_THRESHOLD, help="Collapse threshold τ_sim (default 0.70).")
-    ap.add_argument("--auroc-threshold", type=float, default=cs.AUC_THRESHOLD, help="Reliability filter τ_auroc (default 0.50).")
+    ap.add_argument("--auroc-threshold", type=float, default=cs.AUROC_THRESHOLD, help="Reliability filter τ_auroc (default 0.50).")
     ap.add_argument("--mds", nargs="*", metavar="model:layer:unit", default=[],
                     help="Also render the framework MDS plot for these neurons (repeatable).")
     args = ap.parse_args()
 
     # Apply thresholds to the canonical module (filter_decisions reads these globals).
     cs.SIM_THRESHOLD = args.sim_threshold
-    cs.AUC_THRESHOLD = args.auroc_threshold
+    cs.AUROC_THRESHOLD = args.auroc_threshold
 
     df = pd.read_csv(args.input)
     profile = pd.DataFrame([profile_neuron(r) for _, r in df.iterrows()])

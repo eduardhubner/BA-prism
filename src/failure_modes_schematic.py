@@ -30,7 +30,7 @@ BLUE = ts.COLLAPSED_BLUE
 SCALE = 0.5
 D0 = 1.7
 HI, LO = 0.93, 0.40
-AUC_THR, SIM_THR = 0.50, 0.70
+AUROC_THR, SIM_THR = 0.50, 0.70
 S_NODE = 115
 
 MARKER = {"survived": "o", "removed": "D", "collapsed": "D"}
@@ -58,8 +58,8 @@ def prism_poly(coords):
     return float(np.mean([S[i, j] for i, j in combinations(range(len(coords)), 2)]))
 
 
-def filter_collapse(aucs, S):
-    kept = [i for i in range(len(aucs)) if aucs[i] > AUC_THR]
+def filter_collapse(aurocs, S):
+    kept = [i for i in range(len(aurocs)) if aurocs[i] > AUROC_THR]
     adj = {i: set() for i in kept}
     for a in range(len(kept)):
         for b in range(a + 1, len(kept)):
@@ -75,24 +75,24 @@ def filter_collapse(aucs, S):
                 if x not in visited:
                     visited.add(x); c.append(x); st.extend(adj[x] - visited)
             comps.append(c)
-    rep = {max(c, key=lambda i: aucs[i]): c for c in comps}
-    dec = ["removed" if aucs[i] <= AUC_THR else ("survived" if i in rep else "collapsed")
-           for i in range(len(aucs))]
+    rep = {max(c, key=lambda i: aurocs[i]): c for c in comps}
+    dec = ["removed" if aurocs[i] <= AUROC_THR else ("survived" if i in rep else "collapsed")
+           for i in range(len(aurocs))]
     coll_to_rep = {m: r for r, c in rep.items() for m in c if m != r}
     return dec, coll_to_rep
 
 
-def metrics(aucs, S, dec):
+def metrics(aurocs, S, dec):
     surv = [i for i, d in enumerate(dec) if d == "survived"]
     n_s = len(surv)
     if n_s == 0:
         return 0, None, None
-    Q = 2 * np.mean([aucs[i] for i in surv]) - 1
+    Q = 2 * np.mean([aurocs[i] for i in surv]) - 1
     if n_s == 1:
         return 1, 1.0, Q
     num = den = 0.0
     for i, j in combinations(surv, 2):
-        w = (2 * aucs[i] - 1) * (2 * aucs[j] - 1)
+        w = (2 * aurocs[i] - 1) * (2 * aurocs[j] - 1)
         num += w * S[i, j]; den += w
     return n_s, (num / den if den > 0 else None), Q
 
@@ -114,18 +114,18 @@ def _frame(ax, lim, xlab=False, ylab=False):
         ax.set_ylabel("MDS2", fontsize=10, color="#666", labelpad=2)
 
 
-def _draw_raw(ax, C, aucs):
+def _draw_raw(ax, C, aurocs):
     P = C * SCALE
-    for (x, y), a in zip(P, aucs):
+    for (x, y), a in zip(P, aurocs):
         ax.scatter(x, y, s=S_NODE, color=_CMAP(_NORM(a)), edgecolors="black", linewidths=0.8, zorder=3)
 
 
-def _draw_framework(ax, C, aucs, dec, coll_to_rep):
+def _draw_framework(ax, C, aurocs, dec, coll_to_rep):
     P = C * SCALE
     for i, r in coll_to_rep.items():
         ax.plot([P[i, 0], P[r, 0]], [P[i, 1], P[r, 1]], color=BLUE, lw=1.0, alpha=0.8, zorder=2)
     for i in sorted(range(len(P)), key=lambda i: dec[i] == "survived"):
-        ax.scatter(P[i, 0], P[i, 1], s=S_NODE, color=_CMAP(_NORM(aucs[i])), marker=MARKER[dec[i]],
+        ax.scatter(P[i, 0], P[i, 1], s=S_NODE, color=_CMAP(_NORM(aurocs[i])), marker=MARKER[dec[i]],
                    edgecolors=EDGE[dec[i]], linewidths=1.3 if dec[i] == "collapsed" else 0.9,
                    zorder=4 if dec[i] == "survived" else 3)
 
@@ -147,18 +147,18 @@ def make():
                           wspace=0.28, hspace=0.14)
     top_ax = {}
     for mi, (title, A, B) in enumerate(modes):
-        for ni, ((coords, aucs), lab) in enumerate([(A, "A"), (B, "B")]):
+        for ni, ((coords, aurocs), lab) in enumerate([(A, "A"), (B, "B")]):
             col = 2 * mi + ni
             C = coords - coords.mean(0)
             ax0 = fig.add_subplot(gs[0, col]); _frame(ax0, lim, ylab=(col == 0))
-            _draw_raw(ax0, C, aucs); ax0.set_title(lab, fontsize=12, fontweight="bold", pad=3)
+            _draw_raw(ax0, C, aurocs); ax0.set_title(lab, fontsize=12, fontweight="bold", pad=3)
             top_ax[(mi, ni)] = ax0
 
             ax1 = fig.add_subplot(gs[1, col]); _frame(ax1, lim, xlab=True, ylab=(col == 0))
             S = sim_matrix(coords)
-            dec, c2r = filter_collapse(aucs, S)
-            _draw_framework(ax1, C, aucs, dec, c2r)
-            n_s, sig, Q = metrics(aucs, S, dec)
+            dec, c2r = filter_collapse(aurocs, S)
+            _draw_framework(ax1, C, aurocs, dec, c2r)
+            n_s, sig, Q = metrics(aurocs, S, dec)
             ax1.text(0.5, -0.17, _after_label(n_s, sig, Q), transform=ax1.transAxes,
                      ha="center", va="top", fontsize=10, color="#333")
 
@@ -191,9 +191,9 @@ def make():
     ts.save(fig, "fig_failure_modes")
     plt.close(fig)
     for mi, (title, A, B) in enumerate(modes):
-        for (coords, aucs), lab in [(A, "A"), (B, "B")]:
-            S = sim_matrix(coords); dec, _ = filter_collapse(aucs, S)
-            n_s, sig, Q = metrics(aucs, S, dec)
+        for (coords, aurocs), lab in [(A, "A"), (B, "B")]:
+            S = sim_matrix(coords); dec, _ = filter_collapse(aurocs, S)
+            n_s, sig, Q = metrics(aurocs, S, dec)
             print(f"  ({'abc'[mi]}){lab} poly={prism_poly(coords):.3f} n_s={n_s} "
                   f"sig={sig if sig is None else round(sig,3)} Q={Q if Q is None else round(Q,3)}")
 

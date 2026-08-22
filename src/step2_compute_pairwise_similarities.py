@@ -102,7 +102,7 @@ def create_unified_dataset(manifest_df, embeddings):
         - model, layer, unit (identifiers)
         - desc_id_1..5 (unique IDs for traceability)
         - description_1..5 (text)
-        - auc_1..5 (quality scores)
+        - auroc_1..5 (quality scores)
         - mad_1..5, p_1..5 (other scores)
         - sim_12, sim_13, sim_14, sim_15, sim_23, sim_24, sim_25, sim_34, sim_35, sim_45
           (10 pairwise similarities)
@@ -127,7 +127,7 @@ def create_unified_dataset(manifest_df, embeddings):
         # Extract IDs and data
         desc_ids = group['desc_id'].tolist()
         descriptions = group['description'].tolist()
-        aucs = group['auc'].tolist()
+        aurocs = group['auroc'].tolist()
         mads = group['mad'].tolist()
         p_values = group['p_value'].tolist()
 
@@ -150,8 +150,8 @@ def create_unified_dataset(manifest_df, embeddings):
             row[f'description_{i}'] = desc
 
         # Add scores
-        for i, (auc, mad, p) in enumerate(zip(aucs, mads, p_values), 1):
-            row[f'auc_{i}'] = auc
+        for i, (auroc, mad, p) in enumerate(zip(aurocs, mads, p_values), 1):
+            row[f'auroc_{i}'] = auroc
             row[f'mad_{i}'] = mad
             row[f'p_{i}'] = p
 

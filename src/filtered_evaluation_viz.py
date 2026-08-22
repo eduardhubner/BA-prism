@@ -19,17 +19,17 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 df_filt = pd.read_csv(FILTERED_PATH)
 df_pair = pd.read_csv(PAIRWISE_PATH)[
     ["model", "layer", "unit", "mean_similarity",
-     "auc_1", "auc_2", "auc_3", "auc_4", "auc_5"]
+     "auroc_1", "auroc_2", "auroc_3", "auroc_4", "auroc_5"]
 ]
 df_pair = df_pair.rename(columns={"mean_similarity": "prism_score"})
 
-auc_cols = ["auc_1", "auc_2", "auc_3", "auc_4", "auc_5"]
-def auc_std_survivors(row):
-    aucs = [row[c] for c in auc_cols if row[c] > 0.5]
-    return float(np.std(aucs)) if len(aucs) >= 2 else np.nan
-df_pair["auc_std_survivors"] = df_pair.apply(auc_std_survivors, axis=1)
+auroc_cols = ["auroc_1", "auroc_2", "auroc_3", "auroc_4", "auroc_5"]
+def auroc_std_survivors(row):
+    aurocs = [row[c] for c in auroc_cols if row[c] > 0.5]
+    return float(np.std(aurocs)) if len(aurocs) >= 2 else np.nan
+df_pair["auroc_std_survivors"] = df_pair.apply(auroc_std_survivors, axis=1)
 
-df = df_filt.merge(df_pair[["model", "layer", "unit", "prism_score", "auc_std_survivors"]],
+df = df_filt.merge(df_pair[["model", "layer", "unit", "prism_score", "auroc_std_survivors"]],
                    on=["model", "layer", "unit"], how="left")
 df_valid = df[df["n_surviving"] > 0].copy()
 df_wms = df_valid.dropna(subset=["mean_similarity_post"]).copy()
@@ -175,19 +175,19 @@ plt.tight_layout()
 save(fig, "10_zero_survivors_by_model.png")
 
 
-# ── 11. Prism score vs mean AUC (all models) ──────────────────────────────
+# ── 11. Prism score vs mean AUROC (all models) ──────────────────────────────
 fig, ax = plt.subplots(figsize=(7, 6))
 for model, group in df.groupby("model"):
-    ax.scatter(group["prism_score"], group["mean_auc_pre"],
+    ax.scatter(group["prism_score"], group["mean_auroc_pre"],
                label=model, color=MODEL_COLORS[model], alpha=0.7, s=40)
 ax.set_xlabel("PRISM score (mean pairwise similarity)")
-ax.set_ylabel("Mean AUC (pre-filter)")
+ax.set_ylabel("Mean AUROC (pre-filter)")
 ax.legend(fontsize=8)
 spear = spearmanr(df["prism_score"].dropna(),
-                  df.loc[df["prism_score"].notna(), "mean_auc_pre"]).statistic
-ax.set_title(f"PRISM score vs mean AUC\n(Spearman ρ={spear:.2f}, n={df['prism_score'].notna().sum()})")
+                  df.loc[df["prism_score"].notna(), "mean_auroc_pre"]).statistic
+ax.set_title(f"PRISM score vs mean AUROC\n(Spearman ρ={spear:.2f}, n={df['prism_score'].notna().sum()})")
 plt.tight_layout()
-save(fig, "11_prism_score_vs_mean_auc.png")
+save(fig, "11_prism_score_vs_mean_auroc.png")
 
 
 # ── 15. Prism score vs post-filter mean similarity (unweighted) ───────────
@@ -207,14 +207,14 @@ plt.tight_layout()
 save(fig, "15_prism_vs_mean_sim_post.png")
 
 
-# ── 17. Zero-survivor neurons: prism score and mean AUC distributions ──────
+# ── 17. Zero-survivor neurons: prism score and mean AUROC distributions ──────
 df_zero    = df[df["uncharacterized"]].copy()
 df_nonzero = df[~df["uncharacterized"]].copy()
 
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 for ax, col, label in zip(axes,
-                           ["prism_score", "mean_auc_pre"],
-                           ["PRISM score", "Mean AUC (pre-filter)"]):
+                           ["prism_score", "mean_auroc_pre"],
+                           ["PRISM score", "Mean AUROC (pre-filter)"]):
     x_grid = np.linspace(0, 1, 300)
     for subset, name, color in [
         (df_zero,    "0 survivors",  "#D55E00"),
@@ -236,27 +236,27 @@ plt.tight_layout()
 save(fig, "17_zero_survivor_characteristics.png")
 
 
-# ── 18. AUC variance vs weighted/unweighted similarity divergence ──────────
-df_div = df_wms.dropna(subset=["weighted_mean_similarity", "auc_std_survivors"]).copy()
+# ── 18. AUROC variance vs weighted/unweighted similarity divergence ──────────
+df_div = df_wms.dropna(subset=["weighted_mean_similarity", "auroc_std_survivors"]).copy()
 df_div["sim_divergence"] = (
     df_div["weighted_mean_similarity"] - df_div["mean_similarity_post"]
 ).abs()
 
 fig, ax = plt.subplots(figsize=(7, 6))
 for model, group in df_div.groupby("model"):
-    ax.scatter(group["auc_std_survivors"], group["sim_divergence"],
+    ax.scatter(group["auroc_std_survivors"], group["sim_divergence"],
                label=model, color=MODEL_COLORS[model], alpha=0.7, s=40)
 ax.axvline(0.05, color="gray", lw=1, linestyle="--", alpha=0.6, label="std=0.05")
 ax.axvline(0.10, color="gray", lw=1, linestyle=":",  alpha=0.6, label="std=0.10")
-ax.set_xlabel("AUC std among survivors")
+ax.set_xlabel("AUROC std among survivors")
 ax.set_ylabel("|Weighted sim − Unweighted sim|")
 ax.legend(fontsize=8)
-spear = spearmanr(df_div["auc_std_survivors"], df_div["sim_divergence"]).statistic
-pct_above = (df_div["auc_std_survivors"] > 0.05).mean() * 100
-ax.set_title(f"AUC variance drives weighted/unweighted divergence\n"
+spear = spearmanr(df_div["auroc_std_survivors"], df_div["sim_divergence"]).statistic
+pct_above = (df_div["auroc_std_survivors"] > 0.05).mean() * 100
+ax.set_title(f"AUROC variance drives weighted/unweighted divergence\n"
              f"(Spearman ρ={spear:.2f}, {pct_above:.0f}% of neurons have std>0.05, n={len(df_div)})")
 plt.tight_layout()
-save(fig, "18_auc_variance_vs_sim_divergence.png")
+save(fig, "18_auroc_variance_vs_sim_divergence.png")
 
 
 print(f"Saved figures to {OUTPUT_DIR}")

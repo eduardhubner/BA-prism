@@ -62,7 +62,7 @@ def _panel_a(ax):
 
 def _panel_b(ax):
     desc = pd.read_csv(GX / "descriptions.csv"); emb = np.load(GX / "embeddings.npy")
-    a = desc["auc"].to_numpy()
+    a = desc["auroc"].to_numpy()
     qp, qpool = [], []
     for _, g in desc.groupby(["layer", "unit"]):
         idx = g.index.to_numpy(); E = emb[idx]

@@ -113,7 +113,7 @@ Generated concept samples can be found in [generated_text](https://github.com/lk
 
 Evaluate all feature descriptions per feature with polysemanticity score (cosine similarity), max AUROC, and max MAD.
 
-> **Terminology:** "AUROC" and "AUC" are the same metric and used interchangeably here; code and CSV columns keep the legacy lowercase `auc` spelling. See the terminology note in [RESULTS_INDEX.md](RESULTS_INDEX.md).
+> **Terminology:** the metric is **AUROC** throughout — prose, code, and CSV columns. Imported CoSy evaluation CSVs keep their upstream `AUC` column name. See [RESULTS_INDEX.md](RESULTS_INDEX.md).
 
 ```bash
 python src/meta_evaluation.py

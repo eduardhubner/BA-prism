@@ -31,7 +31,7 @@ Two metrics are reported:
      the same two-stage filter as filtered_evaluation.py) vs. human score --
      only defined where n_surviving >= 2, at the project-standard
      SIM_THRESHOLD=0.70. This excludes 4 of the 8 neurons: gpt2-small-sae
-     L5/U30319 (n_surviving=0, the "all-fail" case -- every description's AUC
+     L5/U30319 (n_surviving=0, the "all-fail" case -- every description's AUROC
      is below threshold) and three single-survivor neurons (Llama L0/U10095,
      gemma-scope-2b L10/U603, gpt2-small-sae L10/U9896). These exclusions are
      themselves part of the result: the framework declines to characterize
@@ -86,7 +86,7 @@ OUT_FILTERED_CSV = ROOT / "results" / "human_annotation_correlation_filtered.csv
 OUT_JSON = ROOT / "results" / "human_annotation_correlation.json"
 
 SIM_PAIRS = [(1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 4), (3, 5), (4, 5)]
-AUC_THRESHOLD = 0.50
+AUROC_THRESHOLD = 0.50
 TAU_STANDARD = 0.70
 TAU_ROBUSTNESS = 0.72
 
@@ -100,24 +100,24 @@ def build_sim_matrix(row):
     return sim
 
 
-def components_collapse(indices, sim_matrix, threshold, aucs):
+def components_collapse(indices, sim_matrix, threshold, aurocs):
     """Connected-components collapse. Delegates to `verification`.
 
     NOTE: this script applies the collapse BEFORE the AUROC filter, which is the
     non-canonical stage order (see verification.collapse_then_filter). Kept
     as-is so results are unchanged; see ARTIFACT_PLAN.md for the open decision.
     """
-    return V.collapse_components(indices, sim_matrix, aucs, sim_threshold=threshold)
+    return V.collapse_components(indices, sim_matrix, aurocs, sim_threshold=threshold)
 
 
 def filtered_metrics_at_threshold(row, sim_threshold):
     sim = build_sim_matrix(row)
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, 6)])
+    aurocs = np.array([row[f"auroc_{i}"] for i in range(1, 6)])
     # Canonical stage order (AUROC filter, then collapse). Verified a no-op here:
     # the two orders agree on 0/239 neurons at both tau=0.70 and tau=0.72.
-    stage2 = set(V.filter_and_collapse(aucs, sim,
+    stage2 = set(V.filter_and_collapse(aurocs, sim,
                                        sim_threshold=sim_threshold,
-                                       auc_threshold=AUC_THRESHOLD).surviving)
+                                       auroc_threshold=AUROC_THRESHOLD).surviving)
     n_surviving = len(stage2)
 
     if n_surviving == 0:
@@ -131,7 +131,7 @@ def filtered_metrics_at_threshold(row, sim_threshold):
     mean_sim_post = float(np.mean([sim[i, j] for i, j in pairs]))
     num, den = 0.0, 0.0
     for i, j in pairs:
-        w = ((aucs[i] - 0.5) / 0.5) * ((aucs[j] - 0.5) / 0.5)
+        w = ((aurocs[i] - 0.5) / 0.5) * ((aurocs[j] - 0.5) / 0.5)
         num += w * sim[i, j]
         den += w
     weighted_mean_sim = float(num / den) if den > 0 else np.nan

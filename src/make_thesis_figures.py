@@ -29,12 +29,12 @@ ts.apply()
 def fig01_quality_blindness():
     """§2.1 Original PRISM similarity vs. mean AUROC (quality-blindness)."""
     d = pd.read_csv(RESULTS / "quality_blindness_check.csv")
-    rho, p = spearmanr(d["prism_score"], d["mean_auc_pre"])
+    rho, p = spearmanr(d["prism_score"], d["mean_auroc_pre"])
 
     fig, ax = plt.subplots(figsize=(6.4, 5.2))
     for m in ts.MODEL_ORDER:
         s = d[d["model"] == m]
-        ax.scatter(s["prism_score"], s["mean_auc_pre"], color=ts.MODEL_COLORS[m],
+        ax.scatter(s["prism_score"], s["mean_auroc_pre"], color=ts.MODEL_COLORS[m],
                    marker=ts.MODEL_MARKERS[m], edgecolors="black", linewidths=0.4,
                    s=44, alpha=0.85, label=ts.MODEL_LABEL[m])
     ax.axhline(ts.CHANCE, color="grey", ls="--", lw=1, alpha=0.6)
@@ -136,11 +136,11 @@ def fig05_weighting_mechanism():
             res["model"] = r["model"]
             rows.append(res)
     d = pd.DataFrame(rows)
-    rho, _ = spearmanr(d["auc_std"], d["abs_gap"])
+    rho, _ = spearmanr(d["auroc_std"], d["abs_gap"])
 
     fig, (ax, axh) = plt.subplots(1, 2, figsize=(8.4, 4.8),
                                   gridspec_kw={"width_ratios": [3, 1]})
-    _model_scatter(ax, d, "auc_std", "abs_gap")
+    _model_scatter(ax, d, "auroc_std", "abs_gap")
     ax.set_xlabel("Std of survivor AUROCs")
     ax.set_ylabel(r"Weighting gap  $|\tilde\sigma - \bar\sigma|$")
     _statbox(ax, f"Spearman $\\rho$ = {rho:.3f}\nn = {len(d)} ($n_s\\geq3$)")
@@ -189,7 +189,7 @@ def fig07_embedding_robustness():
 def fig08_rescue():
     """§5.2 Candidate-budget rescue: max candidate AUROC, k=5 vs k=10."""
     r = pd.read_csv(RESULTS / "k10_rescue_detail.csv")
-    g = r.groupby(["layer", "unit", "k"])["auc"].max().unstack("k").sort_values(5)
+    g = r.groupby(["layer", "unit", "k"])["auroc"].max().unstack("k").sort_values(5)
 
     fig, ax = plt.subplots(figsize=(6.8, 4.9))
     x = np.arange(len(g))
@@ -234,8 +234,8 @@ def _render_mds_pair(cases, name):
     import toy_neurons as toy
     df = pd.read_csv(cs.PRISM_PATH)
     cmap, norm = ts.AUROC_CMAP, ts.auroc_norm()
-    dec_short = {"survived": "survived", "collapsed": "collapsed", "removed (low AUC)": "removed"}
-    dec_color = {"survived": "black", "collapsed": ts.COLLAPSED_BLUE, "removed (low AUC)": "#777"}
+    dec_short = {"survived": "survived", "collapsed": "collapsed", "removed (low AUROC)": "removed"}
+    dec_color = {"survived": "black", "collapsed": ts.COLLAPSED_BLUE, "removed (low AUROC)": "#777"}
 
     def short(s, n=42):
         s = str(s)
@@ -247,10 +247,10 @@ def _render_mds_pair(cases, name):
     top_axes = []
     for c, (model, layer, unit, label) in enumerate(cases):
         row = df[(df["model"] == model) & (df["layer"] == layer) & (df["unit"] == unit)].iloc[0]
-        aucs = np.array([row[f"auc_{i}"] for i in range(1, 6)])
+        aurocs = np.array([row[f"auroc_{i}"] for i in range(1, 6)])
         sm = cs.get_sim_matrix(row)
-        dec = cs.filter_decisions(aucs, sm)
-        met = cs.compute_metrics(aucs, sm, dec)
+        dec = cs.filter_decisions(aurocs, sm)
+        met = cs.compute_metrics(aurocs, sm, dec)
         coords = toy.mds_coords(sm)
 
         # WMS/Q header (undefined -> em dash for uncharacterized / no-pair cases).
@@ -262,13 +262,13 @@ def _render_mds_pair(cases, name):
             q_str = f"{met['evidence_quality']:.3f}"
 
         ax = fig.add_subplot(gs[0, c]); top_axes.append(ax)
-        toy._draw_framework_panel(ax, coords, aucs, sm, dec, cmap, norm)
+        toy._draw_framework_panel(ax, coords, aurocs, sm, dec, cmap, norm)
         ax.set_title(f"WMS = {wms_str}     Q = {q_str}\n"
                      f"{label}  ·  {ts.MODEL_LABEL[model]}  L{layer}/U{unit}",
                      fontsize=10.5)
 
         axt = fig.add_subplot(gs[1, c]); axt.axis("off")
-        cell_text = [[f"D{i+1}", short(row[f"description_{i+1}"]), f"{aucs[i]:.2f}", dec_short[dec[i]]]
+        cell_text = [[f"D{i+1}", short(row[f"description_{i+1}"]), f"{aurocs[i]:.2f}", dec_short[dec[i]]]
                      for i in range(5)]
         tbl = axt.table(cellText=cell_text, colLabels=["", "description", "AUC", "outcome"],
                         loc="center", cellLoc="left", colWidths=[0.07, 0.60, 0.12, 0.21])
@@ -327,23 +327,23 @@ def fig_feature_cases():
                                        "Conclusion or inference", "Conclusion or summary",
                                        "Concluding phrase (technical)"],
     }
-    dec_short = {"survived": "survived", "collapsed": "redundant", "removed (low AUC)": "filtered"}
-    marker = {"survived": "o", "collapsed": "D", "removed (low AUC)": "D"}
-    edge = {"survived": "black", "collapsed": BLUE, "removed (low AUC)": "black"}
+    dec_short = {"survived": "survived", "collapsed": "redundant", "removed (low AUROC)": "filtered"}
+    marker = {"survived": "o", "collapsed": "D", "removed (low AUROC)": "D"}
+    edge = {"survived": "black", "collapsed": BLUE, "removed (low AUROC)": "black"}
     # outcome text colour: survived = high-AUROC (green) end, filtered = 0-AUROC
     # (pink) end, redundant = collapse blue.
-    out_color = {"survived": cmap(norm(1.0)), "removed (low AUC)": cmap(norm(0.0)), "collapsed": BLUE}
+    out_color = {"survived": cmap(norm(1.0)), "removed (low AUROC)": cmap(norm(0.0)), "collapsed": BLUE}
 
     data = []
     for model, layer, unit in cases:
         row = df[(df["model"] == model) & (df["layer"] == layer) & (df["unit"] == unit)].iloc[0]
-        aucs = np.array([row[f"auc_{i}"] for i in range(1, 6)])
+        aurocs = np.array([row[f"auroc_{i}"] for i in range(1, 6)])
         sm = cs.get_sim_matrix(row)
-        dec = cs.filter_decisions(aucs, sm)
-        met = cs.compute_metrics(aucs, sm, dec)
+        dec = cs.filter_decisions(aurocs, sm)
+        met = cs.compute_metrics(aurocs, sm, dec)
         coords = toy.mds_coords(sm)
         coords = coords - coords.mean(axis=0)
-        data.append((model, layer, unit, aucs, sm, dec, met, coords))
+        data.append((model, layer, unit, aurocs, sm, dec, met, coords))
     lim = max(np.abs(c).max() for *_, c in data) * 1.48
 
     # one row: [plot | descriptions] per case, then a vertical AUROC colourbar.
@@ -351,7 +351,7 @@ def fig_feature_cases():
     gs = fig.add_gridspec(1, 4, width_ratios=[1.0, 1.12, 1.0, 1.12],
                           left=0.035, right=0.925, top=0.80, bottom=0.24, wspace=0.10)
 
-    for c, (model, layer, unit, aucs, sm, dec, met, coords) in enumerate(data):
+    for c, (model, layer, unit, aurocs, sm, dec, met, coords) in enumerate(data):
         # --- MDS plot with MDS1/MDS2 axes ---
         ax = fig.add_subplot(gs[0, 2 * c]); ax.set_xlim(-lim, lim); ax.set_ylim(-lim, lim)
         ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
@@ -366,7 +366,7 @@ def fig_feature_cases():
                 ax.plot([coords[i, 0], coords[j, 0]], [coords[i, 1], coords[j, 1]],
                         color=BLUE, lw=1.0, alpha=0.8, zorder=2)
         for i in sorted(range(5), key=lambda i: dec[i] == "survived"):
-            ax.scatter(coords[i, 0], coords[i, 1], s=95, color=cmap(norm(aucs[i])),
+            ax.scatter(coords[i, 0], coords[i, 1], s=95, color=cmap(norm(aurocs[i])),
                        marker=marker[dec[i]], edgecolors=edge[dec[i]],
                        linewidths=1.5 if dec[i] == "collapsed" else 1.0,
                        zorder=4 if dec[i] == "survived" else 3)
@@ -423,7 +423,7 @@ def fig_feature_cases():
     ]
     leg = fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=7.5, frameon=False,
                      handletextpad=0.3, columnspacing=1.6, bbox_to_anchor=(0.46, 0.02))
-    for t, key in zip(leg.get_texts(), ["survived", "collapsed", "removed (low AUC)"]):
+    for t, key in zip(leg.get_texts(), ["survived", "collapsed", "removed (low AUROC)"]):
         t.set_color(out_color[key])
 
     ts.save(fig, "fig_feature_cases")
@@ -500,7 +500,7 @@ def _boxplot_by_model(ax, data_by_model, ylabel, title):
 def fig09_profile_distributions():
     """§3.1 Evidence-quality Q (n_s>=1) and diversity 1-sigma-tilde (n_s>=2) by model."""
     fe = pd.read_csv(RESULTS / "filtered_evaluation.csv")
-    fe["Q"] = 2 * fe["mean_auc_post"] - 1
+    fe["Q"] = 2 * fe["mean_auroc_post"] - 1
     fe["diversity"] = 1 - fe["weighted_mean_similarity"]
     fig, (axQ, axD) = plt.subplots(1, 2, figsize=(11, 4.9))
     q = {m: fe[(fe["model"] == m) & (fe["n_surviving"] >= 1)]["Q"].dropna() for m in ts.MODEL_ORDER}
@@ -517,12 +517,12 @@ def _decompose(df):
     import case_study_analysis as cs
     rows = []
     for _, r in df.iterrows():
-        aucs = np.array([r[f"auc_{i}"] for i in range(1, 6)])
+        aurocs = np.array([r[f"auroc_{i}"] for i in range(1, 6)])
         sm = cs.get_sim_matrix(r)
-        dec = cs.filter_decisions(aucs, sm)
+        dec = cs.filter_decisions(aurocs, sm)
         rows.append(dict(model=r["model"], layer=r["layer"], unit=r["unit"],
                          n_s=dec.count("survived"), n_coll=dec.count("collapsed"),
-                         n_filt=dec.count("removed (low AUC)")))
+                         n_filt=dec.count("removed (low AUROC)")))
     return pd.DataFrame(rows)
 
 
@@ -533,7 +533,7 @@ def fig10_component_correlations():
     dec = _decompose(df)
     fe = pd.read_csv(RESULTS / "filtered_evaluation.csv")
     d = dec.merge(fe, on=["model", "layer", "unit"])
-    d["Q"] = np.where(d["n_s"] >= 1, 2 * d["mean_auc_post"] - 1, np.nan)
+    d["Q"] = np.where(d["n_s"] >= 1, 2 * d["mean_auroc_post"] - 1, np.nan)
     d["diversity"] = np.where(d["n_s"] >= 2, 1 - d["weighted_mean_similarity"], np.nan)
 
     cols = ["Q", "n_s", "n_filt", "n_coll", "diversity"]
@@ -564,8 +564,8 @@ def fig10_component_correlations():
     return "5x5 component correlation matrix"
 
 
-def _survivors_at(aucs, sm, sim_thr, auc_thr=0.5):
-    kept = [i for i in range(5) if aucs[i] > auc_thr]
+def _survivors_at(aurocs, sm, sim_thr, auroc_thr=0.5):
+    kept = [i for i in range(5) if aurocs[i] > auroc_thr]
     adj = {i: set() for i in kept}
     for i, j in combinations(kept, 2):
         if sm[i, j] > sim_thr:
@@ -578,16 +578,16 @@ def _survivors_at(aucs, sm, sim_thr, auc_thr=0.5):
                 n = q.pop()
                 if n not in vis:
                     vis.add(n); comp.append(n); q.extend(adj[n] - vis)
-            reps.append(max(comp, key=lambda i: aucs[i]))
+            reps.append(max(comp, key=lambda i: aurocs[i]))
     return reps
 
 
-def _diversity(aucs, sm, surv):
+def _diversity(aurocs, sm, surv):
     if len(surv) < 2:
         return np.nan
     num = den = 0.0
     for i, j in combinations(surv, 2):
-        w = ((aucs[i] - 0.5) / 0.5) * ((aucs[j] - 0.5) / 0.5)
+        w = ((aurocs[i] - 0.5) / 0.5) * ((aurocs[j] - 0.5) / 0.5)
         num += w * sm[i, j]; den += w
     return 1 - (num / den) if den > 0 else np.nan
 
@@ -596,7 +596,7 @@ def fig11_threshold_sensitivity():
     """§4.3 Similarity-collapse threshold sensitivity: characterisation + ranking stability."""
     import case_study_analysis as cs
     df = pd.read_csv(cs.PRISM_PATH)
-    A = [np.array([r[f"auc_{i}"] for i in range(1, 6)]) for _, r in df.iterrows()]
+    A = [np.array([r[f"auroc_{i}"] for i in range(1, 6)]) for _, r in df.iterrows()]
     S = [cs.get_sim_matrix(r) for _, r in df.iterrows()]
     grid = np.round(np.arange(0.55, 0.861, 0.025), 3)
     base = [_diversity(a, s, _survivors_at(a, s, 0.70)) for a, s in zip(A, S)]

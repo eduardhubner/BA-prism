@@ -50,7 +50,7 @@ def create_description_manifest():
         - unit: Unit number
         - desc_idx: Description index (1-5)
         - description: Full text
-        - auc: AUC score
+        - auroc: AUROC score
         - mad: MAD score
         - p_value: Statistical p-value
     """
@@ -72,7 +72,7 @@ def create_description_manifest():
 
         # Group by neuron and assign description indices
         for (layer, unit), group in df.groupby(['layer', 'unit']):
-            # Sort by AUC (descending) for consistent ordering
+            # Sort by AUROC (descending) for consistent ordering
             group = group.sort_values('AUC', ascending=False).reset_index(drop=True)
 
             if len(group) != 5:
@@ -89,7 +89,7 @@ def create_description_manifest():
                     'unit': unit,
                     'desc_idx': idx + 1,  # 1-indexed
                     'description': row['explanation'],
-                    'auc': row['AUC'],
+                    'auroc': row['AUC'],
                     'mad': row['MAD'],
                     'p_value': row['p']
                 })
@@ -196,10 +196,10 @@ def print_summary(manifest_df: pd.DataFrame):
     print(f"\nLayers: {sorted(manifest_df['layer'].unique())}")
     print(f"Descriptions per neuron: {manifest_df.groupby(['model', 'layer', 'unit']).size().value_counts().to_dict()}")
 
-    print(f"\nAUC statistics:")
-    print(f"  Mean: {manifest_df['auc'].mean():.4f}")
-    print(f"  Median: {manifest_df['auc'].median():.4f}")
-    print(f"  Range: [{manifest_df['auc'].min():.4f}, {manifest_df['auc'].max():.4f}]")
+    print(f"\nAUROC statistics:")
+    print(f"  Mean: {manifest_df['auroc'].mean():.4f}")
+    print(f"  Median: {manifest_df['auroc'].median():.4f}")
+    print(f"  Range: [{manifest_df['auroc'].min():.4f}, {manifest_df['auroc'].max():.4f}]")
 
 
 def main():

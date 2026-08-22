@@ -52,7 +52,7 @@ OUT_CSV = ROOT / "results" / "verification_outcomes.csv"
 OUT_TEX = ROOT / "results" / "verification_outcomes.tex"
 
 SIM_THRESHOLD = V.SIM_THRESHOLD
-AUC_THRESHOLD = V.AUC_THRESHOLD
+AUROC_THRESHOLD = V.AUROC_THRESHOLD
 N_DESC = V.N_DESC
 
 DISPLAY = {
@@ -75,10 +75,10 @@ PAPER_REFERENCE = {
 
 def _per_feature(row):
     """Two-stage verification for one feature, with the collapse-eligibility count."""
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, N_DESC + 1)])
+    aurocs = np.array([row[f"auroc_{i}"] for i in range(1, N_DESC + 1)])
     sim = V.sim_matrix_from_row(row, n_desc=N_DESC)
-    res = V.filter_and_collapse(aucs, sim, sim_threshold=SIM_THRESHOLD,
-                                auc_threshold=AUC_THRESHOLD)
+    res = V.filter_and_collapse(aurocs, sim, sim_threshold=SIM_THRESHOLD,
+                                auroc_threshold=AUROC_THRESHOLD)
     return {
         "n_descriptions": N_DESC,
         "n_filtered": len(res.filtered),

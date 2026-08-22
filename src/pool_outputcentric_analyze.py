@@ -23,7 +23,7 @@ RUN (default venv):
 
 Outputs (results/pooled_outputcentric/):
     profile.csv   per feature: metrics (n_s, Q, sigma_tilde, diversity, ...) plus a
-                  {method}_outcome / {method}_auc pair for each external method.
+                  {method}_outcome / {method}_auroc pair for each external method.
     stats.json    per-model and pooled: survival rate by method, and fate breakdown
                   for each external method.
 """
@@ -46,13 +46,13 @@ BASELINE = "input-centric"
 
 
 def analyse(desc, emb):
-    aucs_all = desc["auc"].to_numpy()
+    aurocs_all = desc["auroc"].to_numpy()
     rows = []
     surv = {}   # (model, method) -> [n_survived, n_total]
     fate = {}   # (model, method) -> {filtered, converges, distinct}   (external methods only)
     for (model, layer, unit), g in desc.groupby(["model", "layer", "unit"]):
         idx = g.index.to_numpy()
-        a = aucs_all[idx]
+        a = aurocs_all[idx]
         E = emb[idx]
         sim = E @ E.T
         dec, comps = filter_pool(a, sim)
@@ -76,7 +76,7 @@ def analyse(desc, emb):
                 outcome = "converges" if any(methods[c] == BASELINE for c in comp) else "distinct"
             fate.setdefault((model, methods[k]), {"filtered": 0, "converges": 0, "distinct": 0})[outcome] += 1
             row[f"{methods[k]}_outcome"] = outcome
-            row[f"{methods[k]}_auc"] = float(a[k])
+            row[f"{methods[k]}_auroc"] = float(a[k])
         rows.append(row)
     return pd.DataFrame(rows), surv, fate
 
@@ -116,7 +116,7 @@ def main():
         return (model, method) in surv
 
     stats = {
-        "params": {"auc_threshold": 0.50, "sim_threshold": 0.70,
+        "params": {"auroc_threshold": 0.50, "sim_threshold": 0.70,
                    "n_features": int(profile.shape[0]), "n_descriptions": int(len(desc))},
         "methods": methods,
         "per_model": {

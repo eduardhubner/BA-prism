@@ -85,8 +85,8 @@ def pairs_with_overrides(base, overrides):
 C1_SIMS = pairs_with_overrides(0.352, {(1, 2): 0.52})   # mean = 0.369
 CASE1 = {
     "name": "toy_case1_quality", "num": 1,
-    "left":  {"sims": C1_SIMS, "aucs": [0.95, 0.93, 0.56, 0.58, 0.55]},
-    "right": {"sims": C1_SIMS, "aucs": [0.95, 0.93, 0.90, 0.92, 0.88]},
+    "left":  {"sims": C1_SIMS, "aurocs": [0.95, 0.93, 0.56, 0.58, 0.55]},
+    "right": {"sims": C1_SIMS, "aurocs": [0.95, 0.93, 0.90, 0.92, 0.88]},
 }
 
 # Case 2: four near-duplicate descriptions + one far outlier vs. a uniformly
@@ -97,8 +97,8 @@ C2_SIMS_OUTLIER = pairs_with_overrides(
 C2_SIMS_UNIFORM = uniform_pairs(0.538)
 CASE2 = {
     "name": "toy_case2_outlier", "num": 2,
-    "left":  {"sims": C2_SIMS_OUTLIER, "aucs": [0.92, 0.90, 0.88, 0.91, 0.89]},
-    "right": {"sims": C2_SIMS_UNIFORM, "aucs": [0.90, 0.90, 0.90, 0.90, 0.90]},
+    "left":  {"sims": C2_SIMS_OUTLIER, "aurocs": [0.92, 0.90, 0.88, 0.91, 0.89]},
+    "right": {"sims": C2_SIMS_UNIFORM, "aurocs": [0.90, 0.90, 0.90, 0.90, 0.90]},
 }
 
 # Case 3: all five descriptions below chance (score is meaningless) vs. the same
@@ -106,8 +106,8 @@ CASE2 = {
 C3_SIMS = uniform_pairs(0.408)
 CASE3 = {
     "name": "toy_case3_uncharacterized", "num": 3,
-    "left":  {"sims": C3_SIMS, "aucs": [0.30, 0.28, 0.22, 0.35, 0.25]},
-    "right": {"sims": C3_SIMS, "aucs": [0.80, 0.85, 0.78, 0.88, 0.82]},
+    "left":  {"sims": C3_SIMS, "aurocs": [0.30, 0.28, 0.22, 0.35, 0.25]},
+    "right": {"sims": C3_SIMS, "aurocs": [0.80, 0.85, 0.78, 0.88, 0.82]},
 }
 
 CASES = [CASE1, CASE2, CASE3]
@@ -170,9 +170,9 @@ def _draw_scale_bar(ax, length=SCALE_BAR_LEN):
             ha="center", va="top", fontsize=8, zorder=8)
 
 
-def _draw_panel(ax, coords, aucs, cmap, norm):
+def _draw_panel(ax, coords, aurocs, cmap, norm):
     for i in range(N_DESC):
-        ax.scatter(coords[i, 0], coords[i, 1], color=cmap(norm(aucs[i])),
+        ax.scatter(coords[i, 0], coords[i, 1], color=cmap(norm(aurocs[i])),
                    s=S_NODE, marker="o", edgecolors="black", linewidths=1.2,
                    zorder=4)
     placed = []
@@ -200,7 +200,7 @@ def render_case(case):
     panels = []
     for side in ("left", "right"):
         coords = mds_coords(build_sim_matrix(case[side]["sims"]))
-        panels.append((coords, np.asarray(case[side]["aucs"], dtype=float)))
+        panels.append((coords, np.asarray(case[side]["aurocs"], dtype=float)))
     # Absolute scale (no rescaling): toy and case-study plots share one scale and
     # are directly comparable; the fixed reference bar makes that scale visible.
     scale = 1.0
@@ -208,8 +208,8 @@ def render_case(case):
     score = polysemanticity_score(case["left"]["sims"])
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 6.5))
-    for ax, (coords, aucs), suffix in zip((ax1, ax2), panels, ("a", "b")):
-        _draw_panel(ax, coords * scale, aucs, cmap, norm)
+    for ax, (coords, aurocs), suffix in zip((ax1, ax2), panels, ("a", "b")):
+        _draw_panel(ax, coords * scale, aurocs, cmap, norm)
         ax.set_title(f"Toy Neuron {case['num']}{suffix}",
                      fontsize=12, fontweight="bold", pad=8)
 
@@ -230,13 +230,13 @@ def render_case(case):
     return base, score
 
 
-def _draw_framework_panel(ax, coords, aucs, sim_matrix, decisions, cmap, norm):
+def _draw_framework_panel(ax, coords, aurocs, sim_matrix, decisions, cmap, norm):
     """Draw a toy neuron AFTER the reliability filter: survived = circle, removed
     = diamond, collapsed = blue-outlined diamond joined to its survivor by a blue
     edge. Same visual language as the case-study MDS plots."""
-    marker = {"survived": "o", "collapsed": "D", "removed (low AUC)": "D"}
-    edge_c = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUC)": "black"}
-    label_c = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUC)": "black"}
+    marker = {"survived": "o", "collapsed": "D", "removed (low AUROC)": "D"}
+    edge_c = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUROC)": "black"}
+    label_c = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUROC)": "black"}
 
     # Collapse edges: each collapsed node to its surviving representative.
     for i, j in combinations(range(N_DESC), 2):
@@ -252,13 +252,13 @@ def _draw_framework_panel(ax, coords, aucs, sim_matrix, decisions, cmap, norm):
     for i in range(N_DESC):
         if decisions[i] == "survived":
             continue
-        ax.scatter(coords[i, 0], coords[i, 1], color=cmap(norm(aucs[i])), s=S_NODE,
+        ax.scatter(coords[i, 0], coords[i, 1], color=cmap(norm(aurocs[i])), s=S_NODE,
                    marker=marker[decisions[i]], edgecolors=edge_c[decisions[i]],
                    linewidths=1.2, zorder=4)
     for i in range(N_DESC):
         if decisions[i] != "survived":
             continue
-        ax.scatter(coords[i, 0], coords[i, 1], color=cmap(norm(aucs[i])), s=S_NODE,
+        ax.scatter(coords[i, 0], coords[i, 1], color=cmap(norm(aurocs[i])), s=S_NODE,
                    marker="o", edgecolors="black", linewidths=1.2, zorder=6)
 
     placed = []
@@ -289,12 +289,12 @@ def render_case_framework(case):
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 6.8))
     for ax, side, suffix in zip((ax1, ax2), ("left", "right"), ("a", "b")):
-        aucs = np.asarray(case[side]["aucs"], dtype=float)
+        aurocs = np.asarray(case[side]["aurocs"], dtype=float)
         sim_matrix = build_sim_matrix(case[side]["sims"])
         coords = mds_coords(sim_matrix)
-        decisions = filter_decisions(aucs, sim_matrix)
-        metrics = compute_metrics(aucs, sim_matrix, decisions)
-        _draw_framework_panel(ax, coords, aucs, sim_matrix, decisions, cmap, norm)
+        decisions = filter_decisions(aurocs, sim_matrix)
+        metrics = compute_metrics(aurocs, sim_matrix, decisions)
+        _draw_framework_panel(ax, coords, aurocs, sim_matrix, decisions, cmap, norm)
         # nₛ is left off the subtitle -- the survivor count is read from the plot.
         if metrics["uncharacterized"]:
             wms_str, q_str = "—", "—"

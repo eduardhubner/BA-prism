@@ -11,7 +11,7 @@ data but had to be changed in lockstep. They now all call in here.
 Pipeline (per feature)
 ----------------------
   Stage 1  AUROC filter
-      Drop descriptions with AUROC <= AUC_THRESHOLD (chance level). Running this
+      Drop descriptions with AUROC <= AUROC_THRESHOLD (chance level). Running this
       BEFORE the collapse matters: a low-AUROC description must not be able to
       bridge two otherwise-distinct survivors in the similarity graph. On the
       239-neuron dataset both orders happen to give identical survivor sets, but
@@ -40,7 +40,7 @@ Metric conventions
   refers to it. Do not report it as a result.
 
 Terminology: "AUROC" and "AUC" are the same metric. Input columns keep the legacy
-`auc_` spelling (see RESULTS_INDEX.md).
+`auroc_` spelling (see RESULTS_INDEX.md).
 """
 
 from dataclasses import dataclass
@@ -49,11 +49,11 @@ from itertools import combinations
 import numpy as np
 
 SIM_THRESHOLD = 0.70
-AUC_THRESHOLD = 0.50
+AUROC_THRESHOLD = 0.50
 N_DESC = 5
 
 # decision strings (used by the case-study MDS plots)
-D_REMOVED = "removed (low AUC)"
+D_REMOVED = "removed (low AUROC)"
 D_COLLAPSED = "collapsed"
 D_SURVIVED = "survived"
 
@@ -101,15 +101,15 @@ def sim_matrix_from_row(row, n_desc=N_DESC, sep=""):
     return sim
 
 
-def filter_and_collapse(aucs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
-                        auc_threshold=AUC_THRESHOLD):
+def filter_and_collapse(aurocs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
+                        auroc_threshold=AUROC_THRESHOLD):
     """Run both stages. Returns a FilterResult. Deterministic."""
-    aucs = np.asarray(aucs, dtype=float)
-    n = len(aucs)
+    aurocs = np.asarray(aurocs, dtype=float)
+    n = len(aurocs)
     indices = list(range(n))
 
     # Stage 1 -- AUROC filter, before the collapse.
-    kept = [i for i in indices if aucs[i] > auc_threshold]
+    kept = [i for i in indices if aurocs[i] > auroc_threshold]
 
     # Stage 2 -- connected components among the kept descriptions only.
     adj = {i: set() for i in kept}
@@ -131,48 +131,48 @@ def filter_and_collapse(aucs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
             components.append(comp)
 
     # Highest-AUROC description represents its component; the rest collapse.
-    representatives = {max(comp, key=lambda i: aucs[i]) for comp in components}
+    representatives = {max(comp, key=lambda i: aurocs[i]) for comp in components}
 
     decisions = tuple(
-        D_REMOVED if aucs[i] <= auc_threshold
+        D_REMOVED if aurocs[i] <= auroc_threshold
         else (D_SURVIVED if i in representatives else D_COLLAPSED)
         for i in indices
     )
     return FilterResult(
-        filtered=tuple(i for i in indices if aucs[i] <= auc_threshold),
+        filtered=tuple(i for i in indices if aurocs[i] <= auroc_threshold),
         collapsed=tuple(i for i in kept if i not in representatives),
         surviving=tuple(sorted(representatives)),
         decisions=decisions,
     )
 
 
-def compute_metrics(aucs, sim_matrix, result):
+def compute_metrics(aurocs, sim_matrix, result):
     """Superset of every metric the callers need, for one feature.
 
     Callers select and rename the fields they write, so output schemas are
     unaffected by living here.
     """
-    aucs = np.asarray(aucs, dtype=float)
-    n = len(aucs)
+    aurocs = np.asarray(aurocs, dtype=float)
+    n = len(aurocs)
     surviving = list(result.surviving)
     n_s = len(surviving)
 
     prism_score = float(np.mean([sim_matrix[i, j] for i, j in combinations(range(n), 2)]))
-    confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in aucs]))
-    mean_auc_pre = float(np.mean(aucs))
+    confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in aurocs]))
+    mean_auroc_pre = float(np.mean(aurocs))
 
     base = dict(prism_score=prism_score, confidence_C=confidence_C,
-                mean_auc_pre=mean_auc_pre, n_surviving=n_s)
+                mean_auroc_pre=mean_auroc_pre, n_surviving=n_s)
 
     if n_s == 0:
-        return dict(base, mean_auc_post=np.nan, effective_n=np.nan,
+        return dict(base, mean_auroc_post=np.nan, effective_n=np.nan,
                     mean_sim_post=np.nan, weighted_mean_sim=np.nan,
                     evidence_quality=np.nan, uncharacterized=True)
 
-    surv_aucs = [aucs[i] for i in surviving]
-    mean_auc_post = float(np.mean(surv_aucs))
-    effective_n = float(np.sum([(a - 0.5) / 0.5 for a in surv_aucs]))
-    evidence_quality = float(2 * mean_auc_post - 1)
+    surv_aurocs = [aurocs[i] for i in surviving]
+    mean_auroc_post = float(np.mean(surv_aurocs))
+    effective_n = float(np.sum([(a - 0.5) / 0.5 for a in surv_aurocs]))
+    evidence_quality = float(2 * mean_auroc_post - 1)
 
     if n_s == 1:
         # convention: a single survivor is maximally self-consistent
@@ -183,26 +183,26 @@ def compute_metrics(aucs, sim_matrix, result):
         mean_sim_post = float(np.mean([sim_matrix[i, j] for i, j in pairs]))
         num = den = 0.0
         for i, j in pairs:
-            w = ((aucs[i] - 0.5) / 0.5) * ((aucs[j] - 0.5) / 0.5)
+            w = ((aurocs[i] - 0.5) / 0.5) * ((aurocs[j] - 0.5) / 0.5)
             num += w * sim_matrix[i, j]
             den += w
         weighted_mean_sim = float(num / den) if den > 0 else np.nan
 
-    return dict(base, mean_auc_post=mean_auc_post, effective_n=effective_n,
+    return dict(base, mean_auroc_post=mean_auroc_post, effective_n=effective_n,
                 mean_sim_post=mean_sim_post, weighted_mean_sim=weighted_mean_sim,
                 evidence_quality=evidence_quality, uncharacterized=False)
 
 
 def profile_row(row, n_desc=N_DESC, sep="", **thresholds):
     """Convenience: row -> (FilterResult, metrics). Used by the table/profile scripts."""
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, n_desc + 1)], dtype=float)
+    aurocs = np.array([row[f"auroc_{i}"] for i in range(1, n_desc + 1)], dtype=float)
     sim = sim_matrix_from_row(row, n_desc=n_desc, sep=sep)
-    res = filter_and_collapse(aucs, sim, **thresholds)
-    return res, compute_metrics(aucs, sim, res)
+    res = filter_and_collapse(aurocs, sim, **thresholds)
+    return res, compute_metrics(aurocs, sim, res)
 
 
-def collapse_then_filter(aucs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
-                         auc_threshold=AUC_THRESHOLD):
+def collapse_then_filter(aurocs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
+                         auroc_threshold=AUROC_THRESHOLD):
     """NON-CANONICAL stage order: collapse over ALL descriptions, then AUROC-filter.
 
     Provided only to reproduce two analyses that were written this way
@@ -215,8 +215,8 @@ def collapse_then_filter(aucs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
     otherwise-distinct survivors before it is filtered: they differ on 2/60
     neurons, yielding 2 fewer survivors (mean n_s 5.85 vs 5.88).
     """
-    aucs = np.asarray(aucs, dtype=float)
-    n = len(aucs)
+    aurocs = np.asarray(aurocs, dtype=float)
+    n = len(aurocs)
     indices = list(range(n))
 
     adj = {i: set() for i in indices}
@@ -237,8 +237,8 @@ def collapse_then_filter(aucs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
                     queue.extend(adj[node] - visited)
             components.append(comp)
 
-    reps = {max(comp, key=lambda i: aucs[i]) for comp in components}
-    surviving = tuple(sorted(i for i in reps if aucs[i] > auc_threshold))
+    reps = {max(comp, key=lambda i: aurocs[i]) for comp in components}
+    surviving = tuple(sorted(i for i in reps if aurocs[i] > auroc_threshold))
     surv_set = set(surviving)
     decisions = tuple(
         D_SURVIVED if i in surv_set
@@ -253,14 +253,14 @@ def collapse_then_filter(aucs, sim_matrix, *, sim_threshold=SIM_THRESHOLD,
     )
 
 
-def collapse_components(indices, sim_matrix, aucs, sim_threshold=SIM_THRESHOLD):
+def collapse_components(indices, sim_matrix, aurocs, sim_threshold=SIM_THRESHOLD):
     """Connected-components collapse over `indices`; returns the representative
     set (highest AUROC per component). No AUROC filtering is applied here.
 
     Shared building block. `filter_and_collapse` passes only AUROC survivors;
     the non-canonical collapse-first analyses pass all indices.
     """
-    aucs = np.asarray(aucs, dtype=float)
+    aurocs = np.asarray(aurocs, dtype=float)
     indices = list(indices)
     adj = {i: set() for i in indices}
     for i, j in combinations(indices, 2):
@@ -277,5 +277,5 @@ def collapse_components(indices, sim_matrix, aucs, sim_threshold=SIM_THRESHOLD):
                     visited.add(node)
                     comp.append(node)
                     queue.extend(adj[node] - visited)
-            reps.add(max(comp, key=lambda i: aucs[i]))
+            reps.add(max(comp, key=lambda i: aurocs[i]))
     return reps

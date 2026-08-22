@@ -35,7 +35,7 @@ RESULTS = ROOT / "results"
 OUT = RESULTS / "method_benchmark"
 OUT.mkdir(parents=True, exist_ok=True)
 
-AUC_THR = 0.50
+AUROC_THR = 0.50
 OLD, NEW = "gemini-1.5-pro", "gemini-2.0-flash-lite"
 TARGETS = ["Llama-3.1-8B-Instruct", "gemma-scope-2b", "gpt2-small-sae", "gpt2-xl"]
 TARGET_SHORT = {"Llama-3.1-8B-Instruct": "Llama", "gemma-scope-2b": "Gemma",
@@ -61,31 +61,31 @@ _NEWFILES = {
 
 
 def _assemble():
-    """Long frame: one row per description with method, target, regime, auc."""
+    """Long frame: one row per description with method, target, regime, auroc."""
     rows = []
 
     # old regime: reuse pooled artifacts (already gemini-1.5-pro).
     oc = pd.read_csv(RESULTS / "pooled_outputcentric" / "descriptions.csv")
     for r in oc.itertuples():
-        rows.append((r.method, r.model, OLD, float(r.auc)))
+        rows.append((r.method, r.model, OLD, float(r.auroc)))
     gx = pd.read_csv(RESULTS / "pooled_gpt2xl" / "descriptions.csv")
     for r in gx.itertuples():
-        rows.append((r.method, "gpt2-xl", OLD, float(r.auc)))
+        rows.append((r.method, "gpt2-xl", OLD, float(r.auroc)))
 
     # new regime: raw CoSy CSVs (gemini-2.0-flash-lite).
     for (method, target), fname in _NEWFILES.items():
         d = pd.read_csv(RESULTS / fname)
-        for auc in d["AUC"].to_numpy():
-            rows.append((method, target, NEW, float(auc)))
+        for auroc in d["AUC"].to_numpy():
+            rows.append((method, target, NEW, float(auroc)))
 
-    return pd.DataFrame(rows, columns=["method", "target", "regime", "auc"])
+    return pd.DataFrame(rows, columns=["method", "target", "regime", "auroc"])
 
 
 def _summarise(df):
-    g = df.groupby(["method", "target", "regime"])["auc"]
-    out = g.agg(n="size", mean_auc="mean",
-                reliability=lambda a: float((a > AUC_THR).mean())).reset_index()
-    out["mean_auc"] = out["mean_auc"].round(3)
+    g = df.groupby(["method", "target", "regime"])["auroc"]
+    out = g.agg(n="size", mean_auroc="mean",
+                reliability=lambda a: float((a > AUROC_THR).mean())).reset_index()
+    out["mean_auroc"] = out["mean_auroc"].round(3)
     out["reliability"] = out["reliability"].round(3)
     return out
 
@@ -109,7 +109,7 @@ def _figure(summary):
         xticks.append((start + bar_i - 1) / 2); xlabels.append(TARGET_SHORT[target])
         bar_i += gap
     ax.set_xticks(xticks); ax.set_xticklabels(xlabels, fontsize=10)
-    ax.set_ylabel(f"reliability: descriptions with AUROC > {AUC_THR:.2f}  (%)")
+    ax.set_ylabel(f"reliability: descriptions with AUROC > {AUROC_THR:.2f}  (%)")
     ax.set_ylim(0, 100)
     ax.set_title("Method reliability under the framework, by evaluation regime", fontsize=11)
     handles = [plt.Rectangle((0, 0), 1, 1, color=REGIME_COLOR[OLD]),
@@ -127,7 +127,7 @@ def main():
     summary = _summarise(df)
     summary.to_csv(OUT / "method_reliability.csv", index=False)
     stats = {
-        "auc_threshold": AUC_THR,
+        "auroc_threshold": AUROC_THR,
         "regimes": {"old": OLD, "new_post_rebuttal": NEW},
         "note": "aggregate per-method reliability (AUROC>thr); regimes shown in parallel, never mixed within a score",
         "by_method_target": summary.to_dict(orient="records"),
@@ -140,7 +140,7 @@ def main():
         print(f"  {TARGET_SHORT[target]}")
         for r in summary[summary["target"] == target].itertuples():
             print(f"    {METHOD_LABEL[r.method]:14s} [{r.regime:22s}] "
-                  f"reliability {100*r.reliability:5.1f}%  mean AUROC {r.mean_auc:.3f}  (n={r.n})")
+                  f"reliability {100*r.reliability:5.1f}%  mean AUROC {r.mean_auroc:.3f}  (n={r.n})")
     print(f"\nSaved → {OUT}/stats.json, method_reliability.csv; figures/fig_method_benchmark.*")
 
 

@@ -2,7 +2,7 @@
 Integrated Polysemanticity Scoring System
 
 This script combines:
-1. AUC-weighted scoring formulas
+1. AUROC-weighted scoring formulas
 2. Experiment framework for testing multiple metrics
 3. Loading and processing pairwise similarities data
 4. Saving results and generating comparisons
@@ -38,44 +38,44 @@ PAIRS = [(1,2), (1,3), (1,4), (1,5), (2,3), (2,4), (2,5), (3,4), (3,5), (4,5)]
 
 # Analysis parameters
 REDUNDANCY_THRESHOLD = 0.9  # Similarity threshold for redundancy detection
-AUC_THRESHOLD = 0.5  # AUC threshold for reliability diagnostics (not default weighting)
-WEIGHT_SCHEME = "auc"  # Default: use AUC directly. Options: "auc", "auc_centered", "auc_sigmoid"
-RELIABILITY_FILTER_AUC = 0.5  # AUC threshold for reliability-based filtering in diagnostics
-HAS_RELIABLE_DESC_AUC = 0.55  # AUC threshold for "has reliable description" flag (slightly above chance)
+AUROC_THRESHOLD = 0.5  # AUROC threshold for reliability diagnostics (not default weighting)
+WEIGHT_SCHEME = "auroc"  # Default: use AUROC directly. Options: "auroc", "auroc_centered", "auroc_sigmoid"
+RELIABILITY_FILTER_AUROC = 0.5  # AUROC threshold for reliability-based filtering in diagnostics
+HAS_RELIABLE_DESC_AUROC = 0.55  # AUROC threshold for "has reliable description" flag (slightly above chance)
 
 
 # ============================================================================
-# AUC WEIGHTING FUNCTIONS
+# AUROC WEIGHTING FUNCTIONS
 # ============================================================================
 
-def compute_weights(aucs: np.ndarray,
-                   scheme: str = "auc",
+def compute_weights(aurocs: np.ndarray,
+                   scheme: str = "auroc",
                    threshold: float = 0.5) -> np.ndarray:
     """
-    Compute AUC-based confidence weights for descriptions.
+    Compute AUROC-based confidence weights for descriptions.
 
     Schemes:
-    - "auc": Weight = AUC (default, most principled)
-    - "auc_centered": Weight = max(0, AUC - threshold) (hard gating)
-    - "auc_sigmoid": Weight = sigmoid around threshold (smooth gating)
+    - "auroc": Weight = AUROC (default, most principled)
+    - "auroc_centered": Weight = max(0, AUROC - threshold) (hard gating)
+    - "auroc_sigmoid": Weight = sigmoid around threshold (smooth gating)
 
     Args:
-        aucs: Array of AUC scores (shape: n_descriptions)
+        aurocs: Array of AUROC scores (shape: n_descriptions)
         scheme: Weighting scheme to use
         threshold: Threshold parameter for centering/sigmoid (default: 0.5)
 
     Returns:
         Array of weights (shape: n_descriptions)
     """
-    if scheme == "auc":
-        # Direct AUC (recommended default)
-        return aucs
-    elif scheme == "auc_centered":
-        # Hard threshold at AUC = threshold
-        return np.maximum(0.0, aucs - threshold)
-    elif scheme == "auc_sigmoid":
+    if scheme == "auroc":
+        # Direct AUROC (recommended default)
+        return aurocs
+    elif scheme == "auroc_centered":
+        # Hard threshold at AUROC = threshold
+        return np.maximum(0.0, aurocs - threshold)
+    elif scheme == "auroc_sigmoid":
         # Smooth sigmoid around threshold (steepness = 10)
-        return 1.0 / (1.0 + np.exp(-10 * (aucs - threshold)))
+        return 1.0 / (1.0 + np.exp(-10 * (aurocs - threshold)))
     else:
         raise ValueError(f"Unknown weight scheme: {scheme}")
 
@@ -84,16 +84,16 @@ def compute_weights(aucs: np.ndarray,
 # LEGACY / DEPRECATED (kept for backward compatibility)
 # ============================================================================
 
-def compute_auc_weights(aucs: np.ndarray, threshold: float = 0.5) -> np.ndarray:
+def compute_auroc_weights(aurocs: np.ndarray, threshold: float = 0.5) -> np.ndarray:
     """
     DEPRECATED: Use compute_weights() instead.
 
     Legacy function for backward compatibility.
-    Implements hard gating: Weight = max(0, AUC - threshold)
+    Implements hard gating: Weight = max(0, AUROC - threshold)
 
-    This is no longer recommended - use compute_weights(scheme="auc") for principled weighting.
+    This is no longer recommended - use compute_weights(scheme="auroc") for principled weighting.
     """
-    return compute_weights(aucs, scheme="auc_centered", threshold=threshold)
+    return compute_weights(aurocs, scheme="auroc_centered", threshold=threshold)
 
 
 def compute_effective_n(weights: np.ndarray, epsilon: float = 1e-10) -> float:
@@ -108,7 +108,7 @@ def compute_effective_n(weights: np.ndarray, epsilon: float = 1e-10) -> float:
     - Zero weights: n_eff = 0 (no reliable descriptions)
 
     Args:
-        weights: Array of AUC-based weights
+        weights: Array of AUROC-based weights
         epsilon: Small constant to avoid division by zero
 
     Returns:
@@ -139,7 +139,7 @@ def compute_weighted_mean_similarity(pairwise_sims: np.ndarray,
 
     Args:
         pairwise_sims: Array of 10 pairwise similarities (ordered by PAIRS)
-        weights: Array of 5 AUC-based weights [w_1, w_2, w_3, w_4, w_5]
+        weights: Array of 5 AUROC-based weights [w_1, w_2, w_3, w_4, w_5]
 
     Returns:
         Weighted mean similarity (float)
@@ -165,7 +165,7 @@ def compute_weighted_mean_similarity(pairwise_sims: np.ndarray,
 # ============================================================================
 
 def compute_similarity_range(pairwise_sims: np.ndarray,
-                             aucs: np.ndarray,
+                             aurocs: np.ndarray,
                              reliability_filter: float = 0.5) -> Tuple[float, float, float, int]:
     """
     Compute simple similarity range diagnostic: (median - min).
@@ -175,8 +175,8 @@ def compute_similarity_range(pairwise_sims: np.ndarray,
 
     Args:
         pairwise_sims: Array of 10 pairwise similarities
-        aucs: Array of 5 AUC values (for reliability filtering)
-        reliability_filter: Optional AUC threshold for filtering pairs (0 = no filter)
+        aurocs: Array of 5 AUROC values (for reliability filtering)
+        reliability_filter: Optional AUROC threshold for filtering pairs (0 = no filter)
 
     Returns:
         Tuple of (median_sim, min_sim, range_gap, n_valid_pairs)
@@ -185,9 +185,9 @@ def compute_similarity_range(pairwise_sims: np.ndarray,
     if len(pairwise_sims) != 10:
         return np.nan, np.nan, np.nan, 0
 
-    # Optional: filter pairs where both descriptions have AUC >= threshold
+    # Optional: filter pairs where both descriptions have AUROC >= threshold
     if reliability_filter > 0:
-        valid_mask = np.array([(aucs[i-1] >= reliability_filter) and (aucs[j-1] >= reliability_filter)
+        valid_mask = np.array([(aurocs[i-1] >= reliability_filter) and (aurocs[j-1] >= reliability_filter)
                                for i, j in PAIRS])
         n_valid_pairs = int(np.sum(valid_mask))
 
@@ -208,20 +208,20 @@ def compute_similarity_range(pairwise_sims: np.ndarray,
 
 
 def compute_redundancy_fraction(pairwise_sims: np.ndarray,
-                                 aucs: np.ndarray,
+                                 aurocs: np.ndarray,
                                  sim_threshold: float = 0.9,
                                  reliability_filter: float = 0.5) -> float:
     """
     Compute fraction of high-similarity pairs (redundant descriptions).
 
-    This is an unweighted diagnostic: we optionally filter by AUC reliability,
+    This is an unweighted diagnostic: we optionally filter by AUROC reliability,
     then compute the fraction of pairs above the similarity threshold.
 
     Args:
         pairwise_sims: Array of 10 pairwise similarities
-        aucs: Array of 5 AUC values (for optional reliability filtering)
+        aurocs: Array of 5 AUROC values (for optional reliability filtering)
         sim_threshold: Similarity threshold for redundancy (default: 0.9)
-        reliability_filter: Optional AUC threshold for filtering (0 = no filter)
+        reliability_filter: Optional AUROC threshold for filtering (0 = no filter)
 
     Returns:
         Redundancy fraction (float in [0, 1])
@@ -229,9 +229,9 @@ def compute_redundancy_fraction(pairwise_sims: np.ndarray,
     if len(pairwise_sims) != 10:
         return np.nan
 
-    # Optional: filter pairs where both descriptions have AUC >= threshold
+    # Optional: filter pairs where both descriptions have AUROC >= threshold
     if reliability_filter > 0:
-        valid_mask = np.array([(aucs[i-1] >= reliability_filter) and (aucs[j-1] >= reliability_filter)
+        valid_mask = np.array([(aurocs[i-1] >= reliability_filter) and (aurocs[j-1] >= reliability_filter)
                                for i, j in PAIRS])
 
         if np.sum(valid_mask) == 0:
@@ -299,43 +299,43 @@ class PolysemanticityScoringExperiment:
         print(f"  ✓ Loaded {len(self.baseline_df)} baseline samples")
 
     def _extract_neuron_data(self, row: pd.Series) -> Tuple[np.ndarray, np.ndarray]:
-        """Extract pairwise similarities and AUCs from a neuron row."""
+        """Extract pairwise similarities and AUROCs from a neuron row."""
         # Extract pairwise similarities using PAIRS ordering
         sim_cols = [f'sim_{i}{j}' for i, j in PAIRS]
         pairwise_sims = np.array([row[col] for col in sim_cols])
 
-        # Extract AUCs
-        aucs = np.array([row[f'auc_{i}'] for i in range(1, 6)])
+        # Extract AUROCs
+        aurocs = np.array([row[f'auroc_{i}'] for i in range(1, 6)])
 
-        return pairwise_sims, aucs
+        return pairwise_sims, aurocs
 
     def compute_all_metrics(self,
                            weight_scheme: str = WEIGHT_SCHEME,
-                           auc_threshold: float = AUC_THRESHOLD,
+                           auroc_threshold: float = AUROC_THRESHOLD,
                            redundancy_threshold: float = REDUNDANCY_THRESHOLD,
-                           reliability_filter: float = RELIABILITY_FILTER_AUC) -> pd.DataFrame:
+                           reliability_filter: float = RELIABILITY_FILTER_AUROC) -> pd.DataFrame:
         """
         Compute all polysemanticity metrics for all neurons.
 
         Args:
-            weight_scheme: Weighting scheme ("auc", "auc_centered", "auc_sigmoid")
-            auc_threshold: AUC threshold parameter (only used for centered/sigmoid schemes)
+            weight_scheme: Weighting scheme ("auroc", "auroc_centered", "auroc_sigmoid")
+            auroc_threshold: AUROC threshold parameter (only used for centered/sigmoid schemes)
             redundancy_threshold: Similarity threshold for redundancy detection
-            reliability_filter: AUC threshold for filtering diagnostics (0 = no filter)
+            reliability_filter: AUROC threshold for filtering diagnostics (0 = no filter)
 
         Returns:
             DataFrame with computed metrics
         """
         print(f"\nComputing metrics...")
         print(f"  Weight scheme: {weight_scheme}")
-        print(f"  AUC threshold: {auc_threshold}")
+        print(f"  AUROC threshold: {auroc_threshold}")
         print(f"  Redundancy threshold: {redundancy_threshold}")
         print(f"  Reliability filter: {reliability_filter}")
 
         # Store parameters for saving later
         self.last_run_params = {
             'weight_scheme': weight_scheme,
-            'auc_threshold': auc_threshold,
+            'auroc_threshold': auroc_threshold,
             'redundancy_threshold': redundancy_threshold,
             'reliability_filter': reliability_filter,
         }
@@ -354,19 +354,19 @@ class PolysemanticityScoringExperiment:
         results = []
 
         for idx, row in self.pairwise_df.iterrows():
-            pairwise_sims, aucs = self._extract_neuron_data(row)
+            pairwise_sims, aurocs = self._extract_neuron_data(row)
 
             # Guard against NaNs in data
-            if np.isnan(pairwise_sims).any() or np.isnan(aucs).any():
+            if np.isnan(pairwise_sims).any() or np.isnan(aurocs).any():
                 print(f"Warning: Skipping neuron {row['model']} L{row['layer']}_U{row['unit']} due to NaN values")
                 continue
 
             # Compute weights using selected scheme
-            weights = compute_weights(aucs, scheme=weight_scheme, threshold=auc_threshold)
+            weights = compute_weights(aurocs, scheme=weight_scheme, threshold=auroc_threshold)
             sum_weights = np.sum(weights)  # Total reliability mass
-            max_auc = np.max(aucs)
+            max_auroc = np.max(aurocs)
 
-            # Primary metric: AUC-weighted mean similarity
+            # Primary metric: AUROC-weighted mean similarity
             weighted_mean_sim = compute_weighted_mean_similarity(pairwise_sims, weights)
 
             # Primary score: diversity (1 - similarity)
@@ -376,15 +376,15 @@ class PolysemanticityScoringExperiment:
             n_eff = compute_effective_n(weights)  # Effective number of descriptions (entropy-based)
 
             # Auxiliary reliability indicators (interpretable thresholds)
-            n_desc_auc_ge_05 = int(np.sum(aucs >= 0.5))  # Count above random baseline
-            has_reliable_desc = max_auc >= HAS_RELIABLE_DESC_AUC  # At least one prediction above chance
+            n_desc_auroc_ge_05 = int(np.sum(aurocs >= 0.5))  # Count above random baseline
+            has_reliable_desc = max_auroc >= HAS_RELIABLE_DESC_AUROC  # At least one prediction above chance
 
-            # Diagnostics (using AUC-based filtering if reliability_filter > 0)
+            # Diagnostics (using AUROC-based filtering if reliability_filter > 0)
             median_sim, min_sim, range_gap, n_valid_pairs = compute_similarity_range(
-                pairwise_sims, aucs, reliability_filter=reliability_filter
+                pairwise_sims, aurocs, reliability_filter=reliability_filter
             )
             redundancy_frac = compute_redundancy_fraction(
-                pairwise_sims, aucs,
+                pairwise_sims, aurocs,
                 sim_threshold=redundancy_threshold,
                 reliability_filter=reliability_filter
             )
@@ -431,9 +431,9 @@ class PolysemanticityScoringExperiment:
                 # Reliability
                 'n_eff': n_eff,
                 'sum_weights': sum_weights,
-                'max_auc': max_auc,
-                'n_desc_auc_ge_05': n_desc_auc_ge_05,  # Count of descriptions with AUC >= 0.5
-                'has_reliable_desc': has_reliable_desc,  # Boolean: max_auc >= 0.55
+                'max_auroc': max_auroc,
+                'n_desc_auroc_ge_05': n_desc_auroc_ge_05,  # Count of descriptions with AUROC >= 0.5
+                'has_reliable_desc': has_reliable_desc,  # Boolean: max_auroc >= 0.55
 
                 # Diagnostics (unweighted)
                 'median_sim_unweighted': median_sim,
@@ -480,14 +480,14 @@ class PolysemanticityScoringExperiment:
 
         # Reliability
         print("\nRELIABILITY:")
-        for metric in ['n_eff', 'sum_weights', 'max_auc', 'n_desc_auc_ge_05']:
+        for metric in ['n_eff', 'sum_weights', 'max_auroc', 'n_desc_auroc_ge_05']:
             values = results_df[metric].dropna()
             if len(values) > 0:
                 print(f"\n{metric}:")
                 print(f"  Mean: {values.mean():.4f} ± {values.std():.4f}")
                 print(f"  Range: [{values.min():.4f}, {values.max():.4f}]")
 
-        print(f"\nNeurons with reliable descriptions (max_auc >= {HAS_RELIABLE_DESC_AUC}): {results_df['has_reliable_desc'].sum()}/{len(results_df)}")
+        print(f"\nNeurons with reliable descriptions (max_auroc >= {HAS_RELIABLE_DESC_AUROC}): {results_df['has_reliable_desc'].sum()}/{len(results_df)}")
 
         # Diagnostics
         print("\nDIAGNOSTICS (unweighted):")
@@ -577,8 +577,8 @@ class PolysemanticityScoringExperiment:
                 'reliability': [
                     'n_eff',
                     'sum_weights',
-                    'max_auc',
-                    'n_desc_auc_ge_05',
+                    'max_auroc',
+                    'n_desc_auroc_ge_05',
                     'has_reliable_desc',
                 ],
                 'diagnostics': [
@@ -647,7 +647,7 @@ class PolysemanticityScoringExperiment:
             print(f"  Weighted mean sim: {model_data['weighted_mean_sim'].mean():.4f} ± {model_data['weighted_mean_sim'].std():.4f}")
             print(f"  Diversity score:   {model_data['diversity_score'].mean():.4f} ± {model_data['diversity_score'].std():.4f}")
             print(f"  Effective n:       {model_data['n_eff'].mean():.4f} ± {model_data['n_eff'].std():.4f}")
-            print(f"  Desc. AUC >= 0.5:  {model_data['n_desc_auc_ge_05'].mean():.2f}")
+            print(f"  Desc. AUROC >= 0.5:  {model_data['n_desc_auroc_ge_05'].mean():.2f}")
             print(f"  Unweighted similarity z-score: {model_data['unweighted_similarity_zscore'].mean():.4f} ± {model_data['unweighted_similarity_zscore'].std():.4f}")
             print(f"  Baseline:          {model_data['baseline_mean'].mean():.4f} ± {model_data['baseline_std'].mean():.4f}")
 
@@ -662,9 +662,9 @@ def main():
     # Initialize experiment
     experiment = PolysemanticityScoringExperiment()
 
-    # Compute all metrics with default scheme (direct AUC weighting)
+    # Compute all metrics with default scheme (direct AUROC weighting)
     results = experiment.compute_all_metrics(
-        weight_scheme="auc",  # Default: direct AUC weighting (most principled)
+        weight_scheme="auroc",  # Default: direct AUROC weighting (most principled)
         reliability_filter=0.0  # No filtering in diagnostics
     )
 
@@ -693,22 +693,22 @@ def main():
             print(f"  Spearman ρ: {comp['spearman_r']:.4f} (p={comp['spearman_p']:.2e})")
 
     # Save results
-    experiment.save_results(results, experiment_name="auc_direct")
+    experiment.save_results(results, experiment_name="auroc_direct")
 
     print("\n" + "="*80)
     print("EXPERIMENT COMPLETE")
     print("="*80)
     print("\nKey metrics:")
     print("  PRIMARY: diversity_score = 1 - weighted_mean_sim")
-    print("           (Default: direct AUC weighting, no gating)")
+    print("           (Default: direct AUROC weighting, no gating)")
     print("  RELIABILITY: n_eff (effective number of descriptions)")
     print("               sum_weights (total reliability mass)")
     print("  DIAGNOSTICS: median_sim_unweighted, min_sim_unweighted, range_gap_unweighted")
     print("  BASELINE: unweighted_similarity_zscore (preferred normalization)")
     print("\nWeighting schemes:")
-    print("  'auc' (default): w = AUC (principled, no gating)")
-    print("  'auc_centered': w = max(0, AUC - 0.5) (hard gating)")
-    print("  'auc_sigmoid': smooth sigmoid around threshold")
+    print("  'auroc' (default): w = AUROC (principled, no gating)")
+    print("  'auroc_centered': w = max(0, AUROC - 0.5) (hard gating)")
+    print("  'auroc_sigmoid': smooth sigmoid around threshold")
     print("\nNote: exp_confidence_adjusted_diversity is EXPERIMENTAL")
     print("      (requires justification before use)")
     print("\nNext steps:")
@@ -716,7 +716,7 @@ def main():
     print("2. Create visualizations (scatter plots, histograms)")
     print("3. Compare scores across different models")
     print("4. Sensitivity analysis:")
-    print("   - Compare weight_scheme='auc' vs 'auc_centered'")
+    print("   - Compare weight_scheme='auroc' vs 'auroc_centered'")
     print("   - Vary redundancy_threshold (0.9 vs 0.95)")
     print("   - Vary reliability_filter (0.0 vs 0.5)")
     print("5. Rank-change analysis: correlation with PRISM baseline")

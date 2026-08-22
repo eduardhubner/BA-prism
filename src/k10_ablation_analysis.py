@@ -4,7 +4,7 @@ k=10 ablation analysis.
 Reproduces, from scratch and on disk, the three findings drawn from the k=10
 ablation experiment (60 GPT2-XL neurons, layers 0/20/40, k=10 candidate
 descriptions instead of the standard k=5). Runs the same two-stage filter as
-filtered_evaluation.py (similarity collapse + AUC filter), generalized to
+filtered_evaluation.py (similarity collapse + AUROC filter), generalized to
 arbitrary description count, on both the k=5 and k=10 data for the same
 neurons.
 
@@ -14,7 +14,7 @@ just the count. A metric changing between them can't be cleanly attributed to
 k-sensitivity vs. just-different-content. Only comparisons below are
 structured to control for or sidestep that confound:
 
-  1. Weighting gap vs. survivor count -- does AUC-weighting (WMS) diverge
+  1. Weighting gap vs. survivor count -- does AUROC-weighting (WMS) diverge
      more from the unweighted mean similarity as survivor count grows?
      This tests whether weighting "earns its keep" more at higher N. The gap
      (weighted - unweighted) is signed and roughly symmetric across neurons,
@@ -30,7 +30,7 @@ structured to control for or sidestep that confound:
      do they gain survivors when given more candidates at k=10? This is a
      within-neuron paired comparison, not a population-level metric average.
      The actual description-level detail (which new k=10 candidate crossed
-     AUC_THRESHOLD) is saved separately so the rescue claim is inspectable,
+     AUROC_THRESHOLD) is saved separately so the rescue claim is inspectable,
      not just assertable from an aggregate count.
   3. Confidence C dilution -- C is a mean over ALL candidate descriptions
      (not just survivors), so it is mechanically diluted by adding more
@@ -44,8 +44,8 @@ structured to control for or sidestep that confound:
 Outputs:
   results/k10_ablation_analysis.csv   -- per-neuron k=5 and k=10 metrics
   results/k10_ablation_summary.json   -- the headline numbers
-  results/k10_rescue_detail.csv       -- description-level AUC detail (text +
-                                          AUC, k=5 and k=10, survived flag) for
+  results/k10_rescue_detail.csv       -- description-level AUROC detail (text +
+                                          AUROC, k=5 and k=10, survived flag) for
                                           every neuron uncharacterized at k=5
 
 Run with: python src/k10_ablation_analysis.py
@@ -64,7 +64,7 @@ ROOT = Path(__file__).parent.parent
 RESULTS = ROOT / "results"
 
 SIM_THRESHOLD = 0.70
-AUC_THRESHOLD = 0.50
+AUROC_THRESHOLD = 0.50
 
 K5_PAIRWISE = RESULTS / "pairwise_similarities_dataset.csv"
 K10_PAIRWISE = RESULTS / "k10_pairwise_similarities.csv"
@@ -83,29 +83,29 @@ def build_sim_matrix(row, n_desc, sep):
     return sim
 
 
-def components_collapse(indices, sim_matrix, threshold, aucs):
+def components_collapse(indices, sim_matrix, threshold, aurocs):
     """Connected-components collapse. Delegates to `verification`.
 
     NOTE: this script applies the collapse BEFORE the AUROC filter, which is the
     non-canonical stage order (see verification.collapse_then_filter). Kept
     as-is so results are unchanged; see ARTIFACT_PLAN.md for the open decision.
     """
-    return V.collapse_components(indices, sim_matrix, aucs, sim_threshold=threshold)
+    return V.collapse_components(indices, sim_matrix, aurocs, sim_threshold=threshold)
 
 
-def compute_post_filter_metrics(surviving, aucs, sim_matrix):
+def compute_post_filter_metrics(surviving, aurocs, sim_matrix):
     n_surviving = len(surviving)
     surviving = list(surviving)
-    confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in aucs]))
+    confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in aurocs]))
 
     if n_surviving == 0:
-        return dict(n_surviving=0, mean_auc_post=np.nan, effective_n=np.nan,
+        return dict(n_surviving=0, mean_auroc_post=np.nan, effective_n=np.nan,
                     mean_sim_post=np.nan, weighted_mean_sim=np.nan,
                     uncharacterized=True, confidence_C=confidence_C)
 
-    surviving_aucs = [aucs[i] for i in surviving]
-    mean_auc_post = float(np.mean(surviving_aucs))
-    effective_n = float(np.sum([(a - 0.5) / 0.5 for a in surviving_aucs]))
+    surviving_aurocs = [aurocs[i] for i in surviving]
+    mean_auroc_post = float(np.mean(surviving_aurocs))
+    effective_n = float(np.sum([(a - 0.5) / 0.5 for a in surviving_aurocs]))
 
     if n_surviving == 1:
         mean_sim_post = 1.0
@@ -115,12 +115,12 @@ def compute_post_filter_metrics(surviving, aucs, sim_matrix):
         mean_sim_post = float(np.mean([sim_matrix[i, j] for i, j in pairs]))
         num, den = 0.0, 0.0
         for i, j in pairs:
-            w = ((aucs[i] - 0.5) / 0.5) * ((aucs[j] - 0.5) / 0.5)
+            w = ((aurocs[i] - 0.5) / 0.5) * ((aurocs[j] - 0.5) / 0.5)
             num += w * sim_matrix[i, j]
             den += w
         weighted_mean_sim = float(num / den) if den > 0 else np.nan
 
-    return dict(n_surviving=n_surviving, mean_auc_post=mean_auc_post,
+    return dict(n_surviving=n_surviving, mean_auroc_post=mean_auroc_post,
                 effective_n=effective_n, mean_sim_post=mean_sim_post,
                 weighted_mean_sim=weighted_mean_sim, uncharacterized=False,
                 confidence_C=confidence_C)
@@ -128,20 +128,20 @@ def compute_post_filter_metrics(surviving, aucs, sim_matrix):
 
 def process_neuron(row, n_desc, sep):
     sim_matrix = build_sim_matrix(row, n_desc, sep)
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, n_desc + 1)])
+    aurocs = np.array([row[f"auroc_{i}"] for i in range(1, n_desc + 1)])
     # Canonical stage order: AUROC filter, then redundancy collapse. Previously
     # this collapsed first, which lets a low-AUROC description bridge two
     # otherwise-distinct survivors -- harmless at k=5 (orders agree on 0/239) but
     # divergent at k=10 (2/60 neurons). See verification.collapse_then_filter.
-    stage2 = set(V.filter_and_collapse(aucs, sim_matrix,
+    stage2 = set(V.filter_and_collapse(aurocs, sim_matrix,
                                        sim_threshold=SIM_THRESHOLD,
-                                       auc_threshold=AUC_THRESHOLD).surviving)
-    metrics = compute_post_filter_metrics(stage2, aucs, sim_matrix)
+                                       auroc_threshold=AUROC_THRESHOLD).surviving)
+    metrics = compute_post_filter_metrics(stage2, aurocs, sim_matrix)
     return metrics, stage2
 
 
 def build_rescue_detail(k5_df, k10_df, rescue_neurons):
-    """Description-level AUC table (k=5 and k=10) for neurons uncharacterized
+    """Description-level AUROC table (k=5 and k=10) for neurons uncharacterized
     at k=5, so the rescue claim can be inspected description-by-description
     instead of just asserted as an aggregate count."""
     rows = []
@@ -152,7 +152,7 @@ def build_rescue_detail(k5_df, k10_df, rescue_neurons):
             rows.append({
                 "layer": layer, "unit": unit, "k": 5, "desc_idx": i + 1,
                 "description": k5_row[f"description_{i+1}"],
-                "auc": k5_row[f"auc_{i+1}"],
+                "auroc": k5_row[f"auroc_{i+1}"],
                 "survived_filter": i in k5_survivors,
             })
 
@@ -162,7 +162,7 @@ def build_rescue_detail(k5_df, k10_df, rescue_neurons):
             rows.append({
                 "layer": layer, "unit": unit, "k": 10, "desc_idx": i + 1,
                 "description": k10_row[f"description_{i+1}"],
-                "auc": k10_row[f"auc_{i+1}"],
+                "auroc": k10_row[f"auroc_{i+1}"],
                 "survived_filter": i in k10_survivors,
             })
     return pd.DataFrame(rows)
@@ -246,7 +246,7 @@ def main():
     rescue_neurons = list(wide.index[zero_k5])
     rescue_detail = build_rescue_detail(k5_df, k10_df, rescue_neurons)
     rescue_detail.to_csv(OUT_RESCUE_CSV, index=False)
-    print(f"Saved rescue detail (description-level AUC, k=5 vs k=10) to {OUT_RESCUE_CSV}")
+    print(f"Saved rescue detail (description-level AUROC, k=5 vs k=10) to {OUT_RESCUE_CSV}")
 
     # ---- Finding 2b: mean survivor-count increase (all 60 matched neurons) ----
     wide_n = wide["n_surviving"]
@@ -272,7 +272,7 @@ def main():
             "structural_floor": {
                 "n_surviving_eq_2_gap_is_always_0": True,
                 "reason": "with exactly one pairwise similarity in the component, the "
-                          "AUC-weighted mean of a single value trivially equals the "
+                          "AUROC-weighted mean of a single value trivially equals the "
                           "unweighted mean -- not evidence that weighting doesn't matter",
                 "n_such_neuron_observations": int(multi["trivial_floor"].sum()),
             },

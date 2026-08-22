@@ -5,7 +5,7 @@ Creates:
 1. Overall histograms: weighted diversity, n_eff, total reliability mass, median sim unweighted
 2. Violin plots by model: same 4 metrics
 3. Scatter plots: unweighted diversity vs reliability mass, unweighted diversity vs n_eff
-4. Individual AUC distribution (all 1,195 AUC values)
+4. Individual AUROC distribution (all 1,195 AUROC values)
 5. Within-neuron similarity spread (std of pairwise similarities)
 
 Usage:
@@ -20,7 +20,7 @@ from pathlib import Path
 
 # Paths
 RESULTS_DIR = Path(__file__).parent.parent / "results"
-POLY_FILE = RESULTS_DIR / "polysemanticity_experiments" / "polysemanticity_scores_auc_direct.csv"
+POLY_FILE = RESULTS_DIR / "polysemanticity_experiments" / "polysemanticity_scores_auroc_direct.csv"
 PAIRWISE_FILE = RESULTS_DIR / "pairwise_similarities_dataset.csv"
 OUTPUT_DIR = RESULTS_DIR / "polysemanticity_experiments" / "population_plots"
 OUTPUT_DIR.mkdir(exist_ok=True, parents=True)
@@ -189,26 +189,26 @@ def plot_scatters(poly_df):
 
 
 # ============================================================
-# 4. Individual AUC Distribution
+# 4. Individual AUROC Distribution
 # ============================================================
 
-def plot_auc_distribution(pw_df):
-    """Plot distribution of all individual AUC scores."""
-    auc_cols = [f'auc_{i}' for i in range(1, 6)]
-    all_aucs = pw_df[auc_cols].values.flatten()
-    all_aucs = all_aucs[~np.isnan(all_aucs)]
+def plot_auroc_distribution(pw_df):
+    """Plot distribution of all individual AUROC scores."""
+    auroc_cols = [f'auroc_{i}' for i in range(1, 6)]
+    all_aurocs = pw_df[auroc_cols].values.flatten()
+    all_aurocs = all_aurocs[~np.isnan(all_aurocs)]
 
     fig, ax = plt.subplots(figsize=(8, 5))
 
-    ax.hist(all_aucs, bins=50, color='steelblue', edgecolor='black', alpha=0.7)
+    ax.hist(all_aurocs, bins=50, color='steelblue', edgecolor='black', alpha=0.7)
 
-    ax.set_xlabel('AUC Score', fontsize=12)
+    ax.set_xlabel('AUROC Score', fontsize=12)
     ax.set_ylabel('Number of Descriptions', fontsize=12)
-    ax.set_title(f'Distribution of Individual AUC Scores\n(N = {len(all_aucs)} descriptions)', fontsize=14)
+    ax.set_title(f'Distribution of Individual AUROC Scores\n(N = {len(all_aurocs)} descriptions)', fontsize=14)
     ax.set_xlim(0, 1)
 
     # Add reference lines
-    mean_val = np.mean(all_aucs)
+    mean_val = np.mean(all_aurocs)
     ax.axvline(0.5, color='gray', linestyle=':', linewidth=1.5, label='Chance level (0.5)')
     ax.axvline(0.55, color='orange', linestyle='--', linewidth=1.5, label='Reliability threshold (0.55)')
     ax.axvline(mean_val, color='red', linestyle='--', linewidth=1.5, label=f'Mean = {mean_val:.3f}')
@@ -217,7 +217,7 @@ def plot_auc_distribution(pw_df):
     ax.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
 
-    save_path = OUTPUT_DIR / "histogram_individual_aucs.png"
+    save_path = OUTPUT_DIR / "histogram_individual_aurocs.png"
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     print(f"  Saved: {save_path}")
     plt.close()
@@ -227,21 +227,21 @@ def plot_auc_distribution(pw_df):
 
     for model in MODEL_ORDER:
         subset = pw_df[pw_df['model'] == model]
-        model_aucs = subset[auc_cols].values.flatten()
-        model_aucs = model_aucs[~np.isnan(model_aucs)]
-        ax.hist(model_aucs, bins=40, color=MODEL_COLORS[model],
+        model_aurocs = subset[auroc_cols].values.flatten()
+        model_aurocs = model_aurocs[~np.isnan(model_aurocs)]
+        ax.hist(model_aurocs, bins=40, color=MODEL_COLORS[model],
                 alpha=0.4, label=MODEL_LABELS[model], edgecolor='black', linewidth=0.3)
 
     ax.axvline(0.5, color='gray', linestyle=':', linewidth=1.5, label='Chance level')
-    ax.set_xlabel('AUC Score', fontsize=12)
+    ax.set_xlabel('AUROC Score', fontsize=12)
     ax.set_ylabel('Number of Descriptions', fontsize=12)
-    ax.set_title('Distribution of Individual AUC Scores by Model', fontsize=14)
+    ax.set_title('Distribution of Individual AUROC Scores by Model', fontsize=14)
     ax.set_xlim(0, 1)
     ax.legend(fontsize=10)
     ax.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
 
-    save_path = OUTPUT_DIR / "histogram_individual_aucs_by_model.png"
+    save_path = OUTPUT_DIR / "histogram_individual_aurocs_by_model.png"
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
     print(f"  Saved: {save_path}")
     plt.close()
@@ -299,8 +299,8 @@ def main():
     print("\n--- 3. Scatter Plots ---")
     plot_scatters(poly_df)
 
-    print("\n--- 4. Individual AUC Distribution ---")
-    plot_auc_distribution(pw_df)
+    print("\n--- 4. Individual AUROC Distribution ---")
+    plot_auroc_distribution(pw_df)
 
     print("\n--- 5. Within-Neuron Similarity Spread ---")
     plot_similarity_spread(pw_df)

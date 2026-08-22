@@ -369,7 +369,7 @@ try:
                 A_D = torch.cat((activ_non_concept.cpu(), activ_concept.cpu()), 0)
 
                 # Score explanations
-                auc_synthetic = roc_auc_score(concept_labels.cpu(), A_D.cpu())
+                auroc_synthetic = roc_auc_score(concept_labels.cpu(), A_D.cpu())
                 U1, p = mannwhitneyu(activ_non_concept.cpu(), activ_concept.cpu())
 
                 if activ_non_concept.std().item() == 0:
@@ -385,7 +385,7 @@ try:
                         unit_id,
                         method,
                         explanation,
-                        auc_synthetic,
+                        auroc_synthetic,
                         U1.item(),
                         p.item(),
                         mad,

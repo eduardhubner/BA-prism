@@ -38,13 +38,13 @@ CAT_COLOR = {"filtered": "#c9c9c9", "retained as distinct": "#4c9f70", "redundan
 
 
 def analyse(desc, emb):
-    aucs = desc["auc"].to_numpy()
+    aurocs = desc["auroc"].to_numpy()
     fate = {m: {"filtered": 0, "converges": 0, "distinct": 0} for m in METHODS}
     both_survive = converged = 0
     rows = []
     for (model, layer, unit), g in desc.groupby(["model", "layer", "unit"]):
         idx = g.index.to_numpy()
-        a = aucs[idx]
+        a = aurocs[idx]
         E = emb[idx]
         dec, comps = filter_pool(a, E @ E.T)
         methods = g["method"].to_numpy()
@@ -58,7 +58,7 @@ def analyse(desc, emb):
                 outcome = "converges" if other else "distinct"
             fate[methods[k]][outcome] += 1
             row[f"{methods[k]}_outcome"] = outcome
-            row[f"{methods[k]}_auc"] = float(a[k])
+            row[f"{methods[k]}_auroc"] = float(a[k])
         surv = [k for k in range(len(idx)) if dec[k] != "removed"]
         if len(surv) == 2:
             both_survive += 1
@@ -102,7 +102,7 @@ def main():
     profile.to_csv(OUT / "profile.csv", index=False)
     n_per_method = {m: int((desc["method"] == m).sum()) for m in METHODS}
 
-    stats = {"params": {"auc_threshold": 0.50, "sim_threshold": 0.70,
+    stats = {"params": {"auroc_threshold": 0.50, "sim_threshold": 0.70,
                         "eval_regime": "gemini-2-0-flash-lite",
                         "n_features": int(profile.shape[0])},
              "n_per_method": n_per_method, "fate": fate, "agreement": agreement}

@@ -20,7 +20,7 @@ RUN IN venv_qwen2:
     venv_qwen2/bin/python src/pool_newregime_llama_embed.py
 
 Outputs (results/pooled_newregime_llama/):
-    descriptions.csv   model, layer, unit, method, generator, desc_idx, description, auc
+    descriptions.csv   model, layer, unit, method, generator, desc_idx, description, auroc
     embeddings.npy     float32 [N, 1536], row-aligned to descriptions.csv
     provenance.json
 """
@@ -41,7 +41,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 EMBEDDING_MODEL = "Alibaba-NLP/gte-Qwen2-1.5B-instruct"
 EVAL_REGIME = "gemini-2-0-flash-lite"
 TARGET = "Llama-3.1-8B-Instruct"
-COLS = ["model", "layer", "unit", "method", "generator", "desc_idx", "description", "auc"]
+COLS = ["model", "layer", "unit", "method", "generator", "desc_idx", "description", "auroc"]
 SOURCES = {   # method -> file (both evaluated under gemini-2.0-flash-lite)
     "Transluce": "cosy-evaluation_Transluce_target-Llama-3.1-8B-Instruct_textgen-gemini-2-0-flash_mean_evalgen-gemini-2-0-flash_cosmopedia_1000.csv",
     "max_act":   "cosy-evaluation_max_act_10k_target-Llama-3.1-8B-Instruct_textgen-gemini-2-0-flash-lite_mean_evalgen-gemini-2-0-flash-lite_cosmopedia_1000.csv",
@@ -59,7 +59,7 @@ def main():
         d = pd.read_csv(f).sort_values(["layer", "unit"]).reset_index(drop=True)
         for row in d.itertuples():
             records.append((TARGET, int(row.layer), int(row.unit), method, method,
-                            0, str(row.explanation), float(row.AUC)))
+                            0, str(row.explanation), float(row.AUROC)))
             texts.append(str(row.explanation))
         prov_inputs.append({"model": TARGET, "source": method, "generator": method,
                             "eval_regime": EVAL_REGIME, "from": "embedded_fresh",

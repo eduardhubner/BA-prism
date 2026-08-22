@@ -21,7 +21,7 @@ RUN IN venv_qwen2 (has sentence_transformers):
     venv_qwen2/bin/python src/pool_gpt2xl_embed.py
 
 Outputs (results/pooled_gpt2xl/):
-    descriptions.csv   layer, unit, method, generator, desc_idx, description, auc
+    descriptions.csv   layer, unit, method, generator, desc_idx, description, auroc
     embeddings.npy     float32 [N, 1536], row-aligned to descriptions.csv
     provenance.json
 """
@@ -42,7 +42,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 EMBEDDING_MODEL = "Alibaba-NLP/gte-Qwen2-1.5B-instruct"
 _E = "_mean_evalgen-gemini-1-5-pro_cosmopedia_1000.csv"
-COLS = ["layer", "unit", "method", "generator", "desc_idx", "description", "auc"]
+COLS = ["layer", "unit", "method", "generator", "desc_idx", "description", "auroc"]
 
 # New sources to embed fresh (input-centric/gemini comes from the cache instead).
 NEW_SOURCES = [
@@ -69,7 +69,7 @@ def main():
     gx = man[man["model"] == "gpt2-xl"]
     for r in gx.itertuples():
         records.append((int(r.layer), int(r.unit), "input-centric", "gemini-1.5-pro",
-                        int(r.desc_idx) - 1, str(r.description), float(r.auc)))
+                        int(r.desc_idx) - 1, str(r.description), float(r.auroc)))
         vecs.append(cache_emb[id2row[r.desc_id]])
     prov_inputs.append({"source": "input-centric / gemini-1.5-pro", "from": "cache",
                         "file": "description_embeddings/embeddings.npz",
@@ -83,7 +83,7 @@ def main():
         d["desc_idx"] = d.groupby(["layer", "unit"]).cumcount()
         for row in d.itertuples():
             new_meta.append((int(row.layer), int(row.unit), method, generator,
-                             int(row.desc_idx), str(row.explanation), float(row.AUC)))
+                             int(row.desc_idx), str(row.explanation), float(row.AUROC)))
             new_text.append(str(row.explanation))
         prov_inputs.append({"source": f"{method} / {generator}", "from": "embedded_fresh",
                             "file": fname, "sha256": _sha256(f), "n_desc": int(len(d))})

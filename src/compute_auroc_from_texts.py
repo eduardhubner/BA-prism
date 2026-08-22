@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Compute AUC for a description from generated evaluation texts.
+Compute AUROC for a description from generated evaluation texts.
 
-This script takes generated text samples (one per line) and computes the AUC
+This script takes generated text samples (one per line) and computes the AUROC
 score by comparing activations against control activations for a specific neuron.
 
 Usage:
-    python3 src/compute_auc_from_texts.py \
+    python3 src/compute_auroc_from_texts.py \
         --texts path/to/generated_texts.txt \
         --model gpt2-xl \
         --layer 0 \
@@ -67,7 +67,7 @@ MODEL_CONFIGS = {
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Compute AUC for a description from generated evaluation texts."
+        description="Compute AUROC for a description from generated evaluation texts."
     )
     parser.add_argument(
         "--texts",
@@ -312,12 +312,12 @@ def get_explanation_activations(
     return activations
 
 
-def compute_auc(
+def compute_auroc(
     control_activations: torch.Tensor,
     explanation_activations: torch.Tensor,
     unit_id: int,
 ) -> dict:
-    """Compute AUC and related statistics."""
+    """Compute AUROC and related statistics."""
     # Extract unit activations from control
     activ_non_concept = control_activations[:, unit_id]
     activ_concept = explanation_activations
@@ -331,8 +331,8 @@ def compute_auc(
     # Concatenate activations
     all_activations = torch.cat([activ_non_concept.cpu(), activ_concept.cpu()])
 
-    # Compute AUC
-    auc = roc_auc_score(labels.numpy(), all_activations.numpy())
+    # Compute AUROC
+    auroc = roc_auc_score(labels.numpy(), all_activations.numpy())
 
     # Compute Mann-Whitney U test
     U1, p = mannwhitneyu(activ_non_concept.numpy(), activ_concept.numpy())
@@ -346,7 +346,7 @@ def compute_auc(
         ) / activ_non_concept.std().item()
 
     return {
-        "auc": auc,
+        "auroc": auroc,
         "U1": U1,
         "p_value": p,
         "mad": mad,
@@ -363,7 +363,7 @@ def main():
     args = parse_args()
 
     print("=" * 60)
-    print("COMPUTE AUC FROM GENERATED TEXTS")
+    print("COMPUTE AUROC FROM GENERATED TEXTS")
     print("=" * 60)
     print(f"Model: {args.model}")
     print(f"Layer: {args.layer}")
@@ -453,21 +453,21 @@ def main():
     )
     print(f"Explanation activations shape: {explanation_activations.shape}")
 
-    # Compute AUC
+    # Compute AUROC
     print("\n--- Results ---")
-    results = compute_auc(control_activations, explanation_activations, args.unit)
+    results = compute_auroc(control_activations, explanation_activations, args.unit)
 
     print(f"\n{'='*40}")
-    print(f"AUC: {results['auc']:.4f}")
+    print(f"AUROC: {results['auroc']:.4f}")
     print(f"{'='*40}")
 
-    # Interpret AUC
-    if results['auc'] >= 0.55:
-        interpretation = "RELIABLE (AUC >= 0.55)"
-    elif results['auc'] >= 0.5:
-        interpretation = "MARGINAL (0.5 <= AUC < 0.55)"
+    # Interpret AUROC
+    if results['auroc'] >= 0.55:
+        interpretation = "RELIABLE (AUROC >= 0.55)"
+    elif results['auroc'] >= 0.5:
+        interpretation = "MARGINAL (0.5 <= AUROC < 0.55)"
     else:
-        interpretation = "BELOW CHANCE (AUC < 0.5)"
+        interpretation = "BELOW CHANCE (AUROC < 0.5)"
     print(f"Interpretation: {interpretation}")
 
     if args.verbose:
@@ -501,7 +501,7 @@ def main():
             "description": args.description or "",
             "texts_file": Path(args.texts).name,
             "n_texts": len(texts),
-            "auc": results["auc"],
+            "auroc": results["auroc"],
             "mad": results["mad"],
             "p_value": results["p_value"],
             "mean_control": results["mean_control"],

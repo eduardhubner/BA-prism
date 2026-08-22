@@ -45,7 +45,7 @@ def main():
     df = pd.read_csv(INPUT_CSV)
     print(f"Loaded {len(df)} rows ({df.groupby(['layer','unit']).ngroups} neurons, k={K})")
 
-    # Sort within each neuron by AUC descending — consistent with k=5 pipeline
+    # Sort within each neuron by AUROC descending — consistent with k=5 pipeline
     df = (
         df.sort_values(["layer", "unit", "AUC"], ascending=[True, True, False])
           .groupby(["layer", "unit"], group_keys=False)
@@ -89,7 +89,7 @@ def main():
         for pos, r in grp.iterrows():
             idx = r["desc_idx"]
             row[f"description_{idx}"] = r["explanation"]
-            row[f"auc_{idx}"]         = r["AUC"]
+            row[f"auroc_{idx}"]         = r["AUC"]
             row[f"mad_{idx}"]         = r["MAD"]
             row[f"p_{idx}"]           = r["p"]
 

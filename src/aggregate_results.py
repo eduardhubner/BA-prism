@@ -4,7 +4,7 @@ Results aggregator for adaptive k-selection experiment.
 This script compiles results from multiple neuron runs, extracting:
 - K-selection choices (k values chosen by each method)
 - Cluster descriptions
-- Evaluation metrics (AUC, MAD) if available
+- Evaluation metrics (AUROC, MAD) if available
 - Metadata from logs
 
 Outputs summary CSV files and statistics for thesis analysis.

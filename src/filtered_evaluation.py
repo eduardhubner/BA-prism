@@ -2,32 +2,32 @@
 Filtered evaluation of prism neuron descriptions.
 
 Pipeline:
-  Stage 1 - AUC filter (> AUC_THRESHOLD):
+  Stage 1 - AUROC filter (> AUROC_THRESHOLD):
             Remove descriptions below the discriminability threshold up front,
-            so a low-AUC description can never bridge two otherwise-distinct
+            so a low-AUROC description can never bridge two otherwise-distinct
             survivors during the collapse.
   Stage 2 - Similarity collapse (sim > SIM_THRESHOLD):
             Connected components over the surviving descriptions; keep the
-            highest-AUC description per component. Deterministic — no seeds.
+            highest-AUROC description per component. Deterministic — no seeds.
             Neurons with 0 survivors are flagged as uncharacterized.
 
 Note: for this dataset filter-then-collapse and collapse-then-filter yield
 identical survivor sets for all 239 neurons; the orders only diverge when a
-low-AUC description bridges two distinct survivors, which does not occur here.
+low-AUROC description bridges two distinct survivors, which does not occur here.
 
 Metrics computed per neuron (post-filter):
   - n_surviving: number of surviving descriptions
-  - mean_auc_post: mean AUC of survivors
-  - effective_n_descriptions: AUC-weighted count of survivors
+  - mean_auroc_post: mean AUROC of survivors
+  - effective_n_descriptions: AUROC-weighted count of survivors
   - mean_similarity_post: unweighted mean pairwise similarity of survivors
     (1.0 by convention for single survivors)
-  - weighted_mean_similarity: AUC-weighted mean pairwise similarity of survivors
+  - weighted_mean_similarity: AUROC-weighted mean pairwise similarity of survivors
     (1.0 by convention for single survivors)
   - evidence_quality: Q = 2*mean(survivor AUROC) - 1. THE reported quality
     metric; undefined when there are no survivors.
   - confidence_C: LEGACY, superseded by Q. Mean over ALL N_DESC candidate
     descriptions (not just
-    survivors) of max(auc-0.5, 0)/0.5. Note this is a mean over the full
+    survivors) of max(auroc-0.5, 0)/0.5. Note this is a mean over the full
     candidate pool, so it is mechanically sensitive to candidate count (see
     the k=10 ablation's C-dilution finding) -- a definitional property of
     this formula, not a bug.
@@ -45,7 +45,7 @@ import verification as V
 
 # --- Config ---
 SIM_THRESHOLD = V.SIM_THRESHOLD
-AUC_THRESHOLD = V.AUC_THRESHOLD
+AUROC_THRESHOLD = V.AUROC_THRESHOLD
 INPUT_PATH = Path(__file__).parent.parent / "results" / "pairwise_similarities_dataset.csv"
 OUTPUT_PATH = Path(__file__).parent.parent / "results" / "filtered_evaluation.csv"
 
@@ -58,27 +58,27 @@ def get_sim_matrix(row):
     return V.sim_matrix_from_row(row, n_desc=N_DESC)
 
 
-def components_collapse(indices, sim_matrix, threshold, aucs):
+def components_collapse(indices, sim_matrix, threshold, aurocs):
     """Back-compat shim retained for the k=5 path; no in-repo caller remains.
     Use verification.filter_and_collapse instead."""
     res = V.filter_and_collapse(
-        np.where(np.isin(np.arange(len(aucs)), list(indices)), aucs, 0.0),
-        sim_matrix, sim_threshold=threshold, auc_threshold=AUC_THRESHOLD)
+        np.where(np.isin(np.arange(len(aurocs)), list(indices)), aurocs, 0.0),
+        sim_matrix, sim_threshold=threshold, auroc_threshold=AUROC_THRESHOLD)
     return set(res.surviving)
 
 
 def process_neuron(row):
     """Two-stage verification + metrics for one neuron, mapped to this
     script's legacy column names."""
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, N_DESC + 1)])
+    aurocs = np.array([row[f"auroc_{i}"] for i in range(1, N_DESC + 1)])
     sim = V.sim_matrix_from_row(row, n_desc=N_DESC)
-    res = V.filter_and_collapse(aucs, sim, sim_threshold=SIM_THRESHOLD,
-                                auc_threshold=AUC_THRESHOLD)
-    m = V.compute_metrics(aucs, sim, res)
+    res = V.filter_and_collapse(aurocs, sim, sim_threshold=SIM_THRESHOLD,
+                                auroc_threshold=AUROC_THRESHOLD)
+    m = V.compute_metrics(aurocs, sim, res)
     return {
         "n_surviving": m["n_surviving"],
-        "mean_auc_pre": m["mean_auc_pre"],
-        "mean_auc_post": m["mean_auc_post"],
+        "mean_auroc_pre": m["mean_auroc_pre"],
+        "mean_auroc_post": m["mean_auroc_post"],
         "effective_n_descriptions": m["effective_n"],
         "mean_similarity_post": m["mean_sim_post"],
         "weighted_mean_similarity": m["weighted_mean_sim"],
@@ -116,8 +116,8 @@ def main():
     print(f"Uncharacterized (0):    {n_unchar}")
     print(f"Single survivor (1):    {n_single}")
     print(f"Multi survivor (>1):    {n_multi}")
-    print(f"Mean AUC pre-filter:    {results_df['mean_auc_pre'].mean():.4f}")
-    print(f"Mean AUC post-filter:   {results_df['mean_auc_post'].mean():.4f}")
+    print(f"Mean AUROC pre-filter:    {results_df['mean_auroc_pre'].mean():.4f}")
+    print(f"Mean AUROC post-filter:   {results_df['mean_auroc_post'].mean():.4f}")
     print(f"Mean n_surviving:       {results_df['n_surviving'].mean():.2f}")
     print(f"Mean effective N:       {results_df['effective_n_descriptions'].mean():.4f}")
     print(f"Mean weighted sim:      {results_df['weighted_mean_similarity'].mean():.4f}")

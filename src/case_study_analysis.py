@@ -2,18 +2,18 @@
 Case study analysis: per-neuron metrics table and MDS plots for selected neurons.
 
 For each neuron:
-  - Five descriptions with AUC, filter decision, and removal stage
+  - Five descriptions with AUROC, filter decision, and removal stage
   - Metrics: PRISM score, survivor count, unweighted sim, weighted sim (WMS),
     effective N, and evidence quality Q (= mean survivor AUROC rescaled so
     chance -> 0, perfect -> 1). (Confidence C is still computed internally.)
   - MDS plot: nodes coloured by AUROC; collapsed marked in blue, removed faded
 
-Filter decisions (AUC filter BEFORE similarity collapse, SIM_THRESHOLD=0.70,
-AUC_THRESHOLD=0.50):
-  - "removed (low AUC)":  AUC <= 0.50 (filtered out before collapse, so it never
+Filter decisions (AUROC filter BEFORE similarity collapse, SIM_THRESHOLD=0.70,
+AUROC_THRESHOLD=0.50):
+  - "removed (low AUROC)":  AUROC <= 0.50 (filtered out before collapse, so it never
                           participates in a similarity component)
-  - "survived":           AUC > 0.50 AND highest-AUC in its similarity component
-  - "collapsed":          AUC > 0.50 but not highest-AUC in its component
+  - "survived":           AUROC > 0.50 AND highest-AUROC in its similarity component
+  - "collapsed":          AUROC > 0.50 but not highest-AUROC in its component
                           (always collapses into a *surviving* description)
 """
 
@@ -30,7 +30,7 @@ from sklearn.manifold import MDS
 
 # --- Config ---
 SIM_THRESHOLD = 0.70
-AUC_THRESHOLD = 0.50
+AUROC_THRESHOLD = 0.50
 SIM_PAIRS = [(1,2),(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)]
 N_DESC = 5
 
@@ -59,15 +59,15 @@ def get_sim_matrix(row):
     return sim
 
 
-def filter_decisions(aucs, sim_matrix):
+def filter_decisions(aurocs, sim_matrix):
     """Per-description decision strings. Delegates to `verification` (single
     source of truth); kept here as the import path the pipeline already uses."""
-    return list(V.filter_and_collapse(aucs, sim_matrix,
+    return list(V.filter_and_collapse(aurocs, sim_matrix,
                                       sim_threshold=SIM_THRESHOLD,
-                                      auc_threshold=AUC_THRESHOLD).decisions)
+                                      auroc_threshold=AUROC_THRESHOLD).decisions)
 
 
-def compute_metrics(aucs, sim_matrix, decisions):
+def compute_metrics(aurocs, sim_matrix, decisions):
     """Profile metrics for one feature. Delegates to `verification`.
 
     `decisions` is accepted for backward compatibility and is used to recover the
@@ -78,7 +78,7 @@ def compute_metrics(aucs, sim_matrix, decisions):
     filtered  = tuple(i for i, d in enumerate(decisions) if d == V.D_REMOVED)
     res = V.FilterResult(filtered=filtered, collapsed=collapsed,
                          surviving=surviving, decisions=tuple(decisions))
-    return V.compute_metrics(aucs, sim_matrix, res)
+    return V.compute_metrics(aurocs, sim_matrix, res)
 
 
 FIXED_AXIS_LIMIT = 1.0    # all plots share this fixed range (absolute scale)
@@ -86,7 +86,7 @@ LABEL_OFFSET    = 0.18    # label centre offset from node centre (data units)
 SCALE_BAR_LEN   = 0.30    # reference-bar length = dissimilarity 0.30 (= 1 − cos sim)
 
 # A collapse edge only ever connects a collapsed node to its surviving
-# representative; removed (low-AUC) nodes are filtered out before collapse and
+# representative; removed (low-AUROC) nodes are filtered out before collapse and
 # are never collapse targets.
 EDGE_TARGET_DECISIONS = {"survived"}
 
@@ -130,7 +130,7 @@ def _best_label_angle(coords, i, offset, n_candidates=36, placed_labels=()):
     return best_angle
 
 
-def make_mds_plot(aucs, sim_matrix, decisions, descriptions, metrics, model, layer, unit):
+def make_mds_plot(aurocs, sim_matrix, decisions, descriptions, metrics, model, layer, unit):
     """MDS plot on an absolute, fixed scale: Euclidean distance = dissimilarity
     (1 − cosine similarity), with NO per-neuron rescaling, so every neuron is
     drawn on the same scale and all plots are directly cross-comparable. A fixed
@@ -152,13 +152,13 @@ def make_mds_plot(aucs, sim_matrix, decisions, descriptions, metrics, model, lay
 
     S_NODE = 280  # uniform marker size for every description
     COLLAPSED_BLUE = "#1E90FF"  # collapsed is signified by blue on its border,
-                                # label and collapse edge (fill stays AUC-coloured)
-    DECISION_MARKER = {"survived": "o", "collapsed": "D", "removed (low AUC)": "D"}
-    LABEL_COLOR = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUC)": "black"}
-    EDGE_COLOR  = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUC)": "black"}
+                                # label and collapse edge (fill stays AUROC-coloured)
+    DECISION_MARKER = {"survived": "o", "collapsed": "D", "removed (low AUROC)": "D"}
+    LABEL_COLOR = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUROC)": "black"}
+    EDGE_COLOR  = {"survived": "black", "collapsed": COLLAPSED_BLUE, "removed (low AUROC)": "black"}
 
     # Edges: center-to-center lines from each collapsed node to its surviving
-    # representative. "removed (low AUC)" nodes are standalone — no edges.
+    # representative. "removed (low AUROC)" nodes are standalone — no edges.
     for i, j in combinations(range(N_DESC), 2):
         di, dj = decisions[i], decisions[j]
         is_edge = (sim_matrix[i, j] > SIM_THRESHOLD
@@ -172,22 +172,22 @@ def make_mds_plot(aucs, sim_matrix, decisions, descriptions, metrics, model, lay
         ax.plot([xs, xr], [ys, yr],
                 color=COLLAPSED_BLUE, linewidth=1.4, alpha=0.9, zorder=3)
 
-    # Nodes: circle for survived only; diamonds for removed (low AUC) and
-    # collapsed, all the same size. Every node keeps its AUC fill colour so the
-    # AUC stays visible; collapsed is signified only by blue on its border
+    # Nodes: circle for survived only; diamonds for removed (low AUROC) and
+    # collapsed, all the same size. Every node keeps its AUROC fill colour so the
+    # AUROC stays visible; collapsed is signified only by blue on its border
     # (plus its blue label and blue collapse edge). Survived nodes are drawn
     # last so they sit on top.
     for i in range(N_DESC):
         if decisions[i] == "survived":
             continue
-        color = cmap(norm(aucs[i]))
+        color = cmap(norm(aurocs[i]))
         x, y = coords[i, 0], coords[i, 1]
         ax.scatter(x, y, color=color, s=S_NODE, marker=DECISION_MARKER[decisions[i]],
                    edgecolors=EDGE_COLOR[decisions[i]], linewidths=1.2, zorder=4)
     for i in range(N_DESC):
         if decisions[i] != "survived":
             continue
-        color = cmap(norm(aucs[i]))
+        color = cmap(norm(aurocs[i]))
         x, y = coords[i, 0], coords[i, 1]
         ax.scatter(x, y, color=color, s=S_NODE, marker=DECISION_MARKER[decisions[i]],
                    edgecolors=EDGE_COLOR[decisions[i]], linewidths=1.2, zorder=6)
@@ -216,7 +216,7 @@ def make_mds_plot(aucs, sim_matrix, decisions, descriptions, metrics, model, lay
     cbar.ax.axhline(y=0.5, color="black", linewidth=1.2, linestyle="--", alpha=0.6)
 
     # Legend. Shape encodes the category (circle = survived, diamond = removed);
-    # marker colour is omitted because AUC is shown by the colourbar. Collapsed
+    # marker colour is omitted because AUROC is shown by the colourbar. Collapsed
     # is shown as the blue collapse edge, matching its blue border/label.
     circle_h  = mlines.Line2D([], [], marker="o", linestyle="None",
                                markerfacecolor="white", markeredgecolor="black",
@@ -267,12 +267,12 @@ def main():
 
     for model, layer, unit in CASE_NEURONS:
         row = df[(df["model"] == model) & (df["layer"] == layer) & (df["unit"] == unit)].iloc[0]
-        aucs = np.array([row[f"auc_{i}"] for i in range(1, N_DESC + 1)])
+        aurocs = np.array([row[f"auroc_{i}"] for i in range(1, N_DESC + 1)])
         descs = [row[f"description_{i}"] for i in range(1, N_DESC + 1)]
         sim_matrix = get_sim_matrix(row)
 
-        decisions = filter_decisions(aucs, sim_matrix)
-        metrics = compute_metrics(aucs, sim_matrix, decisions)
+        decisions = filter_decisions(aurocs, sim_matrix)
+        metrics = compute_metrics(aurocs, sim_matrix, decisions)
 
         tag = f"{model} L{layer}_U{unit}"
         print(f"\n{'='*70}")
@@ -287,9 +287,9 @@ def main():
         print(f"  Uncharacterized:    {metrics['uncharacterized']}")
         print()
         for i in range(N_DESC):
-            print(f"  [{i+1}] AUC={aucs[i]:.3f}  [{decisions[i]:>20s}]  {descs[i][:90]}")
+            print(f"  [{i+1}] AUROC={aurocs[i]:.3f}  [{decisions[i]:>20s}]  {descs[i][:90]}")
 
-        make_mds_plot(aucs, sim_matrix, decisions, descs, metrics, model, layer, unit)
+        make_mds_plot(aurocs, sim_matrix, decisions, descs, metrics, model, layer, unit)
         print(f"\n  MDS plot saved.")
 
         summary_rows.append({
