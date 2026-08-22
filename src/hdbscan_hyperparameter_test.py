@@ -82,7 +82,7 @@ def main():
     """Test on all neurons to get comprehensive statistics."""
 
     # Load all neurons from results
-    ANALYSIS_DIR = Path(__file__).parent.parent / "clustering_analysis_cosine"
+    ANALYSIS_DIR = Path(__file__).parent.parent / "clustering_analysis_qwen3_0.6b_prelim"
     RESULTS_FILE = ANALYSIS_DIR / "results.json"
 
     with open(RESULTS_FILE, 'r') as f:
@@ -164,7 +164,7 @@ def main():
         print(f"  Noise: {current['avg_noise_ratio']*100:.1f}%")
 
     # Save results
-    output_file = Path(__file__).parent.parent / "clustering_analysis_cosine" / "hdbscan_tuning.json"
+    output_file = Path(__file__).parent.parent / "clustering_analysis_qwen3_0.6b_prelim" / "hdbscan_tuning.json"
     with open(output_file, 'w') as f:
         json.dump({
             'test_neurons': [f'L{l}_U{u}' for l, u in test_neurons],
