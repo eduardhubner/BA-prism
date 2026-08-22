@@ -53,6 +53,8 @@ Run with: python src/k10_ablation_analysis.py
 
 import json
 import numpy as np
+
+import verification as V
 import pandas as pd
 from pathlib import Path
 from itertools import combinations
@@ -82,24 +84,13 @@ def build_sim_matrix(row, n_desc, sep):
 
 
 def components_collapse(indices, sim_matrix, threshold, aucs):
-    """Connected components at sim > threshold; keep highest-AUC per component."""
-    adj = {i: set() for i in indices}
-    for i, j in combinations(indices, 2):
-        if sim_matrix[i, j] > threshold:
-            adj[i].add(j)
-            adj[j].add(i)
-    visited, kept = set(), set()
-    for start in indices:
-        if start not in visited:
-            component, queue = [], [start]
-            while queue:
-                node = queue.pop()
-                if node not in visited:
-                    visited.add(node)
-                    component.append(node)
-                    queue.extend(adj[node] - visited)
-            kept.add(max(component, key=lambda i: aucs[i]))
-    return kept
+    """Connected-components collapse. Delegates to `verification`.
+
+    NOTE: this script applies the collapse BEFORE the AUROC filter, which is the
+    non-canonical stage order (see verification.collapse_then_filter). Kept
+    as-is so results are unchanged; see ARTIFACT_PLAN.md for the open decision.
+    """
+    return V.collapse_components(indices, sim_matrix, aucs, sim_threshold=threshold)
 
 
 def compute_post_filter_metrics(surviving, aucs, sim_matrix):

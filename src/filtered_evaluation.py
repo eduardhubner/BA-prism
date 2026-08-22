@@ -38,9 +38,11 @@ import numpy as np
 from pathlib import Path
 from itertools import combinations
 
+import verification as V
+
 # --- Config ---
-SIM_THRESHOLD = 0.70
-AUC_THRESHOLD = 0.50
+SIM_THRESHOLD = V.SIM_THRESHOLD
+AUC_THRESHOLD = V.AUC_THRESHOLD
 INPUT_PATH = Path(__file__).parent.parent / "results" / "pairwise_similarities_dataset.csv"
 OUTPUT_PATH = Path(__file__).parent.parent / "results" / "filtered_evaluation.csv"
 
@@ -49,107 +51,37 @@ SIM_PAIRS = [(1,2),(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)]
 
 
 def get_sim_matrix(row):
-    """Build 5x5 similarity matrix from row."""
-    sim = np.zeros((N_DESC, N_DESC))
-    for i, j in SIM_PAIRS:
-        val = row[f"sim_{i}{j}"]
-        sim[i-1, j-1] = val
-        sim[j-1, i-1] = val
-    return sim
+    """5x5 similarity matrix from a row. Delegates to `verification`."""
+    return V.sim_matrix_from_row(row, n_desc=N_DESC)
 
 
 def components_collapse(indices, sim_matrix, threshold, aucs):
-    """
-    Connected components collapse: find components where any two descriptions
-    have sim > threshold, keep the highest-AUC description per component.
-    Deterministic.
-    """
-    adj = {i: set() for i in indices}
-    for i, j in combinations(indices, 2):
-        if sim_matrix[i, j] > threshold:
-            adj[i].add(j)
-            adj[j].add(i)
-
-    visited = set()
-    kept = set()
-    for start in indices:
-        if start not in visited:
-            component = []
-            queue = [start]
-            while queue:
-                node = queue.pop()
-                if node not in visited:
-                    visited.add(node)
-                    component.append(node)
-                    queue.extend(adj[node] - visited)
-            # Keep the highest-AUC description in this component
-            best = max(component, key=lambda i: aucs[i])
-            kept.add(best)
-    return kept
-
-
-def compute_metrics(surviving, aucs, sim_matrix, all_aucs):
-    """Compute all post-filter metrics for a neuron."""
-    n_surviving = len(surviving)
-    surviving = list(surviving)
-    mean_auc_pre = float(np.mean(all_aucs))
-    confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in all_aucs]))
-
-    if n_surviving == 0:
-        return {
-            "n_surviving": 0,
-            "mean_auc_pre": mean_auc_pre,
-            "mean_auc_post": np.nan,
-            "effective_n_descriptions": np.nan,
-            "mean_similarity_post": np.nan,
-            "weighted_mean_similarity": np.nan,
-            "confidence_C": confidence_C,
-            "uncharacterized": True,
-        }
-
-    surviving_aucs = [aucs[i] for i in surviving]
-    mean_auc_post = float(np.mean(surviving_aucs))
-    effective_n = float(np.sum([(a - 0.5) / 0.5 for a in surviving_aucs]))
-
-    if n_surviving == 1:
-        mean_sim_post = 1.0
-        weighted_mean_sim = 1.0
-    else:
-        pairs = list(combinations(surviving, 2))
-        mean_sim_post = float(np.mean([sim_matrix[i, j] for i, j in pairs]))
-        numerator = 0.0
-        denominator = 0.0
-        for i, j in pairs:
-            w = ((aucs[i] - 0.5) / 0.5) * ((aucs[j] - 0.5) / 0.5)
-            numerator += w * sim_matrix[i, j]
-            denominator += w
-        weighted_mean_sim = float(numerator / denominator) if denominator > 0 else np.nan
-
-    return {
-        "n_surviving": n_surviving,
-        "mean_auc_pre": mean_auc_pre,
-        "mean_auc_post": mean_auc_post,
-        "effective_n_descriptions": effective_n,
-        "mean_similarity_post": mean_sim_post,
-        "weighted_mean_similarity": weighted_mean_sim,
-        "confidence_C": confidence_C,
-        "uncharacterized": False,
-    }
+    """Back-compat shim retained for the k=5 path; no in-repo caller remains.
+    Use verification.filter_and_collapse instead."""
+    res = V.filter_and_collapse(
+        np.where(np.isin(np.arange(len(aucs)), list(indices)), aucs, 0.0),
+        sim_matrix, sim_threshold=threshold, auc_threshold=AUC_THRESHOLD)
+    return set(res.surviving)
 
 
 def process_neuron(row):
-    sim_matrix = get_sim_matrix(row)
-    aucs = np.array([row[f"auc_{i}"] for i in range(1, N_DESC+1)])
-
-    # Stage 1: AUC filter (before collapse). Low-AUC descriptions are removed
-    # outright and excluded from the similarity collapse below.
-    kept = [i for i in range(N_DESC) if aucs[i] > AUC_THRESHOLD]
-
-    # Stage 2: similarity collapse among kept descriptions (keep highest AUC
-    # per connected component).
-    surviving = components_collapse(kept, sim_matrix, SIM_THRESHOLD, aucs)
-
-    return compute_metrics(surviving, aucs, sim_matrix, aucs)
+    """Two-stage verification + metrics for one neuron, mapped to this
+    script's legacy column names."""
+    aucs = np.array([row[f"auc_{i}"] for i in range(1, N_DESC + 1)])
+    sim = V.sim_matrix_from_row(row, n_desc=N_DESC)
+    res = V.filter_and_collapse(aucs, sim, sim_threshold=SIM_THRESHOLD,
+                                auc_threshold=AUC_THRESHOLD)
+    m = V.compute_metrics(aucs, sim, res)
+    return {
+        "n_surviving": m["n_surviving"],
+        "mean_auc_pre": m["mean_auc_pre"],
+        "mean_auc_post": m["mean_auc_post"],
+        "effective_n_descriptions": m["effective_n"],
+        "mean_similarity_post": m["mean_sim_post"],
+        "weighted_mean_similarity": m["weighted_mean_sim"],
+        "confidence_C": m["confidence_C"],
+        "uncharacterized": m["uncharacterized"],
+    }
 
 
 def main():

@@ -23,6 +23,8 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 from matplotlib.colors import TwoSlopeNorm
 from itertools import combinations
+
+import verification as V
 from pathlib import Path
 from sklearn.manifold import MDS
 
@@ -58,94 +60,25 @@ def get_sim_matrix(row):
 
 
 def filter_decisions(aucs, sim_matrix):
-    """Return list of decision strings, one per description (0-indexed).
-
-    AUC filter runs BEFORE the similarity collapse: descriptions at or below
-    AUC_THRESHOLD are removed outright and excluded from the connected
-    components, so a "collapsed" description can only ever collapse into a
-    *surviving* description, never into a removed one.
-    """
-    indices = list(range(N_DESC))
-
-    # Stage 1: AUC filter (before collapse). Low-AUC descriptions are removed
-    # and do not take part in the similarity components below.
-    kept = [i for i in indices if aucs[i] > AUC_THRESHOLD]
-
-    # Stage 2: connected components among the kept descriptions only.
-    adj = {i: set() for i in kept}
-    for i, j in combinations(kept, 2):
-        if sim_matrix[i, j] > SIM_THRESHOLD:
-            adj[i].add(j)
-            adj[j].add(i)
-
-    visited = set()
-    components = []
-    for start in kept:
-        if start not in visited:
-            comp = []
-            queue = [start]
-            while queue:
-                node = queue.pop()
-                if node not in visited:
-                    visited.add(node)
-                    comp.append(node)
-                    queue.extend(adj[node] - visited)
-            components.append(comp)
-
-    # Highest-AUC representative per component survives; the rest collapse.
-    representatives = set()
-    for comp in components:
-        best = max(comp, key=lambda i: aucs[i])
-        representatives.add(best)
-
-    decisions = []
-    for i in indices:
-        if aucs[i] <= AUC_THRESHOLD:
-            decisions.append("removed (low AUC)")
-        elif i in representatives:
-            decisions.append("survived")
-        else:
-            decisions.append("collapsed")
-    return decisions
+    """Per-description decision strings. Delegates to `verification` (single
+    source of truth); kept here as the import path the pipeline already uses."""
+    return list(V.filter_and_collapse(aucs, sim_matrix,
+                                      sim_threshold=SIM_THRESHOLD,
+                                      auc_threshold=AUC_THRESHOLD).decisions)
 
 
 def compute_metrics(aucs, sim_matrix, decisions):
-    surviving = [i for i, d in enumerate(decisions) if d == "survived"]
-    n_s = len(surviving)
-    prism_score = float(np.mean([sim_matrix[i, j] for i, j in combinations(range(N_DESC), 2)]))
-    confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in aucs]))
+    """Profile metrics for one feature. Delegates to `verification`.
 
-    if n_s == 0:
-        return dict(prism_score=prism_score, confidence_C=confidence_C,
-                    n_surviving=0, mean_sim_post=np.nan,
-                    weighted_mean_sim=np.nan, effective_n=np.nan,
-                    evidence_quality=np.nan, uncharacterized=True)
-    if n_s == 1:
-        surv_aucs = [aucs[i] for i in surviving]
-        eff_n = sum((a - 0.5) / 0.5 for a in surv_aucs)
-        return dict(prism_score=prism_score, confidence_C=confidence_C,
-                    n_surviving=1, mean_sim_post=1.0,
-                    weighted_mean_sim=1.0, effective_n=eff_n,
-                    evidence_quality=float(2 * np.mean(surv_aucs) - 1),
-                    uncharacterized=False)
-
-    surv_aucs = [aucs[i] for i in surviving]
-    eff_n = sum((a - 0.5) / 0.5 for a in surv_aucs)
-    pairs = list(combinations(surviving, 2))
-    mean_sim = float(np.mean([sim_matrix[i, j] for i, j in pairs]))
-    num, den = 0.0, 0.0
-    for i, j in pairs:
-        w = ((aucs[i] - 0.5) / 0.5) * ((aucs[j] - 0.5) / 0.5)
-        num += w * sim_matrix[i, j]
-        den += w
-    wms = float(num / den) if den > 0 else np.nan
-    # Evidence quality Q: mean survivor AUROC rescaled so chance -> 0, perfect -> 1
-    # (equivalently effective_n / n_s). Undefined when there are no survivors.
-    return dict(prism_score=prism_score, confidence_C=confidence_C,
-                n_surviving=n_s, mean_sim_post=mean_sim,
-                weighted_mean_sim=wms, effective_n=eff_n,
-                evidence_quality=float(2 * np.mean(surv_aucs) - 1),
-                uncharacterized=False)
+    `decisions` is accepted for backward compatibility and is used to recover the
+    survivor set, so callers that already hold decisions need not change.
+    """
+    surviving = tuple(i for i, d in enumerate(decisions) if d == V.D_SURVIVED)
+    collapsed = tuple(i for i, d in enumerate(decisions) if d == V.D_COLLAPSED)
+    filtered  = tuple(i for i, d in enumerate(decisions) if d == V.D_REMOVED)
+    res = V.FilterResult(filtered=filtered, collapsed=collapsed,
+                         surviving=surviving, decisions=tuple(decisions))
+    return V.compute_metrics(aucs, sim_matrix, res)
 
 
 FIXED_AXIS_LIMIT = 1.0    # all plots share this fixed range (absolute scale)

@@ -29,44 +29,24 @@ import numpy as np
 import pandas as pd
 from itertools import combinations
 from pathlib import Path
+import verification as V
 from scipy.stats import pearsonr, spearmanr, rankdata, t as tdist, wilcoxon
 
 ROOT = Path(__file__).parent.parent
 RESULTS = ROOT / "results"
-SIM_THRESHOLD = 0.70
-AUC_THRESHOLD = 0.50
+SIM_THRESHOLD = V.SIM_THRESHOLD
+AUC_THRESHOLD = V.AUC_THRESHOLD
 
 
 def build_sim_matrix(row, n_desc, sep):
-    """sep='' for k=5 columns (sim_12); sep='_' for k=10 columns (sim_1_2)."""
-    sim = np.eye(n_desc)
-    for i, j in combinations(range(1, n_desc + 1), 2):
-        v = row[f"sim_{i}{sep}{j}"]
-        sim[i - 1, j - 1] = sim[j - 1, i - 1] = v
-    return sim
+    """sep='' for k=5 columns (sim_12); sep='_' for k=10 (sim_1_2)."""
+    return V.sim_matrix_from_row(row, n_desc=n_desc, sep=sep)
 
 
 def survivors_filter_first(aucs, sim, n_desc):
-    """AUC filter first, then similarity collapse (highest-AUC representative
-    per connected component among the kept descriptions)."""
-    kept = [i for i in range(n_desc) if aucs[i] > AUC_THRESHOLD]
-    adj = {i: set() for i in kept}
-    for i, j in combinations(kept, 2):
-        if sim[i, j] > SIM_THRESHOLD:
-            adj[i].add(j)
-            adj[j].add(i)
-    visited, reps = set(), set()
-    for start in kept:
-        if start not in visited:
-            comp, queue = [], [start]
-            while queue:
-                node = queue.pop()
-                if node not in visited:
-                    visited.add(node)
-                    comp.append(node)
-                    queue.extend(adj[node] - visited)
-            reps.add(max(comp, key=lambda i: aucs[i]))
-    return sorted(reps)
+    """AUROC filter then similarity collapse. Delegates to `verification`."""
+    return list(V.filter_and_collapse(aucs, sim, sim_threshold=SIM_THRESHOLD,
+                                      auc_threshold=AUC_THRESHOLD).surviving)
 
 
 def neuron_gap_row(row, n_desc, sep):

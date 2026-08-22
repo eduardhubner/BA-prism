@@ -42,7 +42,8 @@ Run with: python src/verification_outcomes_table.py
 import sys
 import numpy as np
 import pandas as pd
-from itertools import combinations
+
+import verification as V
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -50,9 +51,9 @@ PAIRWISE = ROOT / "results" / "pairwise_similarities_dataset.csv"
 OUT_CSV = ROOT / "results" / "verification_outcomes.csv"
 OUT_TEX = ROOT / "results" / "verification_outcomes.tex"
 
-SIM_THRESHOLD = 0.70
-AUC_THRESHOLD = 0.50
-N_DESC = 5
+SIM_THRESHOLD = V.SIM_THRESHOLD
+AUC_THRESHOLD = V.AUC_THRESHOLD
+N_DESC = V.N_DESC
 
 DISPLAY = {
     "gpt2-xl": "GPT-2 XL",
@@ -72,48 +73,19 @@ PAPER_REFERENCE = {
 }
 
 
-def _sim_matrix(row):
-    sim = np.eye(N_DESC)
-    for i, j in combinations(range(1, N_DESC + 1), 2):
-        sim[i - 1, j - 1] = sim[j - 1, i - 1] = row[f"sim_{i}{j}"]
-    return sim
-
-
-def _collapse(indices, sim, aucs):
-    """Connected components at sim > threshold; keep highest-AUROC per component."""
-    adj = {i: set() for i in indices}
-    for i, j in combinations(indices, 2):
-        if sim[i, j] > SIM_THRESHOLD:
-            adj[i].add(j)
-            adj[j].add(i)
-    visited, reps = set(), set()
-    for start in indices:
-        if start in visited:
-            continue
-        comp, queue = [], [start]
-        while queue:
-            node = queue.pop()
-            if node not in visited:
-                visited.add(node)
-                comp.append(node)
-                queue.extend(adj[node] - visited)
-        reps.add(max(comp, key=lambda i: aucs[i]))
-    return reps
-
-
 def _per_feature(row):
-    sim = _sim_matrix(row)
+    """Two-stage verification for one feature, with the collapse-eligibility count."""
     aucs = np.array([row[f"auc_{i}"] for i in range(1, N_DESC + 1)])
-    kept = [i for i in range(N_DESC) if aucs[i] > AUC_THRESHOLD]   # stage 1
-    surv = _collapse(kept, sim, aucs)                              # stage 2
+    sim = V.sim_matrix_from_row(row, n_desc=N_DESC)
+    res = V.filter_and_collapse(aucs, sim, sim_threshold=SIM_THRESHOLD,
+                                auc_threshold=AUC_THRESHOLD)
     return {
         "n_descriptions": N_DESC,
-        "n_filtered": N_DESC - len(kept),
-        "n_reliable": len(kept),
-        # a lone post-filter description cannot collapse with anything
-        "n_eligible": len(kept) if len(kept) >= 2 else 0,
-        "n_collapsed": len(kept) - len(surv),
-        "n_surviving": len(surv),
+        "n_filtered": len(res.filtered),
+        "n_reliable": len(res.reliable),
+        "n_eligible": len(res.eligible),
+        "n_collapsed": len(res.collapsed),
+        "n_surviving": res.n_surviving,
     }
 
 
