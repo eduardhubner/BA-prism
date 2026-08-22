@@ -30,9 +30,14 @@ Metric conventions
   at n_s == 0. Restricting analyses to n_s >= 2 is a *conditioning* choice -- that
   is where a spread is informative -- not the domain of the metric.
 
-  confidence_C averages over ALL candidates, so it is mechanically diluted by
-  adding candidates. Evidence quality Q averages over SURVIVORS only. The two
-  differ by design; do not swap them.
+  evidence_quality Q = 2*mean(survivor AUROC) - 1 is THE reported quality metric
+  (paper, Method section). Defined for n_s >= 1, undefined at n_s = 0.
+
+  confidence_C is LEGACY -- superseded by Q and not reported in the paper. It
+  averages over ALL candidates, so it is mechanically diluted by adding candidates
+  (0.515 -> 0.472 at k=10), which is precisely the defect Q avoids by averaging
+  over survivors only. Still computed because the k=10 ablation's dilution result
+  refers to it. Do not report it as a result.
 
 Terminology: "AUROC" and "AUC" are the same metric. Input columns keep the legacy
 `auc_` spelling (see RESULTS_INDEX.md).

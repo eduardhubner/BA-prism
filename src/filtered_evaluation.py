@@ -23,7 +23,10 @@ Metrics computed per neuron (post-filter):
     (1.0 by convention for single survivors)
   - weighted_mean_similarity: AUC-weighted mean pairwise similarity of survivors
     (1.0 by convention for single survivors)
-  - confidence_C: mean over ALL N_DESC candidate descriptions (not just
+  - evidence_quality: Q = 2*mean(survivor AUROC) - 1. THE reported quality
+    metric; undefined when there are no survivors.
+  - confidence_C: LEGACY, superseded by Q. Mean over ALL N_DESC candidate
+    descriptions (not just
     survivors) of max(auc-0.5, 0)/0.5. Note this is a mean over the full
     candidate pool, so it is mechanically sensitive to candidate count (see
     the k=10 ablation's C-dilution finding) -- a definitional property of
@@ -79,6 +82,7 @@ def process_neuron(row):
         "effective_n_descriptions": m["effective_n"],
         "mean_similarity_post": m["mean_sim_post"],
         "weighted_mean_similarity": m["weighted_mean_sim"],
+        "evidence_quality": m["evidence_quality"],
         "confidence_C": m["confidence_C"],
         "uncharacterized": m["uncharacterized"],
     }
@@ -117,7 +121,8 @@ def main():
     print(f"Mean n_surviving:       {results_df['n_surviving'].mean():.2f}")
     print(f"Mean effective N:       {results_df['effective_n_descriptions'].mean():.4f}")
     print(f"Mean weighted sim:      {results_df['weighted_mean_similarity'].mean():.4f}")
-    print(f"Mean confidence C:      {results_df['confidence_C'].mean():.4f}")
+    print(f"Mean evidence quality Q:{results_df['evidence_quality'].mean():.4f}")
+    print(f"Mean confidence C:      {results_df['confidence_C'].mean():.4f}  (legacy)")
 
 
 if __name__ == "__main__":
