@@ -129,9 +129,13 @@ def compute_post_filter_metrics(surviving, aucs, sim_matrix):
 def process_neuron(row, n_desc, sep):
     sim_matrix = build_sim_matrix(row, n_desc, sep)
     aucs = np.array([row[f"auc_{i}"] for i in range(1, n_desc + 1)])
-    indices = list(range(n_desc))
-    stage1 = components_collapse(indices, sim_matrix, SIM_THRESHOLD, aucs)
-    stage2 = {i for i in stage1 if aucs[i] > AUC_THRESHOLD}
+    # Canonical stage order: AUROC filter, then redundancy collapse. Previously
+    # this collapsed first, which lets a low-AUROC description bridge two
+    # otherwise-distinct survivors -- harmless at k=5 (orders agree on 0/239) but
+    # divergent at k=10 (2/60 neurons). See verification.collapse_then_filter.
+    stage2 = set(V.filter_and_collapse(aucs, sim_matrix,
+                                       sim_threshold=SIM_THRESHOLD,
+                                       auc_threshold=AUC_THRESHOLD).surviving)
     metrics = compute_post_filter_metrics(stage2, aucs, sim_matrix)
     return metrics, stage2
 

@@ -113,8 +113,11 @@ def components_collapse(indices, sim_matrix, threshold, aucs):
 def filtered_metrics_at_threshold(row, sim_threshold):
     sim = build_sim_matrix(row)
     aucs = np.array([row[f"auc_{i}"] for i in range(1, 6)])
-    stage1 = components_collapse(list(range(5)), sim, sim_threshold, aucs)
-    stage2 = {i for i in stage1 if aucs[i] > AUC_THRESHOLD}
+    # Canonical stage order (AUROC filter, then collapse). Verified a no-op here:
+    # the two orders agree on 0/239 neurons at both tau=0.70 and tau=0.72.
+    stage2 = set(V.filter_and_collapse(aucs, sim,
+                                       sim_threshold=sim_threshold,
+                                       auc_threshold=AUC_THRESHOLD).surviving)
     n_surviving = len(stage2)
 
     if n_surviving == 0:
