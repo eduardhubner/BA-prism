@@ -21,6 +21,9 @@ Metrics computed per neuron (post-filter):
   - effective_n_descriptions: AUROC-weighted count of survivors
   - mean_similarity_post: unweighted mean pairwise similarity of survivors
     (1.0 by convention for single survivors)
+  - diversity: D = 1 - sigma-tilde. Reported only for n_s >= 2, where a spread
+    among survivors is actually measured (at n_s = 1 sigma-tilde is 1.0 by
+    convention, so D would be a definitional 0, not an observation).
   - weighted_mean_similarity: AUROC-weighted mean pairwise similarity of survivors
     (1.0 by convention for single survivors)
   - evidence_quality: Q = 2*mean(survivor AUROC) - 1. THE reported quality
@@ -82,6 +85,7 @@ def process_neuron(row):
         "effective_n_descriptions": m["effective_n"],
         "mean_similarity_post": m["mean_sim_post"],
         "weighted_mean_similarity": m["weighted_mean_sim"],
+        "diversity": (1.0 - m["weighted_mean_sim"]) if m["n_surviving"] >= 2 else np.nan,
         "evidence_quality": m["evidence_quality"],
         "confidence_C": m["confidence_C"],
         "uncharacterized": m["uncharacterized"],

@@ -14,7 +14,7 @@ RUN (default venv):
 
 Outputs (results/pooled_gpt2xl/):
     profile.csv   per feature: n_desc, n_filt, n_coll, n_s, Q, sigma_tilde,
-                  diversity, uncharacterised, + survivor source composition
+                  diversity, uncharacterized, + survivor source composition
     stats.json    cross-source collapse rate, survival-by-source, and consistency
                   of Q/diversity between PRISM-only and the pooled set
 """
@@ -64,19 +64,19 @@ def metrics(aurocs, sim, dec):
     out = {"n_desc": len(aurocs), "n_filt": dec.count("removed"),
            "n_coll": dec.count("collapsed"), "n_s": n_s}
     if n_s == 0:
-        out.update(Q=np.nan, sigma_tilde=np.nan, diversity=np.nan, uncharacterised=True)
+        out.update(Q=np.nan, sigma_tilde=np.nan, diversity=np.nan, uncharacterized=True)
         return out, surv
     sa = [aurocs[i] for i in surv]
     out["Q"] = float(2 * np.mean(sa) - 1)
     if n_s == 1:
-        out.update(sigma_tilde=1.0, diversity=np.nan, uncharacterised=False)
+        out.update(sigma_tilde=1.0, diversity=np.nan, uncharacterized=False)
         return out, surv
     num = den = 0.0
     for i, j in combinations(surv, 2):
         w = ((aurocs[i] - 0.5) / 0.5) * ((aurocs[j] - 0.5) / 0.5)
         num += w * sim[i, j]; den += w
     st = float(num / den) if den > 0 else np.nan
-    out.update(sigma_tilde=st, diversity=(1 - st) if not np.isnan(st) else np.nan, uncharacterised=False)
+    out.update(sigma_tilde=st, diversity=(1 - st) if not np.isnan(st) else np.nan, uncharacterized=False)
     return out, surv
 
 
@@ -130,7 +130,7 @@ def main():
             mp, _, _ = profile_subset(pidx, aurocs_all, emb)
             if not np.isnan(m["Q"]) and not np.isnan(mp["Q"]):
                 q_prism.append(mp["Q"]); q_pool.append(m["Q"])
-            if (not m.get("uncharacterised", True) and m["n_s"] >= 2 and mp["n_s"] >= 2
+            if (not m.get("uncharacterized", True) and m["n_s"] >= 2 and mp["n_s"] >= 2
                     and not np.isnan(m["diversity"]) and not np.isnan(mp["diversity"])):
                 div_prism.append(mp["diversity"]); div_pool.append(m["diversity"])
 
@@ -145,7 +145,7 @@ def main():
         "pooled_profile_summary": {
             "median_n_desc": float(profile["n_desc"].median()),
             "median_n_s": float(profile["n_s"].median()),
-            "pct_uncharacterised": round(float(profile["uncharacterised"].mean()) * 100, 1),
+            "pct_uncharacterized": round(float(profile["uncharacterized"].mean()) * 100, 1),
             "median_Q": round(float(profile.loc[profile.n_s >= 1, "Q"].median()), 4),
             "median_diversity": round(float(profile.loc[profile.n_s >= 2, "diversity"].median()), 4),
         },
@@ -172,7 +172,7 @@ def main():
     print(f"Pooled profile ({s['params']['n_features']} gpt2-xl features, {s['params']['n_descriptions']} descriptions)")
     p = s["pooled_profile_summary"]
     print(f"  median n_desc={p['median_n_desc']:.0f}  n_s={p['median_n_s']:.0f}  "
-          f"uncharacterised={p['pct_uncharacterised']}%  median Q={p['median_Q']}  median diversity={p['median_diversity']}")
+          f"uncharacterized={p['pct_uncharacterized']}%  median Q={p['median_Q']}  median diversity={p['median_diversity']}")
     c = s["cross_source_collapse"]
     print(f"  collapse groups={c['n_collapse_groups']}  cross-method={c['pct_cross_method']}%  cross-source={c['pct_cross_source']}%")
     print("  survival rate by source:")

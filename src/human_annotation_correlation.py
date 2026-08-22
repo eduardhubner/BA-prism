@@ -18,14 +18,14 @@ PRISM score 0.30 here near-exactly (0.3023), and human scores reproduce the
 cited 0.40/0.90/0.80 closely (within ~0.01-0.03, likely because this "clean"
 CSV underwent minor filtering relative to what produced the published figure).
 
-"PRISM score" here is the plain mean pairwise similarity (prism_score =
+"PRISM score" here is the plain mean pairwise similarity (prism_poly =
 mean_similarity in pairwise_similarities_dataset.csv) -- confirmed against
 the paper's cited numbers to be the correct quantity, NOT diversity_score
 (=1-weighted_mean_sim, which is inverted relative to how the paper defines
 "PRISM score" in this comparison).
 
 Two metrics are reported:
-  1. Original PRISM score (prism_score) vs. human score -- defined for all 8
+  1. Original PRISM score (prism_poly) vs. human score -- defined for all 8
      neurons, n=8.
   2. Filtered metrics (mean_similarity_post, weighted_mean_similarity, from
      the same two-stage filter as filtered_evaluation.py) vs. human score --
@@ -179,23 +179,23 @@ def main():
     human["human_poly_score"] = human["human_poly_score_raw_mean"] / 10.0  # raw 0-10 -> paper's 0.0-1.0
 
     pair_df = pd.read_csv(PAIRWISE_PATH)
-    pair = pair_df[["model", "layer", "unit", "mean_similarity"]].rename(columns={"mean_similarity": "prism_score"})
+    pair = pair_df[["model", "layer", "unit", "mean_similarity"]].rename(columns={"mean_similarity": "prism_poly"})
 
     merged = human.merge(pair, on=["model", "layer", "unit"], how="left")
-    missing = merged[merged["prism_score"].isna()]
+    missing = merged[merged["prism_poly"].isna()]
     if len(missing) > 0:
         print(f"WARNING: {len(missing)} annotated neurons have no matching PRISM score:")
         print(missing[["model", "layer", "unit"]])
-    merged = merged.dropna(subset=["prism_score"])
+    merged = merged.dropna(subset=["prism_poly"])
 
     merged.to_csv(OUT_CSV, index=False)
     print(f"Saved per-neuron paired table to {OUT_CSV}\n")
     print(merged[["model", "layer", "unit", "n_annotators",
-                  "human_poly_score", "prism_score"]].to_string(index=False))
+                  "human_poly_score", "prism_poly"]].to_string(index=False))
 
     n = len(merged)
-    spear = spearmanr(merged["human_poly_score"], merged["prism_score"])
-    pear = pearsonr(merged["human_poly_score"], merged["prism_score"])
+    spear = spearmanr(merged["human_poly_score"], merged["prism_poly"])
+    pear = pearsonr(merged["human_poly_score"], merged["prism_poly"])
 
     # ---- Filtered metrics at the standard threshold + robustness check ----
     df_std, result_std = correlate_filtered(human, pair_df, TAU_STANDARD)
@@ -210,7 +210,7 @@ def main():
     print(df_robust[["model", "layer", "unit", "n_surviving", "exclusion_reason"]].to_string(index=False))
 
     summary = {
-        "original_prism_score": {
+        "original_prism_poly": {
             "n_neurons": n,
             "spearman_r": round(float(spear.statistic), 4),
             "spearman_p": round(float(spear.pvalue), 4),
@@ -233,7 +233,7 @@ def main():
         "human_score_scale": "11-point, 0.0-1.0 (paper's pairwise-similarity rating average); "
                               "stored locally as integer 0-10, divided by 10 here. "
                               "HIGH = monosemantic/coherent, LOW = polysemantic/diverse.",
-        "prism_score_used": "prism_score = mean_similarity (plain mean pairwise cosine similarity, "
+        "prism_poly_used": "prism_poly = mean_similarity (plain mean pairwise cosine similarity, "
                              "pre-filter) from pairwise_similarities_dataset.csv -- same direction "
                              "as the human score (HIGH = monosemantic). NOT diversity_score.",
         "interpretation": "Do NOT lead with 'rho improved from 0.826 to 1.00' -- with n=4 surviving "

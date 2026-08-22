@@ -89,7 +89,7 @@ MODEL_LABEL = {
 
 # Characterisation-status categories (for the stacked bars).
 STATUS_COLORS = {
-    "uncharacterised": "#bdbdbd",   # grey
+    "uncharacterized": "#bdbdbd",   # grey
     "single":          "#9ecae1",   # light blue
     "multi":           "#3182bd",   # dark blue
 }

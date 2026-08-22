@@ -11,12 +11,12 @@ is the core justification for treating PRISM score as a polysemanticity
 measure rather than a description-quality artifact.
 
 Computed directly from pairwise_similarities_dataset.csv (self-contained --
-does not depend on filtered_evaluation.csv): prism_score = mean_similarity
+does not depend on filtered_evaluation.csv): prism_poly = mean_similarity
 (pre-filter, pre-collapse); mean_auroc_pre = mean of auroc_1..auroc_5 for the
 same neuron. All 239 neurons across all 4 models.
 
 Outputs:
-  results/quality_blindness_check.csv   -- per-neuron (prism_score, mean_auroc_pre)
+  results/quality_blindness_check.csv   -- per-neuron (prism_poly, mean_auroc_pre)
   results/quality_blindness_check.json  -- correlation summary
 
 Run with: python src/quality_blindness_check.py
@@ -39,18 +39,18 @@ AUROC_COLS = ["auroc_1", "auroc_2", "auroc_3", "auroc_4", "auroc_5"]
 def main():
     df = pd.read_csv(PAIRWISE_PATH)
     out = df[["model", "layer", "unit"]].copy()
-    out["prism_score"] = df["mean_similarity"]
+    out["prism_poly"] = df["mean_similarity"]
     out["mean_auroc_pre"] = df[AUROC_COLS].mean(axis=1)
 
     out.to_csv(OUT_CSV, index=False)
     print(f"Saved per-neuron table to {OUT_CSV}  (n={len(out)})")
 
-    spear = spearmanr(out["prism_score"], out["mean_auroc_pre"])
-    pear = pearsonr(out["prism_score"], out["mean_auroc_pre"])
+    spear = spearmanr(out["prism_poly"], out["mean_auroc_pre"])
+    pear = pearsonr(out["prism_poly"], out["mean_auroc_pre"])
 
     by_model = {}
     for model, grp in out.groupby("model"):
-        s = spearmanr(grp["prism_score"], grp["mean_auroc_pre"])
+        s = spearmanr(grp["prism_poly"], grp["mean_auroc_pre"])
         by_model[model] = {"n": len(grp), "spearman_r": round(float(s.statistic), 4),
                             "spearman_p": round(float(s.pvalue), 4)}
 

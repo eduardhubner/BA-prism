@@ -64,7 +64,7 @@ class FilterResult:
 
     filtered: tuple           # removed by the AUROC gate
     collapsed: tuple          # redundant; folded into a representative
-    surviving: tuple          # representatives -- the characterisation
+    surviving: tuple          # representatives -- the characterization
     decisions: tuple          # one string per description, positionally
 
     @property
@@ -157,11 +157,11 @@ def compute_metrics(aurocs, sim_matrix, result):
     surviving = list(result.surviving)
     n_s = len(surviving)
 
-    prism_score = float(np.mean([sim_matrix[i, j] for i, j in combinations(range(n), 2)]))
+    prism_poly = float(np.mean([sim_matrix[i, j] for i, j in combinations(range(n), 2)]))
     confidence_C = float(np.mean([max(a - 0.5, 0) / 0.5 for a in aurocs]))
     mean_auroc_pre = float(np.mean(aurocs))
 
-    base = dict(prism_score=prism_score, confidence_C=confidence_C,
+    base = dict(prism_poly=prism_poly, confidence_C=confidence_C,
                 mean_auroc_pre=mean_auroc_pre, n_surviving=n_s)
 
     if n_s == 0:
@@ -171,7 +171,10 @@ def compute_metrics(aurocs, sim_matrix, result):
 
     surv_aurocs = [aurocs[i] for i in surviving]
     mean_auroc_post = float(np.mean(surv_aurocs))
-    effective_n = float(np.sum([(a - 0.5) / 0.5 for a in surv_aurocs]))
+    # w_i = 2*a_i - 1 (paper, Method): maps AUROC [0.5,1] -> weight [0,1], so a
+    # chance-level description contributes zero. Bit-identical to the previous
+    # (a-0.5)/0.5 form on this data; written to match the paper.
+    effective_n = float(np.sum([2 * a - 1 for a in surv_aurocs]))
     evidence_quality = float(2 * mean_auroc_post - 1)
 
     if n_s == 1:
@@ -183,7 +186,7 @@ def compute_metrics(aurocs, sim_matrix, result):
         mean_sim_post = float(np.mean([sim_matrix[i, j] for i, j in pairs]))
         num = den = 0.0
         for i, j in pairs:
-            w = ((aurocs[i] - 0.5) / 0.5) * ((aurocs[j] - 0.5) / 0.5)
+            w = (2 * aurocs[i] - 1) * (2 * aurocs[j] - 1)   # w_i * w_j (Eq. 2)
             num += w * sim_matrix[i, j]
             den += w
         weighted_mean_sim = float(num / den) if den > 0 else np.nan

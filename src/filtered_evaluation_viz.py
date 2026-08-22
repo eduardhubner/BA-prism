@@ -21,7 +21,7 @@ df_pair = pd.read_csv(PAIRWISE_PATH)[
     ["model", "layer", "unit", "mean_similarity",
      "auroc_1", "auroc_2", "auroc_3", "auroc_4", "auroc_5"]
 ]
-df_pair = df_pair.rename(columns={"mean_similarity": "prism_score"})
+df_pair = df_pair.rename(columns={"mean_similarity": "prism_poly"})
 
 auroc_cols = ["auroc_1", "auroc_2", "auroc_3", "auroc_4", "auroc_5"]
 def auroc_std_survivors(row):
@@ -29,7 +29,7 @@ def auroc_std_survivors(row):
     return float(np.std(aurocs)) if len(aurocs) >= 2 else np.nan
 df_pair["auroc_std_survivors"] = df_pair.apply(auroc_std_survivors, axis=1)
 
-df = df_filt.merge(df_pair[["model", "layer", "unit", "prism_score", "auroc_std_survivors"]],
+df = df_filt.merge(df_pair[["model", "layer", "unit", "prism_poly", "auroc_std_survivors"]],
                    on=["model", "layer", "unit"], how="left")
 df_valid = df[df["n_surviving"] > 0].copy()
 df_wms = df_valid.dropna(subset=["mean_similarity_post"]).copy()
@@ -52,12 +52,12 @@ def save(fig, name):
 
 # ── 1. Prism score vs post-filter weighted mean similarity ─────────────────
 df_wms_r = df_wms.copy()
-df_wms_r["rank_prism"] = df_wms_r["prism_score"].rank(ascending=False)
+df_wms_r["rank_prism"] = df_wms_r["prism_poly"].rank(ascending=False)
 df_wms_r["rank_wms"]   = df_wms_r["weighted_mean_similarity"].rank(ascending=False)
 df_wms_r["abs_rank_change"] = (df_wms_r["rank_prism"] - df_wms_r["rank_wms"]).abs()
 
 fig, ax = plt.subplots(figsize=(8, 6))
-sc = ax.scatter(df_wms_r["prism_score"], df_wms_r["weighted_mean_similarity"],
+sc = ax.scatter(df_wms_r["prism_poly"], df_wms_r["weighted_mean_similarity"],
                 c=df_wms_r["abs_rank_change"], cmap="viridis", alpha=0.8, s=40)
 plt.colorbar(sc, ax=ax, label="|Rank change|")
 lims = [0, 1.05]
@@ -66,7 +66,7 @@ ax.set_xlabel("PRISM score (mean pairwise similarity, pre-filter)")
 ax.set_ylabel("Weighted mean similarity (post-filter)")
 ax.set_xlim(lims); ax.set_ylim(lims)
 ax.legend(fontsize=8)
-spear = spearmanr(df_wms_r["prism_score"], df_wms_r["weighted_mean_similarity"]).statistic
+spear = spearmanr(df_wms_r["prism_poly"], df_wms_r["weighted_mean_similarity"]).statistic
 ax.set_title(f"PRISM score vs post-filter weighted mean similarity\n"
              f"(Spearman ρ={spear:.2f}, n={len(df_wms_r)}, colored by |rank change|)")
 plt.tight_layout()
@@ -75,7 +75,7 @@ save(fig, "01_prism_vs_weighted_mean_sim.png")
 
 # ── 2. Rank change: prism score rank vs weighted mean sim rank ─────────────
 df_wms2 = df_wms.copy()
-df_wms2["rank_prism"] = df_wms2["prism_score"].rank(ascending=False)
+df_wms2["rank_prism"] = df_wms2["prism_poly"].rank(ascending=False)
 df_wms2["rank_wms"]   = df_wms2["weighted_mean_similarity"].rank(ascending=False)
 
 fig, ax = plt.subplots(figsize=(7, 6))
@@ -178,22 +178,22 @@ save(fig, "10_zero_survivors_by_model.png")
 # ── 11. Prism score vs mean AUROC (all models) ──────────────────────────────
 fig, ax = plt.subplots(figsize=(7, 6))
 for model, group in df.groupby("model"):
-    ax.scatter(group["prism_score"], group["mean_auroc_pre"],
+    ax.scatter(group["prism_poly"], group["mean_auroc_pre"],
                label=model, color=MODEL_COLORS[model], alpha=0.7, s=40)
 ax.set_xlabel("PRISM score (mean pairwise similarity)")
 ax.set_ylabel("Mean AUROC (pre-filter)")
 ax.legend(fontsize=8)
-spear = spearmanr(df["prism_score"].dropna(),
-                  df.loc[df["prism_score"].notna(), "mean_auroc_pre"]).statistic
-ax.set_title(f"PRISM score vs mean AUROC\n(Spearman ρ={spear:.2f}, n={df['prism_score'].notna().sum()})")
+spear = spearmanr(df["prism_poly"].dropna(),
+                  df.loc[df["prism_poly"].notna(), "mean_auroc_pre"]).statistic
+ax.set_title(f"PRISM score vs mean AUROC\n(Spearman ρ={spear:.2f}, n={df['prism_poly'].notna().sum()})")
 plt.tight_layout()
-save(fig, "11_prism_score_vs_mean_auroc.png")
+save(fig, "11_prism_poly_vs_mean_auroc.png")
 
 
 # ── 15. Prism score vs post-filter mean similarity (unweighted) ───────────
 fig, ax = plt.subplots(figsize=(7, 6))
 for model, group in df_wms.groupby("model"):
-    ax.scatter(group["prism_score"], group["mean_similarity_post"],
+    ax.scatter(group["prism_poly"], group["mean_similarity_post"],
                label=model, color=MODEL_COLORS[model], alpha=0.7, s=40)
 lims = [0, 1.05]
 ax.plot(lims, lims, "k--", lw=1, alpha=0.4, label="y=x")
@@ -201,7 +201,7 @@ ax.set_xlabel("PRISM score (mean similarity, pre-filter)")
 ax.set_ylabel("Mean similarity (post-filter, unweighted)")
 ax.set_xlim(lims); ax.set_ylim(lims)
 ax.legend(fontsize=8)
-spear = spearmanr(df_wms["prism_score"], df_wms["mean_similarity_post"]).statistic
+spear = spearmanr(df_wms["prism_poly"], df_wms["mean_similarity_post"]).statistic
 ax.set_title(f"PRISM score vs post-filter mean similarity\n(Spearman ρ={spear:.2f}, n={len(df_wms)})")
 plt.tight_layout()
 save(fig, "15_prism_vs_mean_sim_post.png")
@@ -213,7 +213,7 @@ df_nonzero = df[~df["uncharacterized"]].copy()
 
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 for ax, col, label in zip(axes,
-                           ["prism_score", "mean_auroc_pre"],
+                           ["prism_poly", "mean_auroc_pre"],
                            ["PRISM score", "Mean AUROC (pre-filter)"]):
     x_grid = np.linspace(0, 1, 300)
     for subset, name, color in [

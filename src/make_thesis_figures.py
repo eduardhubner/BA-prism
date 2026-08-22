@@ -29,12 +29,12 @@ ts.apply()
 def fig01_quality_blindness():
     """§2.1 Original PRISM similarity vs. mean AUROC (quality-blindness)."""
     d = pd.read_csv(RESULTS / "quality_blindness_check.csv")
-    rho, p = spearmanr(d["prism_score"], d["mean_auroc_pre"])
+    rho, p = spearmanr(d["prism_poly"], d["mean_auroc_pre"])
 
     fig, ax = plt.subplots(figsize=(6.4, 5.2))
     for m in ts.MODEL_ORDER:
         s = d[d["model"] == m]
-        ax.scatter(s["prism_score"], s["mean_auroc_pre"], color=ts.MODEL_COLORS[m],
+        ax.scatter(s["prism_poly"], s["mean_auroc_pre"], color=ts.MODEL_COLORS[m],
                    marker=ts.MODEL_MARKERS[m], edgecolors="black", linewidths=0.4,
                    s=44, alpha=0.85, label=ts.MODEL_LABEL[m])
     ax.axhline(ts.CHANCE, color="grey", ls="--", lw=1, alpha=0.6)
@@ -56,10 +56,10 @@ def fig02_status_by_model():
     d = pd.read_csv(RESULTS / "filtered_evaluation.csv")
 
     def status(ns):
-        return "uncharacterised" if ns == 0 else ("single" if ns == 1 else "multi")
+        return "uncharacterized" if ns == 0 else ("single" if ns == 1 else "multi")
     d["status"] = d["n_surviving"].map(status)
 
-    order = ["uncharacterised", "single", "multi"]   # bottom -> top
+    order = ["uncharacterized", "single", "multi"]   # bottom -> top
     rows = [(ts.MODEL_LABEL[m], d[d["model"] == m]) for m in ts.MODEL_ORDER]
     rows.append(("All models", d))
 
@@ -108,13 +108,13 @@ def fig04_original_vs_revised():
     fe = pd.read_csv(RESULTS / "filtered_evaluation.csv")
     mm = q.merge(fe, on=["model", "layer", "unit"])
     mm = mm[mm["n_surviving"] >= 2]
-    rho, _ = spearmanr(mm["prism_score"], mm["weighted_mean_similarity"])
+    rho, _ = spearmanr(mm["prism_poly"], mm["weighted_mean_similarity"])
 
     fig, ax = plt.subplots(figsize=(5.8, 5.6))
-    lo = min(mm["prism_score"].min(), mm["weighted_mean_similarity"].min()) - 0.03
-    hi = max(mm["prism_score"].max(), mm["weighted_mean_similarity"].max()) + 0.03
+    lo = min(mm["prism_poly"].min(), mm["weighted_mean_similarity"].min()) - 0.03
+    hi = max(mm["prism_poly"].max(), mm["weighted_mean_similarity"].max()) + 0.03
     ax.plot([lo, hi], [lo, hi], ls="--", color="grey", lw=1, alpha=0.6, zorder=0)
-    _model_scatter(ax, mm, "prism_score", "weighted_mean_similarity")
+    _model_scatter(ax, mm, "prism_poly", "weighted_mean_similarity")
     ax.set_xlabel("PRISM Polysemanticity Score")
     ax.set_ylabel("Weighted Mean Similarity")
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi); ax.set_aspect("equal")
@@ -211,13 +211,13 @@ def fig08_rescue():
     ax.set_xticklabels([f"L{l}/U{u}" for l, u in g.index], rotation=20)
     ax.set_ylabel("Best description AUROC\n(max over the $k$ candidate descriptions)")
     ax.set_ylim(0, 1.02); ax.set_xlim(-0.5, len(g) - 0.3)
-    ax.set_title("Do uncharacterised features get rescued by more candidates?")
+    ax.set_title("Do uncharacterized features get rescued by more candidates?")
     from matplotlib.lines import Line2D
     ax.legend(handles=[
         Line2D([0], [0], marker="o", color="w", markerfacecolor="white", markeredgecolor="black", markersize=9, label="k = 5 (start)"),
         Line2D([0], [0], marker="o", color="w", markerfacecolor="#555", markeredgecolor="black", markersize=9, label="k = 10 (end)"),
         Line2D([0], [0], color="#2ca02c", lw=2.5, label="rescued (crosses 0.5)"),
-        Line2D([0], [0], color="#9e9e9e", lw=2.5, label="still uncharacterised"),
+        Line2D([0], [0], color="#9e9e9e", lw=2.5, label="still uncharacterized"),
     ], loc="upper left", fontsize=8)
     ts.despine(ax)
     ts.save(fig, "fig08_rescue")
@@ -437,7 +437,7 @@ def fig06_human_annotation():
     h = pd.read_csv(RESULTS / "human_annotation_correlation.csv")
     f = pd.read_csv(RESULTS / "human_annotation_correlation_filtered.csv")
     f = f[f["sim_threshold"] == 0.70]   # already has a 'model' column
-    rho_orig = spearmanr(h["human_poly_score"], h["prism_score"]).statistic
+    rho_orig = spearmanr(h["human_poly_score"], h["prism_poly"]).statistic
     defn = f[f["n_surviving"] >= 2]
     rho_rev = spearmanr(defn["human_poly_score"], defn["weighted_mean_sim"]).statistic
     excl = f[f["n_surviving"] < 2]
@@ -445,7 +445,7 @@ def fig06_human_annotation():
     fig, (axA, axB) = plt.subplots(1, 2, figsize=(11, 5.2), sharey=True)
     for m in ts.MODEL_ORDER:
         s = h[h["model"] == m]
-        axA.scatter(s["prism_score"], s["human_poly_score"], color=ts.MODEL_COLORS[m],
+        axA.scatter(s["prism_poly"], s["human_poly_score"], color=ts.MODEL_COLORS[m],
                     marker=ts.MODEL_MARKERS[m], edgecolors="black", s=70, label=ts.MODEL_LABEL[m])
     axA.set_xlabel("PRISM Polysemanticity Score")
     axA.set_ylabel("Human polysemanticity score")
@@ -468,7 +468,7 @@ def fig06_human_annotation():
     axB.set_title(f"Revised     Spearman $\\rho$ = {rho_rev:.2f},  n = {len(defn)}", fontsize=11)
     n_single = int(excl["exclusion_reason"].str.contains("single").sum())
     n_unchar = int(excl["exclusion_reason"].str.contains("uncharacter").sum())
-    axB.annotate(f"{len(excl)} excluded:  {n_single} single-survivor,  {n_unchar} uncharacterised",
+    axB.annotate(f"{len(excl)} excluded:  {n_single} single-survivor,  {n_unchar} uncharacterized",
                  xy=(0.5, 0.02), xycoords="axes fraction", ha="center", fontsize=8,
                  bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="0.8"))
     ts.despine(axB)
@@ -593,7 +593,7 @@ def _diversity(aurocs, sm, surv):
 
 
 def fig11_threshold_sensitivity():
-    """§4.3 Similarity-collapse threshold sensitivity: characterisation + ranking stability."""
+    """§4.3 Similarity-collapse threshold sensitivity: characterization + ranking stability."""
     import case_study_analysis as cs
     df = pd.read_csv(cs.PRISM_PATH)
     A = [np.array([r[f"auroc_{i}"] for i in range(1, 6)]) for _, r in df.iterrows()]
@@ -611,7 +611,7 @@ def fig11_threshold_sensitivity():
         rankcorr.append(spearmanr([p[0] for p in pairs], [p[1] for p in pairs]).statistic)
 
     fig, (a1, a2) = plt.subplots(1, 2, figsize=(11, 4.6))
-    a1.plot(grid, unchar, "-o", color=ts.STATUS_COLORS["uncharacterised"], label="% uncharacterised")
+    a1.plot(grid, unchar, "-o", color=ts.STATUS_COLORS["uncharacterized"], label="% uncharacterized")
     a1.plot(grid, multi, "-s", color=ts.STATUS_COLORS["multi"], label="% multi-survivor")
     a1.axvline(0.70, color="grey", ls="--", lw=1)
     a1.set_xlabel(r"Similarity-collapse threshold $\tau$"); a1.set_ylabel("% of features")

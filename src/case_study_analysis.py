@@ -231,7 +231,7 @@ def make_mds_plot(aurocs, sim_matrix, decisions, descriptions, metrics, model, l
               framealpha=0.85, ncol=3)
 
     # Title (line 1) + subtitle (line 2)
-    prism = metrics["prism_score"]
+    prism = metrics["prism_poly"]
     wms   = metrics["weighted_mean_sim"]
     q_val = metrics["evidence_quality"]
     if metrics["uncharacterized"]:
@@ -278,7 +278,7 @@ def main():
         print(f"\n{'='*70}")
         print(f"{tag}")
         print(f"{'='*70}")
-        print(f"  PRISM score:        {metrics['prism_score']:.3f}")
+        print(f"  PRISM score:        {metrics['prism_poly']:.3f}")
         print(f"  Evidence quality Q: {metrics['evidence_quality']:.3f}" if not np.isnan(metrics.get('evidence_quality', np.nan)) else "  Evidence quality Q: —")
         print(f"  Survivor count n_s: {metrics['n_surviving']}")
         print(f"  Mean sim post:      {metrics['mean_sim_post']:.3f}" if not np.isnan(metrics.get('mean_sim_post', np.nan)) else "  Mean sim post:      —")
@@ -294,7 +294,7 @@ def main():
 
         summary_rows.append({
             "neuron": tag,
-            "prism_score": round(metrics["prism_score"], 3),
+            "prism_poly": round(metrics["prism_poly"], 3),
             "evidence_quality": round(metrics["evidence_quality"], 3) if not np.isnan(metrics.get("evidence_quality", np.nan)) else "—",
             "n_surviving": metrics["n_surviving"],
             "mean_sim_post": round(metrics["mean_sim_post"], 3) if not np.isnan(metrics.get("mean_sim_post", np.nan)) else "—",

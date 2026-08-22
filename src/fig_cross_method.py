@@ -38,14 +38,14 @@ def _panel_a(ax):
     fe = pd.read_csv(RESULTS / "filtered_evaluation.csv")
     mm = q.merge(fe, on=["model", "layer", "unit"])
     mm = mm[mm["n_surviving"] >= 2]
-    rho = spearmanr(mm["prism_score"], mm["weighted_mean_similarity"]).statistic
-    lo = min(mm["prism_score"].min(), mm["weighted_mean_similarity"].min()) - 0.03
-    hi = max(mm["prism_score"].max(), mm["weighted_mean_similarity"].max()) + 0.03
+    rho = spearmanr(mm["prism_poly"], mm["weighted_mean_similarity"]).statistic
+    lo = min(mm["prism_poly"].min(), mm["weighted_mean_similarity"].min()) - 0.03
+    hi = max(mm["prism_poly"].max(), mm["weighted_mean_similarity"].max()) + 0.03
     ax.plot([lo, hi], [lo, hi], ls="--", color="grey", lw=1, alpha=0.6, zorder=0)
     for m in ts.MODEL_ORDER:
         s = mm[mm["model"] == m]
         lab = "GPT-2 SAE" if m == "gpt2-small-sae" else ts.MODEL_LABEL[m]
-        ax.scatter(s["prism_score"], s["weighted_mean_similarity"], color=ts.MODEL_COLORS[m],
+        ax.scatter(s["prism_poly"], s["weighted_mean_similarity"], color=ts.MODEL_COLORS[m],
                    marker=ts.MODEL_MARKERS[m], edgecolors="black", linewidths=0.4, s=26,
                    alpha=0.85, label=lab)
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi); ax.set_aspect("equal")

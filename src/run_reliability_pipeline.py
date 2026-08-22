@@ -16,7 +16,7 @@ Pipeline (per neuron):
     │            components at cosine sim > τ_sim (0.70); keep the highest-AUROC
     │            description per component
     └─ Metrics — n_filtered / n_collapsed / n_surviving, evidence quality Q,
-                 weighted mean similarity σ̃, diversity 1−σ̃, characterisation status
+                 weighted mean similarity σ̃, diversity 1−σ̃, characterization status
     │
   output: one profile row per neuron.
 
@@ -48,7 +48,7 @@ RESULTS = ROOT / "results"
 
 
 def status_of(n_s):
-    return "uncharacterised" if n_s == 0 else ("single" if n_s == 1 else "multi")
+    return "uncharacterized" if n_s == 0 else ("single" if n_s == 1 else "multi")
 
 
 def render_mds(df, specs):
@@ -92,13 +92,13 @@ def profile_neuron(row):
         "n_descriptions": int(np.sum(~np.isnan(aurocs))),
         "n_filtered": n_filt, "n_collapsed": n_coll, "n_surviving": n_s,
         "status": status_of(n_s),
-        "prism_score": round(met["prism_score"], 4),
+        "prism_poly": round(met["prism_poly"], 4),
         "evidence_quality": round(met["evidence_quality"], 4) if not np.isnan(met["evidence_quality"]) else np.nan,
         "weighted_mean_similarity": round(met["weighted_mean_sim"], 4) if not np.isnan(met["weighted_mean_sim"]) else np.nan,
         "diversity": round(div, 4) if not np.isnan(div) else np.nan,
         "mean_similarity_post": round(met["mean_sim_post"], 4) if not np.isnan(met["mean_sim_post"]) else np.nan,
         "effective_n": round(met["effective_n"], 4) if not np.isnan(met["effective_n"]) else np.nan,
-        "uncharacterised": met["uncharacterized"],
+        "uncharacterized": met["uncharacterized"],
     }
 
 
@@ -128,7 +128,7 @@ def main():
         "input": args.input, "output": args.output,
         "tau_auroc": args.auroc_threshold, "tau_sim": args.sim_threshold,
         "n_neurons": n,
-        "status_pct": {k: round(counts.get(k, 0) / n * 100, 1) for k in ("uncharacterised", "single", "multi")},
+        "status_pct": {k: round(counts.get(k, 0) / n * 100, 1) for k in ("uncharacterized", "single", "multi")},
         "median_n_surviving": float(profile["n_surviving"].median()),
         "median_Q_ns_ge_1": round(float(profile.loc[profile.n_surviving >= 1, "evidence_quality"].median()), 4),
         "median_diversity_ns_ge_2": round(float(profile.loc[profile.n_surviving >= 2, "diversity"].median()), 4),
@@ -140,7 +140,7 @@ def main():
     print(f"  τ_auroc = {args.auroc_threshold}   τ_sim = {args.sim_threshold}   ({n} neurons)")
     print(f"  Stage 1 (AUROC filter) + Stage 2 (similarity collapse) → profile")
     sp = summary["status_pct"]
-    print(f"  characterisation: uncharacterised {sp['uncharacterised']}%  "
+    print(f"  characterization: uncharacterized {sp['uncharacterized']}%  "
           f"single {sp['single']}%  multi {sp['multi']}%")
     print(f"  median n_s={summary['median_n_surviving']:.0f}  "
           f"median Q={summary['median_Q_ns_ge_1']} (n_s≥1)  "
