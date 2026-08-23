@@ -28,6 +28,11 @@ This fork extends PRISM with adaptive k-selection methods and cosine similarity-
 - `src/utils/helper_modules.py` - Added clustering quality metrics
 - `src/utils/models.py` - Updated embedding model configuration
 
+**Documentation:**
+- [PAPER_REFERENCE.md](PAPER_REFERENCE.md) — single entry point for the paper: method, all results with provenance, design-choice evidence, known weak points
+- [RESULTS_INDEX.md](RESULTS_INDEX.md) — full claim → script → output catalogue
+- [THRESHOLD_CALIBRATION.md](THRESHOLD_CALIBRATION.md) / [CROSS_METHOD.md](CROSS_METHOD.md) — deep-dives
+
 **Experiments:**
 See [EXPERIMENTS.md](EXPERIMENTS.md) for detailed results from systematic evaluation across 60 GPT2-XL neurons.
 
