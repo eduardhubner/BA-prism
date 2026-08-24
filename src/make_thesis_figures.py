@@ -310,19 +310,30 @@ def fig03b_mds_cases():
 
 
 # --- Shared scale for ALL feature-case panels -------------------------------
-# Every feature-case MDS panel (main figure and appendix) uses this single axis
-# limit so that a given cosine dissimilarity is drawn at the same size in every
-# panel. Derived as max|coord| over all eight plotted cases x 1.48 headroom
-# (largest is gemma-scope-2b L0/U2725 at 0.544), rounded up.
-# Previously each appendix panel auto-scaled to its own coordinates, which made
-# the same dissimilarity appear up to 2.49x larger in one panel than another.
-CASE_AXIS_LIMIT = 0.85
-CASE_SCALE_BAR  = 0.30     # reference bar: 1 - sim = 0.30
+# Imported, not redefined: case_study_analysis owns the axis convention and its
+# value (1.0) already accommodates every plotted case -- the widest is
+# gemma-scope-2b L0/U2725 at max|coord| = 0.544, leaving 46% margin. The scale is
+# absolute: plotted distance IS dissimilarity (1 - cosine similarity), whose
+# observed maximum in the dataset is 0.876, so 1.0 is the natural ceiling.
+#
+# Previously each appendix panel auto-scaled to its own coordinates, making the
+# same dissimilarity appear up to 2.49x larger in one panel than another. Note
+# gemma L0/U2725 is plotted both here and in results/case_study/, so a private
+# limit here would render one neuron at two different scales.
+def _case_axis_limit():
+    import case_study_analysis as cs
+    return cs.FIXED_AXIS_LIMIT
 
 
-def _case_scale_bar(ax, lim=None, length=CASE_SCALE_BAR):
+def _case_scale_bar_len():
+    import case_study_analysis as cs
+    return cs.SCALE_BAR_LEN
+
+
+def _case_scale_bar(ax, lim=None, length=None):
     """Reference bar making the shared scale visible, bottom-left of a panel."""
-    lim = CASE_AXIS_LIMIT if lim is None else lim
+    lim = _case_axis_limit() if lim is None else lim
+    length = _case_scale_bar_len() if length is None else length
     x0, y0 = -lim + 0.08 * lim, -lim + 0.10 * lim
     ax.plot([x0, x0 + length], [y0, y0], color="black", lw=1.4, zorder=8)
     for xx in (x0, x0 + length):
@@ -367,7 +378,7 @@ def fig_feature_cases():
         coords = toy.mds_coords(sm)
         coords = coords - coords.mean(axis=0)
         data.append((model, layer, unit, aurocs, sm, dec, met, coords))
-    lim = CASE_AXIS_LIMIT   # shared across all feature-case panels
+    lim = _case_axis_limit()   # absolute scale, shared with results/case_study/
 
     # one row: [plot | descriptions] per case, then a vertical AUROC colourbar.
     fig = plt.figure(figsize=(10.4, 3.4))
@@ -721,7 +732,7 @@ def fig_feature_cases_appendix():
         model, layer, unit, aurocs, sm, dec, met, coords, descs = cd
         # --- MDS panel (σ̃ / Q below) ---
         ax = fig.add_subplot(mds_spec)
-        lim = CASE_AXIS_LIMIT   # shared across all feature-case panels
+        lim = _case_axis_limit()   # absolute scale, shared with results/case_study/
         ax.set_xlim(-lim, lim); ax.set_ylim(-lim, lim); ax.set_aspect("equal")
         ax.set_xticks([]); ax.set_yticks([])
         _case_scale_bar(ax, lim)
