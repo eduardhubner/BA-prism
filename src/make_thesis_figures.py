@@ -309,6 +309,29 @@ def fig03b_mds_cases():
     return _render_mds_pair(cases, "fig03b_mds_cases")
 
 
+# --- Shared scale for ALL feature-case panels -------------------------------
+# Every feature-case MDS panel (main figure and appendix) uses this single axis
+# limit so that a given cosine dissimilarity is drawn at the same size in every
+# panel. Derived as max|coord| over all eight plotted cases x 1.48 headroom
+# (largest is gemma-scope-2b L0/U2725 at 0.544), rounded up.
+# Previously each appendix panel auto-scaled to its own coordinates, which made
+# the same dissimilarity appear up to 2.49x larger in one panel than another.
+CASE_AXIS_LIMIT = 0.85
+CASE_SCALE_BAR  = 0.30     # reference bar: 1 - sim = 0.30
+
+
+def _case_scale_bar(ax, lim=None, length=CASE_SCALE_BAR):
+    """Reference bar making the shared scale visible, bottom-left of a panel."""
+    lim = CASE_AXIS_LIMIT if lim is None else lim
+    x0, y0 = -lim + 0.08 * lim, -lim + 0.10 * lim
+    ax.plot([x0, x0 + length], [y0, y0], color="black", lw=1.4, zorder=8)
+    for xx in (x0, x0 + length):
+        ax.plot([xx, xx], [y0 - 0.02 * lim, y0 + 0.02 * lim],
+                color="black", lw=1.4, zorder=8)
+    ax.text(x0 + length / 2, y0 - 0.05 * lim, f"1 \u2212 sim = {length:g}",
+            ha="center", va="top", fontsize=6, zorder=8)
+
+
 def fig_feature_cases():
     """Paper figure (compact): two feature cases, MDS panels + short description
     tables. Full descriptions and the interpretation go in the caption/appendix."""
@@ -344,7 +367,7 @@ def fig_feature_cases():
         coords = toy.mds_coords(sm)
         coords = coords - coords.mean(axis=0)
         data.append((model, layer, unit, aurocs, sm, dec, met, coords))
-    lim = max(np.abs(c).max() for *_, c in data) * 1.48
+    lim = CASE_AXIS_LIMIT   # shared across all feature-case panels
 
     # one row: [plot | descriptions] per case, then a vertical AUROC colourbar.
     fig = plt.figure(figsize=(10.4, 3.4))
@@ -354,6 +377,7 @@ def fig_feature_cases():
     for c, (model, layer, unit, aurocs, sm, dec, met, coords) in enumerate(data):
         # --- MDS plot with MDS1/MDS2 axes ---
         ax = fig.add_subplot(gs[0, 2 * c]); ax.set_xlim(-lim, lim); ax.set_ylim(-lim, lim)
+        _case_scale_bar(ax, lim)
         ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
         for s in ax.spines.values():
             s.set_color("#bbbbbb"); s.set_linewidth(0.8)
@@ -655,7 +679,140 @@ def fig12_clusterability():
     return f"cosine {np.mean(cos):.4f} vs euclidean {np.mean(euc):.4f}"
 
 
+def fig_feature_cases_appendix():
+    """Appendix feature cases in the pill format (MDS panel + colour-coded
+    description pills), two cases per figure. σ̃ / Q are shown below each MDS plot;
+    pills show the full descriptions (colour = outcome)."""
+    import case_study_analysis as cs
+    import toy_neurons as toy
+    import matplotlib.lines as mlines
+    import textwrap
+    df = pd.read_csv(cs.PRISM_PATH)
+    cmap, norm = ts.AUROC_CMAP, ts.auroc_norm()
+    BLUE = ts.COLLAPSED_BLUE
+
+    cases = [
+        ("gpt2-small-sae", 10, 900),    # σ̃ ≫ PRISM outlier: 2 reliable survivors + 3 filtered
+        ("gpt2-xl", 20, 4268),          # σ̃ < PRISM outlier: survivors + redundant + filtered
+        ("gemma-scope-2b", 0, 10531),   # on-diagonal high: all three outcomes present
+        ("gemma-scope-2b", 0, 2725),    # σ̃-drop outlier
+        ("gemma-scope-2b", 10, 15418),  # clean high-quality (two reliable survivors)
+        ("Llama-3.1-8B-Instruct", 0, 3016),  # uncharacterized (no survivor; σ̃ = Q = —)
+    ]
+    # pill palette = thesis_style PiYG endpoints + collapse blue (matches feature_cases_v5.svg)
+    EDGE = {"survived": "#276419", "collapsed": "#1E90FF", "removed (low AUROC)": "#8E0152"}
+    FILL = {"survived": "#EAF5D9", "collapsed": "#E6F1FD", "removed (low AUROC)": "#FAD4E9"}
+    marker = {"survived": "o", "collapsed": "D", "removed (low AUROC)": "D"}
+    m_edge = {"survived": "black", "collapsed": BLUE, "removed (low AUROC)": "black"}
+    WRAP, MAXLINES = 46, 2
+
+    data = []
+    for model, layer, unit in cases:
+        row = df[(df["model"] == model) & (df["layer"] == layer) & (df["unit"] == unit)].iloc[0]
+        aurocs = np.array([row[f"auroc_{i}"] for i in range(1, 6)])
+        sm = cs.get_sim_matrix(row)
+        dec = cs.filter_decisions(aurocs, sm)
+        met = cs.compute_metrics(aurocs, sm, dec)
+        coords = toy.mds_coords(sm); coords = coords - coords.mean(axis=0)
+        descs = [str(row[f"description_{i}"]).strip() for i in range(1, 6)]
+        data.append((model, layer, unit, aurocs, sm, dec, met, coords, descs))
+
+    def _draw_case(fig, mds_spec, pill_spec, cd):
+        model, layer, unit, aurocs, sm, dec, met, coords, descs = cd
+        # --- MDS panel (σ̃ / Q below) ---
+        ax = fig.add_subplot(mds_spec)
+        lim = CASE_AXIS_LIMIT   # shared across all feature-case panels
+        ax.set_xlim(-lim, lim); ax.set_ylim(-lim, lim); ax.set_aspect("equal")
+        ax.set_xticks([]); ax.set_yticks([])
+        _case_scale_bar(ax, lim)
+        for s in ax.spines.values():
+            s.set_color("#bbbbbb"); s.set_linewidth(0.8)
+        ax.set_xlabel("MDS1", fontsize=7, color="#666", labelpad=1)
+        ax.set_ylabel("MDS2", fontsize=7, color="#666", labelpad=1)
+        surv = [i for i, d in enumerate(dec) if d == "survived"]
+        for i in range(5):
+            if dec[i] == "collapsed" and surv:
+                j = min(surv, key=lambda s: np.hypot(*(coords[i] - coords[s])))
+                ax.plot([coords[i, 0], coords[j, 0]], [coords[i, 1], coords[j, 1]],
+                        color=BLUE, lw=1.0, alpha=0.8, zorder=2)
+        for i in sorted(range(5), key=lambda i: dec[i] == "survived"):
+            ax.scatter(coords[i, 0], coords[i, 1], s=110, color=cmap(norm(aurocs[i])),
+                       marker=marker[dec[i]], edgecolors=m_edge[dec[i]],
+                       linewidths=1.5 if dec[i] == "collapsed" else 1.0,
+                       zorder=4 if dec[i] == "survived" else 3)
+        cen = coords.mean(axis=0); lpos = np.empty((5, 2))
+        for i in range(5):
+            d = coords[i] - cen; nn = np.hypot(*d)
+            u = d / nn if nn > 1e-6 else np.array([0.0, 1.0]); lpos[i] = coords[i] + 0.26 * lim * u
+        for _ in range(40):
+            for a in range(5):
+                for b in range(a + 1, 5):
+                    diff = lpos[a] - lpos[b]; dist = np.hypot(*diff)
+                    if 1e-9 < dist < 0.17 * lim:
+                        sh = (0.17 * lim - dist) / 2 * diff / dist; lpos[a] += sh; lpos[b] -= sh
+        for i in range(5):
+            ax.text(lpos[i, 0], lpos[i, 1], f"D{i+1}", fontsize=6.5, fontweight="bold",
+                    ha="center", va="center", color="#444", zorder=6)
+        wms = met["weighted_mean_sim"]
+        wms_str = "—" if met["uncharacterized"] or np.isnan(wms) else f"{wms:.3f}"
+        q_str = "—" if met["uncharacterized"] else f"{met['evidence_quality']:.3f}"
+        ax.set_title(f"{ts.MODEL_LABEL[model]} L{layer}/U{unit}", fontsize=9, pad=6)
+        ax.text(0.5, -0.20, rf"$\tilde{{\sigma}}$ = {wms_str},   Q = {q_str}", transform=ax.transAxes,
+                ha="center", va="top", fontsize=8, color="#333")
+
+        # --- description pills (colour = outcome; full text, wrapped) ---
+        axd = fig.add_subplot(pill_spec); axd.axis("off"); axd.set_xlim(0, 1); axd.set_ylim(0, 1)
+        axd.text(0.12, 0.995, "description", fontsize=7, color="#999", va="bottom")
+        y_top, row_h = 0.90, 0.90 / 5
+        for i in range(5):
+            full = textwrap.wrap(descs[i], WRAP) or [""]
+            lines = full[:MAXLINES]
+            if len(full) > MAXLINES:
+                lines[-1] = lines[-1] + " …"
+            text = "“" + "\n".join(lines) + "”"
+            yc = y_top - (i + 0.5) * row_h
+            axd.text(0.0, yc, f"D{i+1}", fontsize=8.5, fontweight="bold", color="#333", va="center", ha="left")
+            axd.text(0.12, yc, text, fontsize=7, family="monospace", color="#222", va="center", ha="left",
+                     bbox=dict(boxstyle="round,pad=0.45,rounding_size=0.5", fc=FILL[dec[i]],
+                               ec=EDGE[dec[i]], linewidth=2.2))
+
+    saved = []
+    for p in range(0, len(data), 2):
+        pair = data[p:p + 2]                              # two cases side by side
+        fig = plt.figure(figsize=(7.2 * len(pair), 4.6))
+        wr = []
+        for _ in pair:
+            wr += [1.75, 1.2]                             # [descriptions | MDS] per case
+        gs = fig.add_gridspec(1, 2 * len(pair), width_ratios=wr, left=0.025, right=0.905,
+                              top=0.85, bottom=0.15, wspace=0.14)
+        for c, cd in enumerate(pair):
+            _draw_case(fig, gs[0, 2 * c + 1], gs[0, 2 * c], cd)   # (mds_spec, pill_spec)
+        # AUROC colourbar (far right) + outcome legend (bottom)
+        sm_cb = plt.cm.ScalarMappable(cmap=cmap, norm=norm); sm_cb.set_array([])
+        cax = fig.add_axes([0.925, 0.30, 0.012, 0.42])
+        cbar = fig.colorbar(sm_cb, cax=cax, ticks=[0.0, 0.5, 1.0])
+        cbar.ax.set_yticklabels(["0.0", "0.5\n(chance)", "1.0"], fontsize=6.5)
+        cbar.set_label("AUROC", fontsize=8); cbar.ax.axhline(0.5, color="black", ls="--", lw=0.9, alpha=0.7)
+        handles = [
+            mlines.Line2D([], [], marker="o", ls="None", mfc=FILL["survived"],
+                          mec=EDGE["survived"], ms=11, mew=2.0, label="survived"),
+            mlines.Line2D([], [], marker="D", ls="None", mfc=FILL["collapsed"],
+                          mec=EDGE["collapsed"], ms=10, mew=2.0, label="redundant"),
+            mlines.Line2D([], [], marker="D", ls="None", mfc=FILL["removed (low AUROC)"],
+                          mec=EDGE["removed (low AUROC)"], ms=10, mew=2.0, label="filtered"),
+        ]
+        leg = fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.465, 0.02),
+                         ncol=3, fontsize=9.5, frameon=False, handletextpad=0.5, columnspacing=2.6)
+        for t, col in zip(leg.get_texts(), ["#276419", "#1E90FF", "#8E0152"]):
+            t.set_color(col); t.set_fontweight("bold")
+        name = f"fig_feature_cases_appendix_{p // 2 + 1}"
+        ts.save(fig, name); plt.close(fig); saved.append(name)
+
+    return f"{len(saved)} figures, 2 cases each (side by side): {', '.join(saved)}"
+
+
 FIGURES = {
+    "fig_feature_cases_appendix": fig_feature_cases_appendix,
     "fig01": fig01_quality_blindness,
     "fig02": fig02_status_by_model,
     "fig03a": fig03a_mds_cases,
