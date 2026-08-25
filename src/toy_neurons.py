@@ -127,12 +127,45 @@ def polysemanticity_score(pair_vals):
     return float(np.mean(pair_vals))
 
 
-def mds_coords(sim_matrix):
+def mds_coords(sim_matrix, return_stress=False):
+    """2-D metric MDS of the description dissimilarities 1 - cos(s_i, s_j).
+
+    Metric (not ordinal) MDS: SMACOF minimises the RAW stress
+        sigma(Z) = sum_{i<j} ( ||z_i - z_j||_2 - Delta_ij )^2
+    so plotted distances are on the same scale as 1 - cos, which is what lets
+    every feature panel share one absolute axis range and a common scale bar.
+
+    Every argument is pinned deliberately -- these coordinates appear in published
+    figures, so the projection must not drift:
+      metric="precomputed"  Delta is supplied directly (replaces the deprecated
+                            `dissimilarity=`; verified to give identical output).
+      init="random"         sklearn changes this default to "classical_mds" in
+                            1.10. Pinned so the figures survive the upgrade;
+                            switching WOULD move the coordinates.
+      n_init=4              four restarts, lowest-stress solution kept.
+      random_state=42       reproducible across runs.
+    normalized_stress="auto" resolves to raw stress for metric MDS, so
+    `mds.stress_` is sigma above, not Kruskal stress-1 (see kruskal_stress).
+    """
     dissim = np.clip(1 - sim_matrix, 0, None)
     np.fill_diagonal(dissim, 0)
-    mds = MDS(n_components=2, dissimilarity="precomputed", random_state=42,
-              normalized_stress="auto", n_init=4)
-    return mds.fit_transform(dissim)
+    mds = MDS(n_components=2, metric="precomputed", random_state=42,
+              normalized_stress="auto", n_init=4, init="random")
+    coords = mds.fit_transform(dissim)
+    return (coords, mds.stress_) if return_stress else coords
+
+
+def kruskal_stress(sim_matrix, coords):
+    """Kruskal stress-1 of a 2-D layout: sqrt( sum (d-Delta)^2 / sum Delta^2 ).
+
+    Reported because raw stress is not scale-free and so is not comparable across
+    features. Convention: < 0.10 good, 0.10-0.20 fair.
+    """
+    dissim = np.clip(1 - sim_matrix, 0, None)
+    np.fill_diagonal(dissim, 0)
+    d = np.linalg.norm(coords[:, None, :] - coords[None, :, :], axis=-1)
+    iu = np.triu_indices(len(dissim), 1)
+    return float(np.sqrt(((d[iu] - dissim[iu]) ** 2).sum() / (dissim[iu] ** 2).sum()))
 
 
 def _best_label_angle(coords, i, offset, n_candidates=36, placed_labels=()):
