@@ -19,7 +19,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, beta
 
 import thesis_style as ts
 from pool_gpt2xl_analyze import filter_pool, metrics
@@ -30,7 +30,17 @@ GX = RESULTS / "pooled_gpt2xl"
 OC = RESULTS / "pooled_outputcentric"
 
 CAT = ["filtered", "retained as distinct", "redundant"]
+XM_COLOR = "#4A5568"   # neutral slate: cross-method panels are a single measure each,
+                       # so no hue is needed and none of the reserved semantics collide
 CAT_COLOR = {"filtered": "#c9c9c9", "retained as distinct": "#4c9f70", "redundant": ts.COLLAPSED_BLUE}
+
+
+def _ci(k, n, alpha=0.05):
+    """Clopper-Pearson interval, in percent. Shown because n ranges from 10 to 58,
+    so identical percentages carry very different weight across rows."""
+    lo = 100 * beta.ppf(alpha / 2, k, n - k + 1) if k > 0 else 0.0
+    hi = 100 * beta.ppf(1 - alpha / 2, k + 1, n - k) if k < n else 100.0
+    return lo, hi
 
 
 def _panel_a(ax):
@@ -61,73 +71,64 @@ def _panel_a(ax):
 
 
 def _panel_b(ax):
-    desc = pd.read_csv(GX / "descriptions.csv"); emb = np.load(GX / "embeddings.npy")
-    a = desc["auroc"].to_numpy()
-    qp, qpool = [], []
-    for _, g in desc.groupby(["layer", "unit"]):
-        idx = g.index.to_numpy(); E = emb[idx]
-        m, _ = metrics(a[idx], E @ E.T, filter_pool(a[idx], E @ E.T)[0])
-        pidx = g.index[(g["method"] == "input-centric") & (g["generator"] == "gemini-1.5-pro")].to_numpy()
-        Ep = emb[pidx]
-        mp, _ = metrics(a[pidx], Ep @ Ep.T, filter_pool(a[pidx], Ep @ Ep.T)[0])
-        if not (np.isnan(m["Q"]) or np.isnan(mp["Q"])):
-            qp.append(mp["Q"]); qpool.append(m["Q"])
-    qp, qpool = np.array(qp), np.array(qpool)
-    rho = spearmanr(qp, qpool).statistic
-    lo = min(qp.min(), qpool.min()) - 0.05; hi = max(qp.max(), qpool.max()) + 0.05
-    ax.plot([lo, hi], [lo, hi], color="#999", ls="--", lw=1, zorder=1)
-    ax.scatter(qp, qpool, s=30, color=ts.MODEL_COLORS["gpt2-xl"], edgecolors="black",
-               linewidths=0.4, alpha=0.85, zorder=3)
-    ax.set_xlim(lo, hi); ax.set_ylim(lo, hi); ax.set_aspect("equal")
-    ax.set_xlabel(r"$Q_{\mathrm{PRISM}}$  (PRISM-only)")
-    ax.set_ylabel(r"$Q_{\mathrm{pool}}$  (all sources)")
-    ax.set_title("(b) Evidence quality across description pools", fontsize=10)
-    ax.annotate(rf"$\rho$ = {rho:.3f}, $n$ = {len(qp)}", xy=(0.04, 0.96), xycoords="axes fraction",
-                va="top", ha="left", fontsize=9,
-                bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="0.7", alpha=0.92))
+    """Directional complementary coverage for the equal-budget new-regime pair."""
+    rescue = json.loads((RESULTS / "cross_method_rescue" / "stats.json").read_text())
+    nm = rescue["new_regime"]["matrix"]
+    rows = [("Transluce unsupported\n" + r"$\rightarrow$ max-act supported",
+             nm["Transluce"]["max-act"]["pooled"]),
+            ("max-act unsupported\n" + r"$\rightarrow$ Transluce supported",
+             nm["max-act"]["Transluce"]["pooled"])]
+    y = np.arange(len(rows))[::-1]
+    for yi, (_, d) in zip(y, rows):
+        k, n = d["n_covered_by_B"], d["n_uncharacterized_by_A"]
+        ax.barh(yi, 100 * k / n, height=0.22, color=XM_COLOR, edgecolor="none", zorder=3)
+        lo, hi = _ci(k, n)
+        ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.4, solid_capstyle="round", zorder=4)
+        ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
+                va="center", ha="left", fontsize=9, color="#333")
+    ax.set_yticks(y); ax.set_yticklabels([r[0] for r in rows], fontsize=8.5)
+    ax.set_ylim(-0.55, len(rows) - 0.45)
+    ax.set_xlim(0, 92); ax.set_xlabel("features covered by the other method (%)")
+    ax.set_title("(b) Complementary coverage", fontsize=10)
+    ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
 
 def _panel_c(ax):
-    stats = json.loads((OC / "stats.json").read_text())
-    # one stacked bar per (target, method) for every method other than input-centric.
-    cols = [("Llama-3.1-8B-Instruct", "output-centric"),
-            ("gemma-scope-2b", "output-centric"),
-            ("gpt2-small-sae", "output-centric"),
-            ("gpt2-small-sae", "neuronpedia")]
-    short = {"Llama-3.1-8B-Instruct": "Llama", "gemma-scope-2b": "Gemma", "gpt2-small-sae": "GPT-2 SAE"}
-    meth_label = {"output-centric": "output-centric", "neuronpedia": "Neuronpedia"}
-    fates = [stats["per_model"][m]["fate"][meth] for m, meth in cols]
-    key = {"filtered": "filtered", "retained as distinct": "distinct", "redundant": "converges"}
-    x = np.arange(len(cols)); bottom = np.zeros(len(cols))
-    for cat in CAT:
-        vals = np.array([100 * f[key[cat]] / f["n"] for f in fates])
-        ax.bar(x, vals, bottom=bottom, width=0.6, color=CAT_COLOR[cat], edgecolor="white",
-               linewidth=0.8, label=cat)
-        bottom += vals
-    ax.set_xticks(x)
-    ax.set_xticklabels([f"{short[m]}\n{meth_label[meth]}" for m, meth in cols], fontsize=7.5)
-    ax.set_ylabel("% of all descriptions")   # denominator = every description of that method
-    ax.set_ylim(0, 108)
-    ax.set_title("(c) Cross-method outcomes relative to PRISM", fontsize=10)
-    # Redundancy is method-dependent, so label each bar's redundant share. NB the bar
-    # denominator is ALL descriptions of the method (so neuronpedia reads 5%); the
-    # conditional-on-survival figure (23% of surviving neuronpedia descriptions) is
-    # stated in the caption.
-    for xi, f in zip(x, fates):
-        pct = 100 * f["converges"] / f["n"]
-        ax.text(xi, 102, f"redundant: {pct:.0f}%", ha="center", va="bottom", fontsize=7,
-                color=CAT_COLOR["redundant"] if pct > 0 else "#999")
-    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.24), ncol=3, fontsize=7.5, frameon=False)
+    """Semantic overlap among jointly characterized features.
+
+    Dots, not bars: two of the four values are exactly zero and a zero-length bar
+    is invisible. Clopper-Pearson 95% intervals are drawn because n ranges from 10
+    to 58, so the same percentage carries very different weight across rows.
+    """
+    ov = json.loads((RESULTS / "cross_method_overlap" / "stats.json").read_text())
+    om, on = ov["old_regime"]["matrix"], ov["new_regime"]["matrix"]
+    rows = [("Transluce ~ max-act",       on["Transluce"]["max-act"]["pooled"]),
+            ("PRISM ~ output-centric",    om["PRISM"]["output-centric"]["pooled"]),
+            ("PRISM ~ GPT-explain",       om["PRISM"]["GPT-explain"]["pooled"]),
+            ("PRISM ~ Neuronpedia",       om["PRISM"]["Neuronpedia"]["pooled"])]
+    y = np.arange(len(rows))[::-1]
+    for yi, (_, d) in zip(y, rows):
+        k, n = d["n_overlap"], d["n_both_characterize"]
+        lo, hi = _ci(k, n)
+        ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.4, solid_capstyle="round", zorder=2)
+        ax.plot(100 * k / n, yi, "o", ms=7, color=XM_COLOR, mec="white", mew=1.0, zorder=4)
+        ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
+                va="center", ha="left", fontsize=9, color="#333")
+    ax.set_yticks(y); ax.set_yticklabels([r[0] for r in rows], fontsize=8.5)
+    ax.set_ylim(-0.55, len(rows) - 0.45)
+    ax.set_xlim(-1.5, 88); ax.set_xlabel("surviving characterizations that overlap (%)")
+    ax.set_title("(c) Semantic overlap", fontsize=10)
+    ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
 
 def make():
     ts.apply()
     fig, (axA, axB, axC) = plt.subplots(1, 3, figsize=(14.0, 4.6),
-                                        gridspec_kw={"width_ratios": [1.0, 1.0, 1.35]})
+                                        gridspec_kw={"width_ratios": [1.0, 1.15, 1.25]})
     _panel_a(axA); _panel_b(axB); _panel_c(axC)
-    fig.subplots_adjust(left=0.055, right=0.99, top=0.90, bottom=0.25, wspace=0.30)
+    fig.subplots_adjust(left=0.055, right=0.99, top=0.90, bottom=0.20, wspace=0.55)
     ts.save(fig, "fig_cross_method")
     plt.close(fig)
     print("saved figures/fig_cross_method.{png,pdf,svg}")
