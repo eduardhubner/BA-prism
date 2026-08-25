@@ -19,6 +19,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 from scipy.stats import spearmanr, beta
 
 import thesis_style as ts
@@ -30,8 +31,14 @@ GX = RESULTS / "pooled_gpt2xl"
 OC = RESULTS / "pooled_outputcentric"
 
 CAT = ["filtered", "retained as distinct", "redundant"]
-XM_COLOR = "#4A5568"   # neutral slate: cross-method panels are a single measure each,
-                       # so no hue is needed and none of the reserved semantics collide
+# Cross-method panels (b)/(c). Colour encodes ONE thing consistently across both:
+# whether the comparison is budget-controlled. PRISM contributes 5 candidate
+# descriptions per feature, every other method 1, so only Transluce~max-act is a
+# like-for-like pair. Validated as a 2-slot categorical palette (all six checks
+# pass; CVD dE 22.8 protan / 18.3 tritan). Avoids green (reserved for AUROC) and
+# blue (reserved for collapse).
+XM_EQUAL   = "#5E4FA2"   # equal proposal budget  -> controlled comparison
+XM_UNEQUAL = "#A6611A"   # unequal budget         -> descriptive only
 CAT_COLOR = {"filtered": "#c9c9c9", "retained as distinct": "#4c9f70", "redundant": ts.COLLAPSED_BLUE}
 
 
@@ -58,7 +65,7 @@ def _panel_a(ax):
         ax.scatter(s["prism_poly"], s["weighted_mean_similarity"], color=ts.MODEL_COLORS[m],
                    marker=ts.MODEL_MARKERS[m], edgecolors="black", linewidths=0.4, s=26,
                    alpha=0.85, label=lab)
-    ax.set_xlim(lo, hi); ax.set_ylim(lo, hi); ax.set_aspect("equal")
+    ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
     ax.set_xlabel(r"$\mathrm{PRISM}_{\mathrm{poly}}$")
     ax.set_ylabel(r"Weighted mean similarity  $\widetilde{\sigma}$")
     ax.set_title("(a) Original vs. revised similarity", fontsize=10)
@@ -81,7 +88,7 @@ def _panel_b(ax):
     y = np.arange(len(rows))[::-1]
     for yi, (_, d) in zip(y, rows):
         k, n = d["n_covered_by_B"], d["n_uncharacterized_by_A"]
-        ax.barh(yi, 100 * k / n, height=0.22, color=XM_COLOR, edgecolor="none", zorder=3)
+        ax.barh(yi, 100 * k / n, height=0.22, color=XM_EQUAL, edgecolor="none", zorder=3)
         lo, hi = _ci(k, n)
         ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.4, solid_capstyle="round", zorder=4)
         ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
@@ -90,6 +97,9 @@ def _panel_b(ax):
     ax.set_ylim(-0.55, len(rows) - 0.45)
     ax.set_xlim(0, 92); ax.set_xlabel("features covered by the other method (%)")
     ax.set_title("(b) Complementary coverage", fontsize=10)
+    ax.annotate("equal proposal budget (1 vs 1)", xy=(0.985, 0.03),
+                xycoords="axes fraction", ha="right", va="bottom",
+                fontsize=7.5, color=XM_EQUAL)
     ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
@@ -108,27 +118,40 @@ def _panel_c(ax):
             ("PRISM ~ GPT-explain",       om["PRISM"]["GPT-explain"]["pooled"]),
             ("PRISM ~ Neuronpedia",       om["PRISM"]["Neuronpedia"]["pooled"])]
     y = np.arange(len(rows))[::-1]
-    for yi, (_, d) in zip(y, rows):
+    equal = [True, False, False, False]      # only Transluce~max-act is 1-vs-1
+    for yi, (_, d), eq in zip(y, rows, equal):
+        col = XM_EQUAL if eq else XM_UNEQUAL
         k, n = d["n_overlap"], d["n_both_characterize"]
         lo, hi = _ci(k, n)
         ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.4, solid_capstyle="round", zorder=2)
-        ax.plot(100 * k / n, yi, "o", ms=7, color=XM_COLOR, mec="white", mew=1.0, zorder=4)
+        ax.plot(100 * k / n, yi, "o", ms=7, color=col, mec="white", mew=1.0, zorder=4)
         ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
                 va="center", ha="left", fontsize=9, color="#333")
     ax.set_yticks(y); ax.set_yticklabels([r[0] for r in rows], fontsize=8.5)
     ax.set_ylim(-0.55, len(rows) - 0.45)
     ax.set_xlim(-1.5, 88); ax.set_xlabel("surviving characterizations that overlap (%)")
     ax.set_title("(c) Semantic overlap", fontsize=10)
+    ax.legend(handles=[mlines.Line2D([], [], marker="o", ls="None", color=XM_EQUAL,
+                                     ms=7, mec="white", label="equal proposal budget (1 vs 1)"),
+                       mlines.Line2D([], [], marker="o", ls="None", color=XM_UNEQUAL,
+                                     ms=7, mec="white", label="unequal budget (PRISM 5 vs 1)")],
+              loc="lower left", bbox_to_anchor=(0.0, -0.30), ncol=2,
+              fontsize=7.5, frameon=False, handletextpad=0.4, columnspacing=1.2)
     ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
 
 def make():
     ts.apply()
-    fig, (axA, axB, axC) = plt.subplots(1, 3, figsize=(14.0, 4.6),
-                                        gridspec_kw={"width_ratios": [1.0, 1.15, 1.25]})
+    fig, (axA, axB, axC) = plt.subplots(1, 3, figsize=(14.4, 4.8),
+                                        gridspec_kw={"width_ratios": [1.0, 1.0, 1.0]})
     _panel_a(axA); _panel_b(axB); _panel_c(axC)
-    fig.subplots_adjust(left=0.055, right=0.99, top=0.90, bottom=0.20, wspace=0.55)
+    # identical box aspect on all three -> x-axes land on one line and the
+    # y-axes are the same length (panel a keeps equal data ranges, so its
+    # identity line still reads as the diagonal)
+    for ax in (axA, axB, axC):
+        ax.set_box_aspect(0.90)
+    fig.subplots_adjust(left=0.055, right=0.99, top=0.90, bottom=0.26, wspace=0.55)
     ts.save(fig, "fig_cross_method")
     plt.close(fig)
     print("saved figures/fig_cross_method.{png,pdf,svg}")
