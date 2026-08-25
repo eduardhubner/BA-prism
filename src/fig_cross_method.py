@@ -128,15 +128,15 @@ def _panel_c(ax):
         ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
                 va="center", ha="left", fontsize=9, color="#333")
     ax.set_yticks(y); ax.set_yticklabels([r[0] for r in rows], fontsize=8.5)
-    ax.set_ylim(-0.55, len(rows) - 0.45)
+    ax.set_ylim(-0.55, len(rows) - 0.10)
     ax.set_xlim(-1.5, 88); ax.set_xlabel("surviving characterizations that overlap (%)")
     ax.set_title("(c) Semantic overlap", fontsize=10)
     ax.legend(handles=[mlines.Line2D([], [], marker="o", ls="None", color=XM_EQUAL,
                                      ms=7, mec="white", label="equal proposal budget (1 vs 1)"),
                        mlines.Line2D([], [], marker="o", ls="None", color=XM_UNEQUAL,
                                      ms=7, mec="white", label="unequal budget (PRISM 5 vs 1)")],
-              loc="lower left", bbox_to_anchor=(0.0, -0.30), ncol=2,
-              fontsize=7.5, frameon=False, handletextpad=0.4, columnspacing=1.2)
+              loc="upper right", fontsize=7.5, frameon=True, framealpha=0.92,
+              edgecolor="0.85", borderpad=0.45, handletextpad=0.4, labelspacing=0.35)
     ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
@@ -151,7 +151,7 @@ def make():
     # identity line still reads as the diagonal)
     for ax in (axA, axB, axC):
         ax.set_box_aspect(0.90)
-    fig.subplots_adjust(left=0.055, right=0.99, top=0.90, bottom=0.26, wspace=0.55)
+    fig.subplots_adjust(left=0.055, right=0.99, top=0.90, bottom=0.155, wspace=0.55)
     ts.save(fig, "fig_cross_method")
     plt.close(fig)
     print("saved figures/fig_cross_method.{png,pdf,svg}")
