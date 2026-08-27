@@ -37,11 +37,13 @@ CAT = ["filtered", "retained as distinct", "redundant"]
 # like-for-like pair. Validated as a 2-slot categorical palette (all six checks
 # pass; CVD dE 22.8 protan / 18.3 tritan). Avoids green (reserved for AUROC) and
 # blue (reserved for collapse).
-# Type scale. Figure 4 is three panels at workshop-column width, so everything
-# on-plot must survive heavy downscaling: short labels, few of them, large type.
-# All explanatory wording (direction semantics, the proposal-budget caveat) lives
-# in the caption, not the axes.
-FS_TITLE, FS_LABEL, FS_VALUE, FS_LEGEND = 12, 11, 10.5, 9.5
+# Authored at TRUE PRINT SIZE. The figure is placed at \linewidth = 5.5in, so it
+# is built 5.5in wide and never downscaled -- point sizes below are the sizes that
+# actually print. Previously it was authored 14.4in wide and shrunk 2.62x on
+# placement, which turned 8.5pt tick labels into 3.2pt and panel (a)'s legend
+# into 2.5pt. That, not the font numbers, was why the labels were unreadable.
+FIG_W, FIG_H = 5.5, 1.95
+FS_TITLE, FS_LABEL, FS_VALUE, FS_LEGEND = 8, 7, 6.5, 5.8
 
 XM_EQUAL   = "#5E4FA2"   # equal proposal budget  -> controlled comparison
 XM_UNEQUAL = "#A6611A"   # unequal budget         -> descriptive only
@@ -73,13 +75,11 @@ def _panel_a(ax):
                    alpha=0.85, label=lab)
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
     ax.set_xlabel(r"$\mathrm{PRISM}_{\mathrm{poly}}$", fontsize=FS_LABEL)
-    ax.set_ylabel(r"Weighted mean similarity  $\widetilde{\sigma}$", fontsize=FS_LABEL)
-    ax.set_title("(a) Original vs. revised similarity", fontsize=FS_TITLE)
+    ax.set_ylabel(r"$\widetilde{\sigma}$", fontsize=FS_TITLE, labelpad=1)
+    ax.set_title("(a)", fontsize=FS_TITLE, loc="left", pad=3)
     ax.annotate(rf"$\rho$ = {rho:.3f}, $n$ = {len(mm)}", xy=(0.04, 0.96), xycoords="axes fraction",
                 va="top", ha="left", fontsize=FS_VALUE,
                 bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="0.7", alpha=0.92))
-    ax.legend(fontsize=FS_LEGEND, loc="lower right", ncol=2, columnspacing=0.8,
-              handletextpad=0.2, borderpad=0.3)
     ts.despine(ax)
 
 
@@ -90,18 +90,20 @@ def _panel_b(ax):
     rows = [(r"Transluce $\rightarrow$ max-act", nm["Transluce"]["max-act"]["pooled"]),
             (r"max-act $\rightarrow$ Transluce", nm["max-act"]["Transluce"]["pooled"])]
     y = np.arange(len(rows))[::-1]
-    for yi, (_, d) in zip(y, rows):
+    for yi, (lbl, d) in zip(y, rows):
         k, n = d["n_covered_by_B"], d["n_uncharacterized_by_A"]
-        ax.barh(yi, 100 * k / n, height=0.40, color=XM_EQUAL, edgecolor="none", zorder=3)
+        ax.barh(yi, 100 * k / n, height=0.34, color=XM_EQUAL, edgecolor="none", zorder=3)
         lo, hi = _ci(k, n)
-        ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.4, solid_capstyle="round", zorder=4)
-        ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
-                va="center", ha="left", fontsize=FS_VALUE, color="#333")
-    ax.set_yticks(y); ax.set_yticklabels([r[0] for r in rows], fontsize=FS_LABEL)
-    ax.set_ylim(-0.55, len(rows) - 0.45)
-    ax.set_xlim(0, 92)
+        ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.0, solid_capstyle="round", zorder=4)
+        # label ABOVE the bar, inside the axes: at this width a y-axis label
+        # column would leave almost no room for the data
+        ax.text(1.5, yi + 0.24, lbl, va="bottom", ha="left", fontsize=FS_LABEL, color="#222")
+        ax.text(hi + 2.5, yi, f"{100 * k / n:.1f}% ({k}/{n})",
+                va="center", ha="left", fontsize=FS_VALUE, color="#555")
+    ax.set_yticks([]); ax.set_ylim(-0.60, len(rows) - 0.10)
+    ax.set_xlim(0, 118)
     ax.set_xlabel("Complementary coverage (%)", fontsize=FS_LABEL)
-    ax.set_title("(b) Complementary coverage", fontsize=FS_TITLE)
+    ax.set_title("(b)", fontsize=FS_TITLE, loc="left", pad=3)
     ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
@@ -121,45 +123,42 @@ def _panel_c(ax):
             ("PRISM ~ Neuronpedia",       om["PRISM"]["Neuronpedia"]["pooled"])]
     y = np.arange(len(rows))[::-1]
     equal = [True, False, False, False]      # only Transluce~max-act is 1-vs-1
-    for yi, (_, d), eq in zip(y, rows, equal):
+    for yi, (lbl, d), eq in zip(y, rows, equal):
         col = XM_EQUAL if eq else XM_UNEQUAL
         k, n = d["n_overlap"], d["n_both_characterize"]
         lo, hi = _ci(k, n)
-        ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.4, solid_capstyle="round", zorder=2)
-        ax.plot(100 * k / n, yi, "o", ms=7, color=col, mec="white", mew=1.0, zorder=4)
-        ax.text(hi + 1.8, yi, f"{100 * k / n:.1f}%  ({k}/{n})",
-                va="center", ha="left", fontsize=FS_VALUE, color="#333")
-    ax.set_yticks(y); ax.set_yticklabels([r[0] for r in rows], fontsize=FS_LABEL)
-    ax.set_ylim(-0.55, len(rows) - 0.45)
-    ax.set_xlim(-1.5, 88)
+        ax.plot([lo, hi], [yi, yi], color="#9aa4b0", lw=1.0, solid_capstyle="round", zorder=2)
+        ax.plot(100 * k / n, yi, "o", ms=4.5, color=col, mec="white", mew=0.7, zorder=4)
+        ax.text(1.5, yi + 0.22, lbl, va="bottom", ha="left", fontsize=FS_LABEL, color="#222")
+        ax.text(hi + 2.5, yi, f"{100 * k / n:.1f}% ({k}/{n})",
+                va="center", ha="left", fontsize=FS_VALUE, color="#555")
+    ax.set_yticks([]); ax.set_ylim(-0.55, len(rows) - 0.15)
+    ax.set_xlim(-2, 118)
     ax.set_xlabel("Semantic overlap (%)", fontsize=FS_LABEL)
-    ax.set_title("(c) Semantic overlap", fontsize=FS_TITLE)
+    ax.set_title("(c)", fontsize=FS_TITLE, loc="left", pad=3)
     ax.xaxis.grid(True, color="#e6e6e6", lw=0.8, zorder=0); ax.set_axisbelow(True)
     ts.despine(ax)
 
 
 def make():
     ts.apply()
-    # Two rows rather than three panels abreast: at workshop-column width a 1x3
-    # row forces every label small. Here (a) gets the full width and (b)/(c) get
-    # half each -- ~50% more width than in the 1x3 layout, which is what the long
-    # pair labels in (c) need.
-    fig = plt.figure(figsize=(11.0, 7.4))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.05],
-                          left=0.085, right=0.985, top=0.955, bottom=0.075,
-                          hspace=0.34, wspace=0.42)
-    axA = fig.add_subplot(gs[0, :])
-    axB = fig.add_subplot(gs[1, 0])
-    axC = fig.add_subplot(gs[1, 1])
+    fig, (axA, axB, axC) = plt.subplots(1, 3, figsize=(FIG_W, FIG_H),
+                                        gridspec_kw={"width_ratios": [1.0, 1.0, 1.0]})
     _panel_a(axA); _panel_b(axB); _panel_c(axC)
-    axA.set_box_aspect(0.42)      # wide banner; the dashed line is still y = x
-    for ax in (axB, axC):
-        ax.set_box_aspect(0.66)
+    # identical box aspect -> the three x-axes sit on one line and the y-axes match
     for ax in (axA, axB, axC):
-        ax.tick_params(labelsize=FS_LABEL)
+        ax.set_box_aspect(0.92)
+        ax.tick_params(labelsize=FS_LABEL, length=2.5, pad=1.5)
+    # one shared model legend for the whole figure -- at 1.5in per panel an
+    # in-axes legend covers the data
+    h, l = axA.get_legend_handles_labels()
+    fig.legend(h, l, loc="lower center", ncol=4, fontsize=FS_LEGEND, frameon=False,
+               handletextpad=0.3, columnspacing=1.1, borderaxespad=0.0,
+               bbox_to_anchor=(0.5, 0.005))
+    fig.subplots_adjust(left=0.075, right=0.995, top=0.93, bottom=0.315, wspace=0.55)
     ts.save(fig, "fig_cross_method")
     plt.close(fig)
-    print("saved figures/fig_cross_method.{png,pdf,svg}")
+    print(f"saved figures/fig_cross_method.{{png,pdf,svg}}  ({FIG_W}x{FIG_H}in, true print size)")
 
 
 if __name__ == "__main__":
