@@ -125,12 +125,18 @@ def despine(ax, which=("top", "right")):
         ax.spines[s].set_visible(False)
 
 
-def save(fig, name, formats=("png", "pdf", "svg")):
-    """Save a figure into figures/ in each requested vector format."""
+def save(fig, name, formats=("png", "pdf", "svg"), **savefig_kw):
+    """Save a figure into figures/ in each requested vector format.
+
+    Extra kwargs go straight to savefig. Pass bbox_inches=None for a figure
+    authored at true print size: the default rcParam is bbox="tight", which
+    writes a canvas WIDER than figsize, so LaTeX silently scales the file down at
+    \linewidth and every point size shrinks with it.
+    """
     paths = []
     for ext in formats:
         p = FIG_DIR / f"{name}.{ext}"
-        fig.savefig(p)
+        fig.savefig(p, **savefig_kw)
         paths.append(p)
     return paths
 
