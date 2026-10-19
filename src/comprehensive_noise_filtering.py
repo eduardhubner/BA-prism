@@ -25,7 +25,7 @@ from utils.spherical_kmeans import SphericalKMeans
 
 # Paths
 EMBEDDING_CACHE_DIR = Path(__file__).parent.parent / "cache" / "embeddings"
-ANALYSIS_DIR = Path(__file__).parent.parent / "clustering_analysis_cosine"
+ANALYSIS_DIR = Path(__file__).parent.parent / "clustering_analysis_qwen3_0.6b_prelim"
 CLUSTER_DIR = ANALYSIS_DIR / "clusters"
 RESULTS_FILE = ANALYSIS_DIR / "results.json"
 

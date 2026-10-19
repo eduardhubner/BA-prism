@@ -2,7 +2,7 @@
 Minimal, high-value sensitivity analysis for polysemanticity scoring.
 
 This script runs 7 experiments total:
-A) 3 weighting schemes (auc, auc_centered, auc_sigmoid)
+A) 3 weighting schemes (auroc, auroc_centered, auroc_sigmoid)
 B) 2 reliability filters (0.0, 0.5)
 C) 2 redundancy thresholds (0.9, 0.95)
 
@@ -30,7 +30,7 @@ def run_experiment_a():
     print("EXPERIMENT A: WEIGHTING SCHEMES")
     print("="*80)
 
-    schemes = ["auc", "auc_centered", "auc_sigmoid"]
+    schemes = ["auroc", "auroc_centered", "auroc_sigmoid"]
     results_by_scheme = {}
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
@@ -56,16 +56,16 @@ def run_experiment_a():
     print("ANALYSIS: WEIGHTING SCHEMES")
     print("="*80)
 
-    base = results_by_scheme["auc"]
+    base = results_by_scheme["auroc"]
 
-    for scheme in ["auc_centered", "auc_sigmoid"]:
+    for scheme in ["auroc_centered", "auroc_sigmoid"]:
         comp = results_by_scheme[scheme]
 
         # Merge on neuron identifiers
         merged = base[['model', 'layer', 'unit', 'diversity_score']].merge(
             comp[['model', 'layer', 'unit', 'diversity_score']],
             on=['model', 'layer', 'unit'],
-            suffixes=('_auc', f'_{scheme}')
+            suffixes=('_auroc', f'_{scheme}')
         )
 
         # Create neuron ID for proper tracking
@@ -76,37 +76,37 @@ def run_experiment_a():
         )
 
         # Rank correlation (drop NaNs for safety)
-        valid_mask = merged['diversity_score_auc'].notna() & merged[f'diversity_score_{scheme}'].notna()
+        valid_mask = merged['diversity_score_auroc'].notna() & merged[f'diversity_score_{scheme}'].notna()
         if valid_mask.sum() > 2:
             rho, p = spearmanr(
-                merged.loc[valid_mask, 'diversity_score_auc'],
+                merged.loc[valid_mask, 'diversity_score_auroc'],
                 merged.loc[valid_mask, f'diversity_score_{scheme}']
             )
-            print(f"\n{scheme} vs auc:")
+            print(f"\n{scheme} vs auroc:")
             print(f"  Spearman ρ: {rho:.4f} (p={p:.2e})")
         else:
-            print(f"\n{scheme} vs auc:")
+            print(f"\n{scheme} vs auroc:")
             print(f"  Spearman ρ: insufficient data")
             rho = np.nan
 
         # Top 10 overlap (use nlargest to avoid tie issues)
-        top10_auc = set(merged.nlargest(10, 'diversity_score_auc')['neuron_id'])
+        top10_auroc = set(merged.nlargest(10, 'diversity_score_auroc')['neuron_id'])
         top10_comp = set(merged.nlargest(10, f'diversity_score_{scheme}')['neuron_id'])
-        overlap = len(top10_auc & top10_comp)
+        overlap = len(top10_auroc & top10_comp)
 
         print(f"  Top-10 overlap: {overlap}/10")
 
         # Biggest rank changes (using fractional ranks with 'first' tie-breaking)
-        merged['rank_auc'] = merged['diversity_score_auc'].rank(ascending=False, method='first')
+        merged['rank_auroc'] = merged['diversity_score_auroc'].rank(ascending=False, method='first')
         merged[f'rank_{scheme}'] = merged[f'diversity_score_{scheme}'].rank(ascending=False, method='first')
-        merged['rank_change'] = abs(merged['rank_auc'] - merged[f'rank_{scheme}'])
+        merged['rank_change'] = abs(merged['rank_auroc'] - merged[f'rank_{scheme}'])
 
         top_changers = merged.nlargest(5, 'rank_change')
 
         print(f"  Biggest rank changes:")
         for idx, row in top_changers.iterrows():
             print(f"    {row['model']} L{int(row['layer'])}_U{int(row['unit'])}: "
-                  f"rank {int(row['rank_auc'])} → {int(row[f'rank_{scheme}'])} "
+                  f"rank {int(row['rank_auroc'])} → {int(row[f'rank_{scheme}'])} "
                   f"(Δ={int(row['rank_change'])})")
 
     return results_by_scheme
@@ -135,7 +135,7 @@ def run_experiment_b():
         experiment = PolysemanticityScoringExperiment()
 
         results = experiment.compute_all_metrics(
-            weight_scheme="auc",
+            weight_scheme="auroc",
             reliability_filter=filt,
             redundancy_threshold=0.9
         )
@@ -212,7 +212,7 @@ def run_experiment_c():
         experiment = PolysemanticityScoringExperiment()
 
         results = experiment.compute_all_metrics(
-            weight_scheme="auc",
+            weight_scheme="auroc",
             reliability_filter=0.0,
             redundancy_threshold=thresh
         )
@@ -350,7 +350,7 @@ def main():
     print("\nKey takeaways:")
     print("1. Check Spearman ρ for weighting schemes:")
     print("   - High ρ (>0.9) indicates robustness")
-    print("   - Lower ρ for centered vs auc expected (gating changes rankings)")
+    print("   - Lower ρ for centered vs auroc expected (gating changes rankings)")
     print("   - Inspect rank changers to understand differences")
     print("2. Check top-10 overlap:")
     print("   - High overlap (8-10/10) indicates stable top neurons")

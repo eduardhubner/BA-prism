@@ -11,8 +11,9 @@ from typing import List, Dict, Optional
 
 
 # Cluster cache directory - relative to project root
-# Go up from src/utils/ to project root, then to clustering_analysis_cosine/clusters
-CLUSTER_CACHE_DIR = Path(__file__).parent.parent.parent / "clustering_analysis_cosine" / "clusters"
+# Go up from src/utils/ to project root, then to clustering_analysis_qwen3_0.6b_prelim/clusters
+# (default; overridden by callers like clustering_analysis.py for other runs)
+CLUSTER_CACHE_DIR = Path(__file__).parent.parent.parent / "clustering_analysis_qwen3_0.6b_prelim" / "clusters"
 
 
 def save_clusters(layer: int, unit: int, method: str, labels: np.ndarray, texts: List[str]):

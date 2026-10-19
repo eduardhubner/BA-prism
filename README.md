@@ -14,7 +14,7 @@ This fork extends PRISM with adaptive k-selection methods and cosine similarity-
 
 **Added functionality:**
 - Adaptive k-selection using Silhouette Score, BIC, and Davies-Bouldin Index
-- Cosine similarity support via Spherical K-Means for 768-dimensional embeddings
+- Cosine similarity support via Spherical K-Means for high-dimensional embeddings (768-dim Qwen3-0.6B preliminary; 1536-dim gte-Qwen2-1.5B in the cited run)
 - HDBSCAN-based noise filtering to improve cluster quality
 - Agglomerative clustering with cosine linkage
 - Hopkins statistic for clustering tendency analysis
@@ -27,6 +27,11 @@ This fork extends PRISM with adaptive k-selection methods and cosine similarity-
 - `src/evaluation.py` - Enhanced evaluation metrics and batch processing
 - `src/utils/helper_modules.py` - Added clustering quality metrics
 - `src/utils/models.py` - Updated embedding model configuration
+
+**Documentation:**
+- [PAPER_REFERENCE.md](PAPER_REFERENCE.md) — single entry point for the paper: method, all results with provenance, design-choice evidence, known weak points
+- [RESULTS_INDEX.md](RESULTS_INDEX.md) — full claim → script → output catalogue
+- [THRESHOLD_CALIBRATION.md](THRESHOLD_CALIBRATION.md) / [CROSS_METHOD.md](CROSS_METHOD.md) — deep-dives
 
 **Experiments:**
 See [EXPERIMENTS.md](EXPERIMENTS.md) for detailed results from systematic evaluation across 60 GPT2-XL neurons.
@@ -111,7 +116,9 @@ python src/evaluation.py
 
 Generated concept samples can be found in [generated_text](https://github.com/lkopf/prism/tree/main/generated_text) folder.
 
-Evaluate all feature descriptions per feature with polysemanticity score (cosine similarity), max AUC, and max MAD.
+Evaluate all feature descriptions per feature with polysemanticity score (cosine similarity), max AUROC, and max MAD.
+
+> **Terminology:** the metric is **AUROC** throughout — prose, code, and CSV columns. Imported CoSy evaluation CSVs keep their upstream `AUC` column name. See [RESULTS_INDEX.md](RESULTS_INDEX.md).
 
 ```bash
 python src/meta_evaluation.py

@@ -49,7 +49,7 @@ if not Path(result_filename).exists() or Path(result_filename).stat().st_size ==
                 "unit",
                 "cosine_similarity",
                 "cosine_similarity_random",
-                "max_auc",
+                "max_auroc",
                 "max_mad",
             ]
         )
@@ -82,17 +82,17 @@ for (layer, unit), group in groups:
             random_samples, embedder
         )
 
-        max_auc = group["AUC"].max()
+        max_auroc = group["AUC"].max()
         max_mad = group["MAD"].max()
 
         logger.info(
             f"{layer}, {unit}:\n"
             f" {avg_sim} cosine similarity\n"
             f" {avg_sim_random} cosine similarity random\n"
-            f" {max_auc} max AUC\n"
+            f" {max_auroc} max AUROC\n"
             f" {max_mad} max MAD"
         )
 
-        writer.writerow([layer, unit, avg_sim, avg_sim_random, max_auc, max_mad])
+        writer.writerow([layer, unit, avg_sim, avg_sim_random, max_auroc, max_mad])
 
 logger.info(f"All layer-unit pairs processed. Results saved to:\n {result_filename}")

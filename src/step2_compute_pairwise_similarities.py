@@ -102,7 +102,7 @@ def create_unified_dataset(manifest_df, embeddings):
         - model, layer, unit (identifiers)
         - desc_id_1..5 (unique IDs for traceability)
         - description_1..5 (text)
-        - auc_1..5 (quality scores)
+        - auroc_1..5 (quality scores)
         - mad_1..5, p_1..5 (other scores)
         - sim_12, sim_13, sim_14, sim_15, sim_23, sim_24, sim_25, sim_34, sim_35, sim_45
           (10 pairwise similarities)
@@ -127,7 +127,7 @@ def create_unified_dataset(manifest_df, embeddings):
         # Extract IDs and data
         desc_ids = group['desc_id'].tolist()
         descriptions = group['description'].tolist()
-        aucs = group['auc'].tolist()
+        aurocs = group['auroc'].tolist()
         mads = group['mad'].tolist()
         p_values = group['p_value'].tolist()
 
@@ -150,8 +150,8 @@ def create_unified_dataset(manifest_df, embeddings):
             row[f'description_{i}'] = desc
 
         # Add scores
-        for i, (auc, mad, p) in enumerate(zip(aucs, mads, p_values), 1):
-            row[f'auc_{i}'] = auc
+        for i, (auroc, mad, p) in enumerate(zip(aurocs, mads, p_values), 1):
+            row[f'auroc_{i}'] = auroc
             row[f'mad_{i}'] = mad
             row[f'p_{i}'] = p
 
@@ -177,13 +177,21 @@ def create_unified_dataset(manifest_df, embeddings):
     return pd.DataFrame(all_rows)
 
 
-def compute_random_baselines(manifest_df, embeddings, n_samples=1000):
+BASELINE_SEED = 42
+
+
+def compute_random_baselines(manifest_df, embeddings, n_samples=1000, seed=BASELINE_SEED):
     """
     Compute random baseline similarities.
 
     For each model, randomly sample 5 descriptions from different neurons,
     compute their pairwise similarities, repeat n_samples times.
+
+    Seeded: this baseline's per-model mean/std are consumed by
+    polysemanticity_scoring.py to z-score and percentile-rank the scores, so the
+    output must be reproducible.
     """
+    rng = np.random.default_rng(seed)
     print(f"\nComputing random baselines ({n_samples} samples per model)...")
 
     baselines = []
@@ -196,7 +204,7 @@ def compute_random_baselines(manifest_df, embeddings, n_samples=1000):
 
         for _ in tqdm(range(n_samples), desc=f"  {model}", leave=False):
             # Sample 5 random description IDs
-            sample_ids = np.random.choice(desc_ids, size=5, replace=False)
+            sample_ids = rng.choice(desc_ids, size=5, replace=False)
 
             # Compute pairwise similarities
             pairwise_sims = compute_pairwise_similarities_for_neuron(sample_ids.tolist(), embeddings)

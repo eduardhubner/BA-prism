@@ -53,7 +53,7 @@ NEURONS = [
 # Directories
 EMBEDDINGS_DIR = Path(__file__).parent.parent / "embeddings_qwen2"  # Load from Qwen2 embeddings
 DATA_DIR = Path(__file__).parent.parent / "data" / "candidate_inputs_decoded"
-OUTPUT_DIR = Path(__file__).parent.parent / "clustering_analysis_qwen2"  # Save to separate directory
+OUTPUT_DIR = Path(__file__).parent.parent / "clustering_analysis_gte_qwen2_primary"  # Save to separate directory
 VIZ_DIR = OUTPUT_DIR / "visualizations"
 VIZ_DIR.mkdir(parents=True, exist_ok=True)
 

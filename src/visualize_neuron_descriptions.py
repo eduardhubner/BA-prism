@@ -2,7 +2,7 @@
 Visualize neuron description similarity and reliability.
 
 Creates two types of visualizations:
-1. Network graph: Nodes = descriptions (color = AUC), edges = similarity
+1. Network graph: Nodes = descriptions (color = AUROC), edges = similarity
 2. MDS scatter plot: 2D embedding where distance ≈ dissimilarity (1 - similarity)
 
 Usage:
@@ -32,10 +32,10 @@ PAIRS = [(1,2), (1,3), (1,4), (1,5), (2,3), (2,4), (2,5), (3,4), (3,5), (4,5)]
 
 def load_neuron_data(model: str, layer: int, unit: int) -> dict:
     """
-    Load pairwise similarities and AUCs for a specific neuron.
+    Load pairwise similarities and AUROCs for a specific neuron.
 
     Returns:
-        dict with 'pairwise_sims' (10 values), 'aucs' (5 values), 'metadata'
+        dict with 'pairwise_sims' (10 values), 'aurocs' (5 values), 'metadata'
     """
     df = pd.read_csv(PAIRWISE_FILE)
 
@@ -53,8 +53,8 @@ def load_neuron_data(model: str, layer: int, unit: int) -> dict:
     sim_cols = [f'sim_{i}{j}' for i, j in PAIRS]
     pairwise_sims = np.array([row[col] for col in sim_cols])
 
-    # Extract AUCs
-    aucs = np.array([row[f'auc_{i}'] for i in range(1, 6)])
+    # Extract AUROCs
+    aurocs = np.array([row[f'auroc_{i}'] for i in range(1, 6)])
 
     # Metadata
     metadata = {
@@ -67,7 +67,7 @@ def load_neuron_data(model: str, layer: int, unit: int) -> dict:
 
     return {
         'pairwise_sims': pairwise_sims,
-        'aucs': aucs,
+        'aurocs': aurocs,
         'metadata': metadata,
     }
 
@@ -97,11 +97,11 @@ def visualize_network_graph(neuron_data: dict, save_path: Path = None, show: boo
     """
     Visualize descriptions as network graph.
 
-    Nodes: Descriptions (color-coded by AUC)
+    Nodes: Descriptions (color-coded by AUROC)
     Edges: Similarity (thickness = similarity strength)
     """
     pairwise_sims = neuron_data['pairwise_sims']
-    aucs = neuron_data['aucs']
+    aurocs = neuron_data['aurocs']
     metadata = neuron_data['metadata']
 
     # Create graph
@@ -109,7 +109,7 @@ def visualize_network_graph(neuron_data: dict, save_path: Path = None, show: boo
 
     # Add nodes (descriptions 1-5)
     for i in range(1, 6):
-        G.add_node(i, auc=aucs[i-1])
+        G.add_node(i, auroc=aurocs[i-1])
 
     # Add edges (with weight = similarity)
     for idx, (i, j) in enumerate(PAIRS):
@@ -142,12 +142,12 @@ def visualize_network_graph(neuron_data: dict, save_path: Path = None, show: boo
         ax=ax
     )
 
-    # Draw nodes (color = AUC)
-    node_colors = aucs
+    # Draw nodes (color = AUROC)
+    node_colors = aurocs
     nodes = nx.draw_networkx_nodes(
         G, pos,
         node_color=node_colors,
-        cmap='RdYlGn',  # Red (low AUC) → Yellow → Green (high AUC)
+        cmap='RdYlGn',  # Red (low AUROC) → Yellow → Green (high AUROC)
         vmin=0.0,
         vmax=1.0,
         node_size=1000,
@@ -165,9 +165,9 @@ def visualize_network_graph(neuron_data: dict, save_path: Path = None, show: boo
         ax=ax
     )
 
-    # Colorbar for AUC
+    # Colorbar for AUROC
     cbar = plt.colorbar(nodes, ax=ax, fraction=0.046, pad=0.04)
-    cbar.set_label('AUC (Prediction Accuracy)', rotation=270, labelpad=20, fontsize=12)
+    cbar.set_label('AUROC (Prediction Accuracy)', rotation=270, labelpad=20, fontsize=12)
 
     # Title
     title = (f"{metadata['model']} Layer {metadata['layer']} Unit {metadata['unit']}\n"
@@ -194,10 +194,10 @@ def visualize_mds_scatter(neuron_data: dict, save_path: Path = None, show: bool 
     Visualize descriptions using MDS (Multidimensional Scaling).
 
     2D embedding where Euclidean distance ≈ dissimilarity (1 - similarity)
-    Nodes: Descriptions (color-coded by AUC, size = AUC)
+    Nodes: Descriptions (color-coded by AUROC, size = AUROC)
     """
     pairwise_sims = neuron_data['pairwise_sims']
-    aucs = neuron_data['aucs']
+    aurocs = neuron_data['aurocs']
     metadata = neuron_data['metadata']
 
     # Create dissimilarity matrix (distance = 1 - similarity)
@@ -232,11 +232,11 @@ def visualize_mds_scatter(neuron_data: dict, save_path: Path = None, show: bool 
     scatter = ax.scatter(
         coords[:, 0],
         coords[:, 1],
-        c=aucs,
+        c=aurocs,
         cmap='RdYlGn',  # Red (low) → Yellow → Green (high)
         vmin=0.0,
         vmax=1.0,
-        s=1000,  # Size based on AUC
+        s=1000,  # Size based on AUROC
         edgecolors='black',
         linewidths=2,
         zorder=2
@@ -252,7 +252,7 @@ def visualize_mds_scatter(neuron_data: dict, save_path: Path = None, show: bool 
 
     # Colorbar
     cbar = plt.colorbar(scatter, ax=ax, fraction=0.046, pad=0.04)
-    cbar.set_label('AUC (Prediction Accuracy)', rotation=270, labelpad=20, fontsize=12)
+    cbar.set_label('AUROC (Prediction Accuracy)', rotation=270, labelpad=20, fontsize=12)
 
     # Title
     title = (f"{metadata['model']} Layer {metadata['layer']} Unit {metadata['unit']}\n"
@@ -283,7 +283,7 @@ def create_combined_visualization(neuron_data: dict, save_path: Path = None, sho
     Create side-by-side visualization: Network graph + MDS scatter.
     """
     pairwise_sims = neuron_data['pairwise_sims']
-    aucs = neuron_data['aucs']
+    aurocs = neuron_data['aurocs']
     metadata = neuron_data['metadata']
 
     # Create figure with two subplots
@@ -295,7 +295,7 @@ def create_combined_visualization(neuron_data: dict, save_path: Path = None, sho
 
     G = nx.Graph()
     for i in range(1, 6):
-        G.add_node(i, auc=aucs[i-1])
+        G.add_node(i, auroc=aurocs[i-1])
     for idx, (i, j) in enumerate(PAIRS):
         G.add_edge(i, j, weight=pairwise_sims[idx])
 
@@ -312,7 +312,7 @@ def create_combined_visualization(neuron_data: dict, save_path: Path = None, sho
     # Nodes
     nodes1 = nx.draw_networkx_nodes(
         G, pos,
-        node_color=aucs,
+        node_color=aurocs,
         cmap='RdYlGn',
         vmin=0.0, vmax=1.0,
         node_size=1000,
@@ -355,7 +355,7 @@ def create_combined_visualization(neuron_data: dict, save_path: Path = None, sho
     # Nodes
     scatter = ax2.scatter(
         coords[:, 0], coords[:, 1],
-        c=aucs,
+        c=aurocs,
         cmap='RdYlGn',
         vmin=0.0, vmax=1.0,
         s=1000,
@@ -383,7 +383,7 @@ def create_combined_visualization(neuron_data: dict, save_path: Path = None, sho
     # ============================================================
 
     cbar = fig.colorbar(scatter, ax=[ax1, ax2], fraction=0.046, pad=0.04)
-    cbar.set_label('AUC (Prediction Accuracy)', rotation=270, labelpad=20, fontsize=12)
+    cbar.set_label('AUROC (Prediction Accuracy)', rotation=270, labelpad=20, fontsize=12)
 
     # ============================================================
     # Overall title
@@ -410,20 +410,20 @@ def create_combined_visualization(neuron_data: dict, save_path: Path = None, sho
 def print_neuron_stats(neuron_data: dict):
     """Print detailed statistics for a neuron."""
     pairwise_sims = neuron_data['pairwise_sims']
-    aucs = neuron_data['aucs']
+    aurocs = neuron_data['aurocs']
     metadata = neuron_data['metadata']
 
     print(f"\n{'='*60}")
     print(f"Neuron: {metadata['model']} Layer {metadata['layer']} Unit {metadata['unit']}")
     print(f"{'='*60}")
 
-    print(f"\nAUC Scores (Prediction Accuracy):")
-    for i, auc in enumerate(aucs, 1):
-        reliability = "✓" if auc >= 0.5 else "✗"
-        print(f"  Description {i}: {auc:.4f} {reliability}")
-    print(f"  Max AUC: {aucs.max():.4f}")
-    print(f"  Mean AUC: {aucs.mean():.4f}")
-    print(f"  Descriptions above chance (≥0.5): {np.sum(aucs >= 0.5)}/5")
+    print(f"\nAUROC Scores (Prediction Accuracy):")
+    for i, auroc in enumerate(aurocs, 1):
+        reliability = "✓" if auroc >= 0.5 else "✗"
+        print(f"  Description {i}: {auroc:.4f} {reliability}")
+    print(f"  Max AUROC: {aurocs.max():.4f}")
+    print(f"  Mean AUROC: {aurocs.mean():.4f}")
+    print(f"  Descriptions above chance (≥0.5): {np.sum(aurocs >= 0.5)}/5")
 
     print(f"\nPairwise Similarities:")
     for idx, (i, j) in enumerate(PAIRS):
