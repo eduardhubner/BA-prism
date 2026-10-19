@@ -1,40 +1,64 @@
-# PRISM Extension: Adaptive K-Selection
+# PRISM Extension: Description Verification
 
-**Fork of original PRISM repository with added adaptive k-selection methods.**
+**Fork of the original PRISM repository, adding a verification stage for feature descriptions.**
 
-This repository extends the PRISM framework with automatic cluster number selection for improved polysemanticity detection. Part of Eduard Hübner's Bachelor's Thesis at TU Berlin.
+Part of Eduard Hübner's Bachelor's Thesis at TU Berlin.
 
 **Original repository:** [lkopf/prism](https://github.com/lkopf/automated-interpretability)
 
 **Original paper:** [Capturing Polysemanticity with PRISM](https://arxiv.org/abs/2506.15538) by Kopf et al., 2025
 
-## Extension Overview
+## Description verification
 
-This fork extends PRISM with adaptive k-selection methods and cosine similarity-based clustering for improved polysemanticity detection in high-dimensional embedding spaces.
+PRISM scores a feature by the mean pairwise similarity of several candidate
+descriptions. That score says nothing about whether those descriptions are
+*supported* by the feature's behaviour. This fork checks them first:
 
-**Added functionality:**
-- Adaptive k-selection using Silhouette Score, BIC, and Davies-Bouldin Index
-- Cosine similarity support via Spherical K-Means for high-dimensional embeddings (768-dim Qwen3-0.6B preliminary; 1536-dim gte-Qwen2-1.5B in the cited run)
-- HDBSCAN-based noise filtering to improve cluster quality
-- Agglomerative clustering with cosine linkage
-- Hopkins statistic for clustering tendency analysis
-- Comprehensive metadata logging for k-selection and clustering quality
+1. **AUROC filter** — drop descriptions performing at or below chance (τ_auroc = 0.50)
+2. **Redundancy collapse** — among survivors, merge descriptions whose embeddings
+   exceed τ_sim = 0.70, keeping the best-supported one per group
 
-**Modified files:**
-- `src/utils/clustering.py` - Added `select_optimal_k()`, spherical k-means, HDBSCAN integration, cosine distance support
-- `src/utils/config.py` - Added `ADAPTIVE_K`, `SPHERICAL`, `USE_HDBSCAN_FILTERING` parameters
-- `src/feature_description.py` - Integrated k-selection logging and noise filtering pipeline
-- `src/evaluation.py` - Enhanced evaluation metrics and batch processing
-- `src/utils/helper_modules.py` - Added clustering quality metrics
-- `src/utils/models.py` - Updated embedding model configuration
+The result is a profile rather than a single number: `n_s` surviving descriptions,
+evidence quality `Q`, and semantic diversity `D = 1 − σ̃`.
 
-**Documentation:**
-- [PAPER_REFERENCE.md](PAPER_REFERENCE.md) — single entry point for the paper: method, all results with provenance, design-choice evidence, known weak points
-- [RESULTS_INDEX.md](RESULTS_INDEX.md) — full claim → script → output catalogue
-- [THRESHOLD_CALIBRATION.md](THRESHOLD_CALIBRATION.md) / [CROSS_METHOD.md](CROSS_METHOD.md) — deep-dives
+**Entry point:** [`src/verification.py`](src/verification.py) — the whole method in
+one module, numpy and stdlib only:
 
-**Experiments:**
-See [EXPERIMENTS.md](EXPERIMENTS.md) for detailed results from systematic evaluation across 60 GPT2-XL neurons.
+```python
+from verification import filter_and_collapse, compute_metrics
+
+result  = filter_and_collapse(aurocs, sim_matrix)
+metrics = compute_metrics(aurocs, sim_matrix, result)   # n_s, sigma-tilde, D, Q
+```
+
+Nothing in it assumes the descriptions are text, so it transfers to other
+modalities: supply AUROCs from your own evaluation and a cosine-similarity matrix
+from whatever embedding you use.
+
+Two things to know before reusing it:
+
+- **τ_sim = 0.70 is calibrated for `gte-Qwen2-1.5B` text embeddings.** The absolute
+  cosine scale does not transfer across embedding models — recalibrate rather than
+  inherit the value.
+- **σ̃ = 1 and D = 0 at a single survivor are conventions, not measurements**, and
+  both are undefined when no description survives.
+
+Per-feature profiles for the 239 features in the study:
+[`results/reliability_profile.csv`](results/reliability_profile.csv).
+
+## Also in this fork: adaptive k-selection
+
+Clustering extensions explored during the thesis, kept for reference:
+
+- Adaptive k-selection using Silhouette Score, BIC and Davies-Bouldin Index
+- Cosine similarity via Spherical K-Means for high-dimensional embeddings
+- HDBSCAN-based noise filtering; agglomerative clustering with cosine linkage
+- Hopkins statistic for clustering tendency
+
+**Modified relative to upstream:** `src/utils/clustering.py` (`select_optimal_k()`,
+spherical k-means, HDBSCAN, cosine distance), `src/utils/config.py` (`ADAPTIVE_K`,
+`SPHERICAL`, `USE_HDBSCAN_FILTERING`), `src/feature_description.py`,
+`src/evaluation.py`, `src/utils/helper_modules.py`, `src/utils/models.py`.
 
 ---
 
@@ -118,7 +142,7 @@ Generated concept samples can be found in [generated_text](https://github.com/lk
 
 Evaluate all feature descriptions per feature with polysemanticity score (cosine similarity), max AUROC, and max MAD.
 
-> **Terminology:** the metric is **AUROC** throughout — prose, code, and CSV columns. Imported CoSy evaluation CSVs keep their upstream `AUC` column name. See [RESULTS_INDEX.md](RESULTS_INDEX.md).
+> **Terminology:** the metric is **AUROC** throughout — prose, code, and CSV columns. Imported CoSy evaluation CSVs keep their upstream `AUC` column name.
 
 ```bash
 python src/meta_evaluation.py
